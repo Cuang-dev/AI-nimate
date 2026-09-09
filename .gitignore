@@ -1,0 +1,12 @@
+# Dependencies
+node_modules/
+
+# Temporary renders and capture frames
+.raw_render_*
+raw_*
+*.tmp
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db

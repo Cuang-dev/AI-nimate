@@ -1,0 +1,32 @@
+{
+  "name": "ai-nimate",
+  "version": "0.1.0",
+  "description": "Autonomous AI-driven vector animation pipeline and Pablo Stanley asset library for explainer videos",
+  "main": "assets/assemble-peep.js",
+  "bin": {
+    "assemble-peep": "./assets/assemble-peep.js",
+    "ai-nimate-render": "./scripts/render.js",
+    "ai-nimate-tts": "./scripts/tts.js"
+  },
+  "scripts": {
+    "assemble": "node assets/assemble-peep.js",
+    "render": "node scripts/render.js",
+    "tts": "node scripts/tts.js",
+    "gallery": "python3 -m http.server 8080 --directory assets"
+  },
+  "keywords": [
+    "animation",
+    "vector",
+    "svg",
+    "open-peeps",
+    "video-generation",
+    "ai-animation",
+    "motion-graphics",
+    "infographics",
+    "playwright",
+    "edge-tts",
+    "ffmpeg"
+  ],
+  "author": "WilliamAxelC <williamaxelcuangdinata@gmail.com>",
+  "license": "MIT"
+}
