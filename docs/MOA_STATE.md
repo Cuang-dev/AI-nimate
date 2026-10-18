@@ -14,7 +14,7 @@
 | Phase 2 | Channel Profiles Debloat, Ring-Buffer Topic Storage & Variants | `feat/phase-2-channels-and-ideas` | COMPLETED | Pass (27/27 tests + Phase 2 assertion) | Merged to `main` |
 | Phase 3 | Style Engine Upgrade & Deterministic Brand Chrome Compiler | `feat/phase-3-style-engine` | COMPLETED | Pass (27/27 tests + Phase 3 assertion) | Merged to `main` |
 | Phase 4 | Dual Visual Engine (`vector-html` \| `ai-image` \| `hybrid`) & Prompt Upgrade | `feat/phase-4-dual-visual-engine` | COMPLETED | Pass (27/27 tests + Phase 4 assertion) | Merged to `main` |
-| Phase 5 | 5-Layer `stage-generator.js` Refactor (Active-Scene DOM, Subtitle Toggle & Virtual Clock) | `feat/phase-5-stage-generator` | PENDING | Pending | Pending |
+| Phase 5 | 5-Layer `stage-generator.js` Refactor (Active-Scene DOM, Subtitle Toggle & Virtual Clock) | `feat/phase-5-stage-generator` | COMPLETED | Pass (27/27 tests + Phase 5 assertion) | Merged to `main` |
 | Phase 6 | Low-Memory Ephemeral HTTP Server & `image2pipe` Deterministic `render.js` | `feat/phase-6-low-ram-renderer` | PENDING | Pending | Pending |
 | Phase 7 | End-to-End Pipeline Orchestration & Discord Control Surface Wiring | `feat/phase-7-pipeline-and-controls` | PENDING | Pending | Pending |
 | Phase 8 | Comprehensive Architecture & Integration Verification Suite | `feat/phase-8-verification-suite` | PENDING | Pending | Pending |
