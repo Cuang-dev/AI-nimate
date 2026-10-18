@@ -3,6 +3,7 @@
   "name": "Tech Deep-Dive & Startup Architecture",
   "description": "Architectural blueprint and technical teardown aesthetic. Clean drafting paper textures, technical cyan accents, blueprint frames, system architecture diagrams, and high-precision metrics.",
   "aspectRatio": "16:9",
+  "theme": "light",
   "background": {
     "type": "paper",
     "paperTone": "#f1f5f9",
@@ -15,14 +16,29 @@
     "name": "monochrome-slate",
     "bg": "#f1f5f9",
     "cardBg": "#ffffff",
+    "bgPrimary": "#f4f7fb",
+    "bgSecondary": "#e2e8f0",
+    "bgSurface": "rgba(255, 255, 255, 0.94)",
     "textPrimary": "#0f172a",
     "textSecondary": "#475569",
+    "brandPrimary": "#2563eb",
+    "brandAccent": "#0891b2",
+    "borderMuted": "rgba(15, 23, 42, 0.14)",
+    "gridLine": "rgba(37, 99, 235, 0.08)",
     "accent": "#0284c7",
     "accentGlow": "rgba(2, 132, 199, 0.12)",
     "border": "rgba(15, 23, 42, 0.12)",
     "stampColor": "#0284c7",
     "highlightColor": "#bae6fd"
   },
+  "chrome": {
+    "backgroundPattern": "blueprint-grid",
+    "watermarkText": "SYSTEM ARCHITECTURE // SPECIFICATION BLUEPRINT",
+    "showHeaderBar": true,
+    "showCornerTicks": true,
+    "vignetteStrength": 0.15
+  },
+  "aiImagePromptPrefix": "High-density technical blueprint illustration on light blueprint wash (#f4f7fb), slate ink (#0f172a), cobalt blue (#2563eb) and cyan (#0891b2) schematic accents, precise vector lineart, modular layout: ",
   "character": {
     "mode": "engineer-schematic",
     "puppetEnabled": false,
@@ -31,6 +47,9 @@
     "accessories": ["laptop", "terminal-window"]
   },
   "typography": {
+    "fontDisplay": "'JetBrains Mono', 'Plus Jakarta Sans', sans-serif",
+    "fontSans": "'Plus Jakarta Sans', 'Inter', system-ui, sans-serif",
+    "fontMono": "'JetBrains Mono', monospace",
     "headlineFont": "'Plus Jakarta Sans', sans-serif",
     "bodyFont": "'Plus Jakarta Sans', sans-serif",
     "monoFont": "'JetBrains Mono', monospace",
