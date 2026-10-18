@@ -389,13 +389,16 @@ async function captureKeyframes({ htmlPath, beats = [], outputDir, width = 1920,
       const beatId = beat.id || `beat_${String(i + 1).padStart(3, '0')}`;
       const framePath = path.join(framesDir, `${beatId}.png`);
 
-      await page.evaluate((target, beatStartMs) => {
+      await page.evaluate(({ target, beatStartMs }) => {
         if (typeof window.__seekTo === 'function' && typeof beatStartMs === 'number') {
           window.__seekTo(beatStartMs);
         } else if (typeof window.seekToBeat === 'function') {
           window.seekToBeat(target);
         }
-      }, beat.id || i, beat.startMs ?? (beat.startTime ? Math.round(beat.startTime * 1000) : null));
+      }, {
+        target: beat.id || i,
+        beatStartMs: beat.startMs ?? (beat.startTime ? Math.round(beat.startTime * 1000) : null)
+      });
 
       await page.waitForTimeout(160);
       await page.screenshot({ path: framePath });

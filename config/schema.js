@@ -122,7 +122,8 @@ function normalizePipelineConfig(rawInput = {}, channelProfile = null) {
     visualEngine,
     subtitles,
     audio,
-    render
+    render,
+    forceResearch: Boolean(rawInput.forceResearch || false)
   };
 }
 
@@ -286,6 +287,10 @@ function parseCliArgsToConfig(argv = process.argv.slice(2)) {
       case '--job-id':
       case '--jobId':
         if (val) result.jobId = val;
+        break;
+      case '--force-research':
+      case '--forceResearch':
+        result.forceResearch = true;
         break;
     }
   }

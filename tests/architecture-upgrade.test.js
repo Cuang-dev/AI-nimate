@@ -716,3 +716,72 @@ test('7. Static Asset Server: verifies HTTP serving of stage.html and /assets/* 
     } catch (_) {}
   }
 });
+
+// ============================================================================
+// 8. Research Validation & Playwright Single-Object Evaluation Contract
+// ============================================================================
+
+test('8. Schema & CLI: parses --force-research flag accurately', () => {
+  const cliParsed = parseCliArgsToConfig(['--force-research', '--topic', 'Test Topic']);
+  assert.strictEqual(cliParsed.forceResearch, true, '--force-research should set forceResearch: true');
+
+  const normalized = normalizePipelineConfig({ forceResearch: true });
+  assert.strictEqual(normalized.forceResearch, true, 'normalizePipelineConfig should preserve forceResearch');
+
+  const normalizedDefault = normalizePipelineConfig();
+  assert.strictEqual(normalizedDefault.forceResearch, false, 'normalizePipelineConfig should default forceResearch to false');
+});
+
+test('8. Playwright Contract: verify scripts/render.js page.evaluate wraps multiple arguments in single object', () => {
+  const renderSource = fs.readFileSync(path.join(__dirname, '../scripts/render.js'), 'utf8');
+
+  // Verify that captureKeyframes evaluate does not pass separate parameters
+  assert.ok(
+    renderSource.includes('page.evaluate(({ target, beatStartMs })'),
+    'scripts/render.js must wrap target and beatStartMs in a single object parameter to prevent Playwright error'
+  );
+  assert.ok(
+    !renderSource.includes('await page.evaluate((target, beatStartMs) =>'),
+    'scripts/render.js must not pass raw multiple arguments to page.evaluate'
+  );
+});
+
+test('8. Deep Research: verify runResearchStage enforces empirical evidence and rejects shallow placeholders', async () => {
+  const { runResearchStage } = require('../scripts/pipeline');
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'arch-test-research-'));
+  const origAgy = process.env.AGY_BIN;
+  process.env.AGY_BIN = path.join(tmpDir, 'nonexistent-agy');
+
+  try {
+    const researchDir = path.join(tmpDir, 'research');
+    fs.mkdirSync(researchDir, { recursive: true });
+
+    // 1. Write a shallow/placeholder dossier
+    const shallowDossier = {
+      topic: 'Test Topic',
+      channel: 'kausalmedia',
+      primaryAnomaly: 'Anomali perputaran kapital dan struktur insentif tersembunyi di balik fenomena Test Topic',
+      keyEntities: [{ name: 'Regulator Terkait' }]
+    };
+    fs.writeFileSync(path.join(researchDir, 'dossier.json'), JSON.stringify(shallowDossier), 'utf8');
+
+    // 2. Calling runResearchStage should detect shallow cache and generate a domain-rich dossier
+    const result = await runResearchStage({
+      projectDir: tmpDir,
+      topic: 'MSCI Standalone Market Crash: Anatomi Likuiditas dan Ilusi Free Float IHSG',
+      channel: 'kausalmedia'
+    });
+
+    assert.ok(result, 'Research dossier must be generated');
+    assert.notStrictEqual(result.primaryAnomaly, shallowDossier.primaryAnomaly, 'Shallow placeholder must be replaced');
+    assert.ok(result.forensicEvidence && result.forensicEvidence.length > 0, 'Must contain forensic evidence');
+    assert.ok(result.causalMechanics && result.causalMechanics.length > 0, 'Must contain causal mechanics');
+    assert.ok(result.unitEconomics && result.unitEconomics.keyMetrics, 'Must contain unit economics');
+  } finally {
+    process.env.AGY_BIN = origAgy;
+    try {
+      fs.rmSync(tmpDir, { recursive: true, force: true });
+    } catch (_) {}
+  }
+});
+
