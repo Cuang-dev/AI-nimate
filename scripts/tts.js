@@ -71,23 +71,71 @@ Options:
 `);
 }
 
-async function main() {
-  const options = parseArgs();
-  if (options.file && fs.existsSync(options.file)) {
+/**
+ * Extract normalized word boundaries from cues array or json file
+ * 
+ * @param {Array|string|Object} cuesOrPath
+ * @param {number} [offsetMs=0]
+ * @returns {Array<{ word: string, start: number, end: number }>}
+ */
+function extractWordBoundaries(cuesOrPath, offsetMs = 0) {
+  let cues = cuesOrPath;
+  if (typeof cuesOrPath === 'string') {
+    if (fs.existsSync(cuesOrPath)) {
+      try {
+        cues = JSON.parse(fs.readFileSync(cuesOrPath, 'utf8'));
+      } catch (_) {
+        return [];
+      }
+    } else {
+      return [];
+    }
+  }
+  if (!cues) return [];
+  if (!Array.isArray(cues) && Array.isArray(cues.words)) {
+    return cues.words;
+  }
+  if (!Array.isArray(cues)) return [];
+
+  return cues.map(cue => {
+    const word = String(cue.part || cue.word || cue.text || '').trim();
+    const rawStart = typeof cue.start === 'number' ? cue.start : 0;
+    const rawEnd = typeof cue.end === 'number' ? cue.end : 0;
+    return {
+      word,
+      start: Math.round(((offsetMs + rawStart) / 1000) * 100) / 100,
+      end: Math.round(((offsetMs + rawEnd) / 1000) * 100) / 100
+    };
+  }).filter(w => w.word.length > 0);
+}
+
+/**
+ * Synthesizes speech using Microsoft Edge TTS neural voices
+ * 
+ * @param {Object} opts
+ * @returns {Promise<{ audioPath: string, timingsPath: string|null, duration: number, words: Array }>}
+ */
+async function synthesizeSpeech(opts = {}) {
+  const options = {
+    text: opts.text || null,
+    file: opts.file || null,
+    voice: opts.voice || 'id-ID-ArdiNeural',
+    rate: opts.rate || '0%',
+    pitch: opts.pitch || '0%',
+    output: opts.output || opts.out || 'output.mp3',
+    timings: opts.timings || null
+  };
+
+  if (options.file && !options.text && fs.existsSync(options.file)) {
     try {
       options.text = fs.readFileSync(path.resolve(options.file), 'utf8');
     } catch (e) {
-      console.error(`Failed to read --file ${options.file}: ${e.message}`);
+      console.error(`Failed to read file ${options.file}: ${e.message}`);
     }
   }
 
-  if (options.help || !options.text) {
-    showHelp();
-    if (!options.text && !options.help) {
-      console.error('\nError: --text or valid --file is required.\n');
-      process.exit(1);
-    }
-    return;
+  if (!options.text) {
+    throw new Error('Text is required for speech synthesis.');
   }
 
   const { EdgeTTS } = getEdgeTTS();
@@ -117,11 +165,7 @@ async function main() {
       if (fs.existsSync(subJson)) {
         try {
           const raw = JSON.parse(fs.readFileSync(subJson, 'utf8'));
-          masterWords = raw.map(cue => ({
-            word: String(cue.part || '').trim(),
-            start: Math.round((cue.start / 1000) * 100) / 100,
-            end: Math.round((cue.end / 1000) * 100) / 100
-          })).filter(w => w.word.length > 0);
+          masterWords = extractWordBoundaries(raw);
           fs.unlinkSync(subJson);
         } catch (_) {}
       }
@@ -164,15 +208,8 @@ async function main() {
         if (fs.existsSync(chunkSubFile)) {
           try {
             const cues = JSON.parse(fs.readFileSync(chunkSubFile, 'utf8'));
-            for (const cue of cues) {
-              const cleanW = String(cue.part || '').trim();
-              if (!cleanW) continue;
-              masterWords.push({
-                word: cleanW,
-                start: Math.round(((cumulativeMs + cue.start) / 1000) * 100) / 100,
-                end: Math.round(((cumulativeMs + cue.end) / 1000) * 100) / 100
-              });
-            }
+            const extracted = extractWordBoundaries(cues, cumulativeMs);
+            masterWords.push(...extracted);
           } catch (_) {}
         }
         cumulativeMs += Math.round(chunkSec * 1000);
@@ -204,6 +241,13 @@ async function main() {
       fs.writeFileSync(timingsPath, JSON.stringify(timingsData, null, 2), 'utf8');
       console.log(`Neural word timings saved: ${timingsPath} (${masterWords.length} words aligned)`);
     }
+
+    return {
+      audioPath: outPath,
+      timingsPath: masterWords.length > 0 ? timingsPath : null,
+      duration: totalSec || (masterWords.length > 0 ? masterWords[masterWords.length - 1].end : 0),
+      words: masterWords
+    };
   } catch (err) {
     console.warn(`[TTS Notice] Edge-TTS network call failed (${err.message}). Generating offline audio track via ffmpeg...`);
     const wordCount = options.text.split(/\s+/).filter(Boolean).length;
@@ -212,6 +256,12 @@ async function main() {
       execSync(`ffmpeg -y -f lavfi -i anullsrc=r=44100:cl=mono -t ${estSec} -q:a 9 -acodec libmp3lame "${outPath}"`, { stdio: 'ignore' });
       const stats = fs.statSync(outPath);
       console.log(`Fallback audio saved: ${outPath} (${(stats.size / 1024).toFixed(1)} KB, ${estSec}s)`);
+      return {
+        audioPath: outPath,
+        timingsPath: null,
+        duration: estSec,
+        words: []
+      };
     } catch (ffErr) {
       console.error(`Failed to generate fallback audio: ${ffErr.message}`);
       throw err;
@@ -219,7 +269,67 @@ async function main() {
   }
 }
 
-main().catch(err => {
-  console.error('Fatal TTS error:', err);
-  process.exit(1);
-});
+/**
+ * Synthesizes voiceover matching API voice signature
+ * 
+ * @param {string|Object} textOrOptions
+ * @param {string} [outputPath]
+ * @param {Object} [options={}]
+ * @returns {Promise<Object>}
+ */
+async function synthesizeWithApiVoice(textOrOptions, outputPath, options = {}) {
+  let text = textOrOptions;
+  let out = outputPath;
+  let opts = options;
+  if (typeof textOrOptions === 'object' && textOrOptions !== null) {
+    opts = textOrOptions;
+    text = opts.text;
+    out = opts.output || opts.out;
+  }
+  return synthesizeSpeech({
+    text,
+    output: out,
+    voice: opts.voice || 'id-ID-ArdiNeural',
+    rate: opts.rate || '0%',
+    pitch: opts.pitch || '0%',
+    timings: opts.timings
+  });
+}
+
+async function main() {
+  const options = parseArgs();
+  if (options.file && fs.existsSync(options.file)) {
+    try {
+      options.text = fs.readFileSync(path.resolve(options.file), 'utf8');
+    } catch (e) {
+      console.error(`Failed to read --file ${options.file}: ${e.message}`);
+    }
+  }
+
+  if (options.help || !options.text) {
+    showHelp();
+    if (!options.text && !options.help) {
+      console.error('\nError: --text or valid --file is required.\n');
+      process.exit(1);
+    }
+    return;
+  }
+
+  await synthesizeSpeech(options);
+}
+
+if (require.main === module) {
+  main().catch(err => {
+    console.error('Fatal TTS error:', err);
+    process.exit(1);
+  });
+}
+
+module.exports = {
+  getEdgeTTS,
+  parseArgs,
+  showHelp,
+  synthesizeSpeech,
+  synthesizeWithApiVoice,
+  extractWordBoundaries
+};
