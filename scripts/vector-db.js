@@ -266,6 +266,16 @@ async function getAssetSimilarity(query, assetRef, channel) {
   return Math.round(computeTermCosine(queryTermVector, asset.termVector || computeTermVector(asset.description + ' ' + asset.tags.join(' '))) * 1000) / 1000;
 }
 
+/**
+ * Dispose vector db embedding pipeline and release memory
+ */
+async function disposeVectorDb() {
+  pipelineInstance = null;
+  if (typeof global.gc === 'function') {
+    global.gc();
+  }
+}
+
 module.exports = {
   DB_FILE,
   loadDB,
@@ -276,6 +286,7 @@ module.exports = {
   recordAssetUsage,
   isAssetInCooldown,
   cosineSimilarity,
-  embedText
+  embedText,
+  disposeVectorDb
 };
 
