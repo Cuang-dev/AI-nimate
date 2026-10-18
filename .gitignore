@@ -6,7 +6,17 @@ node_modules/
 raw_*
 *.tmp
 *.log
+projects/*
+!projects/workflows.json
+!projects/meta.json
 
 # OS generated files
 .DS_Store
 Thumbs.db
+
+# Console secret vault (API keys) — never commit
+.ai-nimate-settings.json
+.playwright-mcp/
+.env
+.env.*
+

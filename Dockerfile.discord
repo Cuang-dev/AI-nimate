@@ -1,0 +1,17 @@
+FROM ai-nimate-console:latest
+
+WORKDIR /app
+
+# Copy package configurations and install production dependencies
+COPY package.json package-lock.json ./
+RUN npm install
+
+# Copy application sources (filtered by .dockerignore)
+COPY . ./
+
+# Environment configuration
+ENV NODE_ENV=production \
+    NODE_OPTIONS="--max-old-space-size=1024"
+
+ENTRYPOINT []
+CMD ["node", "scripts/discord-bot.js"]

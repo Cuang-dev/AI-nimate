@@ -1,0 +1,11 @@
+.git
+node_modules
+projects/*
+!projects/workflows.json
+research
+tests
+docs
+.playwright-mcp
+assets/props
+assets/scenes
+assets/style-bible

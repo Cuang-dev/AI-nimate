@@ -1,0 +1,32 @@
+services:
+  cuangbot:
+    build:
+      context: .
+      dockerfile: Dockerfile.discord
+    image: cuangbot-discord:latest
+    container_name: cuangbot
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/bin/docker:/usr/bin/docker:ro
+      - /home/agent/orca:/home/agent/orca
+      - /home/agent/.local:/home/agent/.local:ro
+      - /home/agent/.local:/root/.local:ro
+      - /home/agent/.gemini:/home/agent/.gemini
+      - /home/agent/.gemini:/root/.gemini
+    environment:
+      - AGY_BIN=/home/agent/.local/bin/agy
+      - PATH=/home/agent/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2048M
+        reservations:
+          cpus: '0.1'
+          memory: 128M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

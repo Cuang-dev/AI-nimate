@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI-nimate Studio • Autonomous Video Production Gallery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #070a10;
+      --card-bg: rgba(19, 27, 42, 0.7);
+      --card-border: rgba(31, 45, 69, 0.8);
+      --card-hover: rgba(28, 41, 64, 0.9);
+      --accent: #10b981;
+      --accent-glow: rgba(16, 185, 129, 0.2);
+      --blue: #3b82f6;
+      --blue-glow: rgba(59, 130, 246, 0.2);
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(16, 185, 129, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(59, 130, 246, 0.08) 0%, transparent 40%);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3rem 1.5rem;
+    }
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+    header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 2rem;
+    }
+    .top-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent-glow);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-family: 'Fira Code', monospace;
+      font-weight: 600;
+      width: fit-content;
+    }
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+    }
+    p.lead {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 780px;
+      line-height: 1.6;
+    }
+    .channels-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 2rem;
+    }
+    .video-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .video-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(16, 185, 129, 0.4);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.5), 0 0 20px var(--accent-glow);
+    }
+    .thumb-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #000;
+      overflow: hidden;
+    }
+    .thumb-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+    .video-card:hover .thumb-wrapper img {
+      transform: scale(1.03);
+    }
+    .duration-badge {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(4px);
+      padding: 0.2rem 0.55rem;
+      border-radius: 6px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #fff;
+    }
+    .channel-tag {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(16, 185, 129, 0.9);
+      color: #000;
+      font-weight: 700;
+      font-size: 0.75rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .card-content {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      flex: 1;
+    }
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+    .card-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .card-meta {
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid var(--card-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-family: 'Fira Code', monospace;
+    }
+    .btn-watch {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    footer {
+      margin-top: 3rem;
+      border-top: 1px solid var(--card-border);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="top-badge">
+        <span>⚡ AI-nimate Studio Engine</span>
+      </div>
+      <h1>Autonomous Video Archive & Showcase</h1>
+      <p class="lead">
+        Pristine 1080p investigative documentaries and financial visual essays rendered autonomously by AI-nimate Studio, hosted with HTTP Byte-Range seeking and embed player support.
+      </p>
+    </header>
+
+    <div class="channels-grid">
+      <!-- Anatomi Saham Gorengan -->
+      <a href="/projects/ainimate/kausalmedia/anatomi-saham-gorengan-di-bei-re/" class="video-card">
+        <div class="thumb-wrapper">
+          <img src="/projects/ainimate/kausalmedia/anatomi-saham-gorengan-di-bei-re/thumbnail.jpg" alt="Anatomi Saham Gorengan di BEI" loading="lazy">
+          <span class="channel-tag">kausalmedia</span>
+          <span class="duration-badge">04:35 • 1080p</span>
+        </div>
+        <div class="card-content">
+          <h2 class="card-title">Anatomi Saham Gorengan di BEI: Rekayasa Likuiditas Bandar</h2>
+          <p class="card-desc">
+            Investigasi mendalam mengenai manipulasi order book, wash trading, dan ilusi likuiditas pasar modal BEI melalui simulasi visual 5 layer.
+          </p>
+          <div class="card-meta">
+            <span>51 Visual Beats • 40.6 MB</span>
+            <span class="btn-watch">▶ Play Master</span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <footer>
+      <div>
+        <span>AI-nimate Studio Production Pipeline</span> • <span>Cloudflare Edge & Nginx Gateway</span>
+      </div>
+      <div>
+        <a href="https://cuang.dev" style="color: var(--accent); text-decoration: none;">cuang.dev</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

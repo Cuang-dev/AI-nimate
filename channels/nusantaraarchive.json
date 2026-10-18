@@ -1,0 +1,89 @@
+{
+  "id": "nusantaraarchive",
+  "name": "Nusantara Archive",
+  "active": false,
+  "handle": "@nusantaraarchive",
+  "platform": "YouTube",
+  "mode": "light-mode",
+  "tagline": "Dokumenter Jurnalistik Investigatif & Sejarah Sosial Indonesia",
+  "description": "Deep-dive investigative documentaries exploring Indonesian social history, regulatory gray zones, commodity cartels, and structural supply chain politics.",
+  "aestheticVibe": {
+    "theme": "Archival Investigative Journal (Light Ivory)",
+    "texture": "warm-ivory-parchment",
+    "paperTone": "#faf7f0",
+    "paperSecondary": "#f1ecdf",
+    "batikMotif": "batik-megamendung",
+    "batikWatermarkOpacity": 0.08,
+    "vignette": "desk-lamp",
+    "edges": "archival-docket",
+    "seals": "cinnabar-notary-stamp"
+  },
+  "palette": {
+    "name": "navy-gold",
+    "bg": "#faf7f0",
+    "cardBg": "#ffffff",
+    "textPrimary": "#0f172a",
+    "textSecondary": "#475569",
+    "accent": "#b45309",
+    "waxStampRed": "#dc2626",
+    "kencanaGold": "#c28829",
+    "herbalSage": "#4d6052",
+    "border": "rgba(15, 23, 42, 0.14)",
+    "highlighterColor": "rgba(254, 240, 138, 0.5)"
+  },
+  "typography": {
+    "headlineFont": "'Plus Jakarta Sans', Georgia, serif",
+    "bodyFont": "'Plus Jakarta Sans', sans-serif",
+    "monoFont": "'JetBrains Mono', monospace",
+    "subtitles": {
+      "style": "frosted-pill",
+      "position": "bottom-center",
+      "activeWordColor": "#b45309",
+      "fontSize": "30px",
+      "bg": "rgba(255, 255, 255, 0.90)",
+      "border": "1px solid rgba(180, 83, 9, 0.25)"
+    }
+  },
+  "rules": {
+    "visualPhilosophy": "archival-investigative-journalism",
+    "allowSlideText": true,
+    "onlyChaptersHaveText": false,
+    "maxAssetRepetitionPerVideo": 5,
+    "strictAssetFitPercentage": 90,
+    "visualContentType": "archival-documents-and-editorial-silhouettes",
+    "consistentArtStyle": "monochrome-archival-silhouette",
+    "durationPolicy": {
+      "targetMinutes": 11,
+      "minMinutes": 8,
+      "maxMinutes": 14,
+      "midrollOptimized": true
+    }
+  },
+  "audio": {
+    "voice": "id-ID-ArdiNeural",
+    "cadenceWPM": 134,
+    "bgmDuckVolume": 0.05
+  },
+  "defaultFormat": "16:9",
+  "style": "investigative-documentary",
+  "suggestions": [
+    {
+      "key": "rokok-ilegal-cukai",
+      "title": "Investigasi Rokok Ilegal Rp 10 Ribu & Skandal Kebocoran Cukai",
+      "tag": "🚬 Cukai & Bea Cukai",
+      "detail": "Jaringan logistik penyelundupan rokok tanpa pita cukai resmi dari sentra produksi Jawa Tengah menuju pelosok Sumatera dan dampaknya pada penerimaan negara."
+    },
+    {
+      "key": "impor-beras-panen",
+      "title": "Ironi Impor Beras & Permainan Waktu Panen Raya Petani",
+      "tag": "🌾 Pangan & Monopoli",
+      "detail": "Mengapa kapal impor beras selalu sandar di pelabuhan Tanjung Priok tepat saat petani lokal panen raya? Anatomi disparitas harga Bulog vs pasar."
+    },
+    {
+      "key": "mafia-minyak-goreng",
+      "title": "Anatomi Krisis Minyak Goreng di Lumbung Sawit Terbesar Dunia",
+      "tag": "🌴 Sawit & DMO",
+      "detail": "Paradoks kelangkaan minyak goreng curah di Indonesia pada saat harga CPO dunia melambung tinggi: permainan izin ekspor dan manipulasi kuota."
+    }
+  ]
+}

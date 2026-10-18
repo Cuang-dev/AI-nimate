@@ -1,0 +1,8 @@
+{
+  "audioMode": "audio_gate",
+  "hitlAudio": true,
+  "edgeTtsVoice": "id-ID-ArdiNeural",
+  "customApiProvider": "google-ai-studio",
+  "customApiVoice": "Puck",
+  "activeAgent": "agy"
+}

@@ -1,0 +1,95 @@
+{
+  "id": "investigative-documentary",
+  "name": "Investigative Documentary",
+  "description": "Pen-on-paper archival journalism aesthetic reminiscent of Vox, Johnny Harris, and Polymatter. Features warm ivory paper textures, traditional batik linework, notary stamps, amber highlighters, and financial evidence charts.",
+  "aspectRatio": "16:9",
+  "background": {
+    "type": "paper",
+    "paperTone": "#faf7f0",
+    "pattern": "megamendung",
+    "vignette": "desk-lamp",
+    "ambientGlow": true,
+    "cameraMotion": "slow-pan-right"
+  },
+  "palette": {
+    "name": "navy-gold",
+    "bg": "#faf7f0",
+    "cardBg": "#ffffff",
+    "textPrimary": "#0f172a",
+    "textSecondary": "#475569",
+    "accent": "#b45309",
+    "accentGlow": "rgba(180, 83, 9, 0.12)",
+    "border": "rgba(15, 23, 42, 0.14)",
+    "stampColor": "#dc2626",
+    "highlightColor": "#fef08a"
+  },
+  "character": {
+    "mode": "silhouette-editorial",
+    "puppetEnabled": false,
+    "treatment": "Monochrome archival silhouette or authentic photographic cutout with borderless drop shadow",
+    "role": "Historical figure or observer in context, never talking-head narrator",
+    "accessories": ["briefcase", "court-file", "news-sheet"]
+  },
+  "typography": {
+    "headlineFont": "'Plus Jakarta Sans', Georgia, serif",
+    "bodyFont": "'Plus Jakarta Sans', sans-serif",
+    "monoFont": "'JetBrains Mono', monospace",
+    "subtitles": {
+      "style": "frosted-pill",
+      "position": "bottom-center",
+      "activeWordColor": "#b45309",
+      "fontSize": "30px",
+      "bg": "rgba(255, 255, 255, 0.88)"
+    }
+  },
+  "dataGraphics": {
+    "chartEngine": "trading-view-minimal",
+    "tickerStyle": "odometer-flip",
+    "comparisonStyle": "split-horizontal-bars",
+    "tableStyle": "ledger-breakdown",
+    "preferredMetrics": ["currency-idr", "percentage-change", "share-dilution"]
+  },
+  "exhibitsAndFraming": {
+    "legalFilings": "torn-paper",
+    "pressPhotos": "polaroid",
+    "videoFootage": "cinematic-16-9",
+    "maps": "vintage-cartographic-pin"
+  },
+  "audio": {
+    "voice": "id-ID-ArdiNeural",
+    "bgmStyle": "investigative-tension",
+    "bgmVolume": 0.12,
+    "bgmDuckVolume": 0.04,
+    "sfxPalette": ["whoosh", "pop", "ding", "tick"]
+  },
+  "transitions": {
+    "preferred": ["tactile-paper-tear", "pre-lead-j-cut", "whip-pan", "occlusion-wipe", "word-match-cut"],
+    "sfxMapping": {
+      "tactile-paper-tear": "pop",
+      "whip-pan": "whoosh",
+      "occlusion-wipe": "whoosh",
+      "pre-lead-j-cut": "tick",
+      "word-match-cut": "pop"
+    },
+    "defaultDuration": 0.28,
+    "jCutLeadSeconds": 0.4
+  },
+  "pacing": {
+    "targetWPM": 135,
+    "beatDurationSeconds": "8–11s",
+    "wordsPerSubtitleCard": "3–6 words",
+    "actTransitions": "Chapter bumper every 7–9 beats"
+  },
+  "antiSlopRules": [
+    "Strictly zero throat-clearing ('di era serba cepat', 'menyelami lebih dalam', 'tak dapat dipungkiri')",
+    "Ground every claim in balance sheets, court rulings, or chronological dates",
+    "Wrap proper acronyms in phonetic syntax: [BEI|B-E-I], [BBM|B-B-M], [SCBD|S-C-B-D]"
+  ],
+  "stylingTips": {
+    "pacing": "Target 130–140 WPM. Scene beats should average 8–11 seconds. Subtitle chunks strictly 3–6 words without dangling prepositions.",
+    "exhibits": "Prioritize authentic evidence: court filings, leaked memos, company financial reports, and archival press photography. Use 'torn-paper' framing for legal documents and 'polaroid' for field photos.",
+    "annotations": "Use 'rubber-stamp' (e.g. TERVERIFIKASI, RAHASIA, DISAHKAN) for institutional rulings. Use 'highlighter' (amber/yellow) to isolate incriminating clauses.",
+    "dataGraphics": "For figures > Rp 1 Miliar, use 'odometer-ticker' with dynamic count-up. Use TradingView-style 'line-chart' for multi-year stock crashes or debt trajectories.",
+    "antiSlopRules": "Never use AI filler phrases ('di era digital', 'menyelami', 'tak dapat dipungkiri'). Ground every claim in causal mechanics, balance sheets, and verifiable dates."
+  }
+}

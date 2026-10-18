@@ -1,0 +1,94 @@
+{
+  "id": "tech-deepdive",
+  "name": "Tech Deep-Dive & Startup Architecture",
+  "description": "Architectural blueprint and technical teardown aesthetic. Clean drafting paper textures, technical cyan accents, blueprint frames, system architecture diagrams, and high-precision metrics.",
+  "aspectRatio": "16:9",
+  "background": {
+    "type": "paper",
+    "paperTone": "#f1f5f9",
+    "pattern": "truntum",
+    "vignette": "edge-glow",
+    "ambientGlow": true,
+    "cameraMotion": "slow-pan-right"
+  },
+  "palette": {
+    "name": "monochrome-slate",
+    "bg": "#f1f5f9",
+    "cardBg": "#ffffff",
+    "textPrimary": "#0f172a",
+    "textSecondary": "#475569",
+    "accent": "#0284c7",
+    "accentGlow": "rgba(2, 132, 199, 0.12)",
+    "border": "rgba(15, 23, 42, 0.12)",
+    "stampColor": "#0284c7",
+    "highlightColor": "#bae6fd"
+  },
+  "character": {
+    "mode": "engineer-schematic",
+    "puppetEnabled": false,
+    "treatment": "Vector blueprint isometric avatar with status tags",
+    "role": "Systems Architect / Engineer",
+    "accessories": ["laptop", "terminal-window"]
+  },
+  "typography": {
+    "headlineFont": "'Plus Jakarta Sans', sans-serif",
+    "bodyFont": "'Plus Jakarta Sans', sans-serif",
+    "monoFont": "'JetBrains Mono', monospace",
+    "subtitles": {
+      "style": "frosted-pill",
+      "position": "bottom-center",
+      "activeWordColor": "#0284c7",
+      "fontSize": "30px",
+      "bg": "rgba(255, 255, 255, 0.90)"
+    }
+  },
+  "dataGraphics": {
+    "chartEngine": "system-throughput",
+    "tickerStyle": "latency-counter-ms",
+    "comparisonStyle": "benchmark-split-bars",
+    "tableStyle": "protocol-spec-grid",
+    "preferredMetrics": ["latency-ms", "throughput-rps", "concurrency", "speedup-x"]
+  },
+  "exhibitsAndFraming": {
+    "codeSnippets": "blueprint",
+    "architectureDiagrams": "editorial-card",
+    "deviceUIs": "borderless"
+  },
+  "audio": {
+    "voice": "id-ID-ArdiNeural",
+    "bgmStyle": "minimal-electronic",
+    "bgmVolume": 0.12,
+    "bgmDuckVolume": 0.04,
+    "sfxPalette": ["pop", "tick", "whoosh", "ding"]
+  },
+  "transitions": {
+    "preferred": ["speed-ramp", "crash-zoom", "whip-pan", "action-match-cut", "push"],
+    "sfxMapping": {
+      "speed-ramp": "whoosh",
+      "crash-zoom": "pop",
+      "whip-pan": "whoosh",
+      "push": "whoosh",
+      "action-match-cut": "tick"
+    },
+    "defaultDuration": 0.24,
+    "jCutLeadSeconds": 0.3
+  },
+  "pacing": {
+    "targetWPM": 145,
+    "beatDurationSeconds": "6–9s",
+    "wordsPerSubtitleCard": "3–5 words",
+    "actTransitions": "Modular step transitions"
+  },
+  "antiSlopRules": [
+    "No vague buzzwords ('revolutionary', 'groundbreaking', 'game-changing')",
+    "Highlight technical bottlenecks, tradeoffs, and failure modes",
+    "Quantify engineering specs in concrete units (ms, GB, IOPS)"
+  ],
+  "stylingTips": {
+    "pacing": "Target 140–150 WPM. Snappy, technical, modular flow. Average beat length 6–9 seconds.",
+    "exhibits": "Product UI blueprints, code architecture snippets, server schematics, vector diagrams, and product tear-downs with 'blueprint' or 'editorial-card' styling.",
+    "annotations": "Loupe/zoom magnifiers for code or UI details, vector callout lines, technical status tags ('V1.0', 'API', 'LATENCY').",
+    "dataGraphics": "Benchmark comparisons, throughput line curves, speedup ratios (3.2x), latency counters in milliseconds.",
+    "antiSlopRules": "Focus on engineering constraints, trade-offs, and protocol mechanics rather than hype or marketing claims."
+  }
+}

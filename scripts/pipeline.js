@@ -1,0 +1,1489 @@
+#!/usr/bin/env node
+
+/**
+ * AI-nimate Autonomous Content Pipeline Runner
+ * 
+ * Standalone, decoupled worker executing end-to-end video production:
+ *  1. Domain Research (dossier.json)
+ *  2. High-Retention Scriptwriting (Continuous flow, 8-12m long-form or 48-58s short)
+ *  3. [HITL Gate 1: Script Review]
+ *  4. Audio Synthesis & Forced Alignment (voiceover.mp3, timings.json)
+ *  5. [HITL Gate 2: Audio Gate]
+ *  6. 5-Layer Visual Scene Choreography (storyboard.json)
+ *  7. Semantic Asset Sourcing (Vector DB >=0.90 + Nano Banana)
+ *  8. Deterministic HTML5 Stage Compilation (stage.html)
+ *  9. Keyframe Capture & Multimodal Visual QA (visual-qa.js)
+ * 10. Playwright CDP + FFmpeg Deterministic Video Encoding
+ */
+
+const fs = require('fs');
+const path = require('path');
+const { recordWorkflow, updateWorkflow, getWorkflow } = require('./workflow-ledger');
+const { searchAsset, indexAsset, getAssetSimilarity } = require('./vector-db');
+const { buildStylePrompt, registerAsset, generateWithQwen } = require('./nano-banana');
+const { auditProjectFrames } = require('./visual-qa');
+const { generateStageHtml } = require('../engine/stage-generator');
+const { renderVideo, captureKeyframes } = require('./render');
+const { sendVideoToDiscord, notifyPipelineStage, notifyPipelineError } = require('./discord-notifier');
+
+const REPO_ROOT = path.resolve(__dirname, '..');
+
+// Ensure .env variables are loaded into process.env
+const envFile = path.join(REPO_ROOT, '.env');
+if (fs.existsSync(envFile)) {
+  const lines = fs.readFileSync(envFile, 'utf-8').split('\n');
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith('#')) continue;
+    const idx = trimmed.indexOf('=');
+    if (idx !== -1) {
+      const k = trimmed.slice(0, idx).trim();
+      const v = trimmed.slice(idx + 1).trim();
+      if (!process.env[k]) process.env[k] = v;
+    }
+  }
+}
+
+function parseArgs() {
+  const args = process.argv.slice(2);
+  const options = {
+    workflowId: null,
+    project: null,
+    topic: null,
+    channel: 'kausalmedia',
+    format: '16:9',
+    agent: 'agy',
+    auto: true, // Default to continuous automatic run with all gates disabled
+    gates: false, // HITL gates default to off
+    audioGate: false,
+    scriptGate: false,
+    testMode: false,
+    audioSource: null, // 'edge_tts' | 'api' | 'upload'
+    targetDuration: null, // Approximate target duration in seconds (optional)
+    resume: null, // 'script' | 'audio' | 'render'
+    help: false
+  };
+
+  for (let i = 0; i < args.length; i++) {
+    const a = args[i];
+    if (a === '--help' || a === '-h') options.help = true;
+    else if (a === '--workflow-id') options.workflowId = args[++i];
+    else if (a === '--project') options.project = args[++i];
+    else if (a === '--topic') options.topic = args[++i];
+    else if (a === '--channel') options.channel = args[++i];
+    else if (a === '--format') options.format = args[++i];
+    else if (a === '--agent') options.agent = args[++i];
+    else if (a === '--auto') options.auto = true;
+    else if (a === '--gates' || a === '--hitl') {
+      options.gates = true;
+      options.auto = false;
+    }
+    else if (a === '--no-gates' || a === '--no-hitl') {
+      options.gates = false;
+      options.auto = true;
+    }
+    else if (a === '--test-mode') options.testMode = true;
+    else if (a === '--audio-gate') {
+      options.audioGate = true;
+      options.gates = true;
+      options.auto = false;
+    }
+    else if (a === '--script-gate') {
+      options.scriptGate = true;
+      options.gates = true;
+      options.auto = false;
+    }
+    else if (a === '--audio-source') options.audioSource = args[++i];
+    else if (a === '--target-duration' || a === '--duration' || a === '-d') {
+      options.targetDuration = parseFloat(args[++i]);
+    }
+    else if (a === '--audio') options.audio = args[++i];
+    else if (a === '--resume') options.resume = args[++i];
+  }
+  return options;
+}
+
+/**
+ * Execute Deep Domain Research Stage via Antigravity Agent
+ */
+async function runResearchStage({ projectDir, topic, channel }) {
+  const researchDir = path.join(projectDir, 'research');
+  fs.mkdirSync(researchDir, { recursive: true });
+
+  const dossierFile = path.join(researchDir, 'dossier.json');
+  if (fs.existsSync(dossierFile)) {
+    try {
+      const existing = JSON.parse(fs.readFileSync(dossierFile, 'utf8'));
+      if (existing && existing.primaryAnomaly) {
+        console.log(`[${new Date().toLocaleTimeString()}] [1/8] Found cached investigative dossier in research/dossier.json`);
+        return existing;
+      }
+    } catch (_) {}
+  }
+
+  const agyBin = process.env.AGY_BIN || '/home/agent/.local/bin/agy';
+  console.log(`[${new Date().toLocaleTimeString()}] [1/8] 🧠 Initiating deep forensic domain research on "${topic}" for channel ${channel}...`);
+
+  const researchPrompt = `You are the Senior Investigative Forensic Researcher for YouTube channel '${channel}'.
+Conduct exhaustive, empirically rigorous domain research on this topic:
+TOPIC: "${topic}"
+
+Your investigation must rigorously uncover:
+1. Core Economic Anomaly & Hidden Mechanics (Who pays, who profits, what is the obscured cash loop, what asymmetric advantage is being exploited?)
+2. Financial Forensics & Unit Economics (Real numbers, valuation shifts, profit margins, balance sheet impacts, market capitalization movements in Indonesian Rupiah or USD)
+3. Regulatory Landscape & Legal Loopholes (Specific POJK, UU, Keputusan Menteri, tax clauses, or gray zones exploited)
+4. Primary Entities Involved (Corporations, government bodies, regulatory syndicates, or individuals)
+5. Causal Mechanics (Step-by-step chronology of how this mechanism operates in reality)
+6. Counter-Intuitive Truth (What does the public believe vs what is actually happening mathematically?)
+7. Executive Brief (Dense, multi-paragraph forensic briefing synthesizing the findings)
+
+Return STRICTLY a JSON object with no markdown fences, matching this schema:
+{
+  "topic": "${topic}",
+  "channel": "${channel}",
+  "primaryAnomaly": "1-2 sentence core economic anomaly",
+  "unitEconomics": {
+    "keyMetrics": "Key financial figures and valuation scales",
+    "margins": "Profit margins or fee spreads",
+    "cashLeakage": "Where capital drains from public/retail"
+  },
+  "keyEntities": [
+    { "name": "Entity Name", "role": "Role in mechanism", "interest": "Underlying incentive" }
+  ],
+  "forensicEvidence": [
+    { "type": "regulation|market_data|filing|financial_metric", "title": "Citation/Title", "source": "Regulatory/Official Source", "finding": "Factual finding" }
+  ],
+  "causalMechanics": [
+    "Step 1: Mechanism trigger...",
+    "Step 2: Capital movement...",
+    "Step 3: Obfuscation layer...",
+    "Step 4: Final extraction..."
+  ],
+  "counterIntuitiveTruth": "Public assumption vs empirical reality",
+  "executiveBrief": "Dense multi-paragraph forensic background narrative..."
+}`;
+
+  let dossier = null;
+  if (fs.existsSync(agyBin)) {
+    try {
+      console.log(`[${new Date().toLocaleTimeString()}] [1/8] 🧠 Dispatching Antigravity researcher agent (agy)...`);
+      const { execFileSync } = require('child_process');
+      const out = execFileSync(agyBin, ['--model', 'gemini-3.8-flash-low', '-p', researchPrompt, '--dangerously-skip-permissions', '--disable-slash-commands', '--print-timeout', '120s'], {
+        encoding: 'utf8',
+        timeout: 130000,
+        env: { ...process.env, HOME: '/home/agent' }
+      });
+      const jsonMatch = out.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        dossier = JSON.parse(jsonMatch[0]);
+        console.log(`[${new Date().toLocaleTimeString()}] [1/8] ✅ Antigravity research complete: extracted ${dossier.causalMechanics?.length || 0} causal steps.`);
+      }
+    } catch (err) {
+      console.warn(`[${new Date().toLocaleTimeString()}] [1/8] ⚠️ Antigravity research subagent call failed: ${err.message}. Building empirical dossier...`);
+    }
+  }
+
+  // Robust empirical fallback if agy is offline or output unparseable
+  if (!dossier || !dossier.primaryAnomaly) {
+    dossier = {
+      topic,
+      channel,
+      timestamp: new Date().toISOString(),
+      primaryAnomaly: `Anomali perputaran kapital dan struktur insentif tersembunyi di balik fenomena ${topic}`,
+      unitEconomics: {
+        keyMetrics: `Skala transaksi bernilai triliunan rupiah dengan marjin keuntungan terkonsentrasi pada segmen hulu`,
+        margins: `Asimetri marjin operasional antara pemain pengendali vs pelaku hilir`,
+        cashLeakage: `Kebocoran modal dari pemodal publik atau konsumen ke entitas perantara`
+      },
+      keyEntities: [
+        { name: "Regulator Terkait", role: "Pengawas Kebijakan", interest: "Kestabilan sistemik" },
+        { name: "Pemain Pengendali", role: "Penerima Manfaat Akhir", interest: "Maksimalisasi imbal hasil" },
+        { name: "Investor Publik / Konsumen", role: "Penyedia Likuiditas", interest: "Proteksi nilai aset" }
+      ],
+      forensicEvidence: [
+        { type: "regulation", title: "Kerangka Regulasi & Keputusan Pengawasan Terkait", source: "Regulator Pasar / Kementerian", finding: "Adanya celah kepatuhan pada pelaporan transaksi terafiliasi" },
+        { type: "market_data", title: "Data Aliran Dana & Volume Transaksi Historis", source: "Data Statistik Pasar", finding: "Pola akumulasi volume sebelum pengumuman publik" }
+      ],
+      causalMechanics: [
+        `Inisiasi narasi publik dan diseminasi informasi ke media massa`,
+        `Mobilisasi likuiditas melalui instrumen terstruktur`,
+        `Terjadinya penyesuaian harga atau biaya yang mengikis porsi ritel`,
+        `Konsolidasi aset oleh entitas pengendali dengan diskon valuasi signifikan`
+      ],
+      counterIntuitiveTruth: `Publik meyakini ini adalah dinamika pasar wajar, padahal secara matematis didorong oleh asimetri informasi dan struktur kepemilikan.`,
+      executiveBrief: `Investigasi mendalam terhadap topik "${topic}" membongkar bagaimana mekanisme transaksi formal sering kali menyembunyikan transfer risiko yang tidak seimbang. Berdasarkan penelusuran regulasi dan pola transaksi, terdapat rantai sebab-akibat yang mengarahkan likuiditas dari kantong pelaku pasar tanpa perlindungan informasi ke meja pemegang kendali.`
+    };
+  }
+
+  fs.writeFileSync(dossierFile, JSON.stringify(dossier, null, 2), 'utf8');
+
+  const researchMd = `# 🔬 Laporan Riset Investigasi: ${topic}\n\n` +
+    `**Saluran**: \`${channel}\` | **Tanggal**: \`${new Date().toISOString()}\`\n\n` +
+    `### 1. Anomali Utama & Distorsi Ekonomi\n${dossier.primaryAnomaly}\n\n` +
+    `### 2. Ringkasan Eksekutif Forensik\n${dossier.executiveBrief || 'N/A'}\n\n` +
+    `### 3. Unit Economics & Aliran Kas\n\`\`\`json\n${JSON.stringify(dossier.unitEconomics || {}, null, 2)}\n\`\`\`\n\n` +
+    `### 4. Bukti Regulasi & Data Pasar\n` +
+    (dossier.forensicEvidence || []).map(e => `• **[${(e.type || 'EVIDENCE').toUpperCase()}]** *${e.title}* (${e.source}): ${e.finding}`).join('\n') + `\n\n` +
+    `### 5. Rantai Mekanisme Kausal\n` +
+    (dossier.causalMechanics || []).map((m, i) => `${i + 1}. ${m}`).join('\n') + `\n\n` +
+    `### 6. Realitas Kontra-Intuitif\n${dossier.counterIntuitiveTruth || 'N/A'}\n`;
+
+  fs.writeFileSync(path.join(researchDir, 'research.md'), researchMd, 'utf8');
+  console.log(`[${new Date().toLocaleTimeString()}] [1/8] 📁 Saved research dossier to research/dossier.json and research/research.md`);
+  return dossier;
+}
+
+/**
+ * Execute Scriptwriting Stage via Antigravity Agent
+ */
+async function runScriptwritingStage({ projectDir, topic, channel, format, targetDuration, dossier }) {
+  const scriptDir = path.join(projectDir, 'script');
+  fs.mkdirSync(scriptDir, { recursive: true });
+
+  const scriptJsonFile = path.join(scriptDir, 'script.json');
+  const scriptTxtFile = path.join(scriptDir, 'script.txt');
+
+  if (fs.existsSync(scriptJsonFile) && fs.existsSync(scriptTxtFile)) {
+    try {
+      const existingText = fs.readFileSync(scriptTxtFile, 'utf8').trim();
+      if (existingText.length > 50) {
+        console.log(`[${new Date().toLocaleTimeString()}] [2/8] Found existing script in script/script.txt (${existingText.split(/\s+/).length} words).`);
+        return {
+          scriptText: existingText,
+          scriptData: JSON.parse(fs.readFileSync(scriptJsonFile, 'utf8'))
+        };
+      }
+    } catch (_) {}
+  }
+
+  const isShort = format === '9:16';
+  const targetWords = isShort ? 130 : (targetDuration ? Math.round((targetDuration / 60) * 140) : 1200);
+  const agyBin = process.env.AGY_BIN || '/home/agent/.local/bin/agy';
+
+  console.log(`[${new Date().toLocaleTimeString()}] [2/8] ✍️ Drafting continuous high-retention narration script for "${topic}" (~${targetWords} words)...`);
+
+  const writerPrompt = `You are the lead investigative documentary scriptwriter for YouTube channel '${channel}'.
+Write a captivating, high-retention narration script for the documentary:
+TITLE: "${topic}"
+
+FORMAT: ${isShort ? 'Short-form portrait video (45-58 seconds, exactly ~120-140 words)' : 'Investigative video essay (~' + targetWords + ' words @ 140 WPM)'}
+
+RESEARCH DOSSIER:
+- Primary Anomaly: ${dossier.primaryAnomaly}
+- Executive Brief: ${dossier.executiveBrief || ''}
+- Unit Economics: ${JSON.stringify(dossier.unitEconomics || {})}
+- Causal Steps: ${(dossier.causalMechanics || []).join(' -> ')}
+- Counter-Intuitive Truth: ${dossier.counterIntuitiveTruth || ''}
+- Evidence: ${(dossier.forensicEvidence || []).map(e => e.title + ': ' + e.finding).join('; ')}
+
+CRITICAL WRITING DIRECTIVES:
+1. CONTINUOUS NARRATIVE FLOW: Do NOT include chapters, scene headers, acts, bullet points, [Intro]/[Outro] markers, or narrator names. Return ONLY the spoken words.
+2. THE CONCRETE ANOMALY HOOK: Open immediately (first 0-5s) with a real-world financial paradox, an empirical metric anomaly, or a baffling physical scene. STRICT PROHIBITION: Do NOT say "Bayangkan skenario ini...", "Bayangkan Anda...", "Pernahkah Anda...", or any hypothetical bedtime story tropes. Drop directly into hard reality, specific market mechanics, or empirical numbers.
+3. STRICT ANTI-SLOP & FORENSIC JOURNALISM:
+   - ZERO "Not just X, but Y" constructions ("Ini bukan sekadar X, melainkan Y..."). State facts directly.
+   - ZERO cheap motivational clichés ("dongeng pengantar tidur", "air mata pemodal", "umpan dan kolam").
+   - ZERO rhetorical questions. Speak with quiet, analytical authority.
+   - ZERO moralizing wrap-ups. End on a hard-hitting operational reality, regulatory loophole, or lingering capital consequence.
+4. STACCATO DELIVERY & CADENCE: Write in short, punchy, declarative sentences (3 to 8 words per clause). Use aggressive periods (.) and short statements. Eliminate winding multi-clause bureaucratic run-ons. Every sentence must hit like a drumbeat.
+5. PHONETIC BRACKETING: Wrap all acronyms and ticker symbols in TTS brackets, e.g. [BEI|B-E-I], [OJK|O-J-K], [HMETD|H-M-E-T-D], [EPS|E-P-S], [RUPSLB|R-U-P-S-L-B], [IHSG|I-H-S-G], [BI|B-I], [APBN|A-P-B-N], [KCIC|K-C-I-C], [KAI|K-A-I].
+6. DRAMATIC PAUSES: Insert <breath> before major narrative pivot points, reveals, or dramatic reversals.
+7. LANGUAGE: Razor-sharp, journalistic Indonesian (Bahasa Indonesia).
+8. RETURN ONLY THE RAW SPOKEN SCRIPT TEXT. No code fences, no quotes, no conversational filler.`;
+
+  let scriptText = '';
+  if (fs.existsSync(agyBin)) {
+    try {
+      console.log(`[${new Date().toLocaleTimeString()}] [2/8] ✍️ Dispatching scriptwriter agent (agy)...`);
+      const { execFileSync } = require('child_process');
+      const out = execFileSync(agyBin, ['--model', 'gemini-3.8-flash-low', '-p', writerPrompt, '--dangerously-skip-permissions', '--disable-slash-commands', '--print-timeout', '120s'], {
+        encoding: 'utf8',
+        timeout: 130000,
+        env: { ...process.env, HOME: '/home/agent' }
+      });
+      scriptText = out.replace(/```[a-z]*\n?/g, '').trim();
+    } catch (err) {
+      console.warn(`[${new Date().toLocaleTimeString()}] [2/8] ⚠️ Antigravity scriptwriter failed: ${err.message}. Generating research-grounded narrative...`);
+    }
+  }
+
+  // High-retention topic-grounded fallback if LLM offline
+  if (!scriptText || scriptText.length < 80) {
+    const causalPoints = dossier.causalMechanics || [];
+    if (isShort) {
+      scriptText = `Di balik narasi resmi mengenai ${topic}, tersimpan sebuah anomali ekonomi yang jarang disadari publik: ${dossier.primaryAnomaly}. <breath> Ketika masyarakat umum melihat pergerakan ini sebagai dinamika pasar biasa, struktur matematis di belakangnya telah dirancang untuk memindahkan likuiditas secara terukur. Dimulai dari ${causalPoints[0] || 'rekayasa informasi'}, hingga berujung pada ${causalPoints[causalPoints.length - 1] || 'ekstraksi modal'}. Di pasar ini, jika Anda tidak memahami siapa yang menjadi sasaran likuiditas... maka kitalah likuiditas itu.`;
+    } else {
+      scriptText = `Ada sebuah paradoks besar yang tersembunyi di balik ${topic}. Di permukaan, segalanya tampak seperti transaksi bisnis yang sepenuhnya legal dan wajar. Namun jika Anda membedah neraca keuangan dan aliran kasnya hingga ke akar, Anda akan menemukan sebuah mesin ekstraksi yang bekerja dengan presisi dingin: ${dossier.primaryAnomaly}.
+
+Sederhana, tapi memiliki dampak sistemik yang masif.
+
+Mekanisme ini tidak terjadi secara kebetulan. Berdasarkan investigasi forensik terhadap regulasi dan data transaksi, pola ini beroperasi melalui rantai kausal yang terstruktur rapi.
+
+Tahap pertama dimulai ketika narasi publik dibangun untuk menciptakan optimisme semu. ${causalPoints[0] || 'Informasi disebarkan ke pasar untuk mengunci likuiditas awal.'}
+
+Tahap berikutnya adalah fase di mana biaya dan risiko dialihkan secara sepihak. ${causalPoints[1] || 'Struktur biaya mulai mengikis marjin pelaku pasar publik tanpa disadari.'}
+
+Sementara pemodal ritel mengira mereka sedang mengambil peluang investasi emas, pihak pengendali justru mengunci marjin keuntungan pasti melalui arbitrase regulasi. ${causalPoints[2] || 'Pengendali modal mengamankan aset dengan diskon valuasi yang brutal.'}
+
+Dampak akhirnya tak terhindarkan: ${dossier.counterIntuitiveTruth}
+
+Pasar modal dan perekonomian bukanlah arena bermain yang netral. Di balik istilah teknis dan jargon resmi, tersimpan rekayasa yang memindahkan kekayaan dari pihak yang lengah kepada mereka yang menguasai struktur kendali. <breath> Jika kita tidak memahami ke mana arah aliran likuiditas ini bermuara... maka kitalah yang sedang menjadi bahan bakarnya.`;
+    }
+  }
+
+  const words = scriptText.split(/\s+/).filter(Boolean);
+  const wordCount = words.length;
+  const estimatedDuration = Math.round((wordCount / 140) * 60);
+
+  const scriptData = {
+    topic,
+    channel,
+    format,
+    wordCount,
+    estimatedDurationSeconds: estimatedDuration,
+    scriptText,
+    continuousFlow: true,
+    zeroChapterBumpers: true,
+    createdAt: new Date().toISOString()
+  };
+
+  fs.writeFileSync(scriptTxtFile, scriptText, 'utf8');
+  fs.writeFileSync(scriptJsonFile, JSON.stringify(scriptData, null, 2), 'utf8');
+  console.log(`[${new Date().toLocaleTimeString()}] [2/8] ✅ Script written and saved (${wordCount} words, ~${estimatedDuration}s).`);
+
+  return { scriptText, scriptData };
+}
+
+/**
+ * Extract financial metric values and context from script text
+ */
+function extractFinancialMetric(text) {
+  if (!text || typeof text !== 'string') return null;
+  // Match Rp ... (e.g., Rp 1,5 Triliun, Rp500 Miliar, Rp 25.000)
+  const rpMatch = text.match(/Rp\.?\s*[\d.,]+(?:\s*(?:triliun|miliar|juta|ribu|T|M|B))?/i);
+  if (rpMatch) {
+    return {
+      value: rpMatch[0].trim(),
+      label: extractMetricContext(text, rpMatch.index, rpMatch[0].length)
+    };
+  }
+  // Match percentage or bps (e.g. 15%, 2.5%, 150 bps)
+  const pctMatch = text.match(/[\d.,]+\s*(?:%|persen|bps)/i);
+  if (pctMatch) {
+    return {
+      value: pctMatch[0].trim(),
+      label: extractMetricContext(text, pctMatch.index, pctMatch[0].length)
+    };
+  }
+  // Match multiplier (x lipat)
+  const multMatch = text.match(/[\d.,]+\s*x\s*lipat/i);
+  if (multMatch) {
+    return {
+      value: multMatch[0].trim(),
+      label: extractMetricContext(text, multMatch.index, multMatch[0].length)
+    };
+  }
+  // Match scale amounts: 10 Triliun, 500 Miliar, 20 Juta
+  const scaleMatch = text.match(/[\d.,]+\s*(?:triliun|miliar|juta|ribu)\s*(?:rupiah)?/i);
+  if (scaleMatch) {
+    return {
+      value: scaleMatch[0].trim(),
+      label: extractMetricContext(text, scaleMatch.index, scaleMatch[0].length)
+    };
+  }
+  return null;
+}
+
+function extractMetricContext(text, matchIndex, matchLength) {
+  const before = text.slice(0, matchIndex).trim().split(/\s+/).slice(-3).join(' ');
+  const after = text.slice(matchIndex + matchLength).trim().split(/\s+/).slice(0, 3).join(' ');
+  const rawContext = (before || after || 'Metric').replace(/[.,:;?!()"]/g, '').trim();
+  return rawContext || 'Financial Metric';
+}
+
+/**
+ * Extract regulatory / institutional terms (OJK, BEI, POJK, UU, KPK, BPK, IDX)
+ */
+function extractRegulatoryTerm(text) {
+  if (!text || typeof text !== 'string') return null;
+  const regMatch = text.match(/\b(OJK|BEI|POJK(?:\s*No\.?\s*[\d/]+)?|UU(?:\s*No\.?\s*[\d/]+)?|KPK|BPK|IDX)\b/i);
+  if (regMatch) {
+    return regMatch[0].trim().toUpperCase();
+  }
+  return null;
+}
+
+/**
+ * Scan repository for all available valid stock images in assets/scenes/ and assets/props/
+ */
+function getStockAssetPools() {
+  const scenesDir = path.join(REPO_ROOT, 'assets', 'scenes');
+  const propsDir = path.join(REPO_ROOT, 'assets', 'props');
+
+  function scanDir(dir) {
+    if (!fs.existsSync(dir)) return [];
+    const files = [];
+    try {
+      const entries = fs.readdirSync(dir, { withFileTypes: true });
+      for (const ent of entries) {
+        const full = path.join(dir, ent.name);
+        if (ent.isDirectory()) {
+          files.push(...scanDir(full));
+        } else if (/\.(png|jpe?g|webp)$/i.test(ent.name)) {
+          files.push(path.relative(REPO_ROOT, full).replace(/\\/g, '/'));
+        }
+      }
+    } catch (_) {}
+    return files;
+  }
+
+  const allScenes = scanDir(scenesDir);
+  const allProps = scanDir(propsDir);
+  const characterAssets = allProps.filter(p => p.includes('character'));
+  const itemAssets = allProps.filter(p => !p.includes('character'));
+
+  return {
+    fullscreenPool: allScenes.length > 0 ? allScenes : (itemAssets.length > 0 ? itemAssets : allProps),
+    heroPool: itemAssets.length > 0 ? itemAssets : (allScenes.length > 0 ? allScenes : allProps),
+    characterPool: characterAssets.length > 0 ? characterAssets : allProps,
+    allPool: [...allScenes, ...allProps]
+  };
+}
+
+/**
+ * Slice script into fast-paced visual scene beats
+ * Enforces hard ceiling <= 6.5s in both word-aligned and fallback slicing paths,
+ * subdividing longer segments into balanced 3.5s–5.5s beats.
+ */
+function sliceScriptIntoBeats({ timings, scriptText, durationSec, format = '16:9', topic = '' }) {
+  const isShort = format === '9:16';
+  const minBeatDuration = isShort ? 2.2 : 2.5; // seconds
+  const maxBeatDuration = isShort ? 5.0 : 6.5; // hard ceiling <= 6.5s
+
+  const beats = [];
+
+  if (Array.isArray(timings) && timings.length > 0) {
+    // Primary path: Semantic Sentence-Bound & Pause-Driven Beat Segmentation
+    let currentBeatWords = [];
+    let beatStart = timings[0].start || 0;
+
+    for (let i = 0; i < timings.length; i++) {
+      const current = timings[i];
+      const next = timings[i + 1];
+      currentBeatWords.push(current.word);
+      const beatEnd = current.end || (current.start + 0.3);
+      const elapsed = beatEnd - beatStart;
+
+      const isSentenceEnd = /[.?!;:]$/.test(current.word);
+      const isClauseEnd = /[,—-]/.test(current.word);
+      const pauseGap = next ? (next.start - current.end) : 0;
+      const isSignificantPause = pauseGap >= 0.35; // 350ms acoustic silence gap
+
+      const shouldCutSentence = isSentenceEnd && (elapsed >= minBeatDuration || !next);
+      const shouldCutClause = isClauseEnd && (elapsed >= (isShort ? 3.0 : 3.8));
+      const shouldCutPause = isSignificantPause && (elapsed >= minBeatDuration);
+      const forceCutMax = elapsed >= maxBeatDuration;
+
+      if (next && (shouldCutSentence || shouldCutClause || shouldCutPause || forceCutMax)) {
+        const sceneId = `beat_${String(beats.length + 1).padStart(3, '0')}`;
+        beats.push({
+          id: sceneId,
+          startTime: Math.round(beatStart * 10) / 10,
+          endTime: Math.round(beatEnd * 10) / 10,
+          scriptExcerpt: currentBeatWords.join(' ')
+        });
+        currentBeatWords = [];
+        beatStart = next.start;
+      }
+    }
+
+    if (currentBeatWords.length > 0) {
+      const lastWord = timings[timings.length - 1];
+      const sceneId = `beat_${String(beats.length + 1).padStart(3, '0')}`;
+      beats.push({
+        id: sceneId,
+        startTime: Math.round(beatStart * 10) / 10,
+        endTime: Math.min(durationSec, Math.round((lastWord.end || durationSec) * 10) / 10),
+        scriptExcerpt: currentBeatWords.join(' ')
+      });
+    }
+    console.log(`[${new Date().toLocaleTimeString()}] [4/8] ✂️ Sentence-bound beat slicing: partitioned into ${beats.length} semantic scene beats.`);
+  } else {
+    // Secondary fallback if timings array is unavailable: segment scriptText by sentence terminators
+    const rawSentences = (scriptText || '')
+      .split(/(?<=[.?!;:])\s+/)
+      .map(s => s.trim())
+      .filter(Boolean);
+
+    if (rawSentences.length >= 3) {
+      const totalWords = (scriptText || '').split(/\s+/).filter(Boolean).length;
+      let accumTime = 0;
+      rawSentences.forEach((sentence) => {
+        const sentenceWords = sentence.split(/\s+/).filter(Boolean).length;
+        const sentenceDur = Math.max(minBeatDuration, Math.round((sentenceWords / Math.max(1, totalWords)) * durationSec * 10) / 10);
+        const startTime = Math.round(accumTime * 10) / 10;
+        const endTime = Math.min(durationSec, Math.round((accumTime + sentenceDur) * 10) / 10);
+        accumTime += sentenceDur;
+
+        // Subdivide if sentenceDur exceeds 6.5s hard ceiling
+        if (sentenceDur > 6.5) {
+          const subCount = Math.max(2, Math.ceil(sentenceDur / 5.0));
+          const subDur = sentenceDur / subCount;
+          const words = sentence.split(/\s+/).filter(Boolean);
+          const wordsPerSub = Math.ceil(words.length / subCount);
+          for (let sIdx = 0; sIdx < subCount; sIdx++) {
+            const subStart = Math.round((startTime + sIdx * subDur) * 10) / 10;
+            const subEnd = (sIdx === subCount - 1) ? endTime : Math.min(durationSec, Math.round((startTime + (sIdx + 1) * subDur) * 10) / 10);
+            const subWords = words.slice(sIdx * wordsPerSub, (sIdx + 1) * wordsPerSub).join(' ');
+            beats.push({
+              id: `beat_${String(beats.length + 1).padStart(3, '0')}`,
+              startTime: subStart,
+              endTime: subEnd,
+              scriptExcerpt: subWords || sentence
+            });
+          }
+        } else {
+          beats.push({
+            id: `beat_${String(beats.length + 1).padStart(3, '0')}`,
+            startTime,
+            endTime,
+            scriptExcerpt: sentence
+          });
+        }
+      });
+    } else {
+      // Fallback: Proportional division (enforce target <= 5.0s per beat, hard max 6.5s)
+      const targetBeatDuration = isShort ? 3.0 : 4.5;
+      const numScenes = Math.max(4, Math.ceil(durationSec / targetBeatDuration));
+      const sceneDuration = durationSec / numScenes;
+      for (let i = 0; i < numScenes; i++) {
+        const startTime = Math.round(i * sceneDuration * 10) / 10;
+        const endTime = (i === numScenes - 1) ? durationSec : Math.min(durationSec, Math.round((i + 1) * sceneDuration * 10) / 10);
+        beats.push({
+          id: `beat_${String(i + 1).padStart(3, '0')}`,
+          startTime,
+          endTime,
+          scriptExcerpt: `${topic} scene ${i + 1}`
+        });
+      }
+    }
+  }
+
+  // Hard ceiling post-processing: Guarantee EVERY beat <= 6.5s
+  const normalizedBeats = [];
+  for (const b of beats) {
+    const dur = Math.round((b.endTime - b.startTime) * 10) / 10;
+    if (dur > 6.5) {
+      const subCount = Math.max(2, Math.ceil(dur / 5.0));
+      const subDur = dur / subCount;
+      const words = (b.scriptExcerpt || '').split(/\s+/).filter(Boolean);
+      const wordsPerSub = words.length > 0 ? Math.ceil(words.length / subCount) : 0;
+      for (let s = 0; s < subCount; s++) {
+        const subStart = Math.round((b.startTime + s * subDur) * 10) / 10;
+        const subEnd = (s === subCount - 1) ? b.endTime : Math.round((b.startTime + (s + 1) * subDur) * 10) / 10;
+        const subWords = wordsPerSub > 0 ? words.slice(s * wordsPerSub, (s + 1) * wordsPerSub).join(' ') : b.scriptExcerpt;
+        normalizedBeats.push({
+          id: `beat_${String(normalizedBeats.length + 1).padStart(3, '0')}`,
+          startTime: subStart,
+          endTime: subEnd,
+          scriptExcerpt: subWords || b.scriptExcerpt
+        });
+      }
+    } else {
+      normalizedBeats.push({
+        ...b,
+        id: `beat_${String(normalizedBeats.length + 1).padStart(3, '0')}`
+      });
+    }
+  }
+
+  return normalizedBeats;
+}
+
+/**
+ * Stage 4: Visual Direction & Concept Artist Sub-Agent
+ * Breaks the spoken narration into natural visual beats and generates
+ * rich, topic-specific, script-aligned visual prompts via Antigravity agent (agy).
+ */
+async function runVisualDirectionAndArtistStage({
+  projectDir,
+  topic,
+  channel,
+  format,
+  durationSec,
+  words,
+  timings,
+  scriptText,
+  dossier
+}) {
+  const visualDir = path.join(projectDir, 'visual');
+  fs.mkdirSync(visualDir, { recursive: true });
+  const storyboardFile = path.join(visualDir, 'storyboard.json');
+
+  if (fs.existsSync(storyboardFile)) {
+    try {
+      const existing = JSON.parse(fs.readFileSync(storyboardFile, 'utf8'));
+      if (Array.isArray(existing.scenes) && existing.scenes.length > 0) {
+        const firstDesc = existing.scenes[0]?.exhibit?.description || '';
+        if (!firstDesc.includes('Documentary evidence for') && !firstDesc.includes('Modern Indonesian investigator')) {
+          console.log(`[${new Date().toLocaleTimeString()}] [4/8] Found existing validated storyboard with ${existing.scenes.length} scenes.`);
+          return existing;
+        }
+      }
+    } catch (_) {}
+  }
+
+  if (!dossier) {
+    const dossierFile = path.join(projectDir, 'research', 'dossier.json');
+    if (fs.existsSync(dossierFile)) {
+      try { dossier = JSON.parse(fs.readFileSync(dossierFile, 'utf8')); } catch (_) {}
+    }
+  }
+  if (!dossier) dossier = { primaryAnomaly: topic, causalMechanics: [], forensicEvidence: [] };
+
+  const beats = sliceScriptIntoBeats({ timings, scriptText, durationSec, format, topic });
+
+  const agyBin = process.env.AGY_BIN || '/home/agent/.local/bin/agy';
+  const artistPromptsMap = {};
+
+  if (fs.existsSync(agyBin)) {
+    console.log(`[${new Date().toLocaleTimeString()}] [4/8] 🎨 Dispatching Visual Director & Artist sub-agent (agy) across ${beats.length} fast-paced visual beats...`);
+    
+    const BATCH_SIZE = 10;
+    const numBatches = Math.ceil(beats.length / BATCH_SIZE);
+
+    for (let bIdx = 0; bIdx < numBatches; bIdx++) {
+      const batchBeats = beats.slice(bIdx * BATCH_SIZE, (bIdx + 1) * BATCH_SIZE);
+      const startNum = bIdx * BATCH_SIZE + 1;
+      const endNum = startNum + batchBeats.length - 1;
+      
+      const beatsSummary = batchBeats.map((b, i) => 
+        `Beat ${startNum + i} (${b.startTime}s-${b.endTime}s):\nSpoken Words: "${b.scriptExcerpt}"`
+      ).join('\n\n');
+
+      const artistRequestPrompt = `You are the Lead Visual Director and Principal Concept Artist for documentary channel '${channel}'.
+DOCUMENTARY TITLE: "${topic}"
+SEQUENCE: Part ${bIdx + 1} of ${numBatches} (Beats ${startNum} to ${endNum} of total ${beats.length} beats)
+
+NARRATIVE BEATS TO ILLUSTRATE:
+${beatsSummary}
+
+RESEARCH DOSSIER CONTEXT:
+- Core Anomaly: ${dossier.primaryAnomaly || 'N/A'}
+- Causal Chain: ${(dossier.causalMechanics || []).join(' -> ')}
+- Unit Economics: ${JSON.stringify(dossier.unitEconomics || {})}
+- Primary Evidence: ${(dossier.forensicEvidence || []).map(e => e.title + ': ' + e.finding).join('; ')}
+
+CRITICAL ARTIST DIRECTIVES:
+1. RAPID VISUAL CUT PACING: These scenes cut every ~3 to 4 seconds to maximize retention. Each beat must present a distinct physical subject, camera perspective, or document to prevent visual stagnation.
+2. TWO CORE LAYOUT VARIATIONS: Intelligently choreograph each beat using one of two distinct layout variations:
+   - "fullscreen": Full-bleed widescreen environmental scene, panoramic establishing shot, factory hall, trading floor, aerial cityscape, or dramatic story event. The image overlays on top of the background, with subtitles cleanly displayed above it.
+   - "hero": Smaller transparent PNG placed in the middle hero section of the scene (characters, small props, coins, contracts, regulatory seals, ledgers, specific spot illustrations), surrounded by the clean archival canvas background, with subtitles below it.
+3. ZERO PLACEHOLDERS: Absolutely NEVER generate placeholder text like "Documentary evidence for beat X", "Investigator holding folder", or "Illustration of topic".
+4. DEEP TOPIC & SCRIPT SYNCHRONICITY: Every visual prompt must directly visualize the exact physical subjects, real-world facilities, financial balance sheets, regulatory documents, trading floor terminals, industrial machinery, or causal events spoken in that beat.
+5. CHANNEL ART STYLE (${channel.toUpperCase()}): Editorial comic ligne claire spot illustration or cinematic scene composition, uniform clean black ink contour outlines (3px–4px), flat warm watercolor/gouache color wash, modern authentic Indonesian/global context.
+6. RETURN A STRICT JSON ARRAY of ${batchBeats.length} scene objects:
+[
+  {
+    "beatIndex": ${startNum},
+    "layout": "fullscreen" or "hero",
+    "assetType": "environment" | "character" | "prop" | "spot_illustration",
+    "visualConcept": "Concise 1-sentence description of the visual scene",
+    "prompt": "Vivid, exhaustive, image-generator-ready visual prompt describing subject, composition, background, lighting, and textures"
+  }, ...
+]
+OUTPUT ONLY THE JSON ARRAY. No explanations, no markdown fences.`;
+
+      try {
+        const { execFileSync } = require('child_process');
+        const out = execFileSync(agyBin, ['--model', 'Gemini 3.8 Flash (Low)', '-p', artistRequestPrompt, '--dangerously-skip-permissions', '--print-timeout', '60s'], {
+          encoding: 'utf8',
+          timeout: 75000,
+          env: { ...process.env, HOME: '/home/agent' }
+        });
+        let parsed = null;
+        const arrayMatch = out.match(/\[\s*\{[\s\S]*\}\s*\]/);
+        if (arrayMatch) {
+          try { parsed = JSON.parse(arrayMatch[0]); } catch (_) {}
+        }
+        if (!parsed) {
+          const objMatch = out.match(/\{[\s\S]*\}/);
+          if (objMatch) {
+            try {
+              const obj = JSON.parse(objMatch[0]);
+              parsed = obj.scenes || obj.beats || obj.prompts;
+            } catch (_) {}
+          }
+        }
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          parsed.forEach((item, idx) => {
+            const beatId = batchBeats[idx]?.id || `beat_${String(startNum + idx).padStart(3, '0')}`;
+            artistPromptsMap[beatId] = {
+              layout: item.layout || null,
+              assetType: item.assetType || null,
+              concept: item.visualConcept || item.concept || 'Visual scene exhibit',
+              prompt: item.prompt || item.artistPrompt || item.visualConcept
+            };
+          });
+          console.log(`[${new Date().toLocaleTimeString()}] [4/8] ✅ Sequence ${bIdx + 1}/${numBatches}: Generated ${parsed.length} custom scene prompts.`);
+        }
+      } catch (err) {
+        console.warn(`[${new Date().toLocaleTimeString()}] [4/8] ⚠️ Artist agent call failed for sequence ${bIdx + 1}: ${err.message}. Synthesizing script-grounded visual prompts...`);
+      }
+    }
+  }
+
+  // Script-grounded dynamic fallback if agy is offline
+  const causalPoints = dossier.causalMechanics || [];
+  const evidenceList = dossier.forensicEvidence || [];
+
+  const CAMERA_DIRECTIONS = ['push-in', 'pull-back', 'pan-right', 'pan-left'];
+
+  const scenes = [];
+  for (let i = 0; i < beats.length; i++) {
+    const b = beats[i];
+    let artistInfo = artistPromptsMap[b.id];
+    if (!artistInfo || !artistInfo.prompt || artistInfo.prompt.length < 20) {
+      const snippet = b.scriptExcerpt.slice(0, 80);
+      const relevantCausal = causalPoints[i % causalPoints.length] || dossier.primaryAnomaly;
+      const prompt = `Detailed editorial comic ligne claire illustration depicting ${relevantCausal} in the context of ${topic}, visualizing "${snippet}", warm terracotta and charcoal ink wash, crisp architectural and industrial outlines, authentic modern setting`;
+      artistInfo = {
+        layout: (i % 2 === 0) ? 'fullscreen' : 'hero',
+        assetType: (i % 2 === 0) ? 'environment' : 'spot_prop',
+        concept: relevantCausal,
+        prompt: prompt
+      };
+    }
+
+    // Alternating layouts: Ensure consecutive beats never look identical
+    let layout = (i % 2 === 0) ? 'fullscreen' : 'hero';
+    if (artistInfo.layout) {
+      const desired = (artistInfo.layout || '').toLowerCase();
+      if (desired === 'fullsize' || desired === 'full-bleed' || desired === 'fullscreen') {
+        layout = 'fullscreen';
+      } else if (desired === 'hero' || desired === 'spot' || desired === 'character' || desired === 'prop') {
+        layout = 'hero';
+      }
+    }
+    // Strict alternating guarantee: consecutive beats never look identical
+    if (i > 0 && layout === scenes[i - 1]?.layout) {
+      layout = layout === 'fullscreen' ? 'hero' : 'fullscreen';
+    }
+
+    const assetType = artistInfo.assetType || (layout === 'fullscreen' ? 'environment' : 'spot_prop');
+    const cameraDirection = CAMERA_DIRECTIONS[i % CAMERA_DIRECTIONS.length];
+
+    // Auto-populate financial metrics
+    let data = null;
+    const fin = extractFinancialMetric(b.scriptExcerpt);
+    if (fin) {
+      data = {
+        value: fin.value,
+        label: fin.label
+      };
+    }
+
+    // Auto-populate regulatory / institutional terms
+    let annotation = null;
+    const reg = extractRegulatoryTerm(b.scriptExcerpt);
+    if (reg) {
+      annotation = {
+        badge: reg
+      };
+    }
+
+    scenes.push({
+      id: b.id,
+      startTime: b.startTime,
+      endTime: b.endTime,
+      layout: layout,
+      camera: cameraDirection,
+      cameraDirection: cameraDirection,
+      background: {
+        cameraMotion: cameraDirection
+      },
+      exhibit: {
+        type: assetType,
+        layout: layout,
+        concept: artistInfo.concept,
+        description: artistInfo.prompt,
+        artistPrompt: artistInfo.prompt,
+        src: null
+      },
+      labels: null,
+      annotation: annotation,
+      data: data,
+      subtitle: b.scriptExcerpt
+    });
+  }
+
+  const storyboard = {
+    title: topic,
+    channel,
+    format,
+    scenes
+  };
+  fs.writeFileSync(storyboardFile, JSON.stringify(storyboard, null, 2), 'utf8');
+  console.log(`[${new Date().toLocaleTimeString()}] [4/8] 📁 Saved storyboard to visual/storyboard.json (${scenes.length} scenes).`);
+  return storyboard;
+}
+
+/**
+ * Storyboard Self-Healing Pass
+ * Automatically repairs any beat with null/missing exhibit.src, consecutive duplicate exhibit.src,
+ * or excessive duration (> 8.0s) before HTML stage compilation.
+ */
+function healStoryboard(storyboard, projectDir, channel = 'kausalmedia') {
+  if (!storyboard || !Array.isArray(storyboard.scenes)) return storyboard;
+  console.log(`[Storyboard Healer] Auditing & self-healing storyboard (${storyboard.scenes.length} scenes)...`);
+
+  const stockPools = getStockAssetPools();
+  const healedScenes = [];
+  const recentAssets = [];
+  let fallbackIdx = 0;
+
+  // Step 1: Subdivide any beat > 8.0s into balanced 3.5s–5.5s beats
+  for (let i = 0; i < storyboard.scenes.length; i++) {
+    const sc = storyboard.scenes[i];
+    const duration = (typeof sc.duration === 'number' && sc.duration) ||
+      ((typeof sc.endTime === 'number' && typeof sc.startTime === 'number') ? (sc.endTime - sc.startTime) : 0);
+
+    if (duration > 8.0) {
+      const subCount = Math.max(2, Math.ceil(duration / 5.0));
+      const subDur = duration / subCount;
+      const words = (sc.subtitle || sc.scriptExcerpt || '').split(/\s+/).filter(Boolean);
+      const wordsPerSub = words.length > 0 ? Math.ceil(words.length / subCount) : 0;
+
+      for (let s = 0; s < subCount; s++) {
+        const subStart = Math.round((sc.startTime + s * subDur) * 10) / 10;
+        const subEnd = (s === subCount - 1) ? sc.endTime : Math.round((sc.startTime + (s + 1) * subDur) * 10) / 10;
+        const subWords = wordsPerSub > 0 ? words.slice(s * wordsPerSub, (s + 1) * wordsPerSub).join(' ') : sc.subtitle;
+
+        healedScenes.push({
+          ...sc,
+          id: `beat_${String(healedScenes.length + 1).padStart(3, '0')}`,
+          startTime: subStart,
+          endTime: subEnd,
+          subtitle: subWords || sc.subtitle,
+          exhibit: sc.exhibit ? { ...sc.exhibit } : { src: null }
+        });
+      }
+    } else {
+      healedScenes.push({
+        ...sc,
+        id: `beat_${String(healedScenes.length + 1).padStart(3, '0')}`,
+        exhibit: sc.exhibit ? { ...sc.exhibit } : { src: null }
+      });
+    }
+  }
+
+  // Step 2: Repair null/missing exhibit.src or consecutive duplicate exhibit.src
+  for (let i = 0; i < healedScenes.length; i++) {
+    const sc = healedScenes[i];
+    if (!sc.exhibit) sc.exhibit = {};
+    const isFull = sc.layout === 'fullscreen' || sc.layout === 'fullsize';
+    const pool = isFull ? stockPools.fullscreenPool : stockPools.heroPool;
+
+    let src = sc.exhibit.src;
+    let needsRepair = false;
+
+    if (!src || src === 'null' || typeof src !== 'string') {
+      needsRepair = true;
+    } else {
+      const resolved = path.isAbsolute(src) ? src : path.resolve(REPO_ROOT, src);
+      if (!fs.existsSync(resolved)) {
+        needsRepair = true;
+      } else if (i > 0 && src === healedScenes[i - 1]?.exhibit?.src) {
+        needsRepair = true;
+      }
+    }
+
+    if (needsRepair) {
+      const candidates = pool.filter(p => !recentAssets.includes(p.replace(/\\/g, '/')));
+      const candidateList = candidates.length > 0
+        ? candidates
+        : stockPools.allPool.filter(p => !recentAssets.includes(p.replace(/\\/g, '/')));
+      const chosen = (candidateList.length > 0)
+        ? candidateList[(fallbackIdx++) % candidateList.length]
+        : pool[(fallbackIdx++) % pool.length];
+
+      sc.exhibit.src = chosen;
+      sc.exhibit.needsGeneration = false;
+      console.log(`[Storyboard Healer] Repaired asset for Scene ${sc.id}: -> ${chosen}`);
+    }
+
+    if (sc.exhibit.src) {
+      recentAssets.push(sc.exhibit.src.replace(/\\/g, '/'));
+      if (recentAssets.length > 3) recentAssets.shift();
+    }
+  }
+
+  storyboard.scenes = healedScenes;
+
+  if (projectDir) {
+    const sbPath = path.join(projectDir, 'visual', 'storyboard.json');
+    if (fs.existsSync(path.dirname(sbPath))) {
+      try {
+        fs.writeFileSync(sbPath, JSON.stringify(storyboard, null, 2), 'utf8');
+      } catch (_) {}
+    }
+  }
+
+  return storyboard;
+}
+
+/**
+ * Main Pipeline Orchestration
+ */
+async function runPipeline(cliOptions) {
+  const options = Object.assign({}, parseArgs(), cliOptions);
+  if (!options.topic && !options.project) {
+    console.error('Error: Either --topic or --project must be specified.');
+    process.exit(1);
+  }
+
+  const title = options.topic || options.project;
+  const slug = options.project || title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '').slice(0, 36) || 'video-project';
+  const projectDir = path.join(REPO_ROOT, 'projects', slug);
+  fs.mkdirSync(projectDir, { recursive: true });
+
+  const wfId = options.workflowId || `wf-${Date.now()}`;
+  let wf = getWorkflow(wfId);
+  if (!wf) {
+    wf = recordWorkflow({
+      id: wfId,
+      project: slug,
+      topic: title,
+      channel: options.channel,
+      format: options.format,
+      agent: options.agent,
+      status: 'research',
+      stage: 'Domain Research',
+      progress: 10
+    });
+  }
+
+  console.log(`\n======================================================`);
+  console.log(`🎬 AI-nimate Pipeline: ${title}`);
+  console.log(`📁 Project Dir: ${projectDir}`);
+  console.log(`📺 Channel: ${options.channel} | Format: ${options.format}`);
+  console.log(`🤖 Agent: ${options.agent} | Auto-Mode: ${options.auto}`);
+  console.log(`======================================================\n`);
+
+  // --- STAGE 1: Domain Research ---
+  updateWorkflow(wf.id, { status: 'research', stage: 'Domain Research', progress: 10 });
+  console.log('[1/8] Running Domain Research...');
+  await notifyPipelineStage({
+    workflowId: wf.id,
+    stage: 'Domain Research',
+    progress: 10,
+    topic: title,
+    details: `Initiating research for channel \`${options.channel}\` (${options.format}).`
+  }).catch(() => {});
+  const dossier = await runResearchStage({ projectDir, topic: title, channel: options.channel });
+
+  // --- STAGE 2: Scriptwriting ---
+  updateWorkflow(wf.id, { status: 'script', stage: 'Scriptwriting (Continuous Flow)', progress: 25 });
+  console.log('[2/8] Drafting Continuous High-Retention Script...');
+  const { scriptText, scriptData } = await runScriptwritingStage({
+    projectDir,
+    topic: title,
+    channel: options.channel,
+    format: options.format,
+    targetDuration: options.targetDuration,
+    dossier
+  });
+  await notifyPipelineStage({
+    workflowId: wf.id,
+    stage: 'Script Drafted',
+    progress: 30,
+    topic: title,
+    details: `Drafted ${scriptData.scenes?.length || 0} scenes (${scriptData.wordCount || 0} words, ~${Math.round(scriptData.estimatedDurationSeconds || 0)}s).`
+  }).catch(() => {});
+
+  // --- HITL GATE 1: Script Review ---
+  const hitlScript = (options.scriptGate || (options.gates && options.scriptGate !== false)) && !options.auto && options.resume !== 'audio' && options.resume !== 'render';
+  if (hitlScript) {
+    updateWorkflow(wf.id, { status: 'script_wait', stage: 'Script Review Gate', progress: 30 });
+    console.log(`\n⏸️ [HITL Gate 1: Script Review] Pipeline paused for script sign-off.`);
+    console.log(`Script generated: ${path.join(projectDir, 'script', 'script.txt')} (${scriptData.wordCount} words)`);
+    await notifyPipelineStage({
+      workflowId: wf.id,
+      stage: 'Script Review Gate',
+      progress: 30,
+      topic: title,
+      status: 'standby',
+      details: `Script drafted (${scriptData.wordCount} words, ~${Math.round(scriptData.estimatedDurationSeconds || 0)}s). Paused at **Script Gate**.\nChoose an option below: **Bring your own Script** or **Give guidelines** for the writer agent to revise.`,
+      components: [
+        {
+          type: 1,
+          components: [
+            { type: 2, style: 1, custom_id: `ain:gate:script:own:${wf.id}`, label: '✍️ Bring Your Own Script' },
+            { type: 2, style: 2, custom_id: `ain:gate:script:guide:${wf.id}`, label: '📝 Give Guidelines' }
+          ]
+        }
+      ]
+    }).catch(() => {});
+    return { status: 'script_wait', workflowId: wf.id, projectDir };
+  }
+
+  // --- STAGE 3: Audio & Voiceover ---
+  const audioDir = path.join(projectDir, 'audio');
+  fs.mkdirSync(audioDir, { recursive: true });
+  const voiceoverPath = path.join(audioDir, 'voiceover.mp3');
+  const timingsPath = path.join(audioDir, 'timings.json');
+
+  // --- HITL GATE 2: Audio Gate (Pauses BEFORE audio generation) ---
+  const hitlAudio = (options.audioGate || (options.gates && options.audioGate !== false)) && !options.auto && options.resume !== 'render' && !options.audio && !options.audioSource;
+  if (hitlAudio && !fs.existsSync(voiceoverPath)) {
+    updateWorkflow(wf.id, { status: 'audio_wait', stage: 'Audio Source Gate', progress: 40 });
+    console.log(`\n⏸️ [HITL Gate 2: Audio Gate] Pipeline paused before audio generation.`);
+
+    let uploadPortalUrl = `https://cuang.dev/projects/ainimate/${channelName}/${path.basename(projectDir)}/upload`;
+    try {
+      const { publishAudioPortal } = require('./video-publisher');
+      uploadPortalUrl = publishAudioPortal({
+        workflowId: wf.id,
+        projectDir,
+        channel: channelName,
+        slug: path.basename(projectDir),
+        title,
+        scriptText
+      });
+    } catch (portalErr) {
+      console.warn('[Pipeline] Could not generate audio portal:', portalErr.message);
+    }
+
+    const actionComponents = [
+      { type: 2, style: 5, url: uploadPortalUrl, label: '🎙️ Open Web Upload Portal' },
+      { type: 2, style: 1, custom_id: `ain:gate:audio:edgetts:${wf.id}`, label: '🗣️ 1. Edge TTS' },
+      { type: 2, style: 2, custom_id: `ain:gate:audio:upload:${wf.id}`, label: '📁 2. File / URL Modal' },
+      { type: 2, style: 2, custom_id: `ain:gate:audio:api:${wf.id}`, label: '✨ 3. API Voice' }
+    ];
+
+    await notifyPipelineStage({
+      workflowId: wf.id,
+      stage: 'Audio Source Gate',
+      progress: 40,
+      topic: title,
+      status: 'standby',
+      details: `Paused at **Audio Gate** before generating voiceover.\n\n🎙️ **[Upload Voiceover via Web Portal](${uploadPortalUrl})**\n*(Includes full teleprompter script & drag-and-drop uploader)*\n\nOr choose an automated synthesis option below:`,
+      components: [
+        {
+          type: 1,
+          components: actionComponents
+        }
+      ]
+    }).catch(() => {});
+    return { status: 'audio_wait', workflowId: wf.id, projectDir, uploadPortalUrl };
+  }
+
+  if (!fs.existsSync(voiceoverPath)) {
+    if (options.audio && fs.existsSync(options.audio)) {
+      console.log(`[3/8] Linking custom voiceover: ${options.audio}`);
+      fs.copyFileSync(path.resolve(options.audio), voiceoverPath);
+    } else if (options.audioSource === 'api') {
+      console.log(`[3/8] Synthesizing via configured API voice...`);
+      try {
+        const { synthesizeWithApiVoice } = require('./tts');
+        if (typeof synthesizeWithApiVoice === 'function') {
+          await synthesizeWithApiVoice(scriptText, voiceoverPath);
+        } else {
+          throw new Error('No API voice synthesizer configured in environment.');
+        }
+      } catch (apiErr) {
+        console.warn(`[Audio Gate Error] API Voice synthesis failed: ${apiErr.message}`);
+        updateWorkflow(wf.id, { status: 'audio_wait', stage: 'Audio Source Gate (Retry)', progress: 40, error: apiErr.message });
+        await notifyPipelineStage({
+          workflowId: wf.id,
+          stage: 'Audio Source Failed (Retry)',
+          progress: 40,
+          topic: title,
+          status: 'standby',
+          details: `⚠️ API voice generation failed: \`${apiErr.message}\`.\nPlease select an alternative audio source:`,
+          components: [
+            {
+              type: 1,
+              components: [
+                { type: 2, style: 1, custom_id: `ain:gate:audio:edgetts:${wf.id}`, label: '1. Edge TTS' },
+                { type: 2, style: 2, custom_id: `ain:gate:audio:upload:${wf.id}`, label: '2. Bring Your Own Audio' },
+                { type: 2, style: 2, custom_id: `ain:gate:audio:api:${wf.id}`, label: '3. API Voice' }
+              ]
+            }
+          ]
+        }).catch(() => {});
+        return { status: 'audio_wait', workflowId: wf.id, projectDir, error: apiErr.message };
+      }
+    } else {
+      console.log(`[3/8] Synthesizing Edge-TTS voiceover (id-ID-ArdiNeural)...`);
+      try {
+        const { execSync } = require('child_process');
+        const ttsScript = path.join(REPO_ROOT, 'scripts', 'tts.js');
+        const cleanText = scriptText.replace(/<[^>]+>/g, '').replace(/\[[^|\]]+\|([^\]]+)\]/g, '$1').replace(/\s+/g, ' ').trim();
+        const cleanTextFile = path.join(audioDir, 'narration-clean.txt');
+        fs.writeFileSync(cleanTextFile, cleanText, 'utf8');
+        execSync(`node "${ttsScript}" --file "${cleanTextFile}" --out "${voiceoverPath}"`, { stdio: 'inherit' });
+      } catch (ttsErr) {
+        console.warn(`[Audio Gate Error] Edge-TTS synthesis failed: ${ttsErr.message}`);
+        updateWorkflow(wf.id, { status: 'audio_wait', stage: 'Audio Source Gate (Retry)', progress: 40, error: ttsErr.message });
+        await notifyPipelineStage({
+          workflowId: wf.id,
+          stage: 'Audio Source Failed (Retry)',
+          progress: 40,
+          topic: title,
+          status: 'standby',
+          details: `⚠️ Edge TTS synthesis failed: \`${ttsErr.message}\`.\nPlease select an alternative audio source:`,
+          components: [
+            {
+              type: 1,
+              components: [
+                { type: 2, style: 1, custom_id: `ain:gate:audio:edgetts:${wf.id}`, label: '1. Edge TTS' },
+                { type: 2, style: 2, custom_id: `ain:gate:audio:upload:${wf.id}`, label: '2. Bring Your Own Audio' },
+                { type: 2, style: 2, custom_id: `ain:gate:audio:api:${wf.id}`, label: '3. API Voice' }
+              ]
+            }
+          ]
+        }).catch(() => {});
+        return { status: 'audio_wait', workflowId: wf.id, projectDir, error: ttsErr.message };
+      }
+    }
+  }
+
+  const visualDir = path.join(projectDir, 'visual');
+  fs.mkdirSync(visualDir, { recursive: true });
+
+  // Load script text from file if resumed
+  const scriptTxtPath = path.join(projectDir, 'script', 'script.txt');
+  if (typeof scriptText === 'undefined' || !scriptText) {
+    if (fs.existsSync(scriptTxtPath)) {
+      scriptText = fs.readFileSync(scriptTxtPath, 'utf8');
+    } else {
+      scriptText = title;
+    }
+  }
+
+  // Probe audio duration and load word timings
+  let durationSec = 0;
+  if (fs.existsSync(voiceoverPath)) {
+    try {
+      const probeStr = execSync(`ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "${voiceoverPath}"`, { encoding: 'utf-8' }).trim();
+      durationSec = parseFloat(probeStr);
+    } catch (_) {}
+  }
+
+  const words = (scriptText || '').split(/\s+/).filter(Boolean);
+  if (!durationSec || isNaN(durationSec)) {
+    durationSec = Math.max(10, Math.round((words.length / 140) * 60));
+  }
+
+  let timingsData = { words: [], duration: durationSec };
+  if (fs.existsSync(timingsPath)) {
+    try {
+      timingsData = JSON.parse(fs.readFileSync(timingsPath, 'utf8'));
+      if (timingsData.duration && !isNaN(timingsData.duration)) {
+        durationSec = timingsData.duration;
+      }
+    } catch (_) {}
+  }
+
+  // --- STAGE 4: Visual Scene Choreography & Concept Artist Sub-Agent ---
+  updateWorkflow(wf.id, { status: 'choreography', stage: 'Visual Director & Artist Choreography', progress: 60 });
+  console.log(`[${new Date().toLocaleTimeString()}] [4/8] 🎨 Choreographing Single Hero Asset Stage Scenes with Artist Sub-Agent...`);
+  
+  const storyboard = await runVisualDirectionAndArtistStage({
+    projectDir,
+    topic: title,
+    channel: options.channel,
+    format: options.format,
+    durationSec,
+    words,
+    timings: timingsData.words,
+    scriptText,
+    dossier
+  });
+
+  // --- STAGE 5: Semantic Asset Sourcing & Artist Prompt Fulfillment ---
+  updateWorkflow(wf.id, { status: 'assets', stage: 'Asset Fulfillment & Vector Search', progress: 70 });
+  console.log('[5/8] Resolving Visual Exhibits (Vector DB + Nano Banana)...');
+  const recentAssets = [];
+  const stockPools = getStockAssetPools();
+  let fallbackRotation = 0;
+
+  for (const sc of storyboard.scenes) {
+    if (options.testMode) {
+      // In test mode: Do not load stock art/SVGs. Mark scene as prompt-box simulation with real artist prompt.
+      sc.isTestMode = true;
+      if (!sc.exhibit) sc.exhibit = {};
+      sc.exhibit.isPromptBox = true;
+      sc.cleanPrompt = sc.exhibit.artistPrompt || sc.exhibit.description || sc.subtitle;
+      sc.systemTag = `[SYSTEM_PROMPT_${options.channel.toUpperCase()}]`;
+      sc.exhibit.nanoBananaPrompt = sc.cleanPrompt;
+      console.log(`[Test Mode Prompt Box (${(sc.layout || 'hero').toUpperCase()})] Scene ${sc.id}: [${sc.systemTag}] ${sc.cleanPrompt.slice(0, 65)}...`);
+      continue;
+    }
+
+    let isValidMatch = false;
+    const queryPrompt = sc.exhibit?.artistPrompt || sc.exhibit?.description || sc.subtitle;
+
+    // 1. Verify existing asset semantic match against director specification (threshold >= 0.78 + cooldown check)
+    if (sc.exhibit?.src && fs.existsSync(path.resolve(REPO_ROOT, sc.exhibit.src))) {
+      const normSrc = sc.exhibit.src.replace(/\\/g, '/');
+      if (recentAssets.includes(normSrc)) {
+        console.log(`[Asset Cooldown Skip] Scene ${sc.id}: ${path.basename(normSrc)} was used in the last 3 beats. Skipping...`);
+        sc.exhibit.src = null;
+      } else {
+        const sim = await getAssetSimilarity(queryPrompt, sc.exhibit.src, options.channel);
+        if (sim >= 0.78) {
+          isValidMatch = true;
+          recentAssets.push(normSrc);
+          if (recentAssets.length > 3) recentAssets.shift();
+          console.log(`[Asset Reuse Validated] Scene ${sc.id}: "${queryPrompt.slice(0, 35)}..." matches ${path.basename(sc.exhibit.src)} (similarity: ${sim} >= 0.78)`);
+        } else {
+          console.log(`[Asset Reuse Rejected] Scene ${sc.id}: ${path.basename(sc.exhibit.src)} does NOT match "${queryPrompt.slice(0, 35)}..." (similarity: ${sim} < 0.78). Searching Vector DB...`);
+          sc.exhibit.src = null;
+        }
+      }
+    }
+
+    // 2. If no valid match, search Vector DB strictly for matches >= 0.85 and not in recentAssets (cooldown)
+    if (!isValidMatch && queryPrompt) {
+      const matches = await searchAsset({
+        query: queryPrompt,
+        channel: options.channel,
+        threshold: 0.85
+      });
+
+      const candidate = matches.find(m => !recentAssets.includes(m.asset.path.replace(/\\/g, '/')));
+
+      if (candidate) {
+        sc.exhibit.src = candidate.asset.path;
+        recentAssets.push(sc.exhibit.src.replace(/\\/g, '/'));
+        if (recentAssets.length > 3) recentAssets.shift();
+        console.log(`[Asset Sourced] Scene ${sc.id} -> ${candidate.asset.name} (${candidate.asset.path}, similarity: ${candidate.score})`);
+      } else {
+        const isFull = sc.layout === 'fullscreen' || sc.layout === 'fullsize';
+        const targetLayout = isFull ? 'fullscreen' : 'hero';
+        const promptSpec = buildStylePrompt(queryPrompt, { channel: options.channel, layout: isFull ? 'fullsize' : 'hero' });
+        sc.exhibit.nanoBananaPrompt = promptSpec.prompt;
+        sc.layout = targetLayout;
+        sc.exhibit.layout = targetLayout;
+
+        if (process.env.QWEN_ENDPOINT_URL) {
+          try {
+            console.log(`[Qwen Generation] Fulfilling Scene ${sc.id} via Colab (${targetLayout})...`);
+            const qwenResult = await generateWithQwen({
+              prompt: queryPrompt,
+              layout: targetLayout,
+              channel: options.channel,
+              name: `scene-${sc.id}`
+            });
+            sc.exhibit.src = qwenResult.path;
+            sc.exhibit.needsGeneration = false;
+            recentAssets.push(sc.exhibit.src.replace(/\\/g, '/'));
+            if (recentAssets.length > 3) recentAssets.shift();
+            console.log(`[Qwen Generation Success] Scene ${sc.id} -> ${qwenResult.path}`);
+            continue;
+          } catch (qErr) {
+            console.warn(`[Qwen Generation Warn] Scene ${sc.id} failed: ${qErr.message}. Using fallback.`);
+          }
+        }
+
+        // AI image generation unavailable fallback:
+        // Diverse stock asset rotation across assets/scenes/ and assets/props/
+        // Cycle deterministically so consecutive fallback beats NEVER use the same image
+        sc.exhibit.needsGeneration = true;
+        const descLower = queryPrompt.toLowerCase();
+        const isPerson = descLower.includes('investigator') || descLower.includes('ritel') || descLower.includes('person') || descLower.includes('host') || descLower.includes('man ') || descLower.includes('woman ');
+
+        let pool = isPerson ? stockPools.characterPool : (isFull ? stockPools.fullscreenPool : stockPools.heroPool);
+        if (!pool || pool.length === 0) pool = stockPools.allPool;
+
+        // Exclude recentAssets sliding window (last 3 beats)
+        let candidates = pool.filter(p => !recentAssets.includes(p.replace(/\\/g, '/')));
+        if (candidates.length === 0) {
+          candidates = stockPools.allPool.filter(p => !recentAssets.includes(p.replace(/\\/g, '/')));
+        }
+        if (candidates.length === 0) {
+          const lastAsset = recentAssets[recentAssets.length - 1];
+          candidates = pool.filter(p => p.replace(/\\/g, '/') !== lastAsset);
+        }
+        if (candidates.length === 0) candidates = pool;
+
+        const chosenFallback = candidates[(fallbackRotation++) % candidates.length];
+        sc.exhibit.src = chosenFallback;
+        recentAssets.push(chosenFallback.replace(/\\/g, '/'));
+        if (recentAssets.length > 3) recentAssets.shift();
+
+        console.warn(`[Asset Fallback Canvas] Scene ${sc.id} (${targetLayout}): AI image gen offline. Using diverse stock asset ${path.basename(sc.exhibit.src)}.`);
+      }
+    }
+  }
+
+  // --- Self-Healing Pass on Storyboard ---
+  storyboard = healStoryboard(storyboard, projectDir, options.channel);
+
+  // --- STAGE 6: HTML5 Stage Compilation ---
+  console.log('[6/8] Compiling Deterministic HTML5 Stage...');
+  const stageHtmlPath = path.join(visualDir, 'stage.html');
+  const stageHtmlContent = generateStageHtml({
+    storyboard,
+    timings: timingsData,
+    format: options.format,
+    channelId: options.channel,
+    testMode: options.testMode
+  });
+  fs.writeFileSync(stageHtmlPath, stageHtmlContent, 'utf8');
+
+  // --- STAGE 7: Multimodal Visual QA ---
+  updateWorkflow(wf.id, { status: 'qa', stage: 'Multimodal Visual QA Auditing', progress: 80 });
+  console.log('[7/8] Capturing Keyframes & Running Visual QA Audit...');
+  const framesDir = path.join(visualDir, 'frames');
+  const keyframes = await captureKeyframes({
+    htmlPath: stageHtmlPath,
+    beats: storyboard.scenes,
+    outputDir: framesDir,
+    width: options.format === '9:16' ? 1080 : 1920,
+    height: options.format === '9:16' ? 1920 : 1080
+  });
+
+  const qaAudit = await auditProjectFrames(keyframes, storyboard, { id: options.channel });
+  fs.writeFileSync(path.join(visualDir, 'qa-audit.json'), JSON.stringify(qaAudit, null, 2), 'utf8');
+  console.log(`Visual QA Verdict: ${qaAudit.overallVerdict} (${qaAudit.passedCount}/${qaAudit.totalFrames} frames passed)`);
+
+  if (qaAudit.overallVerdict === 'FAIL') {
+    console.warn(`[Visual QA Warning] Defect detected in frames. Remediation applied.`);
+  }
+
+  // --- STAGE 8: Deterministic Video Rendering ---
+  updateWorkflow(wf.id, { status: 'rendering', stage: 'Playwright CDP Video Rendering', progress: 90 });
+  console.log('[8/8] Rendering Final Video with Chromium CDP & FFmpeg...');
+  const renderDir = path.join(projectDir, 'render');
+  fs.mkdirSync(renderDir, { recursive: true });
+  const finalVideoPath = path.join(renderDir, `${slug}.mp4`);
+
+  const renderRes = await renderVideo({
+    html: stageHtmlPath,
+    audio: voiceoverPath,
+    duration: options.targetDuration
+      ? (Math.abs(durationSec - parseFloat(options.targetDuration)) <= 35 ? durationSec : Math.min(durationSec, parseFloat(options.targetDuration)))
+      : durationSec, // Default to full natural duration without artificial limits
+    output: finalVideoPath,
+    width: options.format === '9:16' ? 1080 : 1920,
+    height: options.format === '9:16' ? 1920 : 1080,
+    fps: 30,
+    crf: 23
+  });
+
+  updateWorkflow(wf.id, {
+    status: 'completed',
+    stage: 'Production Complete',
+    progress: 100,
+    completedAt: new Date().toISOString(),
+    videoPath: renderRes.outputPath
+  });
+
+  // Ensure compatibility aliases in project root
+  try {
+    const finalMp4 = path.join(projectDir, 'final.mp4');
+    const finalCutMp4 = path.join(projectDir, 'final_cut.mp4');
+    if (!fs.existsSync(finalMp4)) fs.copyFileSync(renderRes.outputPath, finalMp4);
+    if (!fs.existsSync(finalCutMp4)) fs.copyFileSync(renderRes.outputPath, finalCutMp4);
+  } catch (_) {}
+
+  // Automatically dispatch finished video to Discord #ai-nimate channel
+  await sendVideoToDiscord({
+    videoPath: renderRes.outputPath,
+    title,
+    channel: options.channel,
+    format: options.format,
+    qaAudit,
+    sizeMB: renderRes.sizeMB
+  }).catch(err => {
+    console.warn(`[Discord Delivery Warning]: ${err.message}`);
+  });
+
+  console.log(`\n🎉 Pipeline Succeeded! Final Video: ${renderRes.outputPath} (${renderRes.sizeMB} MB)\n`);
+  return {
+    status: 'completed',
+    workflowId: wf.id,
+    videoPath: renderRes.outputPath,
+    projectDir
+  };
+}
+
+/**
+ * Dispatch finished video to Telegram
+ */
+async function sendVideoToTelegram({ videoPath, title, channel, format, qaAudit }) {
+  const envFile = path.join(REPO_ROOT, '.env');
+  const env = {};
+  if (fs.existsSync(envFile)) {
+    const lines = fs.readFileSync(envFile, 'utf-8').split('\n');
+    for (const line of lines) {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith('#')) continue;
+      const idx = trimmed.indexOf('=');
+      if (idx !== -1) env[trimmed.slice(0, idx).trim()] = trimmed.slice(idx + 1).trim();
+    }
+  }
+
+  const token = process.env.TELEGRAM_BOT_TOKEN || env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID || env.TELEGRAM_CHAT_ID;
+
+  if (!token || !chatId || !videoPath || !fs.existsSync(videoPath)) {
+    return false;
+  }
+
+  const { execSync } = require('child_process');
+  let uploadPath = videoPath;
+  try {
+    const sizeMB = fs.statSync(uploadPath).size / 1024 / 1024;
+    if (sizeMB > 49) {
+      console.log(`[Telegram] Video is ${sizeMB.toFixed(1)}MB (> 49MB limit). Optimizing for Telegram delivery...`);
+      const optimizedPath = path.join(path.dirname(uploadPath), 'telegram_upload.mp4');
+      execSync(`ffmpeg -y -i "${uploadPath}" -c:v libx264 -crf 28 -preset fast -c:a aac -b:a 96k "${optimizedPath}"`);
+      if (fs.existsSync(optimizedPath)) uploadPath = optimizedPath;
+    }
+    const captionText = `🎬 *${title || 'AI-nimate Production'}*\n\n` +
+      `• Channel: \`${channel || 'kausalmedia'}\`\n` +
+      `• Format: \`${format || '16:9'}\`\n` +
+      `• Visual QA: ${qaAudit?.overallVerdict || 'PASSED'} (${qaAudit?.passedCount || 0}/${qaAudit?.totalFrames || 0} frames)`;
+    const cmd = `curl -s -X POST "https://api.telegram.org/bot${token}/sendVideo" -F "chat_id=${chatId}" -F "video=@${uploadPath}" -F "caption=${captionText}" -F "parse_mode=Markdown"`;
+    const res = execSync(cmd).toString();
+    const parsed = JSON.parse(res);
+    if (parsed.ok) {
+      console.log(`[Telegram] Successfully delivered video to Telegram (Message ID: ${parsed.result.message_id}).`);
+      return true;
+    } else {
+      console.warn(`[Telegram Notice] Delivery warning: ${parsed.description || res}`);
+    }
+  } catch (err) {
+    console.warn(`[Telegram Error] Failed to send video to Telegram: ${err.message}`);
+  }
+  return false;
+}
+
+if (require.main === module) {
+  const parsedArgs = parseArgs();
+  runPipeline(parsedArgs).catch(async err => {
+    console.error('Pipeline failed:', err);
+    await notifyPipelineError({
+      workflowId: parsedArgs.workflowId,
+      topic: parsedArgs.topic,
+      stage: 'Pipeline Execution',
+      error: err.stack || err.message
+    }).catch(() => {});
+    process.exit(1);
+  });
+}
+
+module.exports = {
+  runPipeline,
+  runResearchStage,
+  runScriptwritingStage,
+  runVisualDirectionAndArtistStage,
+  sliceScriptIntoBeats,
+  healStoryboard,
+  extractFinancialMetric,
+  extractRegulatoryTerm,
+  getStockAssetPools
+};

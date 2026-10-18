@@ -1,32 +1,31 @@
 {
   "name": "ai-nimate",
   "version": "0.1.0",
-  "description": "Autonomous AI-driven vector animation pipeline and Pablo Stanley asset library for explainer videos",
-  "main": "assets/assemble-peep.js",
-  "bin": {
-    "assemble-peep": "./assets/assemble-peep.js",
-    "ai-nimate-render": "./scripts/render.js",
-    "ai-nimate-tts": "./scripts/tts.js"
-  },
+  "description": "AI-nimate Autonomous Telegram Bot & Channel Style Guide Architecture",
+  "main": "scripts/discord-bot.js",
   "scripts": {
-    "assemble": "node assets/assemble-peep.js",
-    "render": "node scripts/render.js",
-    "tts": "node scripts/tts.js",
-    "gallery": "python3 -m http.server 8080 --directory assets"
+    "start": "node --max-old-space-size=128 scripts/discord-bot.js",
+    "discord": "node --max-old-space-size=128 scripts/discord-bot.js",
+    "telegram": "node scripts/telegram-bot.js",
+    "cols": "node scripts/terminal-utils.js",
+    "test": "node --test tests/*.test.js"
   },
   "keywords": [
-    "animation",
-    "vector",
-    "svg",
-    "open-peeps",
-    "video-generation",
-    "ai-animation",
-    "motion-graphics",
-    "infographics",
-    "playwright",
-    "edge-tts",
-    "ffmpeg"
+    "telegram-bot",
+    "channel-style-guides",
+    "content-creation",
+    "video-essay"
   ],
   "author": "WilliamAxelC <williamaxelcuangdinata@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@xenova/transformers": "^2.17.2",
+    "discord.js": "^14.27.0",
+    "node-edge-tts": "^1.2.11",
+    "playwright-core": "1.63.0",
+    "socks-proxy-agent": "^10.1.0"
+  }
 }
