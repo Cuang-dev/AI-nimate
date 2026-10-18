@@ -12,11 +12,30 @@ const { getChannel, saveChannel } = require('./channel-manager');
 
 const REPO_ROOT = path.resolve(__dirname, '..');
 const USED_TOPICS_FILE = path.join(REPO_ROOT, 'config', 'used-topics.json');
+const TRENDING_IDEAS_FILE = path.join(REPO_ROOT, 'config', 'trending-ideas.json');
 const WORKFLOWS_FILE = path.join(REPO_ROOT, 'projects', 'workflows.json');
 
 function ensureConfigDir() {
   const dir = path.dirname(USED_TOPICS_FILE);
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+}
+
+function loadTrendingFile() {
+  if (!fs.existsSync(TRENDING_IDEAS_FILE)) return {};
+  try {
+    const raw = fs.readFileSync(TRENDING_IDEAS_FILE, 'utf8');
+    const data = JSON.parse(raw);
+    return (data && typeof data === 'object') ? data : {};
+  } catch (_) {
+    return {};
+  }
+}
+
+function saveTrendingFile(data) {
+  ensureConfigDir();
+  const tmpPath = `${TRENDING_IDEAS_FILE}.tmp.${Date.now()}`;
+  fs.writeFileSync(tmpPath, JSON.stringify(data, null, 2), 'utf8');
+  fs.renameSync(tmpPath, TRENDING_IDEAS_FILE);
 }
 
 function loadUsedTopics() {
@@ -381,22 +400,138 @@ function generateProceduralIdeas(channelId, countNeeded, existingKeys) {
 }
 
 /**
+ * Retrieve trending ideas for a channel from config/trending-ideas.json
+ * @param {string} channelId
+ * @returns {Array<{ id: string, title: string, angle: string, variant: string, createdAt: string }>}
+ */
+function getTrendingIdeas(channelId = 'kausalmedia') {
+  const targetId = String(channelId || 'kausalmedia').toLowerCase().replace(/\.json$/, '');
+  const data = loadTrendingFile();
+  if (data && Array.isArray(data[targetId])) {
+    return data[targetId];
+  }
+  if (Array.isArray(data)) {
+    return data;
+  }
+  return [];
+}
+
+/**
+ * Append fresh ideas to config/trending-ideas.json with a FIFO max cap per channel
+ * Ring-buffer rule: deduplicates by normalized title, prepends newIdeas, slices to maxCap,
+ * and writes atomically to config/trending-ideas.json. Never writes to channels/*.json.
+ * @param {string} channelId
+ * @param {Array<Object>} newIdeas
+ * @param {number} maxCap
+ * @returns {Array<Object>}
+ */
+function appendTrendingIdeas(channelId = 'kausalmedia', newIdeas = [], maxCap = 100) {
+  const targetId = String(channelId || 'kausalmedia').toLowerCase().replace(/\.json$/, '');
+  const rawData = loadTrendingFile();
+  let data = rawData;
+  if (Array.isArray(rawData)) {
+    data = { kausalmedia: rawData };
+  } else if (!data || typeof data !== 'object') {
+    data = {};
+  }
+
+  const existing = Array.isArray(data[targetId]) ? data[targetId] : [];
+  const normalizedNew = (Array.isArray(newIdeas) ? newIdeas : [newIdeas]).filter(Boolean).map(item => {
+    const title = (item.title || item.topic || '').trim();
+    const key = item.key || item.id || `gen-${targetId}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`;
+    return {
+      id: item.id || key,
+      key,
+      title,
+      angle: item.angle || item.detail || item.researchContext || '',
+      variant: item.variant || (targetId === 'nusantaraarchive' ? 'chronicle-archive' : 'forensic-autopsy'),
+      tag: item.tag || '📊 Trending Topic',
+      detail: item.detail || item.angle || '',
+      researchContext: item.researchContext || '',
+      trendingSource: item.trendingSource || 'Antigravity Trending Engine',
+      generatedBy: item.generatedBy || 'curated-trending-engine',
+      createdAt: item.createdAt || item.generatedAt || new Date().toISOString()
+    };
+  });
+
+  const seenTitles = new Set();
+  const merged = [];
+
+  for (const idea of normalizedNew) {
+    const norm = (idea.title || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+    if (norm && !seenTitles.has(norm)) {
+      seenTitles.add(norm);
+      merged.push(idea);
+    }
+  }
+
+  for (const idea of existing) {
+    const norm = (idea.title || idea.topic || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+    if (norm && !seenTitles.has(norm)) {
+      seenTitles.add(norm);
+      merged.push(idea);
+    }
+  }
+
+  const capped = merged.slice(0, maxCap);
+  data[targetId] = capped;
+
+  saveTrendingFile(data);
+  return capped;
+}
+
+/**
+ * Mark a topic as used for a channel
+ * @param {string} channelId
+ * @param {string|Object} topicTitle
+ */
+function markTopicUsed(channelId, topicTitle) {
+  if (!channelId || !topicTitle) return;
+  const targetId = String(channelId).toLowerCase().replace(/\.json$/, '');
+  const titleStr = typeof topicTitle === 'string' ? topicTitle : (topicTitle.title || topicTitle.key || '');
+  
+  const trending = getTrendingIdeas(targetId);
+  const matched = trending.find(t => 
+    t.key === titleStr || 
+    t.id === titleStr || 
+    (t.title && t.title.toLowerCase().trim() === titleStr.toLowerCase().trim())
+  );
+
+  const keyToMark = matched ? matched.key : titleStr;
+  markIdeaUsed(targetId, keyToMark);
+
+  if (matched && matched.title && matched.title !== keyToMark) {
+    markIdeaUsed(targetId, matched.title);
+  }
+}
+
+/**
  * Get at least 4 unused topic ideas for a channel with support for pagination/refresh rotation
  * Filters out all already produced topics and dynamically generates new ones if needed.
+ * Never mutates channels/*.json.
  */
 function getUnusedChannelIdeas(channelId, minCount = 4, offset = 0) {
-  const ch = getChannel(channelId) || getChannel('kausalmedia');
-  const targetId = ch?.id || channelId || 'kausalmedia';
+  const targetId = String(channelId || 'kausalmedia').toLowerCase().replace(/\.json$/, '');
+  const ch = getChannel(targetId) || getChannel('kausalmedia');
 
-  // Seed pool from channel suggestions + default pool
-  const masterPool = [...(ch?.suggestions || [])];
+  // Seed pool from config/trending-ideas.json + default channel idea pool + channel suggestions
+  const trendingIdeas = getTrendingIdeas(targetId);
+  const masterPool = [...trendingIdeas];
   const defaultItems = CHANNEL_IDEA_POOLS[targetId] || CHANNEL_IDEA_POOLS.kausalmedia || [];
 
   defaultItems.forEach(item => {
-    if (!masterPool.some(p => p.key === item.key)) {
+    if (!masterPool.some(p => p.key === item.key || p.id === item.key)) {
       masterPool.push(item);
     }
   });
+
+  if (ch && Array.isArray(ch.suggestions)) {
+    ch.suggestions.forEach(item => {
+      if (!masterPool.some(p => p.key === item.key || p.id === item.key)) {
+        masterPool.push(item);
+      }
+    });
+  }
 
   // Filter out any idea that is already used
   const unusedIdeas = masterPool.filter(idea => !isIdeaUsed(targetId, idea));
@@ -405,13 +540,11 @@ function getUnusedChannelIdeas(channelId, minCount = 4, offset = 0) {
   const desiredTotal = Math.max(minCount, offset + minCount);
   if (unusedIdeas.length < desiredTotal) {
     const needed = desiredTotal - unusedIdeas.length;
-    const existingKeys = masterPool.map(m => m.key);
+    const existingKeys = masterPool.map(m => m.key || m.id);
     const freshIdeas = generateProceduralIdeas(targetId, Math.max(needed, 4), existingKeys);
 
-    if (ch) {
-      ch.suggestions = [...(ch.suggestions || []), ...freshIdeas];
-      try { saveChannel(targetId, ch); } catch (_) {}
-    }
+    // Persist fresh procedural ideas to config/trending-ideas.json (never mutating channels/*.json)
+    appendTrendingIdeas(targetId, freshIdeas, 100);
 
     unusedIdeas.push(...freshIdeas);
   }
@@ -439,5 +572,8 @@ module.exports = {
   markIdeaUsed,
   isIdeaUsed,
   getUnusedChannelIdeas,
-  CHANNEL_IDEA_POOLS
+  CHANNEL_IDEA_POOLS,
+  getTrendingIdeas,
+  appendTrendingIdeas,
+  markTopicUsed
 };

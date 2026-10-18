@@ -1,12 +1,32 @@
 {
   "id": "nusantaraarchive",
   "name": "Nusantara Archive",
-  "active": false,
+  "active": true,
+  "language": "id-ID",
+  "defaultStyle": "investigative-documentary",
+  "defaultVisualEngine": "hybrid",
+  "defaultVariant": "chronicle-archive",
   "handle": "@nusantaraarchive",
   "platform": "YouTube",
   "mode": "light-mode",
   "tagline": "Dokumenter Jurnalistik Investigatif & Sejarah Sosial Indonesia",
   "description": "Deep-dive investigative documentaries exploring Indonesian social history, regulatory gray zones, commodity cartels, and structural supply chain politics.",
+  "voice": {
+    "source": "edge-tts",
+    "voiceId": "id-ID-ArdiNeural",
+    "rate": "+0%",
+    "pitch": "+0Hz"
+  },
+  "editorialDna": {
+    "persona": "Archival historical narrator of Indonesian maritime, colonial, and post-independence turning points.",
+    "tone": "Grounded, investigative, dignified, evidence-driven, referencing primary colonial archives, maritime trade logs, and forgotten decrees.",
+    "antiSlopRules": [
+      "Never open with generic historical cliches like 'Indonesia adalah negara maritim yang kaya'.",
+      "Anchor historical narratives to specific treaties, cargo manifests, treaty years, and geographic choke points.",
+      "Present structural trade and political causalities instead of moralizing nationalism."
+    ],
+    "visualDirectives": "Warm ivory parchment, archival document dockets, Megamendung batik watermarks, cinnabar wax notary seals, declassified stamps."
+  },
   "aestheticVibe": {
     "theme": "Archival Investigative Journal (Light Ivory)",
     "texture": "warm-ivory-parchment",
@@ -66,24 +86,54 @@
   },
   "defaultFormat": "16:9",
   "style": "investigative-documentary",
-  "suggestions": [
-    {
-      "key": "rokok-ilegal-cukai",
-      "title": "Investigasi Rokok Ilegal Rp 10 Ribu & Skandal Kebocoran Cukai",
-      "tag": "🚬 Cukai & Bea Cukai",
-      "detail": "Jaringan logistik penyelundupan rokok tanpa pita cukai resmi dari sentra produksi Jawa Tengah menuju pelosok Sumatera dan dampaknya pada penerimaan negara."
+  "variants": {
+    "chronicle-archive": {
+      "id": "chronicle-archive",
+      "label": "Archival Historical Chronicle",
+      "aspectRatio": "16:9",
+      "targetDurationSec": 660,
+      "beatPaceSec": 6,
+      "defaultSubtitles": "broadcast-lower",
+      "hookArchetype": "historical-anomaly-relic",
+      "hookInstruction": "Open with a specific historical artifact, cargo manifest, or forgotten colonial decree before establishing the macro geopolitical turning point.",
+      "narrativeBeats": [
+        "1. Relic / Manifest Hook (0-15%): Present a concrete historical record and its unexpected implication.",
+        "2. Geopolitical Context (15-45%): Map the colonial, regional, and maritime forces in play.",
+        "3. The Flashpoint (45-75%): Detail the turning point event, conflict, or policy shift.",
+        "4. Historical Echo (75-100%): Trace how this historical crucible shaped modern Indonesia."
+      ]
     },
-    {
-      "key": "impor-beras-panen",
-      "title": "Ironi Impor Beras & Permainan Waktu Panen Raya Petani",
-      "tag": "🌾 Pangan & Monopoli",
-      "detail": "Mengapa kapal impor beras selalu sandar di pelabuhan Tanjung Priok tepat saat petani lokal panen raya? Anatomi disparitas harga Bulog vs pasar."
+    "declassified-dossier": {
+      "id": "declassified-dossier",
+      "label": "Declassified Primary-Source Dossier",
+      "aspectRatio": "16:9",
+      "targetDurationSec": 480,
+      "beatPaceSec": 6,
+      "defaultSubtitles": "kinetic-pill",
+      "hookArchetype": "declassified-document-leak",
+      "hookInstruction": "Quote directly from a declassified telegram, intelligence report, or corporate monopoly contract that contradicts conventional history.",
+      "narrativeBeats": [
+        "1. The Telegram / Leak (0-15%): Reveal the declassified primary document and redacted detail.",
+        "2. Paper Trail (15-50%): Cross-reference shipping records, cabinet minutes, and diplomatic cables.",
+        "3. Behind Closed Doors (50-80%): Reconstruct the crucial negotiation or hidden interest.",
+        "4. Verdict (80-100%): Contrast archival reality with the sanitized public textbook narrative."
+      ]
     },
-    {
-      "key": "mafia-minyak-goreng",
-      "title": "Anatomi Krisis Minyak Goreng di Lumbung Sawit Terbesar Dunia",
-      "tag": "🌴 Sawit & DMO",
-      "detail": "Paradoks kelangkaan minyak goreng curah di Indonesia pada saat harga CPO dunia melambung tinggi: permainan izin ekspor dan manipulasi kuota."
+    "archive-short": {
+      "id": "archive-short",
+      "label": "9:16 Archival Anomaly Hook",
+      "aspectRatio": "9:16",
+      "targetDurationSec": 60,
+      "beatPaceSec": 3,
+      "defaultSubtitles": "karaoke-word",
+      "hookArchetype": "forgotten-historical-paradox",
+      "hookInstruction": "Start with an unbelievable historical fact or forgotten law in the first 3 seconds with zero introductory fluff.",
+      "narrativeBeats": [
+        "1. 3-Second Historical Paradox (0-15%): Shocking historical fact or primary record photo.",
+        "2. Rapid Revelation (15-75%): 3 fast primary-source evidence points explaining what really happened.",
+        "3. Loopable Closing (75-100%): Memorable archival punchline looping back to the opening hook."
+      ]
     }
-  ]
+  },
+  "suggestions": []
 }
