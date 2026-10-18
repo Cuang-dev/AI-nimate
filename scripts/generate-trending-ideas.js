@@ -14,29 +14,16 @@
 const fs = require('fs');
 const path = require('path');
 const { execSync, spawn } = require('child_process');
-const { getChannel, saveChannel } = require('../channels/channel-manager');
-const { loadUsedTopics, isIdeaUsed } = require('../channels/channel-ideas');
+const { getChannel } = require('../channels/channel-manager');
+const { loadUsedTopics, isIdeaUsed, getTrendingIdeas, appendTrendingIdeas } = require('../channels/channel-ideas');
 const { sendDiscordPayload } = require('./discord-notifier');
 
 const REPO_ROOT = path.resolve(__dirname, '..');
 const TRENDING_FILE = path.join(REPO_ROOT, 'config', 'trending-ideas.json');
 const AGY_BIN = process.env.AGY_BIN || '/home/agent/.local/bin/agy';
 
-function loadSavedTrending() {
-  if (!fs.existsSync(TRENDING_FILE)) return [];
-  try {
-    const raw = fs.readFileSync(TRENDING_FILE, 'utf8');
-    const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? parsed : [];
-  } catch (_) {
-    return [];
-  }
-}
-
-function saveTrending(ideas) {
-  const dir = path.dirname(TRENDING_FILE);
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-  fs.writeFileSync(TRENDING_FILE, JSON.stringify(ideas, null, 2), 'utf8');
+function loadSavedTrending(channelId = 'kausalmedia') {
+  return getTrendingIdeas(channelId);
 }
 
 /**
@@ -174,20 +161,10 @@ async function generateDailyTrendingIdeas({ channelId = 'kausalmedia', count = 4
     freshIdeas = HIGH_VELOCITY_TRENDING_POOL.slice(0, count);
   }
 
-  // Update persistent trending-ideas.json
-  const existingSaved = loadSavedTrending();
-  const mergedSaved = [...freshIdeas, ...existingSaved.filter(e => !freshIdeas.some(f => f.key === e.key))].slice(0, 30);
-  saveTrending(mergedSaved);
-
-  // Update channel profile suggestions
+  // Update persistent trending-ideas.json via ring-buffer (never mutating channels/*.json)
+  appendTrendingIdeas(channelId, freshIdeas, 100);
+  console.log(`[Trending Ideas] Successfully appended ${freshIdeas.length} ideas to config/trending-ideas.json for '${channelId}'.`);
   const channel = getChannel(channelId);
-  if (channel) {
-    const existingSuggestions = Array.isArray(channel.suggestions) ? channel.suggestions : [];
-    const updatedSuggestions = [...freshIdeas, ...existingSuggestions.filter(s => !freshIdeas.some(f => f.key === s.key))];
-    channel.suggestions = updatedSuggestions;
-    saveChannel(channelId, channel);
-    console.log(`[Trending Ideas] Successfully updated ${freshIdeas.length} suggestions in '${channelId}.json'.`);
-  }
 
   // Optionally broadcast to Discord #ai-nimate
   if (notifyDiscord) {

@@ -1,11 +1,32 @@
 {
   "id": "kausalmedia",
   "name": "Kausal Media",
+  "active": true,
+  "language": "id-ID",
+  "defaultStyle": "kausalmedia",
+  "defaultVisualEngine": "hybrid",
+  "defaultVariant": "forensic-autopsy",
   "handle": "@kausalmedia",
   "platform": "YouTube & TikTok",
   "mode": "light-mode",
   "tagline": "Investigasi Kausalitas, Anatomi Kekuasaan, dan Sejarah Tersembunyi",
   "description": "Indonesian investigative video essay channel combining ancient manuscript textures (papyrus, lontar, aged parchment) with traditional batik linework (Parang Rusak, Kawung, Mega Mendung). Dedicated to intellectual curiosity, causality, and empirical evidence.",
+  "voice": {
+    "source": "edge-tts",
+    "voiceId": "id-ID-ArdiNeural",
+    "rate": "+5%",
+    "pitch": "+0Hz"
+  },
+  "editorialDna": {
+    "persona": "Investigative economic & institutional analyst dissecting hidden incentives in Indonesia.",
+    "tone": "Sharp, empirical, dry-witted, grounded in balance sheets, regulatory filings, and historical precedent.",
+    "antiSlopRules": [
+      "Never open with 'Di era modern ini' or 'Pernahkah Anda berpikir'.",
+      "Always anchor claims with concrete rupiahs, percentages, dates, or institutional actors.",
+      "Explain causal mechanisms step-by-step rather than moralizing."
+    ],
+    "visualDirectives": "Warm editorial papyrus aesthetic, forensic red/gold highlights, clean schematic diagrams, archival cutouts."
+  },
   "aestheticVibe": {
     "theme": "Ancient Scribe & Indonesian Cultural Archive (Light Mode)",
     "texture": "aged-papyrus-fibers",
@@ -15,14 +36,7 @@
     "batikWatermarkOpacity": 0.08,
     "vignette": "ancient-oil-lamp",
     "edges": "deckled-torn-papyrus",
-    "seals": "cinnabar-wax-stamp",
-    "culturalReferences": [
-      "Naskah Lontar Nusantara (Palm-leaf manuscript framing)",
-      "Batik Parang Rusak (Continuous diagonal wave symbolizing relentless momentum)",
-      "Batik Kawung (Four-lobed geometric balance symbolizing ethical restraint)",
-      "Cap Segel Notariat Hindia Belanda & Prasasti Kuno (Archival seals)",
-      "Sumi Ink Brushstrokes & Iron Gall Pigments"
-    ]
+    "seals": "cinnabar-wax-stamp"
   },
   "palette": {
     "name": "papyrus-sumi-ink",
@@ -56,864 +70,78 @@
     "onlySubtitlesHaveText": true,
     "continuousFlow": true,
     "zeroChapterBumpers": true,
-    "maxAssetRepetitionPerVideo": 5,
-    "strictAssetFitPercentage": 90,
-    "visualContentType": "ai-generated-images-and-short-video-loops",
-    "consistentArtStyle": "comic-ligne-claire",
-    "characterArtStyle": "comic-ligne-claire",
-    "subtitles": {
-      "mode": "light-mode",
-      "position": "bottom-center",
-      "style": "papyrus-pill",
-      "alwaysRunning": true
-    }
+    "maxAssetRepetitionPerVideo": 5
   },
-  "artStyleSpecification": {
-    "name": "European Comic Ligne Claire (Modern Jakarta Grounded)",
-    "artStyleKey": "comic-ligne-claire",
-    "characterArtStyle": "comic-ligne-claire",
-    "promptPrefix": "Crisp isolated spot illustration in vintage European comic ligne claire art style, Herge and Tintin aesthetic, clean crisp uniform black ink contour outlines, flat warm color wash fill, modern day Jakarta context, authentic Indonesian elements",
-    "negativePrompt": "complex background, landscape, street view, horizon, clouds, trees, crowds, multiple unrelated objects, speech bubbles, modern text, 3D CGI, photorealistic",
-    "motionLoopTreatment": "cinematic subtle motion parallax, slow horizontal camera drift, atmospheric dust motes on aged papyrus, light mode",
-    "culturalGrounding": {
-      "locationContext": "Modern-day Jakarta & Authentic Indonesian Environment",
-      "vehicles": "Indonesian popular vehicles (Toyota Avanza, Innova, Daihatsu Xenia, Honda Brio, Honda Beat/Vario motorcycle, Blue Bird taxi)",
-      "establishments": "Authentic Indonesian commercial setups (manual hydraulic carwash with single-post lift and pressure wand, warung kopi, ruko minimalis)",
-      "characters": "Waist-up / bust framing by default (focus on facial expression, hands, props, modern batik kemeja, and ID lanyard; no full-body unless strictly relevant), natural organic bottom crop, zero caricature",
-      "composition": "Isolated spotlight exhibits on clean light ivory parchment for rapid <100ms visual latch",
-      "framingBorder": "Signature Kausal Media double-hairline border with corner rosettes on every video",
-      "pacingAndCuts": "Macro cut / visual change every 2.5–4.5s; micro-events (push-in, zoom, pan) every 1.5–2s",
-      "videoDuration": {
-        "minMinutes": 8,
-        "maxMinutes": 12,
-        "midrollEligible": true,
-        "clippableShortsArchitecture": "Structured into 6–8 self-contained 45–60s micro-acts, each with independent hook, forensic proof, and payoff for 9:16 vertical Shorts/TikTok clipping"
-      }
-    }
-  },
-  "scriptDifferentiation": {
-    "antiFlaggingProtocol": "Anti-YouTube Flagging & Inauthentic Content Defense",
-    "overview": "YouTube algorithms penalize repetitive formulaic scripts, predictable sentence lengths, generic AI tropes, and flat synthetic voiceprints. Kausal Media enforces human investigative prose with asymmetrical cadence and forensic evidence.",
-    "hookArchitecture": {
-      "rotation": [
-        {
-          "type": "The Concrete Anomaly",
-          "technique": "Open immediately in media res on a baffling economic or historical paradox without introductory throat-clearing.",
-          "example": "Di saat cadangan devisa negara menipis pada musim kemarau 1928, satu sindikat perkebunan justru mencetak surplus delapan puluh ton perak tanpa membayar sesen pun pajak."
-        },
-        {
-          "type": "The Physical Forensic Artifact",
-          "technique": "Start by presenting an exact document, ledger, notary seal, or court docket.",
-          "example": "Kertas segel bertarikh 14 Mei ini membuktikan bahwa separuh dari konsesi tambang tersebut sudah dialihkan sebelum undang-undangnya disahkan di parlemen."
-        },
-        {
-          "type": "The Inverted Common Sense",
-          "technique": "Dismantle a popular belief with an empirical contradiction in sentence one.",
-          "example": "Banyak orang mengira krisis ini dipicu oleh kepanikan nasabah kecil. Data kliring membuktikan: pelarian modal justru dipimpin oleh lima rekening institusi pelat merah."
-        },
-        {
-          "type": "The Direct Causal Consequence",
-          "technique": "State the fatal end result before tracing the chain reaction backward.",
-          "example": "Dua ratus ribu hektar hutan lindung lenyap bukan karena pembalak liar, melainkan akibat satu pasal selundupan sepanjang delapan kata di lembar lampiran."
-        }
-      ]
-    },
-    "voiceAndCadenceEngineering": {
-      "sentenceLengthVariation": "Strictly alternate between punchy 3–5 word statements ('Uangnya tidak pernah sampai.', 'Sederhana, tapi mematikan.') and detailed 14–18 word contextual clauses.",
-      "breathPacing": "Use comma and colon punctuation to introduce natural breath pauses, preventing monotonous TTS cadence.",
-      "phoneticBrackets": "All regulatory, corporate, and historical acronyms must use phonetic bracket syntax: [BEI|B-E-I], [VOC|V-O-C], [PKPU|P-K-P-U], [UU|U-U].",
-      "targetWPM": 134
-    },
-    "antiSlopBlacklist": [
-      "di era serba cepat / di era digital",
-      "bukan sekadar X melainkan Y",
-      "pada akhirnya kita belajar bahwa...",
-      "mari kita selami lebih dalam",
-      "menariknya / uniknya / siapa sangka",
-      "game changer / fenomena mencengangkan"
-    ],
-    "endingDoctrine": "Zero unearned moralizing or generic advice. Every script ends strictly on an unresolved forensic inquiry, an economic balance sheet reality, or an institutional consequence."
-  },
-  "visualLayers": {
-    "environment": "Aged Papyrus Canvas with soft Batik Parang watermark and subtle warm-sunbeam vignette",
-    "exhibits": "Torn-paper archival dockets, ancient manuscript scrolls, wax-sealed exhibits, sepia photographic cutouts",
-    "dynamicAnnotations": "Red cinnabar wax stamps (RAHASIA, VERIFIED, VOID), hand-drawn ink underlines, amber highlighter callouts",
-    "dataBlocks": "Parchment ledger tables, golden-ratio milestone timelines, TradingView minimal charts with antique gold strokes",
-    "typographyLayer": "Plus Jakarta Sans & Serif headlines with sumi ink texture and frosted papyrus subtitle cards"
-  },
-  "transitions": {
-    "preferred": [
-      "tactile-paper-tear",
-      "occlusion-wipe",
-      "pre-lead-j-cut",
-      "action-match-cut",
-      "crash-zoom"
-    ],
-    "pairedSFX": {
-      "tactile-paper-tear": "pop",
-      "occlusion-wipe": "whoosh",
-      "pre-lead-j-cut": "tick",
-      "action-match-cut": "ding",
-      "crash-zoom": "whoosh"
-    }
+  "audio": {
+    "voice": "id-ID-ArdiNeural",
+    "cadenceWPM": 135
   },
   "defaultFormat": "16:9",
   "style": "kausalmedia",
-  "suggestions": [
-    {
-      "key": "scam-loker-luar-negeri",
-      "title": "Anatomi Sindikat Scam Loker Kamboja & Pencucian Uang Kripto Rp 500 Triliun",
-      "tag": "🌐 Human Trafficking & Kripto",
-      "detail": "Investigasi rantai rekrutmen lowongan kerja palsu di media sosial: penyelundupan pekerja migran ke kasino perbatasan dan perputaran USDT tanpa KYC.",
-      "researchContext": "Menelusuri aliran pencucian uang jaringan judi online dan penipuan asmara (pig butchering) berbasis di Sihanoukville dan Myawaddy. Data [PPATK|P-P-A-T-K] mencatat transaksi mencurigakan terkait sindikat ini menembus ratusan triliun rupiah melalui rekening nominee dan konversi stablecoin USDT di pasar P2P. Eksploitasi paspor turis dan transit di Bangkok untuk menghindari deteksi imigrasi.",
-      "trendingSource": "Twitter/X & Threads",
-      "generatedBy": "curated-trending-engine",
-      "generatedAt": "2026-10-14T16:09:47.921Z"
-    },
-    {
-      "key": "fintech-p2p-lender-gagal-bayar",
-      "title": "Krisis Likuiditas P2P Lending: Ratusan Miliar Dana Lender Nyangkut & Jeratan Asuransi Kredit",
-      "tag": "💳 Fintech & Gagal Bayar",
-      "detail": "Mengapa janji imbal hasil 15-20% platform pinjol produktif berujung macet total? Menelusuri modus borrower fiktif dan wanprestasi asuransi kredit.",
-      "researchContext": "Analisis tingkat wanprestasi 90 hari ([TWP90|T-W-P-90]) di atas batas aman 5% pada platform P2P lending ternama seperti TaniFund dan Investree. Modus penggelemungan invoice pembiayaan modal kerja [UMKM|U-M-K-M], kegagalan klaim mitigasi risiko pada perusahaan asuransi penjamin, serta sanksi administratif pencabutan izin usaha oleh [OJK|O-J-K].",
-      "trendingSource": "Financial News & Kontan",
-      "generatedBy": "curated-trending-engine",
-      "generatedAt": "2026-10-14T16:09:47.922Z"
-    },
-    {
-      "key": "bpjs-kesehatan-fraud-klaim",
-      "title": "Anatomi Phantom Billing RS & Kebocoran Dana JKN BPJS Kesehatan Ratusan Miliar",
-      "tag": "🏥 Fraud RS & BPJS Kesehatan",
-      "detail": "Temuan KPK atas manipulasi klaim fiktif (phantom billing) dan manipulasi diagnosis INA-CBGs di sejumlah rumah sakit swasta yang menggerus kas jaminan sosial.",
-      "researchContext": "Investigasi modus penggelembungan tagihan medis dalam sistem Indonesian Case Based Groups ([INA-CBGs|I-N-A-C-B-G-S]). Praktik rekayasa rekam medis pasien rawat inap fiktif, fisioterapi berulang yang tidak dilakukan, dan operasi katarak massal palsu di Sumatera Utara dan Jawa Tengah yang diungkap audit gabungan [KPK|K-P-K], [BPJS|B-P-J-S] Kesehatan, dan Kementerian Kesehatan.",
-      "trendingSource": "KPK Press Release & News",
-      "generatedBy": "curated-trending-engine",
-      "generatedAt": "2026-10-14T16:09:47.922Z"
-    },
-    {
-      "key": "tiket-konser-scalper-bot",
-      "title": "Ekonomi Gelap Calo Tiket Konser Jakarta: Bot Scripting, Orang Dalam, dan Margin 400%",
-      "tag": "🎟️ Calo Tiket & Rente Hiburan",
-      "detail": "Mengapa war tiket konser internasional di Jakarta selalu ludes dalam 60 detik? Anatomi perdagangan tiket sekunder dan sindikat jastip profesional.",
-      "researchContext": "Bedah teknis eksploitasi API platform ticketing (Loket, Tiket.com) menggunakan automation browser headless script dan proxy rotasi residensial. Markup harga tiket dari Rp 2,5 juta menjadi Rp 10-15 juta di marketplace sekunder (Viagogo, Twitter), persekongkolan alokasi tiket korporat dengan promotor, serta ketiadaan regulasi batas atas harga jual kembali di Indonesia.",
-      "trendingSource": "Twitter/X & Threads",
-      "generatedBy": "curated-trending-engine",
-      "generatedAt": "2026-10-14T16:09:47.922Z"
-    },
-    {
-      "key": "nikel-smelter-overcapacity",
-      "title": "Perang Harga Nikel Global: Dampak Banjir Pasokan Smelter RKEF Indonesia ke Pasar Dunia",
-      "tag": "⛏️ Hilirisasi Nikel & Pasar Global",
-      "detail": "Banjir produksi Nickel Pig Iron (NPI) dari Morowali dan Weda Bay menekan harga nikel di London Metal Exchange (LME): berkah devisa atau jebakan komoditas?",
-      "researchContext": "Dinamika oversupply nikel dunia akibat akselerasi 40+ fasilitas smelter Rotary Kiln Electric Furnace (RKEF) di Sulawesi Tengah dan Maluku Utara. Harga nikel LME tertekan dari $30.000 menjadi $16.000 per ton, memicu penutupan tambang nikel berbiaya tinggi di Australia dan Kaledonia Baru. Ketergantungan pada batubara captive PLTU dan perdebatan penerapan pajak ekspor produk olahan berkadar nikel rendah.",
-      "trendingSource": "Bloomberg & Bisnis Indonesia",
-      "generatedBy": "curated-trending-engine",
-      "generatedAt": "2026-10-11T14:57:26.212Z"
-    },
-    {
-      "key": "carwash-laundering",
-      "title": "Misteri Cuci Mobil Hidrolik & Perputaran Uang Tunai di Jakarta",
-      "tag": "🧼 Cuci Mobil & Cash Flow",
-      "detail": "Investigasi di balik maraknya bisnis cuci mobil steam manual hidrolik pinggir jalan di Jakarta: bagaimana perputaran uang tunai harian tanpa jejak digital beroperasi."
-    },
-    {
-      "key": "bumn-karya-debt",
-      "title": "Anatomi Utang BUMN Karya & Restrukturisasi Finansial",
-      "tag": "🏗️ BUMN & Utang Mega-Proyek",
-      "detail": "Menelusuri bagaimana agresivitas pembangunan infrastruktur menciptakan jeratan utang ratusan triliun bagi kontraktor BUMN dan perbankan sindikasi nasional."
-    },
-    {
-      "key": "rokok-ilegal-cukai",
-      "title": "Skandal Rokok Ilegal Rp 10 Ribu & Kebocoran Pita Cukai",
-      "tag": "🚬 Rokok & Pajak Cukai",
-      "detail": "Fenomena ledakan rokok tanpa cukai di warung kelontong Jabodetabek pasca kenaikan tarif cukai berturut-turut dan runtuhnya pendapatan kas negara."
-    },
-    {
-      "key": "beras-impor-panen",
-      "title": "Ironi Impor Beras & Permainan Waktu Panen Raya Petani",
-      "tag": "🌾 Ketahanan Pangan",
-      "detail": "Mengapa keputusan impor beras jutaan ton selalu bertepatan dengan momentum panen raya petani lokal? Anatomi rantai pasok dan rente impor pangan."
-    },
-    {
-      "key": "kopi-scbd-bubble",
-      "title": "Anatomi Bubble Kopi Gula Aren Rp 80 Ribu & Perangkap Gaya Hidup SCBD",
-      "tag": "☕ Gaya Hidup SCBD",
-      "detail": "Ekonomi mikro di balik menjamurnya gerai kopi artisan di Jakarta: biaya sewa komersial, margin sirup gula aren, dan ilusi status sosial kelas pekerja muda."
-    },
-    {
-      "key": "ev-china-vs-jepang",
-      "title": "Perang Mobil Listrik China vs Hegemoni Mobil Jepang di Jalanan Jakarta",
-      "tag": "🚗 Otomotif Jakarta",
-      "detail": "Disrupsi agresif produsen kendaraan listrik Tiongkok terhadap dominasi 50 tahun pabrikan otomotif Jepang di segmen mobil keluarga Indonesia."
-    },
-    {
-      "key": "gen-kausalmedia-1-1xo9",
-      "title": "Investigasi Rantai Pasok: Bahan Baku Kritis & Ketergantungan Impor Monopolistik",
-      "tag": "📦 Rantai Pasok",
-      "detail": "Penelusuran mendalam mekanisme distorsi harga distributor tunggal dan dampaknya terhadap biaya pokok produksi industri hilir nasional.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-2-1xo9",
-      "title": "Anatomi Rente Ekonomi: Tata Kelola Izin Konsesi & Dampak Sistemik bagi Masyarakat",
-      "tag": "📑 Rente Konsesi",
-      "detail": "Bedah regulasi transaksional dan bagaimana pembagian kuota terbatas menciptakan keuntungan abnormal bagi segelintir konglomerasi.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-3-1xo9",
-      "title": "Forensik Perputaran Kas: Sistem Pembayaran Tunai & Transaksi Bayangan Perkotaan",
-      "tag": "💵 Forensik Tunai",
-      "detail": "Menganalisis bagaimana perputaran uang tunai tanpa faktur elektronik bertahan di tengah penetrasi digitalisasi perbankan modern.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-4-1xo9",
-      "title": "Dilema Kebijakan Publik: Subsidi Energi vs Efisiensi Anggaran Kas Negara",
-      "tag": "⚖️ Dilema Kebijakan",
-      "detail": "Kajian komparatif antara beban kompensasi APBN, daya beli kelas menengah rentan, dan keberlanjutan fiskal jangka panjang.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-1-5mwp",
-      "title": "Investigasi Rantai Pasok: Bahan Baku Kritis & Ketergantungan Impor Monopolistik di Indonesia",
-      "tag": "📦 Rantai Pasok Kritis",
-      "detail": "Penelusuran mendalam mekanisme distorsi harga distributor tunggal dan dampaknya terhadap biaya pokok produksi industri hilir nasional.",
-      "researchContext": "Meneliti struktur pasar oligopoli pasokan bahan baku industri manufaktur di Jabodetabek dan Surabaya. Analisis margin perantara perdagangan besar, regulasi kuota Kementerian Perdagangan, dan beban biaya logistik antar-pulau.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-2-5mwp",
-      "title": "Anatomi Rente Ekonomi: Tata Kelola Izin Konsesi & Dampak Sistemik bagi Pelaku Usaha Lokal",
-      "tag": "📑 Rente Konsesi Usaha",
-      "detail": "Bedah regulasi transaksional dan bagaimana pembagian kuota terbatas menciptakan keuntungan abnormal bagi segelintir konglomerasi.",
-      "researchContext": "Pembongkaran ekonomi rente pemberian izin usaha pertambangan dan perkebunan di daerah. Bagaimana biaya kepatuhan regulasi formal dieksploitasi untuk menyingkirkan pelaku usaha kecil dan menciptakan barrier to entry.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-3-5mwp",
-      "title": "Forensik Perputaran Kas: Sistem Pembayaran Tunai & Transaksi Bayangan Perkotaan Jakarta",
-      "tag": "💵 Forensik Transaksi Kas",
-      "detail": "Menganalisis bagaimana perputaran uang tunai tanpa faktur elektronik bertahan di tengah penetrasi digitalisasi perbankan modern.",
-      "researchContext": "Studi sosiologis dan finansial pasar grosir Tanah Abang dan Mangga Dua. Aliran dana tunai tanpa sistem EDC perbankan, perputaran giro mundur, dan kalkulasi penghindaran pajak pertambahan nilai ([PPN|P-P-N]).",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-4-5mwp",
-      "title": "Dilema Kebijakan Publik: Subsidi Energi vs Efisiensi Anggaran Kas Negara di Jalur Logistik",
-      "tag": "⚖️ Subsidi vs Anggaran",
-      "detail": "Kajian komparatif antara beban kompensasi APBN, daya beli kelas menengah rentan, dan keberlanjutan fiskal jangka panjang.",
-      "researchContext": "Simulasi dampak kenaikan harga bahan bakar solar dan pertalite bersubsidi terhadap inflasi pangan pokok dan tarif angkutan ekspedisi logistik di jalan tol dan pelabuhan nasional.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-1-2iwh",
-      "title": "Investigasi Rantai Pasok: Bahan Baku Kritis & Ketergantungan Impor Monopolistik di Indonesia",
-      "tag": "📦 Rantai Pasok Kritis",
-      "detail": "Penelusuran mendalam mekanisme distorsi harga distributor tunggal dan dampaknya terhadap biaya pokok produksi industri hilir nasional.",
-      "researchContext": "Meneliti struktur pasar oligopoli pasokan bahan baku industri manufaktur di Jabodetabek dan Surabaya. Analisis margin perantara perdagangan besar, regulasi kuota Kementerian Perdagangan, dan beban biaya logistik antar-pulau.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-2-2iwh",
-      "title": "Anatomi Rente Ekonomi: Tata Kelola Izin Konsesi & Dampak Sistemik bagi Pelaku Usaha Lokal",
-      "tag": "📑 Rente Konsesi Usaha",
-      "detail": "Bedah regulasi transaksional dan bagaimana pembagian kuota terbatas menciptakan keuntungan abnormal bagi segelintir konglomerasi.",
-      "researchContext": "Pembongkaran ekonomi rente pemberian izin usaha pertambangan dan perkebunan di daerah. Bagaimana biaya kepatuhan regulasi formal dieksploitasi untuk menyingkirkan pelaku usaha kecil dan menciptakan barrier to entry.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-3-2iwh",
-      "title": "Forensik Perputaran Kas: Sistem Pembayaran Tunai & Transaksi Bayangan Perkotaan Jakarta",
-      "tag": "💵 Forensik Transaksi Kas",
-      "detail": "Menganalisis bagaimana perputaran uang tunai tanpa faktur elektronik bertahan di tengah penetrasi digitalisasi perbankan modern.",
-      "researchContext": "Studi sosiologis dan finansial pasar grosir Tanah Abang dan Mangga Dua. Aliran dana tunai tanpa sistem EDC perbankan, perputaran giro mundur, dan kalkulasi penghindaran pajak pertambahan nilai ([PPN|P-P-N]).",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-4-2iwh",
-      "title": "Dilema Kebijakan Publik: Subsidi Energi vs Efisiensi Anggaran Kas Negara di Jalur Logistik",
-      "tag": "⚖️ Subsidi vs Anggaran",
-      "detail": "Kajian komparatif antara beban kompensasi APBN, daya beli kelas menengah rentan, dan keberlanjutan fiskal jangka panjang.",
-      "researchContext": "Simulasi dampak kenaikan harga bahan bakar solar dan pertalite bersubsidi terhadap inflasi pangan pokok dan tarif angkutan ekspedisi logistik di jalan tol dan pelabuhan nasional.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-1-3ojg",
-      "title": "Investigasi Rantai Pasok: Bahan Baku Kritis & Ketergantungan Impor Monopolistik di Indonesia",
-      "tag": "📦 Rantai Pasok Kritis",
-      "detail": "Penelusuran mendalam mekanisme distorsi harga distributor tunggal dan dampaknya terhadap biaya pokok produksi industri hilir nasional.",
-      "researchContext": "Meneliti struktur pasar oligopoli pasokan bahan baku industri manufaktur di Jabodetabek dan Surabaya. Analisis margin perantara perdagangan besar, regulasi kuota Kementerian Perdagangan, dan beban biaya logistik antar-pulau.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-2-3ojg",
-      "title": "Anatomi Rente Ekonomi: Tata Kelola Izin Konsesi & Dampak Sistemik bagi Pelaku Usaha Lokal",
-      "tag": "📑 Rente Konsesi Usaha",
-      "detail": "Bedah regulasi transaksional dan bagaimana pembagian kuota terbatas menciptakan keuntungan abnormal bagi segelintir konglomerasi.",
-      "researchContext": "Pembongkaran ekonomi rente pemberian izin usaha pertambangan dan perkebunan di daerah. Bagaimana biaya kepatuhan regulasi formal dieksploitasi untuk menyingkirkan pelaku usaha kecil dan menciptakan barrier to entry.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-3-3ojg",
-      "title": "Forensik Perputaran Kas: Sistem Pembayaran Tunai & Transaksi Bayangan Perkotaan Jakarta",
-      "tag": "💵 Forensik Transaksi Kas",
-      "detail": "Menganalisis bagaimana perputaran uang tunai tanpa faktur elektronik bertahan di tengah penetrasi digitalisasi perbankan modern.",
-      "researchContext": "Studi sosiologis dan finansial pasar grosir Tanah Abang dan Mangga Dua. Aliran dana tunai tanpa sistem EDC perbankan, perputaran giro mundur, dan kalkulasi penghindaran pajak pertambahan nilai ([PPN|P-P-N]).",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-4-3ojg",
-      "title": "Dilema Kebijakan Publik: Subsidi Energi vs Efisiensi Anggaran Kas Negara di Jalur Logistik",
-      "tag": "⚖️ Subsidi vs Anggaran",
-      "detail": "Kajian komparatif antara beban kompensasi APBN, daya beli kelas menengah rentan, dan keberlanjutan fiskal jangka panjang.",
-      "researchContext": "Simulasi dampak kenaikan harga bahan bakar solar dan pertalite bersubsidi terhadap inflasi pangan pokok dan tarif angkutan ekspedisi logistik di jalan tol dan pelabuhan nasional.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-1-hncn",
-      "title": "Investigasi Rantai Pasok: Bahan Baku Kritis & Ketergantungan Impor Monopolistik di Indonesia",
-      "tag": "📦 Rantai Pasok Kritis",
-      "detail": "Penelusuran mendalam mekanisme distorsi harga distributor tunggal dan dampaknya terhadap biaya pokok produksi industri hilir nasional.",
-      "researchContext": "Meneliti struktur pasar oligopoli pasokan bahan baku industri manufaktur di Jabodetabek dan Surabaya. Analisis margin perantara perdagangan besar, regulasi kuota Kementerian Perdagangan, dan beban biaya logistik antar-pulau.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-2-hncn",
-      "title": "Anatomi Rente Ekonomi: Tata Kelola Izin Konsesi & Dampak Sistemik bagi Pelaku Usaha Lokal",
-      "tag": "📑 Rente Konsesi Usaha",
-      "detail": "Bedah regulasi transaksional dan bagaimana pembagian kuota terbatas menciptakan keuntungan abnormal bagi segelintir konglomerasi.",
-      "researchContext": "Pembongkaran ekonomi rente pemberian izin usaha pertambangan dan perkebunan di daerah. Bagaimana biaya kepatuhan regulasi formal dieksploitasi untuk menyingkirkan pelaku usaha kecil dan menciptakan barrier to entry.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-3-hncn",
-      "title": "Forensik Perputaran Kas: Sistem Pembayaran Tunai & Transaksi Bayangan Perkotaan Jakarta",
-      "tag": "💵 Forensik Transaksi Kas",
-      "detail": "Menganalisis bagaimana perputaran uang tunai tanpa faktur elektronik bertahan di tengah penetrasi digitalisasi perbankan modern.",
-      "researchContext": "Studi sosiologis dan finansial pasar grosir Tanah Abang dan Mangga Dua. Aliran dana tunai tanpa sistem EDC perbankan, perputaran giro mundur, dan kalkulasi penghindaran pajak pertambahan nilai ([PPN|P-P-N]).",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-4-hncn",
-      "title": "Dilema Kebijakan Publik: Subsidi Energi vs Efisiensi Anggaran Kas Negara di Jalur Logistik",
-      "tag": "⚖️ Subsidi vs Anggaran",
-      "detail": "Kajian komparatif antara beban kompensasi APBN, daya beli kelas menengah rentan, dan keberlanjutan fiskal jangka panjang.",
-      "researchContext": "Simulasi dampak kenaikan harga bahan bakar solar dan pertalite bersubsidi terhadap inflasi pangan pokok dan tarif angkutan ekspedisi logistik di jalan tol dan pelabuhan nasional.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-1-q61u",
-      "title": "Investigasi Rantai Pasok: Bahan Baku Kritis & Ketergantungan Impor Monopolistik di Indonesia",
-      "tag": "📦 Rantai Pasok Kritis",
-      "detail": "Penelusuran mendalam mekanisme distorsi harga distributor tunggal dan dampaknya terhadap biaya pokok produksi industri hilir nasional.",
-      "researchContext": "Meneliti struktur pasar oligopoli pasokan bahan baku industri manufaktur di Jabodetabek dan Surabaya. Analisis margin perantara perdagangan besar, regulasi kuota Kementerian Perdagangan, dan beban biaya logistik antar-pulau.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-2-q61u",
-      "title": "Anatomi Rente Ekonomi: Tata Kelola Izin Konsesi & Dampak Sistemik bagi Pelaku Usaha Lokal",
-      "tag": "📑 Rente Konsesi Usaha",
-      "detail": "Bedah regulasi transaksional dan bagaimana pembagian kuota terbatas menciptakan keuntungan abnormal bagi segelintir konglomerasi.",
-      "researchContext": "Pembongkaran ekonomi rente pemberian izin usaha pertambangan dan perkebunan di daerah. Bagaimana biaya kepatuhan regulasi formal dieksploitasi untuk menyingkirkan pelaku usaha kecil dan menciptakan barrier to entry.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-3-q61u",
-      "title": "Forensik Perputaran Kas: Sistem Pembayaran Tunai & Transaksi Bayangan Perkotaan Jakarta",
-      "tag": "💵 Forensik Transaksi Kas",
-      "detail": "Menganalisis bagaimana perputaran uang tunai tanpa faktur elektronik bertahan di tengah penetrasi digitalisasi perbankan modern.",
-      "researchContext": "Studi sosiologis dan finansial pasar grosir Tanah Abang dan Mangga Dua. Aliran dana tunai tanpa sistem EDC perbankan, perputaran giro mundur, dan kalkulasi penghindaran pajak pertambahan nilai ([PPN|P-P-N]).",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-4-q61u",
-      "title": "Dilema Kebijakan Publik: Subsidi Energi vs Efisiensi Anggaran Kas Negara di Jalur Logistik",
-      "tag": "⚖️ Subsidi vs Anggaran",
-      "detail": "Kajian komparatif antara beban kompensasi APBN, daya beli kelas menengah rentan, dan keberlanjutan fiskal jangka panjang.",
-      "researchContext": "Simulasi dampak kenaikan harga bahan bakar solar dan pertalite bersubsidi terhadap inflasi pangan pokok dan tarif angkutan ekspedisi logistik di jalan tol dan pelabuhan nasional.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-1-krmc",
-      "title": "Investigasi Rantai Pasok: Bahan Baku Kritis & Ketergantungan Impor Monopolistik di Indonesia",
-      "tag": "📦 Rantai Pasok Kritis",
-      "detail": "Penelusuran mendalam mekanisme distorsi harga distributor tunggal dan dampaknya terhadap biaya pokok produksi industri hilir nasional.",
-      "researchContext": "Meneliti struktur pasar oligopoli pasokan bahan baku industri manufaktur di Jabodetabek dan Surabaya. Analisis margin perantara perdagangan besar, regulasi kuota Kementerian Perdagangan, dan beban biaya logistik antar-pulau.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-2-krmc",
-      "title": "Anatomi Rente Ekonomi: Tata Kelola Izin Konsesi & Dampak Sistemik bagi Pelaku Usaha Lokal",
-      "tag": "📑 Rente Konsesi Usaha",
-      "detail": "Bedah regulasi transaksional dan bagaimana pembagian kuota terbatas menciptakan keuntungan abnormal bagi segelintir konglomerasi.",
-      "researchContext": "Pembongkaran ekonomi rente pemberian izin usaha pertambangan dan perkebunan di daerah. Bagaimana biaya kepatuhan regulasi formal dieksploitasi untuk menyingkirkan pelaku usaha kecil dan menciptakan barrier to entry.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-3-krmc",
-      "title": "Forensik Perputaran Kas: Sistem Pembayaran Tunai & Transaksi Bayangan Perkotaan Jakarta",
-      "tag": "💵 Forensik Transaksi Kas",
-      "detail": "Menganalisis bagaimana perputaran uang tunai tanpa faktur elektronik bertahan di tengah penetrasi digitalisasi perbankan modern.",
-      "researchContext": "Studi sosiologis dan finansial pasar grosir Tanah Abang dan Mangga Dua. Aliran dana tunai tanpa sistem EDC perbankan, perputaran giro mundur, dan kalkulasi penghindaran pajak pertambahan nilai ([PPN|P-P-N]).",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-4-krmc",
-      "title": "Dilema Kebijakan Publik: Subsidi Energi vs Efisiensi Anggaran Kas Negara di Jalur Logistik",
-      "tag": "⚖️ Subsidi vs Anggaran",
-      "detail": "Kajian komparatif antara beban kompensasi APBN, daya beli kelas menengah rentan, dan keberlanjutan fiskal jangka panjang.",
-      "researchContext": "Simulasi dampak kenaikan harga bahan bakar solar dan pertalite bersubsidi terhadap inflasi pangan pokok dan tarif angkutan ekspedisi logistik di jalan tol dan pelabuhan nasional.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-1-jbkr",
-      "title": "Investigasi Rantai Pasok: Bahan Baku Kritis & Ketergantungan Impor Monopolistik di Indonesia",
-      "tag": "📦 Rantai Pasok Kritis",
-      "detail": "Penelusuran mendalam mekanisme distorsi harga distributor tunggal dan dampaknya terhadap biaya pokok produksi industri hilir nasional.",
-      "researchContext": "Meneliti struktur pasar oligopoli pasokan bahan baku industri manufaktur di Jabodetabek dan Surabaya. Analisis margin perantara perdagangan besar, regulasi kuota Kementerian Perdagangan, dan beban biaya logistik antar-pulau.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-2-jbkr",
-      "title": "Anatomi Rente Ekonomi: Tata Kelola Izin Konsesi & Dampak Sistemik bagi Pelaku Usaha Lokal",
-      "tag": "📑 Rente Konsesi Usaha",
-      "detail": "Bedah regulasi transaksional dan bagaimana pembagian kuota terbatas menciptakan keuntungan abnormal bagi segelintir konglomerasi.",
-      "researchContext": "Pembongkaran ekonomi rente pemberian izin usaha pertambangan dan perkebunan di daerah. Bagaimana biaya kepatuhan regulasi formal dieksploitasi untuk menyingkirkan pelaku usaha kecil dan menciptakan barrier to entry.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-3-jbkr",
-      "title": "Forensik Perputaran Kas: Sistem Pembayaran Tunai & Transaksi Bayangan Perkotaan Jakarta",
-      "tag": "💵 Forensik Transaksi Kas",
-      "detail": "Menganalisis bagaimana perputaran uang tunai tanpa faktur elektronik bertahan di tengah penetrasi digitalisasi perbankan modern.",
-      "researchContext": "Studi sosiologis dan finansial pasar grosir Tanah Abang dan Mangga Dua. Aliran dana tunai tanpa sistem EDC perbankan, perputaran giro mundur, dan kalkulasi penghindaran pajak pertambahan nilai ([PPN|P-P-N]).",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-4-jbkr",
-      "title": "Dilema Kebijakan Publik: Subsidi Energi vs Efisiensi Anggaran Kas Negara di Jalur Logistik",
-      "tag": "⚖️ Subsidi vs Anggaran",
-      "detail": "Kajian komparatif antara beban kompensasi APBN, daya beli kelas menengah rentan, dan keberlanjutan fiskal jangka panjang.",
-      "researchContext": "Simulasi dampak kenaikan harga bahan bakar solar dan pertalite bersubsidi terhadap inflasi pangan pokok dan tarif angkutan ekspedisi logistik di jalan tol dan pelabuhan nasional.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-1-l1hf",
-      "title": "Investigasi Rantai Pasok: Bahan Baku Kritis & Ketergantungan Impor Monopolistik di Indonesia",
-      "tag": "📦 Rantai Pasok Kritis",
-      "detail": "Penelusuran mendalam mekanisme distorsi harga distributor tunggal dan dampaknya terhadap biaya pokok produksi industri hilir nasional.",
-      "researchContext": "Meneliti struktur pasar oligopoli pasokan bahan baku industri manufaktur di Jabodetabek dan Surabaya. Analisis margin perantara perdagangan besar, regulasi kuota Kementerian Perdagangan, dan beban biaya logistik antar-pulau.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-2-l1hf",
-      "title": "Anatomi Rente Ekonomi: Tata Kelola Izin Konsesi & Dampak Sistemik bagi Pelaku Usaha Lokal",
-      "tag": "📑 Rente Konsesi Usaha",
-      "detail": "Bedah regulasi transaksional dan bagaimana pembagian kuota terbatas menciptakan keuntungan abnormal bagi segelintir konglomerasi.",
-      "researchContext": "Pembongkaran ekonomi rente pemberian izin usaha pertambangan dan perkebunan di daerah. Bagaimana biaya kepatuhan regulasi formal dieksploitasi untuk menyingkirkan pelaku usaha kecil dan menciptakan barrier to entry.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-3-l1hf",
-      "title": "Forensik Perputaran Kas: Sistem Pembayaran Tunai & Transaksi Bayangan Perkotaan Jakarta",
-      "tag": "💵 Forensik Transaksi Kas",
-      "detail": "Menganalisis bagaimana perputaran uang tunai tanpa faktur elektronik bertahan di tengah penetrasi digitalisasi perbankan modern.",
-      "researchContext": "Studi sosiologis dan finansial pasar grosir Tanah Abang dan Mangga Dua. Aliran dana tunai tanpa sistem EDC perbankan, perputaran giro mundur, dan kalkulasi penghindaran pajak pertambahan nilai ([PPN|P-P-N]).",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-4-l1hf",
-      "title": "Dilema Kebijakan Publik: Subsidi Energi vs Efisiensi Anggaran Kas Negara di Jalur Logistik",
-      "tag": "⚖️ Subsidi vs Anggaran",
-      "detail": "Kajian komparatif antara beban kompensasi APBN, daya beli kelas menengah rentan, dan keberlanjutan fiskal jangka panjang.",
-      "researchContext": "Simulasi dampak kenaikan harga bahan bakar solar dan pertalite bersubsidi terhadap inflasi pangan pokok dan tarif angkutan ekspedisi logistik di jalan tol dan pelabuhan nasional.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-1-q2xp",
-      "title": "Investigasi Rantai Pasok: Bahan Baku Kritis & Ketergantungan Impor Monopolistik di Indonesia",
-      "tag": "📦 Rantai Pasok Kritis",
-      "detail": "Penelusuran mendalam mekanisme distorsi harga distributor tunggal dan dampaknya terhadap biaya pokok produksi industri hilir nasional.",
-      "researchContext": "Meneliti struktur pasar oligopoli pasokan bahan baku industri manufaktur di Jabodetabek dan Surabaya. Analisis margin perantara perdagangan besar, regulasi kuota Kementerian Perdagangan, dan beban biaya logistik antar-pulau.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-2-q2xp",
-      "title": "Anatomi Rente Ekonomi: Tata Kelola Izin Konsesi & Dampak Sistemik bagi Pelaku Usaha Lokal",
-      "tag": "📑 Rente Konsesi Usaha",
-      "detail": "Bedah regulasi transaksional dan bagaimana pembagian kuota terbatas menciptakan keuntungan abnormal bagi segelintir konglomerasi.",
-      "researchContext": "Pembongkaran ekonomi rente pemberian izin usaha pertambangan dan perkebunan di daerah. Bagaimana biaya kepatuhan regulasi formal dieksploitasi untuk menyingkirkan pelaku usaha kecil dan menciptakan barrier to entry.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-3-q2xp",
-      "title": "Forensik Perputaran Kas: Sistem Pembayaran Tunai & Transaksi Bayangan Perkotaan Jakarta",
-      "tag": "💵 Forensik Transaksi Kas",
-      "detail": "Menganalisis bagaimana perputaran uang tunai tanpa faktur elektronik bertahan di tengah penetrasi digitalisasi perbankan modern.",
-      "researchContext": "Studi sosiologis dan finansial pasar grosir Tanah Abang dan Mangga Dua. Aliran dana tunai tanpa sistem EDC perbankan, perputaran giro mundur, dan kalkulasi penghindaran pajak pertambahan nilai ([PPN|P-P-N]).",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-4-q2xp",
-      "title": "Dilema Kebijakan Publik: Subsidi Energi vs Efisiensi Anggaran Kas Negara di Jalur Logistik",
-      "tag": "⚖️ Subsidi vs Anggaran",
-      "detail": "Kajian komparatif antara beban kompensasi APBN, daya beli kelas menengah rentan, dan keberlanjutan fiskal jangka panjang.",
-      "researchContext": "Simulasi dampak kenaikan harga bahan bakar solar dan pertalite bersubsidi terhadap inflasi pangan pokok dan tarif angkutan ekspedisi logistik di jalan tol dan pelabuhan nasional.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-1-u9yo",
-      "title": "Investigasi Rantai Pasok: Bahan Baku Kritis & Ketergantungan Impor Monopolistik di Indonesia",
-      "tag": "📦 Rantai Pasok Kritis",
-      "detail": "Penelusuran mendalam mekanisme distorsi harga distributor tunggal dan dampaknya terhadap biaya pokok produksi industri hilir nasional.",
-      "researchContext": "Meneliti struktur pasar oligopoli pasokan bahan baku industri manufaktur di Jabodetabek dan Surabaya. Analisis margin perantara perdagangan besar, regulasi kuota Kementerian Perdagangan, dan beban biaya logistik antar-pulau.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-2-u9yo",
-      "title": "Anatomi Rente Ekonomi: Tata Kelola Izin Konsesi & Dampak Sistemik bagi Pelaku Usaha Lokal",
-      "tag": "📑 Rente Konsesi Usaha",
-      "detail": "Bedah regulasi transaksional dan bagaimana pembagian kuota terbatas menciptakan keuntungan abnormal bagi segelintir konglomerasi.",
-      "researchContext": "Pembongkaran ekonomi rente pemberian izin usaha pertambangan dan perkebunan di daerah. Bagaimana biaya kepatuhan regulasi formal dieksploitasi untuk menyingkirkan pelaku usaha kecil dan menciptakan barrier to entry.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-3-u9yo",
-      "title": "Forensik Perputaran Kas: Sistem Pembayaran Tunai & Transaksi Bayangan Perkotaan Jakarta",
-      "tag": "💵 Forensik Transaksi Kas",
-      "detail": "Menganalisis bagaimana perputaran uang tunai tanpa faktur elektronik bertahan di tengah penetrasi digitalisasi perbankan modern.",
-      "researchContext": "Studi sosiologis dan finansial pasar grosir Tanah Abang dan Mangga Dua. Aliran dana tunai tanpa sistem EDC perbankan, perputaran giro mundur, dan kalkulasi penghindaran pajak pertambahan nilai ([PPN|P-P-N]).",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-4-u9yo",
-      "title": "Dilema Kebijakan Publik: Subsidi Energi vs Efisiensi Anggaran Kas Negara di Jalur Logistik",
-      "tag": "⚖️ Subsidi vs Anggaran",
-      "detail": "Kajian komparatif antara beban kompensasi APBN, daya beli kelas menengah rentan, dan keberlanjutan fiskal jangka panjang.",
-      "researchContext": "Simulasi dampak kenaikan harga bahan bakar solar dan pertalite bersubsidi terhadap inflasi pangan pokok dan tarif angkutan ekspedisi logistik di jalan tol dan pelabuhan nasional.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-1-bcrt",
-      "title": "Investigasi Rantai Pasok: Bahan Baku Kritis & Ketergantungan Impor Monopolistik di Indonesia",
-      "tag": "📦 Rantai Pasok Kritis",
-      "detail": "Penelusuran mendalam mekanisme distorsi harga distributor tunggal dan dampaknya terhadap biaya pokok produksi industri hilir nasional.",
-      "researchContext": "Meneliti struktur pasar oligopoli pasokan bahan baku industri manufaktur di Jabodetabek dan Surabaya. Analisis margin perantara perdagangan besar, regulasi kuota Kementerian Perdagangan, dan beban biaya logistik antar-pulau.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-2-bcrt",
-      "title": "Anatomi Rente Ekonomi: Tata Kelola Izin Konsesi & Dampak Sistemik bagi Pelaku Usaha Lokal",
-      "tag": "📑 Rente Konsesi Usaha",
-      "detail": "Bedah regulasi transaksional dan bagaimana pembagian kuota terbatas menciptakan keuntungan abnormal bagi segelintir konglomerasi.",
-      "researchContext": "Pembongkaran ekonomi rente pemberian izin usaha pertambangan dan perkebunan di daerah. Bagaimana biaya kepatuhan regulasi formal dieksploitasi untuk menyingkirkan pelaku usaha kecil dan menciptakan barrier to entry.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-3-bcrt",
-      "title": "Forensik Perputaran Kas: Sistem Pembayaran Tunai & Transaksi Bayangan Perkotaan Jakarta",
-      "tag": "💵 Forensik Transaksi Kas",
-      "detail": "Menganalisis bagaimana perputaran uang tunai tanpa faktur elektronik bertahan di tengah penetrasi digitalisasi perbankan modern.",
-      "researchContext": "Studi sosiologis dan finansial pasar grosir Tanah Abang dan Mangga Dua. Aliran dana tunai tanpa sistem EDC perbankan, perputaran giro mundur, dan kalkulasi penghindaran pajak pertambahan nilai ([PPN|P-P-N]).",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-4-bcrt",
-      "title": "Dilema Kebijakan Publik: Subsidi Energi vs Efisiensi Anggaran Kas Negara di Jalur Logistik",
-      "tag": "⚖️ Subsidi vs Anggaran",
-      "detail": "Kajian komparatif antara beban kompensasi APBN, daya beli kelas menengah rentan, dan keberlanjutan fiskal jangka panjang.",
-      "researchContext": "Simulasi dampak kenaikan harga bahan bakar solar dan pertalite bersubsidi terhadap inflasi pangan pokok dan tarif angkutan ekspedisi logistik di jalan tol dan pelabuhan nasional.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-1-h79j",
-      "title": "Investigasi Rantai Pasok: Bahan Baku Kritis & Ketergantungan Impor Monopolistik di Indonesia",
-      "tag": "📦 Rantai Pasok Kritis",
-      "detail": "Penelusuran mendalam mekanisme distorsi harga distributor tunggal dan dampaknya terhadap biaya pokok produksi industri hilir nasional.",
-      "researchContext": "Meneliti struktur pasar oligopoli pasokan bahan baku industri manufaktur di Jabodetabek dan Surabaya. Analisis margin perantara perdagangan besar, regulasi kuota Kementerian Perdagangan, dan beban biaya logistik antar-pulau.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-2-h79j",
-      "title": "Anatomi Rente Ekonomi: Tata Kelola Izin Konsesi & Dampak Sistemik bagi Pelaku Usaha Lokal",
-      "tag": "📑 Rente Konsesi Usaha",
-      "detail": "Bedah regulasi transaksional dan bagaimana pembagian kuota terbatas menciptakan keuntungan abnormal bagi segelintir konglomerasi.",
-      "researchContext": "Pembongkaran ekonomi rente pemberian izin usaha pertambangan dan perkebunan di daerah. Bagaimana biaya kepatuhan regulasi formal dieksploitasi untuk menyingkirkan pelaku usaha kecil dan menciptakan barrier to entry.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-3-h79j",
-      "title": "Forensik Perputaran Kas: Sistem Pembayaran Tunai & Transaksi Bayangan Perkotaan Jakarta",
-      "tag": "💵 Forensik Transaksi Kas",
-      "detail": "Menganalisis bagaimana perputaran uang tunai tanpa faktur elektronik bertahan di tengah penetrasi digitalisasi perbankan modern.",
-      "researchContext": "Studi sosiologis dan finansial pasar grosir Tanah Abang dan Mangga Dua. Aliran dana tunai tanpa sistem EDC perbankan, perputaran giro mundur, dan kalkulasi penghindaran pajak pertambahan nilai ([PPN|P-P-N]).",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-4-h79j",
-      "title": "Dilema Kebijakan Publik: Subsidi Energi vs Efisiensi Anggaran Kas Negara di Jalur Logistik",
-      "tag": "⚖️ Subsidi vs Anggaran",
-      "detail": "Kajian komparatif antara beban kompensasi APBN, daya beli kelas menengah rentan, dan keberlanjutan fiskal jangka panjang.",
-      "researchContext": "Simulasi dampak kenaikan harga bahan bakar solar dan pertalite bersubsidi terhadap inflasi pangan pokok dan tarif angkutan ekspedisi logistik di jalan tol dan pelabuhan nasional.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-1-dc9h",
-      "title": "Investigasi Rantai Pasok: Bahan Baku Kritis & Ketergantungan Impor Monopolistik di Indonesia",
-      "tag": "📦 Rantai Pasok Kritis",
-      "detail": "Penelusuran mendalam mekanisme distorsi harga distributor tunggal dan dampaknya terhadap biaya pokok produksi industri hilir nasional.",
-      "researchContext": "Meneliti struktur pasar oligopoli pasokan bahan baku industri manufaktur di Jabodetabek dan Surabaya. Analisis margin perantara perdagangan besar, regulasi kuota Kementerian Perdagangan, dan beban biaya logistik antar-pulau.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-2-dc9h",
-      "title": "Anatomi Rente Ekonomi: Tata Kelola Izin Konsesi & Dampak Sistemik bagi Pelaku Usaha Lokal",
-      "tag": "📑 Rente Konsesi Usaha",
-      "detail": "Bedah regulasi transaksional dan bagaimana pembagian kuota terbatas menciptakan keuntungan abnormal bagi segelintir konglomerasi.",
-      "researchContext": "Pembongkaran ekonomi rente pemberian izin usaha pertambangan dan perkebunan di daerah. Bagaimana biaya kepatuhan regulasi formal dieksploitasi untuk menyingkirkan pelaku usaha kecil dan menciptakan barrier to entry.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-3-dc9h",
-      "title": "Forensik Perputaran Kas: Sistem Pembayaran Tunai & Transaksi Bayangan Perkotaan Jakarta",
-      "tag": "💵 Forensik Transaksi Kas",
-      "detail": "Menganalisis bagaimana perputaran uang tunai tanpa faktur elektronik bertahan di tengah penetrasi digitalisasi perbankan modern.",
-      "researchContext": "Studi sosiologis dan finansial pasar grosir Tanah Abang dan Mangga Dua. Aliran dana tunai tanpa sistem EDC perbankan, perputaran giro mundur, dan kalkulasi penghindaran pajak pertambahan nilai ([PPN|P-P-N]).",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-4-dc9h",
-      "title": "Dilema Kebijakan Publik: Subsidi Energi vs Efisiensi Anggaran Kas Negara di Jalur Logistik",
-      "tag": "⚖️ Subsidi vs Anggaran",
-      "detail": "Kajian komparatif antara beban kompensasi APBN, daya beli kelas menengah rentan, dan keberlanjutan fiskal jangka panjang.",
-      "researchContext": "Simulasi dampak kenaikan harga bahan bakar solar dan pertalite bersubsidi terhadap inflasi pangan pokok dan tarif angkutan ekspedisi logistik di jalan tol dan pelabuhan nasional.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-1-gzyy",
-      "title": "Investigasi Rantai Pasok: Bahan Baku Kritis & Ketergantungan Impor Monopolistik di Indonesia",
-      "tag": "📦 Rantai Pasok Kritis",
-      "detail": "Penelusuran mendalam mekanisme distorsi harga distributor tunggal dan dampaknya terhadap biaya pokok produksi industri hilir nasional.",
-      "researchContext": "Meneliti struktur pasar oligopoli pasokan bahan baku industri manufaktur di Jabodetabek dan Surabaya. Analisis margin perantara perdagangan besar, regulasi kuota Kementerian Perdagangan, dan beban biaya logistik antar-pulau.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-2-gzyy",
-      "title": "Anatomi Rente Ekonomi: Tata Kelola Izin Konsesi & Dampak Sistemik bagi Pelaku Usaha Lokal",
-      "tag": "📑 Rente Konsesi Usaha",
-      "detail": "Bedah regulasi transaksional dan bagaimana pembagian kuota terbatas menciptakan keuntungan abnormal bagi segelintir konglomerasi.",
-      "researchContext": "Pembongkaran ekonomi rente pemberian izin usaha pertambangan dan perkebunan di daerah. Bagaimana biaya kepatuhan regulasi formal dieksploitasi untuk menyingkirkan pelaku usaha kecil dan menciptakan barrier to entry.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-3-gzyy",
-      "title": "Forensik Perputaran Kas: Sistem Pembayaran Tunai & Transaksi Bayangan Perkotaan Jakarta",
-      "tag": "💵 Forensik Transaksi Kas",
-      "detail": "Menganalisis bagaimana perputaran uang tunai tanpa faktur elektronik bertahan di tengah penetrasi digitalisasi perbankan modern.",
-      "researchContext": "Studi sosiologis dan finansial pasar grosir Tanah Abang dan Mangga Dua. Aliran dana tunai tanpa sistem EDC perbankan, perputaran giro mundur, dan kalkulasi penghindaran pajak pertambahan nilai ([PPN|P-P-N]).",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-4-gzyy",
-      "title": "Dilema Kebijakan Publik: Subsidi Energi vs Efisiensi Anggaran Kas Negara di Jalur Logistik",
-      "tag": "⚖️ Subsidi vs Anggaran",
-      "detail": "Kajian komparatif antara beban kompensasi APBN, daya beli kelas menengah rentan, dan keberlanjutan fiskal jangka panjang.",
-      "researchContext": "Simulasi dampak kenaikan harga bahan bakar solar dan pertalite bersubsidi terhadap inflasi pangan pokok dan tarif angkutan ekspedisi logistik di jalan tol dan pelabuhan nasional.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-1-0qzv",
-      "title": "Investigasi Rantai Pasok: Bahan Baku Kritis & Ketergantungan Impor Monopolistik di Indonesia",
-      "tag": "📦 Rantai Pasok Kritis",
-      "detail": "Penelusuran mendalam mekanisme distorsi harga distributor tunggal dan dampaknya terhadap biaya pokok produksi industri hilir nasional.",
-      "researchContext": "Meneliti struktur pasar oligopoli pasokan bahan baku industri manufaktur di Jabodetabek dan Surabaya. Analisis margin perantara perdagangan besar, regulasi kuota Kementerian Perdagangan, dan beban biaya logistik antar-pulau.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-2-0qzv",
-      "title": "Anatomi Rente Ekonomi: Tata Kelola Izin Konsesi & Dampak Sistemik bagi Pelaku Usaha Lokal",
-      "tag": "📑 Rente Konsesi Usaha",
-      "detail": "Bedah regulasi transaksional dan bagaimana pembagian kuota terbatas menciptakan keuntungan abnormal bagi segelintir konglomerasi.",
-      "researchContext": "Pembongkaran ekonomi rente pemberian izin usaha pertambangan dan perkebunan di daerah. Bagaimana biaya kepatuhan regulasi formal dieksploitasi untuk menyingkirkan pelaku usaha kecil dan menciptakan barrier to entry.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-3-0qzv",
-      "title": "Forensik Perputaran Kas: Sistem Pembayaran Tunai & Transaksi Bayangan Perkotaan Jakarta",
-      "tag": "💵 Forensik Transaksi Kas",
-      "detail": "Menganalisis bagaimana perputaran uang tunai tanpa faktur elektronik bertahan di tengah penetrasi digitalisasi perbankan modern.",
-      "researchContext": "Studi sosiologis dan finansial pasar grosir Tanah Abang dan Mangga Dua. Aliran dana tunai tanpa sistem EDC perbankan, perputaran giro mundur, dan kalkulasi penghindaran pajak pertambahan nilai ([PPN|P-P-N]).",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-4-0qzv",
-      "title": "Dilema Kebijakan Publik: Subsidi Energi vs Efisiensi Anggaran Kas Negara di Jalur Logistik",
-      "tag": "⚖️ Subsidi vs Anggaran",
-      "detail": "Kajian komparatif antara beban kompensasi APBN, daya beli kelas menengah rentan, dan keberlanjutan fiskal jangka panjang.",
-      "researchContext": "Simulasi dampak kenaikan harga bahan bakar solar dan pertalite bersubsidi terhadap inflasi pangan pokok dan tarif angkutan ekspedisi logistik di jalan tol dan pelabuhan nasional.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-1-1ekq",
-      "title": "Investigasi Rantai Pasok: Bahan Baku Kritis & Ketergantungan Impor Monopolistik di Indonesia",
-      "tag": "📦 Rantai Pasok Kritis",
-      "detail": "Penelusuran mendalam mekanisme distorsi harga distributor tunggal dan dampaknya terhadap biaya pokok produksi industri hilir nasional.",
-      "researchContext": "Meneliti struktur pasar oligopoli pasokan bahan baku industri manufaktur di Jabodetabek dan Surabaya. Analisis margin perantara perdagangan besar, regulasi kuota Kementerian Perdagangan, dan beban biaya logistik antar-pulau.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-2-1ekq",
-      "title": "Anatomi Rente Ekonomi: Tata Kelola Izin Konsesi & Dampak Sistemik bagi Pelaku Usaha Lokal",
-      "tag": "📑 Rente Konsesi Usaha",
-      "detail": "Bedah regulasi transaksional dan bagaimana pembagian kuota terbatas menciptakan keuntungan abnormal bagi segelintir konglomerasi.",
-      "researchContext": "Pembongkaran ekonomi rente pemberian izin usaha pertambangan dan perkebunan di daerah. Bagaimana biaya kepatuhan regulasi formal dieksploitasi untuk menyingkirkan pelaku usaha kecil dan menciptakan barrier to entry.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-3-1ekq",
-      "title": "Forensik Perputaran Kas: Sistem Pembayaran Tunai & Transaksi Bayangan Perkotaan Jakarta",
-      "tag": "💵 Forensik Transaksi Kas",
-      "detail": "Menganalisis bagaimana perputaran uang tunai tanpa faktur elektronik bertahan di tengah penetrasi digitalisasi perbankan modern.",
-      "researchContext": "Studi sosiologis dan finansial pasar grosir Tanah Abang dan Mangga Dua. Aliran dana tunai tanpa sistem EDC perbankan, perputaran giro mundur, dan kalkulasi penghindaran pajak pertambahan nilai ([PPN|P-P-N]).",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-4-1ekq",
-      "title": "Dilema Kebijakan Publik: Subsidi Energi vs Efisiensi Anggaran Kas Negara di Jalur Logistik",
-      "tag": "⚖️ Subsidi vs Anggaran",
-      "detail": "Kajian komparatif antara beban kompensasi APBN, daya beli kelas menengah rentan, dan keberlanjutan fiskal jangka panjang.",
-      "researchContext": "Simulasi dampak kenaikan harga bahan bakar solar dan pertalite bersubsidi terhadap inflasi pangan pokok dan tarif angkutan ekspedisi logistik di jalan tol dan pelabuhan nasional.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-1-6pl8",
-      "title": "Investigasi Rantai Pasok: Bahan Baku Kritis & Ketergantungan Impor Monopolistik di Indonesia",
-      "tag": "📦 Rantai Pasok Kritis",
-      "detail": "Penelusuran mendalam mekanisme distorsi harga distributor tunggal dan dampaknya terhadap biaya pokok produksi industri hilir nasional.",
-      "researchContext": "Meneliti struktur pasar oligopoli pasokan bahan baku industri manufaktur di Jabodetabek dan Surabaya. Analisis margin perantara perdagangan besar, regulasi kuota Kementerian Perdagangan, dan beban biaya logistik antar-pulau.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-2-6pl8",
-      "title": "Anatomi Rente Ekonomi: Tata Kelola Izin Konsesi & Dampak Sistemik bagi Pelaku Usaha Lokal",
-      "tag": "📑 Rente Konsesi Usaha",
-      "detail": "Bedah regulasi transaksional dan bagaimana pembagian kuota terbatas menciptakan keuntungan abnormal bagi segelintir konglomerasi.",
-      "researchContext": "Pembongkaran ekonomi rente pemberian izin usaha pertambangan dan perkebunan di daerah. Bagaimana biaya kepatuhan regulasi formal dieksploitasi untuk menyingkirkan pelaku usaha kecil dan menciptakan barrier to entry.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-3-6pl8",
-      "title": "Forensik Perputaran Kas: Sistem Pembayaran Tunai & Transaksi Bayangan Perkotaan Jakarta",
-      "tag": "💵 Forensik Transaksi Kas",
-      "detail": "Menganalisis bagaimana perputaran uang tunai tanpa faktur elektronik bertahan di tengah penetrasi digitalisasi perbankan modern.",
-      "researchContext": "Studi sosiologis dan finansial pasar grosir Tanah Abang dan Mangga Dua. Aliran dana tunai tanpa sistem EDC perbankan, perputaran giro mundur, dan kalkulasi penghindaran pajak pertambahan nilai ([PPN|P-P-N]).",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-4-6pl8",
-      "title": "Dilema Kebijakan Publik: Subsidi Energi vs Efisiensi Anggaran Kas Negara di Jalur Logistik",
-      "tag": "⚖️ Subsidi vs Anggaran",
-      "detail": "Kajian komparatif antara beban kompensasi APBN, daya beli kelas menengah rentan, dan keberlanjutan fiskal jangka panjang.",
-      "researchContext": "Simulasi dampak kenaikan harga bahan bakar solar dan pertalite bersubsidi terhadap inflasi pangan pokok dan tarif angkutan ekspedisi logistik di jalan tol dan pelabuhan nasional.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-1-mm4o",
-      "title": "Investigasi Rantai Pasok: Bahan Baku Kritis & Ketergantungan Impor Monopolistik di Indonesia",
-      "tag": "📦 Rantai Pasok Kritis",
-      "detail": "Penelusuran mendalam mekanisme distorsi harga distributor tunggal dan dampaknya terhadap biaya pokok produksi industri hilir nasional.",
-      "researchContext": "Meneliti struktur pasar oligopoli pasokan bahan baku industri manufaktur di Jabodetabek dan Surabaya. Analisis margin perantara perdagangan besar, regulasi kuota Kementerian Perdagangan, dan beban biaya logistik antar-pulau.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-2-mm4o",
-      "title": "Anatomi Rente Ekonomi: Tata Kelola Izin Konsesi & Dampak Sistemik bagi Pelaku Usaha Lokal",
-      "tag": "📑 Rente Konsesi Usaha",
-      "detail": "Bedah regulasi transaksional dan bagaimana pembagian kuota terbatas menciptakan keuntungan abnormal bagi segelintir konglomerasi.",
-      "researchContext": "Pembongkaran ekonomi rente pemberian izin usaha pertambangan dan perkebunan di daerah. Bagaimana biaya kepatuhan regulasi formal dieksploitasi untuk menyingkirkan pelaku usaha kecil dan menciptakan barrier to entry.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-3-mm4o",
-      "title": "Forensik Perputaran Kas: Sistem Pembayaran Tunai & Transaksi Bayangan Perkotaan Jakarta",
-      "tag": "💵 Forensik Transaksi Kas",
-      "detail": "Menganalisis bagaimana perputaran uang tunai tanpa faktur elektronik bertahan di tengah penetrasi digitalisasi perbankan modern.",
-      "researchContext": "Studi sosiologis dan finansial pasar grosir Tanah Abang dan Mangga Dua. Aliran dana tunai tanpa sistem EDC perbankan, perputaran giro mundur, dan kalkulasi penghindaran pajak pertambahan nilai ([PPN|P-P-N]).",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-4-mm4o",
-      "title": "Dilema Kebijakan Publik: Subsidi Energi vs Efisiensi Anggaran Kas Negara di Jalur Logistik",
-      "tag": "⚖️ Subsidi vs Anggaran",
-      "detail": "Kajian komparatif antara beban kompensasi APBN, daya beli kelas menengah rentan, dan keberlanjutan fiskal jangka panjang.",
-      "researchContext": "Simulasi dampak kenaikan harga bahan bakar solar dan pertalite bersubsidi terhadap inflasi pangan pokok dan tarif angkutan ekspedisi logistik di jalan tol dan pelabuhan nasional.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-1-bbqv",
-      "title": "Investigasi Rantai Pasok: Bahan Baku Kritis & Ketergantungan Impor Monopolistik di Indonesia",
-      "tag": "📦 Rantai Pasok Kritis",
-      "detail": "Penelusuran mendalam mekanisme distorsi harga distributor tunggal dan dampaknya terhadap biaya pokok produksi industri hilir nasional.",
-      "researchContext": "Meneliti struktur pasar oligopoli pasokan bahan baku industri manufaktur di Jabodetabek dan Surabaya. Analisis margin perantara perdagangan besar, regulasi kuota Kementerian Perdagangan, dan beban biaya logistik antar-pulau.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-2-bbqv",
-      "title": "Anatomi Rente Ekonomi: Tata Kelola Izin Konsesi & Dampak Sistemik bagi Pelaku Usaha Lokal",
-      "tag": "📑 Rente Konsesi Usaha",
-      "detail": "Bedah regulasi transaksional dan bagaimana pembagian kuota terbatas menciptakan keuntungan abnormal bagi segelintir konglomerasi.",
-      "researchContext": "Pembongkaran ekonomi rente pemberian izin usaha pertambangan dan perkebunan di daerah. Bagaimana biaya kepatuhan regulasi formal dieksploitasi untuk menyingkirkan pelaku usaha kecil dan menciptakan barrier to entry.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-3-bbqv",
-      "title": "Forensik Perputaran Kas: Sistem Pembayaran Tunai & Transaksi Bayangan Perkotaan Jakarta",
-      "tag": "💵 Forensik Transaksi Kas",
-      "detail": "Menganalisis bagaimana perputaran uang tunai tanpa faktur elektronik bertahan di tengah penetrasi digitalisasi perbankan modern.",
-      "researchContext": "Studi sosiologis dan finansial pasar grosir Tanah Abang dan Mangga Dua. Aliran dana tunai tanpa sistem EDC perbankan, perputaran giro mundur, dan kalkulasi penghindaran pajak pertambahan nilai ([PPN|P-P-N]).",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-4-bbqv",
-      "title": "Dilema Kebijakan Publik: Subsidi Energi vs Efisiensi Anggaran Kas Negara di Jalur Logistik",
-      "tag": "⚖️ Subsidi vs Anggaran",
-      "detail": "Kajian komparatif antara beban kompensasi APBN, daya beli kelas menengah rentan, dan keberlanjutan fiskal jangka panjang.",
-      "researchContext": "Simulasi dampak kenaikan harga bahan bakar solar dan pertalite bersubsidi terhadap inflasi pangan pokok dan tarif angkutan ekspedisi logistik di jalan tol dan pelabuhan nasional.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-1-tiv3",
-      "title": "Investigasi Rantai Pasok: Bahan Baku Kritis & Ketergantungan Impor Monopolistik di Indonesia",
-      "tag": "📦 Rantai Pasok Kritis",
-      "detail": "Penelusuran mendalam mekanisme distorsi harga distributor tunggal dan dampaknya terhadap biaya pokok produksi industri hilir nasional.",
-      "researchContext": "Meneliti struktur pasar oligopoli pasokan bahan baku industri manufaktur di Jabodetabek dan Surabaya. Analisis margin perantara perdagangan besar, regulasi kuota Kementerian Perdagangan, dan beban biaya logistik antar-pulau.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-2-tiv3",
-      "title": "Anatomi Rente Ekonomi: Tata Kelola Izin Konsesi & Dampak Sistemik bagi Pelaku Usaha Lokal",
-      "tag": "📑 Rente Konsesi Usaha",
-      "detail": "Bedah regulasi transaksional dan bagaimana pembagian kuota terbatas menciptakan keuntungan abnormal bagi segelintir konglomerasi.",
-      "researchContext": "Pembongkaran ekonomi rente pemberian izin usaha pertambangan dan perkebunan di daerah. Bagaimana biaya kepatuhan regulasi formal dieksploitasi untuk menyingkirkan pelaku usaha kecil dan menciptakan barrier to entry.",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-3-tiv3",
-      "title": "Forensik Perputaran Kas: Sistem Pembayaran Tunai & Transaksi Bayangan Perkotaan Jakarta",
-      "tag": "💵 Forensik Transaksi Kas",
-      "detail": "Menganalisis bagaimana perputaran uang tunai tanpa faktur elektronik bertahan di tengah penetrasi digitalisasi perbankan modern.",
-      "researchContext": "Studi sosiologis dan finansial pasar grosir Tanah Abang dan Mangga Dua. Aliran dana tunai tanpa sistem EDC perbankan, perputaran giro mundur, dan kalkulasi penghindaran pajak pertambahan nilai ([PPN|P-P-N]).",
-      "isGenerated": true
-    },
-    {
-      "key": "gen-kausalmedia-4-tiv3",
-      "title": "Dilema Kebijakan Publik: Subsidi Energi vs Efisiensi Anggaran Kas Negara di Jalur Logistik",
-      "tag": "⚖️ Subsidi vs Anggaran",
-      "detail": "Kajian komparatif antara beban kompensasi APBN, daya beli kelas menengah rentan, dan keberlanjutan fiskal jangka panjang.",
-      "researchContext": "Simulasi dampak kenaikan harga bahan bakar solar dan pertalite bersubsidi terhadap inflasi pangan pokok dan tarif angkutan ekspedisi logistik di jalan tol dan pelabuhan nasional.",
-      "isGenerated": true
+  "variants": {
+    "forensic-autopsy": {
+      "id": "forensic-autopsy",
+      "label": "Forensic Market Autopsy",
+      "aspectRatio": "16:9",
+      "targetDurationSec": 360,
+      "beatPaceSec": 6,
+      "defaultSubtitles": "kinetic-pill",
+      "hookArchetype": "data-shock-stat",
+      "hookInstruction": "Open in-medias-res with a specific anomalous financial figure, date, or balance-sheet discrepancy before naming the broader topic.",
+      "narrativeBeats": [
+        "1. Anomaly Hook (0-15%): Present the specific financial/institutional anomaly and immediate stakes.",
+        "2. Structural Mechanism (15-45%): Map the actors, cash flows, and regulatory loopholes that enabled it.",
+        "3. The Smoking Gun (45-75%): Walk through the decisive transaction, filing, or turning point.",
+        "4. Systemic Fallout (75-100%): Connect the forensic evidence to the structural takeaway for the viewer."
+      ]
+    },
+    "policy-paradox": {
+      "id": "policy-paradox",
+      "label": "Policy Paradox Breakdown",
+      "aspectRatio": "16:9",
+      "targetDurationSec": 300,
+      "beatPaceSec": 6,
+      "defaultSubtitles": "broadcast-lower",
+      "hookArchetype": "contrarian-mythbust",
+      "hookInstruction": "State the stated public goal of a policy, then immediately juxtaposed with the exact opposite real-world outcome it produced.",
+      "narrativeBeats": [
+        "1. The Stated Promise vs. Reality (0-15%): Contrast official intent with measurable outcome.",
+        "2. Incentive Map (15-50%): Trace how rational actors gamed the rule.",
+        "3. Second-Order Effects (50-80%): Quantify who paid the hidden cost.",
+        "4. Structural Fix or Equilibrium (80-100%): Why the paradox persists."
+      ]
+    },
+    "invisible-monopoly": {
+      "id": "invisible-monopoly",
+      "label": "Invisible Monopoly Map",
+      "aspectRatio": "16:9",
+      "targetDurationSec": 360,
+      "beatPaceSec": 6,
+      "defaultSubtitles": "kinetic-pill",
+      "hookArchetype": "visceral-mystery-gap",
+      "hookInstruction": "Start with an everyday product or fee everyone in Indonesia pays, then reveal the single choke point controlling it.",
+      "narrativeBeats": [
+        "1. Everyday Surface (0-15%): Show the familiar consumer touchpoint.",
+        "2. Supply Chain Choke Point (15-50%): Follow the ownership tree upstream.",
+        "3. Moat & Rent Extraction (50-80%): Explain the licensing, logistics, or capital barrier.",
+        "4. Macro Impact (80-100%): Summarize the toll on the broader economy."
+      ]
+    },
+    "kinetic-short": {
+      "id": "kinetic-short",
+      "label": "9:16 Rapid Ticker Breakdown",
+      "aspectRatio": "9:16",
+      "targetDurationSec": 60,
+      "beatPaceSec": 3,
+      "defaultSubtitles": "karaoke-word",
+      "hookArchetype": "in-medias-res-anomaly",
+      "hookInstruction": "Deliver a 3-second pattern-interrupt stat or paradox in the very first sentence with zero throat-clearing.",
+      "narrativeBeats": [
+        "1. 3-Second Pattern Interrupt (0-15%): Hard number or counter-intuitive claim.",
+        "2. Rapid Mechanism (15-75%): 3 fast causal links explaining how the number happened.",
+        "3. Loopable Payoff (75-100%): Punchy conclusion that loops seamlessly back to the opening premise."
+      ]
     }
-  ],
-  "updatedAt": "2026-10-18T03:33:36.831Z"
+  },
+  "suggestions": []
 }
