@@ -10,7 +10,7 @@
 | Phase | Description | Branch | Status | Verification Status | Merge Status |
 |---|---|---|---|---|---|
 | Phase 0 | MOA Initialization & Disk Persistence | `main` | COMPLETED | Pass (27/27 baseline tests) | Direct on `main` |
-| Phase 1 | Dead Script Cleanup, `tts.js` Export Fix & Canonical `PipelineConfig` Schema | `feat/phase-1-schema-and-cleanup` | PENDING | Pending | Pending |
+| Phase 1 | Dead Script Cleanup, `tts.js` Export Fix & Canonical `PipelineConfig` Schema | `feat/phase-1-schema-and-cleanup` | COMPLETED | Pass (27/27 tests + Phase 1 assertion) | Merged to `main` |
 | Phase 2 | Channel Profiles Debloat, Ring-Buffer Topic Storage & Variants | `feat/phase-2-channels-and-ideas` | PENDING | Pending | Pending |
 | Phase 3 | Style Engine Upgrade & Deterministic Brand Chrome Compiler | `feat/phase-3-style-engine` | PENDING | Pending | Pending |
 | Phase 4 | Dual Visual Engine (`vector-html` \| `ai-image` \| `hybrid`) & Prompt Upgrade | `feat/phase-4-dual-visual-engine` | PENDING | Pending | Pending |
