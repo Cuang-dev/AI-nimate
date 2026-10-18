@@ -7,6 +7,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { normalizePipelineConfig } = require('../config/schema');
 
 const REPO_ROOT = path.resolve(__dirname, '..');
 const WORKFLOWS_FILE = path.join(REPO_ROOT, 'projects', 'workflows.json');
@@ -72,15 +73,20 @@ function saveWorkflows(list) {
   fs.writeFileSync(WORKFLOWS_FILE, JSON.stringify(list, null, 2), 'utf-8');
 }
 
-function recordWorkflow(entry) {
+function recordWorkflow(entry = {}) {
   const list = loadWorkflows(false);
   const id = entry.id || `wf-${Date.now()}`;
+  const config = entry.config
+    ? normalizePipelineConfig(entry.config)
+    : normalizePipelineConfig(entry);
+
   const record = {
     id,
     project: entry.project || 'untitled-project',
-    topic: entry.topic || 'Untitled Video',
-    style: entry.style || 'investigative-documentary',
-    format: entry.format || '16:9',
+    topic: entry.topic || config.topic || 'Untitled Video',
+    style: entry.style || config.styleId || 'investigative-documentary',
+    format: entry.format || config.aspectRatio || '16:9',
+    channel: entry.channel || config.channelId || 'kausalmedia',
     status: entry.status || 'queued', // queued | research | script | audio_wait | choreography | rendering | completed | failed | cancelled
     stage: entry.stage || 'Init',
     progress: entry.progress ?? 0,
@@ -89,18 +95,43 @@ function recordWorkflow(entry) {
     videoPath: null,
     error: null,
     pid: entry.pid || null,
-    ...entry
+    ...entry,
+    channelId: config.channelId,
+    videoVariant: config.videoVariant,
+    styleId: config.styleId,
+    visualEngine: config.visualEngine,
+    subtitles: config.subtitles,
+    aspectRatio: config.aspectRatio,
+    config
   };
   list.unshift(record);
   saveWorkflows(list);
   return record;
 }
 
-function updateWorkflow(id, partial) {
+function updateWorkflow(id, partial = {}) {
   const list = loadWorkflows(false);
   const idx = list.findIndex(w => w.id === id || w.project === id);
   if (idx === -1) return null;
   list[idx] = { ...list[idx], ...partial };
+  if (partial.config || partial.channelId || partial.videoVariant || partial.styleId || partial.visualEngine || partial.subtitles || partial.aspectRatio) {
+    const mergedConfigInput = Object.assign({}, list[idx].config || {}, partial.config || {}, {
+      channelId: partial.channelId || list[idx].channelId,
+      videoVariant: partial.videoVariant || list[idx].videoVariant,
+      styleId: partial.styleId || list[idx].styleId,
+      visualEngine: partial.visualEngine || list[idx].visualEngine,
+      subtitles: partial.subtitles !== undefined ? partial.subtitles : list[idx].subtitles,
+      aspectRatio: partial.aspectRatio || list[idx].aspectRatio
+    });
+    const updatedConfig = normalizePipelineConfig(mergedConfigInput);
+    list[idx].channelId = updatedConfig.channelId;
+    list[idx].videoVariant = updatedConfig.videoVariant;
+    list[idx].styleId = updatedConfig.styleId;
+    list[idx].visualEngine = updatedConfig.visualEngine;
+    list[idx].subtitles = updatedConfig.subtitles;
+    list[idx].aspectRatio = updatedConfig.aspectRatio;
+    list[idx].config = updatedConfig;
+  }
   if (partial.status === 'completed' && !list[idx].completedAt) {
     list[idx].completedAt = new Date().toISOString();
     list[idx].progress = 100;
@@ -200,7 +231,9 @@ module.exports = {
   isPidAlive,
   reconcileWorkflows,
   loadWorkflows,
+  listWorkflows: loadWorkflows,
   recordWorkflow,
+  createWorkflow: recordWorkflow,
   updateWorkflow,
   deleteWorkflow,
   cancelWorkflow,
