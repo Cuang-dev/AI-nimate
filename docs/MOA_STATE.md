@@ -21,3 +21,7 @@
 
 ## Execution Log
 - [Phase 0]: `docs/ARCHITECTURE.md` and `docs/MOA_STATE.md` initialized. Baseline tests verified: 27/27 passing.
+- [Phases 1–8]: Architecture upgrade fully implemented, verified, and merged into `main` (48/48 tests passing).
+- [Production Run]: Generated 5-minute HTML/SVG forensic documentary: "MSCI Standalone Market Crash: Anatomi Likuiditas dan Ilusi Free Float IHSG" (`projects/msci-standalone-market-crash/render/msci-standalone-market-crash.mp4`, 247.6s, 8.94 MB).
+- [Bug Fix]: Fixed Playwright `page.evaluate` argument wrapping (`{ target, beatStartMs }`) in `scripts/render.js` to eliminate `Error: Too many arguments`.
+- [Deep Research Verification]: Upgraded Stage 1 in `scripts/pipeline.js` to reject shallow placeholder dossiers, support `--force-research`, and integrated verified deep research from Senior Domain Researcher subagent (MSCI 15 Okt 2026 consultation, HSC, BEI Kep-00002/00003/2025 circuit breakers, KSEI 1% rule, and $4-6B passive ETF capital outflow). Full test suite: 51/51 tests passing.
