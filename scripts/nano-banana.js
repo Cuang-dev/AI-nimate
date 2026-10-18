@@ -10,6 +10,8 @@
 const fs = require('fs');
 const path = require('path');
 const { indexAsset } = require('./vector-db');
+const { getChannelProfile } = require('../channels/channel-manager');
+const { getStyleProfile } = require('../styles/style-manager');
 
 const REPO_ROOT = path.resolve(__dirname, '..');
 const CATALOG_FILE = path.join(REPO_ROOT, 'assets', 'catalog.json');
@@ -32,58 +34,72 @@ if (fs.existsSync(envFile)) {
 
 function buildStylePrompt(subject, opts = 'kausalmedia') {
   const options = typeof opts === 'string' ? { channel: opts } : (opts || {});
-  const channel = String(options.channel || 'kausalmedia').toLowerCase();
+  const channelId = String(options.channelId || options.channel || 'kausalmedia').toLowerCase();
+  const channelProfile = getChannelProfile(channelId);
+  const resolvedChannelId = channelProfile?.id || channelId;
+  const styleId = String(options.styleId || options.style || channelProfile?.defaultStyle || 'kausalmedia').toLowerCase();
+  const styleProfile = getStyleProfile(styleId);
+
   const layout = String(options.layout || 'hero').toLowerCase();
+  const isFull = layout === 'fullsize' || layout === 'fullscreen' || layout === 'full-bleed';
   const hasLabels = Boolean(options.hasLabels);
 
-  if (channel === 'kausalmedia') {
-    let promptBase = '';
-    const indoorKeywords = [
-      'trading floor', 'stock exchange', 'office', 'interior', 'indoor', 'room',
-      'bedroom', 'desk', 'hall', 'inside', 'boardroom', 'teller', 'bank interior', 'courtroom'
-    ];
-    const isIndoor = indoorKeywords.some(kw => subject.toLowerCase().includes(kw));
+  const indoorKeywords = [
+    'trading floor', 'stock exchange', 'office', 'interior', 'indoor', 'room',
+    'bedroom', 'desk', 'hall', 'inside', 'boardroom', 'teller', 'bank interior', 'courtroom'
+  ];
+  const isIndoor = indoorKeywords.some(kw => String(subject || '').toLowerCase().includes(kw));
 
-    if (layout === 'fullsize' || layout === 'fullscreen' || layout === 'full-bleed') {
-      const envContext = isIndoor
-        ? 'authentic 1990s-2000s Indonesian commercial indoor interior hall, trading desks, authentic architectural indoor perspective'
-        : 'authentic modern Indonesian architectural and contextual environment, authentic cityscape';
-      promptBase = `editorial comic art illustration of ${subject}, full 16:9 wide scene composition: ${envContext}, bold clean black ink contour outlines (3px–4px), flat and soft-cel gouache color wash, warm terracotta, sage, slate, and ochre palette, crisp commercial comic art, expressive hand-drawn detail, zero 3D CGI render, zero photorealism, zero hyperrealism`;
-    } else {
-      promptBase = `editorial comic art spot illustration of ${subject}: bold clean black ink contour outlines (3px–4px), isolated on a solid warm cream off-white background (#F8F5EE), flat and soft-cel gouache color wash, warm terracotta, sage, and ochre accents, clean commercial comic clipart, soft subtle ground shadow, zero 3D render, zero photorealism, zero hyperrealism, authentic Indonesian context`;
-    }
+  // Dynamic prefix from style profile and channel editorial DNA
+  const prefixParts = [];
+  if (styleProfile?.aiImagePromptPrefix) {
+    prefixParts.push(styleProfile.aiImagePromptPrefix.trim().replace(/:\s*$/, ''));
+  }
+  if (channelProfile?.editorialDna?.visualDirectives) {
+    prefixParts.push(channelProfile.editorialDna.visualDirectives.trim().replace(/\.\s*$/, ''));
+  }
+  const prefixStr = prefixParts.length > 0 ? prefixParts.join('. ') + ': ' : '';
 
-    if (hasLabels) {
-      promptBase += `, with clean hand-drawn numeric price badges and minimal infographic callout tags`;
-    } else {
-      promptBase += `, clean illustration without baked arrows or text clutter`;
-    }
+  let promptBase = '';
+  const artStyle = styleProfile?.artStyle || (resolvedChannelId === 'kausalmedia' ? 'comic-editorial' : 'flat-vector');
+  const bgTone = (resolvedChannelId === 'kausalmedia' || styleId === 'kausalmedia')
+    ? 'solid warm cream off-white background (#F8F5EE)'
+    : `solid ${styleProfile?.palette?.bgPrimary || '#FAF7F0'} background`;
 
-    const isFull = layout === 'fullsize' || layout === 'fullscreen' || layout === 'full-bleed';
-    const negPrompt = isIndoor && isFull
-      ? `outdoor, street, cars, asphalt, open sky, storefronts, trees, traffic, alien gibberish, illegible lettering, photorealistic, 3D CGI, blender render, hyperrealistic, muddy gradients, dark shadows, blurry, fuzzy, textured photo background, complex noise, slide wireframe, HTML card, table layout, ugly scribbles`
-      : `photorealistic, 3D CGI, blender render, hyperrealistic, muddy gradients, dark shadows, blurry, fuzzy, textured photo background, complex noise, slide wireframe, HTML card, table layout, ugly scribbles`;
-
-    return {
-      channel: 'kausalmedia',
-      layout,
-      hasLabels,
-      prompt: promptBase,
-      negativePrompt: negPrompt,
-      backgroundKnockout: isFull ? null : '#F8F5EE',
-      artStyle: 'comic-editorial'
-    };
+  if (isFull) {
+    const envContext = isIndoor
+      ? 'authentic 1990s-2000s Indonesian commercial indoor interior hall, trading desks, authentic architectural indoor perspective'
+      : 'authentic modern Indonesian architectural and contextual environment, authentic cityscape';
+    promptBase = `editorial comic art illustration of ${subject}, full 16:9 wide scene composition: ${envContext}, bold clean black ink contour outlines (3px–4px), flat and soft-cel gouache color wash, warm terracotta, sage, slate, and ochre palette, crisp commercial comic art, expressive hand-drawn detail, zero 3D CGI render, zero photorealism, zero hyperrealism`;
+  } else {
+    promptBase = `editorial comic art spot illustration of ${subject}: bold clean black ink contour outlines (3px–4px), isolated on a ${bgTone}, flat and soft-cel gouache color wash, warm terracotta, sage, and ochre accents, clean commercial comic clipart, soft subtle ground shadow, zero 3D render, zero photorealism, zero hyperrealism, authentic Indonesian context`;
   }
 
-  // Generic fallback
+  if (hasLabels) {
+    promptBase += `, with clean hand-drawn numeric price badges and minimal infographic callout tags`;
+  } else {
+    promptBase += `, clean illustration without baked arrows or text clutter`;
+  }
+
+  const negPrompt = isIndoor && isFull
+    ? `outdoor, street, cars, asphalt, open sky, storefronts, trees, traffic, alien gibberish, illegible lettering, photorealistic, 3D CGI, blender render, hyperrealistic, muddy gradients, dark shadows, blurry, fuzzy, textured photo background, complex noise, slide wireframe, HTML card, table layout, ugly scribbles`
+    : `photorealistic, 3D CGI, blender render, hyperrealistic, muddy gradients, dark shadows, blurry, fuzzy, textured photo background, complex noise, slide wireframe, HTML card, table layout, ugly scribbles`;
+
+  const bgKnockout = isFull
+    ? null
+    : ((resolvedChannelId === 'kausalmedia' || styleId === 'kausalmedia')
+      ? '#F8F5EE'
+      : (styleProfile?.palette?.bgPrimary || '#F8F5EE'));
+
   return {
-    channel,
+    channel: resolvedChannelId,
+    style: styleProfile?.id || styleId,
     layout,
     hasLabels,
-    prompt: `vector icon of ${subject}, bold 4px clean black ink outlines, flat color fill, minimalist comic clipart illustration, centered, isolated on a pure solid white background, 2D vector graphic, zero shading, no gradients`,
-    negativePrompt: `photorealistic, 3D, CGI, render, blender, hyperrealistic, shading, gradients, shadows, blurry, fuzzy, complex background`,
-    backgroundKnockout: '#FFFFFF',
-    artStyle: 'flat-vector'
+    prompt: `${prefixStr}${promptBase}`,
+    negativePrompt: negPrompt,
+    backgroundKnockout: bgKnockout,
+    artStyle
   };
 }
 
