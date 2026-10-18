@@ -12,7 +12,7 @@
 | Phase 0 | MOA Initialization & Disk Persistence | `main` | COMPLETED | Pass (27/27 baseline tests) | Direct on `main` |
 | Phase 1 | Dead Script Cleanup, `tts.js` Export Fix & Canonical `PipelineConfig` Schema | `feat/phase-1-schema-and-cleanup` | COMPLETED | Pass (27/27 tests + Phase 1 assertion) | Merged to `main` |
 | Phase 2 | Channel Profiles Debloat, Ring-Buffer Topic Storage & Variants | `feat/phase-2-channels-and-ideas` | COMPLETED | Pass (27/27 tests + Phase 2 assertion) | Merged to `main` |
-| Phase 3 | Style Engine Upgrade & Deterministic Brand Chrome Compiler | `feat/phase-3-style-engine` | PENDING | Pending | Pending |
+| Phase 3 | Style Engine Upgrade & Deterministic Brand Chrome Compiler | `feat/phase-3-style-engine` | COMPLETED | Pass (27/27 tests + Phase 3 assertion) | Merged to `main` |
 | Phase 4 | Dual Visual Engine (`vector-html` \| `ai-image` \| `hybrid`) & Prompt Upgrade | `feat/phase-4-dual-visual-engine` | PENDING | Pending | Pending |
 | Phase 5 | 5-Layer `stage-generator.js` Refactor (Active-Scene DOM, Subtitle Toggle & Virtual Clock) | `feat/phase-5-stage-generator` | PENDING | Pending | Pending |
 | Phase 6 | Low-Memory Ephemeral HTTP Server & `image2pipe` Deterministic `render.js` | `feat/phase-6-low-ram-renderer` | PENDING | Pending | Pending |
