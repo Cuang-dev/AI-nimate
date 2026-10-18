@@ -1,167 +1,517 @@
 /**
- * AI-nimate Broadcast Documentary Stage & Motion Engine
+ * AI-nimate Broadcast Documentary Stage & Motion Engine (Phase 5)
  * 
  * Generates deterministic, broadcast-grade HTML stage files for video rendering
- * and keyframe inspection, adhering to Kausal Media's aged papyrus aesthetic.
+ * and keyframe inspection, featuring a 5-Layer DOM structure, active-scene-only mounting,
+ * dynamic brand/style compilation, configurable subtitles, motion primitives, and a virtual clock API.
  * 
- * Features:
- * - Asset Deduplication Registry (eliminates multi-megabyte Base64 HTML bloat)
- * - 5-Layer Documentary Choreography:
- *     Layer 1: Multiplane Environment Canvas (Archival paper, watermark, vignette, SVG film grain, 2px progress bar)
- *     Layer 2: Multiplane Exhibit Viewport (.layout-hero, .layout-fullscreen, .layout-split with beat-driven continuous camera motion)
- *     Layer 3: Archival Stamp / Source Citation Pill (Crisp top-right classification badge with spring-in entrance)
- *     Layer 4: Procedural Financial Metric Callout / Odometer Card (Lower-left glassmorphic card with kinetic tabular-num count-up)
- *     Layer 5: Kinetic Subtitle Pill (Smooth rolling word window, active word highlight elevation, webfonts)
- * - Choreographed Scene Transitions (Directional blur/scale settle)
- * - Deterministic Clock API (window.seekToBeat, window.seekToTime, window.startStage)
+ * 5-Layer Architecture:
+ *   - Layer 0 (#layer-0-bg): Brand background color & SVG pattern from style-manager
+ *   - Layer 1 (#layer-1-watermark): Brand watermark & corner registration ticks
+ *   - Layer 2 (#layer-2-chrome): Documentary header bar with channel badge & #stage-chapter-title
+ *   - Layer 3 (#layer-3-sandbox): Central visual exhibit viewport (active scene ONLY; 80% with subtitles, 92% without)
+ *   - Layer 4 (#layer-4-vignette): Optical vignette overlay (opacity from styleProfile.chrome.vignetteStrength)
+ *   - Layer 5 (#layer-5-subtitles): Conditionally mounted subtitles (kinetic-pill, broadcast-lower, karaoke-word)
  */
 
 const fs = require('fs');
 const path = require('path');
 
-const REPO_ROOT = path.resolve(__dirname, '..');
-
-const MIME_MAP = {
-  '.svg': 'image/svg+xml',
-  '.jpg': 'image/jpeg',
-  '.jpeg': 'image/jpeg',
-  '.png': 'image/png',
-  '.webp': 'image/webp',
-  '.gif': 'image/gif'
-};
+const { getChannelProfile } = require('../channels/channel-manager');
+const {
+  getStyleProfile,
+  compileStyleCssVariables,
+  renderBrandBackgroundLayerHtml
+} = require('../styles/style-manager');
+const { normalizePipelineConfig } = require('../config/schema');
 
 /**
- * Resolve an asset source path into a bulletproof Base64 Data URI
- * to eliminate broken image placeholders and Chromium 404s.
+ * Resolves an asset source path into a relative /assets/... URL.
+ * NEVER returns Base64 data:image/... strings.
+ * 
+ * @param {string} src
+ * @returns {string} Relative URL (e.g. '/assets/image.png')
  */
 function resolveAssetAsDataUri(src) {
-  if (!src) return null;
+  if (!src) return '';
+  if (typeof src !== 'string') return String(src);
   if (src.startsWith('data:')) return src;
   if (src.startsWith('http://') || src.startsWith('https://')) return src;
-
-  const candidates = [
-    path.isAbsolute(src) ? src : null,
-    path.resolve(REPO_ROOT, src),
-    path.resolve(REPO_ROOT, 'assets', src),
-    path.resolve(REPO_ROOT, 'assets', 'props', 'items', path.basename(src)),
-    path.resolve(process.cwd(), src),
-    path.resolve(process.cwd(), 'assets', src)
-  ].filter(Boolean);
-
-  for (const cand of candidates) {
-    if (fs.existsSync(cand) && fs.statSync(cand).isFile()) {
-      const ext = path.extname(cand).toLowerCase();
-      const mime = MIME_MAP[ext] || 'image/png';
-      const b64 = fs.readFileSync(cand).toString('base64');
-      return `data:${mime};base64,${b64}`;
-    }
-  }
-
-  return src;
+  if (src.startsWith('/assets/')) return src;
+  return `/assets/${path.basename(src)}`;
 }
 
-function generateStageHtml({
-  storyboard = { scenes: [] },
-  timings = { words: [], duration: 10 },
-  format = '16:9',
-  channelId = 'kausalmedia',
-  testMode = false
-}) {
-  const isShort = format === '9:16';
+/**
+ * Extracts clean subject prompt by removing system prompt boilerplate.
+ * 
+ * @param {string} rawText
+ * @returns {string} Clean subject prompt
+ */
+function extractCleanPrompt(rawText) {
+  if (!rawText) return 'Visual exhibit representation';
+  let text = String(rawText).trim();
+  text = text.replace(/^(editorial comic art illustration of|editorial comic art spot illustration of|vector icon of)\s*/i, '');
+  text = text.replace(/:\s*bold clean black ink contour.*$/i, '');
+  text = text.replace(/:\s*bold 4px clean black ink.*$/i, '');
+  text = text.replace(/,\s*(full 16:9 wide scene composition|isolated on a solid warm cream|clean illustration without baked arrows).*$/i, '');
+  return text.trim() || rawText;
+}
+
+/**
+ * Extracts Archival Stamp / Citation Badge from scene metadata.
+ * 
+ * @param {Object} sc
+ * @returns {string|null} Citation label or null
+ */
+function extractCitation(sc) {
+  if (!sc) return null;
+  if (sc.annotation) {
+    if (typeof sc.annotation === 'string') return sc.annotation;
+    if (sc.annotation.text) return sc.annotation.text;
+    if (sc.annotation.label) return sc.annotation.label;
+    if (sc.annotation.source) return sc.annotation.source;
+    if (sc.annotation.authority) return sc.annotation.authority;
+  }
+
+  const raw = ((sc.subtitle || '') + ' ' + (sc.exhibit?.description || '') + ' ' + (sc.narration || '')).trim();
+  if (!raw) return null;
+
+  const matchPojk = raw.match(/\b(POJK\s*(?:NO\.?|NOMOR)?\s*[\d\w\/\.\-]+)\b/i);
+  if (matchPojk) return 'DOKUMEN: ' + matchPojk[1].toUpperCase();
+
+  const matchUu = raw.match(/\b(UU\s*(?:NO\.?|NOMOR)?\s*[\d\w\/\.\-]+)\b/i);
+  if (matchUu) return 'REGULASI: ' + matchUu[1].toUpperCase();
+
+  const matchBei = raw.match(/\b(B-E-I|BEI|BURSA EFEK INDONESIA|IDX)\b/i);
+  if (matchBei) return 'KLASIFIKASI: BURSA EFEK INDONESIA';
+
+  const matchOjk = raw.match(/\b(OJK|OTORITAS JASA KEUANGAN)\b/i);
+  if (matchOjk) return 'PENGAWASAN: OTORITAS JASA KEUANGAN';
+
+  const matchBi = raw.match(/\b(BANK INDONESIA|BI)\b/i);
+  if (matchBi) return 'KLASIFIKASI: BANK INDONESIA';
+
+  const matchKpk = raw.match(/\b(KPK|KOMISI PEMBERANTASAN KORUPSI)\b/i);
+  if (matchKpk) return 'BUKTI ARSIP: BERKAS KPK';
+
+  const matchKemenkeu = raw.match(/\b(KEMENKEU|KEMENTERIAN KEUANGAN)\b/i);
+  if (matchKemenkeu) return 'ARSIP NEGARA: KEMENKEU RI';
+
+  const matchMedia = raw.match(/\b(BLOOMBERG|REUTERS|KONTAN|BISNIS INDONESIA)\b/i);
+  if (matchMedia) return 'SUMBER: ' + matchMedia[1].toUpperCase();
+
+  return null;
+}
+
+/**
+ * Extracts Procedural Financial Metric Callout from scene metadata.
+ * 
+ * @param {Object} sc
+ * @returns {Object|null} { value, label, note } or null
+ */
+function extractFinancialMetric(sc) {
+  if (!sc) return null;
+  if (sc.data) {
+    if (typeof sc.data === 'string') {
+      return { value: sc.data, label: 'METRIK UTAMA', note: '' };
+    }
+    if (typeof sc.data === 'object' && sc.data !== null) {
+      return {
+        value: sc.data.value || sc.data.metric || sc.data.amount || sc.data.stat || '0',
+        label: sc.data.label || sc.data.title || 'ANALISIS DATA',
+        note: sc.data.note || sc.data.source || sc.data.change || ''
+      };
+    }
+  }
+
+  const raw = ((sc.subtitle || '') + ' ' + (sc.exhibit?.description || '') + ' ' + (sc.narration || '')).trim();
+  if (!raw) return null;
+
+  const matchRupiah = raw.match(/\b(Rp\s*[-+]?[\d\.,]+(?:\s*(?:Triliun|Miliar|Juta|Ribu|T|M|B))?)\b/i);
+  if (matchRupiah) {
+    let label = 'VALUASI / NILAI';
+    if (/kontrak/i.test(raw)) label = 'NILAI KONTRAK';
+    else if (/rugi|loss|menguap|ambles|anjlok|boncos/i.test(raw)) label = 'KERUGIAN INVESTOR';
+    else if (/transaksi|volume/i.test(raw)) label = 'NILAI TRANSAKSI';
+    else if (/utang|liabilitas|debt/i.test(raw)) label = 'BEBAN UTANG';
+    else if (/laba|keuntungan|profit/i.test(raw)) label = 'LABA BERSIH';
+    else if (/modal|kapitalisasi|market cap/i.test(raw)) label = 'KAPITALISASI PASAR';
+    return { value: matchRupiah[1].trim(), label: label, note: 'Bursa Efek Indonesia' };
+  }
+
+  const matchPct = raw.match(/([-+]?\d+(?:[\.,]\d+)?\s*%)/);
+  if (matchPct) {
+    let label = 'FLUKTUASI HARGA';
+    if (/margin/i.test(raw)) label = 'MARGIN OPERASIONAL';
+    else if (/rugi|turun|jatuh|crash|menguap|ambles|anjlok/i.test(raw)) label = 'PENURUNAN NILAI';
+    else if (/naik|lonjakan|growth|melejit/i.test(raw)) label = 'PERTUMBUHAN';
+    return { value: matchPct[1].trim(), label: label, note: 'Perubahan Relatif' };
+  }
+
+  const matchMult = raw.match(/\b(\d+(?:[\.,]\d+)?\s*x)\b/i);
+  if (matchMult) {
+    return { value: matchMult[1].trim(), label: 'FAKTOR PENGALI', note: 'Rasio Valuasi' };
+  }
+
+  const matchUsd = raw.match(/(\$\s*[-+]?[\d\.,]+(?:\s*(?:Trillion|Billion|Million|T|B|M))?)/i);
+  if (matchUsd) {
+    return { value: matchUsd[1].trim(), label: 'VALUASI GLOBAL', note: 'Estimasi Pasar' };
+  }
+
+  return null;
+}
+
+/**
+ * Escapes characters for safe HTML inclusion
+ * 
+ * @param {string} str
+ * @returns {string}
+ */
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+/**
+ * Normalizes input arguments across multiple polymorphic calling conventions.
+ * 
+ * @param {*} arg1
+ * @param {*} [arg2]
+ * @param {*} [arg3]
+ * @param {*} [arg4]
+ * @returns {Object} Normalized execution context
+ */
+function resolveParameters(arg1, arg2, arg3, arg4) {
+  let rawScenes = [];
+  let rawConfig = {};
+  let channelProfile = null;
+  let styleProfile = null;
+
+  if (Array.isArray(arg1)) {
+    rawScenes = arg1;
+    if (arg2 && typeof arg2 === 'object') {
+      rawConfig = Object.assign({}, arg2);
+    }
+  } else if (arg1 && typeof arg1 === 'object') {
+    if (Array.isArray(arg1.scenes)) {
+      rawScenes = arg1.scenes;
+      rawConfig = Object.assign({}, arg1);
+    } else if (arg1.storyboard) {
+      if (Array.isArray(arg1.storyboard)) {
+        rawScenes = arg1.storyboard;
+      } else if (Array.isArray(arg1.storyboard.scenes)) {
+        rawScenes = arg1.storyboard.scenes;
+      } else if (arg1.storyboard.scenes && typeof arg1.storyboard.scenes === 'object') {
+        rawScenes = Object.values(arg1.storyboard.scenes);
+      }
+      rawConfig = Object.assign({}, arg1);
+    } else {
+      rawScenes = [];
+      rawConfig = Object.assign({}, arg1);
+    }
+  }
+
+  if (arg2 && typeof arg2 === 'object' && arg2 !== rawConfig) {
+    Object.assign(rawConfig, arg2);
+  }
+
+  const timings = arg1?.timings || arg2?.timings || { words: [], duration: 0 };
+  const testMode = Boolean(
+    rawConfig.testMode ||
+    rawConfig.isTestMode ||
+    arg1?.testMode ||
+    arg1?.isTestMode ||
+    arg2?.testMode ||
+    arg2?.isTestMode
+  );
+
+  if (rawConfig.format && !rawConfig.aspectRatio) {
+    rawConfig.aspectRatio = rawConfig.format;
+  }
+
+  const channelId = rawConfig.channelId || rawConfig.channel || 'kausalmedia';
+  if (arg3 && typeof arg3 === 'object' && arg3.id) {
+    channelProfile = arg3;
+  } else {
+    channelProfile = getChannelProfile(channelId);
+  }
+
+  const pipelineConfig = normalizePipelineConfig(rawConfig, channelProfile);
+  pipelineConfig.testMode = testMode;
+
+  const styleId = rawConfig.styleId || rawConfig.style || pipelineConfig.styleId || channelProfile?.defaultStyle || 'kausalmedia';
+  if (arg4 && typeof arg4 === 'object' && arg4.id && arg4.palette) {
+    styleProfile = arg4;
+  } else {
+    styleProfile = getStyleProfile(styleId);
+  }
+
+  return {
+    rawScenes,
+    pipelineConfig,
+    channelProfile,
+    styleProfile,
+    timings,
+    testMode
+  };
+}
+
+/**
+ * Renders the HTML markup for a single scene beat.
+ * 
+ * @param {Object} scene
+ * @param {string} channelTag
+ * @returns {string} HTML string
+ */
+function renderSceneMarkup(scene, channelTag) {
+  if (!scene) return '';
+
+  if (scene.isTestMode) {
+    const isFull = scene.layout === 'fullsize' || scene.layout === 'fullscreen';
+    const isSplit = scene.layout === 'split';
+    const cardCls = isFull ? 'card-fullscreen' : 'card-hero';
+    const layoutCls = isFull ? 'layout-fullsize' : (isSplit ? 'layout-split' : 'layout-hero');
+
+    return `<div class="scene-container ${layoutCls} active" id="scene-${scene.id}">
+  <div class="test-prompt-card ${cardCls}">
+    <div class="test-prompt-body">
+      <span class="test-prompt-tag">${scene.systemTag || `[SYSTEM_PROMPT_${channelTag}]`}</span>
+      <span class="test-prompt-text"> ${escapeHtml(scene.cleanPrompt || scene.narration || 'Scene visual asset prompt')}</span>
+    </div>
+  </div>
+</div>`;
+  }
+
+  if (scene.resolvedEngine === 'vector-html' && scene.vectorHtml) {
+    return `<div class="scene-container layout-vector active" id="scene-${scene.id}" style="width: 100%; height: 100%;">
+  ${scene.vectorHtml}
+</div>`;
+  }
+
+  let badgesHtml = '';
+  if (scene.citation) {
+    badgesHtml += `<div class="archival-stamp-badge"><span class="badge-dot"></span><span class="badge-text">${escapeHtml(scene.citation)}</span></div>`;
+  }
+  if (scene.financialMetric) {
+    badgesHtml += `<div class="financial-metric-card" id="metric-card-${scene.id}">
+  <div class="metric-card-header"><span class="metric-pill-dot"></span><span class="metric-label">${escapeHtml(scene.financialMetric.label)}</span></div>
+  <div class="metric-value" data-target="${escapeHtml(scene.financialMetric.value)}">${escapeHtml(scene.financialMetric.value)}</div>
+  ${scene.financialMetric.note ? `<div class="metric-subnote">${escapeHtml(scene.financialMetric.note)}</div>` : ''}
+</div>`;
+  }
+
+  if (scene.layout === 'split') {
+    const leftSrc = scene.assetUrl || '';
+    const rightSrc = scene.secondaryAssetUrl || leftSrc;
+    return `<div class="scene-container layout-split active" id="scene-${scene.id}">
+  <div class="split-pane split-left"><img class="exhibit-image" src="${leftSrc}" alt="${escapeHtml(scene.visualPrompt || 'Exhibit Left')}"></div>
+  <div class="split-pane split-right"><img class="exhibit-image" src="${rightSrc}" alt="${escapeHtml(scene.visualPrompt || 'Exhibit Right')}"></div>
+  ${badgesHtml}
+</div>`;
+  }
+
+  if (scene.layout === 'fullsize' || scene.layout === 'fullscreen' || scene.layout === 'fullbleed') {
+    const imgSrc = scene.assetUrl || '';
+    return `<div class="scene-container layout-fullsize active" id="scene-${scene.id}">
+  <img class="exhibit-image" src="${imgSrc}" alt="${escapeHtml(scene.visualPrompt || 'Exhibit')}">
+  ${badgesHtml}
+</div>`;
+  }
+
+  // Default: layout-hero
+  const imgSrc = scene.assetUrl || '';
+  const labeledSrc = scene.assetUrlLabeled || '';
+  return `<div class="scene-container layout-hero active" id="scene-${scene.id}">
+  <img class="exhibit-image exhibit-clean" src="${imgSrc}" alt="${escapeHtml(scene.visualPrompt || 'Exhibit')}">
+  ${labeledSrc ? `<img class="exhibit-image exhibit-labeled" src="${labeledSrc}" alt="${escapeHtml(scene.visualPrompt || 'Exhibit Labeled')}">` : ''}
+  ${badgesHtml}
+</div>`;
+}
+
+/**
+ * Generates deterministic, broadcast-grade HTML stage file with the 5-Layer architecture.
+ * 
+ * Supports both signatures:
+ *   generateStageHtml(storyboard, pipelineConfig, channelProfile, styleProfile)
+ *   generateStageHtml({ storyboard, timings, format, channelId, testMode })
+ * 
+ * @param {*} arg1
+ * @param {*} [arg2]
+ * @param {*} [arg3]
+ * @param {*} [arg4]
+ * @returns {string} Complete HTML string
+ */
+function generateStageHtml(arg1, arg2, arg3, arg4) {
+  const {
+    rawScenes,
+    pipelineConfig,
+    channelProfile,
+    styleProfile,
+    timings,
+    testMode
+  } = resolveParameters(arg1, arg2, arg3, arg4);
+
+  const aspectRatio = pipelineConfig.aspectRatio || '16:9';
+  const isShort = aspectRatio === '9:16';
   const width = isShort ? 1080 : 1920;
   const height = isShort ? 1920 : 1080;
-  const channelTag = String(channelId || 'kausalmedia').toUpperCase().replace(/[^A-Z0-9_]/g, '');
+  const channelTag = String(channelProfile?.id || pipelineConfig.channelId || 'kausalmedia').toUpperCase().replace(/[^A-Z0-9_]/g, '');
 
-  // Helper to extract clean subject prompt without system prompt boilerplate
-  function extractCleanPrompt(rawText) {
-    if (!rawText) return 'Visual exhibit representation';
-    let text = String(rawText).trim();
-    text = text.replace(/^(editorial comic art illustration of|editorial comic art spot illustration of|vector icon of)\s*/i, '');
-    text = text.replace(/:\s*bold clean black ink contour.*$/i, '');
-    text = text.replace(/:\s*bold 4px clean black ink.*$/i, '');
-    text = text.replace(/,\s*(full 16:9 wide scene composition|isolated on a solid warm cream|clean illustration without baked arrows).*$/i, '');
-    return text.trim() || rawText;
-  }
+  const subtitlesEnabled = Boolean(pipelineConfig.subtitles && pipelineConfig.subtitles.enabled);
+  const subtitleMode = (pipelineConfig.subtitles && pipelineConfig.subtitles.mode) ? pipelineConfig.subtitles.mode : (subtitlesEnabled ? 'kinetic-pill' : 'off');
+  const layer3Height = subtitlesEnabled ? '80%' : '92%';
+  const vignetteStrength = styleProfile?.chrome?.vignetteStrength ?? 0.22;
 
-  // Deduplication Registry: Map unique assets to asset IDs (assetId -> dataUri)
-  const assetRegistry = {};
-  const pathToAssetId = new Map();
-  const dataUriToAssetId = new Map();
-  let assetSeq = 0;
+  // Process and sanitize scenes
+  let currentCumMs = 0;
+  const processedScenes = rawScenes.map((sc, idx) => {
+    const isSceneTestMode = Boolean(testMode || sc.isTestMode || sc.testMode || sc.exhibit?.isPromptBox);
+    const index = typeof sc.index === 'number' ? sc.index : idx;
+    const id = sc.id !== undefined && sc.id !== null ? String(sc.id) : `scene-${String(idx + 1).padStart(2, '0')}`;
 
-  function registerAsset(rawSrc) {
-    if (!rawSrc) return null;
-    if (pathToAssetId.has(rawSrc)) {
-      return pathToAssetId.get(rawSrc);
-    }
-    const dataUri = resolveAssetAsDataUri(rawSrc);
-    if (!dataUri) return null;
-
-    if (dataUriToAssetId.has(dataUri)) {
-      const existingId = dataUriToAssetId.get(dataUri);
-      pathToAssetId.set(rawSrc, existingId);
-      return existingId;
+    let startMs = currentCumMs;
+    if (sc.startMs !== undefined && sc.startMs !== null) {
+      startMs = Number(sc.startMs);
+    } else if (sc.startTime !== undefined && sc.startTime !== null) {
+      startMs = Math.round(Number(sc.startTime) * 1000);
     }
 
-    assetSeq++;
-    const assetId = `asset_${String(assetSeq).padStart(3, '0')}`;
-    assetRegistry[assetId] = dataUri;
-    dataUriToAssetId.set(dataUri, assetId);
-    pathToAssetId.set(rawSrc, assetId);
-    return assetId;
-  }
+    let durationMs = 5000;
+    if (sc.durationMs !== undefined && sc.durationMs !== null) {
+      durationMs = Number(sc.durationMs);
+    } else if (sc.duration !== undefined && sc.duration !== null) {
+      durationMs = Math.round(Number(sc.duration) * 1000);
+    } else if (sc.endMs !== undefined && sc.endMs !== null) {
+      durationMs = Math.max(500, Number(sc.endMs) - startMs);
+    } else if (sc.endTime !== undefined && sc.endTime !== null) {
+      durationMs = Math.max(500, Math.round(Number(sc.endTime) * 1000) - startMs);
+    }
 
-  // Process scenes: Preserve data & annotations, register deduplicated assets
-  const processedScenes = (storyboard.scenes || []).map(sc => {
-    const sceneCopy = Object.assign({}, sc);
-    sceneCopy.isTestMode = Boolean(testMode || sc.isTestMode || sc.exhibit?.isPromptBox);
-    sceneCopy.data = sc.data !== undefined ? sc.data : null;
-    sceneCopy.annotation = sc.annotation !== undefined ? sc.annotation : null;
+    const endMs = (sc.endMs !== undefined && sc.endMs !== null)
+      ? Number(sc.endMs)
+      : (sc.endTime !== undefined && sc.endTime !== null ? Math.round(Number(sc.endTime) * 1000) : startMs + durationMs);
 
-    if (sceneCopy.isTestMode) {
-      const subjectDesc = sc.exhibit?.description || sc.exhibit?.nanoBananaPrompt || sc.subtitle || 'Scene visual asset prompt';
-      sceneCopy.cleanPrompt = extractCleanPrompt(subjectDesc);
-      sceneCopy.systemTag = `[SYSTEM_PROMPT_${channelTag}]`;
-      if (sceneCopy.exhibit) {
-        sceneCopy.exhibit = Object.assign({}, sceneCopy.exhibit, {
-          description: sceneCopy.cleanPrompt,
-          nanoBananaPrompt: sceneCopy.cleanPrompt
-        });
+    currentCumMs = endMs;
+
+    const narration = sc.narration || sc.subtitle || sc.script || '';
+    const subtitle = sc.subtitle || sc.narration || '';
+    const chapterTitle = sc.chapterTitle || sc.title || `CHAPTER // ${String(idx + 1).padStart(2, '0')}`;
+    const layout = (sc.layout || sc.exhibit?.layout || 'hero').toLowerCase();
+
+    let cleanPrompt = '';
+    let systemTag = '';
+    if (isSceneTestMode) {
+      const rawDesc = sc.exhibit?.description || sc.exhibit?.nanoBananaPrompt || sc.exhibit?.artistPrompt || sc.visualPrompt || sc.narration || sc.subtitle || 'Scene visual asset prompt';
+      cleanPrompt = extractCleanPrompt(rawDesc);
+      systemTag = `[SYSTEM_PROMPT_${channelTag}]`;
+    }
+
+    let resolvedEngine = sc.resolvedEngine;
+    if (!resolvedEngine) {
+      if (sc.vectorHtml) {
+        resolvedEngine = 'vector-html';
+      } else if (sc.assetUrl || sc.image || sc.src || sc.exhibit?.src) {
+        resolvedEngine = 'ai-image';
+      } else {
+        resolvedEngine = pipelineConfig.visualEngine === 'vector-html' ? 'vector-html' : 'ai-image';
       }
-    } else if (sceneCopy.exhibit && sceneCopy.exhibit.src) {
-      const assetId = registerAsset(sceneCopy.exhibit.src);
-      const labeledAssetId = sceneCopy.exhibit.src_labeled ? registerAsset(sceneCopy.exhibit.src_labeled) : null;
-      sceneCopy.exhibit = Object.assign({}, sceneCopy.exhibit, {
-        src: assetId,
-        assetId: assetId,
-        src_labeled: labeledAssetId,
-        labeledAssetId: labeledAssetId
-      });
     }
 
-    if (sceneCopy.secondaryExhibit && sceneCopy.secondaryExhibit.src) {
-      const secAssetId = registerAsset(sceneCopy.secondaryExhibit.src);
-      sceneCopy.secondaryExhibit = Object.assign({}, sceneCopy.secondaryExhibit, {
-        src: secAssetId,
-        assetId: secAssetId
-      });
+    const vectorHtml = sc.vectorHtml || (resolvedEngine === 'vector-html' ? `<div class="vec-card" style="padding: 24px;">${escapeHtml(narration)}</div>` : null);
+
+    let assetUrl = null;
+    if (sc.assetUrl) {
+      assetUrl = sc.assetUrl;
+    } else if (sc.exhibit?.src) {
+      assetUrl = sc.exhibit.src.startsWith('/assets/') ? sc.exhibit.src : `/assets/${path.basename(sc.exhibit.src)}`;
+    } else if (sc.src || sc.image) {
+      const srcVal = sc.src || sc.image;
+      assetUrl = srcVal.startsWith('/assets/') ? srcVal : `/assets/${path.basename(srcVal)}`;
     }
 
-    return sceneCopy;
+    let assetUrlLabeled = null;
+    if (sc.exhibit?.src_labeled) {
+      assetUrlLabeled = sc.exhibit.src_labeled.startsWith('/assets/') ? sc.exhibit.src_labeled : `/assets/${path.basename(sc.exhibit.src_labeled)}`;
+    }
+
+    let secondaryAssetUrl = null;
+    if (sc.secondaryAssetUrl) {
+      secondaryAssetUrl = sc.secondaryAssetUrl;
+    } else if (sc.secondaryExhibit?.src) {
+      secondaryAssetUrl = sc.secondaryExhibit.src.startsWith('/assets/') ? sc.secondaryExhibit.src : `/assets/${path.basename(sc.secondaryExhibit.src)}`;
+    }
+
+    const citation = extractCitation(sc);
+    const financialMetric = extractFinancialMetric(sc);
+
+    return {
+      index,
+      id,
+      startMs,
+      endMs,
+      durationMs,
+      startTime: startMs / 1000,
+      endTime: endMs / 1000,
+      duration: durationMs / 1000,
+      narration,
+      subtitle,
+      chapterTitle,
+      layout,
+      resolvedEngine,
+      visualPrompt: sc.visualPrompt || narration,
+      vectorHtml,
+      assetUrl,
+      assetUrlLabeled,
+      secondaryAssetUrl,
+      isTestMode: isSceneTestMode,
+      cleanPrompt,
+      systemTag,
+      citation,
+      financialMetric,
+      data: sc.data !== undefined ? sc.data : null,
+      annotation: sc.annotation !== undefined ? sc.annotation : null
+    };
   });
+
+  const totalDurationMs = processedScenes.length > 0
+    ? Math.max(timings.duration ? timings.duration * 1000 : 0, processedScenes[processedScenes.length - 1].endMs)
+    : (timings.duration ? timings.duration * 1000 : 10000);
+
+  // Compile CSS Variables and Layers 0, 1, 2 HTML
+  const cssVariables = compileStyleCssVariables(styleProfile);
+  const brandLayersHtml = renderBrandBackgroundLayerHtml(styleProfile, channelProfile, aspectRatio);
+
+  // Initial Scene Markup for Layer 3 (Active Scene Only)
+  const initialSceneMarkup = processedScenes.length > 0
+    ? renderSceneMarkup(processedScenes[0], channelTag)
+    : '';
+
+  // Layer 5 Subtitles HTML (omitted when subtitles are disabled)
+  const subtitlesHtml = subtitlesEnabled
+    ? `<div id="layer-5-subtitles" class="subtitle-layer ${subtitleMode}">
+  <div id="subtitle-box" class="subtitle-box ${subtitleMode}"></div>
+</div>`
+    : '';
 
   const scenesJson = JSON.stringify(processedScenes);
   const timingsJson = JSON.stringify(timings.words || []);
-  const assetRegistryJson = JSON.stringify(assetRegistry);
-  const totalDuration = timings.duration || 10;
 
   return `<!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Kausal Media Stage</title>
+  <title>${escapeHtml(channelProfile?.name || 'Stage')} - AI-nimate Documentary Stage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap');
+
+    ${cssVariables}
 
     * {
       box-sizing: border-box;
@@ -172,137 +522,69 @@ function generateStageHtml({
       width: ${width}px;
       height: ${height}px;
       overflow: hidden;
-      background-color: #faf6ee;
-      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      color: #1c1917;
+      background-color: var(--bg-primary);
+      font-family: var(--font-sans);
+      color: var(--text-primary);
       position: relative;
     }
 
-    /* LAYER 1: Multiplane Environment Canvas */
-    #canvas-environment {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 1;
-      background: radial-gradient(circle at 50% 45%, rgba(255, 253, 245, 0.45) 0%, rgba(240, 230, 210, 0.72) 65%, rgba(215, 200, 175, 0.95) 100%);
-    }
-
-    #batik-watermark {
-      position: absolute;
-      inset: 0;
-      opacity: 0.06;
-      background-image: repeating-linear-gradient(45deg, #1c1917 0, #1c1917 2px, transparent 0, transparent 40px);
-      z-index: 2;
-      pointer-events: none;
-    }
-
-    #archival-border {
-      position: absolute;
-      top: 24px;
-      left: 24px;
-      right: 24px;
-      bottom: 24px;
-      border: 1px solid rgba(45, 35, 25, 0.35);
-      z-index: 3;
-      pointer-events: none;
-    }
-    #archival-border-inner {
-      position: absolute;
-      top: 32px;
-      left: 32px;
-      right: 32px;
-      bottom: 32px;
-      border: 1px solid rgba(180, 83, 9, 0.25);
-      z-index: 3;
-      pointer-events: none;
-    }
-
-    #film-grain {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 4;
-      opacity: 0.045;
-    }
-
+    /* 2px Documentary Top Progress Bar */
     #doc-progress-bar {
       position: absolute;
       top: 0;
       left: 0;
       height: 2px;
       width: 0%;
-      background: linear-gradient(90deg, #b45309 0%, #d97706 60%, #f59e0b 100%);
-      box-shadow: 0 0 8px rgba(180, 83, 9, 0.5);
+      background: linear-gradient(90deg, var(--brand-primary) 0%, var(--brand-accent) 100%);
+      box-shadow: 0 0 8px var(--brand-primary);
       z-index: 1000;
       pointer-events: none;
       transition: width 0.08s linear;
     }
 
-    /* LAYER 2: Stage Exhibit Viewport */
-    #stage-viewport {
+    /* LAYER 3: Central Visual Exhibit Viewport (Active Scene Only) */
+    #layer-3-sandbox, #stage-viewport {
       position: absolute;
-      inset: 0;
+      top: 48px;
+      left: 4%;
+      width: 92%;
+      height: ${layer3Height};
+      z-index: 10;
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 10;
+      overflow: hidden;
+      box-sizing: border-box;
     }
 
     .scene-container {
-      position: absolute;
-      inset: 0;
       width: 100%;
       height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      opacity: 0;
-      visibility: hidden;
-      transform: scale(0.97) translateY(8px);
-      filter: blur(4px);
-      transition: opacity 0.18s cubic-bezier(0.16, 1, 0.3, 1),
-                  transform 0.18s cubic-bezier(0.16, 1, 0.3, 1),
-                  filter 0.16s ease-out,
-                  visibility 0.18s;
-      pointer-events: none;
-    }
-    .scene-container.active {
-      opacity: 1;
-      visibility: visible;
-      transform: scale(1.0) translateY(0);
-      filter: blur(0px);
-      pointer-events: auto;
-    }
-    .scene-container.exiting {
-      opacity: 0;
-      transform: scale(1.02) translateY(-6px);
-      filter: blur(3px);
-      visibility: hidden;
-      pointer-events: none;
+      position: relative;
     }
 
-    /* VARIATION 1: Hero Centered Exhibit */
+    /* Layout 1: Hero Centered Exhibit */
     .scene-container.layout-hero .exhibit-image {
-      max-width: ${isShort ? '82%' : '58%'};
-      max-height: ${isShort ? '56%' : '66%'};
+      max-width: ${isShort ? '82%' : '62%'};
+      max-height: ${isShort ? '56%' : '72%'};
       object-fit: contain;
       mix-blend-mode: multiply;
       filter: contrast(1.05);
       will-change: transform;
     }
 
-    /* VARIATION 2: Fullscreen Cinematic Exhibit */
+    /* Layout 2: Fullscreen / Fullsize Cinematic Exhibit */
     .scene-container.layout-fullscreen,
     .scene-container.layout-fullsize,
     .scene-container.layout-fullbleed {
-      inset: 0;
       width: 100%;
       height: 100%;
     }
-    .scene-container.layout-fullscreen .exhibit-image,
     .scene-container.layout-fullsize .exhibit-image,
+    .scene-container.layout-fullscreen .exhibit-image,
     .scene-container.layout-fullbleed .exhibit-image {
       width: 100%;
       height: 100%;
@@ -312,25 +594,25 @@ function generateStageHtml({
       filter: contrast(1.02) brightness(0.96);
       will-change: transform;
     }
-    .scene-container.layout-fullscreen::after,
     .scene-container.layout-fullsize::after,
+    .scene-container.layout-fullscreen::after,
     .scene-container.layout-fullbleed::after {
       content: '';
       position: absolute;
       inset: 0;
       pointer-events: none;
-      background: linear-gradient(to top, rgba(20, 16, 12, 0.88) 0%, rgba(20, 16, 12, 0.45) 28%, transparent 55%);
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.35) 25%, transparent 50%);
       z-index: 5;
     }
 
-    /* VARIATION 3: Split 2-Pane Exhibit */
+    /* Layout 3: Split 2-Pane Exhibit */
     .scene-container.layout-split {
       display: flex;
       flex-direction: ${isShort ? 'column' : 'row'};
       align-items: center;
       justify-content: center;
       gap: ${isShort ? '32px' : '64px'};
-      padding: ${isShort ? '80px 40px' : '60px 100px'};
+      padding: ${isShort ? '80px 40px' : '40px 80px'};
     }
     .scene-container.layout-split .split-pane {
       flex: 1;
@@ -338,7 +620,7 @@ function generateStageHtml({
       align-items: center;
       justify-content: center;
       max-width: ${isShort ? '90%' : '48%'};
-      height: ${isShort ? '42%' : '75%'};
+      height: ${isShort ? '42%' : '80%'};
       will-change: transform;
     }
     .scene-container.layout-split .split-pane img {
@@ -350,28 +632,13 @@ function generateStageHtml({
       will-change: transform;
     }
 
-    /* Dual-Asset Progressive Label Reveal */
-    .exhibit-labeled {
-      position: absolute;
-      opacity: 0;
-      transition: opacity 0.4s ease-in-out;
-      pointer-events: none;
-      z-index: 6;
-    }
-    .scene-container.show-labels .exhibit-labeled {
-      opacity: 1;
-    }
-    .scene-container.show-labels .exhibit-clean {
-      opacity: 0;
-    }
-
     /* Test Mode Visual Prompt Card Box */
     .test-prompt-card {
-      background: rgba(255, 253, 248, 0.96);
-      border: 2px dashed rgba(180, 83, 9, 0.45);
+      background: var(--bg-surface);
+      border: 2px dashed var(--brand-accent);
       border-radius: 14px;
       padding: ${isShort ? '28px 24px' : '36px 44px'};
-      box-shadow: 0 14px 36px rgba(45, 35, 25, 0.12);
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.12);
       text-align: left;
       position: relative;
       will-change: transform;
@@ -383,20 +650,20 @@ function generateStageHtml({
     .test-prompt-card.card-fullscreen {
       width: ${isShort ? '92%' : '86%'};
       max-width: 1450px;
-      border: 2px solid rgba(180, 83, 9, 0.65);
-      box-shadow: 0 16px 44px rgba(45, 35, 25, 0.18);
+      border: 2px solid var(--brand-primary);
+      box-shadow: 0 16px 44px rgba(0, 0, 0, 0.18);
     }
     .test-prompt-body {
       font-size: ${isShort ? '22px' : '26px'};
       line-height: 1.6;
-      color: #1c1917;
+      color: var(--text-primary);
       font-weight: 500;
       white-space: pre-wrap;
       word-break: break-word;
     }
     .test-prompt-tag {
-      background: #b45309;
-      color: #faf6ee;
+      background: var(--brand-primary);
+      color: var(--bg-primary);
       padding: 4px 12px;
       border-radius: 6px;
       font-size: ${isShort ? '16px' : '20px'};
@@ -405,76 +672,62 @@ function generateStageHtml({
       margin-right: 12px;
       display: inline-block;
       vertical-align: middle;
-      font-family: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+      font-family: var(--font-mono);
     }
     .test-prompt-text {
-      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      font-family: var(--font-sans);
     }
 
-    /* LAYER 3: Archival Stamp / Source Citation Pill */
+    /* Archival Stamp / Citation Badge */
     .archival-stamp-badge {
       position: absolute;
-      top: ${isShort ? '52px' : '46px'};
-      right: ${isShort ? '36px' : '52px'};
-      background: rgba(255, 253, 248, 0.94);
-      border: 1.5px solid rgba(180, 83, 9, 0.6);
+      top: ${isShort ? '24px' : '20px'};
+      right: ${isShort ? '24px' : '28px'};
+      background: var(--bg-surface);
+      border: 1.5px solid var(--border-muted);
       border-radius: 8px;
       padding: ${isShort ? '8px 16px' : '7px 18px'};
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      box-shadow: 0 8px 24px rgba(45, 35, 25, 0.12);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
       backdrop-filter: blur(8px);
       z-index: 35;
       pointer-events: none;
-      transform: translateY(-8px) scale(0.92);
-      opacity: 0;
-      transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.25s ease;
-    }
-    .scene-container.active .archival-stamp-badge {
-      transform: translateY(0) scale(1);
-      opacity: 1;
     }
     .badge-dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: #b91c1c;
-      box-shadow: 0 0 6px rgba(185, 28, 28, 0.6);
+      background: var(--brand-primary);
+      box-shadow: 0 0 6px var(--brand-primary);
       flex-shrink: 0;
     }
     .badge-text {
-      font-family: 'JetBrains Mono', 'SF Mono', Monaco, Menlo, Consolas, monospace;
+      font-family: var(--font-mono);
       font-size: ${isShort ? '13px' : '14px'};
       font-weight: 700;
       letter-spacing: 1.2px;
       text-transform: uppercase;
-      color: #1c1917;
+      color: var(--text-primary);
     }
 
-    /* LAYER 4: Procedural Financial Metric Callout / Odometer Card */
+    /* Financial Metric Callout / Odometer Card */
     .financial-metric-card {
       position: absolute;
-      left: ${isShort ? '48px' : '64px'};
-      bottom: ${isShort ? '240px' : '72px'};
-      background: rgba(255, 253, 248, 0.94);
-      border: 1px solid rgba(180, 83, 9, 0.35);
-      border-left: 4px solid #b45309;
+      left: ${isShort ? '32px' : '48px'};
+      bottom: ${isShort ? '180px' : '40px'};
+      background: var(--bg-surface);
+      border: 1px solid var(--border-muted);
+      border-left: 4px solid var(--brand-primary);
       border-radius: 12px;
       padding: ${isShort ? '14px 20px' : '16px 24px'};
-      box-shadow: 0 12px 32px rgba(45, 35, 25, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
       backdrop-filter: blur(12px);
       z-index: 45;
       min-width: ${isShort ? '220px' : '260px'};
       max-width: ${isShort ? '320px' : '360px'};
       pointer-events: none;
-      transform: translateY(10px) scale(0.96);
-      opacity: 0;
-      transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.25s ease;
-    }
-    .scene-container.active .financial-metric-card {
-      transform: translateY(0) scale(1);
-      opacity: 1;
     }
     .metric-card-header {
       display: flex;
@@ -486,53 +739,70 @@ function generateStageHtml({
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: #b45309;
-      box-shadow: 0 0 6px rgba(180, 83, 9, 0.6);
+      background: var(--brand-accent);
+      box-shadow: 0 0 6px var(--brand-accent);
       flex-shrink: 0;
     }
     .metric-label {
-      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-family: var(--font-sans);
       font-size: ${isShort ? '11px' : '12px'};
       font-weight: 700;
       letter-spacing: 1.2px;
       text-transform: uppercase;
-      color: #78716c;
+      color: var(--text-secondary);
     }
     .metric-value {
-      font-family: 'JetBrains Mono', 'SF Mono', Monaco, Menlo, Consolas, monospace;
+      font-family: var(--font-mono);
       font-variant-numeric: tabular-nums;
       font-size: ${isShort ? '28px' : '34px'};
       font-weight: 800;
-      color: #1c1917;
+      color: var(--text-primary);
       letter-spacing: -0.5px;
       line-height: 1.2;
     }
     .metric-subnote {
-      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-family: var(--font-sans);
       font-size: 11px;
-      color: #a8a29e;
+      color: var(--text-secondary);
       margin-top: 4px;
     }
 
-    /* LAYER 5: Word-by-Word Kinetic Subtitle Pill */
-    #subtitle-anchor {
+    /* LAYER 4: Optical Vignette Overlay */
+    #layer-4-vignette {
       position: absolute;
-      ${isShort ? 'top: 68%; transform: translateY(-50%);' : 'bottom: 64px;'}
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 40;
+      opacity: ${vignetteStrength};
+      background: radial-gradient(circle at 50% 50%, transparent 50%, rgba(0, 0, 0, 0.75) 100%);
+    }
+
+    /* LAYER 5: Subtitles */
+    #layer-5-subtitles, #subtitle-anchor {
+      position: absolute;
       left: 0;
       right: 0;
+      bottom: 48px;
       display: flex;
       justify-content: center;
       align-items: center;
       z-index: 50;
       pointer-events: none;
     }
+    .subtitle-layer.karaoke-word {
+      z-index: 50;
+    }
 
+    /* kinetic-pill mode */
+    .subtitle-layer.kinetic-pill .subtitle-box,
     .subtitle-pill {
-      background: rgba(255, 253, 248, 0.96);
-      border: 1.5px solid rgba(180, 83, 9, 0.38);
+      background: var(--bg-surface);
+      border: 1.5px solid var(--border-muted);
       border-radius: 40px;
       padding: ${isShort ? '14px 32px' : '12px 36px'};
-      box-shadow: 0 10px 30px rgba(45, 35, 25, 0.16), 0 2px 6px rgba(45, 35, 25, 0.08);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.06);
       backdrop-filter: blur(10px);
       white-space: nowrap;
       display: inline-flex;
@@ -540,188 +810,169 @@ function generateStageHtml({
       justify-content: center;
       max-width: ${isShort ? '90%' : '75%'};
       min-height: ${isShort ? '68px' : '60px'};
-      transition: all 0.2s ease;
     }
 
+    /* broadcast-lower mode */
+    .subtitle-layer.broadcast-lower {
+      bottom: 0 !important;
+      width: 100%;
+    }
+    .subtitle-layer.broadcast-lower .subtitle-box {
+      width: 100%;
+      padding: 16px 48px;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(15, 23, 42, 0.88) 35%, rgba(15, 23, 42, 0.98) 100%);
+      border-top: 1px solid var(--border-muted);
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .subtitle-layer.broadcast-lower .subtitle-word {
+      font-family: var(--font-sans);
+      font-size: 26px;
+      color: #f8fafc;
+    }
+
+    /* karaoke-word mode */
+    .subtitle-layer.karaoke-word .subtitle-box {
+      background: var(--bg-surface);
+      border: 2px solid var(--brand-primary);
+      border-radius: 40px;
+      padding: 14px 40px;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.16);
+      backdrop-filter: blur(12px);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Subtitle Word Tokens */
     .subtitle-word {
       display: inline-block;
       margin: 0 7px;
-      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      font-family: var(--font-sans);
       font-size: ${isShort ? '34px' : '30px'};
       font-weight: 800;
       letter-spacing: -0.4px;
       transition: transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1),
                   color 0.12s ease,
-                  opacity 0.15s ease,
-                  text-shadow 0.15s ease;
+                  opacity 0.15s ease;
       white-space: nowrap;
     }
     .subtitle-word.spoken {
-      color: #292524;
+      color: var(--text-primary);
       opacity: 0.85;
       transform: translateY(0) scale(1);
     }
     .subtitle-word.active {
-      color: #b45309;
+      color: var(--brand-primary);
       transform: translateY(-2px) scale(1.08);
-      text-shadow: 0 2px 10px rgba(180, 83, 9, 0.35);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
       font-weight: 900;
       opacity: 1;
     }
     .subtitle-word.upcoming {
-      color: rgba(41, 37, 36, 0.35);
-      opacity: 0.55;
+      color: var(--text-secondary);
+      opacity: 0.45;
       transform: translateY(0) scale(0.98);
+    }
+
+    /* Pre-Injected Motion Primitives CSS Utility Kit (Vector Scenes) */
+    .vec-grid {
+      background-image: linear-gradient(var(--grid-line) 1px, transparent 1px),
+                        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .vec-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-muted);
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      box-sizing: border-box;
+    }
+    .vec-stat-huge {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .vec-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 4px;
+      border: 1px solid var(--border-muted);
+      background: var(--bg-secondary);
+      color: var(--brand-primary);
+    }
+    .vec-flow-arrow {
+      stroke-dasharray: 8 8;
+      stroke-dashoffset: calc(-32px * var(--scene-progress, 0));
+    }
+    .vec-bar-fill {
+      transform-origin: left;
+      transform: scaleX(var(--scene-progress, 0));
+      transition: none;
+    }
+    .vec-draw-path {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: calc(1000 * (1 - var(--scene-progress, 0)));
+    }
+    .vec-pan-zoom {
+      will-change: transform;
+      transform: scale(calc(1.0 + 0.05 * var(--scene-progress, 0)))
+                 translateY(calc(-8px * var(--scene-progress, 0)));
     }
   </style>
 </head>
 <body>
 
-  <!-- LAYER 1: Background, Framing, Film Grain & Progress Bar -->
+  <!-- Top 2px Progress Bar -->
   <div id="doc-progress-bar"></div>
-  <div id="canvas-environment"></div>
-  <div id="batik-watermark"></div>
-  <div id="archival-border"></div>
-  <div id="archival-border-inner"></div>
-  <svg id="film-grain" xmlns="http://www.w3.org/2000/svg">
-    <filter id="grain-filter">
-      <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" stitchTiles="stitch"/>
-      <feColorMatrix type="saturate" values="0"/>
-    </filter>
-    <rect width="100%" height="100%" filter="url(#grain-filter)"/>
-  </svg>
 
-  <!-- LAYER 2: Exhibit Viewport -->
-  <div id="stage-viewport"></div>
+  <!-- LAYERS 0, 1, 2: Brand Background, Watermark, Documentary Chrome -->
+  ${brandLayersHtml}
 
-  <!-- LAYER 5: Word-by-Word Kinetic Subtitle Pill -->
-  <div id="subtitle-anchor">
-    <div class="subtitle-pill" id="subtitle-box">
-      <span class="subtitle-word active">Kausal</span>
-      <span class="subtitle-word spoken">Media</span>
-    </div>
+  <!-- LAYER 3: Central Visual Exhibit Viewport (Active Scene Only) -->
+  <div id="layer-3-sandbox">
+    ${initialSceneMarkup}
   </div>
 
+  <!-- LAYER 4: Optical Vignette Overlay -->
+  <div id="layer-4-vignette"></div>
+
+  <!-- LAYER 5: Subtitles (Conditionally Mounted) -->
+  ${subtitlesHtml}
+
   <script>
-    window.ASSET_REGISTRY = ${assetRegistryJson};
+    window.__SCENES__ = ${scenesJson};
+    window.__TIMINGS__ = ${timingsJson};
+    window.__TOTAL_DURATION_MS__ = ${totalDurationMs};
+    window.__IS_SHORT__ = ${isShort};
+    window.__SUBTITLES_ENABLED__ = ${subtitlesEnabled};
+    window.__SUBTITLE_MODE__ = '${subtitleMode}';
+    window.__CHANNEL_TAG__ = '${channelTag}';
+    window.__currentTimeMs = 0;
+    window.__mountedSceneId = '${processedScenes[0]?.id || ''}';
+    window.__MANUAL_SEEK_MODE__ = false;
 
-    function getAssetUri(srcOrId) {
-      if (!srcOrId) return '';
-      if (window.ASSET_REGISTRY && window.ASSET_REGISTRY[srcOrId]) {
-        return window.ASSET_REGISTRY[srcOrId];
-      }
-      return srcOrId;
+    function escapeHtmlClient(str) {
+      if (!str) return '';
+      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
 
-    const scenes = ${scenesJson};
-    const timings = ${timingsJson};
-    const totalDuration = ${totalDuration};
-    const isShort = ${isShort};
-    const windowSize = isShort ? 4 : 6;
-
-    const viewport = document.getElementById('stage-viewport');
-    const subtitleBox = document.getElementById('subtitle-box');
-
-    function isFullscreenLayout(sc) {
-      const l = (sc?.layout || sc?.exhibit?.layout || '').toLowerCase();
-      return l === 'fullscreen' || l === 'fullsize' || l === 'full-bleed' || l === 'full_bleed';
-    }
-
-    function isSplitLayout(sc) {
-      const l = (sc?.layout || sc?.exhibit?.layout || '').toLowerCase();
-      return l === 'split' || l === 'split-screen' || l === 'side-by-side' || l === 'two-column';
-    }
-
-    // Layer 3: Extract Archival Stamp / Citation Badge
-    function extractCitation(sc) {
-      if (sc.annotation) {
-        if (typeof sc.annotation === 'string') return sc.annotation;
-        if (sc.annotation.text) return sc.annotation.text;
-        if (sc.annotation.label) return sc.annotation.label;
-        if (sc.annotation.source) return sc.annotation.source;
-        if (sc.annotation.authority) return sc.annotation.authority;
-      }
-
-      const raw = ((sc.subtitle || '') + ' ' + (sc.exhibit?.description || '') + ' ' + (sc.exhibit?.concept || '')).trim();
-      if (!raw) return null;
-
-      const matchPojk = raw.match(/\\b(POJK\\s*(?:NO\\.?|NOMOR)?\\s*[\\d\\w\\/\\.\\-]+)\\b/i);
-      if (matchPojk) return 'DOKUMEN: ' + matchPojk[1].toUpperCase();
-
-      const matchUu = raw.match(/\\b(UU\\s*(?:NO\\.?|NOMOR)?\\s*[\\d\\w\\/\\.\\-]+)\\b/i);
-      if (matchUu) return 'REGULASI: ' + matchUu[1].toUpperCase();
-
-      const matchBei = raw.match(/\\b(B-E-I|BEI|BURSA EFEK INDONESIA|IDX)\\b/i);
-      if (matchBei) return 'KLASIFIKASI: BURSA EFEK INDONESIA';
-
-      const matchOjk = raw.match(/\\b(OJK|OTORITAS JASA KEUANGAN)\\b/i);
-      if (matchOjk) return 'PENGAWASAN: OTORITAS JASA KEUANGAN';
-
-      const matchBi = raw.match(/\\b(BANK INDONESIA|BI)\\b/i);
-      if (matchBi) return 'KLASIFIKASI: BANK INDONESIA';
-
-      const matchKpk = raw.match(/\\b(KPK|KOMISI PEMBERANTASAN KORUPSI)\\b/i);
-      if (matchKpk) return 'BUKTI ARSIP: BERKAS KPK';
-
-      const matchKemenkeu = raw.match(/\\b(KEMENKEU|KEMENTERIAN KEUANGAN)\\b/i);
-      if (matchKemenkeu) return 'ARSIP NEGARA: KEMENKEU RI';
-
-      const matchMedia = raw.match(/\\b(BLOOMBERG|REUTERS|KONTAN|BISNIS INDONESIA)\\b/i);
-      if (matchMedia) return 'SUMBER: ' + matchMedia[1].toUpperCase();
-
-      return null;
-    }
-
-    // Layer 4: Extract Procedural Financial Metric Callout
-    function extractFinancialMetric(sc) {
-      if (sc.data) {
-        if (typeof sc.data === 'string') {
-          return { value: sc.data, label: 'METRIK UTAMA', note: '' };
-        }
-        if (typeof sc.data === 'object' && sc.data !== null) {
-          return {
-            value: sc.data.value || sc.data.metric || sc.data.amount || sc.data.stat || '0',
-            label: sc.data.label || sc.data.title || 'ANALISIS DATA',
-            note: sc.data.note || sc.data.source || sc.data.change || ''
-          };
-        }
-      }
-
-      const raw = ((sc.subtitle || '') + ' ' + (sc.exhibit?.description || '')).trim();
-      if (!raw) return null;
-
-      const matchRupiah = raw.match(/\\b(Rp\\s*[-+]?[\\d\\.,]+(?:\\s*(?:Triliun|Miliar|Juta|Ribu|T|M|B))?)\\b/i);
-      if (matchRupiah) {
-        let label = 'VALUASI / NILAI';
-        if (/kontrak/i.test(raw)) label = 'NILAI KONTRAK';
-        else if (/rugi|loss|menguap|ambles|anjlok|boncos/i.test(raw)) label = 'KERUGIAN INVESTOR';
-        else if (/transaksi|volume/i.test(raw)) label = 'NILAI TRANSAKSI';
-        else if (/utang|liabilitas|debt/i.test(raw)) label = 'BEBAN UTANG';
-        else if (/laba|keuntungan|profit/i.test(raw)) label = 'LABA BERSIH';
-        else if (/modal|kapitalisasi|market cap/i.test(raw)) label = 'KAPITALISASI PASAR';
-        return { value: matchRupiah[1].trim(), label: label, note: 'Bursa Efek Indonesia' };
-      }
-
-      const matchPct = raw.match(/([-+]?\\d+(?:[\\.,]\\d+)?\\s*%)/);
-      if (matchPct) {
-        let label = 'FLUKTUASI HARGA';
-        if (/margin/i.test(raw)) label = 'MARGIN OPERASIONAL';
-        else if (/rugi|turun|jatuh|crash|menguap|ambles|anjlok/i.test(raw)) label = 'PENURUNAN NILAI';
-        else if (/naik|lonjakan|growth|melejit/i.test(raw)) label = 'PERTUMBUHAN';
-        return { value: matchPct[1].trim(), label: label, note: 'Perubahan Relatif' };
-      }
-
-      const matchMult = raw.match(/\\b(\\d+(?:[\\.,]\\d+)?\\s*x)\\b/i);
-      if (matchMult) {
-        return { value: matchMult[1].trim(), label: 'FAKTOR PENGALI', note: 'Rasio Valuasi' };
-      }
-
-      const matchUsd = raw.match(/(\\$\\s*[-+]?[\\d\\.,]+(?:\\s*(?:Trillion|Billion|Million|T|B|M))?)/i);
-      if (matchUsd) {
-        return { value: matchUsd[1].trim(), label: 'VALUASI GLOBAL', note: 'Estimasi Pasar' };
-      }
-
-      return null;
+    function cleanWord(str) {
+      if (!str) return '';
+      return str
+        .replace(/\\[([^\\|\\]]+)\\|[^\\]]+\\]/g, '$1')
+        .replace(/<[^>]+>/g, '')
+        .trim();
     }
 
     function parseNumericParts(str) {
@@ -749,45 +1000,91 @@ function generateStageHtml({
       };
     }
 
-    function updateOdometerCard(container, sc, progressPct) {
-      const cardValEl = container.querySelector('.metric-value');
-      if (!cardValEl) return;
-      const originalStr = cardValEl.getAttribute('data-target');
-      if (!originalStr) return;
-
-      const parts = parseNumericParts(originalStr);
-      if (!parts) {
-        cardValEl.textContent = originalStr;
-        return;
+    function renderClientSceneHtml(sc) {
+      if (!sc) return '';
+      if (sc.isTestMode) {
+        const isFull = sc.layout === 'fullsize' || sc.layout === 'fullscreen';
+        const isSplit = sc.layout === 'split';
+        const cardCls = isFull ? 'card-fullscreen' : 'card-hero';
+        const layoutCls = isFull ? 'layout-fullsize' : (isSplit ? 'layout-split' : 'layout-hero');
+        return '<div class="scene-container ' + layoutCls + ' active" id="scene-' + sc.id + '">' +
+          '<div class="test-prompt-card ' + cardCls + '">' +
+            '<div class="test-prompt-body">' +
+              '<span class="test-prompt-tag">' + (sc.systemTag || '[SYSTEM_PROMPT_' + window.__CHANNEL_TAG__ + ']') + '</span>' +
+              '<span class="test-prompt-text"> ' + escapeHtmlClient(sc.cleanPrompt || sc.narration || 'Scene visual asset prompt') + '</span>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
       }
 
-      const animProgress = Math.min(1, progressPct / 0.35);
-      if (animProgress >= 1) {
-        cardValEl.textContent = parts.original;
-        return;
+      if (sc.resolvedEngine === 'vector-html' && sc.vectorHtml) {
+        return '<div class="scene-container layout-vector active" id="scene-' + sc.id + '" style="width: 100%; height: 100%;">' +
+          sc.vectorHtml +
+        '</div>';
       }
 
-      const ease = 1 - Math.pow(1 - animProgress, 3);
-      const currentNum = (parts.targetNum * ease).toFixed(parts.decimalPlaces);
-      const displayNum = parts.useComma ? currentNum.replace('.', ',') : currentNum;
-      cardValEl.textContent = parts.prefix + displayNum + parts.suffix;
+      let badgesHtml = '';
+      if (sc.citation) {
+        badgesHtml += '<div class="archival-stamp-badge"><span class="badge-dot"></span><span class="badge-text">' + escapeHtmlClient(sc.citation) + '</span></div>';
+      }
+      if (sc.financialMetric) {
+        badgesHtml += '<div class="financial-metric-card" id="metric-card-' + sc.id + '">' +
+          '<div class="metric-card-header"><span class="metric-pill-dot"></span><span class="metric-label">' + escapeHtmlClient(sc.financialMetric.label) + '</span></div>' +
+          '<div class="metric-value" data-target="' + escapeHtmlClient(sc.financialMetric.value) + '">' + escapeHtmlClient(sc.financialMetric.value) + '</div>' +
+          (sc.financialMetric.note ? '<div class="metric-subnote">' + escapeHtmlClient(sc.financialMetric.note) + '</div>' : '') +
+        '</div>';
+      }
+
+      if (sc.layout === 'split') {
+        const leftSrc = sc.assetUrl || '';
+        const rightSrc = sc.secondaryAssetUrl || leftSrc;
+        return '<div class="scene-container layout-split active" id="scene-' + sc.id + '">' +
+          '<div class="split-pane split-left"><img class="exhibit-image" src="' + leftSrc + '" alt="' + escapeHtmlClient(sc.visualPrompt || 'Exhibit Left') + '"></div>' +
+          '<div class="split-pane split-right"><img class="exhibit-image" src="' + rightSrc + '" alt="' + escapeHtmlClient(sc.visualPrompt || 'Exhibit Right') + '"></div>' +
+          badgesHtml +
+        '</div>';
+      }
+
+      if (sc.layout === 'fullsize' || sc.layout === 'fullscreen' || sc.layout === 'fullbleed') {
+        const imgSrc = sc.assetUrl || '';
+        return '<div class="scene-container layout-fullsize active" id="scene-' + sc.id + '">' +
+          '<img class="exhibit-image" src="' + imgSrc + '" alt="' + escapeHtmlClient(sc.visualPrompt || 'Exhibit') + '">' +
+          badgesHtml +
+        '</div>';
+      }
+
+      // Default: layout-hero
+      const imgSrc = sc.assetUrl || '';
+      const labeledSrc = sc.assetUrlLabeled || '';
+      return '<div class="scene-container layout-hero active" id="scene-' + sc.id + '">' +
+        '<img class="exhibit-image exhibit-clean" src="' + imgSrc + '" alt="' + escapeHtmlClient(sc.visualPrompt || 'Exhibit') + '">' +
+        (labeledSrc ? '<img class="exhibit-image exhibit-labeled" src="' + labeledSrc + '" alt="' + escapeHtmlClient(sc.visualPrompt || 'Exhibit Labeled') + '">' : '') +
+        badgesHtml +
+      '</div>';
     }
 
-    function getCameraMotionType(sc, idx) {
-      if (sc.cameraMotion) return sc.cameraMotion;
-      if (sc.motion) return sc.motion;
-      if (sc.camera) return sc.camera;
-      const motions = ['push-in', 'pan-right', 'tilt-drift', 'pull-back', 'pan-left'];
-      return motions[idx % motions.length];
-    }
+    window.__mountScene = function(scene) {
+      if (!scene) return;
+      const sandbox = document.getElementById('layer-3-sandbox');
+      if (!sandbox) return;
 
-    function applyCameraMotion(container, sc, idx, progressPct) {
-      const motionTargets = container.querySelectorAll('.exhibit-image, .test-prompt-card, .split-pane');
-      if (!motionTargets || motionTargets.length === 0) return;
+      const chapterEl = document.getElementById('stage-chapter-title');
+      if (chapterEl && scene.chapterTitle) {
+        chapterEl.textContent = scene.chapterTitle;
+      }
 
-      const motionType = getCameraMotionType(sc, idx);
-      const e = 1 - Math.pow(1 - progressPct, 2.2);
+      sandbox.innerHTML = renderClientSceneHtml(scene);
+      window.__mountedSceneId = scene.id;
+    };
 
+    function updateSceneMotion(sc, progress) {
+      const sandbox = document.getElementById('layer-3-sandbox');
+      if (!sandbox) return;
+      const targets = sandbox.querySelectorAll('.exhibit-image, .test-prompt-card, .split-pane');
+      if (!targets || targets.length === 0) return;
+
+      const motionType = sc.cameraMotion || sc.motion || 'push-in';
+      const e = 1 - Math.pow(1 - progress, 2.2);
       let transformStr = '';
       switch (motionType) {
         case 'push-in':
@@ -802,225 +1099,54 @@ function generateStageHtml({
         case 'pan-left':
           transformStr = 'scale(1.03) translateX(' + (16 - 32 * e) + 'px)';
           break;
-        case 'tilt-drift':
         default:
           transformStr = 'scale(' + (1.01 + 0.04 * e) + ') translate(' + (-6 + 12 * e) + 'px, ' + (-10 * e) + 'px)';
           break;
       }
-      motionTargets.forEach(target => {
-        target.style.transform = transformStr;
+      targets.forEach(el => {
+        el.style.transform = transformStr;
       });
     }
 
-    function createTestPromptCard(sc, isFull) {
-      const card = document.createElement('div');
-      card.className = 'test-prompt-card ' + (isFull ? 'card-fullscreen' : 'card-hero');
+    function updateOdometer(progress) {
+      const sandbox = document.getElementById('layer-3-sandbox');
+      if (!sandbox) return;
+      const cardValEl = sandbox.querySelector('.metric-value');
+      if (!cardValEl) return;
+      const originalStr = cardValEl.getAttribute('data-target');
+      if (!originalStr) return;
 
-      const body = document.createElement('div');
-      body.className = 'test-prompt-body';
-
-      const tag = document.createElement('span');
-      tag.className = 'test-prompt-tag';
-      tag.textContent = sc.systemTag || (isFull ? '[FULLSCREEN_SCENE: SYSTEM_PROMPT_KAUSALMEDIA]' : '[HERO_PROP: SYSTEM_PROMPT_KAUSALMEDIA]');
-
-      const textSpan = document.createElement('span');
-      textSpan.className = 'test-prompt-text';
-      textSpan.textContent = ' ' + (sc.cleanPrompt || sc.exhibit?.artistPrompt || sc.exhibit?.description || sc.subtitle || 'Scene visual asset prompt');
-
-      body.appendChild(tag);
-      body.appendChild(textSpan);
-      card.appendChild(body);
-      return card;
-    }
-
-    // Build scene DOM elements across all 5 layers
-    scenes.forEach((sc, idx) => {
-      const isTestMode = Boolean(sc.isTestMode || sc.exhibit?.isPromptBox);
-      const isFull = isFullscreenLayout(sc);
-      const isSplit = isSplitLayout(sc);
-      let layoutCls = 'layout-hero';
-      if (isFull) layoutCls = 'layout-fullscreen';
-      else if (isSplit) layoutCls = 'layout-split';
-
-      const container = document.createElement('div');
-      container.className = 'scene-container ' + layoutCls + (idx === 0 ? ' active' : '');
-      container.id = 'scene-' + (sc.id || idx);
-
-      // Layer 3: Archival Stamp / Source Citation Pill (top-right)
-      const citation = extractCitation(sc);
-      if (citation) {
-        const badge = document.createElement('div');
-        badge.className = 'archival-stamp-badge';
-        badge.id = 'badge-' + (sc.id || idx);
-
-        const dot = document.createElement('span');
-        dot.className = 'badge-dot';
-
-        const txt = document.createElement('span');
-        txt.className = 'badge-text';
-        txt.textContent = citation;
-
-        badge.appendChild(dot);
-        badge.appendChild(txt);
-        container.appendChild(badge);
-      }
-
-      // Layer 4: Procedural Financial Metric Callout / Odometer Card (lower-left)
-      const finMetric = extractFinancialMetric(sc);
-      if (finMetric) {
-        const card = document.createElement('div');
-        card.className = 'financial-metric-card';
-        card.id = 'metric-card-' + (sc.id || idx);
-
-        const header = document.createElement('div');
-        header.className = 'metric-card-header';
-
-        const pDot = document.createElement('span');
-        pDot.className = 'metric-pill-dot';
-
-        const pLabel = document.createElement('span');
-        pLabel.className = 'metric-label';
-        pLabel.textContent = finMetric.label;
-
-        header.appendChild(pDot);
-        header.appendChild(pLabel);
-        card.appendChild(header);
-
-        const valEl = document.createElement('div');
-        valEl.className = 'metric-value';
-        valEl.setAttribute('data-target', finMetric.value);
-        valEl.textContent = finMetric.value;
-        card.appendChild(valEl);
-
-        if (finMetric.note) {
-          const noteEl = document.createElement('div');
-          noteEl.className = 'metric-subnote';
-          noteEl.textContent = finMetric.note;
-          card.appendChild(noteEl);
-        }
-
-        container.appendChild(card);
-      }
-
-      // Layer 2: Multiplane Exhibit Layout
-      if (isSplit) {
-        const leftPane = document.createElement('div');
-        leftPane.className = 'split-pane split-left';
-        const rightPane = document.createElement('div');
-        rightPane.className = 'split-pane split-right';
-
-        if (isTestMode) {
-          const promptCard = createTestPromptCard(sc, isFull);
-          leftPane.appendChild(promptCard);
-        } else if (sc.exhibit && sc.exhibit.src) {
-          const img = document.createElement('img');
-          img.className = 'exhibit-image exhibit-clean';
-          img.src = getAssetUri(sc.exhibit.src);
-          img.alt = sc.exhibit.description || 'Exhibit';
-          leftPane.appendChild(img);
-        }
-
-        if (sc.secondaryExhibit && sc.secondaryExhibit.src) {
-          const img2 = document.createElement('img');
-          img2.className = 'exhibit-image';
-          img2.src = getAssetUri(sc.secondaryExhibit.src);
-          rightPane.appendChild(img2);
-        } else if (isTestMode) {
-          const noteCard = document.createElement('div');
-          noteCard.className = 'test-prompt-card card-hero';
-          noteCard.innerHTML = '<div class="test-prompt-body"><span class="test-prompt-tag">[SPLIT_DATA_PANE]</span><span class="test-prompt-text">' + (sc.subtitle || 'Comparison Evidence') + '</span></div>';
-          rightPane.appendChild(noteCard);
-        }
-
-        container.appendChild(leftPane);
-        container.appendChild(rightPane);
-      } else if (isTestMode) {
-        const card = createTestPromptCard(sc, isFull);
-        container.appendChild(card);
-      } else if (sc.exhibit && sc.exhibit.src) {
-        const img = document.createElement('img');
-        img.className = 'exhibit-image exhibit-clean';
-        img.src = getAssetUri(sc.exhibit.src);
-        img.alt = sc.exhibit.description || 'Exhibit';
-        container.appendChild(img);
-
-        if (sc.exhibit.src_labeled) {
-          const imgLabeled = document.createElement('img');
-          imgLabeled.className = 'exhibit-image exhibit-labeled';
-          imgLabeled.src = getAssetUri(sc.exhibit.src_labeled);
-          imgLabeled.alt = (sc.exhibit.description || 'Exhibit') + ' (Labeled)';
-          container.appendChild(imgLabeled);
-        }
-      }
-
-      viewport.appendChild(container);
-    });
-
-    let startTime = null;
-    let autoPlaying = true;
-    let currentBeatIndex = -1;
-
-    function cleanWord(str) {
-      if (!str) return '';
-      return str
-        .replace(/\\[([^\\|\\]]+)\\|[^\\]]+\\]/g, '$1')
-        .replace(/<[^>]+>/g, '')
-        .trim();
-    }
-
-    function renderSubtitlesAtTime(seconds) {
-      if (!timings || timings.length === 0) {
-        if (scenes[currentBeatIndex] && scenes[currentBeatIndex].subtitle) {
-          const sc = scenes[currentBeatIndex];
-          const scStart = sc ? (sc.startTime || 0) : 0;
-          const scDur = sc ? Math.max(0.5, (sc.endTime || (scStart + 5)) - scStart) : 5;
-          const progress = Math.min(1, Math.max(0, (seconds - scStart) / scDur));
-          renderSceneSubtitlesFallback(sc.subtitle, progress);
-        }
+      const parts = parseNumericParts(originalStr);
+      if (!parts) {
+        cardValEl.textContent = originalStr;
         return;
       }
-
-      let activeIdx = -1;
-      for (let i = 0; i < timings.length; i++) {
-        if (seconds >= timings[i].start && seconds < timings[i].end) {
-          activeIdx = i;
-          break;
-        }
-        if (timings[i].start > seconds) {
-          activeIdx = Math.max(0, i - 1);
-          break;
-        }
+      const animProgress = Math.min(1, progress / 0.35);
+      if (animProgress >= 1) {
+        cardValEl.textContent = parts.original;
+        return;
       }
-      if (activeIdx === -1) {
-        activeIdx = seconds >= timings[timings.length - 1].start ? timings.length - 1 : 0;
-      }
+      const ease = 1 - Math.pow(1 - animProgress, 3);
+      const currentNum = (parts.targetNum * ease).toFixed(parts.decimalPlaces);
+      const displayNum = parts.useComma ? currentNum.replace('.', ',') : currentNum;
+      cardValEl.textContent = parts.prefix + displayNum + parts.suffix;
+    }
 
-      let startIdx = Math.max(0, activeIdx - 1);
-      if (startIdx + windowSize > timings.length) {
-        startIdx = Math.max(0, timings.length - windowSize);
-      }
-      const endIdx = Math.min(timings.length, startIdx + windowSize);
-      const windowWords = timings.slice(startIdx, endIdx);
-
-      subtitleBox.innerHTML = windowWords.map((t, i) => {
-        const globalIdx = startIdx + i;
-        const wordText = cleanWord(t.word);
-        if (globalIdx === activeIdx) {
-          return '<span class="subtitle-word active">' + wordText + '</span>';
-        } else if (globalIdx < activeIdx) {
-          return '<span class="subtitle-word spoken">' + wordText + '</span>';
-        } else {
-          return '<span class="subtitle-word upcoming">' + wordText + '</span>';
-        }
-      }).join(' ');
+    function updateProgressBar(timeMs) {
+      const bar = document.getElementById('doc-progress-bar');
+      if (!bar) return;
+      const pct = Math.min(100, Math.max(0, (timeMs / Math.max(1, window.__TOTAL_DURATION_MS__)) * 100));
+      bar.style.width = pct + '%';
     }
 
     function renderSceneSubtitlesFallback(rawText, progressPct) {
-      if (!rawText) { subtitleBox.innerHTML = ''; return; }
+      const subtitleBox = document.getElementById('subtitle-box');
+      if (!subtitleBox || !rawText) return;
       const clean = cleanWord(rawText);
       const words = clean.split(/\\s+/).filter(Boolean);
       if (words.length === 0) { subtitleBox.innerHTML = ''; return; }
 
+      const windowSize = window.__IS_SHORT__ ? 4 : 6;
       const currentWordIdx = Math.min(words.length - 1, Math.max(0, Math.floor(progressPct * words.length)));
       let startIdx = Math.max(0, currentWordIdx - 1);
       if (startIdx + windowSize > words.length) {
@@ -1041,111 +1167,178 @@ function generateStageHtml({
       }).join(' ');
     }
 
-    function updateProgressBar(seconds) {
-      const bar = document.getElementById('doc-progress-bar');
-      if (!bar) return;
-      const pct = Math.min(100, Math.max(0, (seconds / Math.max(0.1, totalDuration)) * 100));
-      bar.style.width = pct + '%';
-    }
+    window.__updateSubtitles = function(timeMs) {
+      const subtitleBox = document.getElementById('subtitle-box');
+      if (!subtitleBox) return;
 
-    function updateSceneState(activeIdx, seconds) {
-      if (activeIdx < 0 || activeIdx >= scenes.length) return;
-      const sc = scenes[activeIdx];
-      const scStart = sc ? (sc.startTime || 0) : 0;
-      const scEnd = sc ? (sc.endTime || (scStart + 5)) : (scStart + 5);
-      const beatDuration = Math.max(0.5, scEnd - scStart);
-      const beatElapsed = Math.max(0, seconds - scStart);
-      const progressPct = Math.min(1, Math.max(0, beatElapsed / beatDuration));
-      const shouldShowLabels = beatElapsed >= (sc.labelDelay !== undefined ? sc.labelDelay : 2.0);
+      const seconds = timeMs / 1000;
+      const timings = window.__TIMINGS__ || [];
 
-      const all = document.querySelectorAll('.scene-container');
-      all.forEach((el, i) => {
-        const scItem = scenes[i];
-        const isFull = isFullscreenLayout(scItem);
-        const isSplit = isSplitLayout(scItem);
-        let layoutCls = 'layout-hero';
-        if (isFull) layoutCls = 'layout-fullscreen';
-        else if (isSplit) layoutCls = 'layout-split';
-
-        const baseClass = 'scene-container ' + layoutCls;
-        const isActive = (i === activeIdx);
-        const isPrevious = (i === activeIdx - 1);
-
-        let cls = baseClass;
-        if (isActive) {
-          cls += ' active';
-          if (shouldShowLabels) cls += ' show-labels';
-        } else if (isPrevious) {
-          cls += ' exiting';
+      if (timings.length > 0) {
+        let activeIdx = -1;
+        for (let i = 0; i < timings.length; i++) {
+          const t = timings[i];
+          const start = t.start !== undefined ? t.start : (t.startMs / 1000);
+          const end = t.end !== undefined ? t.end : (t.endMs / 1000);
+          if (seconds >= start && seconds < end) {
+            activeIdx = i;
+            break;
+          }
+          if (start > seconds) {
+            activeIdx = Math.max(0, i - 1);
+            break;
+          }
         }
-        el.className = cls;
-
-        if (isActive) {
-          applyCameraMotion(el, sc, i, progressPct);
-          updateOdometerCard(el, sc, progressPct);
+        if (activeIdx === -1) {
+          const last = timings[timings.length - 1];
+          const lastStart = last.start !== undefined ? last.start : (last.startMs / 1000);
+          activeIdx = seconds >= lastStart ? timings.length - 1 : 0;
         }
-      });
-    }
 
-    function stepToTime(seconds) {
-      const activeIdx = scenes.findIndex((sc, i) => {
-        const nextStart = scenes[i + 1] ? scenes[i + 1].startTime : 99999;
-        return seconds >= (sc.startTime || 0) && seconds < nextStart;
-      });
-      if (activeIdx >= 0) {
-        currentBeatIndex = activeIdx;
-        updateSceneState(activeIdx, seconds);
+        const windowSize = window.__IS_SHORT__ ? 4 : 6;
+        let startIdx = Math.max(0, activeIdx - 1);
+        if (startIdx + windowSize > timings.length) {
+          startIdx = Math.max(0, timings.length - windowSize);
+        }
+        const endIdx = Math.min(timings.length, startIdx + windowSize);
+        const windowWords = timings.slice(startIdx, endIdx);
+
+        subtitleBox.innerHTML = windowWords.map((t, i) => {
+          const globalIdx = startIdx + i;
+          const wordText = cleanWord(t.word);
+          if (globalIdx === activeIdx) {
+            return '<span class="subtitle-word active">' + wordText + '</span>';
+          } else if (globalIdx < activeIdx) {
+            return '<span class="subtitle-word spoken">' + wordText + '</span>';
+          } else {
+            return '<span class="subtitle-word upcoming">' + wordText + '</span>';
+          }
+        }).join(' ');
+        return;
       }
-      renderSubtitlesAtTime(seconds);
-      updateProgressBar(seconds);
-    }
 
-    // Deterministic API: Seek to specific beat index or ID with progressPct
-    window.seekToBeat = function(target, progressPct = 0) {
-      autoPlaying = false;
-      let idx = typeof target === 'number' ? target : scenes.findIndex(s => s.id === target);
-      if (idx < 0) idx = 0;
-
-      currentBeatIndex = idx;
-      const sc = scenes[idx];
-      const scStart = sc ? (sc.startTime || 0) : 0;
-      const scDur = sc ? Math.max(0.5, (sc.endTime || (scStart + 5)) - scStart) : 5;
-      const targetTime = scStart + (progressPct * scDur);
-      updateSceneState(idx, targetTime);
-      renderSubtitlesAtTime(targetTime);
-      updateProgressBar(targetTime);
+      const activeScene = window.__SCENES__.find(s => timeMs >= s.startMs && timeMs < s.endMs)
+        || window.__SCENES__[window.__SCENES__.length - 1];
+      if (activeScene && activeScene.narration) {
+        const elapsed = Math.max(0, timeMs - activeScene.startMs);
+        const progress = Math.min(1, elapsed / Math.max(1, activeScene.durationMs));
+        renderSceneSubtitlesFallback(activeScene.narration, progress);
+      } else {
+        subtitleBox.innerHTML = '';
+      }
     };
 
-    // Deterministic API: Seek to exact second timestamp
+    window.__seekTo = function(timeMs) {
+      window.__currentTimeMs = timeMs;
+      window.__MANUAL_SEEK_MODE__ = true;
+      const activeScene = window.__SCENES__.find(s => timeMs >= s.startMs && timeMs < s.endMs)
+        || window.__SCENES__[window.__SCENES__.length - 1];
+      if (activeScene) {
+        if (window.__mountedSceneId !== activeScene.id) {
+          window.__mountScene(activeScene);
+          window.__mountedSceneId = activeScene.id;
+        }
+        const elapsed = Math.max(0, timeMs - activeScene.startMs);
+        const progress = Math.min(1, elapsed / Math.max(1, activeScene.durationMs));
+        const sandbox = document.getElementById('layer-3-sandbox');
+        if (sandbox) {
+          sandbox.style.setProperty('--scene-progress', progress.toFixed(4));
+          sandbox.style.setProperty('--scene-elapsed-ms', elapsed + 'ms');
+        }
+        updateSceneMotion(activeScene, progress);
+        updateOdometer(progress);
+      }
+      if (window.__SUBTITLES_ENABLED__) {
+        window.__updateSubtitles(timeMs);
+      }
+      updateProgressBar(timeMs);
+      return true;
+    };
+
+    // Shims for backward compatibility with legacy scripts
     window.seekToTime = function(seconds) {
-      autoPlaying = false;
-      stepToTime(seconds);
+      window.__seekTo(Math.round(seconds * 1000));
+    };
+    window.seekToBeat = function(target, progressPct = 0) {
+      let idx = typeof target === 'number' ? target : window.__SCENES__.findIndex(s => s.id === target);
+      if (idx < 0) idx = 0;
+      const sc = window.__SCENES__[idx];
+      const targetTimeMs = sc ? (sc.startMs + (progressPct * sc.durationMs)) : 0;
+      window.__seekTo(targetTimeMs);
+    };
+    window.startStage = function() {
+      window.__MANUAL_SEEK_MODE__ = false;
+      window.__playbackStartTime = performance.now();
+      window.__seekTo(0);
     };
 
-    // Deterministic API: Start live playback from t=0
-    window.startStage = function() {
-      startTime = performance.now();
-      autoPlaying = true;
-      currentBeatIndex = -1;
-      stepToTime(0);
-    };
+    // Real-time animation loop for normal browser preview
+    let rafStartTime = null;
+    function stepToInternalTime(timeMs) {
+      const activeScene = window.__SCENES__.find(s => timeMs >= s.startMs && timeMs < s.endMs)
+        || window.__SCENES__[window.__SCENES__.length - 1];
+      if (activeScene) {
+        if (window.__mountedSceneId !== activeScene.id) {
+          window.__mountScene(activeScene);
+          window.__mountedSceneId = activeScene.id;
+        }
+        const elapsed = Math.max(0, timeMs - activeScene.startMs);
+        const progress = Math.min(1, elapsed / Math.max(1, activeScene.durationMs));
+        const sandbox = document.getElementById('layer-3-sandbox');
+        if (sandbox) {
+          sandbox.style.setProperty('--scene-progress', progress.toFixed(4));
+          sandbox.style.setProperty('--scene-elapsed-ms', elapsed + 'ms');
+        }
+        updateSceneMotion(activeScene, progress);
+        updateOdometer(progress);
+      }
+      if (window.__SUBTITLES_ENABLED__) {
+        window.__updateSubtitles(timeMs);
+      }
+      updateProgressBar(timeMs);
+    }
 
     function tick(timestamp) {
-      if (!startTime) startTime = timestamp;
-      if (autoPlaying) {
-        const elapsedSec = (timestamp - startTime) / 1000;
-        stepToTime(elapsedSec);
+      if (!rafStartTime) rafStartTime = timestamp;
+      if (!window.__MANUAL_SEEK_MODE__) {
+        const elapsedMs = timestamp - rafStartTime;
+        stepToInternalTime(elapsedMs);
       }
       requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);
+
+    // Signal stage initialization complete
+    window.__STAGE_READY = true;
   </script>
 </body>
 </html>`;
 }
 
+/**
+ * Writes deterministic stage HTML file to disk, preserving backward compatibility.
+ * 
+ * @param {Array|Object} storyboard
+ * @param {string} outputPath
+ * @param {Object} [options={}]
+ * @returns {string} Generated stage HTML
+ */
+function writeStageFile(storyboard, outputPath, options = {}) {
+  const dir = path.dirname(outputPath);
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+  const html = generateStageHtml(storyboard, options);
+  fs.writeFileSync(outputPath, html, 'utf8');
+  return html;
+}
+
 module.exports = {
   generateStageHtml,
+  writeStageFile,
   resolveAssetAsDataUri,
-  resolveAssetUri: resolveAssetAsDataUri
+  resolveAssetUri: resolveAssetAsDataUri,
+  extractCitation,
+  extractFinancialMetric,
+  extractCleanPrompt
 };
