@@ -3,6 +3,7 @@
   "name": "Investigative Documentary",
   "description": "Pen-on-paper archival journalism aesthetic reminiscent of Vox, Johnny Harris, and Polymatter. Features warm ivory paper textures, traditional batik linework, notary stamps, amber highlighters, and financial evidence charts.",
   "aspectRatio": "16:9",
+  "theme": "dark",
   "background": {
     "type": "paper",
     "paperTone": "#faf7f0",
@@ -15,14 +16,29 @@
     "name": "navy-gold",
     "bg": "#faf7f0",
     "cardBg": "#ffffff",
-    "textPrimary": "#0f172a",
-    "textSecondary": "#475569",
+    "bgPrimary": "#111315",
+    "bgSecondary": "#1a1d20",
+    "bgSurface": "rgba(26, 29, 32, 0.92)",
+    "textPrimary": "#ece6d8",
+    "textSecondary": "#a8a090",
+    "brandPrimary": "#c93b2b",
+    "brandAccent": "#d97724",
+    "borderMuted": "rgba(236, 230, 216, 0.16)",
+    "gridLine": "rgba(236, 230, 216, 0.07)",
     "accent": "#b45309",
     "accentGlow": "rgba(180, 83, 9, 0.12)",
     "border": "rgba(15, 23, 42, 0.14)",
     "stampColor": "#dc2626",
     "highlightColor": "#fef08a"
   },
+  "chrome": {
+    "backgroundPattern": "archival-grain",
+    "watermarkText": "ARCHIVAL DOSSIER // DECLASSIFIED EVIDENCE",
+    "showHeaderBar": true,
+    "showCornerTicks": true,
+    "vignetteStrength": 0.35
+  },
+  "aiImagePromptPrefix": "Archival dark slate documentary aesthetic (#111315), parchment textures (#ece6d8), forensic amber (#d97724) and crimson (#c93b2b) evidence stamps, gritty investigative journalism, high contrast: ",
   "character": {
     "mode": "silhouette-editorial",
     "puppetEnabled": false,
@@ -31,6 +47,9 @@
     "accessories": ["briefcase", "court-file", "news-sheet"]
   },
   "typography": {
+    "fontDisplay": "'Playfair Display', 'Cinzel', 'Georgia', serif",
+    "fontSans": "'Plus Jakarta Sans', 'Inter', system-ui, sans-serif",
+    "fontMono": "'JetBrains Mono', monospace",
     "headlineFont": "'Plus Jakarta Sans', Georgia, serif",
     "bodyFont": "'Plus Jakarta Sans', sans-serif",
     "monoFont": "'JetBrains Mono', monospace",

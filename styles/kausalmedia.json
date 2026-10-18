@@ -11,6 +11,7 @@
     "promptPrefix": "Crisp isolated spot illustration in vintage European comic ligne claire art style, Herge and Tintin aesthetic, clean crisp uniform black ink contour outlines, flat warm color wash fill, modern day Jakarta context, authentic Indonesian elements",
     "negativePrompt": "complex background, landscape, street view, horizon, clouds, trees, crowds, multiple unrelated objects, speech bubbles, modern text, 3D CGI, photorealistic"
   },
+  "theme": "light",
   "background": {
     "type": "paper",
     "paperTone": "#faf6ee",
@@ -23,14 +24,29 @@
     "name": "papyrus-sumi-ink",
     "bg": "#faf6ee",
     "cardBg": "#fffdf8",
-    "textPrimary": "#1c1917",
-    "textSecondary": "#57534e",
+    "bgPrimary": "#faf6ee",
+    "bgSecondary": "#f0e8d8",
+    "bgSurface": "rgba(255, 252, 245, 0.92)",
+    "textPrimary": "#1a1815",
+    "textSecondary": "#5a5347",
+    "brandPrimary": "#b8332a",
+    "brandAccent": "#c98a2c",
+    "borderMuted": "rgba(26, 24, 21, 0.16)",
+    "gridLine": "rgba(26, 24, 21, 0.07)",
     "accent": "#b45309",
     "accentGlow": "rgba(180, 83, 9, 0.12)",
     "border": "rgba(41, 37, 36, 0.16)",
     "stampColor": "#b91c1c",
     "highlightColor": "#fef08a"
   },
+  "chrome": {
+    "backgroundPattern": "papyrus-batik",
+    "watermarkText": "KAUSAL MEDIA // FORENSIC DOSSIER",
+    "showHeaderBar": true,
+    "showCornerTicks": true,
+    "vignetteStrength": 0.22
+  },
+  "aiImagePromptPrefix": "Editorial archival illustration on warm aged papyrus (#faf6ee), forensic red (#b8332a) and ochre gold (#c98a2c) ink accents, clean etching linework, high contrast, no text clutter: ",
   "character": {
     "mode": "comic-ligne-claire-modern-jakarta",
     "artStyle": "comic-ligne-claire",
@@ -60,6 +76,9 @@
     }
   },
   "typography": {
+    "fontDisplay": "'Playfair Display', 'Georgia', serif",
+    "fontSans": "'Plus Jakarta Sans', 'Inter', system-ui, sans-serif",
+    "fontMono": "'JetBrains Mono', monospace",
     "headlineFont": "'Plus Jakarta Sans', Georgia, serif",
     "bodyFont": "'Plus Jakarta Sans', sans-serif",
     "monoFont": "'JetBrains Mono', monospace",
