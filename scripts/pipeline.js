@@ -19,12 +19,18 @@
 const fs = require('fs');
 const path = require('path');
 const { recordWorkflow, updateWorkflow, getWorkflow } = require('./workflow-ledger');
-const { searchAsset, indexAsset, getAssetSimilarity } = require('./vector-db');
+const { searchAsset, indexAsset, getAssetSimilarity, disposeVectorDb } = require('./vector-db');
 const { buildStylePrompt, registerAsset, generateWithQwen } = require('./nano-banana');
 const { auditProjectFrames } = require('./visual-qa');
 const { generateStageHtml } = require('../engine/stage-generator');
 const { renderVideo, captureKeyframes } = require('./render');
 const { sendVideoToDiscord, notifyPipelineStage, notifyPipelineError } = require('./discord-notifier');
+const { parseCliArgsToConfig, normalizePipelineConfig } = require('../config/schema');
+const { getChannelProfile, resolveChannelVariant } = require('../channels/channel-manager');
+const { getStyleProfile } = require('../styles/style-manager');
+const { buildChannelScriptPrompt } = require('./prompt-manager');
+const { populateStoryboardVisuals } = require('../engine/visual-engine');
+const { synthesizeSpeech } = require('./tts');
 
 const REPO_ROOT = path.resolve(__dirname, '..');
 
@@ -51,6 +57,11 @@ function parseArgs() {
     project: null,
     topic: null,
     channel: 'kausalmedia',
+    variant: null,
+    style: null,
+    visualEngine: null,
+    subtitles: undefined,
+    aspect: null,
     format: '16:9',
     agent: 'agy',
     auto: true, // Default to continuous automatic run with all gates disabled
@@ -69,8 +80,19 @@ function parseArgs() {
     if (a === '--help' || a === '-h') options.help = true;
     else if (a === '--workflow-id') options.workflowId = args[++i];
     else if (a === '--project') options.project = args[++i];
-    else if (a === '--topic') options.topic = args[++i];
-    else if (a === '--channel') options.channel = args[++i];
+    else if (a === '--topic' || a === '--title') options.topic = args[++i];
+    else if (a === '--channel' || a === '--channel-id' || a === '--channelId') options.channel = args[++i];
+    else if (a === '--variant' || a === '--video-variant' || a === '--videoVariant') options.variant = args[++i];
+    else if (a === '--style' || a === '--style-id' || a === '--styleId') options.style = args[++i];
+    else if (a === '--visual-engine' || a === '--visualEngine' || a === '--engine') options.visualEngine = args[++i];
+    else if (a === '--subtitles') {
+      const val = args[++i];
+      if (val === 'false' || val === 'off' || val === 'none') options.subtitles = false;
+      else if (val === 'true') options.subtitles = true;
+      else options.subtitles = val;
+    }
+    else if (a === '--no-subtitles') options.subtitles = false;
+    else if (a === '--aspect' || a === '--aspect-ratio' || a === '--aspectRatio') options.aspect = args[++i];
     else if (a === '--format') options.format = args[++i];
     else if (a === '--agent') options.agent = args[++i];
     else if (a === '--auto') options.auto = true;
@@ -106,7 +128,7 @@ function parseArgs() {
 /**
  * Execute Deep Domain Research Stage via Antigravity Agent
  */
-async function runResearchStage({ projectDir, topic, channel }) {
+async function runResearchStage({ projectDir, topic, channel, channelProfile = null, variantSpec = null }) {
   const researchDir = path.join(projectDir, 'research');
   fs.mkdirSync(researchDir, { recursive: true });
 
@@ -122,10 +144,13 @@ async function runResearchStage({ projectDir, topic, channel }) {
   }
 
   const agyBin = process.env.AGY_BIN || '/home/agent/.local/bin/agy';
-  console.log(`[${new Date().toLocaleTimeString()}] [1/8] 🧠 Initiating deep forensic domain research on "${topic}" for channel ${channel}...`);
+  const targetChannel = channelProfile?.id || channel;
+  const channelName = channelProfile?.name || targetChannel;
+  const persona = channelProfile?.editorialDna?.persona || '';
+  console.log(`[${new Date().toLocaleTimeString()}] [1/8] 🧠 Initiating deep forensic domain research on "${topic}" for channel ${targetChannel}...`);
 
-  const researchPrompt = `You are the Senior Investigative Forensic Researcher for YouTube channel '${channel}'.
-Conduct exhaustive, empirically rigorous domain research on this topic:
+  const researchPrompt = `You are the Senior Investigative Forensic Researcher for YouTube channel '${channelName}'.
+${persona ? 'CHANNEL PERSONA: ' + persona + '\n' : ''}Conduct exhaustive, empirically rigorous domain research on this topic:
 TOPIC: "${topic}"
 
 Your investigation must rigorously uncover:
@@ -236,7 +261,7 @@ Return STRICTLY a JSON object with no markdown fences, matching this schema:
 /**
  * Execute Scriptwriting Stage via Antigravity Agent
  */
-async function runScriptwritingStage({ projectDir, topic, channel, format, targetDuration, dossier }) {
+async function runScriptwritingStage({ projectDir, topic, channel, format, targetDuration, dossier, channelProfile = null, variantSpec = null }) {
   const scriptDir = path.join(projectDir, 'script');
   fs.mkdirSync(scriptDir, { recursive: true });
 
@@ -256,39 +281,25 @@ async function runScriptwritingStage({ projectDir, topic, channel, format, targe
     } catch (_) {}
   }
 
-  const isShort = format === '9:16';
-  const targetWords = isShort ? 130 : (targetDuration ? Math.round((targetDuration / 60) * 140) : 1200);
+  if (!channelProfile) {
+    channelProfile = getChannelProfile(channel || 'kausalmedia');
+  }
+  if (!variantSpec) {
+    variantSpec = resolveChannelVariant(channelProfile?.id || channel, null);
+  }
+
+  const isShort = format === '9:16' || variantSpec?.aspectRatio === '9:16';
+  const targetWords = isShort
+    ? 130
+    : (targetDuration
+        ? Math.round((targetDuration / 60) * 140)
+        : (variantSpec?.targetDurationSec ? Math.round((variantSpec.targetDurationSec / 60) * 140) : 1200));
   const agyBin = process.env.AGY_BIN || '/home/agent/.local/bin/agy';
 
   console.log(`[${new Date().toLocaleTimeString()}] [2/8] ✍️ Drafting continuous high-retention narration script for "${topic}" (~${targetWords} words)...`);
 
-  const writerPrompt = `You are the lead investigative documentary scriptwriter for YouTube channel '${channel}'.
-Write a captivating, high-retention narration script for the documentary:
-TITLE: "${topic}"
-
-FORMAT: ${isShort ? 'Short-form portrait video (45-58 seconds, exactly ~120-140 words)' : 'Investigative video essay (~' + targetWords + ' words @ 140 WPM)'}
-
-RESEARCH DOSSIER:
-- Primary Anomaly: ${dossier.primaryAnomaly}
-- Executive Brief: ${dossier.executiveBrief || ''}
-- Unit Economics: ${JSON.stringify(dossier.unitEconomics || {})}
-- Causal Steps: ${(dossier.causalMechanics || []).join(' -> ')}
-- Counter-Intuitive Truth: ${dossier.counterIntuitiveTruth || ''}
-- Evidence: ${(dossier.forensicEvidence || []).map(e => e.title + ': ' + e.finding).join('; ')}
-
-CRITICAL WRITING DIRECTIVES:
-1. CONTINUOUS NARRATIVE FLOW: Do NOT include chapters, scene headers, acts, bullet points, [Intro]/[Outro] markers, or narrator names. Return ONLY the spoken words.
-2. THE CONCRETE ANOMALY HOOK: Open immediately (first 0-5s) with a real-world financial paradox, an empirical metric anomaly, or a baffling physical scene. STRICT PROHIBITION: Do NOT say "Bayangkan skenario ini...", "Bayangkan Anda...", "Pernahkah Anda...", or any hypothetical bedtime story tropes. Drop directly into hard reality, specific market mechanics, or empirical numbers.
-3. STRICT ANTI-SLOP & FORENSIC JOURNALISM:
-   - ZERO "Not just X, but Y" constructions ("Ini bukan sekadar X, melainkan Y..."). State facts directly.
-   - ZERO cheap motivational clichés ("dongeng pengantar tidur", "air mata pemodal", "umpan dan kolam").
-   - ZERO rhetorical questions. Speak with quiet, analytical authority.
-   - ZERO moralizing wrap-ups. End on a hard-hitting operational reality, regulatory loophole, or lingering capital consequence.
-4. STACCATO DELIVERY & CADENCE: Write in short, punchy, declarative sentences (3 to 8 words per clause). Use aggressive periods (.) and short statements. Eliminate winding multi-clause bureaucratic run-ons. Every sentence must hit like a drumbeat.
-5. PHONETIC BRACKETING: Wrap all acronyms and ticker symbols in TTS brackets, e.g. [BEI|B-E-I], [OJK|O-J-K], [HMETD|H-M-E-T-D], [EPS|E-P-S], [RUPSLB|R-U-P-S-L-B], [IHSG|I-H-S-G], [BI|B-I], [APBN|A-P-B-N], [KCIC|K-C-I-C], [KAI|K-A-I].
-6. DRAMATIC PAUSES: Insert <breath> before major narrative pivot points, reveals, or dramatic reversals.
-7. LANGUAGE: Razor-sharp, journalistic Indonesian (Bahasa Indonesia).
-8. RETURN ONLY THE RAW SPOKEN SCRIPT TEXT. No code fences, no quotes, no conversational filler.`;
+  const dossierSummary = typeof dossier === 'object' ? JSON.stringify(dossier, null, 2) : String(dossier || '');
+  const writerPrompt = buildChannelScriptPrompt(channelProfile, variantSpec, topic, dossierSummary);
 
   let scriptText = '';
   if (fs.existsSync(agyBin)) {
@@ -935,13 +946,34 @@ function healStoryboard(storyboard, projectDir, channel = 'kausalmedia') {
  * Main Pipeline Orchestration
  */
 async function runPipeline(cliOptions) {
-  const options = Object.assign({}, parseArgs(), cliOptions);
-  if (!options.topic && !options.project) {
+  const parsedArgs = parseArgs();
+  const cliArgsConfig = parseCliArgsToConfig(process.argv.slice(2));
+  const options = Object.assign({}, parsedArgs, cliArgsConfig, cliOptions);
+
+  if (!options.topic && !options.project && !cliArgsConfig.topic) {
     console.error('Error: Either --topic or --project must be specified.');
     process.exit(1);
   }
 
-  const title = options.topic || options.project;
+  // Combine options into rawConfigInput for normalization
+  const rawConfigInput = Object.assign({}, cliArgsConfig, options);
+  if (options.channel && !rawConfigInput.channelId) rawConfigInput.channelId = options.channel;
+  if (options.variant && !rawConfigInput.videoVariant) rawConfigInput.videoVariant = options.variant;
+  if (options.style && !rawConfigInput.styleId) rawConfigInput.styleId = options.style;
+  if (options.aspect && !rawConfigInput.aspectRatio) rawConfigInput.aspectRatio = options.aspect;
+  if (options.format && !rawConfigInput.aspectRatio) rawConfigInput.aspectRatio = options.format;
+  if (options.visualEngine && !rawConfigInput.visualEngine) rawConfigInput.visualEngine = options.visualEngine;
+  if (options.subtitles !== undefined && rawConfigInput.subtitles === undefined) rawConfigInput.subtitles = options.subtitles;
+
+  // Load channel profile, normalize config, and load variant and style
+  const requestedChannel = rawConfigInput.channelId || rawConfigInput.channel || 'kausalmedia';
+  let channelProfile = getChannelProfile(requestedChannel);
+  const config = normalizePipelineConfig(rawConfigInput, channelProfile);
+  channelProfile = getChannelProfile(config.channelId);
+  const variantSpec = resolveChannelVariant(config.channelId, config.videoVariant);
+  const styleProfile = getStyleProfile(config.styleId);
+
+  const title = config.topic || options.topic || options.project;
   const slug = options.project || title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '').slice(0, 36) || 'video-project';
   const projectDir = path.join(REPO_ROOT, 'projects', slug);
   fs.mkdirSync(projectDir, { recursive: true });
@@ -953,8 +985,17 @@ async function runPipeline(cliOptions) {
       id: wfId,
       project: slug,
       topic: title,
-      channel: options.channel,
-      format: options.format,
+      channel: config.channelId,
+      channelId: config.channelId,
+      variant: config.videoVariant,
+      videoVariant: config.videoVariant,
+      style: config.styleId,
+      styleId: config.styleId,
+      format: config.aspectRatio,
+      aspectRatio: config.aspectRatio,
+      visualEngine: config.visualEngine,
+      subtitles: config.subtitles,
+      config,
       agent: options.agent,
       status: 'research',
       stage: 'Domain Research',
@@ -965,7 +1006,9 @@ async function runPipeline(cliOptions) {
   console.log(`\n======================================================`);
   console.log(`🎬 AI-nimate Pipeline: ${title}`);
   console.log(`📁 Project Dir: ${projectDir}`);
-  console.log(`📺 Channel: ${options.channel} | Format: ${options.format}`);
+  console.log(`📺 Channel: ${config.channelId} | Variant: ${config.videoVariant}`);
+  console.log(`🎨 Style: ${config.styleId} | Visual Engine: ${config.visualEngine}`);
+  console.log(`📐 Aspect: ${config.aspectRatio} | Subtitles: ${config.subtitles.enabled ? config.subtitles.mode : 'off'}`);
   console.log(`🤖 Agent: ${options.agent} | Auto-Mode: ${options.auto}`);
   console.log(`======================================================\n`);
 
@@ -977,9 +1020,9 @@ async function runPipeline(cliOptions) {
     stage: 'Domain Research',
     progress: 10,
     topic: title,
-    details: `Initiating research for channel \`${options.channel}\` (${options.format}).`
+    details: `Initiating research for channel \`${config.channelId}\` (${config.aspectRatio}).`
   }).catch(() => {});
-  const dossier = await runResearchStage({ projectDir, topic: title, channel: options.channel });
+  const dossier = await runResearchStage({ projectDir, topic: title, channel: config.channelId, channelProfile, variantSpec });
 
   // --- STAGE 2: Scriptwriting ---
   updateWorkflow(wf.id, { status: 'script', stage: 'Scriptwriting (Continuous Flow)', progress: 25 });
@@ -987,10 +1030,12 @@ async function runPipeline(cliOptions) {
   const { scriptText, scriptData } = await runScriptwritingStage({
     projectDir,
     topic: title,
-    channel: options.channel,
-    format: options.format,
+    channel: config.channelId,
+    format: config.aspectRatio,
     targetDuration: options.targetDuration,
-    dossier
+    dossier,
+    channelProfile,
+    variantSpec
   });
   await notifyPipelineStage({
     workflowId: wf.id,
@@ -1038,13 +1083,13 @@ async function runPipeline(cliOptions) {
     updateWorkflow(wf.id, { status: 'audio_wait', stage: 'Audio Source Gate', progress: 40 });
     console.log(`\n⏸️ [HITL Gate 2: Audio Gate] Pipeline paused before audio generation.`);
 
-    let uploadPortalUrl = `https://cuang.dev/projects/ainimate/${channelName}/${path.basename(projectDir)}/upload`;
+    let uploadPortalUrl = `https://cuang.dev/projects/ainimate/${config.channelId}/${path.basename(projectDir)}/upload`;
     try {
       const { publishAudioPortal } = require('./video-publisher');
       uploadPortalUrl = publishAudioPortal({
         workflowId: wf.id,
         projectDir,
-        channel: channelName,
+        channel: config.channelId,
         slug: path.basename(projectDir),
         title,
         scriptText
@@ -1114,36 +1159,55 @@ async function runPipeline(cliOptions) {
         return { status: 'audio_wait', workflowId: wf.id, projectDir, error: apiErr.message };
       }
     } else {
-      console.log(`[3/8] Synthesizing Edge-TTS voiceover (id-ID-ArdiNeural)...`);
+      const voiceId = config.audio?.voice || channelProfile?.voice?.voiceId || channelProfile?.voice?.voice || 'id-ID-ArdiNeural';
+      const voiceRate = config.audio?.rate || channelProfile?.voice?.rate || '+5%';
+      const voicePitch = channelProfile?.voice?.pitch || '+0Hz';
+      console.log(`[3/8] Synthesizing Edge-TTS voiceover (${voiceId})...`);
       try {
-        const { execSync } = require('child_process');
-        const ttsScript = path.join(REPO_ROOT, 'scripts', 'tts.js');
         const cleanText = scriptText.replace(/<[^>]+>/g, '').replace(/\[[^|\]]+\|([^\]]+)\]/g, '$1').replace(/\s+/g, ' ').trim();
         const cleanTextFile = path.join(audioDir, 'narration-clean.txt');
         fs.writeFileSync(cleanTextFile, cleanText, 'utf8');
-        execSync(`node "${ttsScript}" --file "${cleanTextFile}" --out "${voiceoverPath}"`, { stdio: 'inherit' });
+
+        await synthesizeSpeech({
+          text: cleanText,
+          voice: voiceId,
+          rate: voiceRate,
+          pitch: voicePitch,
+          output: voiceoverPath,
+          timings: timingsPath
+        });
       } catch (ttsErr) {
-        console.warn(`[Audio Gate Error] Edge-TTS synthesis failed: ${ttsErr.message}`);
-        updateWorkflow(wf.id, { status: 'audio_wait', stage: 'Audio Source Gate (Retry)', progress: 40, error: ttsErr.message });
-        await notifyPipelineStage({
-          workflowId: wf.id,
-          stage: 'Audio Source Failed (Retry)',
-          progress: 40,
-          topic: title,
-          status: 'standby',
-          details: `⚠️ Edge TTS synthesis failed: \`${ttsErr.message}\`.\nPlease select an alternative audio source:`,
-          components: [
-            {
-              type: 1,
-              components: [
-                { type: 2, style: 1, custom_id: `ain:gate:audio:edgetts:${wf.id}`, label: '1. Edge TTS' },
-                { type: 2, style: 2, custom_id: `ain:gate:audio:upload:${wf.id}`, label: '2. Bring Your Own Audio' },
-                { type: 2, style: 2, custom_id: `ain:gate:audio:api:${wf.id}`, label: '3. API Voice' }
-              ]
-            }
-          ]
-        }).catch(() => {});
-        return { status: 'audio_wait', workflowId: wf.id, projectDir, error: ttsErr.message };
+        console.warn(`[Audio Gate Error] Direct Edge-TTS synthesis failed: ${ttsErr.message}. Retrying via CLI...`);
+        try {
+          const { execSync } = require('child_process');
+          const ttsScript = path.join(REPO_ROOT, 'scripts', 'tts.js');
+          const cleanText = scriptText.replace(/<[^>]+>/g, '').replace(/\[[^|\]]+\|([^\]]+)\]/g, '$1').replace(/\s+/g, ' ').trim();
+          const cleanTextFile = path.join(audioDir, 'narration-clean.txt');
+          fs.writeFileSync(cleanTextFile, cleanText, 'utf8');
+          execSync(`node "${ttsScript}" --file "${cleanTextFile}" --voice "${voiceId}" --rate "${voiceRate}" --out "${voiceoverPath}"`, { stdio: 'inherit' });
+        } catch (cliErr) {
+          console.warn(`[Audio Gate Error] Edge-TTS CLI synthesis failed: ${cliErr.message}`);
+          updateWorkflow(wf.id, { status: 'audio_wait', stage: 'Audio Source Gate (Retry)', progress: 40, error: cliErr.message });
+          await notifyPipelineStage({
+            workflowId: wf.id,
+            stage: 'Audio Source Failed (Retry)',
+            progress: 40,
+            topic: title,
+            status: 'standby',
+            details: `⚠️ Edge TTS synthesis failed: \`${cliErr.message}\`.\nPlease select an alternative audio source:`,
+            components: [
+              {
+                type: 1,
+                components: [
+                  { type: 2, style: 1, custom_id: `ain:gate:audio:edgetts:${wf.id}`, label: '1. Edge TTS' },
+                  { type: 2, style: 2, custom_id: `ain:gate:audio:upload:${wf.id}`, label: '2. Bring Your Own Audio' },
+                  { type: 2, style: 2, custom_id: `ain:gate:audio:api:${wf.id}`, label: '3. API Voice' }
+                ]
+              }
+            ]
+          }).catch(() => {});
+          return { status: 'audio_wait', workflowId: wf.id, projectDir, error: cliErr.message };
+        }
       }
     }
   }
@@ -1189,11 +1253,11 @@ async function runPipeline(cliOptions) {
   updateWorkflow(wf.id, { status: 'choreography', stage: 'Visual Director & Artist Choreography', progress: 60 });
   console.log(`[${new Date().toLocaleTimeString()}] [4/8] 🎨 Choreographing Single Hero Asset Stage Scenes with Artist Sub-Agent...`);
   
-  const storyboard = await runVisualDirectionAndArtistStage({
+  let storyboard = await runVisualDirectionAndArtistStage({
     projectDir,
     topic: title,
-    channel: options.channel,
-    format: options.format,
+    channel: config.channelId,
+    format: config.aspectRatio,
     durationSec,
     words,
     timings: timingsData.words,
@@ -1201,136 +1265,56 @@ async function runPipeline(cliOptions) {
     dossier
   });
 
-  // --- STAGE 5: Semantic Asset Sourcing & Artist Prompt Fulfillment ---
-  updateWorkflow(wf.id, { status: 'assets', stage: 'Asset Fulfillment & Vector Search', progress: 70 });
-  console.log('[5/8] Resolving Visual Exhibits (Vector DB + Nano Banana)...');
-  const recentAssets = [];
-  const stockPools = getStockAssetPools();
-  let fallbackRotation = 0;
+  // --- STAGE 5: Semantic Asset Sourcing & Dual Visual Engine ---
+  updateWorkflow(wf.id, { status: 'assets', stage: 'Asset Fulfillment & Visual Engine Routing', progress: 70 });
+  console.log(`[5/8] Routing Visual Beats with Dual Visual Engine (${config.visualEngine})...`);
 
-  for (const sc of storyboard.scenes) {
-    if (options.testMode) {
-      // In test mode: Do not load stock art/SVGs. Mark scene as prompt-box simulation with real artist prompt.
+  const buildAssetsDir = path.join(visualDir, 'assets');
+  fs.mkdirSync(buildAssetsDir, { recursive: true });
+
+  if (options.testMode) {
+    for (const sc of storyboard.scenes) {
       sc.isTestMode = true;
       if (!sc.exhibit) sc.exhibit = {};
       sc.exhibit.isPromptBox = true;
       sc.cleanPrompt = sc.exhibit.artistPrompt || sc.exhibit.description || sc.subtitle;
-      sc.systemTag = `[SYSTEM_PROMPT_${options.channel.toUpperCase()}]`;
+      sc.systemTag = `[SYSTEM_PROMPT_${config.channelId.toUpperCase()}]`;
       sc.exhibit.nanoBananaPrompt = sc.cleanPrompt;
       console.log(`[Test Mode Prompt Box (${(sc.layout || 'hero').toUpperCase()})] Scene ${sc.id}: [${sc.systemTag}] ${sc.cleanPrompt.slice(0, 65)}...`);
-      continue;
     }
-
-    let isValidMatch = false;
-    const queryPrompt = sc.exhibit?.artistPrompt || sc.exhibit?.description || sc.subtitle;
-
-    // 1. Verify existing asset semantic match against director specification (threshold >= 0.78 + cooldown check)
-    if (sc.exhibit?.src && fs.existsSync(path.resolve(REPO_ROOT, sc.exhibit.src))) {
-      const normSrc = sc.exhibit.src.replace(/\\/g, '/');
-      if (recentAssets.includes(normSrc)) {
-        console.log(`[Asset Cooldown Skip] Scene ${sc.id}: ${path.basename(normSrc)} was used in the last 3 beats. Skipping...`);
-        sc.exhibit.src = null;
-      } else {
-        const sim = await getAssetSimilarity(queryPrompt, sc.exhibit.src, options.channel);
-        if (sim >= 0.78) {
-          isValidMatch = true;
-          recentAssets.push(normSrc);
-          if (recentAssets.length > 3) recentAssets.shift();
-          console.log(`[Asset Reuse Validated] Scene ${sc.id}: "${queryPrompt.slice(0, 35)}..." matches ${path.basename(sc.exhibit.src)} (similarity: ${sim} >= 0.78)`);
-        } else {
-          console.log(`[Asset Reuse Rejected] Scene ${sc.id}: ${path.basename(sc.exhibit.src)} does NOT match "${queryPrompt.slice(0, 35)}..." (similarity: ${sim} < 0.78). Searching Vector DB...`);
-          sc.exhibit.src = null;
-        }
-      }
-    }
-
-    // 2. If no valid match, search Vector DB strictly for matches >= 0.85 and not in recentAssets (cooldown)
-    if (!isValidMatch && queryPrompt) {
-      const matches = await searchAsset({
-        query: queryPrompt,
-        channel: options.channel,
-        threshold: 0.85
-      });
-
-      const candidate = matches.find(m => !recentAssets.includes(m.asset.path.replace(/\\/g, '/')));
-
-      if (candidate) {
-        sc.exhibit.src = candidate.asset.path;
-        recentAssets.push(sc.exhibit.src.replace(/\\/g, '/'));
-        if (recentAssets.length > 3) recentAssets.shift();
-        console.log(`[Asset Sourced] Scene ${sc.id} -> ${candidate.asset.name} (${candidate.asset.path}, similarity: ${candidate.score})`);
-      } else {
-        const isFull = sc.layout === 'fullscreen' || sc.layout === 'fullsize';
-        const targetLayout = isFull ? 'fullscreen' : 'hero';
-        const promptSpec = buildStylePrompt(queryPrompt, { channel: options.channel, layout: isFull ? 'fullsize' : 'hero' });
-        sc.exhibit.nanoBananaPrompt = promptSpec.prompt;
-        sc.layout = targetLayout;
-        sc.exhibit.layout = targetLayout;
-
-        if (process.env.QWEN_ENDPOINT_URL) {
-          try {
-            console.log(`[Qwen Generation] Fulfilling Scene ${sc.id} via Colab (${targetLayout})...`);
-            const qwenResult = await generateWithQwen({
-              prompt: queryPrompt,
-              layout: targetLayout,
-              channel: options.channel,
-              name: `scene-${sc.id}`
-            });
-            sc.exhibit.src = qwenResult.path;
-            sc.exhibit.needsGeneration = false;
-            recentAssets.push(sc.exhibit.src.replace(/\\/g, '/'));
-            if (recentAssets.length > 3) recentAssets.shift();
-            console.log(`[Qwen Generation Success] Scene ${sc.id} -> ${qwenResult.path}`);
-            continue;
-          } catch (qErr) {
-            console.warn(`[Qwen Generation Warn] Scene ${sc.id} failed: ${qErr.message}. Using fallback.`);
-          }
-        }
-
-        // AI image generation unavailable fallback:
-        // Diverse stock asset rotation across assets/scenes/ and assets/props/
-        // Cycle deterministically so consecutive fallback beats NEVER use the same image
-        sc.exhibit.needsGeneration = true;
-        const descLower = queryPrompt.toLowerCase();
-        const isPerson = descLower.includes('investigator') || descLower.includes('ritel') || descLower.includes('person') || descLower.includes('host') || descLower.includes('man ') || descLower.includes('woman ');
-
-        let pool = isPerson ? stockPools.characterPool : (isFull ? stockPools.fullscreenPool : stockPools.heroPool);
-        if (!pool || pool.length === 0) pool = stockPools.allPool;
-
-        // Exclude recentAssets sliding window (last 3 beats)
-        let candidates = pool.filter(p => !recentAssets.includes(p.replace(/\\/g, '/')));
-        if (candidates.length === 0) {
-          candidates = stockPools.allPool.filter(p => !recentAssets.includes(p.replace(/\\/g, '/')));
-        }
-        if (candidates.length === 0) {
-          const lastAsset = recentAssets[recentAssets.length - 1];
-          candidates = pool.filter(p => p.replace(/\\/g, '/') !== lastAsset);
-        }
-        if (candidates.length === 0) candidates = pool;
-
-        const chosenFallback = candidates[(fallbackRotation++) % candidates.length];
-        sc.exhibit.src = chosenFallback;
-        recentAssets.push(chosenFallback.replace(/\\/g, '/'));
-        if (recentAssets.length > 3) recentAssets.shift();
-
-        console.warn(`[Asset Fallback Canvas] Scene ${sc.id} (${targetLayout}): AI image gen offline. Using diverse stock asset ${path.basename(sc.exhibit.src)}.`);
-      }
-    }
+  } else {
+    storyboard.scenes = await populateStoryboardVisuals(
+      storyboard.scenes,
+      config,
+      channelProfile,
+      styleProfile,
+      buildAssetsDir
+    );
   }
 
   // --- Self-Healing Pass on Storyboard ---
-  storyboard = healStoryboard(storyboard, projectDir, options.channel);
+  storyboard = healStoryboard(storyboard, projectDir, config.channelId);
+
+  // Immediately release Vector DB RAM before Stage 6 & 7
+  await disposeVectorDb();
+  if (typeof global.gc === 'function') {
+    global.gc();
+  }
 
   // --- STAGE 6: HTML5 Stage Compilation ---
   console.log('[6/8] Compiling Deterministic HTML5 Stage...');
   const stageHtmlPath = path.join(visualDir, 'stage.html');
-  const stageHtmlContent = generateStageHtml({
+  storyboard.timings = timingsData;
+  config.timings = timingsData;
+  if (options.testMode) {
+    config.testMode = true;
+  }
+  const stageHtmlContent = generateStageHtml(
     storyboard,
-    timings: timingsData,
-    format: options.format,
-    channelId: options.channel,
-    testMode: options.testMode
-  });
+    config,
+    channelProfile,
+    styleProfile
+  );
   fs.writeFileSync(stageHtmlPath, stageHtmlContent, 'utf8');
 
   // --- STAGE 7: Multimodal Visual QA ---
@@ -1341,11 +1325,11 @@ async function runPipeline(cliOptions) {
     htmlPath: stageHtmlPath,
     beats: storyboard.scenes,
     outputDir: framesDir,
-    width: options.format === '9:16' ? 1080 : 1920,
-    height: options.format === '9:16' ? 1920 : 1080
+    width: config.aspectRatio === '9:16' ? 1080 : 1920,
+    height: config.aspectRatio === '9:16' ? 1920 : 1080
   });
 
-  const qaAudit = await auditProjectFrames(keyframes, storyboard, { id: options.channel });
+  const qaAudit = await auditProjectFrames(keyframes, storyboard, { id: config.channelId });
   fs.writeFileSync(path.join(visualDir, 'qa-audit.json'), JSON.stringify(qaAudit, null, 2), 'utf8');
   console.log(`Visual QA Verdict: ${qaAudit.overallVerdict} (${qaAudit.passedCount}/${qaAudit.totalFrames} frames passed)`);
 
@@ -1363,14 +1347,22 @@ async function runPipeline(cliOptions) {
   const renderRes = await renderVideo({
     html: stageHtmlPath,
     audio: voiceoverPath,
+    storyboard: path.join(visualDir, 'storyboard.json'),
+    projectDir,
     duration: options.targetDuration
       ? (Math.abs(durationSec - parseFloat(options.targetDuration)) <= 35 ? durationSec : Math.min(durationSec, parseFloat(options.targetDuration)))
       : durationSec, // Default to full natural duration without artificial limits
     output: finalVideoPath,
-    width: options.format === '9:16' ? 1080 : 1920,
-    height: options.format === '9:16' ? 1920 : 1080,
-    fps: 30,
-    crf: 23
+    width: config.aspectRatio === '9:16' ? 1080 : 1920,
+    height: config.aspectRatio === '9:16' ? 1920 : 1080,
+    fps: config.render?.fps || 24,
+    jpegQuality: config.render?.jpegQuality || 85,
+    ffmpegThreads: config.render?.ffmpegThreads || 2,
+    chromiumMaxHeapMb: config.render?.chromiumMaxHeapMb || 512,
+    config,
+    pipelineConfig: config,
+    channelProfile,
+    styleProfile
   });
 
   updateWorkflow(wf.id, {
@@ -1393,8 +1385,8 @@ async function runPipeline(cliOptions) {
   await sendVideoToDiscord({
     videoPath: renderRes.outputPath,
     title,
-    channel: options.channel,
-    format: options.format,
+    channel: config.channelId,
+    format: config.aspectRatio,
     qaAudit,
     sizeMB: renderRes.sizeMB
   }).catch(err => {

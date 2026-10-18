@@ -11,19 +11,27 @@ const path = require('path');
 const { spawn } = require('child_process');
 const { recordWorkflow, updateWorkflow, loadWorkflows, cancelWorkflow, getActiveWorkflow, getWorkflow } = require('./workflow-ledger');
 const { notifyPipelineStage } = require('./discord-notifier');
+const { getChannelProfile } = require('../channels/channel-manager');
+const { normalizePipelineConfig } = require('../config/schema');
 
 const REPO_ROOT = path.resolve(__dirname, '..');
 
 /**
  * Spawns a background worker process while streaming stdout and stderr to pipeline.log
  */
-function spawnWorkerWithLogging(projectDir, workerArgs) {
+function spawnWorkerWithLogging(projectDir, workerArgs, customEnv = {}) {
   fs.mkdirSync(projectDir, { recursive: true });
   const logFile = path.join(projectDir, 'pipeline.log');
   const out = fs.openSync(logFile, 'a');
+  const env = {
+    ...process.env,
+    NODE_OPTIONS: '--expose-gc --max-old-space-size=1024',
+    ...customEnv
+  };
   const worker = spawn('node', workerArgs, {
     detached: true,
-    stdio: ['ignore', out, out]
+    stdio: ['ignore', out, out],
+    env
   });
   worker.unref();
   return worker;
@@ -55,17 +63,7 @@ function getWorkflowLogs(wfOrSlug, maxLines = 15) {
 /**
  * Launch a new video production pipeline
  */
-function startVideoProduction({
-  topic,
-  style = 'investigative-documentary',
-  format = '16:9',
-  channel = 'kausalmedia',
-  creator = 'User',
-  testMode = false,
-  audioGate = false,
-  scriptGate = false,
-  targetDuration = null
-}) {
+function startVideoProduction(options = {}) {
   const activeWf = getActiveWorkflow();
   if (activeWf && ['queued', 'research', 'script', 'script_wait', 'audio_wait', 'choreography', 'rendering'].includes(activeWf.status)) {
     return {
@@ -75,39 +73,61 @@ function startVideoProduction({
     };
   }
 
-  const lines = String(topic || '').split('\n').map(l => l.trim()).filter(Boolean);
+  const channelProfile = getChannelProfile(options.channelId || options.channel);
+  const config = normalizePipelineConfig(options, channelProfile);
+
+  const rawTopic = config.topic || options.topic || '';
+  const lines = String(rawTopic).split('\n').map(l => l.trim()).filter(Boolean);
   const title = lines[0] ? lines[0].slice(0, 80) : 'Untitled Project';
-  const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '').slice(0, 32) || 'video-project';
+  const slug = (options.project || options.slug || title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '').slice(0, 32)) || 'video-project';
   const projectDir = path.join(REPO_ROOT, 'projects', slug);
   fs.mkdirSync(projectDir, { recursive: true });
 
-  const activeAgent = process.env.ACTIVE_AGENT || 'agy';
+  const activeAgent = options.agent || process.env.ACTIVE_AGENT || 'agy';
+  const audioGate = Boolean(options.audioGate);
+  const scriptGate = Boolean(options.scriptGate);
+  const testMode = Boolean(options.testMode);
+  const targetDuration = options.targetDuration ? Number(options.targetDuration) : null;
   const hasGates = Boolean(audioGate || scriptGate);
 
   const wf = recordWorkflow({
     project: slug,
     topic: title,
-    channel,
-    style,
-    format,
+    channel: config.channelId,
+    channelId: config.channelId,
+    variant: config.videoVariant,
+    videoVariant: config.videoVariant,
+    style: config.styleId,
+    styleId: config.styleId,
+    format: config.aspectRatio,
+    aspectRatio: config.aspectRatio,
+    visualEngine: config.visualEngine,
+    subtitles: config.subtitles,
+    config,
     agent: activeAgent,
-    testMode: Boolean(testMode),
-    audioGate: Boolean(audioGate),
-    scriptGate: Boolean(scriptGate),
-    targetDuration: targetDuration ? Number(targetDuration) : null,
+    testMode,
+    audioGate,
+    scriptGate,
+    targetDuration,
     status: 'research',
     stage: 'Domain Research',
     progress: 10
   });
 
   const pipelineScript = path.join(REPO_ROOT, 'scripts', 'pipeline.js');
+  const subtitlesArg = config.subtitles.enabled ? config.subtitles.mode : 'off';
   const workerArgs = [
     pipelineScript,
     '--workflow-id', wf.id,
     '--project', slug,
+    '--channel', config.channelId,
+    '--variant', config.videoVariant,
+    '--style', config.styleId,
+    '--visual-engine', config.visualEngine,
+    '--subtitles', subtitlesArg,
+    '--aspect', config.aspectRatio,
     '--topic', title,
-    '--channel', channel,
-    '--format', format,
+    '--format', config.aspectRatio,
     '--agent', activeAgent
   ];
 
@@ -185,13 +205,23 @@ function resumeWorkflowWithScript({ workflowId, scriptText }) {
     progress: 35
   });
 
+  const channelProfile = getChannelProfile(wf.channelId || wf.channel || 'kausalmedia');
+  const config = normalizePipelineConfig(wf.config || wf, channelProfile);
+  const subtitlesArg = config.subtitles.enabled ? config.subtitles.mode : 'off';
+
   const pipelineScript = path.join(REPO_ROOT, 'scripts', 'pipeline.js');
   const workerArgs = [
     pipelineScript,
     '--workflow-id', wf.id,
     '--project', wf.project,
-    '--channel', wf.channel || 'kausalmedia',
-    '--format', wf.format || '16:9',
+    '--channel', config.channelId,
+    '--variant', config.videoVariant,
+    '--style', config.styleId,
+    '--visual-engine', config.visualEngine,
+    '--subtitles', subtitlesArg,
+    '--aspect', config.aspectRatio,
+    '--topic', wf.topic || wf.project,
+    '--format', config.aspectRatio,
     '--resume', 'audio'
   ];
 
@@ -279,13 +309,23 @@ CRITICAL RULES:
     progress: 35
   });
 
+  const channelProfile = getChannelProfile(wf.channelId || wf.channel || 'kausalmedia');
+  const config = normalizePipelineConfig(wf.config || wf, channelProfile);
+  const subtitlesArg = config.subtitles.enabled ? config.subtitles.mode : 'off';
+
   const pipelineScript = path.join(REPO_ROOT, 'scripts', 'pipeline.js');
   const workerArgs = [
     pipelineScript,
     '--workflow-id', wf.id,
     '--project', wf.project,
-    '--channel', wf.channel || 'kausalmedia',
-    '--format', wf.format || '16:9',
+    '--channel', config.channelId,
+    '--variant', config.videoVariant,
+    '--style', config.styleId,
+    '--visual-engine', config.visualEngine,
+    '--subtitles', subtitlesArg,
+    '--aspect', config.aspectRatio,
+    '--topic', wf.topic || wf.project,
+    '--format', config.aspectRatio,
     '--resume', 'audio'
   ];
 
@@ -315,13 +355,23 @@ function resumeWorkflowWithAudioSource({ workflowId, audioSource = 'edge_tts' })
     progress: 45
   });
 
+  const channelProfile = getChannelProfile(wf.channelId || wf.channel || 'kausalmedia');
+  const config = normalizePipelineConfig(wf.config || wf, channelProfile);
+  const subtitlesArg = config.subtitles.enabled ? config.subtitles.mode : 'off';
+
   const pipelineScript = path.join(REPO_ROOT, 'scripts', 'pipeline.js');
   const workerArgs = [
     pipelineScript,
     '--workflow-id', wf.id,
     '--project', wf.project,
-    '--channel', wf.channel || 'kausalmedia',
-    '--format', wf.format || '16:9',
+    '--channel', config.channelId,
+    '--variant', config.videoVariant,
+    '--style', config.styleId,
+    '--visual-engine', config.visualEngine,
+    '--subtitles', subtitlesArg,
+    '--aspect', config.aspectRatio,
+    '--topic', wf.topic || wf.project,
+    '--format', config.aspectRatio,
     '--resume', 'audio',
     '--audio-source', audioSource,
     '--auto'
@@ -349,11 +399,23 @@ function resumeWorkflowWithAudio({ workflowId, audioPath }) {
 
   updateWorkflow(wf.id, { status: 'choreography', stage: 'Choreography & Rendering', progress: 55 });
 
+  const channelProfile = getChannelProfile(wf.channelId || wf.channel || 'kausalmedia');
+  const config = normalizePipelineConfig(wf.config || wf, channelProfile);
+  const subtitlesArg = config.subtitles.enabled ? config.subtitles.mode : 'off';
+
   const pipelineScript = path.join(REPO_ROOT, 'scripts', 'pipeline.js');
   const workerArgs = [
     pipelineScript,
     '--workflow-id', wf.id,
     '--project', wf.project,
+    '--channel', config.channelId,
+    '--variant', config.videoVariant,
+    '--style', config.styleId,
+    '--visual-engine', config.visualEngine,
+    '--subtitles', subtitlesArg,
+    '--aspect', config.aspectRatio,
+    '--topic', wf.topic || wf.project,
+    '--format', config.aspectRatio,
     '--resume', 'render',
     '--auto'
   ];
@@ -393,14 +455,23 @@ function resumeOrStartWorkflow(idOrProject) {
     error: null
   });
 
+  const channelProfile = getChannelProfile(wf.channelId || wf.channel || 'kausalmedia');
+  const config = normalizePipelineConfig(wf.config || wf, channelProfile);
+  const subtitlesArg = config.subtitles.enabled ? config.subtitles.mode : 'off';
+
   const pipelineScript = path.join(REPO_ROOT, 'scripts', 'pipeline.js');
   const workerArgs = [
     pipelineScript,
     '--workflow-id', wf.id,
     '--project', wf.project,
+    '--channel', config.channelId,
+    '--variant', config.videoVariant,
+    '--style', config.styleId,
+    '--visual-engine', config.visualEngine,
+    '--subtitles', subtitlesArg,
+    '--aspect', config.aspectRatio,
     '--topic', wf.topic || wf.project,
-    '--channel', wf.channel || 'kausalmedia',
-    '--format', wf.format || '16:9',
+    '--format', config.aspectRatio,
     '--agent', activeAgent,
     '--auto'
   ];

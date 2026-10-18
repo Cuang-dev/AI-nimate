@@ -3758,6 +3758,55 @@ const commands = [
           opt.setName('channel')
             .setDescription('Target publication channel profile')
             .setRequired(false)
+            .addChoices(
+              { name: 'Kausal Media (Investigative Documentary)', value: 'kausalmedia' },
+              { name: 'Nusantara Archive (Historical/Cultural)', value: 'nusantaraarchive' }
+            )
+        )
+        .addStringOption(opt =>
+          opt.setName('variant')
+            .setDescription('Video editorial variant')
+            .setRequired(false)
+            .addChoices(
+              { name: 'Forensic Autopsy (Kausal)', value: 'forensic-autopsy' },
+              { name: 'Policy Paradox (Kausal)', value: 'policy-paradox' },
+              { name: 'Invisible Monopoly (Kausal)', value: 'invisible-monopoly' },
+              { name: 'Kinetic Short (Kausal)', value: 'kinetic-short' },
+              { name: 'Chronicle Archive (Nusantara)', value: 'chronicle-archive' },
+              { name: 'Declassified Dossier (Nusantara)', value: 'declassified-dossier' },
+              { name: 'Archive Short (Nusantara)', value: 'archive-short' }
+            )
+        )
+        .addStringOption(opt =>
+          opt.setName('visual_engine')
+            .setDescription('Visual rendering engine')
+            .setRequired(false)
+            .addChoices(
+              { name: 'Hybrid (Smart Routing: Vector HTML + AI Image)', value: 'hybrid' },
+              { name: 'Vector HTML (Lightweight CSS/SVG Diagrams)', value: 'vector-html' },
+              { name: 'AI Image (Full Midjourney/FLUX raster scenes)', value: 'ai-image' }
+            )
+        )
+        .addStringOption(opt =>
+          opt.setName('subtitles')
+            .setDescription('Subtitle presentation mode')
+            .setRequired(false)
+            .addChoices(
+              { name: 'Kinetic Pill (Pop-in rounded pill style)', value: 'kinetic-pill' },
+              { name: 'Broadcast Lower (Documentary lower-third style)', value: 'broadcast-lower' },
+              { name: 'Karaoke Word (Word-by-word active highlight)', value: 'karaoke-word' },
+              { name: 'Off (No subtitles rendered)', value: 'off' }
+            )
+        )
+        .addStringOption(opt =>
+          opt.setName('style')
+            .setDescription('Visual style package')
+            .setRequired(false)
+            .addChoices(
+              { name: 'Kausal Media (Crimson & Papyrus)', value: 'kausalmedia' },
+              { name: 'Investigative Documentary (Dark Slate & Ochre)', value: 'investigative-documentary' },
+              { name: 'Tech Deepdive (Midnight Blue & Cyber Cyan)', value: 'tech-deepdive' }
+            )
         )
         .addBooleanOption(opt =>
           opt.setName('test_mode')
@@ -4718,6 +4767,10 @@ client.on('interactionCreate', async interaction => {
         } else if (sub === 'create') {
           const topic = interaction.options.getString('topic');
           const channel = interaction.options.getString('channel') || 'kausalmedia';
+          const variant = interaction.options.getString('variant');
+          const visualEngine = interaction.options.getString('visual_engine');
+          const subtitles = interaction.options.getString('subtitles');
+          const style = interaction.options.getString('style');
           const format = interaction.options.getString('format') || '16:9';
           const testMode = interaction.options.getBoolean('test_mode') || false;
           const audioGate = interaction.options.getBoolean('audio_gate') || false;
@@ -4725,7 +4778,7 @@ client.on('interactionCreate', async interaction => {
 
           await interaction.deferReply();
           try {
-            const res = startVideoProduction({
+            const startOptions = {
               topic,
               channel,
               format,
@@ -4733,7 +4786,13 @@ client.on('interactionCreate', async interaction => {
               audioGate,
               scriptGate,
               creator: interaction.user.tag || interaction.user.id
-            });
+            };
+            if (variant) startOptions.variant = variant;
+            if (visualEngine) startOptions.visualEngine = visualEngine;
+            if (subtitles) startOptions.subtitles = subtitles;
+            if (style) startOptions.style = style;
+
+            const res = startVideoProduction(startOptions);
 
             if (!res.success) {
               return interaction.editReply({
@@ -4741,20 +4800,28 @@ client.on('interactionCreate', async interaction => {
               });
             }
 
+            const wf = res.workflow || {};
+            const wfChannel = wf.channelId || channel;
+            const wfVariant = wf.videoVariant || variant || 'default';
+            const wfFormat = wf.aspectRatio || format;
+            const wfEngine = wf.visualEngine || visualEngine || 'hybrid';
+            const wfSubs = (wf.subtitles && typeof wf.subtitles === 'object') ? wf.subtitles.mode : (subtitles || 'default');
+            const wfStyle = wf.styleId || style || 'default';
+
             // Cross-post alert to #ai-nimate channel if triggered outside of #ai-nimate
             if (interaction.channelId !== AINIMATE_CHANNEL_ID) {
               try {
                 const targetCh = client.channels.cache.get(AINIMATE_CHANNEL_ID) || await client.channels.fetch(AINIMATE_CHANNEL_ID);
                 if (targetCh) {
                   await targetCh.send({
-                    content: `🚀 **New Production Dispatched by <@${interaction.user.id}>!**\n• Topic: **${topic}**\n• Channel: \`${channel}\` | Format: \`${format}\`\n• Toggles: \`Test Mode: ${testMode ? 'ON' : 'OFF'} | Audio Gate: ${audioGate ? 'ON' : 'OFF'} | Script Gate: ${scriptGate ? 'ON' : 'OFF'}\`\n• Workflow ID: \`${res.workflow.id}\``
+                    content: `🚀 **New Production Dispatched by <@${interaction.user.id}>!**\n• Topic: **${topic}**\n• Channel: \`${wfChannel}\` | Variant: \`${wfVariant}\` | Format: \`${wfFormat}\`\n• Engine: \`${wfEngine}\` | Subtitles: \`${wfSubs}\` | Style: \`${wfStyle}\`\n• Toggles: \`Test Mode: ${testMode ? 'ON' : 'OFF'} | Audio Gate: ${audioGate ? 'ON' : 'OFF'} | Script Gate: ${scriptGate ? 'ON' : 'OFF'}\`\n• Workflow ID: \`${res.workflow.id}\``
                   });
                 }
               } catch (_) {}
             }
 
             return interaction.editReply({
-              content: `🚀 **Production Initiated!**\n• Topic: **${topic}**\n• Channel: \`${channel}\` | Format: \`${format}\`\n• Toggles: \`Test Mode: ${testMode ? 'ON' : 'OFF'} | Audio Gate: ${audioGate ? 'ON' : 'OFF'} | Script Gate: ${scriptGate ? 'ON' : 'OFF'}\`\n• Workflow ID: \`${res.workflow.id}\`\n• Creator: <@${interaction.user.id}>\n\nSub-agent pipeline launched in background. All milestone updates are broadcasting to <#${AINIMATE_CHANNEL_ID}>!`
+              content: `🚀 **Production Initiated!**\n• Topic: **${topic}**\n• Channel: \`${wfChannel}\` | Variant: \`${wfVariant}\` | Format: \`${wfFormat}\`\n• Engine: \`${wfEngine}\` | Subtitles: \`${wfSubs}\` | Style: \`${wfStyle}\`\n• Toggles: \`Test Mode: ${testMode ? 'ON' : 'OFF'} | Audio Gate: ${audioGate ? 'ON' : 'OFF'} | Script Gate: ${scriptGate ? 'ON' : 'OFF'}\`\n• Workflow ID: \`${res.workflow.id}\`\n• Creator: <@${interaction.user.id}>\n\nSub-agent pipeline launched in background. All milestone updates are broadcasting to <#${AINIMATE_CHANNEL_ID}>!`
             });
           } catch (err) {
             return interaction.editReply({ content: `⚠️ Error initiating workflow: ${err.message}` });
