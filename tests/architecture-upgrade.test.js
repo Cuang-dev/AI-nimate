@@ -785,3 +785,68 @@ test('8. Deep Research: verify runResearchStage enforces empirical evidence and 
   }
 });
 
+// ============================================================================
+// 9. Separated Subagents & Working Prompt Contracts
+// ============================================================================
+
+test('9. Subagent Separation: verifies domain-researcher and scriptwriter agent definitions exist', () => {
+  const researcherAgentFile = path.join(__dirname, '../.agents/agents/domain-researcher/agent.md');
+  const scriptwriterAgentFile = path.join(__dirname, '../.agents/agents/scriptwriter/agent.md');
+
+  assert.ok(fs.existsSync(researcherAgentFile), '.agents/agents/domain-researcher/agent.md must exist');
+  assert.ok(fs.existsSync(scriptwriterAgentFile), '.agents/agents/scriptwriter/agent.md must exist');
+
+  const researcherContent = fs.readFileSync(researcherAgentFile, 'utf8');
+  assert.ok(researcherContent.includes('name: domain-researcher'), 'domain-researcher agent.md must declare name: domain-researcher');
+  assert.ok(researcherContent.includes('search_web'), 'domain-researcher must have web search capabilities');
+
+  const scriptwriterContent = fs.readFileSync(scriptwriterAgentFile, 'utf8');
+  assert.ok(scriptwriterContent.includes('name: scriptwriter'), 'scriptwriter agent.md must declare name: scriptwriter');
+  assert.ok(scriptwriterContent.includes('Anti-Slop Discipline'), 'scriptwriter must enforce anti-slop guidelines');
+});
+
+test('9. Prompt Construction: verifies buildDomainResearchPrompt and buildChannelScriptPrompt work properly', () => {
+  const { buildDomainResearchPrompt, buildChannelScriptPrompt } = require('../scripts/prompt-manager');
+  const { getChannelProfile, resolveChannelVariant } = require('../channels/channel-manager');
+
+  const km = getChannelProfile('kausalmedia');
+  const variant = resolveChannelVariant('kausalmedia', 'forensic-autopsy');
+
+  // 1. Research prompt verification
+  const researchPrompt = buildDomainResearchPrompt(km, variant, 'Skandal Pajak Korporasi');
+  assert.ok(researchPrompt.includes('Senior Investigative Domain Researcher'), 'Prompt must target domain researcher role');
+  assert.ok(researchPrompt.includes('Skandal Pajak Korporasi'), 'Prompt must include topic');
+  assert.ok(researchPrompt.includes('TEMPORAL ANCHOR & SEARCH RECENCY'), 'Prompt must enforce 2026 temporal anchor');
+  assert.ok(researchPrompt.includes('unitEconomics'), 'Prompt must require unit economics');
+  assert.ok(researchPrompt.includes('causalMechanics'), 'Prompt must require causal mechanics');
+
+  // 2. Scriptwriter prompt verification
+  const scriptPrompt = buildChannelScriptPrompt(km, variant, 'Skandal Pajak Korporasi', '{"primaryAnomaly":"test"}', 1400);
+  assert.ok(scriptPrompt.includes('TARGET SCRIPT LENGTH: Approximately 1400 words'), 'Prompt must specify target words');
+  assert.ok(scriptPrompt.includes('Wrap all acronyms and tickers in phonetic brackets'), 'Prompt must include phonetic formatting rules');
+  assert.ok(scriptPrompt.includes('[BEI|B-E-I]'), 'Prompt must include phonetic example');
+  assert.ok(scriptPrompt.includes('STRICT ANTI-SLOP RULES'), 'Prompt must inject anti-slop rules');
+});
+
+test('9. Pipeline Wiring: verifies scripts/pipeline.js dispatches separated subagents', () => {
+  const pipelineSource = fs.readFileSync(path.join(__dirname, '../scripts/pipeline.js'), 'utf8');
+
+  assert.ok(
+    pipelineSource.includes("'--agent', 'domain-researcher'"),
+    "scripts/pipeline.js must dispatch --agent domain-researcher for Stage 1"
+  );
+  assert.ok(
+    pipelineSource.includes("'--agent', 'scriptwriter'"),
+    "scripts/pipeline.js must dispatch --agent scriptwriter for Stage 2"
+  );
+  assert.ok(
+    pipelineSource.includes('buildDomainResearchPrompt'),
+    'scripts/pipeline.js must use buildDomainResearchPrompt for research prompt'
+  );
+  assert.ok(
+    pipelineSource.includes('buildChannelScriptPrompt'),
+    'scripts/pipeline.js must use buildChannelScriptPrompt for scriptwriting prompt'
+  );
+});
+
+

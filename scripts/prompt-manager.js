@@ -98,15 +98,16 @@ function updateAgentPrompt(agentId, newPromptText) {
 
 /**
  * Injects channel persona, tone, anti-slop rules, hook instructions, narrative beats,
- * topic brief, and research dossier into the scriptDirector prompt template.
+ * topic brief, and research dossier into the scriptDirector prompt template for the scriptwriter subagent.
  * 
  * @param {Object} channelProfile - Channel profile object
  * @param {Object} variantSpec - Variant specification object
  * @param {string} [topic=''] - Video subject or topic
  * @param {string} [researchDossier=''] - Empirical research dossier
+ * @param {number} [targetWords=1200] - Target spoken word count
  * @returns {string} Fully interpolated script director prompt
  */
-function buildChannelScriptPrompt(channelProfile = {}, variantSpec = {}, topic = '', researchDossier = '') {
+function buildChannelScriptPrompt(channelProfile = {}, variantSpec = {}, topic = '', researchDossier = '', targetWords = 1200) {
   const agentPromptObj = getAgentPrompt('scriptDirector');
   let template = agentPromptObj?.prompt || DEFAULT_PROMPTS.scriptDirector.prompt;
 
@@ -133,7 +134,7 @@ function buildChannelScriptPrompt(channelProfile = {}, variantSpec = {}, topic =
     beats = '1. Anomaly Hook (0-15%)\n2. Structural Mechanism (15-45%)\n3. Decisive Evidence / Smoking Gun (45-75%)\n4. Systemic Fallout (75-100%)';
   }
 
-  return template
+  let prompt = template
     .replace(/\{\{channelPersona\}\}/g, persona)
     .replace(/\{\{channelTone\}\}/g, tone)
     .replace(/\{\{antiSlopRules\}\}/g, antiSlop)
@@ -141,6 +142,74 @@ function buildChannelScriptPrompt(channelProfile = {}, variantSpec = {}, topic =
     .replace(/\{\{narrativeBeats\}\}/g, beats)
     .replace(/\{\{topic\}\}/g, topic || 'Investigative Financial Autopsy')
     .replace(/\{\{researchDossier\}\}/g, researchDossier || 'Grounded empirical data and verifiable public disclosures.');
+
+  prompt += `\n\nTARGET SCRIPT LENGTH: Approximately ${targetWords} words (~${Math.round((targetWords / 140) * 60)} seconds spoken at 140 WPM).
+CRITICAL DELIVERY CONSTRAINTS:
+- Output ONLY the spoken narration text.
+- Do NOT output title cards, markdown headers, chapter bumpers, scene labels, or [BAB X] markers.
+- Wrap all acronyms and tickers in phonetic brackets: e.g. [BEI|B-E-I], [OJK|O-J-K], [MSCI|M-S-C-I].
+- Integrate natural Gemini breath tags: <breath>, <short pause>.`;
+
+  return prompt;
+}
+
+/**
+ * Builds an exhaustive, empirically rigorous forensic research prompt for the domain-researcher subagent.
+ * 
+ * @param {Object} channelProfile - Channel profile object
+ * @param {Object} variantSpec - Variant specification object
+ * @param {string} [topic=''] - Video subject or topic
+ * @returns {string} Fully interpolated domain research prompt
+ */
+function buildDomainResearchPrompt(channelProfile = {}, variantSpec = {}, topic = '') {
+  const channelName = channelProfile?.name || channelProfile?.id || 'Kausal Media';
+  const persona = channelProfile?.editorialDna?.persona || 'Senior Investigative Forensic Researcher analyzing capital structures and institutional mechanisms in Indonesia.';
+  const editorialTone = channelProfile?.editorialDna?.tone || 'Empirically rigorous, analytical, balance-sheet grounded.';
+
+  return `You are the Senior Investigative Domain Researcher for YouTube channel '${channelName}'.
+CHANNEL PERSONA: ${persona}
+EDITORIAL TONE: ${editorialTone}
+
+Conduct exhaustive, empirically rigorous forensic domain research on this topic:
+TOPIC: "${topic}"
+
+TEMPORAL ANCHOR & SEARCH RECENCY:
+- Current system year is 2026. Explicitly search for and anchor to 2025-2026 market reviews, regulatory changes, and economic data.
+
+Your investigation must rigorously uncover:
+1. Core Economic Anomaly & Hidden Mechanics (Who pays, who profits, what is the obscured cash loop, what asymmetric advantage is being exploited?)
+2. Financial Forensics & Unit Economics (Real numbers, valuation shifts, profit margins, balance sheet impacts, market capitalization movements in Indonesian Rupiah or USD)
+3. Regulatory Landscape & Legal Loopholes (Specific POJK, UU, Keputusan Menteri, tax clauses, or gray zones exploited)
+4. Primary Entities Involved (Corporations, government bodies, regulatory syndicates, or individuals with their roles and interests)
+5. Causal Mechanics (Step-by-step chronology of how this mechanism operates in reality from initial accumulation to final extraction)
+6. Counter-Intuitive Truth (What does the public/retail believe vs what is actually happening mathematically?)
+7. Executive Brief (Dense, multi-paragraph forensic briefing synthesizing the findings)
+
+Return STRICTLY a JSON object with no markdown fences, matching this schema:
+{
+  "topic": "${topic}",
+  "channel": "${channelProfile?.id || 'kausalmedia'}",
+  "primaryAnomaly": "1-2 sentence core economic anomaly",
+  "unitEconomics": {
+    "keyMetrics": "Key financial figures and valuation scales",
+    "margins": "Profit margins or fee spreads",
+    "cashLeakage": "Where capital drains from public/retail"
+  },
+  "keyEntities": [
+    { "name": "Entity Name", "role": "Role in mechanism", "interest": "Underlying incentive" }
+  ],
+  "forensicEvidence": [
+    { "type": "regulation|market_data|filing|financial_metric", "title": "Citation/Title", "source": "Regulatory/Official Source", "finding": "Factual finding" }
+  ],
+  "causalMechanics": [
+    "Step 1: Mechanism trigger...",
+    "Step 2: Capital movement...",
+    "Step 3: Obfuscation layer...",
+    "Step 4: Final extraction..."
+  ],
+  "counterIntuitiveTruth": "Public assumption vs empirical reality",
+  "executiveBrief": "Dense multi-paragraph forensic background narrative..."
+}`;
 }
 
 /**
@@ -194,5 +263,6 @@ module.exports = {
   getAgentPrompt,
   updateAgentPrompt,
   buildChannelScriptPrompt,
+  buildDomainResearchPrompt,
   buildVectorScenePrompt
 };

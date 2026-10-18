@@ -28,7 +28,7 @@ const { sendVideoToDiscord, notifyPipelineStage, notifyPipelineError } = require
 const { parseCliArgsToConfig, normalizePipelineConfig } = require('../config/schema');
 const { getChannelProfile, resolveChannelVariant } = require('../channels/channel-manager');
 const { getStyleProfile } = require('../styles/style-manager');
-const { buildChannelScriptPrompt } = require('./prompt-manager');
+const { buildChannelScriptPrompt, buildDomainResearchPrompt } = require('./prompt-manager');
 const { populateStoryboardVisuals } = require('../engine/visual-engine');
 const { synthesizeSpeech } = require('./tts');
 
@@ -157,62 +157,34 @@ async function runResearchStage({ projectDir, topic, channel, channelProfile = n
   const persona = channelProfile?.editorialDna?.persona || '';
   console.log(`[${new Date().toLocaleTimeString()}] [1/8] 🧠 Initiating deep forensic domain research on "${topic}" for channel ${targetChannel}...`);
 
-  const researchPrompt = `You are the Senior Investigative Forensic Researcher for YouTube channel '${channelName}'.
-${persona ? 'CHANNEL PERSONA: ' + persona + '\n' : ''}Conduct exhaustive, empirically rigorous domain research on this topic:
-TOPIC: "${topic}"
-
-Your investigation must rigorously uncover:
-1. Core Economic Anomaly & Hidden Mechanics (Who pays, who profits, what is the obscured cash loop, what asymmetric advantage is being exploited?)
-2. Financial Forensics & Unit Economics (Real numbers, valuation shifts, profit margins, balance sheet impacts, market capitalization movements in Indonesian Rupiah or USD)
-3. Regulatory Landscape & Legal Loopholes (Specific POJK, UU, Keputusan Menteri, tax clauses, or gray zones exploited)
-4. Primary Entities Involved (Corporations, government bodies, regulatory syndicates, or individuals)
-5. Causal Mechanics (Step-by-step chronology of how this mechanism operates in reality)
-6. Counter-Intuitive Truth (What does the public believe vs what is actually happening mathematically?)
-7. Executive Brief (Dense, multi-paragraph forensic briefing synthesizing the findings)
-
-Return STRICTLY a JSON object with no markdown fences, matching this schema:
-{
-  "topic": "${topic}",
-  "channel": "${channel}",
-  "primaryAnomaly": "1-2 sentence core economic anomaly",
-  "unitEconomics": {
-    "keyMetrics": "Key financial figures and valuation scales",
-    "margins": "Profit margins or fee spreads",
-    "cashLeakage": "Where capital drains from public/retail"
-  },
-  "keyEntities": [
-    { "name": "Entity Name", "role": "Role in mechanism", "interest": "Underlying incentive" }
-  ],
-  "forensicEvidence": [
-    { "type": "regulation|market_data|filing|financial_metric", "title": "Citation/Title", "source": "Regulatory/Official Source", "finding": "Factual finding" }
-  ],
-  "causalMechanics": [
-    "Step 1: Mechanism trigger...",
-    "Step 2: Capital movement...",
-    "Step 3: Obfuscation layer...",
-    "Step 4: Final extraction..."
-  ],
-  "counterIntuitiveTruth": "Public assumption vs empirical reality",
-  "executiveBrief": "Dense multi-paragraph forensic background narrative..."
-}`;
+  const researchPrompt = buildDomainResearchPrompt(channelProfile, variantSpec, topic);
 
   let dossier = null;
   if (fs.existsSync(agyBin)) {
     try {
-      console.log(`[${new Date().toLocaleTimeString()}] [1/8] 🧠 Dispatching Antigravity researcher agent (agy)...`);
+      console.log(`[${new Date().toLocaleTimeString()}] [1/8] 🧠 Dispatching domain-researcher subagent (agy --agent domain-researcher)...`);
       const { execFileSync } = require('child_process');
-      const out = execFileSync(agyBin, ['--model', 'gemini-3.8-flash-low', '-p', researchPrompt, '--dangerously-skip-permissions', '--disable-slash-commands', '--print-timeout', '180s'], {
-        encoding: 'utf8',
-        timeout: 190000,
-        env: { ...process.env, HOME: '/home/agent' }
-      });
+      let out;
+      try {
+        out = execFileSync(agyBin, ['--agent', 'domain-researcher', '--model', 'gemini-3.8-flash-low', '-p', researchPrompt, '--dangerously-skip-permissions', '--disable-slash-commands', '--print-timeout', '180s'], {
+          encoding: 'utf8',
+          timeout: 190000,
+          env: { ...process.env, HOME: '/home/agent' }
+        });
+      } catch (agentErr) {
+        out = execFileSync(agyBin, ['--model', 'gemini-3.8-flash-low', '-p', researchPrompt, '--dangerously-skip-permissions', '--disable-slash-commands', '--print-timeout', '180s'], {
+          encoding: 'utf8',
+          timeout: 190000,
+          env: { ...process.env, HOME: '/home/agent' }
+        });
+      }
       const jsonMatch = out.match(/\{[\s\S]*\}/);
       if (jsonMatch) {
         dossier = JSON.parse(jsonMatch[0]);
-        console.log(`[${new Date().toLocaleTimeString()}] [1/8] ✅ Antigravity research complete: extracted ${dossier.causalMechanics?.length || 0} causal steps.`);
+        console.log(`[${new Date().toLocaleTimeString()}] [1/8] ✅ Domain researcher subagent complete: extracted ${dossier.causalMechanics?.length || 0} causal steps.`);
       }
     } catch (err) {
-      console.warn(`[${new Date().toLocaleTimeString()}] [1/8] ⚠️ Antigravity research subagent call failed: ${err.message}. Building empirical dossier...`);
+      console.warn(`[${new Date().toLocaleTimeString()}] [1/8] ⚠️ Domain researcher subagent call failed: ${err.message}. Building empirical dossier...`);
     }
   }
 
@@ -345,21 +317,31 @@ async function runScriptwritingStage({ projectDir, topic, channel, format, targe
   console.log(`[${new Date().toLocaleTimeString()}] [2/8] ✍️ Drafting continuous high-retention narration script for "${topic}" (~${targetWords} words)...`);
 
   const dossierSummary = typeof dossier === 'object' ? JSON.stringify(dossier, null, 2) : String(dossier || '');
-  const writerPrompt = buildChannelScriptPrompt(channelProfile, variantSpec, topic, dossierSummary);
+  const writerPrompt = buildChannelScriptPrompt(channelProfile, variantSpec, topic, dossierSummary, targetWords);
 
   let scriptText = '';
   if (fs.existsSync(agyBin)) {
     try {
-      console.log(`[${new Date().toLocaleTimeString()}] [2/8] ✍️ Dispatching scriptwriter agent (agy)...`);
+      console.log(`[${new Date().toLocaleTimeString()}] [2/8] ✍️ Dispatching scriptwriter subagent (agy --agent scriptwriter)...`);
       const { execFileSync } = require('child_process');
-      const out = execFileSync(agyBin, ['--model', 'gemini-3.8-flash-low', '-p', writerPrompt, '--dangerously-skip-permissions', '--disable-slash-commands', '--print-timeout', '120s'], {
-        encoding: 'utf8',
-        timeout: 130000,
-        env: { ...process.env, HOME: '/home/agent' }
-      });
+      let out;
+      try {
+        out = execFileSync(agyBin, ['--agent', 'scriptwriter', '--model', 'gemini-3.8-flash-low', '-p', writerPrompt, '--dangerously-skip-permissions', '--disable-slash-commands', '--print-timeout', '180s'], {
+          encoding: 'utf8',
+          timeout: 190000,
+          env: { ...process.env, HOME: '/home/agent' }
+        });
+      } catch (agentErr) {
+        out = execFileSync(agyBin, ['--model', 'gemini-3.8-flash-low', '-p', writerPrompt, '--dangerously-skip-permissions', '--disable-slash-commands', '--print-timeout', '180s'], {
+          encoding: 'utf8',
+          timeout: 190000,
+          env: { ...process.env, HOME: '/home/agent' }
+        });
+      }
       scriptText = out.replace(/```[a-z]*\n?/g, '').trim();
+      console.log(`[${new Date().toLocaleTimeString()}] [2/8] ✅ Scriptwriter subagent complete: drafted ${scriptText.split(/\s+/).length} words.`);
     } catch (err) {
-      console.warn(`[${new Date().toLocaleTimeString()}] [2/8] ⚠️ Antigravity scriptwriter failed: ${err.message}. Generating research-grounded narrative...`);
+      console.warn(`[${new Date().toLocaleTimeString()}] [2/8] ⚠️ Scriptwriter subagent call failed: ${err.message}. Generating research-grounded narrative...`);
     }
   }
 
