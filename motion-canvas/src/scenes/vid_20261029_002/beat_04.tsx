@@ -1,4 +1,4 @@
-import { Camera, Img, Line, makeScene2D, Node, Rect, Txt } from '@motion-canvas/2d';
+import { Img, Line, makeScene2D, Node, Rect, Txt } from '@motion-canvas/2d';
 import { all, createRef, createSignal, easeInOutCubic, easeOutExpo, useThread } from '@motion-canvas/core';
 import { COLORS, FONTS, isWidescreen, setupBaseStage } from './layout';
 import { finishSceneAt, waitUntilSceneTime } from './timings';
@@ -34,10 +34,10 @@ export default makeScene2D(function* (view) {
   const gpuBadgeOpacity = createSignal(0.0);
   const gpuBadgeScale = createSignal(0.8);
 
-  const camera = createRef<Camera>();
+  const camera = createRef<Node>();
 
   view.add(
-    <Camera ref={camera}>
+    <Node ref={camera}>
       {/* ===== QUANTITATIVE ASSET RETENTION AXES ===== */}
       {/* Vertical Y-Axis */}
       <Line
@@ -184,10 +184,10 @@ export default makeScene2D(function* (view) {
         />
       </Rect>
 
-      {/* Funding Tag at left */}
+      {/* Funding Tag at left - Cleanly below the green Dark Fiber curve */}
       <Rect
-        x={originX + (wide ? 260 : 190)}
-        y={topY + 60}
+        x={originX + (wide ? 250 : 180)}
+        y={topY + 66}
         opacity={debtTagOpacity}
         scale={debtTagScale}
         layout
@@ -206,9 +206,9 @@ export default makeScene2D(function* (view) {
         />
       </Rect>
 
-      {/* Cash-Flow Tag at middle right of cliff */}
+      {/* Cash-Flow Tag - Cleanly to the right of red slope */}
       <Rect
-        x={originX + (wide ? 290 : 210)}
+        x={yr3X + (wide ? 210 : 145)}
         y={(topY + botY) / 2 - 10}
         opacity={cashTagOpacity}
         scale={cashTagScale}
@@ -270,45 +270,51 @@ export default makeScene2D(function* (view) {
           fill={COLORS.accent}
         />
       </Rect>
-    </Camera>
+    </Node>
   );
 
   // --- Choreography (Total duration: 17.36s) ---
 
-  // t = 2.4s: Axes appear + FUNDED BY JUNK DEBT tag pops in
+  // t = 0.6s: Quantitative axes + gridlines fade in
+  yield* waitUntilSceneTime(0.6, t0);
+  yield* axesOpacity(1.0, 0.6, easeOutExpo);
+
+  // t = 2.4s: FUNDED BY JUNK DEBT tag pops in
   yield* waitUntilSceneTime(2.4, t0);
   yield* all(
-    axesOpacity(1.0, 0.5, easeOutExpo),
     debtTagOpacity(1.0, 0.25),
     debtTagScale(1.14, 0.25, easeOutExpo).to(1.0, 0.25, easeInOutCubic),
   );
 
-  // t = 5.2s: Green 2000 DARK FIBER line draws across 25-yr horizon + badge pops in
-  yield* waitUntilSceneTime(5.2, t0);
+  // t = 4.8s: Green 2000 DARK FIBER line draws across 25-yr horizon
+  yield* waitUntilSceneTime(4.8, t0);
+  yield* fiberLineEnd(1.0, 1.3, easeOutExpo);
+
+  // t = 7.0s: 2000 DARK FIBER: 25+ YR LIFE badge pops in at top-right
+  yield* waitUntilSceneTime(7.0, t0);
   yield* all(
-    fiberLineEnd(1.0, 1.4, easeOutExpo),
-    fiberBadgeOpacity(1.0, 0.3),
-    fiberBadgeScale(1.14, 0.3, easeOutExpo).to(1.0, 0.3, easeInOutCubic),
+    fiberBadgeOpacity(1.0, 0.25),
+    fiberBadgeScale(1.14, 0.25, easeOutExpo).to(1.0, 0.25, easeInOutCubic),
   );
 
-  // t = 8.8s: CASH-FLOW FUNDED • FAST DECAY tag pops in
-  yield* waitUntilSceneTime(8.8, t0);
+  // t = 9.2s: CASH-FLOW FUNDED • FAST DECAY tag pops in
+  yield* waitUntilSceneTime(9.2, t0);
   yield* all(
-    cashTagOpacity(1.0, 0.3),
+    cashTagOpacity(1.0, 0.25),
     cashTagScale(1.14, 0.25, easeOutExpo).to(1.0, 0.25, easeInOutCubic),
   );
 
-  // t = 11.5s: Red 2026 AI GPUS curve plunges down the 3-year cliff
-  yield* waitUntilSceneTime(11.5, t0);
+  // t = 11.4s: Red 2026 AI GPUS curve plunges down the 3-year thermal cliff
+  yield* waitUntilSceneTime(11.4, t0);
   yield* gpuLineEnd(1.0, 1.2, easeOutExpo);
 
-  // t = 13.8s: 2026 AI GPUS: 3-YR THERMAL CLIFF callout badge pops in, finishes at t = 14.5s
-  yield* waitUntilSceneTime(13.8, t0);
+  // t = 13.5s: 2026 AI GPUS: 3-YR THERMAL CLIFF callout badge pops in, finishes at t = 14.1s
+  yield* waitUntilSceneTime(13.5, t0);
   yield* all(
     gpuBadgeOpacity(1.0, 0.25),
-    gpuBadgeScale(1.14, 0.35, easeOutExpo).to(1.0, 0.35, easeInOutCubic),
+    gpuBadgeScale(1.14, 0.3, easeOutExpo).to(1.0, 0.3, easeInOutCubic),
   );
 
-  // Strict Hold-Time: Diagram remains fully visible until 17.36s (hold >= 2.86s)
+  // Strict Hold-Time: Diagram remains fully visible until 17.36s (hold >= 3.26s)
   yield* finishSceneAt(17.36, t0);
 });

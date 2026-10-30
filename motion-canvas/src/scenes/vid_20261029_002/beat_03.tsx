@@ -1,4 +1,4 @@
-import { Camera, Img, Line, makeScene2D, Node, Rect, Txt } from '@motion-canvas/2d';
+import { Img, Line, makeScene2D, Node, Rect, Txt } from '@motion-canvas/2d';
 import { all, createRef, createSignal, easeInOutCubic, easeOutExpo, useThread } from '@motion-canvas/core';
 import { COLORS, FONTS, isWidescreen, setupBaseStage } from './layout';
 import { finishSceneAt, waitUntilSceneTime } from './timings';
@@ -20,6 +20,7 @@ export default makeScene2D(function* (view) {
   const wallX = trackLeft + trackSpan * (2 / 6);
 
   // Animation signals
+  const t1Opacity = createSignal(0.0);
   const acctProgress = createSignal(0.0);
   const acctBadgeOpacity = createSignal(0.0);
   const acctBadgeScale = createSignal(0.8);
@@ -31,83 +32,85 @@ export default makeScene2D(function* (view) {
   const writeDownOpacity = createSignal(0.0);
   const writeDownScale = createSignal(0.8);
 
-  const camera = createRef<Camera>();
+  const camera = createRef<Node>();
 
   view.add(
-    <Camera ref={camera}>
+    <Node ref={camera}>
       {/* ===== TRACK 1: 10-K ACCOUNTING SCHEDULE ===== */}
-      <Rect
-        x={trackLeft}
-        y={y1 - 65}
-        offset={[-1, 0]}
-        layout
-        direction="row"
-        alignItems="center"
-        gap={14}
-      >
-        <Img
-          src={'/assets/vid_20261029_002/bigtech_capex_badge.png'}
-          width={90}
-          height={45}
+      <Node opacity={t1Opacity}>
+        <Rect
+          x={trackLeft}
+          y={y1 - 65}
+          offset={[-1, 0]}
+          layout
+          direction="row"
+          alignItems="center"
+          gap={14}
+        >
+          <Img
+            src={'/assets/vid_20261029_002/bigtech_capex_badge.png'}
+            width={90}
+            height={45}
+          />
+          <Txt
+            text="10-K ACCOUNTING SCHEDULE"
+            fontFamily={FONTS.heading}
+            fontSize={wide ? 34 : 24}
+            fontWeight={700}
+            fill={COLORS.ink}
+          />
+        </Rect>
+
+        {/* Track 1 Background Rail */}
+        <Line
+          points={[
+            [trackLeft, y1],
+            [trackRight, y1],
+          ]}
+          stroke={COLORS.gridLine}
+          lineWidth={8}
+          lineCap="round"
         />
-        <Txt
-          text="10-K ACCOUNTING SCHEDULE"
-          fontFamily={FONTS.heading}
-          fontSize={wide ? 34 : 24}
-          fontWeight={700}
-          fill={COLORS.ink}
+
+        {/* Track 1 Animated Gold Accounting Bar */}
+        <Line
+          points={() => [
+            [trackLeft, y1],
+            [trackLeft + trackSpan * acctProgress(), y1],
+          ]}
+          stroke={COLORS.goldAccent}
+          lineWidth={16}
+          lineCap="round"
+          endArrow
+          arrowSize={14}
         />
-      </Rect>
 
-      {/* Track 1 Background Rail */}
-      <Line
-        points={[
-          [trackLeft, y1],
-          [trackRight, y1],
-        ]}
-        stroke={COLORS.gridLine}
-        lineWidth={8}
-        lineCap="round"
-      />
-
-      {/* Track 1 Animated Gold Accounting Bar */}
-      <Line
-        points={() => [
-          [trackLeft, y1],
-          [trackLeft + trackSpan * acctProgress(), y1],
-        ]}
-        stroke={COLORS.goldAccent}
-        lineWidth={16}
-        lineCap="round"
-        endArrow
-        arrowSize={14}
-      />
-
-      {/* Track 1 Ticks: YR 0, YR 3, YR 6 */}
-      {[0, 3, 6].map((yr) => {
-        const tx = trackLeft + trackSpan * (yr / 6);
-        return (
-          <Node key={`t1-tick-${yr}`}>
-            <Line
-              points={[
-                [tx, y1 - 10],
-                [tx, y1 + 10],
-              ]}
-              stroke={COLORS.secondaryInk}
-              lineWidth={2}
-            />
-            <Txt
-              x={tx}
-              y={y1 + 24}
-              text={`YR ${yr}`}
-              fontFamily={FONTS.data}
-              fontSize={16}
-              fontWeight={600}
-              fill={COLORS.secondaryInk}
-            />
-          </Node>
-        );
-      })}
+        {/* Track 1 Ticks: YR 0, YR 3, YR 6 */}
+        {[0, 3, 6].map((yr) => {
+          const tx = trackLeft + trackSpan * (yr / 6);
+          return (
+            <Node key={`t1-tick-${yr}`}>
+              <Line
+                points={[
+                  [tx, y1 - 10],
+                  [tx, y1 + 10],
+                ]}
+                stroke={COLORS.secondaryInk}
+                lineWidth={2}
+              />
+              <Txt
+                x={tx}
+                y={y1 + 24}
+                text={`YR ${yr}`}
+                fontFamily={FONTS.data}
+                fontSize={16}
+                fontWeight={600}
+                fill={COLORS.secondaryInk}
+              />
+            </Node>
+          );
+        })}
+      </Node>
 
       {/* Track 1 Callout Pill at YR 6 */}
       <Rect
@@ -139,6 +142,10 @@ export default makeScene2D(function* (view) {
         alignItems="center"
         gap={14}
         opacity={gpuTrackOpacity}
+        fill={COLORS.bg}
+        padding={[4, 10]}
+        radius={4}
+        zIndex={2}
       >
         <Img
           src={'/assets/vid_20261029_002/nvidia_logo.png'}
@@ -186,7 +193,7 @@ export default makeScene2D(function* (view) {
       ].map((m) => {
         const mx = trackLeft + trackSpan * (m.yr / 6);
         return (
-          <Node key={`m-${m.yr}`} opacity={gpuTrackOpacity}>
+          <Node key={`m-${m.yr}`} opacity={gpuTrackOpacity} zIndex={2}>
             <Line
               points={[
                 [mx, y2 - 10],
@@ -195,15 +202,15 @@ export default makeScene2D(function* (view) {
               stroke={COLORS.accent}
               lineWidth={3}
             />
-            <Txt
-              x={mx}
-              y={y2 + 26}
-              text={m.label}
-              fontFamily={FONTS.data}
-              fontSize={wide ? 16 : 12}
-              fontWeight={700}
-              fill={COLORS.accent}
-            />
+            <Rect x={mx} y={y2 + 28} layout padding={[3, 8]} fill={COLORS.bg} radius={4}>
+              <Txt
+                text={m.label}
+                fontFamily={FONTS.data}
+                fontSize={wide ? 16 : 12}
+                fontWeight={700}
+                fill={COLORS.accent}
+              />
+            </Rect>
           </Node>
         );
       })}
@@ -211,19 +218,36 @@ export default makeScene2D(function* (view) {
       {/* Vertical Red Obsolescence Wall at YR 2 */}
       <Line
         points={[
-          [wallX, y1 - 20],
-          [wallX, y2 + 70],
+          [wallX, y1 - 25],
+          [wallX, y2 + 15],
         ]}
         stroke={COLORS.accent}
         lineWidth={4}
         lineDash={[10, 8]}
         end={wallLineEnd}
+        zIndex={0}
+      />
+
+      {/* Horizontal Double-Arrow Caliper Line at YR 2 to YR 6 Gap */}
+      <Line
+        points={[
+          [wallX + 10, (y1 + y2) / 2 + 10],
+          [trackRight - 10, (y1 + y2) / 2 + 10],
+        ]}
+        stroke={COLORS.accent}
+        lineWidth={3}
+        lineDash={[6, 4]}
+        startArrow
+        endArrow
+        arrowSize={8}
+        end={wallLineEnd}
+        zIndex={0}
       />
 
       {/* Red Danger Callout Spanning Unamortized Gap from YR 2 to YR 6 */}
       <Rect
         x={(wallX + trackRight) / 2}
-        y={y2 + (wide ? 65 : 75)}
+        y={y2 + (wide ? 72 : 78)}
         opacity={writeDownOpacity}
         scale={writeDownScale}
         layout
@@ -232,6 +256,7 @@ export default makeScene2D(function* (view) {
         stroke={COLORS.ink}
         lineWidth={2}
         radius={8}
+        zIndex={2}
       >
         <Txt
           text="4 UNUSED YRS = $100B+ WRITE-DOWNS"
@@ -241,42 +266,46 @@ export default makeScene2D(function* (view) {
           fill={COLORS.surface}
         />
       </Rect>
-    </Camera>
+    </Node>
   );
 
   // --- Choreography (Total duration: 19.99s) ---
 
-  // t = 2.5s: Track 1 fills to YR 3 (acctProgress: 0 -> 0.5)
-  yield* waitUntilSceneTime(2.5, t0);
+  // t = 0.6s: Track 1 header + rail fade in
+  yield* waitUntilSceneTime(0.6, t0);
+  yield* t1Opacity(1.0, 0.5, easeOutExpo);
+
+  // t = 2.2s: Track 1 gold bar fills to YR 3 (acctProgress: 0 -> 0.5)
+  yield* waitUntilSceneTime(2.2, t0);
   yield* acctProgress(0.5, 1.2, easeOutExpo);
 
-  // t = 5.8s: Track 1 stretches to YR 6 (acctProgress: 0.5 -> 1.0) + badge pops in
-  yield* waitUntilSceneTime(5.8, t0);
+  // t = 5.2s: Track 1 gold bar stretches to YR 6 (acctProgress: 0.5 -> 1.0) + badge pops in
+  yield* waitUntilSceneTime(5.2, t0);
   yield* all(
-    acctProgress(1.0, 1.4, easeOutExpo),
-    acctBadgeOpacity(1.0, 0.3),
+    acctProgress(1.0, 1.3, easeOutExpo),
+    acctBadgeOpacity(1.0, 0.25),
     acctBadgeScale(1.14, 0.25, easeOutExpo).to(1.0, 0.25, easeInOutCubic),
   );
 
-  // t = 8.8s: Track 2 fades in
-  yield* waitUntilSceneTime(8.8, t0);
+  // t = 8.2s: Track 2 fades in
+  yield* waitUntilSceneTime(8.2, t0);
   yield* gpuTrackOpacity(1.0, 0.6, easeOutExpo);
 
-  // t = 11.5s: GPU silicon bar races to YR 2
-  yield* waitUntilSceneTime(11.5, t0);
+  // t = 11.0s: GPU silicon bar races to YR 2
+  yield* waitUntilSceneTime(11.0, t0);
   yield* gpuProgress(1.0, 1.2, easeOutExpo);
 
-  // t = 14.0s: Vertical Red Obsolescence Wall drops
-  yield* waitUntilSceneTime(14.0, t0);
+  // t = 13.6s: Vertical Red Obsolescence Wall drops + horizontal caliper draws in
+  yield* waitUntilSceneTime(13.6, t0);
   yield* wallLineEnd(1.0, 0.7, easeOutExpo);
 
-  // t = 16.2s: Callout pops in with overshoot (1.14 -> 1.0), finishes at t = 16.8s
-  yield* waitUntilSceneTime(16.2, t0);
+  // t = 15.8s: Callout pops in with overshoot (1.14 -> 1.0), finishes at t = 16.4s
+  yield* waitUntilSceneTime(15.8, t0);
   yield* all(
     writeDownOpacity(1.0, 0.25),
     writeDownScale(1.14, 0.3, easeOutExpo).to(1.0, 0.3, easeInOutCubic),
   );
 
-  // Strict Hold-Time: Diagram remains fully visible until 19.99s (hold >= 3.1s)
+  // Strict Hold-Time: Diagram remains fully visible until 19.99s (hold >= 3.59s)
   yield* finishSceneAt(19.99, t0);
 });

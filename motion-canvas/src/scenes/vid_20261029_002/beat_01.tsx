@@ -1,4 +1,4 @@
-import { Camera, Img, Line, makeScene2D, Node, Rect, Txt } from '@motion-canvas/2d';
+import { Img, Line, makeScene2D, Node, Rect, Txt } from '@motion-canvas/2d';
 import { all, createRef, createSignal, easeInOutCubic, easeOutExpo, useThread } from '@motion-canvas/core';
 import { COLORS, FONTS, isWidescreen, setupBaseStage } from './layout';
 import { finishSceneAt, waitUntilSceneTime } from './timings';
@@ -23,13 +23,19 @@ export default makeScene2D(function* (view) {
   const maxRevH = wide ? 36 : 44;
 
   // Animation signals
+  const baselineEnd = createSignal(0);
+
   const capexBarH = createSignal(0);
   const capexVal = createSignal(0);
   const capexOpacity = createSignal(0);
+  const capexSubOpacity = createSignal(0);
+  const capexSubScale = createSignal(0.8);
 
   const reqBarH = createSignal(0);
   const reqVal = createSignal(320);
   const reqOpacity = createSignal(0);
+  const reqSubOpacity = createSignal(0);
+  const reqSubScale = createSignal(0.8);
 
   const revBarH = createSignal(0);
   const revOpacity = createSignal(0);
@@ -38,10 +44,10 @@ export default makeScene2D(function* (view) {
   const chasmBadgeOpacity = createSignal(0);
   const chasmBadgeScale = createSignal(0.8);
 
-  const camera = createRef<Camera>();
+  const camera = createRef<Node>();
 
   view.add(
-    <Camera ref={camera}>
+    <Node ref={camera}>
       {/* Horizontal Baseline */}
       <Line
         points={[
@@ -51,6 +57,7 @@ export default makeScene2D(function* (view) {
         stroke={COLORS.ink}
         lineWidth={4}
         lineCap="round"
+        end={baselineEnd}
       />
 
       {/* ===== PILLAR 1: $320B/YR AI CAPEX (Left) ===== */}
@@ -79,6 +86,8 @@ export default makeScene2D(function* (view) {
         <Rect
           x={leftX}
           y={baseY + 54}
+          opacity={capexSubOpacity}
+          scale={capexSubScale}
           layout
           direction="column"
           alignItems="center"
@@ -128,6 +137,8 @@ export default makeScene2D(function* (view) {
         <Rect
           x={midX}
           y={baseY + 54}
+          opacity={reqSubOpacity}
+          scale={reqSubScale}
           layout
           direction="column"
           alignItems="center"
@@ -208,7 +219,7 @@ export default makeScene2D(function* (view) {
       <Line
         points={[
           [midX + barWidth / 2, baseY - maxReqH],
-          [rightX + barWidth / 2, baseY - maxReqH],
+          [rightX, baseY - maxReqH],
         ]}
         stroke={COLORS.accent}
         lineWidth={3}
@@ -232,8 +243,8 @@ export default makeScene2D(function* (view) {
 
       {/* Opaque Masked Callout Pill Centered Over the Chasm */}
       <Rect
-        x={(midX + rightX) / 2 + (wide ? 40 : 20)}
-        y={baseY - maxReqH * 0.56}
+        x={rightX - (wide ? 80 : 40)}
+        y={baseY - maxReqH * 0.54}
         opacity={chasmBadgeOpacity}
         scale={chasmBadgeScale}
         layout
@@ -261,42 +272,63 @@ export default makeScene2D(function* (view) {
           fill={COLORS.surface}
         />
       </Rect>
-    </Camera>
+    </Node>
   );
 
   // --- Choreography (Total duration: 26.38s) ---
 
-  // t = 1.5s: Left Pillar ($320B CapEx) rises & counts up
-  yield* waitUntilSceneTime(1.5, t0);
+  // t = 0.6s: Baseline draws in
+  yield* waitUntilSceneTime(0.6, t0);
+  yield* baselineEnd(1, 0.7, easeOutExpo);
+
+  // t = 1.8s: Left Pillar ($320B/YR CapEx bar + live counter) rises
+  yield* waitUntilSceneTime(1.8, t0);
   yield* all(
-    capexOpacity(1, 0.35),
-    capexBarH(maxCapexH, 2.2, easeOutExpo),
-    capexVal(320, 2.2, easeOutExpo),
+    capexOpacity(1, 0.3),
+    capexBarH(maxCapexH, 2.0, easeOutExpo),
+    capexVal(320, 2.0, easeOutExpo),
   );
 
-  // t = 8.5s: Center Target Pillar ($600B Required) rises to 2x height
-  yield* waitUntilSceneTime(8.5, t0);
+  // t = 5.0s: Left Pillar sub-badge pops in below baseline
+  yield* waitUntilSceneTime(5.0, t0);
   yield* all(
-    reqOpacity(1, 0.35),
-    reqBarH(maxReqH, 2.2, easeOutExpo),
-    reqVal(600, 2.2, easeOutExpo),
+    capexSubOpacity(1, 0.25),
+    capexSubScale(1.12, 0.25, easeOutExpo).to(1.0, 0.2, easeInOutCubic),
   );
 
-  // t = 15.0s: Right Pillar (< $45B Actual Revenue) pops in at tiny true scale
-  yield* waitUntilSceneTime(15.0, t0);
+  // t = 8.2s: Center Pillar ($600B REQ dashed gold bar + live counter) rises
+  yield* waitUntilSceneTime(8.2, t0);
   yield* all(
-    revOpacity(1, 0.35),
+    reqOpacity(1, 0.3),
+    reqBarH(maxReqH, 2.0, easeOutExpo),
+    reqVal(600, 2.0, easeOutExpo),
+  );
+
+  // t = 11.5s: 2X TCO TARGET // SEQUOIA BENCHMARK sub-badge pops in below Center Pillar
+  yield* waitUntilSceneTime(11.5, t0);
+  yield* all(
+    reqSubOpacity(1, 0.25),
+    reqSubScale(1.14, 0.25, easeOutExpo).to(1.0, 0.2, easeInOutCubic),
+  );
+
+  // t = 14.8s: Right Pillar (< $45B actual AI revenue + OpenAI logo) pops in
+  yield* waitUntilSceneTime(14.8, t0);
+  yield* all(
+    revOpacity(1, 0.3),
     revBarH(maxRevH, 0.9, easeOutExpo),
   );
 
-  // t = 19.5s: Red Chasm Caliper draws across the gap & $555B Chasm pill locks in (finishes ~21.2s)
-  yield* waitUntilSceneTime(19.5, t0);
+  // t = 17.6s: Red Chasm Caliper draws from $600B top down to < $45B
+  yield* waitUntilSceneTime(17.6, t0);
   yield* caliperEnd(1, 0.9, easeOutExpo);
+
+  // t = 19.6s: $555B REVENUE CHASM masked pill pops in (finishes at 20.2s)
+  yield* waitUntilSceneTime(19.6, t0);
   yield* all(
     chasmBadgeOpacity(1, 0.25),
-    chasmBadgeScale(1.14, 0.3, easeOutExpo).to(1.0, 0.25, easeInOutCubic),
+    chasmBadgeScale(1.14, 0.3, easeOutExpo).to(1.0, 0.3, easeInOutCubic),
   );
 
-  // Strict Hold-Time: Diagram remains fully visible until 26.38s (hold >= 5.0s)
+  // Strict Hold-Time: Diagram remains fully visible until 26.38s (hold = 6.18s)
   yield* finishSceneAt(26.38, t0);
 });

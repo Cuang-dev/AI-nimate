@@ -1,4 +1,4 @@
-import { Camera, Img, Line, makeScene2D, Rect, Txt } from '@motion-canvas/2d';
+import { Img, Line, makeScene2D, Node, Rect, Txt } from '@motion-canvas/2d';
 import { all, createRef, createSignal, easeInOutCubic, easeOutExpo, useThread } from '@motion-canvas/core';
 import { COLORS, FONTS, isWidescreen, setupBaseStage } from './layout';
 import { finishSceneAt, waitUntilSceneTime } from './timings';
@@ -21,22 +21,24 @@ export default makeScene2D(function* (view) {
 
   // Animation signals
   const hubAOpacity = createSignal(0);
-  const hubAScale = createSignal(0.92);
+  const hubAScale = createSignal(0.85);
   const hubAStroke = createSignal<string>(COLORS.ink);
 
   const hubBOpacity = createSignal(0);
-  const hubBScale = createSignal(0.92);
+  const hubBScale = createSignal(0.85);
 
   const outPathEnd = createSignal(0);
   const outBadgeOpacity = createSignal(0);
+  const outBadgeScale = createSignal(0.8);
 
   const retPathEnd = createSignal(0);
   const retBadgeOpacity = createSignal(0);
+  const retBadgeScale = createSignal(0.8);
 
   const loopAlertOpacity = createSignal(0);
   const loopAlertScale = createSignal(0.8);
 
-  const camera = createRef<Camera>();
+  const camera = createRef<Node>();
 
   // Orthogonal conduit points
   const outPoints: [number, number][] = wide
@@ -68,7 +70,7 @@ export default makeScene2D(function* (view) {
       ];
 
   view.add(
-    <Camera ref={camera}>
+    <Node ref={camera}>
       {/* ===== OUTBOUND ORTHOGONAL CONDUIT (Top / Left) ===== */}
       <Line
         points={outPoints}
@@ -85,6 +87,7 @@ export default makeScene2D(function* (view) {
         x={wide ? 0 : -250}
         y={wide ? hubAY - 210 : (hubAY + hubBY) / 2 - 42}
         opacity={outBadgeOpacity}
+        scale={outBadgeScale}
         layout
         padding={[8, 16]}
         fill={COLORS.surface}
@@ -107,6 +110,7 @@ export default makeScene2D(function* (view) {
         stroke={COLORS.accent}
         lineWidth={5}
         lineDash={[14, 8]}
+        lineDashOffset={() => -time() * 45}
         radius={24}
         endArrow
         arrowSize={14}
@@ -118,6 +122,7 @@ export default makeScene2D(function* (view) {
         x={wide ? 0 : 250}
         y={wide ? hubAY + 210 : (hubAY + hubBY) / 2 + 42}
         opacity={retBadgeOpacity}
+        scale={retBadgeScale}
         layout
         padding={[8, 16]}
         fill={COLORS.accent}
@@ -261,42 +266,57 @@ export default makeScene2D(function* (view) {
           fill={COLORS.accent}
         />
       </Rect>
-    </Camera>
+    </Node>
   );
 
   // --- Choreography (Total duration: 21.27s) ---
 
-  // t = 1.2s: Both Hub Stations appear on canvas
-  yield* waitUntilSceneTime(1.2, t0);
+  // t = 0.8s: Station A (HYPERSCALER CLOUD) pops/fades in
+  yield* waitUntilSceneTime(0.8, t0);
   yield* all(
-    hubAOpacity(1, 0.5, easeOutExpo),
-    hubAScale(1, 0.5, easeOutExpo),
-    hubBOpacity(1, 0.5, easeOutExpo),
-    hubBScale(1, 0.5, easeOutExpo),
+    hubAOpacity(1, 0.4, easeOutExpo),
+    hubAScale(1, 0.6, easeOutExpo),
   );
 
-  // t = 4.8s: Outbound conduit draws from Station A -> Station B ($20B+ Compute Credits)
-  yield* waitUntilSceneTime(4.8, t0);
+  // t = 2.6s: Station B (FRONTIER AI LABS) pops/fades in
+  yield* waitUntilSceneTime(2.6, t0);
   yield* all(
-    outPathEnd(1, 1.4, easeInOutCubic),
-    outBadgeOpacity(1, 0.5),
+    hubBOpacity(1, 0.4, easeOutExpo),
+    hubBScale(1, 0.6, easeOutExpo),
   );
 
-  // t = 10.5s: Return conduit draws back from Station B -> Station A (100% Re-booked as Cloud Revenue)
-  yield* waitUntilSceneTime(10.5, t0);
+  // t = 5.0s: Outbound orthogonal conduit draws from Station A to Station B
+  yield* waitUntilSceneTime(5.0, t0);
+  yield* outPathEnd(1, 1.3, easeInOutCubic);
+
+  // t = 7.4s: $20B+ COMPUTE CREDITS masked badge pops in on outbound conduit
+  yield* waitUntilSceneTime(7.4, t0);
   yield* all(
-    retPathEnd(1, 1.4, easeInOutCubic),
-    retBadgeOpacity(1, 0.5),
-    hubAStroke(COLORS.accent, 0.6),
+    outBadgeOpacity(1, 0.2),
+    outBadgeScale(1.12, 0.25, easeOutExpo).to(1.0, 0.2, easeInOutCubic),
   );
 
-  // t = 15.8s: Center "ROUND-TRIPPING // ZERO EXTERNAL CASH FLOW" verdict badge locks in (finishes ~16.4s)
-  yield* waitUntilSceneTime(15.8, t0);
+  // t = 10.2s: Return orthogonal conduit draws back from Station B to Station A + Station A stroke turns red
+  yield* waitUntilSceneTime(10.2, t0);
   yield* all(
-    loopAlertOpacity(1, 0.25),
-    loopAlertScale(1.14, 0.3, easeOutExpo).to(1.0, 0.25, easeInOutCubic),
+    retPathEnd(1, 1.3, easeInOutCubic),
+    hubAStroke(COLORS.accent, 0.8),
   );
 
-  // Strict Hold-Time: Diagram remains fully visible until 21.27s (hold >= 4.8s)
+  // t = 12.8s: 100% RE-BOOKED AS CLOUD REVENUE masked badge pops in on return conduit
+  yield* waitUntilSceneTime(12.8, t0);
+  yield* all(
+    retBadgeOpacity(1, 0.2),
+    retBadgeScale(1.12, 0.25, easeOutExpo).to(1.0, 0.2, easeInOutCubic),
+  );
+
+  // t = 15.6s: Center "ROUND-TRIPPING // ZERO EXTERNAL CASH FLOW" verdict stamp locks in (finishes at 16.2s)
+  yield* waitUntilSceneTime(15.6, t0);
+  yield* all(
+    loopAlertOpacity(1, 0.2),
+    loopAlertScale(1.14, 0.3, easeOutExpo).to(1.0, 0.3, easeInOutCubic),
+  );
+
+  // Strict Hold-Time: Diagram remains fully visible until 21.27s (hold = 5.07s)
   yield* finishSceneAt(21.27, t0);
 });

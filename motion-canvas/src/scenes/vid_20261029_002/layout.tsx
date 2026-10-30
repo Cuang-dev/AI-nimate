@@ -67,6 +67,13 @@ export function getCardWidth(view: View2D): number {
  * - Full-canvas background Rect and grid lines
  * - Section label positioned top-left
  * - Subtitle pill bar positioned bottom center with acoustic lead
+ *
+ * NOTE: Scenes MUST wrap animated stage content in `<Node ref={stage}>`
+ * (never bare `<Camera>`). Motion Canvas computes `worldSpaceCacheBBox` for any
+ * element with `opacity < 1` using `this.view().localToWorld()`. Inside `<Camera>`,
+ * the internal scene root lacks View2D translation ([0..1920, 0..1080]), causing
+ * the entire left (x < 0) and top (y < 0) halves of fading elements to be clipped.
+ * `<Node>` directly preserves the View2D centered coordinate origin [-width/2..width/2].
  */
 export function setupBaseStage(view: View2D, sectionLabel?: string) {
   const wide = isWidescreen(view);
