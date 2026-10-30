@@ -272,18 +272,18 @@ const allPassed = results.every((r) => r.passed);
 
 console.log('');
 console.log(`[QA Verification Gate] Project: ${projectId}`);
-console.log('┌───────────────────────────────────────┬────────┬─────────────────────┐');
-console.log('│ Check                                 │ Status │ Detail              │');
-console.log('├───────────────────────────────────────┼────────┼─────────────────────┤');
+console.log('┌───────────────────────────────────┬────────┬───────────────────────────┐');
+console.log('│ Check                             │ Status │ Detail                    │');
+console.log('├───────────────────────────────────┼────────┼───────────────────────────┤');
 
 for (const r of results) {
-  const name = r.name.padEnd(37).slice(0, 37);
+  const name = r.name.padEnd(33).slice(0, 33);
   const status = (r.passed ? 'PASS' : 'FAIL').padEnd(6);
-  const detail = (r.detail || '').padEnd(19).slice(0, 19);
+  const detail = (r.detail || '').padEnd(25).slice(0, 25);
   console.log(`│ ${name} │ ${status} │ ${detail} │`);
 }
 
-console.log('└───────────────────────────────────────┴────────┴─────────────────────┘');
+console.log('└───────────────────────────────────┴────────┴───────────────────────────┘');
 
 if (!allPassed) {
   console.log('\nFailure Details:');
