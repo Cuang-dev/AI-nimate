@@ -137,7 +137,7 @@ export default makeScene2D(function* (view) {
           >
             <Img
               src={'/assets/vid_20261021_001/humane_logo.png'}
-              height={38}
+              height={56}
               opacity={0.6}
             />
             <Txt

@@ -14,9 +14,9 @@ export default makeScene2D(function* (view) {
 
   // Coordinates for Station A (Hyperscaler Cloud) & Station B (Frontier AI Labs)
   const hubAX = wide ? -480 : 0;
-  const hubAY = wide ? -20 : -390;
+  const hubAY = wide ? -20 : -400;
   const hubBX = wide ? 480 : 0;
-  const hubBY = wide ? -20 : 280;
+  const hubBY = wide ? -20 : 290;
   const hubW = wide ? 490 : 860;
 
   // Animation signals
@@ -51,10 +51,8 @@ export default makeScene2D(function* (view) {
         [hubBX - 120, hubBY - 115],
       ]
     : [
-        [-260, hubAY + 115],
-        [-390, hubAY + 115],
-        [-390, hubBY - 115],
-        [-260, hubBY - 115],
+        [-250, hubAY + 118],
+        [-250, hubBY - 122],
       ];
 
   const retPoints: [number, number][] = wide
@@ -65,10 +63,8 @@ export default makeScene2D(function* (view) {
         [hubAX + 120, hubAY + 115],
       ]
     : [
-        [260, hubBY - 115],
-        [390, hubBY - 115],
-        [390, hubAY + 115],
-        [260, hubAY + 115],
+        [250, hubBY - 118],
+        [250, hubAY + 122],
       ];
 
   view.add(
@@ -86,8 +82,8 @@ export default makeScene2D(function* (view) {
 
       {/* Opaque Masked Label on Outbound Conduit */}
       <Rect
-        x={wide ? 0 : -170}
-        y={wide ? hubAY - 245 : -175}
+        x={wide ? 0 : -200}
+        y={wide ? hubAY - 245 : -180}
         opacity={outBadgeOpacity}
         scale={() => focalScale(focalId, 4, outBadgeScale, time)}
         layout
@@ -121,8 +117,8 @@ export default makeScene2D(function* (view) {
 
       {/* Opaque Masked Label on Return Conduit */}
       <Rect
-        x={wide ? 0 : 120}
-        y={wide ? hubAY + 245 : 65}
+        x={wide ? 0 : 175}
+        y={wide ? hubAY + 245 : 70}
         opacity={retBadgeOpacity}
         scale={() => focalScale(focalId, 5, retBadgeScale, time)}
         layout
@@ -167,7 +163,7 @@ export default makeScene2D(function* (view) {
             <Txt
               text="STATION 01"
               fontFamily={FONTS.data}
-              fontSize={wide ? 17 : 20}
+              fontSize={wide ? 18 : 20}
               fontWeight={700}
               fill={COLORS.secondaryInk}
             />
@@ -215,7 +211,7 @@ export default makeScene2D(function* (view) {
             <Txt
               text="STATION 02"
               fontFamily={FONTS.data}
-              fontSize={wide ? 17 : 20}
+              fontSize={wide ? 18 : 20}
               fontWeight={700}
               fill={COLORS.secondaryInk}
             />
@@ -263,7 +259,7 @@ export default makeScene2D(function* (view) {
         <Txt
           text="ZERO EXTERNAL CASH FLOW"
           fontFamily={FONTS.data}
-          fontSize={wide ? 17 : 20}
+          fontSize={wide ? 18 : 20}
           fontWeight={700}
           fill={COLORS.accent}
         />

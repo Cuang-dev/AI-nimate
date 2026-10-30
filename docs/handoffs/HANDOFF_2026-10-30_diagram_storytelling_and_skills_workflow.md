@@ -22,6 +22,9 @@ This session finalized the core architecture, subagent orchestration framework, 
    - Built [`scripts/qa_verify.mjs`](file:///home/agent/orca/AI-nimate/motion-canvas/scripts/qa_verify.mjs) which verifies subtitle chunk constraints (`≤4` words, `≤25` chars, 0 bleeding across all projects `vid_20261021_001`, `vid_20261024_001`, `vid_20261029_002`), enforces the `<Camera.Stage>` invariant, validates ffprobe video/audio streams, and checks keyframe visual integrity.
 5. **Web Portal Showcase Upgrade**:
    - Upgraded [`public/projects/ainimate/index.html`](file:///home/agent/orca/AI-nimate/public/projects/ainimate/index.html) and [`public/projects/ainimate/kausalmedia/index.html`](file:///home/agent/orca/AI-nimate/public/projects/ainimate/kausalmedia/index.html) to feature all 4 Kausal Media releases with dual-aspect (`16:9 + 9:16`) metadata, duration badges, and HTTP byte-range edge streaming.
+6. **Rule 6 Physical Screen Calibration & Shared Calibration Module (`src/shared/screenCalibration.ts`)**:
+   - Codified shared screen calibration module exporting `getTypo(wide)` and `getAssets(wide)` to solve the 9:16 mobile display disparity (390px mobile viewport, `0.36x` CSS scale factor). Typography and asset marks in 9:16 must be `>= 16:9` (never smaller).
+   - Automated Phone Font Floor verification (`micro >= 18px` in 16:9, `>= 20px` in 9:16) integrated into [`scripts/qa_verify.mjs`](file:///home/agent/orca/AI-nimate/motion-canvas/scripts/qa_verify.mjs).
 
 ---
 
@@ -186,6 +189,19 @@ ffmpeg -y -ss 100 -i "$V16" -frames:v 1 -q:v 2 /tmp/qa_16x9_b5.jpg
 
 ---
 
+### 4.5. Rule 6: Physical Screen Calibration & Mobile Viewport Geometry (`src/shared/screenCalibration.ts`)
+
+- **The Mobile Physical Disparity**:
+  - `9:16` vertical video (`1080x1920`) is displayed almost exclusively on 6.1"–6.7" smartphones (~390 CSS px wide, a `0.36x` physical scale factor).
+  - A `15px` canvas font renders as `~5.4px` CSS (`~0.9mm`), causing total illegibility.
+  - Conversely, `16:9` widescreen video (`1920x1080`) is viewed on 14"–27" laptop/desktop monitors (~960–1920 CSS px wide).
+- **The Permanent Invariant**:
+  - Never make `9:16` fonts or icons smaller than `16:9` using `wide ? 24 : 15`.
+  - Every project `vid_YYYYMMDD_NNN/layout.tsx` MUST import and re-export `getTypo(wide)` and `getAssets(wide)` from `src/shared/screenCalibration.ts`.
+  - Enforce Phone Font Floor: `micro >= 18px` on 16:9 and `>= 20px` on 9:16 (verified automatically via `qa_verify.mjs`).
+
+---
+
 ## 5. Verification & Testing Evidence
 
 | Verification Gate / Command | Status | Metrics / Findings |
@@ -202,6 +218,7 @@ ffmpeg -y -ss 100 -i "$V16" -frames:v 1 -q:v 2 /tmp/qa_16x9_b5.jpg
 
 - **Live Web Portal**: `https://cuang.dev/projects/ainimate/` ([`index.html`](file:///home/agent/orca/AI-nimate/public/projects/ainimate/index.html))
 - **Kausal Media Channel Hub**: `https://cuang.dev/projects/ainimate/kausalmedia/` ([`index.html`](file:///home/agent/orca/AI-nimate/public/projects/ainimate/kausalmedia/index.html))
+- **Shared Screen Calibration Module**: [`motion-canvas/src/shared/screenCalibration.ts`](file:///home/agent/orca/AI-nimate/motion-canvas/src/shared/screenCalibration.ts)
 - **Flagship Release (`vid_20261029_002`)**:
   - 16:9 Master Video: [`output/vid_20261029_002/video_16x9.mp4`](file:///home/agent/orca/AI-nimate/motion-canvas/output/vid_20261029_002/video_16x9.mp4)
   - 9:16 Master Video: [`output/vid_20261029_002/video_9x16.mp4`](file:///home/agent/orca/AI-nimate/motion-canvas/output/vid_20261029_002/video_9x16.mp4)
@@ -218,6 +235,7 @@ ffmpeg -y -ss 100 -i "$V16" -frames:v 1 -q:v 2 /tmp/qa_16x9_b5.jpg
    - Begin by reviewing [`HANDOFF.md`](file:///home/agent/orca/AI-nimate/HANDOFF.md) and [`Guide.md`](file:///home/agent/orca/AI-nimate/Guide.md).
 2. [ ] **When Implementing Any New Scene**:
    - Strictly obey Rule 1B: Wrap diagrams in `<Node ref={camera}>` added directly to `view`, never a bare `<Camera>`.
+   - Obey Rule 6: Import `getTypo(wide)` and `getAssets(wide)` from `src/shared/screenCalibration.ts` in `layout.tsx` and enforce Phone Font Floor (`>= 18px` in 16:9, `>= 20px` in 9:16).
    - Enforce sample-accurate acoustic triggers (`±0.3s`) and `focalScale` stillness by default.
 3. [ ] **Post-Implementation Verification**:
    - Always run `npx tsc --noEmit` and `node scripts/qa_verify.mjs <project_id>` before declaring completion.
@@ -228,6 +246,7 @@ ffmpeg -y -ss 100 -i "$V16" -frames:v 1 -q:v 2 /tmp/qa_16x9_b5.jpg
 
 - **Subagents Must Use `Model: "flash"`**: Never invoke `pro` models for subagents. Forensic depth is derived from explicit CoT prompts.
 - **Rule 1B Camera Invariant**: Slicing bug prevention: `<Node ref={camera}>` under `view` (or `<Camera.Stage>`).
+- **Rule 6 Screen Calibration & Font Floor**: Strict phone font floor `micro >= 18px` (16:9) / `>= 20px` (9:16); always import scales from `src/shared/screenCalibration.ts`.
 - **Diagram-First Mandate**: Every beat uses a distinct spatial diagram archetype from [`diagram-design`](file:///home/agent/.agents/skills/diagram-design/SKILL.md).
 - **Hold-Time Guard (`≥2.7s`)**: Final sub-element animation finishes `>= 2.7s` before beat end.
 - **Subtitle Chunk Invariants**: `<= 4` words, `<= 25` characters, zero cross-beat bleeding, symmetrical pill margins (`gap={0}` with conditional slot padding/margin).

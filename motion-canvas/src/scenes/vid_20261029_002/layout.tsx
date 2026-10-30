@@ -1,6 +1,15 @@
 import { Line, Node, Rect, Txt, View2D } from '@motion-canvas/2d';
 import { useThread } from '@motion-canvas/core';
 import { SCENE_TIMINGS, SUBTITLE_CHUNKS, SubtitleChunk } from './timings';
+import {
+  getTypo,
+  getAssets,
+  ScreenTypoScale,
+  ScreenAssetScale,
+} from '../../shared/screenCalibration';
+
+export { getTypo, getAssets };
+export type { ScreenTypoScale, ScreenAssetScale };
 
 export const COLORS = {
   bg: '#F7F5F0',
@@ -19,18 +28,7 @@ export const FONTS = {
   data: "'JetBrains Mono', 'Liberation Mono', 'DejaVu Sans Mono', monospace",
 };
 
-export function getTypo(wide: boolean) {
-  return {
-    heroNum: wide ? 46 : 44,
-    heading: wide ? 34 : 34,
-    cardTitle: wide ? 30 : 32,
-    pill: wide ? 22 : 22,
-    sublabel: wide ? 18 : 20,
-    micro: wide ? 16 : 18,
-    subtitle: wide ? 38 : 44,
-    sectionLabel: wide ? 26 : 30,
-  };
-}
+
 
 /**
  * Detects whether the current view is in widescreen mode (16:9, 1920x1080)
@@ -90,6 +88,8 @@ export function getCardWidth(view: View2D): number {
  */
 export function setupBaseStage(view: View2D, sectionLabel?: string) {
   const wide = isWidescreen(view);
+  const typo = getTypo(wide);
+  const assets = getAssets(wide);
   const width = wide ? 1920 : 1080;
   const height = wide ? 1080 : 1920;
 
@@ -202,7 +202,7 @@ export function setupBaseStage(view: View2D, sectionLabel?: string) {
           <Txt
             text={sectionLabel}
             fontFamily={FONTS.data}
-            fontSize={wide ? 26 : 30}
+            fontSize={typo.sectionLabel}
             fontWeight={700}
             fill={COLORS.secondaryInk}
             letterSpacing={1.5}
@@ -219,11 +219,11 @@ export function setupBaseStage(view: View2D, sectionLabel?: string) {
         alignItems={'center'}
         justifyContent={'center'}
         gap={0}
-        padding={wide ? [14, 28] : [18, 30]}
+        padding={assets.subtitlePadding}
         radius={14}
         fill={COLORS.surface}
         stroke={COLORS.ink}
-        lineWidth={3.5}
+        lineWidth={assets.strokePrimary}
         opacity={() => (getActiveChunk() ? 1 : 0)}
         scale={1.0}
       >
@@ -234,13 +234,13 @@ export function setupBaseStage(view: View2D, sectionLabel?: string) {
             padding={() => {
               const chunk = getActiveChunk();
               return chunk && slotIdx < chunk.words.length
-                ? (wide ? [7, 12] : [9, 14])
+                ? assets.subtitleSlotPad
                 : [0, 0];
             }}
             margin={() => {
               const chunk = getActiveChunk();
               return chunk && slotIdx < chunk.words.length - 1
-                ? [0, wide ? 9 : 11, 0, 0]
+                ? [0, assets.subtitleSlotGap, 0, 0]
                 : [0, 0, 0, 0];
             }}
             radius={8}
@@ -260,7 +260,7 @@ export function setupBaseStage(view: View2D, sectionLabel?: string) {
               fontSize={() => {
                 const chunk = getActiveChunk();
                 return chunk && slotIdx < chunk.words.length
-                  ? (wide ? 38 : 44)
+                  ? typo.subtitle
                   : 0;
               }}
               fontWeight={700}

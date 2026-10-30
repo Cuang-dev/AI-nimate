@@ -79,7 +79,7 @@ export default makeScene2D(function* (view) {
               >
                 <Img
                   src={'/assets/vid_20261021_001/humane_logo.png'}
-                  height={42}
+                  height={56}
                 />
                 <Txt
                   text={'LAUNCH PRICE'}

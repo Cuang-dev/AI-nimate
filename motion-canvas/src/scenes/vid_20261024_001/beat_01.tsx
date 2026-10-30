@@ -143,14 +143,16 @@ export default makeScene2D(function* (view) {
             <Rect
               layout
               width={'100%'}
-              height={22}
+              height={30}
+              radius={15}
               fill={THEME.colors.bg}
               stroke={THEME.colors.gridLine}
               lineWidth={1}
               alignItems={'start'}
             >
               <Rect
-                height={22}
+                height={30}
+                radius={15}
                 width={domesticBarWidth}
                 fill={THEME.colors.compliantGreen}
               />

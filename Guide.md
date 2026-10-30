@@ -118,6 +118,8 @@ To prevent split attention between moving graphics, on-screen text, and subtitle
 - **Uncontested Lower Third**: Keep the bottom area below `y = 655` completely clear of source citations, card borders, or floating badges so the subtitle pill exclusively owns the lower third.
 
 ### Rule 6: Physical Screen Calibration & Minimum Typography / Asset Sizing (9:16 Phone vs 16:9 Desktop)
+- **Mandatory Shared Screen Calibration Module**: Every new project `vid_YYYYMMDD_NNN/layout.tsx` MUST import and re-export `getTypo(wide)` and `getAssets(wide)` from `src/shared/screenCalibration.ts` (or `../../shared/screenCalibration`) to lock in standardized typographical hierarchy, stroke weights, and subtitle geometries.
+- **Automated Font Floor QA Gate**: Always run `node scripts/qa_verify.mjs <project_id>` to verify the Phone Font Floor (`micro >= 18px` in 16:9, `>= 20px` in 9:16) with zero micro-font violations.
 - **Anti-Pattern Banned**: Never make `9:16` (`1080x1920`) fonts or icons smaller than `16:9` (`1920x1080`) using `wide ? 24 : 15`.
 - **Why**:
   - `9:16` (`1080x1920`) is viewed almost exclusively on **6.1"–6.7" smartphones** (~390 CSS px wide, `0.36x` scale factor). A `15px` canvas font shrinks to **`5.4px` CSS (`~0.9mm`)** on a phone screen—completely illegible without zooming!
@@ -136,6 +138,19 @@ To prevent split attention between moving graphics, on-screen text, and subtitle
 | **Square Logos / Icons** | `50px–60px` | `56px–70px` | `20px–25px` CSS |
 | **Wide Multi-Brand Badges (`2:1`)** | `110x55` to `120x60` | `128x64` to `140x70` | `46x23` to `50x25` CSS |
 | **Active Diagram Canvas Utilization** | `>= 70%` width (`1340px+`), `>= 55%` height | `>= 82%` width (`880px–940px`), `>= 50%` height (`750px–950px`) | Full mobile viewport command |
+
+### Rule 7: Perpendicular Box-Edge Arrow Entry & Conduit Geometry (Cyclic & Flow Diagrams)
+- **Anti-Pattern Banned**: Never route an orthogonal conduit or arrow parallel/flush along a card's top/bottom border (`[x1, cardEdgeY] -> [x2, cardEdgeY]`) or point sideways into a horizontal edge (or vertically into a vertical edge).
+- **Mandatory Rule**:
+  - Every arrow or conduit connecting two nodes/stations MUST exit **perpendicularly** (`90°`) from the source card's edge and enter **perpendicularly** (`90°`) into the target card's edge, with `4px–8px` clearance so the arrowhead tip lands cleanly at the border.
+  - **In `9:16` Vertical Stacked Flow/Cyclic Graphs** (Station 1 at top `y = hubAY`, Station 2 at bottom `y = hubBY`):
+    - Use **straight vertical conduits** connecting the bottom edge of Station 1 (`y = hubAY + cardHalfH`) and the top edge of Station 2 (`y = hubBY - cardHalfH`):
+      - Outbound (Left): `[[-offsetX, hubAY + cardHalfH], [-offsetX, hubBY - cardHalfH - 4]]` (pointing straight down).
+      - Return (Right): `[[+offsetX, hubBY - cardHalfH], [+offsetX, hubAY + cardHalfH + 4]]` (pointing straight up).
+    - Stagger conduit callout pills vertically across the gap (`y_out = -180`, `y_center = -55`, `y_ret = +70`) so each pill masks its own vertical conduit line and never collides horizontally.
+  - **In `16:9` Widescreen Side-by-Side Cyclic Graphs** (Station 1 at left `x = hubAX`, Station 2 at right `x = hubBX`):
+    - Exit vertically (`90°`) from the top edge (`hubAY - cardHalfH`) up to an overhead rail (`hubAY - 245`), cross horizontally, and drop vertically (`90°`) into the top edge of Station 2 (`hubBY - cardHalfH`); mirror on the bottom for the return conduit.
+- **Automated QA Verification**: The Perpendicular Conduit Check in `node scripts/qa_verify.mjs <project_id>` scans all `beat_*.tsx` files for any 4-point `<Line` `points` array sharing identical `y` expressions at the start or end, rejecting sideways border-flush entries.
 
 ---
 

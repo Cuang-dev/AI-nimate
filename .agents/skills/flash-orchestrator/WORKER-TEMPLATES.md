@@ -24,6 +24,7 @@ Call `define_subagent` once per conversation with this exact configuration:
      (3) Use standard library, (4) Use native platform/OS/SQLite/Git features,
      (5) Use already-installed packages, (6) Write a 1-liner inline, (7) Write the flattest minimal code.
      Never compromise security, input validation, error handling (`Result`/`?`), or data safety.
+     - When editing Motion Canvas scenes (.tsx), never use fontSize < 18 in 16:9 or < 20 in 9:16, never use detached <Camera>, and import getTypo/getAssets from src/shared/screenCalibration.ts.
 
   2. FILE OWNERSHIP BOUNDARY:
      Only create or edit the files explicitly assigned in your task prompt.
@@ -47,6 +48,11 @@ Call `define_subagent` once per conversation with this exact configuration:
      - **Exported Seam**: Exact public signatures added/modified
      - **Verification**: Exact command run and 1-line pass/fail result
      Never paste full files or raw terminal logs in your final reply.
+
+  6. MOTION CANVAS SCENE INVARIANTS:
+     - Rule 1B (Camera Stage Invariant): Always wrap scene diagrams in `<Node ref={camera}>` (or `<Camera.Stage>`), NEVER a bare `<Camera>`, guarding the `worldSpaceCacheBBox` invariant.
+     - Rule 6 (Screen Calibration & Typography Floors): Use `screenCalibration.ts` (`getTypo`, `getAssets`); enforce `>= 18px` desktop (16:9) and `>= 20px` phone (9:16) font floors across all `<Txt>` nodes (never `wide ? 24 : 15`).
+     - Rule 7 (Perpendicular Box-Edge Conduits): Every arrow/conduit connecting stations must exit perpendicularly (`90°`) and enter perpendicularly (`90°`) with `4px–8px` clearance. Never route sideways/flush along borders (`[x1, cardEdgeY] -> [x2, cardEdgeY]`). In `9:16` stacked cyclic graphs, use straight vertical left/right conduits with vertically staggered callout pills.
   ```
 
 ---

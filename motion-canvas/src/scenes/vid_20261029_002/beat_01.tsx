@@ -106,7 +106,7 @@ export default makeScene2D(function* (view) {
           <Txt
             text={wide ? '2025–2026 HYPERSCALERS' : 'HYPERSCALERS'}
             fontFamily={FONTS.data}
-            fontSize={wide ? 16 : 18}
+            fontSize={wide ? 18 : 20}
             fontWeight={700}
             fill={COLORS.secondaryInk}
           />
@@ -175,7 +175,7 @@ export default makeScene2D(function* (view) {
             <Txt
               text={wide ? 'SEQUOIA BENCHMARK' : 'SEQUOIA 2X RULE'}
               fontFamily={FONTS.data}
-              fontSize={wide ? 17 : 18}
+              fontSize={wide ? 18 : 20}
               fontWeight={700}
               fill={COLORS.surface}
             />
@@ -285,7 +285,7 @@ export default makeScene2D(function* (view) {
         <Txt
           text="92% SHORTFALL VS CAPEX TARGET"
           fontFamily={FONTS.data}
-          fontSize={wide ? 18 : 18}
+          fontSize={wide ? 18 : 20}
           fontWeight={600}
           fill={COLORS.surface}
         />

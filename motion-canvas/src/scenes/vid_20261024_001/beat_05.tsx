@@ -114,11 +114,13 @@ export default makeScene2D(function* (view) {
               </Rect>
               <Rect
                 width={'100%'}
-                height={20}
+                height={30}
+                radius={15}
                 fill={THEME.colors.gridLine}
               >
                 <Rect
-                  height={20}
+                  height={30}
+                  radius={15}
                   width={gaugeFillWidth}
                   fill={THEME.colors.accent}
                 />

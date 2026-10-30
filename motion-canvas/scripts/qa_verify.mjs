@@ -126,7 +126,7 @@ if (!fs.existsSync(scenesDir)) {
       : `Detached <Camera> in: ${cameraViolations.join(', ')}`
   );
 
-  // Check for micro-fonts (< 16px) in scene TSX files
+  // Check for micro-fonts (< 18px) in scene TSX files
   let microFontFound = 0;
   const microFontViolations = [];
   for (const file of tsxFiles) {
@@ -135,8 +135,8 @@ if (!fs.existsSync(scenesDir)) {
     const stripped = content.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '');
     const lines = stripped.split('\n');
     lines.forEach((line, idx) => {
-      // Match positive integer fontSize literals or ternary branches smaller than 16 (excluding 0 used for hidden slots)
-      const matches = [...line.matchAll(/fontSize\s*[=:]\s*\{?[^}\n]*?\b([1-9]|1[0-5])\b/g)];
+      // Match positive integer fontSize literals or ternary branches smaller than 18 (excluding 0 used for hidden slots)
+      const matches = [...line.matchAll(/fontSize\s*[=:]\s*\{?[^}\n]*?\b([1-9]|1[0-7])\b/g)];
       if (matches.length > 0) {
         microFontFound++;
         microFontViolations.push(`${file}:${idx + 1}`);
@@ -145,11 +145,45 @@ if (!fs.existsSync(scenesDir)) {
   }
 
   record(
-    'Phone Font Floor (>= 16px)',
+    'Phone Font Floor (>= 18px)',
     microFontFound === 0,
     microFontFound === 0
-      ? 'Zero micro-fonts (<16px)'
+      ? 'Zero micro-fonts (<18px)'
       : `Micro-fonts in: ${microFontViolations.join(', ')}`
+  );
+
+  // Check for perpendicular conduit geometry in beat_*.tsx files
+  let conduitViolations = [];
+  const beatFiles = tsxFiles.filter((f) => f.startsWith('beat_'));
+  for (const file of beatFiles) {
+    const filePath = path.join(scenesDir, file);
+    const content = fs.readFileSync(filePath, 'utf8');
+    const stripped = content.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '');
+    const conduitRegex = /\[\s*\[([^,]+),\s*([^\]]+)\]\s*,\s*\[([^,]+),\s*([^\]]+)\]\s*,\s*\[([^,]+),\s*([^\]]+)\]\s*,\s*\[([^,]+),\s*([^\]]+)\]\s*,?\s*\]/g;
+    let match;
+    while ((match = conduitRegex.exec(stripped)) !== null) {
+      const y0 = match[2].trim().replace(/\s+/g, '');
+      const y1 = match[4].trim().replace(/\s+/g, '');
+      const y2 = match[6].trim().replace(/\s+/g, '');
+      const y3 = match[8].trim().replace(/\s+/g, '');
+
+      // Consecutive points sharing the same y expression at start (point 0->1) or end (point 2->3)
+      const isSidewaysStart = y0 === y1 && /(?:hub|card)[A-Za-z0-9_]*Y/i.test(y0);
+      const isSidewaysEnd = y2 === y3 && /(?:hub|card)[A-Za-z0-9_]*Y/i.test(y2);
+
+      if (isSidewaysStart || isSidewaysEnd) {
+        const lineNum = content.slice(0, match.index).split('\n').length;
+        conduitViolations.push(`${file}:${lineNum}`);
+      }
+    }
+  }
+
+  record(
+    'Perpendicular Conduit Check',
+    conduitViolations.length === 0,
+    conduitViolations.length === 0
+      ? 'Clean 90° box-edge entries'
+      : `Sideways entries in: ${conduitViolations.join(', ')}`
   );
 }
 
