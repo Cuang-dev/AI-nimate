@@ -19,10 +19,12 @@ Before generating `script.json`, the `thinking-scriptwriter` subagent must read 
 2. **`[CoT Step 2: 'Therefore / However' Causal Spine]`**:
    - Connect every narrative beat via explicit causal tension questions (*"Therefore"*, *"However"*, *"Because of this"*).
    - Strictly ban chronological "and then" listicles; maintain an unbroken forensic causal chain.
-3. **`[CoT Step 3: Zero-Dead-Air Visual Cadence & Micro-Choreography Mapping]`**:
-   - Map every 4–8 word spoken clause to a concrete visual state change (card entry, badge flip, 1.0s–1.8s counter, or warning stamp).
-   - Enforce the Zero-Dead-Air Visual Cadence Rule: trigger a concrete visual state change or progressive sub-cue reveal every **2.5s to 3.5s** (or 6–10 spoken words; 6–8 micro-events in 18–25s beats).
-   - Strictly ban visual stagnation (>3.5s without visual arrivals) and 10–15s expository dead waits.
+3. **`[CoT Step 3: Semantic Diagram Archetype & Sample-Accurate Visual Cadence Mapping]`**:
+   - Assign each beat to one of the **5 Distinct Spatial Diagram Archetypes** (`Scale Chasm / Bar + Caliper`, `Closed-Loop Orthogonal Conduit`, `Dual-Axis Parallel Timeline + Wall`, `Quantitative Slope / Decay Curve`, `3-Tier Architectural Layer Stack`) matching the mechanism of the explanation. Ban generic 2-box repeats.
+   - Enforce Sample-Accurate Acoustic-to-Visual Sync (`timings.json` Word Trigger Rule):
+     - Every major visual reveal (bar growth, counter tick, conduit draw, wall drop, badge flip) MUST be triggered within `±0.3s` of the exact spoken word timestamp in `timings.json` (never 7–9 seconds premature!).
+     - Intermediate micro-cues (axis draw, baseline entry, station pop-in, sub-badge overshoot) MUST fill intervening `2.0s–2.8s` intervals so there is never a static stretch `> 3.0s`.
+     - Final visual element finishes at least `>= 2.7s` before `beat.end`.
 4. **`[CoT Step 4: Anti-Slop & Oral Cadence Audit]`**:
    - Strip AI cliches (`"Di era modern ini"`, `"Pernahkah Anda berpikir"`, unearned moralizing).
    - Enforce natural breath punctuation (commas, em-dashes `—`, periods) every 4–8 words so Whisper word-level timestamps segment cleanly into `≤4`-word chunks.
@@ -33,15 +35,13 @@ Before generating `script.json`, the `thinking-scriptwriter` subagent must read 
 
 ---
 
-## 1. Zero-Dead-Air Visual Cadence (The 2.5s–3.5s Rule)
+## 1. Sample-Accurate Acoustic-to-Visual Sync & Zero-Dead-Air Cadence
 
-- **Mandatory Visual Trigger Rate**: Every sentence or clause **must trigger a concrete visual state change or progressive sub-cue every 2.5 to 3.5 seconds** (or 6–10 spoken words; 6–8 micro-events in 18–25s beats).
-- **Prohibition on Visual Stagnation**: Strictly ban long >3.5s periods without visual arrivals and 10–15 second expository paragraphs where a single figure or entity is mentioned only at the very end. This starves the visual stage, causing dead visual waits or 12-second slow tickers.
-- **Progressive Beat Decomposition**: Break explanations into progressive visual steps:
-  1. *0–2.5s*: Introduce the subject or instrument -> reveals primary card / icon (`[data-subcue-progress="0.0"]`).
-  2. *2.5–5.0s*: Explain the regulatory or fee rule -> flips rate badge / label (`[data-subcue-progress="0.25"]`).
-  3. *5.0–7.5s*: Hit the empirical number -> triggers fast 1.0s–1.8s counter (`[data-subcue-progress="0.50"]`).
-  4. *7.5–10.5s*: Contrast with the alternative -> reveals side-by-side contrast card (`[data-subcue-progress="0.75"]`).
+- **Sample-Accurate Word Trigger Rule (`±0.3s`)**: Every major visual reveal (bar growth, counter tick, conduit draw, wall drop, badge flip) MUST trigger within `±0.3s` of the exact spoken word timestamp in `timings.json` (never 7–9 seconds premature!).
+- **Intervening Micro-Cue Cadence (2.0s–2.8s intervals)**: Intermediate micro-cues (axis draw, baseline entry, station pop-in, sub-badge overshoot) MUST fill intervening `2.0s–2.8s` intervals (or 6–10 spoken words; 6–8 micro-events in 18–25s beats) so there is never a static stretch `> 3.0s`.
+- **Strict Hold-Time Guard (`>= 2.7s` Before Beat End)**: The final visual element and animation in every beat MUST finish at least **`>= 2.7s` before `beat.end`** to allow viewers to absorb the complete spatial diagram before scene transition.
+- **Fast 1.0s–1.8s Counters**: Number counter tweens must execute briskly in **1.0s to 1.8s** at the exact timestamp the narrator speaks the figure.
+- **Automated QA Verification**: Always run `node scripts/qa_verify.mjs <video_id>` after every render to verify visual cue timestamps, hold times, and absence of static stretches `> 3.0s`.
 
 ---
 
@@ -67,32 +67,38 @@ All script outputs (`script.json`) must annotate intermediate sub-cues within ea
 ```json
 {
   "id": "beat_003",
-  "narration": "Saham lokal seperti [BBCA|B-B-C-A] kena pajak final 0.1%, tapi aset US seperti [VOO|V-O-O] kena tarif progresif hingga 35%.",
+  "archetype": "closed_loop_conduit",
+  "narration": "Dividen mengalir ke [US|U-S] terpotong [withholding tax|withholding teks] tiga puluh persen, sebelum masuk kembali ke akun Anda.",
   "visualCues": [
-    { "action": "reveal_card", "target": "card_domestic", "phrase": "Saham lokal seperti [BBCA|B-B-C-A]" },
-    { "action": "flip_badge", "target": "badge_domestic_tax", "phrase": "kena pajak final 0.1%" },
-    { "action": "reveal_card", "target": "card_us", "phrase": "tapi aset US seperti [VOO|V-O-O]" },
-    { "action": "trigger_counter", "target": "counter_us_tax", "duration": "1.2s", "phrase": "tarif progresif hingga 35%" }
+    { "action": "draw_baseline", "target": "axis_cross_border", "phrase": "Dividen mengalir" },
+    { "action": "draw_conduit", "target": "conduit_leakage", "phrase": "ke [US|U-S]" },
+    { "action": "trigger_counter", "target": "counter_tax_drag", "duration": "1.4s", "phrase": "tiga puluh persen" },
+    { "action": "stamp_seal", "target": "seal_friction", "phrase": "masuk kembali" }
   ]
 }
 ```
 
 Available visual cue actions:
-- `reveal_card`: Enter a new focal card (`opacity: 0 -> 1`, `scale: 0.95 -> 1.0`).
-- `flip_badge`: Update or highlight a metric/category badge.
+- `draw_baseline`: Enter diagram base axes, timelines, or frame (`opacity: 0 -> 1`, `scale: 0.95 -> 1.0`).
+- `pop_station`: Pop-in a node, entity badge, or institution mark (`scale: 0 -> 1.15 -> 1.0`).
+- `draw_conduit`: Animate orthogonal line `<Line end={0->1}>` showing flow direction.
 - `trigger_counter`: Run a fast number counter tween (strictly **1.0s to 1.8s**).
+- `drop_wall`: Slam a statutory barrier, collision wall, or caliper bracket.
 - `stamp_seal`: Slam a warning/status seal (e.g. `JEBAKAN PAJAK`, `100% EXEMPT`).
-- `dim_card`: Dim an existing card to `0.22` opacity to shift focal attention.
+- `dim_inactive`: Dim inactive nodes to `0.22` opacity to shift focal attention.
 
 ---
 
-## 4. Concrete Contrast Pairs (2-Card Comparative Logic)
+## 4. Semantic Diagram Archetypes (Ban Generic 2-Box Repeats)
 
-Ground narrative explanations in side-by-side numeric contrast pairs:
-- **Status Quo / Illusion**: What retail investors believe (e.g., *"VOO biaya cuma 0.03%"*).
-- **Forensic Reality / Optimized Alternative**: The hidden friction or optimized route (e.g., *"kena withholding tax 30% dan risiko estate tax 40%; bandingkan dengan Irish UCITS CSPX yang kena 15% treaty dan 0% estate tax"*).
+Ground narrative explanations in one of the **5 Distinct Spatial Diagram Archetypes** that physically acts out the mechanism of the beat:
+1. **Scale Chasm / Bar + Caliper**: Visualizing quantitative disparities (e.g., *0.03% expense ratio headline vs 30% dividend withholding + 40% estate tax chasm*).
+2. **Closed-Loop Orthogonal Conduit**: Tracing circular economic mechanisms (e.g., *dividend cashflows routing through Dublin tax treaties vs direct US withholding leakage*).
+3. **Dual-Axis Parallel Timeline + Wall**: Contrasting divergent trajectories and deadlines (e.g., *10-year compounding growth colliding with statutory $60k estate tax threshold*).
+4. **Quantitative Slope / Decay Curve**: Explaining non-linear threshold effects (e.g., *effective tax drag curve steepening exponentially with account balance*).
+5. **3-Tier Architectural Layer Stack**: Revealing structural plumbing (e.g., *broker custody layer -> clearing house -> sovereign tax jurisdiction*).
 
-This gives the animator immediate 2-card comparison data without cluttering the screen with dense paragraphs.
+Strictly ban repeating generic 2-box dashboard cards across consecutive beats.
 
 ---
 

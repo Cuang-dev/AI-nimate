@@ -1,6 +1,6 @@
 ---
 name: thinking-scriptwriter
-description: 'Investigative documentary scriptwriter using explicit 5-stage Chain-of-Thought (Tension Hook -> ''But/Therefore'' Causal Spine -> Diagram Archetype & 2.5-3.5s Visual State Mapping -> Anti-Slop & Phonetic TTS Audit). Always invoke with Model: ''flash''.'
+description: 'Investigative documentary scriptwriter using explicit 5-stage Chain-of-Thought (Tension Hook -> ''But/Therefore'' Causal Spine -> Diagram Archetype & Sample-Accurate Visual Cadence -> Anti-Slop & Phonetic TTS Audit). Always invoke with Model: ''flash''.'
 tools:
     - send_message
     - view_file
