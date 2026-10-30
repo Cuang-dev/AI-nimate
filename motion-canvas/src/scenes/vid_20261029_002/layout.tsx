@@ -19,6 +19,19 @@ export const FONTS = {
   data: "'JetBrains Mono', 'Liberation Mono', 'DejaVu Sans Mono', monospace",
 };
 
+export function getTypo(wide: boolean) {
+  return {
+    heroNum: wide ? 46 : 44,
+    heading: wide ? 34 : 34,
+    cardTitle: wide ? 30 : 32,
+    pill: wide ? 22 : 22,
+    sublabel: wide ? 18 : 20,
+    micro: wide ? 16 : 18,
+    subtitle: wide ? 38 : 44,
+    sectionLabel: wide ? 26 : 30,
+  };
+}
+
 /**
  * Detects whether the current view is in widescreen mode (16:9, 1920x1080)
  * or vertical portrait mode (9:16, 1080x1920).
@@ -177,19 +190,19 @@ export function setupBaseStage(view: View2D, sectionLabel?: string) {
       {/* Section Indicator */}
       {sectionLabel && (
         <Rect
-          x={wide ? -860 : -450}
-          y={wide ? -460 : -780}
+          x={wide ? -860 : -460}
+          y={wide ? -460 : -800}
           offset={[-1, 0]}
           layout
           direction={'row'}
           justifyContent={'start'}
           alignItems={'center'}
-          opacity={0.65}
+          opacity={0.78}
         >
           <Txt
             text={sectionLabel}
             fontFamily={FONTS.data}
-            fontSize={24}
+            fontSize={wide ? 26 : 30}
             fontWeight={700}
             fill={COLORS.secondaryInk}
             letterSpacing={1.5}
@@ -200,17 +213,17 @@ export function setupBaseStage(view: View2D, sectionLabel?: string) {
       {/* Editorial Pill Highlight Subtitle Bar */}
       <Rect
         x={0}
-        y={wide ? 415 : 660}
+        y={wide ? 415 : 670}
         layout
         direction={'row'}
         alignItems={'center'}
         justifyContent={'center'}
         gap={0}
-        padding={[12, 24]}
-        radius={12}
+        padding={wide ? [14, 28] : [18, 30]}
+        radius={14}
         fill={COLORS.surface}
         stroke={COLORS.ink}
-        lineWidth={3}
+        lineWidth={3.5}
         opacity={() => (getActiveChunk() ? 1 : 0)}
         scale={1.0}
       >
@@ -220,12 +233,14 @@ export function setupBaseStage(view: View2D, sectionLabel?: string) {
             layout
             padding={() => {
               const chunk = getActiveChunk();
-              return chunk && slotIdx < chunk.words.length ? [6, 10] : [0, 0];
+              return chunk && slotIdx < chunk.words.length
+                ? (wide ? [7, 12] : [9, 14])
+                : [0, 0];
             }}
             margin={() => {
               const chunk = getActiveChunk();
               return chunk && slotIdx < chunk.words.length - 1
-                ? [0, 8, 0, 0]
+                ? [0, wide ? 9 : 11, 0, 0]
                 : [0, 0, 0, 0];
             }}
             radius={8}
@@ -244,7 +259,9 @@ export function setupBaseStage(view: View2D, sectionLabel?: string) {
               fontFamily={FONTS.body}
               fontSize={() => {
                 const chunk = getActiveChunk();
-                return chunk && slotIdx < chunk.words.length ? 34 : 0;
+                return chunk && slotIdx < chunk.words.length
+                  ? (wide ? 38 : 44)
+                  : 0;
               }}
               fontWeight={700}
               fill={() =>

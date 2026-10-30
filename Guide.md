@@ -113,9 +113,29 @@ To prevent split attention between moving graphics, on-screen text, and subtitle
 ### Rule 5: Stationary Subtitles & Uncontested Lower-Third
 - **Acoustic Lead Compensation (`LEAD_OFFSET = 0.22`)**: Advance subtitle word highlighting by `+220ms` (`t = useScene().playback.time() + 0.22`) to compensate for Whisper acoustic latency, ensuring highlight fires exactly on consonant onset.
 - **Per-Beat Render Global Time Invariant (`sceneStart` Offset)**: Because `render_sequential.mjs` renders each beat (`beat_01`, `beat_02`, ...) as an isolated single-scene Motion Canvas project, `useThread().time()` resets to `0.00s` at the start of every beat. Therefore, `layout.tsx` MUST compute global subtitle lookup time as `const gt = sceneStart + (time() - t0) + LEAD_OFFSET;` (mapping the section label `01`..`06` to `SCENE_TIMINGS[sceneIdx].start`). Omitting `sceneStart` causes Beat 2..N to reset `gt` to `0.00s` and loop Beat 1's subtitles from the beginning at every scene boundary!
-- **Stabilized Pill Geometry**: Every subtitle word slot must maintain constant `padding={[6, 10]}`, `radius={8}`, and `scale={1.0}` whether active or inactive. Words must NEVER shift or jitter horizontally when highlighted; only text color and background fill transition.
+- **Stabilized Pill Geometry**: Every subtitle word slot must maintain constant padding (`padding={[18, 30]}` on 9:16 phone with `fontSize={44}` and slot `padding={[9, 14]}`; `padding={[14, 28]}` on 16:9 widescreen with `fontSize={38}` and slot `padding={[6, 10]}`), `radius`, and `scale={1.0}` whether active or inactive. Words must NEVER shift or jitter horizontally when highlighted; only text color and background fill transition.
 - **Breath-Gap Bridging (`< 0.6s`)**: Keep the subtitle container visible across short speech pauses so the container does not flicker off between adjacent phrases.
 - **Uncontested Lower Third**: Keep the bottom area below `y = 655` completely clear of source citations, card borders, or floating badges so the subtitle pill exclusively owns the lower third.
+
+### Rule 6: Physical Screen Calibration & Minimum Typography / Asset Sizing (9:16 Phone vs 16:9 Desktop)
+- **Anti-Pattern Banned**: Never make `9:16` (`1080x1920`) fonts or icons smaller than `16:9` (`1920x1080`) using `wide ? 24 : 15`.
+- **Why**:
+  - `9:16` (`1080x1920`) is viewed almost exclusively on **6.1"–6.7" smartphones** (~390 CSS px wide, `0.36x` scale factor). A `15px` canvas font shrinks to **`5.4px` CSS (`~0.9mm`)** on a phone screen—completely illegible without zooming!
+  - `16:9` (`1920x1080`) is viewed on **14"–27" laptops/monitors or landscape players** (~960–1920 CSS px wide).
+- **Mandatory Minimum Canvas Sizing Table**:
+
+| Element Tier | 16:9 Widescreen (`1920x1080`) | 9:16 Vertical Phone (`1080x1920`) | Physical Phone CSS Equivalent (`0.36x`) |
+| :--- | :--- | :--- | :--- |
+| **Absolute Minimum Font Floor** | **`>= 18px`** | **`>= 20px`** (never `11–16px`) | `>= 7.2px` CSS |
+| **Axis Ticks / Micro-Tags** | `18px–20px` | `20px–22px` | `7.2px–8.0px` CSS |
+| **Callout Pills / Data Badges** | `22px–28px` | `22px–26px` | `8.0px–9.4px` CSS |
+| **Card / Track Headings** | `32px–38px` | `34px–38px` | `12.2px–13.7px` CSS |
+| **Hero Numbers / Counters** | `42px–48px` | `40px–46px` | `14.4px–16.6px` CSS |
+| **Subtitle Pill Text** | `38px` (`padding [14, 28]`) | `44px` (`padding [18, 30]`) | `15.8px` CSS |
+| **Section Indicator (`01 // ...`)** | `26px` | `30px` | `10.8px` CSS |
+| **Square Logos / Icons** | `50px–60px` | `56px–70px` | `20px–25px` CSS |
+| **Wide Multi-Brand Badges (`2:1`)** | `110x55` to `120x60` | `128x64` to `140x70` | `46x23` to `50x25` CSS |
+| **Active Diagram Canvas Utilization** | `>= 70%` width (`1340px+`), `>= 55%` height | `>= 82%` width (`880px–940px`), `>= 50%` height (`750px–950px`) | Full mobile viewport command |
 
 ---
 
@@ -208,7 +228,7 @@ For production-grade bilingual (Indonesian + English) voice synthesis:
 4. **Karaoke Highlighting & Per-Beat Global Time (`sceneStart`)**:
    - Highlight active word with `LEAD_OFFSET = 0.22` (+220ms lead).
    - **Per-Beat Render Global Time Invariant (`sceneStart` Offset)**: Because `render_sequential.mjs` renders each beat (`beat_01`, `beat_02`, ...) as an isolated single-scene Motion Canvas project, `useThread().time()` resets to `0.00s` at the start of every beat. Therefore, `layout.tsx` MUST compute global subtitle lookup time as `const gt = sceneStart + (time() - t0) + LEAD_OFFSET;` (mapping the section label `01`..`06` via `.startsWith('01'..'06')` to `SCENE_TIMINGS[sceneIdx].start`). Omitting `sceneStart` causes Beat 2..N to reset `gt` to `0.00s` and loop Beat 1's subtitles from the beginning at every scene boundary!
-   - **Zero-Empty-Slot Flexbox Gap Rule (Symmetrical Pill Padding)**: Active word pills must maintain constant geometry (`scale={1.0}`, `padding={[6, 10]}`) to avoid horizontal jitter. However, in Motion Canvas Flexbox (`layout`), setting `gap={8}` on the parent subtitle `<Rect>` or static `padding={[6, 10]}` on all slot `<Rect>`s adds trailing right-side whitespace for every unused slot (`slotIdx >= chunk.words.length`). Always set `gap={0}` on the parent subtitle `<Rect>`, map over `[0, 1, 2, 3]`, and apply conditional `padding={() => chunk && slotIdx < chunk.words.length ? [6, 10] : [0, 0]}` and `margin={() => chunk && slotIdx < chunk.words.length - 1 ? [0, 8, 0, 0] : [0, 0, 0, 0]}` so left and right subtitle bar margins are 100% symmetrical.
+   - **Zero-Empty-Slot Flexbox Gap Rule (Symmetrical Pill Padding)**: Active word pills must maintain constant geometry (`scale={1.0}`) to avoid horizontal jitter. In Motion Canvas Flexbox (`layout`), setting `gap={8}` on the parent subtitle `<Rect>` or static padding on all slot `<Rect>`s adds trailing right-side whitespace for every unused slot (`slotIdx >= chunk.words.length`). Always set `gap={0}` on the parent subtitle `<Rect>`, map over `[0, 1, 2, 3]`, and apply conditional padding (e.g., `[9, 14]` for 9:16 phone / `[6, 10]` for 16:9 widescreen) and margin (e.g., `[0, 11, 0, 0]` for 9:16 phone / `[0, 8, 0, 0]` for 16:9 widescreen only when `slotIdx < chunk.words.length - 1`), with phone pill `padding={[18, 30]}` / `fontSize={44}` and widescreen pill `padding={[14, 28]}` / `fontSize={38}` so left and right subtitle bar margins are 100% symmetrical.
 
 ---
 

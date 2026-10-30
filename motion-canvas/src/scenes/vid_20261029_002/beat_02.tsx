@@ -13,11 +13,11 @@ export default makeScene2D(function* (view) {
   const wide = isWidescreen(view);
 
   // Coordinates for Station A (Hyperscaler Cloud) & Station B (Frontier AI Labs)
-  const hubAX = wide ? -460 : 0;
-  const hubAY = wide ? -30 : -280;
-  const hubBX = wide ? 460 : 0;
-  const hubBY = wide ? -30 : 210;
-  const hubW = wide ? 430 : 620;
+  const hubAX = wide ? -480 : 0;
+  const hubAY = wide ? -20 : -390;
+  const hubBX = wide ? 480 : 0;
+  const hubBY = wide ? -20 : 280;
+  const hubW = wide ? 490 : 860;
 
   // Animation signals
   const focalId = createSignal(0);
@@ -45,30 +45,30 @@ export default makeScene2D(function* (view) {
   // Orthogonal conduit points
   const outPoints: [number, number][] = wide
     ? [
-        [hubAX + 120, hubAY - 95],
-        [hubAX + 120, hubAY - 210],
-        [hubBX - 120, hubBY - 210],
-        [hubBX - 120, hubBY - 95],
+        [hubAX + 120, hubAY - 115],
+        [hubAX + 120, hubAY - 245],
+        [hubBX - 120, hubBY - 245],
+        [hubBX - 120, hubBY - 115],
       ]
     : [
-        [-210, hubAY + 85],
-        [-340, hubAY + 85],
-        [-340, hubBY - 85],
-        [-210, hubBY - 85],
+        [-260, hubAY + 115],
+        [-390, hubAY + 115],
+        [-390, hubBY - 115],
+        [-260, hubBY - 115],
       ];
 
   const retPoints: [number, number][] = wide
     ? [
-        [hubBX - 120, hubBY + 95],
-        [hubBX - 120, hubBY + 210],
-        [hubAX + 120, hubAY + 210],
-        [hubAX + 120, hubAY + 95],
+        [hubBX - 120, hubBY + 115],
+        [hubBX - 120, hubBY + 245],
+        [hubAX + 120, hubAY + 245],
+        [hubAX + 120, hubAY + 115],
       ]
     : [
-        [210, hubBY - 85],
-        [340, hubBY - 85],
-        [340, hubAY + 85],
-        [210, hubAY + 85],
+        [260, hubBY - 115],
+        [390, hubBY - 115],
+        [390, hubAY + 115],
+        [260, hubAY + 115],
       ];
 
   view.add(
@@ -77,30 +77,30 @@ export default makeScene2D(function* (view) {
       <Line
         points={outPoints}
         stroke={COLORS.ink}
-        lineWidth={5}
+        lineWidth={6}
         radius={24}
         endArrow
-        arrowSize={14}
+        arrowSize={16}
         end={outPathEnd}
       />
 
       {/* Opaque Masked Label on Outbound Conduit */}
       <Rect
-        x={wide ? 0 : -250}
-        y={wide ? hubAY - 210 : (hubAY + hubBY) / 2 - 42}
+        x={wide ? 0 : -170}
+        y={wide ? hubAY - 245 : -175}
         opacity={outBadgeOpacity}
         scale={() => focalScale(focalId, 4, outBadgeScale, time)}
         layout
-        padding={[8, 16]}
+        padding={wide ? [10, 20] : [12, 22]}
         fill={COLORS.surface}
         stroke={COLORS.ink}
-        lineWidth={2}
-        radius={6}
+        lineWidth={3}
+        radius={8}
       >
         <Txt
           text="$20B+ COMPUTE CREDITS"
           fontFamily={FONTS.data}
-          fontSize={wide ? 20 : 15}
+          fontSize={wide ? 22 : 23}
           fontWeight={700}
           fill={COLORS.ink}
         />
@@ -110,32 +110,32 @@ export default makeScene2D(function* (view) {
       <Line
         points={retPoints}
         stroke={COLORS.accent}
-        lineWidth={5}
+        lineWidth={6}
         lineDash={[14, 8]}
         lineDashOffset={() => -time() * 45}
         radius={24}
         endArrow
-        arrowSize={14}
+        arrowSize={16}
         end={retPathEnd}
       />
 
       {/* Opaque Masked Label on Return Conduit */}
       <Rect
-        x={wide ? 0 : 250}
-        y={wide ? hubAY + 210 : (hubAY + hubBY) / 2 + 42}
+        x={wide ? 0 : 120}
+        y={wide ? hubAY + 245 : 65}
         opacity={retBadgeOpacity}
         scale={() => focalScale(focalId, 5, retBadgeScale, time)}
         layout
-        padding={[8, 16]}
+        padding={wide ? [10, 20] : [12, 22]}
         fill={COLORS.accent}
         stroke={COLORS.ink}
-        lineWidth={2}
-        radius={6}
+        lineWidth={3}
+        radius={8}
       >
         <Txt
-          text="100% RE-BOOKED AS CLOUD REVENUE"
+          text={wide ? '100% RE-BOOKED AS CLOUD REVENUE' : '100% RE-BOOKED AS CLOUD REV'}
           fontFamily={FONTS.data}
-          fontSize={wide ? 20 : 14}
+          fontSize={wide ? 22 : 22}
           fontWeight={700}
           fill={COLORS.surface}
         />
@@ -150,24 +150,24 @@ export default makeScene2D(function* (view) {
         scale={() => focalScale(focalId, 1, hubAScale, time)}
         layout
         direction="column"
-        padding={[22, 26]}
-        gap={12}
+        padding={wide ? [26, 30] : [30, 36]}
+        gap={wide ? 14 : 16}
         fill={COLORS.surface}
         stroke={hubAStroke}
-        lineWidth={3}
-        radius={12}
+        lineWidth={3.5}
+        radius={14}
       >
         <Rect layout direction="row" alignItems="center" justifyContent="space-between" width="100%">
           <Img
             src={'/assets/vid_20261029_002/aws_azure_badge.png'}
-            width={92}
-            height={46}
+            width={wide ? 116 : 140}
+            height={wide ? 58 : 70}
           />
-          <Rect layout padding={[4, 10]} fill={COLORS.bg} radius={4}>
+          <Rect layout padding={[6, 14]} fill={COLORS.bg} radius={4}>
             <Txt
               text="STATION 01"
               fontFamily={FONTS.data}
-              fontSize={14}
+              fontSize={wide ? 17 : 20}
               fontWeight={700}
               fill={COLORS.secondaryInk}
             />
@@ -176,15 +176,15 @@ export default makeScene2D(function* (view) {
         <Txt
           text="HYPERSCALER CLOUD"
           fontFamily={FONTS.heading}
-          fontSize={wide ? 28 : 24}
+          fontSize={wide ? 32 : 38}
           fontWeight={700}
           fill={COLORS.ink}
         />
         <Txt
           text="MICROSOFT AZURE • AMAZON AWS"
           fontFamily={FONTS.data}
-          fontSize={15}
-          fontWeight={600}
+          fontSize={wide ? 18 : 22}
+          fontWeight={700}
           fill={COLORS.secondaryInk}
         />
       </Rect>
@@ -198,24 +198,24 @@ export default makeScene2D(function* (view) {
         scale={() => focalScale(focalId, 2, hubBScale, time)}
         layout
         direction="column"
-        padding={[22, 26]}
-        gap={12}
+        padding={wide ? [26, 30] : [30, 36]}
+        gap={wide ? 14 : 16}
         fill={COLORS.surface}
         stroke={COLORS.ink}
-        lineWidth={3}
-        radius={12}
+        lineWidth={3.5}
+        radius={14}
       >
         <Rect layout direction="row" alignItems="center" justifyContent="space-between" width="100%">
           <Img
             src={'/assets/vid_20261029_002/openai_logo.png'}
-            width={44}
-            height={44}
+            width={wide ? 58 : 70}
+            height={wide ? 58 : 70}
           />
-          <Rect layout padding={[4, 10]} fill={COLORS.bg} radius={4}>
+          <Rect layout padding={[6, 14]} fill={COLORS.bg} radius={4}>
             <Txt
               text="STATION 02"
               fontFamily={FONTS.data}
-              fontSize={14}
+              fontSize={wide ? 17 : 20}
               fontWeight={700}
               fill={COLORS.secondaryInk}
             />
@@ -224,15 +224,15 @@ export default makeScene2D(function* (view) {
         <Txt
           text="FRONTIER AI LABS"
           fontFamily={FONTS.heading}
-          fontSize={wide ? 28 : 24}
+          fontSize={wide ? 32 : 38}
           fontWeight={700}
           fill={COLORS.ink}
         />
         <Txt
           text="OPENAI • ANTHROPIC CLUSTER SPEND"
           fontFamily={FONTS.data}
-          fontSize={15}
-          fontWeight={600}
+          fontSize={wide ? 18 : 22}
+          fontWeight={700}
           fill={COLORS.secondaryInk}
         />
       </Rect>
@@ -240,30 +240,30 @@ export default makeScene2D(function* (view) {
       {/* ===== CENTER ROUND-TRIP VERDICT BADGE ===== */}
       <Rect
         x={0}
-        y={wide ? hubAY : (hubAY + hubBY) / 2}
+        y={wide ? hubAY : -55}
         opacity={loopAlertOpacity}
         scale={() => focalScale(focalId, 3, loopAlertScale, time)}
         layout
         direction="column"
         alignItems="center"
-        padding={[12, 22]}
-        gap={4}
+        padding={wide ? [14, 26] : [16, 28]}
+        gap={6}
         fill={COLORS.ink}
         stroke={COLORS.accent}
-        lineWidth={3}
-        radius={8}
+        lineWidth={3.5}
+        radius={10}
       >
         <Txt
           text="ROUND-TRIPPING"
           fontFamily={FONTS.heading}
-          fontSize={wide ? 24 : 20}
+          fontSize={wide ? 28 : 30}
           fontWeight={700}
           fill={COLORS.surface}
         />
         <Txt
           text="ZERO EXTERNAL CASH FLOW"
           fontFamily={FONTS.data}
-          fontSize={wide ? 14 : 13}
+          fontSize={wide ? 17 : 20}
           fontWeight={700}
           fill={COLORS.accent}
         />

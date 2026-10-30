@@ -119,12 +119,12 @@ export function SwissLayout(props: SwissLayoutProps) {
         direction={'row'}
         justifyContent={'start'}
         alignItems={'center'}
-        opacity={0.55}
+        opacity={0.78}
       >
         <Txt
           text={figure}
           fontFamily={THEME.fonts.data}
-          fontSize={22}
+          fontSize={30}
           fontWeight={700}
           fill={THEME.colors.secondaryInk}
           letterSpacing={1.5}
@@ -140,11 +140,11 @@ export function SwissLayout(props: SwissLayoutProps) {
         alignItems={'center'}
         justifyContent={'center'}
         gap={0}
-        padding={[12, 24]}
-        radius={12}
+        padding={[18, 30]}
+        radius={14}
         fill={THEME.colors.surface}
         stroke={THEME.colors.ink}
-        lineWidth={3}
+        lineWidth={3.5}
         opacity={() => (getActiveChunk() ? 1 : 0)}
         scale={1.0}
       >
@@ -154,12 +154,12 @@ export function SwissLayout(props: SwissLayoutProps) {
             layout
             padding={() => {
               const chunk = getActiveChunk();
-              return chunk && slotIdx < chunk.words.length ? [6, 10] : [0, 0];
+              return chunk && slotIdx < chunk.words.length ? [9, 14] : [0, 0];
             }}
             margin={() => {
               const chunk = getActiveChunk();
               return chunk && slotIdx < chunk.words.length - 1
-                ? [0, 8, 0, 0]
+                ? [0, 11, 0, 0]
                 : [0, 0, 0, 0];
             }}
             radius={8}
@@ -178,7 +178,7 @@ export function SwissLayout(props: SwissLayoutProps) {
               fontFamily={THEME.fonts.body}
               fontSize={() => {
                 const chunk = getActiveChunk();
-                return chunk && slotIdx < chunk.words.length ? 36 : 0;
+                return chunk && slotIdx < chunk.words.length ? 44 : 0;
               }}
               fontWeight={700}
               fill={() =>

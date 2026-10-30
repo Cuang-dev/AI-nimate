@@ -11,12 +11,12 @@ export default makeScene2D(function* (view) {
   setupBaseStage(view, '03 // THE DEPRECIATION CLOCK');
 
   const wide = isWidescreen(view);
-  const trackLeft = wide ? -640 : -380;
-  const trackRight = wide ? 640 : 380;
+  const trackLeft = wide ? -680 : -440;
+  const trackRight = wide ? 680 : 440;
   const trackSpan = trackRight - trackLeft;
 
-  const y1 = wide ? -150 : -240;
-  const y2 = wide ? 110 : 140;
+  const y1 = wide ? -160 : -280;
+  const y2 = wide ? 115 : 170;
   const wallX = trackLeft + trackSpan * (2 / 6);
 
   // Animation signals
@@ -43,22 +43,22 @@ export default makeScene2D(function* (view) {
       <Node opacity={t1Opacity} scale={() => focalScale(focalId, 1, () => 1.0, time)}>
         <Rect
           x={trackLeft}
-          y={y1 - 65}
+          y={y1 - (wide ? 75 : 115)}
           offset={[-1, 0]}
           layout
           direction="row"
           alignItems="center"
-          gap={14}
+          gap={16}
         >
           <Img
             src={'/assets/vid_20261029_002/bigtech_capex_badge.png'}
-            width={90}
-            height={45}
+            width={wide ? 112 : 128}
+            height={wide ? 56 : 64}
           />
           <Txt
             text="10-K ACCOUNTING SCHEDULE"
             fontFamily={FONTS.heading}
-            fontSize={wide ? 34 : 24}
+            fontSize={wide ? 38 : 36}
             fontWeight={700}
             fill={COLORS.ink}
           />
@@ -71,7 +71,7 @@ export default makeScene2D(function* (view) {
             [trackRight, y1],
           ]}
           stroke={COLORS.gridLine}
-          lineWidth={8}
+          lineWidth={10}
           lineCap="round"
         />
 
@@ -82,10 +82,10 @@ export default makeScene2D(function* (view) {
             [trackLeft + trackSpan * acctProgress(), y1],
           ]}
           stroke={COLORS.goldAccent}
-          lineWidth={16}
+          lineWidth={20}
           lineCap="round"
           endArrow
-          arrowSize={14}
+          arrowSize={16}
         />
 
         {/* Track 1 Ticks: YR 0, YR 3, YR 6 */}
@@ -95,19 +95,19 @@ export default makeScene2D(function* (view) {
             <Node key={`t1-tick-${yr}`}>
               <Line
                 points={[
-                  [tx, y1 - 10],
-                  [tx, y1 + 10],
+                  [tx, y1 - 14],
+                  [tx, y1 + 14],
                 ]}
                 stroke={COLORS.secondaryInk}
-                lineWidth={2}
+                lineWidth={3}
               />
               <Txt
                 x={tx}
-                y={y1 + 24}
+                y={y1 + (wide ? 30 : 34)}
                 text={`YR ${yr}`}
                 fontFamily={FONTS.data}
-                fontSize={16}
-                fontWeight={600}
+                fontSize={wide ? 20 : 22}
+                fontWeight={700}
                 fill={COLORS.secondaryInk}
               />
             </Node>
@@ -116,19 +116,19 @@ export default makeScene2D(function* (view) {
 
         {/* Track 1 Callout Pill at YR 6 */}
         <Rect
-          x={wide ? trackRight - 110 : trackRight - 90}
-          y={y1 - 55}
+          x={wide ? trackRight - 140 : 0}
+          y={wide ? y1 - 65 : y1 + 88}
           opacity={acctBadgeOpacity}
           scale={acctBadgeScale}
           layout
-          padding={[8, 16]}
+          padding={wide ? [10, 20] : [12, 24]}
           fill={COLORS.goldAccent}
-          radius={6}
+          radius={8}
         >
           <Txt
             text="STRETCHED TO 6.0 YRS (BOOSTS EPS)"
             fontFamily={FONTS.data}
-            fontSize={wide ? 20 : 14}
+            fontSize={wide ? 22 : 23}
             fontWeight={700}
             fill={COLORS.surface}
           />
@@ -139,26 +139,26 @@ export default makeScene2D(function* (view) {
       <Node opacity={gpuTrackOpacity} scale={() => focalScale(focalId, 2, () => 1.0, time)}>
         <Rect
           x={trackLeft}
-          y={y2 - 65}
+          y={y2 - (wide ? 75 : 85)}
           offset={[-1, 0]}
           layout
           direction="row"
           alignItems="center"
-          gap={14}
+          gap={16}
           fill={COLORS.bg}
-          padding={[4, 10]}
-          radius={4}
+          padding={[6, 12]}
+          radius={6}
           zIndex={2}
         >
           <Img
             src={'/assets/vid_20261029_002/nvidia_logo.png'}
-            width={50}
-            height={50}
+            width={wide ? 60 : 68}
+            height={wide ? 60 : 68}
           />
           <Txt
             text="PHYSICAL GPU SILICON CADENCE"
             fontFamily={FONTS.heading}
-            fontSize={wide ? 34 : 24}
+            fontSize={wide ? 38 : 36}
             fontWeight={700}
             fill={COLORS.ink}
           />
@@ -171,7 +171,7 @@ export default makeScene2D(function* (view) {
             [trackRight, y2],
           ]}
           stroke={COLORS.gridLine}
-          lineWidth={8}
+          lineWidth={10}
           lineCap="round"
         />
 
@@ -182,7 +182,7 @@ export default makeScene2D(function* (view) {
             [trackLeft + (wallX - trackLeft) * gpuProgress(), y2],
           ]}
           stroke={COLORS.accent}
-          lineWidth={16}
+          lineWidth={20}
           lineCap="round"
         />
 
@@ -197,17 +197,17 @@ export default makeScene2D(function* (view) {
             <Node key={`m-${m.yr}`} zIndex={2}>
               <Line
                 points={[
-                  [mx, y2 - 10],
-                  [mx, y2 + 10],
+                  [mx, y2 - 14],
+                  [mx, y2 + 14],
                 ]}
                 stroke={COLORS.accent}
-                lineWidth={3}
+                lineWidth={4}
               />
-              <Rect x={mx} y={y2 + 28} layout padding={[3, 8]} fill={COLORS.bg} radius={4}>
+              <Rect x={mx} y={y2 + (wide ? 34 : 38)} layout padding={[4, 8]} fill={COLORS.bg} radius={4}>
                 <Txt
                   text={m.label}
                   fontFamily={FONTS.data}
-                  fontSize={wide ? 16 : 12}
+                  fontSize={wide ? 19 : 20}
                   fontWeight={700}
                   fill={COLORS.accent}
                 />
@@ -220,12 +220,12 @@ export default makeScene2D(function* (view) {
       {/* Vertical Red Obsolescence Wall at YR 2 */}
       <Line
         points={[
-          [wallX, y1 - 25],
-          [wallX, y2 + 15],
+          [wallX, y1 - 30],
+          [wallX, y2 + 20],
         ]}
         stroke={COLORS.accent}
-        lineWidth={4}
-        lineDash={[10, 8]}
+        lineWidth={5}
+        lineDash={[12, 9]}
         end={wallLineEnd}
         zIndex={0}
       />
@@ -233,37 +233,37 @@ export default makeScene2D(function* (view) {
       {/* Horizontal Double-Arrow Caliper Line at YR 2 to YR 6 Gap */}
       <Line
         points={[
-          [wallX + 10, (y1 + y2) / 2 + 10],
-          [trackRight - 10, (y1 + y2) / 2 + 10],
+          [wallX + 14, wide ? (y1 + y2) / 2 + 10 : y2 - 165],
+          [trackRight - 14, wide ? (y1 + y2) / 2 + 10 : y2 - 165],
         ]}
         stroke={COLORS.accent}
-        lineWidth={3}
+        lineWidth={4}
         lineDash={[6, 4]}
         startArrow
         endArrow
-        arrowSize={8}
+        arrowSize={11}
         end={caliperEnd}
         zIndex={0}
       />
 
       {/* Red Danger Callout Spanning Unamortized Gap from YR 2 to YR 6 */}
       <Rect
-        x={(wallX + trackRight) / 2}
-        y={y2 + (wide ? 72 : 78)}
+        x={wide ? (wallX + trackRight) / 2 : 0}
+        y={y2 + (wide ? 86 : 110)}
         opacity={writeDownOpacity}
         scale={() => focalScale(focalId, 3, () => writeDownScale(), time)}
         layout
-        padding={[10, 20]}
+        padding={wide ? [12, 24] : [16, 26]}
         fill={COLORS.accent}
         stroke={COLORS.ink}
-        lineWidth={2}
-        radius={8}
+        lineWidth={3}
+        radius={10}
         zIndex={2}
       >
         <Txt
           text="4 UNUSED YRS = $100B+ WRITE-DOWNS"
           fontFamily={FONTS.data}
-          fontSize={wide ? 24 : 17}
+          fontSize={wide ? 26 : 25}
           fontWeight={700}
           fill={COLORS.surface}
         />

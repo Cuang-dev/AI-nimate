@@ -11,12 +11,12 @@ export default makeScene2D(function* (view) {
   setupBaseStage(view, '04 // 2000 TELECOM VS 2026 AI');
 
   const wide = isWidescreen(view);
-  const originX = wide ? -560 : -360;
-  const endX = wide ? 560 : 360;
-  const topY = wide ? -220 : -320;
-  const botY = wide ? 190 : 280;
+  const originX = wide ? -580 : -390;
+  const endX = wide ? 580 : 430;
+  const topY = wide ? -230 : -420;
+  const botY = wide ? 200 : 310;
   const yr3X = originX + (endX - originX) * 0.28;
-  const yr10X = originX + (endX - originX) * 0.55;
+  const yr10X = originX + (endX - originX) * 0.56;
 
   // Animation signals
   const focalId = createSignal(1);
@@ -44,11 +44,13 @@ export default makeScene2D(function* (view) {
       {/* Vertical Y-Axis */}
       <Line
         points={[
-          [originX, topY - 20],
           [originX, botY],
+          [originX, topY - 20],
         ]}
         stroke={COLORS.ink}
-        lineWidth={3}
+        lineWidth={4}
+        endArrow
+        arrowSize={12}
         opacity={axesOpacity}
       />
 
@@ -59,9 +61,9 @@ export default makeScene2D(function* (view) {
           [endX + 30, botY],
         ]}
         stroke={COLORS.ink}
-        lineWidth={3}
+        lineWidth={4}
         endArrow
-        arrowSize={10}
+        arrowSize={12}
         opacity={axesOpacity}
       />
 
@@ -78,17 +80,17 @@ export default makeScene2D(function* (view) {
               [endX, g.y],
             ]}
             stroke={COLORS.gridLine}
-            lineWidth={1.5}
+            lineWidth={2}
             lineDash={[6, 6]}
           />
           <Txt
-            x={originX - 16}
+            x={originX - 18}
             y={g.y}
             offset={[1, 0]}
             text={g.label}
             fontFamily={FONTS.data}
-            fontSize={16}
-            fontWeight={600}
+            fontSize={wide ? 20 : 22}
+            fontWeight={700}
             fill={COLORS.secondaryInk}
           />
         </Node>
@@ -104,19 +106,19 @@ export default makeScene2D(function* (view) {
         <Node key={`tick-${idx}`} opacity={axesOpacity}>
           <Line
             points={[
-              [tick.x, botY - 8],
-              [tick.x, botY + 8],
+              [tick.x, botY - 10],
+              [tick.x, botY + 10],
             ]}
             stroke={COLORS.ink}
-            lineWidth={2}
+            lineWidth={3}
           />
           <Txt
             x={tick.x}
-            y={botY + 24}
+            y={botY + (wide ? 28 : 34)}
             text={tick.label}
             fontFamily={FONTS.data}
-            fontSize={16}
-            fontWeight={600}
+            fontSize={wide ? 20 : 22}
+            fontWeight={700}
             fill={COLORS.secondaryInk}
           />
         </Node>
@@ -124,22 +126,22 @@ export default makeScene2D(function* (view) {
 
       {/* Axis Titles */}
       <Txt
-        x={originX - 55}
+        x={originX - (wide ? 72 : 82)}
         y={(topY + botY) / 2}
         text="ASSET VALUE"
         rotation={-90}
         fontFamily={FONTS.data}
-        fontSize={14}
+        fontSize={wide ? 18 : 20}
         fontWeight={700}
         fill={COLORS.secondaryInk}
         opacity={axesOpacity}
       />
       <Txt
         x={(originX + endX) / 2}
-        y={botY + 45}
+        y={botY + (wide ? 62 : 76)}
         text="TIME HORIZON (YEARS)"
         fontFamily={FONTS.data}
-        fontSize={14}
+        fontSize={wide ? 18 : 22}
         fontWeight={700}
         fill={COLORS.secondaryInk}
         opacity={axesOpacity}
@@ -152,35 +154,35 @@ export default makeScene2D(function* (view) {
           [endX, topY + 45],
         ]}
         stroke={COLORS.compliantGreen}
-        lineWidth={8}
+        lineWidth={10}
         end={fiberLineEnd}
       />
 
       {/* Curve 1 Badge at right end */}
       <Rect
-        x={endX - (wide ? 220 : 180)}
-        y={topY - 30}
+        x={endX - (wide ? 250 : 235)}
+        y={topY - (wide ? 38 : 48)}
         opacity={fiberBadgeOpacity}
         scale={() => focalScale(focalId, 1, () => fiberBadgeScale(), time)}
         layout
         direction="row"
         alignItems="center"
-        gap={12}
-        padding={[10, 18]}
+        gap={14}
+        padding={wide ? [12, 22] : [14, 22]}
         fill={COLORS.surface}
         stroke={COLORS.compliantGreen}
-        lineWidth={3}
-        radius={8}
+        lineWidth={3.5}
+        radius={10}
       >
         <Img
           src={'/assets/vid_20261029_002/telecom_fiber_icon.png'}
-          width={42}
-          height={42}
+          width={wide ? 50 : 54}
+          height={wide ? 50 : 54}
         />
         <Txt
           text="2000 DARK FIBER: 25+ YR LIFE"
           fontFamily={FONTS.data}
-          fontSize={wide ? 22 : 16}
+          fontSize={wide ? 24 : 23}
           fontWeight={700}
           fill={COLORS.compliantGreen}
         />
@@ -188,21 +190,21 @@ export default makeScene2D(function* (view) {
 
       {/* Funding Tag at left - Cleanly below the green Dark Fiber curve */}
       <Rect
-        x={originX + (wide ? 250 : 180)}
-        y={topY + 66}
+        x={originX + (wide ? 280 : 245)}
+        y={topY + (wide ? 76 : 88)}
         opacity={debtTagOpacity}
         scale={() => focalScale(focalId, 1, () => debtTagScale(), time)}
         layout
-        padding={[6, 14]}
+        padding={wide ? [8, 18] : [10, 20]}
         fill={COLORS.goldAccent}
         stroke={COLORS.surface}
         lineWidth={2}
-        radius={6}
+        radius={8}
       >
         <Txt
           text="FUNDED BY JUNK DEBT"
           fontFamily={FONTS.data}
-          fontSize={wide ? 20 : 15}
+          fontSize={wide ? 22 : 22}
           fontWeight={700}
           fill={COLORS.surface}
         />
@@ -210,21 +212,21 @@ export default makeScene2D(function* (view) {
 
       {/* Cash-Flow Tag - Cleanly to the right of red slope */}
       <Rect
-        x={yr3X + (wide ? 210 : 145)}
+        x={yr3X + (wide ? 240 : 195)}
         y={(topY + botY) / 2 - 10}
         opacity={cashTagOpacity}
         scale={() => focalScale(focalId, 2, () => cashTagScale(), time)}
         layout
-        padding={[6, 14]}
+        padding={wide ? [8, 18] : [10, 20]}
         fill={COLORS.ink}
         stroke={COLORS.surface}
         lineWidth={2}
-        radius={6}
+        radius={8}
       >
         <Txt
           text="CASH-FLOW FUNDED • FAST DECAY"
           fontFamily={FONTS.data}
-          fontSize={wide ? 20 : 15}
+          fontSize={wide ? 22 : 22}
           fontWeight={700}
           fill={COLORS.surface}
         />
@@ -239,35 +241,35 @@ export default makeScene2D(function* (view) {
           [endX - 100, botY - 10],
         ]}
         stroke={COLORS.accent}
-        lineWidth={8}
+        lineWidth={10}
         end={gpuLineEnd}
       />
 
       {/* Curve 2 Badge near cliff */}
       <Rect
-        x={yr3X + (wide ? 230 : 165)}
-        y={botY - (wide ? 85 : 80)}
+        x={yr3X + (wide ? 260 : 205)}
+        y={botY - (wide ? 95 : 110)}
         opacity={gpuBadgeOpacity}
         scale={() => focalScale(focalId, 2, () => gpuBadgeScale(), time)}
         layout
         direction="row"
         alignItems="center"
-        gap={12}
-        padding={[10, 18]}
+        gap={14}
+        padding={wide ? [12, 22] : [14, 22]}
         fill={COLORS.surface}
         stroke={COLORS.accent}
-        lineWidth={3}
-        radius={8}
+        lineWidth={3.5}
+        radius={10}
       >
         <Img
           src={'/assets/vid_20261029_002/nvidia_logo.png'}
-          width={42}
-          height={42}
+          width={wide ? 50 : 54}
+          height={wide ? 50 : 54}
         />
         <Txt
           text="2026 AI GPUS: 3-YR THERMAL CLIFF"
           fontFamily={FONTS.data}
-          fontSize={wide ? 22 : 15}
+          fontSize={wide ? 24 : 22}
           fontWeight={700}
           fill={COLORS.accent}
         />

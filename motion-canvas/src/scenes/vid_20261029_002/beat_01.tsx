@@ -11,16 +11,16 @@ export default makeScene2D(function* (view) {
   setupBaseStage(view, '01 // THE $600B CHASM');
 
   const wide = isWidescreen(view);
-  const baseY = wide ? 190 : 310;
-  const colSpan = wide ? 640 : 410;
-  const leftX = wide ? -440 : -270;
+  const baseY = wide ? 185 : 320;
+  const colSpan = wide ? 680 : 475;
+  const leftX = wide ? -460 : -320;
   const midX = 0;
-  const rightX = wide ? 440 : 270;
-  const barWidth = wide ? 200 : 155;
+  const rightX = wide ? 460 : 320;
+  const barWidth = wide ? 220 : 210;
 
-  const maxCapexH = wide ? 240 : 290;
-  const maxReqH = wide ? 440 : 540;
-  const maxRevH = wide ? 36 : 44;
+  const maxCapexH = wide ? 250 : 390;
+  const maxReqH = wide ? 460 : 730;
+  const maxRevH = wide ? 40 : 60;
 
   // Animation signals
   const focalId = createSignal(0);
@@ -78,10 +78,10 @@ export default makeScene2D(function* (view) {
         {/* Live Value Label Above Bar */}
         <Txt
           x={leftX}
-          y={() => baseY - capexBarH() - 28}
+          y={() => baseY - capexBarH() - 32}
           text={() => `$${Math.round(capexVal())}B/YR`}
           fontFamily={FONTS.data}
-          fontSize={wide ? 38 : 28}
+          fontSize={wide ? 44 : 40}
           fontWeight={700}
           fill={COLORS.ink}
           opacity={capexOpacity}
@@ -89,31 +89,31 @@ export default makeScene2D(function* (view) {
         {/* Label & Badge Below Baseline */}
         <Rect
           x={leftX}
-          y={baseY + 54}
+          y={baseY + (wide ? 64 : 84)}
           opacity={capexSubOpacity}
           layout
           direction="column"
           alignItems="center"
-          gap={6}
+          gap={wide ? 8 : 10}
         >
           <Txt
             text="AI CAPEX SPEND"
             fontFamily={FONTS.heading}
-            fontSize={wide ? 22 : 17}
+            fontSize={wide ? 26 : 26}
             fontWeight={700}
             fill={COLORS.ink}
           />
           <Txt
-            text="2025–2026 HYPERSCALERS"
+            text={wide ? '2025–2026 HYPERSCALERS' : 'HYPERSCALERS'}
             fontFamily={FONTS.data}
-            fontSize={wide ? 13 : 11}
-            fontWeight={600}
+            fontSize={wide ? 16 : 18}
+            fontWeight={700}
             fill={COLORS.secondaryInk}
           />
           <Img
             src={'/assets/vid_20261029_002/bigtech_capex_badge.png'}
-            width={wide ? 96 : 80}
-            height={wide ? 48 : 40}
+            width={wide ? 116 : 128}
+            height={wide ? 58 : 64}
             opacity={capexBadgeOpacity}
             scale={capexBadgeScale}
           />
@@ -134,48 +134,48 @@ export default makeScene2D(function* (view) {
           height={() => reqBarH()}
           fill={'rgba(217, 119, 6, 0.14)'}
           stroke={COLORS.goldAccent}
-          lineWidth={3}
+          lineWidth={4}
           lineDash={[10, 8]}
           radius={[8, 8, 0, 0]}
         />
         {/* Live Value Label Above Target Bar */}
         <Txt
           x={midX}
-          y={() => baseY - reqBarH() - 28}
+          y={() => baseY - reqBarH() - 32}
           text={() => `$${Math.round(reqVal())}B REQ`}
           fontFamily={FONTS.data}
-          fontSize={wide ? 38 : 28}
+          fontSize={wide ? 44 : 40}
           fontWeight={700}
           fill={COLORS.goldAccent}
         />
         {/* Target Sub-Badge Below Baseline */}
         <Rect
           x={midX}
-          y={baseY + 54}
+          y={baseY + (wide ? 64 : 84)}
           opacity={reqSubOpacity}
           scale={reqSubScale}
           layout
           direction="column"
           alignItems="center"
-          gap={8}
+          gap={wide ? 10 : 12}
         >
           <Txt
             text="2X TCO TARGET"
             fontFamily={FONTS.heading}
-            fontSize={wide ? 22 : 17}
+            fontSize={wide ? 26 : 26}
             fontWeight={700}
             fill={COLORS.goldAccent}
           />
           <Rect
             layout
-            padding={[4, 12]}
+            padding={wide ? [6, 14] : [8, 14]}
             fill={COLORS.goldAccent}
-            radius={4}
+            radius={6}
           >
             <Txt
-              text="SEQUOIA BENCHMARK"
+              text={wide ? 'SEQUOIA BENCHMARK' : 'SEQUOIA 2X RULE'}
               fontFamily={FONTS.data}
-              fontSize={wide ? 14 : 12}
+              fontSize={wide ? 17 : 18}
               fontWeight={700}
               fill={COLORS.surface}
             />
@@ -201,33 +201,33 @@ export default makeScene2D(function* (view) {
         {/* Value Label Above Revenue Bar */}
         <Txt
           x={rightX}
-          y={() => baseY - revBarH() - 24}
+          y={() => baseY - revBarH() - 30}
           text="< $45B"
           fontFamily={FONTS.data}
-          fontSize={wide ? 34 : 26}
+          fontSize={wide ? 42 : 40}
           fontWeight={700}
           fill={COLORS.accent}
         />
         {/* Label & OpenAI Logo Below Baseline */}
         <Rect
           x={rightX}
-          y={baseY + 54}
+          y={baseY + (wide ? 64 : 84)}
           layout
           direction="column"
           alignItems="center"
-          gap={8}
+          gap={wide ? 10 : 12}
         >
           <Txt
             text="ACTUAL AI REV"
             fontFamily={FONTS.heading}
-            fontSize={wide ? 22 : 17}
+            fontSize={wide ? 26 : 26}
             fontWeight={700}
             fill={COLORS.accent}
           />
           <Img
             src={'/assets/vid_20261029_002/openai_logo.png'}
-            width={wide ? 42 : 36}
-            height={wide ? 42 : 36}
+            width={wide ? 54 : 64}
+            height={wide ? 54 : 64}
           />
         </Rect>
       </Node>
@@ -240,7 +240,7 @@ export default makeScene2D(function* (view) {
           [rightX, baseY - maxReqH],
         ]}
         stroke={COLORS.accent}
-        lineWidth={3}
+        lineWidth={3.5}
         lineDash={[8, 8]}
         end={caliperEnd}
       />
@@ -248,44 +248,44 @@ export default makeScene2D(function* (view) {
       {/* Vertical Double-Arrow Caliper Measuring the $555B Chasm */}
       <Line
         points={[
-          [rightX, baseY - maxReqH + 8],
-          [rightX, baseY - maxRevH - 52],
+          [rightX, baseY - maxReqH + 10],
+          [rightX, baseY - maxRevH - 64],
         ]}
         stroke={COLORS.accent}
-        lineWidth={4}
+        lineWidth={5}
         startArrow
         endArrow
-        arrowSize={12}
+        arrowSize={14}
         end={caliperEnd}
       />
 
       {/* Opaque Masked Callout Pill Centered Over the Chasm */}
       <Rect
-        x={rightX - (wide ? 80 : 40)}
-        y={baseY - maxReqH * 0.54}
+        x={wide ? rightX - 95 : rightX - 45}
+        y={wide ? baseY - maxReqH * 0.54 : baseY - maxReqH * 0.56}
         opacity={chasmBadgeOpacity}
         scale={() => focalScale(focalId, 4, chasmBadgeScale, time)}
         layout
         direction="column"
         alignItems="center"
-        padding={[12, 20]}
-        gap={4}
+        padding={wide ? [14, 24] : [16, 22]}
+        gap={6}
         fill={COLORS.accent}
         stroke={COLORS.ink}
-        lineWidth={2}
-        radius={8}
+        lineWidth={3}
+        radius={10}
       >
         <Txt
           text="$555B REVENUE CHASM"
           fontFamily={FONTS.data}
-          fontSize={wide ? 26 : 19}
+          fontSize={wide ? 28 : 26}
           fontWeight={700}
           fill={COLORS.surface}
         />
         <Txt
           text="92% SHORTFALL VS CAPEX TARGET"
           fontFamily={FONTS.data}
-          fontSize={wide ? 15 : 12}
+          fontSize={wide ? 18 : 18}
           fontWeight={600}
           fill={COLORS.surface}
         />

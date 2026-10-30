@@ -55,8 +55,28 @@ To prevent split attention between graphics, on-screen text, and subtitles, all 
 ### Rule 5: Subtitle Integration & Lower-Third Clearance
 - **Acoustic Lead (`LEAD_OFFSET = 0.22`)**: Advance subtitle word karaoke highlighting by `+220ms` (`t = time + 0.22`) to align with acoustic consonant onset.
 - **Per-Beat Render Global Time Invariant (`sceneStart` Offset)**: Because `render_sequential.mjs` renders each beat (`beat_01`, `beat_02`, ...) as an isolated single-scene Motion Canvas project, `useThread().time()` resets to `0.00s` at the start of every beat. Therefore, `layout.tsx` MUST compute global subtitle lookup time as `const gt = sceneStart + (time() - t0) + LEAD_OFFSET;` (mapping the section label `01`..`06` to `SCENE_TIMINGS[sceneIdx].start`). Omitting `sceneStart` causes Beat 2..N to reset `gt` to `0.00s` and loop Beat 1's subtitles from the beginning at every scene boundary!
-- **Stabilized Pill Geometry**: Every subtitle word slot must maintain constant `padding={[6, 10]}`, `radius={8}`, and `scale={1.0}` whether active or inactive. Words must NEVER shift horizontally when highlighted.
+- **Stabilized Pill Geometry**: Every subtitle word slot must maintain constant padding (`padding={[18, 30]}` on 9:16 phone with `fontSize={44}` and slot `padding={[9, 14]}`; `padding={[14, 28]}` on 16:9 widescreen with `fontSize={38}` and slot `padding={[6, 10]}`), `radius`, and `scale={1.0}` whether active or inactive. Words must NEVER shift horizontally when highlighted.
 - **Lower-Third Clearance**: Keep canvas area below `y = 655` clear of card borders, footnotes, or stamps so the subtitle pill exclusively commands the lower third.
+
+### Rule 6: Physical Screen Calibration & Minimum Typography / Asset Sizing (9:16 Phone vs 16:9 Desktop)
+- **Anti-Pattern Banned**: Never make `9:16` (`1080x1920`) fonts or icons smaller than `16:9` (`1920x1080`) using `wide ? 24 : 15`.
+- **Why**:
+  - `9:16` (`1080x1920`) is viewed almost exclusively on **6.1"–6.7" smartphones** (~390 CSS px wide, `0.36x` scale factor). A `15px` canvas font shrinks to **`5.4px` CSS (`~0.9mm`)** on a phone screen—completely illegible without zooming!
+  - `16:9` (`1920x1080`) is viewed on **14"–27" laptops/monitors or landscape players** (~960–1920 CSS px wide).
+- **Mandatory Minimum Canvas Sizing Table**:
+
+| Element Tier | 16:9 Widescreen (`1920x1080`) | 9:16 Vertical Phone (`1080x1920`) | Physical Phone CSS Equivalent (`0.36x`) |
+| :--- | :--- | :--- | :--- |
+| **Absolute Minimum Font Floor** | **`>= 18px`** | **`>= 20px`** (never `11–16px`) | `>= 7.2px` CSS |
+| **Axis Ticks / Micro-Tags** | `18px–20px` | `20px–22px` | `7.2px–8.0px` CSS |
+| **Callout Pills / Data Badges** | `22px–28px` | `22px–26px` | `8.0px–9.4px` CSS |
+| **Card / Track Headings** | `32px–38px` | `34px–38px` | `12.2px–13.7px` CSS |
+| **Hero Numbers / Counters** | `42px–48px` | `40px–46px` | `14.4px–16.6px` CSS |
+| **Subtitle Pill Text** | `38px` (`padding [14, 28]`) | `44px` (`padding [18, 30]`) | `15.8px` CSS |
+| **Section Indicator (`01 // ...`)** | `26px` | `30px` | `10.8px` CSS |
+| **Square Logos / Icons** | `50px–60px` | `56px–70px` | `20px–25px` CSS |
+| **Wide Multi-Brand Badges (`2:1`)** | `110x55` to `120x60` | `128x64` to `140x70` | `46x23` to `50x25` CSS |
+| **Active Diagram Canvas Utilization** | `>= 70%` width (`1340px+`), `>= 55%` height | `>= 82%` width (`880px–940px`), `>= 50%` height (`750px–950px`) | Full mobile viewport command |
 
 ---
 
@@ -91,7 +111,8 @@ Production aesthetics are governed by Channel Style Profiles located in `styles/
    - Implements the 5 Distinct Spatial Diagram Archetypes with 36px min font size and text-free icon graphic marks with crisp `<Txt>` nodes.
    - Enforces the Authentic Wikimedia Commons / Official Vector Logo Rule (fetching real logomarks; banning synthetic PIL or AI fakes).
    - Enforces Per-Beat Render Global Time Invariant (`sceneStart` offset in `layout.tsx` via `.startsWith('01'..'06')` so `gt = sceneStart + (time() - t0) + LEAD_OFFSET`).
-   - Enforces Zero-Empty-Slot Flexbox Gap Rule on the subtitle pill bar (`gap={0}` on parent `<Rect>`, `[0, 1, 2, 3]` slots, conditional `padding={[6, 10]}` on active slots and `margin={[0, 8, 0, 0]}` only on `slotIdx < chunk.words.length - 1`, eliminating trailing right-side margin from unused slots).
+   - Enforces Zero-Empty-Slot Flexbox Gap Rule on the subtitle pill bar (`gap={0}` on parent `<Rect>`, `[0, 1, 2, 3]` slots, conditional padding e.g. `[9, 14]` phone / `[6, 10]` wide on active slots and margin `[0, 11, 0, 0]` phone / `[0, 8, 0, 0]` wide only on `slotIdx < chunk.words.length - 1`, eliminating trailing right-side margin from unused slots).
+   - Enforces Physical Screen Calibration & Minimum Typography / Asset Sizing (never `wide ? 24 : 15`; absolute minimum font floor `>=20px` phone / `>=18px` wide; subtitle pill text `44px` phone / `38px` wide; canvas width utilization `>=82%` phone / `>=70%` wide).
    - Configures `focalId` breathing pulse (0.55 rad/s, 0.45 rad/s) and stillness for inactive elements.
    - Ties major visual reveals and number counters to 1.0s–1.8s tweens triggered within `±0.3s` of narration word timestamps in `timings.json`, completing all motion `>= 2.7s` before beat end.
 5. **Asset Hub (`SubAgent_Assets`)**:

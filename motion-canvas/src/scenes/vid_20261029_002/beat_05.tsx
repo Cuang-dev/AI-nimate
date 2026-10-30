@@ -11,11 +11,12 @@ export default makeScene2D(function* (view) {
   setupBaseStage(view, '05 // WHAT POPS VS SURVIVES');
 
   const wide = isWidescreen(view);
-  const stackW = wide ? 1240 : 880;
+  const stackW = wide ? 1320 : 940;
+  const cardH = wide ? 145 : 195;
 
-  const y3 = wide ? -190 : -280;
+  const y3 = wide ? -195 : -340;
   const y2 = wide ? -20 : -60;
-  const y1 = wide ? 150 : 160;
+  const y1 = wide ? 155 : 220;
 
   // Focal Tracking Signal (3: Layer 3, 2: Layer 2, 1: Layer 1)
   const focalId = createSignal(3);
@@ -54,26 +55,26 @@ export default makeScene2D(function* (view) {
       {/* ===== DEPENDENCY ARROWS (L1 -> L2 -> L3) ===== */}
       <Line
         points={[
-          [0, y1 - 135 / 2 - 2],
-          [0, y2 + 135 / 2 + 6],
+          [0, y1 - cardH / 2 - 4],
+          [0, y2 + cardH / 2 + 8],
         ]}
         stroke={COLORS.secondaryInk}
-        lineWidth={3}
+        lineWidth={4}
         lineDash={[6, 4]}
         endArrow
-        arrowSize={10}
+        arrowSize={12}
         opacity={arrowOpacity}
       />
       <Line
         points={[
-          [0, y2 - 135 / 2 - 2],
-          [0, y3 + 135 / 2 + 6],
+          [0, y2 - cardH / 2 - 4],
+          [0, y3 + cardH / 2 + 8],
         ]}
         stroke={COLORS.secondaryInk}
-        lineWidth={3}
+        lineWidth={4}
         lineDash={[6, 4]}
         endArrow
-        arrowSize={10}
+        arrowSize={12}
         opacity={arrowOpacity}
       />
 
@@ -81,12 +82,12 @@ export default makeScene2D(function* (view) {
       <Rect
         y={y3}
         width={stackW}
-        height={135}
+        height={cardH}
         layout
         direction="row"
         justifyContent="space-between"
         alignItems="center"
-        padding={[0, wide ? 36 : 20]}
+        padding={wide ? [0, 38] : [22, 32]}
         fill={COLORS.surface}
         stroke={l3Stroke}
         lineWidth={3}
@@ -94,39 +95,46 @@ export default makeScene2D(function* (view) {
         opacity={l3Opacity}
         scale={() => focalScale(focalId, 3, () => l3Scale(), time)}
       >
-        <Rect layout direction="row" alignItems="center" gap={wide ? 18 : 12}>
+        <Rect
+          layout
+          direction={wide ? 'row' : 'column'}
+          alignItems={wide ? 'center' : 'start'}
+          gap={wide ? 20 : 12}
+        >
           <Txt
             text="L3 // APPLICATION"
             fontFamily={FONTS.data}
-            fontSize={wide ? 22 : 16}
+            fontSize={wide ? 24 : 22}
             fontWeight={700}
             fill={COLORS.secondaryInk}
           />
-          <Img
-            src={'/assets/vid_20261029_002/openai_logo.png'}
-            width={wide ? 48 : 38}
-            height={wide ? 48 : 38}
-          />
-          <Txt
-            text="THIN AI WRAPPERS"
-            fontFamily={FONTS.heading}
-            fontSize={wide ? 34 : 24}
-            fontWeight={700}
-            fill={COLORS.ink}
-          />
+          <Rect layout direction="row" alignItems="center" gap={16}>
+            <Img
+              src={'/assets/vid_20261029_002/openai_logo.png'}
+              width={56}
+              height={56}
+            />
+            <Txt
+              text="THIN AI WRAPPERS"
+              fontFamily={FONTS.heading}
+              fontSize={wide ? 38 : 34}
+              fontWeight={700}
+              fill={COLORS.ink}
+            />
+          </Rect>
         </Rect>
 
         <Rect
           layout
-          padding={[8, 16]}
+          padding={wide ? [10, 20] : [14, 22]}
           fill={l3BadgeBg}
-          radius={6}
+          radius={8}
           scale={l3BadgeScale}
         >
           <Txt
             text={l3BadgeText}
             fontFamily={FONTS.data}
-            fontSize={wide ? 20 : 15}
+            fontSize={wide ? 22 : 23}
             fontWeight={700}
             fill={COLORS.surface}
           />
@@ -137,12 +145,12 @@ export default makeScene2D(function* (view) {
       <Rect
         y={y2}
         width={stackW}
-        height={135}
+        height={cardH}
         layout
         direction="row"
         justifyContent="space-between"
         alignItems="center"
-        padding={[0, wide ? 36 : 20]}
+        padding={wide ? [0, 38] : [22, 32]}
         fill={COLORS.surface}
         stroke={l2Stroke}
         lineWidth={3}
@@ -150,34 +158,41 @@ export default makeScene2D(function* (view) {
         opacity={l2Opacity}
         scale={() => focalScale(focalId, 2, () => l2Scale(), time)}
       >
-        <Rect layout direction="row" alignItems="center" gap={wide ? 18 : 12}>
+        <Rect
+          layout
+          direction={wide ? 'row' : 'column'}
+          alignItems={wide ? 'center' : 'start'}
+          gap={wide ? 20 : 12}
+        >
           <Txt
             text="L2 // WORKFLOW"
             fontFamily={FONTS.data}
-            fontSize={wide ? 22 : 16}
+            fontSize={wide ? 24 : 22}
             fontWeight={700}
             fill={COLORS.secondaryInk}
           />
-          <Txt
-            text="DEEP WORKFLOW AUTOMATION"
-            fontFamily={FONTS.heading}
-            fontSize={wide ? 34 : 24}
-            fontWeight={700}
-            fill={COLORS.ink}
-          />
+          <Rect layout direction="row" alignItems="center" gap={16}>
+            <Txt
+              text="DEEP WORKFLOW AUTOMATION"
+              fontFamily={FONTS.heading}
+              fontSize={wide ? 38 : 34}
+              fontWeight={700}
+              fill={COLORS.ink}
+            />
+          </Rect>
         </Rect>
 
         <Rect
           layout
-          padding={[8, 16]}
+          padding={wide ? [10, 20] : [14, 22]}
           fill={l2BadgeBg}
-          radius={6}
+          radius={8}
           scale={l2BadgeScale}
         >
           <Txt
             text={l2BadgeText}
             fontFamily={FONTS.data}
-            fontSize={wide ? 20 : 15}
+            fontSize={wide ? 22 : 23}
             fontWeight={700}
             fill={() =>
               l2BadgeBg() === COLORS.bg ? COLORS.secondaryInk : COLORS.surface
@@ -190,12 +205,12 @@ export default makeScene2D(function* (view) {
       <Rect
         y={y1}
         width={stackW}
-        height={135}
+        height={cardH}
         layout
         direction="row"
         justifyContent="space-between"
         alignItems="center"
-        padding={[0, wide ? 36 : 20]}
+        padding={wide ? [0, 38] : [22, 32]}
         fill={COLORS.surface}
         stroke={l1Stroke}
         lineWidth={4}
@@ -203,39 +218,46 @@ export default makeScene2D(function* (view) {
         opacity={l1Opacity}
         scale={() => focalScale(focalId, 1, () => l1Scale(), time)}
       >
-        <Rect layout direction="row" alignItems="center" gap={wide ? 18 : 12}>
+        <Rect
+          layout
+          direction={wide ? 'row' : 'column'}
+          alignItems={wide ? 'center' : 'start'}
+          gap={wide ? 20 : 12}
+        >
           <Txt
             text="L1 // INFRASTRUCTURE"
             fontFamily={FONTS.data}
-            fontSize={wide ? 22 : 16}
+            fontSize={wide ? 24 : 22}
             fontWeight={700}
             fill={COLORS.secondaryInk}
           />
-          <Img
-            src={'/assets/vid_20261029_002/aws_azure_badge.png'}
-            width={wide ? 92 : 72}
-            height={wide ? 46 : 36}
-          />
-          <Txt
-            text="POWER GRIDS & CLOUD INFRA"
-            fontFamily={FONTS.heading}
-            fontSize={wide ? 34 : 24}
-            fontWeight={700}
-            fill={COLORS.ink}
-          />
+          <Rect layout direction="row" alignItems="center" gap={16}>
+            <Img
+              src={'/assets/vid_20261029_002/aws_azure_badge.png'}
+              width={wide ? 112 : 110}
+              height={wide ? 56 : 55}
+            />
+            <Txt
+              text="POWER GRIDS & CLOUD INFRA"
+              fontFamily={FONTS.heading}
+              fontSize={wide ? 38 : 34}
+              fontWeight={700}
+              fill={COLORS.ink}
+            />
+          </Rect>
         </Rect>
 
         <Rect
           layout
-          padding={[8, 16]}
+          padding={wide ? [10, 20] : [14, 22]}
           fill={l1BadgeBg}
-          radius={6}
+          radius={8}
           scale={l1BadgeScale}
         >
           <Txt
             text={l1BadgeText}
             fontFamily={FONTS.data}
-            fontSize={wide ? 20 : 15}
+            fontSize={wide ? 22 : 23}
             fontWeight={700}
             fill={() =>
               l1BadgeBg() === COLORS.bg ? COLORS.secondaryInk : COLORS.surface

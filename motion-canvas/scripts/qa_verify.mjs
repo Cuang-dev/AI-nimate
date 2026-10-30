@@ -125,6 +125,32 @@ if (!fs.existsSync(scenesDir)) {
       ? `${tsxFiles.length} scenes verified`
       : `Detached <Camera> in: ${cameraViolations.join(', ')}`
   );
+
+  // Check for micro-fonts (< 16px) in scene TSX files
+  let microFontFound = 0;
+  const microFontViolations = [];
+  for (const file of tsxFiles) {
+    const filePath = path.join(scenesDir, file);
+    const content = fs.readFileSync(filePath, 'utf8');
+    const stripped = content.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '');
+    const lines = stripped.split('\n');
+    lines.forEach((line, idx) => {
+      // Match positive integer fontSize literals or ternary branches smaller than 16 (excluding 0 used for hidden slots)
+      const matches = [...line.matchAll(/fontSize\s*[=:]\s*\{?[^}\n]*?\b([1-9]|1[0-5])\b/g)];
+      if (matches.length > 0) {
+        microFontFound++;
+        microFontViolations.push(`${file}:${idx + 1}`);
+      }
+    });
+  }
+
+  record(
+    'Phone Font Floor (>= 16px)',
+    microFontFound === 0,
+    microFontFound === 0
+      ? 'Zero micro-fonts (<16px)'
+      : `Micro-fonts in: ${microFontViolations.join(', ')}`
+  );
 }
 
 // -----------------------------------------------------------------------------
