@@ -1,7 +1,7 @@
 import { Img, Line, makeScene2D, Node, Rect, Txt } from '@motion-canvas/2d';
 import { all, createRef, createSignal, easeInOutCubic, easeOutExpo, useThread } from '@motion-canvas/core';
 import { COLORS, FONTS, isWidescreen, setupBaseStage } from './layout';
-import { finishSceneAt, waitUntilSceneTime } from './timings';
+import { finishSceneAt, focalScale, waitUntilSceneTime } from './timings';
 
 export default makeScene2D(function* (view) {
   const time = useThread().time;
@@ -23,13 +23,15 @@ export default makeScene2D(function* (view) {
   const maxRevH = wide ? 36 : 44;
 
   // Animation signals
+  const focalId = createSignal(0);
   const baselineEnd = createSignal(0);
 
   const capexBarH = createSignal(0);
   const capexVal = createSignal(0);
   const capexOpacity = createSignal(0);
   const capexSubOpacity = createSignal(0);
-  const capexSubScale = createSignal(0.8);
+  const capexBadgeOpacity = createSignal(0);
+  const capexBadgeScale = createSignal(0.85);
 
   const reqBarH = createSignal(0);
   const reqVal = createSignal(320);
@@ -61,7 +63,7 @@ export default makeScene2D(function* (view) {
       />
 
       {/* ===== PILLAR 1: $320B/YR AI CAPEX (Left) ===== */}
-      <Node opacity={capexOpacity}>
+      <Node scale={() => focalScale(focalId, 1, () => 1, time)}>
         {/* Growing Dark Slate Bar */}
         <Rect
           x={leftX}
@@ -70,6 +72,7 @@ export default makeScene2D(function* (view) {
           width={barWidth}
           height={() => capexBarH()}
           fill={COLORS.ink}
+          opacity={capexOpacity}
           radius={[8, 8, 0, 0]}
         />
         {/* Live Value Label Above Bar */}
@@ -81,17 +84,17 @@ export default makeScene2D(function* (view) {
           fontSize={wide ? 38 : 28}
           fontWeight={700}
           fill={COLORS.ink}
+          opacity={capexOpacity}
         />
         {/* Label & Badge Below Baseline */}
         <Rect
           x={leftX}
           y={baseY + 54}
           opacity={capexSubOpacity}
-          scale={capexSubScale}
           layout
           direction="column"
           alignItems="center"
-          gap={8}
+          gap={6}
         >
           <Txt
             text="AI CAPEX SPEND"
@@ -100,16 +103,28 @@ export default makeScene2D(function* (view) {
             fontWeight={700}
             fill={COLORS.ink}
           />
+          <Txt
+            text="2025–2026 HYPERSCALERS"
+            fontFamily={FONTS.data}
+            fontSize={wide ? 13 : 11}
+            fontWeight={600}
+            fill={COLORS.secondaryInk}
+          />
           <Img
             src={'/assets/vid_20261029_002/bigtech_capex_badge.png'}
             width={wide ? 96 : 80}
             height={wide ? 48 : 40}
+            opacity={capexBadgeOpacity}
+            scale={capexBadgeScale}
           />
         </Rect>
       </Node>
 
       {/* ===== PILLAR 2: $600B REQ TARGET (Center) ===== */}
-      <Node opacity={reqOpacity}>
+      <Node
+        opacity={reqOpacity}
+        scale={() => focalScale(focalId, 2, () => 1, time)}
+      >
         {/* Dashed Gold Target Bar */}
         <Rect
           x={midX}
@@ -169,7 +184,10 @@ export default makeScene2D(function* (view) {
       </Node>
 
       {/* ===== PILLAR 3: < $45B ACTUAL AI REVENUE (Right) ===== */}
-      <Node opacity={revOpacity}>
+      <Node
+        opacity={revOpacity}
+        scale={() => focalScale(focalId, 3, () => 1, time)}
+      >
         {/* Tiny Red Revenue Block */}
         <Rect
           x={rightX}
@@ -246,7 +264,7 @@ export default makeScene2D(function* (view) {
         x={rightX - (wide ? 80 : 40)}
         y={baseY - maxReqH * 0.54}
         opacity={chasmBadgeOpacity}
-        scale={chasmBadgeScale}
+        scale={() => focalScale(focalId, 4, chasmBadgeScale, time)}
         layout
         direction="column"
         alignItems="center"
@@ -277,58 +295,65 @@ export default makeScene2D(function* (view) {
 
   // --- Choreography (Total duration: 26.38s) ---
 
-  // t = 0.6s: Baseline draws in
-  yield* waitUntilSceneTime(0.6, t0);
+  // t = 0.4s: Baseline draws across stage
+  yield* waitUntilSceneTime(0.4, t0);
   yield* baselineEnd(1, 0.7, easeOutExpo);
 
-  // t = 1.8s: Left Pillar ($320B/YR CapEx bar + live counter) rises
-  yield* waitUntilSceneTime(1.8, t0);
+  // t = 2.1s: Left Pillar base label fades in as narrator says "what is actually inflating"
+  yield* waitUntilSceneTime(2.1, t0);
+  focalId(1);
+  yield* capexSubOpacity(1, 0.5);
+
+  // t = 5.6s: Left Pillar outline/stub appears as narrator says "Between 2025 and 2026"
+  yield* waitUntilSceneTime(5.6, t0);
   yield* all(
     capexOpacity(1, 0.3),
+    capexBarH(24, 0.4, easeOutExpo),
+    capexVal(50, 0.4, easeOutExpo),
+  );
+
+  // t = 8.2s: Big Tech capex badge pops in as narrator names "Microsoft, Meta, Google, and Amazon"
+  yield* waitUntilSceneTime(8.2, t0);
+  yield* all(
+    capexBadgeOpacity(1, 0.15),
+    capexBadgeScale(1.15, 0.25, easeOutExpo).to(1.0, 0.2, easeInOutCubic),
+  );
+
+  // t = 10.6s: Left Pillar rockets up to maxCapexH as narrator says "over $320 billion a year"
+  yield* waitUntilSceneTime(10.6, t0);
+  yield* all(
     capexBarH(maxCapexH, 2.0, easeOutExpo),
     capexVal(320, 2.0, easeOutExpo),
   );
 
-  // t = 5.0s: Left Pillar sub-badge pops in below baseline
-  yield* waitUntilSceneTime(5.0, t0);
-  yield* all(
-    capexSubOpacity(1, 0.25),
-    capexSubScale(1.12, 0.25, easeOutExpo).to(1.0, 0.2, easeInOutCubic),
-  );
-
-  // t = 8.2s: Center Pillar ($600B REQ dashed gold bar + live counter) rises
-  yield* waitUntilSceneTime(8.2, t0);
+  // t = 15.2s: Center Pillar rises to maxReqH as narrator says "according to Sequoia's famous $600 billion formula"
+  yield* waitUntilSceneTime(15.2, t0);
+  focalId(2);
   yield* all(
     reqOpacity(1, 0.3),
-    reqBarH(maxReqH, 2.0, easeOutExpo),
-    reqVal(600, 2.0, easeOutExpo),
+    reqSubOpacity(1, 0.4),
+    reqSubScale(1.14, 0.35, easeOutExpo).to(1.0, 0.25, easeInOutCubic),
+    reqBarH(maxReqH, 2.1, easeOutExpo),
+    reqVal(600, 2.1, easeOutExpo),
   );
 
-  // t = 11.5s: 2X TCO TARGET // SEQUOIA BENCHMARK sub-badge pops in below Center Pillar
-  yield* waitUntilSceneTime(11.5, t0);
-  yield* all(
-    reqSubOpacity(1, 0.25),
-    reqSubScale(1.14, 0.25, easeOutExpo).to(1.0, 0.2, easeInOutCubic),
-  );
-
-  // t = 14.8s: Right Pillar (< $45B actual AI revenue + OpenAI logo) pops in
-  yield* waitUntilSceneTime(14.8, t0);
+  // t = 19.0s: Right Pillar pops in as narrator says "all pure play AI software today earns less than $45 billion"
+  yield* waitUntilSceneTime(19.0, t0);
+  focalId(3);
   yield* all(
     revOpacity(1, 0.3),
     revBarH(maxRevH, 0.9, easeOutExpo),
   );
 
-  // t = 17.6s: Red Chasm Caliper draws from $600B top down to < $45B
-  yield* waitUntilSceneTime(17.6, t0);
-  yield* caliperEnd(1, 0.9, easeOutExpo);
-
-  // t = 19.6s: $555B REVENUE CHASM masked pill pops in (finishes at 20.2s)
-  yield* waitUntilSceneTime(19.6, t0);
+  // t = 21.8s: Red Chasm Caliper draws & $555B pill pops in (finishes at 22.9s)
+  yield* waitUntilSceneTime(21.8, t0);
+  focalId(4);
   yield* all(
-    chasmBadgeOpacity(1, 0.25),
-    chasmBadgeScale(1.14, 0.3, easeOutExpo).to(1.0, 0.3, easeInOutCubic),
+    caliperEnd(1, 0.7, easeOutExpo),
+    chasmBadgeOpacity(1, 0.2),
+    chasmBadgeScale(1.14, 0.6, easeOutExpo).to(1.0, 0.5, easeInOutCubic),
   );
 
-  // Strict Hold-Time: Diagram remains fully visible until 26.38s (hold = 6.18s)
+  // Strict Hold-Time: Diagram remains fully visible until 26.38s (hold = 3.48s)
   yield* finishSceneAt(26.38, t0);
 });

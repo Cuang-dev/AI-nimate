@@ -1,7 +1,7 @@
 import { Img, Line, makeScene2D, Node, Rect, Txt } from '@motion-canvas/2d';
 import { all, createRef, createSignal, easeInOutCubic, easeOutExpo, useThread } from '@motion-canvas/core';
 import { COLORS, FONTS, isWidescreen, setupBaseStage } from './layout';
-import { finishSceneAt, waitUntilSceneTime } from './timings';
+import { finishSceneAt, focalScale, waitUntilSceneTime } from './timings';
 
 export default makeScene2D(function* (view) {
   const time = useThread().time;
@@ -16,6 +16,9 @@ export default makeScene2D(function* (view) {
   const y3 = wide ? -190 : -280;
   const y2 = wide ? -20 : -60;
   const y1 = wide ? 150 : 160;
+
+  // Focal Tracking Signal (3: Layer 3, 2: Layer 2, 1: Layer 1)
+  const focalId = createSignal(3);
 
   // Layer 3 Signals (Top: Application / Thin AI Wrappers)
   const l3Opacity = createSignal(0.0);
@@ -89,7 +92,7 @@ export default makeScene2D(function* (view) {
         lineWidth={3}
         radius={10}
         opacity={l3Opacity}
-        scale={l3Scale}
+        scale={() => focalScale(focalId, 3, () => l3Scale(), time)}
       >
         <Rect layout direction="row" alignItems="center" gap={wide ? 18 : 12}>
           <Txt
@@ -145,7 +148,7 @@ export default makeScene2D(function* (view) {
         lineWidth={3}
         radius={10}
         opacity={l2Opacity}
-        scale={l2Scale}
+        scale={() => focalScale(focalId, 2, () => l2Scale(), time)}
       >
         <Rect layout direction="row" alignItems="center" gap={wide ? 18 : 12}>
           <Txt
@@ -198,7 +201,7 @@ export default makeScene2D(function* (view) {
         lineWidth={4}
         radius={10}
         opacity={l1Opacity}
-        scale={l1Scale}
+        scale={() => focalScale(focalId, 1, () => l1Scale(), time)}
       >
         <Rect layout direction="row" alignItems="center" gap={wide ? 18 : 12}>
           <Txt
@@ -245,7 +248,7 @@ export default makeScene2D(function* (view) {
 
   // --- Choreography (Total duration: 17.32s) ---
 
-  // t = 0.3s..0.9s: Staggered upward cascade entry
+  // t = 0.3s: 3-tier architectural stack cascades onto screen
   yield* waitUntilSceneTime(0.3, t0);
   yield* all(
     l1Opacity(0.65, 0.35, easeOutExpo),
@@ -255,8 +258,8 @@ export default makeScene2D(function* (view) {
     arrowOpacity(0.6, 0.5, easeOutExpo),
   );
 
-  // t = 2.4s: Layer 3 badge highlights RENTED COMPUTE in gold with overshoot
-  yield* waitUntilSceneTime(2.4, t0);
+  // t = 3.4s: Layer 3 highlights RENTED COMPUTE in gold as narrator says "generic chatbots on rented compute"
+  yield* waitUntilSceneTime(3.4, t0);
   l3BadgeText('RENTED COMPUTE');
   yield* all(
     l3BadgeBg(COLORS.goldAccent, 0.25),
@@ -264,8 +267,8 @@ export default makeScene2D(function* (view) {
     l3Stroke(COLORS.goldAccent, 0.3),
   );
 
-  // t = 5.2s: Model costs fall toward zero -> Layer 3 badge flips to 90% WIPEOUT (COMMODITIZED)
-  yield* waitUntilSceneTime(5.2, t0);
+  // t = 6.4s: Layer 3 flips to 90% WIPEOUT (COMMODITIZED) as narrator says "model costs fall toward zero"
+  yield* waitUntilSceneTime(6.4, t0);
   l3BadgeText(wide ? '90% WIPEOUT (COMMODITIZED)' : '90% WIPEOUT');
   yield* all(
     l3BadgeBg(COLORS.accent, 0.25),
@@ -273,10 +276,10 @@ export default makeScene2D(function* (view) {
     l3Stroke(COLORS.accent, 0.35),
   );
 
-  // t = 8.2s: Layer 3 compresses slightly (scale 1.0 -> 0.96, opacity 1.0 -> 0.78), while L2 & L1 expand to scale 1.0, opacity 1.0, stroke ink
-  yield* waitUntilSceneTime(8.2, t0);
+  // t = 9.8s: Layer 3 compresses slightly while Layer 2 & 1 expand as narrator says "Meanwhile, the real winners"
+  yield* waitUntilSceneTime(9.8, t0);
   yield* all(
-    l3Opacity(0.78, 0.45, easeInOutCubic),
+    l3Opacity(0.80, 0.45, easeInOutCubic),
     l3Scale(0.96, 0.45, easeInOutCubic),
     l2Opacity(1.0, 0.45, easeOutExpo),
     l2Scale(1.0, 0.45, easeOutExpo),
@@ -286,8 +289,19 @@ export default makeScene2D(function* (view) {
     l1Stroke(COLORS.ink, 0.45),
   );
 
-  // t = 11.0s: Layer 2 locks in with emerald green border & ENDURING MOAT
-  yield* waitUntilSceneTime(11.0, t0);
+  // t = 11.5s: Layer 1 locks in with emerald green border & UTILITY & CLOUD MOAT as narrator says "power grid infrastructure"
+  yield* waitUntilSceneTime(11.5, t0);
+  focalId(1);
+  l1BadgeText(wide ? 'UTILITY & CLOUD MOAT' : 'CLOUD MOAT');
+  yield* all(
+    l1Stroke(COLORS.compliantGreen, 0.35),
+    l1BadgeBg(COLORS.compliantGreen, 0.25),
+    l1BadgeScale(1.14, 0.2, easeOutExpo).to(1.0, 0.2, easeInOutCubic),
+  );
+
+  // t = 13.0s: Layer 2 locks in with emerald green border & ENDURING MOAT as narrator says "and deep workflow automation"
+  yield* waitUntilSceneTime(13.0, t0);
+  focalId(2);
   l2BadgeText('ENDURING MOAT');
   yield* all(
     l2Stroke(COLORS.compliantGreen, 0.35),
@@ -295,15 +309,14 @@ export default makeScene2D(function* (view) {
     l2BadgeScale(1.14, 0.2, easeOutExpo).to(1.0, 0.2, easeInOutCubic),
   );
 
-  // t = 13.6s: Layer 1 locks in with emerald green border & DISCOUNTED INFRA ROI, finishing at t = 14.2s
-  yield* waitUntilSceneTime(13.6, t0);
+  // t = 14.2s: Layer 1 badge updates/pulses to DISCOUNTED INFRA ROI as narrator says "will buy up that discounted compute", finishes at t = 14.6s
+  yield* waitUntilSceneTime(14.2, t0);
+  focalId(1);
   l1BadgeText(wide ? 'DISCOUNTED INFRA ROI' : 'BARGAIN ROI');
   yield* all(
-    l1Stroke(COLORS.compliantGreen, 0.35),
-    l1BadgeBg(COLORS.compliantGreen, 0.25),
-    l1BadgeScale(1.14, 0.3, easeOutExpo).to(1.0, 0.3, easeInOutCubic),
+    l1BadgeScale(1.14, 0.2, easeOutExpo).to(1.0, 0.2, easeInOutCubic),
   );
 
-  // Strict Hold-Time: Diagram remains fully visible until 17.32s (hold >= 3.12s)
+  // Strict Hold-Time: Diagram remains fully visible until 17.32s (hold >= 2.72s)
   yield* finishSceneAt(17.32, t0);
 });

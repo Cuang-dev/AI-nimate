@@ -1,7 +1,7 @@
 import { Img, Line, makeScene2D, Node, Rect, Txt } from '@motion-canvas/2d';
 import { all, createRef, createSignal, easeInOutCubic, easeOutExpo, useThread } from '@motion-canvas/core';
 import { COLORS, FONTS, isWidescreen, setupBaseStage } from './layout';
-import { finishSceneAt, waitUntilSceneTime } from './timings';
+import { finishSceneAt, focalScale, waitUntilSceneTime } from './timings';
 
 export default makeScene2D(function* (view) {
   const time = useThread().time;
@@ -20,6 +20,8 @@ export default makeScene2D(function* (view) {
   const hubW = wide ? 430 : 620;
 
   // Animation signals
+  const focalId = createSignal(0);
+
   const hubAOpacity = createSignal(0);
   const hubAScale = createSignal(0.85);
   const hubAStroke = createSignal<string>(COLORS.ink);
@@ -87,7 +89,7 @@ export default makeScene2D(function* (view) {
         x={wide ? 0 : -250}
         y={wide ? hubAY - 210 : (hubAY + hubBY) / 2 - 42}
         opacity={outBadgeOpacity}
-        scale={outBadgeScale}
+        scale={() => focalScale(focalId, 4, outBadgeScale, time)}
         layout
         padding={[8, 16]}
         fill={COLORS.surface}
@@ -122,7 +124,7 @@ export default makeScene2D(function* (view) {
         x={wide ? 0 : 250}
         y={wide ? hubAY + 210 : (hubAY + hubBY) / 2 + 42}
         opacity={retBadgeOpacity}
-        scale={retBadgeScale}
+        scale={() => focalScale(focalId, 5, retBadgeScale, time)}
         layout
         padding={[8, 16]}
         fill={COLORS.accent}
@@ -145,7 +147,7 @@ export default makeScene2D(function* (view) {
         y={hubAY}
         width={hubW}
         opacity={hubAOpacity}
-        scale={hubAScale}
+        scale={() => focalScale(focalId, 1, hubAScale, time)}
         layout
         direction="column"
         padding={[22, 26]}
@@ -193,7 +195,7 @@ export default makeScene2D(function* (view) {
         y={hubBY}
         width={hubW}
         opacity={hubBOpacity}
-        scale={hubBScale}
+        scale={() => focalScale(focalId, 2, hubBScale, time)}
         layout
         direction="column"
         padding={[22, 26]}
@@ -240,7 +242,7 @@ export default makeScene2D(function* (view) {
         x={0}
         y={wide ? hubAY : (hubAY + hubBY) / 2}
         opacity={loopAlertOpacity}
-        scale={loopAlertScale}
+        scale={() => focalScale(focalId, 3, loopAlertScale, time)}
         layout
         direction="column"
         alignItems="center"
@@ -271,52 +273,55 @@ export default makeScene2D(function* (view) {
 
   // --- Choreography (Total duration: 21.27s) ---
 
-  // t = 0.8s: Station A (HYPERSCALER CLOUD) pops/fades in
-  yield* waitUntilSceneTime(0.8, t0);
+  // t = 0.4s: Station A pops in as narrator asks "Why does cloud revenue look so booming anyway?"
+  yield* waitUntilSceneTime(0.4, t0);
+  focalId(1);
   yield* all(
     hubAOpacity(1, 0.4, easeOutExpo),
     hubAScale(1, 0.6, easeOutExpo),
   );
 
-  // t = 2.6s: Station B (FRONTIER AI LABS) pops/fades in
-  yield* waitUntilSceneTime(2.6, t0);
+  // t = 3.2s: Center ROUND-TRIPPING badge pops in as narrator says "Because of a Wall Street illusion called round-tripping"
+  yield* waitUntilSceneTime(3.2, t0);
+  focalId(3);
+  yield* all(
+    loopAlertOpacity(1, 0.2),
+    loopAlertScale(1.14, 0.3, easeOutExpo).to(1.0, 0.25, easeInOutCubic),
+  );
+
+  // t = 6.2s: Station B pops in as narrator says "Hyperscalers invest tens of billions into AI labs like OpenAI and Anthropic"
+  yield* waitUntilSceneTime(6.2, t0);
+  focalId(2);
   yield* all(
     hubBOpacity(1, 0.4, easeOutExpo),
     hubBScale(1, 0.6, easeOutExpo),
   );
 
-  // t = 5.0s: Outbound orthogonal conduit draws from Station A to Station B
-  yield* waitUntilSceneTime(5.0, t0);
-  yield* outPathEnd(1, 1.3, easeInOutCubic);
+  // t = 8.6s: Outbound orthogonal conduit draws from Station A to Station B
+  yield* waitUntilSceneTime(8.6, t0);
+  yield* outPathEnd(1, 1.4, easeInOutCubic);
 
-  // t = 7.4s: $20B+ COMPUTE CREDITS masked badge pops in on outbound conduit
-  yield* waitUntilSceneTime(7.4, t0);
+  // t = 11.2s: $20B+ COMPUTE CREDITS badge pops in as narrator says "not just in cash, but in cloud compute credits"
+  yield* waitUntilSceneTime(11.2, t0);
+  focalId(4);
   yield* all(
     outBadgeOpacity(1, 0.2),
-    outBadgeScale(1.12, 0.25, easeOutExpo).to(1.0, 0.2, easeInOutCubic),
+    outBadgeScale(1.14, 0.3, easeOutExpo).to(1.0, 0.25, easeInOutCubic),
   );
 
-  // t = 10.2s: Return orthogonal conduit draws back from Station B to Station A + Station A stroke turns red
-  yield* waitUntilSceneTime(10.2, t0);
-  yield* all(
-    retPathEnd(1, 1.3, easeInOutCubic),
-    hubAStroke(COLORS.accent, 0.8),
-  );
+  // t = 13.7s: Return conduit draws back as narrator says "When those startups burn those credits training models on Azure or AWS"
+  yield* waitUntilSceneTime(13.7, t0);
+  yield* retPathEnd(1, 1.4, easeInOutCubic);
 
-  // t = 12.8s: 100% RE-BOOKED AS CLOUD REVENUE masked badge pops in on return conduit
-  yield* waitUntilSceneTime(12.8, t0);
+  // t = 16.8s: 100% RE-BOOKED AS CLOUD REVENUE badge pops in & Station A stroke turns accent (finishes at 17.4s)
+  yield* waitUntilSceneTime(16.8, t0);
+  focalId(5);
   yield* all(
     retBadgeOpacity(1, 0.2),
-    retBadgeScale(1.12, 0.25, easeOutExpo).to(1.0, 0.2, easeInOutCubic),
+    retBadgeScale(1.14, 0.3, easeOutExpo).to(1.0, 0.3, easeInOutCubic),
+    hubAStroke(COLORS.accent, 0.6),
   );
 
-  // t = 15.6s: Center "ROUND-TRIPPING // ZERO EXTERNAL CASH FLOW" verdict stamp locks in (finishes at 16.2s)
-  yield* waitUntilSceneTime(15.6, t0);
-  yield* all(
-    loopAlertOpacity(1, 0.2),
-    loopAlertScale(1.14, 0.3, easeOutExpo).to(1.0, 0.3, easeInOutCubic),
-  );
-
-  // Strict Hold-Time: Diagram remains fully visible until 21.27s (hold = 5.07s)
+  // Strict Hold-Time: Diagram remains fully visible until 21.27s (hold = 3.87s)
   yield* finishSceneAt(21.27, t0);
 });

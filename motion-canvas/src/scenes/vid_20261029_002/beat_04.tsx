@@ -1,7 +1,7 @@
 import { Img, Line, makeScene2D, Node, Rect, Txt } from '@motion-canvas/2d';
 import { all, createRef, createSignal, easeInOutCubic, easeOutExpo, useThread } from '@motion-canvas/core';
 import { COLORS, FONTS, isWidescreen, setupBaseStage } from './layout';
-import { finishSceneAt, waitUntilSceneTime } from './timings';
+import { finishSceneAt, focalScale, waitUntilSceneTime } from './timings';
 
 export default makeScene2D(function* (view) {
   const time = useThread().time;
@@ -19,6 +19,8 @@ export default makeScene2D(function* (view) {
   const yr10X = originX + (endX - originX) * 0.55;
 
   // Animation signals
+  const focalId = createSignal(1);
+
   const axesOpacity = createSignal(0.0);
   const debtTagOpacity = createSignal(0.0);
   const debtTagScale = createSignal(0.8);
@@ -159,7 +161,7 @@ export default makeScene2D(function* (view) {
         x={endX - (wide ? 220 : 180)}
         y={topY - 30}
         opacity={fiberBadgeOpacity}
-        scale={fiberBadgeScale}
+        scale={() => focalScale(focalId, 1, () => fiberBadgeScale(), time)}
         layout
         direction="row"
         alignItems="center"
@@ -189,7 +191,7 @@ export default makeScene2D(function* (view) {
         x={originX + (wide ? 250 : 180)}
         y={topY + 66}
         opacity={debtTagOpacity}
-        scale={debtTagScale}
+        scale={() => focalScale(focalId, 1, () => debtTagScale(), time)}
         layout
         padding={[6, 14]}
         fill={COLORS.goldAccent}
@@ -211,7 +213,7 @@ export default makeScene2D(function* (view) {
         x={yr3X + (wide ? 210 : 145)}
         y={(topY + botY) / 2 - 10}
         opacity={cashTagOpacity}
-        scale={cashTagScale}
+        scale={() => focalScale(focalId, 2, () => cashTagScale(), time)}
         layout
         padding={[6, 14]}
         fill={COLORS.ink}
@@ -246,7 +248,7 @@ export default makeScene2D(function* (view) {
         x={yr3X + (wide ? 230 : 165)}
         y={botY - (wide ? 85 : 80)}
         opacity={gpuBadgeOpacity}
-        scale={gpuBadgeScale}
+        scale={() => focalScale(focalId, 2, () => gpuBadgeScale(), time)}
         layout
         direction="row"
         alignItems="center"
@@ -275,46 +277,47 @@ export default makeScene2D(function* (view) {
 
   // --- Choreography (Total duration: 17.36s) ---
 
-  // t = 0.6s: Quantitative axes + gridlines fade in
-  yield* waitUntilSceneTime(0.6, t0);
+  // t = 0.4s: Quantitative axes + gridlines fade in
+  yield* waitUntilSceneTime(0.4, t0);
   yield* axesOpacity(1.0, 0.6, easeOutExpo);
 
-  // t = 2.4s: FUNDED BY JUNK DEBT tag pops in
-  yield* waitUntilSceneTime(2.4, t0);
+  // t = 2.8s: 2000 DARK FIBER badge pops in as narrator asks about telecom crash
+  yield* waitUntilSceneTime(2.8, t0);
   yield* all(
-    debtTagOpacity(1.0, 0.25),
-    debtTagScale(1.14, 0.25, easeOutExpo).to(1.0, 0.25, easeInOutCubic),
+    fiberBadgeOpacity(1.0, 0.2),
+    fiberBadgeScale(1.14, 0.2, easeOutExpo).to(1.0, 0.2, easeInOutCubic),
   );
 
-  // t = 4.8s: Green 2000 DARK FIBER line draws across 25-yr horizon
-  yield* waitUntilSceneTime(4.8, t0);
-  yield* fiberLineEnd(1.0, 1.3, easeOutExpo);
+  // t = 5.3s: FUNDED BY JUNK DEBT gold pill pops in as narrator says "telecoms use junk debt"
+  yield* waitUntilSceneTime(5.3, t0);
+  yield* all(
+    debtTagOpacity(1.0, 0.2),
+    debtTagScale(1.14, 0.2, easeOutExpo).to(1.0, 0.2, easeInOutCubic),
+  );
 
-  // t = 7.0s: 2000 DARK FIBER: 25+ YR LIFE badge pops in at top-right
+  // t = 7.0s: Green 2000 DARK FIBER curve draws across 25-yr horizon as narrator says "to lay dark fiber cables that lasted 25 years"
   yield* waitUntilSceneTime(7.0, t0);
+  yield* fiberLineEnd(1.0, 1.5, easeOutExpo);
+
+  // t = 10.0s: CASH-FLOW FUNDED • FAST DECAY badge pops in as narrator says "funding AI out of massive cash flows"
+  yield* waitUntilSceneTime(10.0, t0);
+  focalId(2);
   yield* all(
-    fiberBadgeOpacity(1.0, 0.25),
-    fiberBadgeScale(1.14, 0.25, easeOutExpo).to(1.0, 0.25, easeInOutCubic),
+    cashTagOpacity(1.0, 0.2),
+    cashTagScale(1.14, 0.2, easeOutExpo).to(1.0, 0.2, easeInOutCubic),
   );
 
-  // t = 9.2s: CASH-FLOW FUNDED • FAST DECAY tag pops in
-  yield* waitUntilSceneTime(9.2, t0);
-  yield* all(
-    cashTagOpacity(1.0, 0.25),
-    cashTagScale(1.14, 0.25, easeOutExpo).to(1.0, 0.25, easeInOutCubic),
-  );
-
-  // t = 11.4s: Red 2026 AI GPUS curve plunges down the 3-year thermal cliff
-  yield* waitUntilSceneTime(11.4, t0);
+  // t = 12.4s: Red 2026 AI GPUS curve plunges down 3-year cliff as narrator says "buying fast rotting GPUs"
+  yield* waitUntilSceneTime(12.4, t0);
   yield* gpuLineEnd(1.0, 1.2, easeOutExpo);
 
-  // t = 13.5s: 2026 AI GPUS: 3-YR THERMAL CLIFF callout badge pops in, finishes at t = 14.1s
-  yield* waitUntilSceneTime(13.5, t0);
+  // t = 13.9s: 2026 AI GPUS: 3-YR THERMAL CLIFF callout badge pops in as narrator says "lose value in just three years", finishes at t = 14.35s
+  yield* waitUntilSceneTime(13.9, t0);
   yield* all(
-    gpuBadgeOpacity(1.0, 0.25),
-    gpuBadgeScale(1.14, 0.3, easeOutExpo).to(1.0, 0.3, easeInOutCubic),
+    gpuBadgeOpacity(1.0, 0.2),
+    gpuBadgeScale(1.14, 0.225, easeOutExpo).to(1.0, 0.225, easeInOutCubic),
   );
 
-  // Strict Hold-Time: Diagram remains fully visible until 17.36s (hold >= 3.26s)
+  // Strict Hold-Time: Diagram remains fully visible until 17.36s (hold >= 3.01s)
   yield* finishSceneAt(17.36, t0);
 });

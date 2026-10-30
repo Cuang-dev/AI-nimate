@@ -1,7 +1,7 @@
 import { Img, Line, makeScene2D, Node, Rect, Txt } from '@motion-canvas/2d';
 import { all, createRef, createSignal, easeInOutCubic, easeOutExpo, useThread } from '@motion-canvas/core';
 import { COLORS, FONTS, isWidescreen, setupBaseStage } from './layout';
-import { finishSceneAt, waitUntilSceneTime } from './timings';
+import { finishSceneAt, focalScale, waitUntilSceneTime } from './timings';
 
 export default makeScene2D(function* (view) {
   const time = useThread().time;
@@ -20,6 +20,8 @@ export default makeScene2D(function* (view) {
   const wallX = trackLeft + trackSpan * (2 / 6);
 
   // Animation signals
+  const focalId = createSignal(1);
+
   const t1Opacity = createSignal(0.0);
   const acctProgress = createSignal(0.0);
   const acctBadgeOpacity = createSignal(0.0);
@@ -29,6 +31,7 @@ export default makeScene2D(function* (view) {
   const gpuProgress = createSignal(0.0);
   const wallLineEnd = createSignal(0.0);
 
+  const caliperEnd = createSignal(0.0);
   const writeDownOpacity = createSignal(0.0);
   const writeDownScale = createSignal(0.8);
 
@@ -37,7 +40,7 @@ export default makeScene2D(function* (view) {
   view.add(
     <Node ref={camera}>
       {/* ===== TRACK 1: 10-K ACCOUNTING SCHEDULE ===== */}
-      <Node opacity={t1Opacity}>
+      <Node opacity={t1Opacity} scale={() => focalScale(focalId, 1, () => 1.0, time)}>
         <Rect
           x={trackLeft}
           y={y1 - 65}
@@ -110,110 +113,109 @@ export default makeScene2D(function* (view) {
             </Node>
           );
         })}
+
+        {/* Track 1 Callout Pill at YR 6 */}
+        <Rect
+          x={wide ? trackRight - 110 : trackRight - 90}
+          y={y1 - 55}
+          opacity={acctBadgeOpacity}
+          scale={acctBadgeScale}
+          layout
+          padding={[8, 16]}
+          fill={COLORS.goldAccent}
+          radius={6}
+        >
+          <Txt
+            text="STRETCHED TO 6.0 YRS (BOOSTS EPS)"
+            fontFamily={FONTS.data}
+            fontSize={wide ? 20 : 14}
+            fontWeight={700}
+            fill={COLORS.surface}
+          />
+        </Rect>
       </Node>
 
-      {/* Track 1 Callout Pill at YR 6 */}
-      <Rect
-        x={wide ? trackRight - 110 : trackRight - 90}
-        y={y1 - 55}
-        opacity={acctBadgeOpacity}
-        scale={acctBadgeScale}
-        layout
-        padding={[8, 16]}
-        fill={COLORS.goldAccent}
-        radius={6}
-      >
-        <Txt
-          text="STRETCHED TO 6.0 YRS (BOOSTS EPS)"
-          fontFamily={FONTS.data}
-          fontSize={wide ? 20 : 14}
-          fontWeight={700}
-          fill={COLORS.surface}
-        />
-      </Rect>
-
       {/* ===== TRACK 2: PHYSICAL GPU SILICON CADENCE ===== */}
-      <Rect
-        x={trackLeft}
-        y={y2 - 65}
-        offset={[-1, 0]}
-        layout
-        direction="row"
-        alignItems="center"
-        gap={14}
-        opacity={gpuTrackOpacity}
-        fill={COLORS.bg}
-        padding={[4, 10]}
-        radius={4}
-        zIndex={2}
-      >
-        <Img
-          src={'/assets/vid_20261029_002/nvidia_logo.png'}
-          width={50}
-          height={50}
+      <Node opacity={gpuTrackOpacity} scale={() => focalScale(focalId, 2, () => 1.0, time)}>
+        <Rect
+          x={trackLeft}
+          y={y2 - 65}
+          offset={[-1, 0]}
+          layout
+          direction="row"
+          alignItems="center"
+          gap={14}
+          fill={COLORS.bg}
+          padding={[4, 10]}
+          radius={4}
+          zIndex={2}
+        >
+          <Img
+            src={'/assets/vid_20261029_002/nvidia_logo.png'}
+            width={50}
+            height={50}
+          />
+          <Txt
+            text="PHYSICAL GPU SILICON CADENCE"
+            fontFamily={FONTS.heading}
+            fontSize={wide ? 34 : 24}
+            fontWeight={700}
+            fill={COLORS.ink}
+          />
+        </Rect>
+
+        {/* Track 2 Background Rail */}
+        <Line
+          points={[
+            [trackLeft, y2],
+            [trackRight, y2],
+          ]}
+          stroke={COLORS.gridLine}
+          lineWidth={8}
+          lineCap="round"
         />
-        <Txt
-          text="PHYSICAL GPU SILICON CADENCE"
-          fontFamily={FONTS.heading}
-          fontSize={wide ? 34 : 24}
-          fontWeight={700}
-          fill={COLORS.ink}
+
+        {/* Track 2 Active Silicon Bar Stopping at YR 2 */}
+        <Line
+          points={() => [
+            [trackLeft, y2],
+            [trackLeft + (wallX - trackLeft) * gpuProgress(), y2],
+          ]}
+          stroke={COLORS.accent}
+          lineWidth={16}
+          lineCap="round"
         />
-      </Rect>
 
-      {/* Track 2 Background Rail */}
-      <Line
-        points={[
-          [trackLeft, y2],
-          [trackRight, y2],
-        ]}
-        stroke={COLORS.gridLine}
-        lineWidth={8}
-        lineCap="round"
-        opacity={gpuTrackOpacity}
-      />
-
-      {/* Track 2 Active Silicon Bar Stopping at YR 2 */}
-      <Line
-        points={() => [
-          [trackLeft, y2],
-          [trackLeft + (wallX - trackLeft) * gpuProgress(), y2],
-        ]}
-        stroke={COLORS.accent}
-        lineWidth={16}
-        lineCap="round"
-        opacity={gpuTrackOpacity}
-      />
-
-      {/* Track 2 Milestone Pins: YR 0: H100, YR 1: BLACKWELL, YR 2: RUBIN */}
-      {[
-        { yr: 0, label: 'YR 0: H100' },
-        { yr: 1, label: wide ? 'YR 1: BLACKWELL' : 'YR 1: B200' },
-        { yr: 2, label: wide ? 'YR 2: RUBIN WALL' : 'YR 2: RUBIN' },
-      ].map((m) => {
-        const mx = trackLeft + trackSpan * (m.yr / 6);
-        return (
-          <Node key={`m-${m.yr}`} opacity={gpuTrackOpacity} zIndex={2}>
-            <Line
-              points={[
-                [mx, y2 - 10],
-                [mx, y2 + 10],
-              ]}
-              stroke={COLORS.accent}
-              lineWidth={3}
-            />
-            <Rect x={mx} y={y2 + 28} layout padding={[3, 8]} fill={COLORS.bg} radius={4}>
-              <Txt
-                text={m.label}
-                fontFamily={FONTS.data}
-                fontSize={wide ? 16 : 12}
-                fontWeight={700}
-                fill={COLORS.accent}
+        {/* Track 2 Milestone Pins: YR 0: H100, YR 1: BLACKWELL, YR 2: RUBIN */}
+        {[
+          { yr: 0, label: 'YR 0: H100' },
+          { yr: 1, label: wide ? 'YR 1: BLACKWELL' : 'YR 1: B200' },
+          { yr: 2, label: wide ? 'YR 2: RUBIN WALL' : 'YR 2: RUBIN' },
+        ].map((m) => {
+          const mx = trackLeft + trackSpan * (m.yr / 6);
+          return (
+            <Node key={`m-${m.yr}`} zIndex={2}>
+              <Line
+                points={[
+                  [mx, y2 - 10],
+                  [mx, y2 + 10],
+                ]}
+                stroke={COLORS.accent}
+                lineWidth={3}
               />
-            </Rect>
-          </Node>
-        );
-      })}
+              <Rect x={mx} y={y2 + 28} layout padding={[3, 8]} fill={COLORS.bg} radius={4}>
+                <Txt
+                  text={m.label}
+                  fontFamily={FONTS.data}
+                  fontSize={wide ? 16 : 12}
+                  fontWeight={700}
+                  fill={COLORS.accent}
+                />
+              </Rect>
+            </Node>
+          );
+        })}
+      </Node>
 
       {/* Vertical Red Obsolescence Wall at YR 2 */}
       <Line
@@ -240,7 +242,7 @@ export default makeScene2D(function* (view) {
         startArrow
         endArrow
         arrowSize={8}
-        end={wallLineEnd}
+        end={caliperEnd}
         zIndex={0}
       />
 
@@ -249,7 +251,7 @@ export default makeScene2D(function* (view) {
         x={(wallX + trackRight) / 2}
         y={y2 + (wide ? 72 : 78)}
         opacity={writeDownOpacity}
-        scale={writeDownScale}
+        scale={() => focalScale(focalId, 3, () => writeDownScale(), time)}
         layout
         padding={[10, 20]}
         fill={COLORS.accent}
@@ -271,38 +273,44 @@ export default makeScene2D(function* (view) {
 
   // --- Choreography (Total duration: 19.99s) ---
 
-  // t = 0.6s: Track 1 header + rail fade in
-  yield* waitUntilSceneTime(0.6, t0);
+  // t = 0.3s: Track 1 header + rail + ticks fade in as narrator says "The real time bomb sits on the balance sheet."
+  yield* waitUntilSceneTime(0.3, t0);
   yield* t1Opacity(1.0, 0.5, easeOutExpo);
 
-  // t = 2.2s: Track 1 gold bar fills to YR 3 (acctProgress: 0 -> 0.5)
-  yield* waitUntilSceneTime(2.2, t0);
+  // t = 2.8s: Track 1 gold bar fills to YR 3 as narrator says "Tech giants stretch their server depreciation"
+  yield* waitUntilSceneTime(2.8, t0);
   yield* acctProgress(0.5, 1.2, easeOutExpo);
 
-  // t = 5.2s: Track 1 gold bar stretches to YR 6 (acctProgress: 0.5 -> 1.0) + badge pops in
-  yield* waitUntilSceneTime(5.2, t0);
+  // t = 5.0s: Track 1 gold bar stretches from YR 3 to YR 6
+  yield* waitUntilSceneTime(5.0, t0);
+  yield* acctProgress(1.0, 1.3, easeOutExpo);
+
+  // t = 6.3s: STRETCHED TO 6.0 YRS badge pops in as narrator says "schedules to six full years to keep quarterly profits looking high."
+  yield* waitUntilSceneTime(6.3, t0);
   yield* all(
-    acctProgress(1.0, 1.3, easeOutExpo),
-    acctBadgeOpacity(1.0, 0.25),
-    acctBadgeScale(1.14, 0.25, easeOutExpo).to(1.0, 0.25, easeInOutCubic),
+    acctBadgeOpacity(1.0, 0.2),
+    acctBadgeScale(1.14, 0.2, easeOutExpo).to(1.0, 0.2, easeInOutCubic),
   );
 
-  // t = 8.2s: Track 2 fades in
-  yield* waitUntilSceneTime(8.2, t0);
-  yield* gpuTrackOpacity(1.0, 0.6, easeOutExpo);
+  // t = 8.9s: Track 2 header, rail, milestone pins fade in as narrator says "But Nvidia launches a new GPU architecture"
+  yield* waitUntilSceneTime(8.9, t0);
+  focalId(2);
+  yield* gpuTrackOpacity(1.0, 0.5, easeOutExpo);
 
-  // t = 11.0s: GPU silicon bar races to YR 2
-  yield* waitUntilSceneTime(11.0, t0);
-  yield* gpuProgress(1.0, 1.2, easeOutExpo);
+  // t = 10.8s: Track 2 red silicon bar races to YR 2 as narrator says "every 12 to 24 months."
+  yield* waitUntilSceneTime(10.8, t0);
+  yield* gpuProgress(1.0, 1.3, easeOutExpo);
 
-  // t = 13.6s: Vertical Red Obsolescence Wall drops + horizontal caliper draws in
-  yield* waitUntilSceneTime(13.6, t0);
+  // t = 13.0s: Vertical Red Obsolescence Wall drops at YR 2 as narrator says "When Blackwell and Rubin make older chips too power hungry"
+  yield* waitUntilSceneTime(13.0, t0);
   yield* wallLineEnd(1.0, 0.7, easeOutExpo);
 
-  // t = 15.8s: Callout pops in with overshoot (1.14 -> 1.0), finishes at t = 16.4s
+  // t = 15.8s: Horizontal 4-year gap caliper + 4 UNUSED YRS pill pops in as narrator says "hundreds of billions in silicon face sudden write-downs"
   yield* waitUntilSceneTime(15.8, t0);
+  focalId(3);
   yield* all(
-    writeDownOpacity(1.0, 0.25),
+    caliperEnd(1.0, 0.5, easeOutExpo),
+    writeDownOpacity(1.0, 0.2),
     writeDownScale(1.14, 0.3, easeOutExpo).to(1.0, 0.3, easeInOutCubic),
   );
 
