@@ -16,11 +16,13 @@ export default makeScene2D(function* (view) {
   const upperCardOpacity = createSignal(1.0);
   const upperCardScale = createSignal(1.0);
   const upperCardStroke = createSignal<string>(THEME.colors.compliantGreen);
+  const domesticBadgeScale = createSignal(1.0);
 
   // Progressive reveal: hidden until spoken at t = 9.2s
   const lowerCardOpacity = createSignal(0.0);
   const lowerCardScale = createSignal(0.95);
   const lowerCardStroke = createSignal<string>(THEME.colors.accent);
+  const offshoreBadgeScale = createSignal(1.0);
 
   // Progressive reveal: hidden until spoken at t = 24.4s
   const badgeOpacity = createSignal(0.0);
@@ -97,6 +99,7 @@ export default makeScene2D(function* (view) {
               </Rect>
 
               <Rect
+                scale={domesticBadgeScale}
                 layout
                 padding={[8, 18]}
                 fill={'#F0FDF4'}
@@ -182,7 +185,7 @@ export default makeScene2D(function* (view) {
                 fontWeight={700}
                 fill={THEME.colors.ink}
               />
-              <Rect layout padding={[8, 18]} fill={THEME.colors.accent}>
+              <Rect scale={offshoreBadgeScale} layout padding={[8, 18]} fill={THEME.colors.accent}>
                 <Txt
                   text={'UP TO 35%'}
                   fontFamily={THEME.fonts.data}
@@ -315,6 +318,10 @@ export default makeScene2D(function* (view) {
   // --- Visual Choreography Synced to Beat 1 Audio (27.22s) ---
 
   // t = 0.0s (focalId = 1): Card 1 (IDX: BCA) is visible with domesticTaxCounter starting at 0
+  // Intermediate micro-choreography at t = 2.4s: 0.1% FINAL TAX badge pulse (scale: 1.0 -> 1.12 -> 1.0)
+  yield* waitUntilSceneTime(2.4, t0);
+  yield* domesticBadgeScale(1.12, 0.15, easeOutExpo).to(1.0, 0.2, easeInOutCubic);
+
   // t = 4.6s ("0.1% or 1 million rupiah"): Snappy 1.2s ticker
   yield* waitUntilSceneTime(4.6, t0);
   yield* all(
@@ -333,6 +340,10 @@ export default makeScene2D(function* (view) {
     lowerCardScale(1.0, 0.45, easeOutExpo),
   );
 
+  // Intermediate micro-choreography at t = 11.8s: UP TO 35% badge pulse (scale: 1.0 -> 1.12 -> 1.0)
+  yield* waitUntilSceneTime(11.8, t0);
+  yield* offshoreBadgeScale(1.12, 0.15, easeOutExpo).to(1.0, 0.2, easeInOutCubic);
+
   // t = 14.5s ("Indonesia's worldwide tax rules kick in"):
   // Pulse/highlight regime badge on Card 2 (UU HPP // ORDINARY INCOME, 0.35s pulse)
   yield* waitUntilSceneTime(14.5, t0);
@@ -342,6 +353,10 @@ export default makeScene2D(function* (view) {
     regimeStroke(THEME.colors.accent, 0.2),
     regimeTextColor(THEME.colors.surface, 0.2),
   );
+
+  // Intermediate micro-choreography at t = 17.0s: regime badge pulse (scale: 1.0 -> 1.12 -> 1.0)
+  yield* waitUntilSceneTime(17.0, t0);
+  yield* regimeScale(1.12, 0.15, easeOutExpo).to(1.0, 0.2, easeInOutCubic);
 
   // t = 19.5s to 22.3s ("Taxed progressively up to 35%"):
   // Step ladderStep 1 -> 5 at 19.5s, 20.2s, 20.9s, 21.6s, 22.3s

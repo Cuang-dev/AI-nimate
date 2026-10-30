@@ -18,39 +18,60 @@ export function SwissLayout(props: SwissLayoutProps) {
   } = props;
 
   const time = useThread().time;
+  const t0 = time();
+  const label = figure || '';
 
-  // Map figure ("FIG. 01...", "FIG. 02...", etc.) to scene start offset
-  const sceneIdx = figure.includes('02')
-    ? 1
-    : figure.includes('03')
-    ? 2
-    : figure.includes('04')
-    ? 3
-    : figure.includes('05')
-    ? 4
-    : 0;
+  // Map label ("02", "FIG. 02...", etc.) to scene start offset
+  const sceneIdx =
+    label.startsWith('02') || label.includes('02')
+      ? 1
+      : label.startsWith('03') || label.includes('03')
+      ? 2
+      : label.startsWith('04') || label.includes('04')
+      ? 3
+      : label.startsWith('05') || label.includes('05')
+      ? 4
+      : 0;
   const sceneStart = TIMINGS.scenes[sceneIdx]?.start ?? 0;
+  const sceneEnd = TIMINGS.scenes[sceneIdx]?.end ?? 9999;
+  const LEAD_OFFSET = 0.22;
+
+  const sceneChunks = (TIMINGS.subtitleChunks || []).filter(
+    (c) => c.start >= sceneStart - 0.05 && c.end <= sceneEnd + 0.05,
+  );
+
+  const getGlobalTime = () => sceneStart + (time() - t0) + LEAD_OFFSET;
 
   const getActiveChunk = () => {
-    const gt = sceneStart + time();
-    return TIMINGS.subtitleChunks.find((c) => gt >= c.start - 0.04 && gt <= c.end);
+    if (sceneChunks.length === 0) return undefined;
+    const gt = getGlobalTime();
+    if (gt >= sceneEnd) return undefined;
+    const idx = sceneChunks.findIndex((c, i) => {
+      const nextChunk = sceneChunks[i + 1];
+      const endThreshold =
+        nextChunk && nextChunk.start <= sceneEnd && nextChunk.start - c.end < 0.5
+          ? nextChunk.start
+          : Math.min(c.end + 0.18, sceneEnd);
+      return gt >= c.start && gt < endThreshold;
+    });
+    return idx >= 0 ? sceneChunks[idx] : undefined;
   };
 
   const isWordActive = (slotIdx: number) => {
     const chunk = getActiveChunk();
-    if (!chunk || slotIdx >= chunk.words.length) return false;
-    const gt = sceneStart + time();
+    if (!chunk || !chunk.words || slotIdx >= chunk.words.length) return false;
+    const gt = getGlobalTime();
     const w = chunk.words[slotIdx];
     const nextW = chunk.words[slotIdx + 1];
-    const endBound = nextW ? nextW.start : w.end + 0.14;
-    return gt >= w.start - 0.03 && gt < endBound;
+    const endBound = nextW ? Math.min(nextW.start, w.end + 0.3) : w.end + 0.2;
+    return gt >= w.start && gt < endBound;
   };
 
   const isWordSpoken = (slotIdx: number) => {
     const chunk = getActiveChunk();
-    if (!chunk || slotIdx >= chunk.words.length) return false;
-    const gt = sceneStart + time();
-    return gt >= chunk.words[slotIdx].start - 0.03;
+    if (!chunk || !chunk.words || slotIdx >= chunk.words.length) return false;
+    const gt = getGlobalTime();
+    return gt >= chunk.words[slotIdx].start;
   };
 
   const width = THEME.layout.width;
@@ -117,19 +138,14 @@ export function SwissLayout(props: SwissLayoutProps) {
         direction={'row'}
         alignItems={'center'}
         justifyContent={'center'}
-        gap={10}
+        gap={0}
         padding={[14, 28]}
+        radius={12}
         fill={THEME.colors.surface}
         stroke={THEME.colors.ink}
         lineWidth={3}
         opacity={() => (getActiveChunk() ? 1 : 0)}
-        scale={() => {
-          const chunk = getActiveChunk();
-          if (!chunk) return 0.96;
-          const gt = sceneStart + time();
-          const age = Math.max(0, gt - chunk.start);
-          return age < 0.08 ? 0.96 + (age / 0.08) * 0.04 : 1.0;
-        }}
+        scale={1.0}
       >
         {[0, 1, 2, 3, 4].map((slotIdx) => (
           <Rect
@@ -137,13 +153,19 @@ export function SwissLayout(props: SwissLayoutProps) {
             layout
             padding={() => {
               const chunk = getActiveChunk();
-              if (!chunk || slotIdx >= chunk.words.length) return [0, 0];
-              return isWordActive(slotIdx) ? [6, 14] : [6, 4];
+              return chunk && slotIdx < chunk.words.length ? [6, 10] : [0, 0];
             }}
+            margin={() => {
+              const chunk = getActiveChunk();
+              return chunk && slotIdx < chunk.words.length - 1
+                ? [0, 8, 0, 0]
+                : [0, 0, 0, 0];
+            }}
+            radius={8}
             fill={() =>
               isWordActive(slotIdx) ? THEME.colors.accent : 'rgba(0,0,0,0)'
             }
-            scale={() => (isWordActive(slotIdx) ? 1.05 : 1.0)}
+            scale={1.0}
           >
             <Txt
               text={() => {

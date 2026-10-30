@@ -19,13 +19,8 @@ export default makeScene2D(function* (view) {
     <Node>
       <SwissLayout figure="FIG. 01: INVERSION" />
 
-      {/* Stage Wrapper with Camera Creep + Handheld Float */}
-      <Node
-        x={() => Math.sin(time() * 1.8) * 6}
-        y={() => -70 + Math.cos(time() * 2.2) * 8}
-        rotation={() => Math.sin(time() * 1.4) * 0.35}
-        scale={() => 1.0 + (Math.min(time(), 4.06) / 4.06) * 0.035}
-      >
+      {/* Locked Stage Wrapper (zero idle camera wobble) */}
+      <Node y={-60}>
         {/* Single Centered Flexbox Root Container */}
         <Rect
           layout

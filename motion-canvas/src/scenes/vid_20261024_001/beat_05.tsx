@@ -263,6 +263,10 @@ export default makeScene2D(function* (view) {
     </Node>
   );
 
+  // Intermediate micro-choreography at t = 2.6s: pulse CFC RULE badge (scale: 1.0 -> 1.12 -> 1.0)
+  yield* waitUntilSceneTime(2.6, t0);
+  yield* cfcBadgeScale(1.12, 0.15, easeOutExpo).to(1.0, 0.2, easeInOutCubic);
+
   // t = 5.3s ("Under PMK 93 2019, controlled foreign corporation rules"):
   // Animate gauge fill and pulse CFC RULE badge (0.35s)
   yield* waitUntilSceneTime(5.3, t0);
@@ -270,6 +274,10 @@ export default makeScene2D(function* (view) {
     gaugeFillWidth(580, 1.2, easeOutExpo),
     cfcBadgeScale(1.12, 0.15, easeOutExpo).to(1.0, 0.2, easeInOutCubic),
   );
+
+  // Intermediate micro-choreography at t = 9.2s: pulse CFC RULE badge (scale: 1.0 -> 1.12 -> 1.0)
+  yield* waitUntilSceneTime(9.2, t0);
+  yield* cfcBadgeScale(1.12, 0.15, easeOutExpo).to(1.0, 0.2, easeInOutCubic);
 
   // t = 12.6s ("deemed dividends"): Reveal/pulse the DEEMED DIVIDENDS banner (0.4s)
   yield* waitUntilSceneTime(12.6, t0);
@@ -293,6 +301,10 @@ export default makeScene2D(function* (view) {
   // Pulse the 100+ COUNTRIES row (0.35s)
   yield* waitUntilSceneTime(19.7, t0);
   yield* countriesScale(1.1, 0.15, easeOutExpo).to(1.0, 0.2, easeInOutCubic);
+
+  // Intermediate micro-choreography at t = 22.4s: pulse CRS globe badge (scale: 1.0 -> 1.12 -> 1.0)
+  yield* waitUntilSceneTime(22.4, t0);
+  yield* crsBadgeScale(1.12, 0.15, easeOutExpo).to(1.0, 0.2, easeInOutCubic);
 
   // t = 25.2s ("DJP every September"): pulse BALANCES -> DJP // EVERY SEPT banner (0.35s)
   yield* waitUntilSceneTime(25.2, t0);

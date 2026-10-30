@@ -267,6 +267,9 @@ export default makeScene2D(function* (view) {
   );
 
   // t = 0s: Tier 1 already in spotlight
+  // Intermediate micro-choreography at t = 2.6s: pulse 15% WHT pill (scale: 1.0 -> 1.12 -> 1.0)
+  yield* waitUntilSceneTime(2.6, t0);
+  yield* tier1WhtScale(1.12, 0.15, easeOutExpo).to(1.0, 0.2, easeInOutCubic);
 
   // t = 5.2s ("with W-8BEN"): pulse 15% WHT pill (0.35s)
   yield* waitUntilSceneTime(5.2, t0);
@@ -283,6 +286,10 @@ export default makeScene2D(function* (view) {
     badgeScale(1.1, 0.15, easeOutExpo).to(1.0, 0.25, easeInOutCubic),
   );
 
+  // Intermediate micro-choreography at t = 10.6s: pulse UCITS badge (scale: 1.0 -> 1.12 -> 1.0)
+  yield* waitUntilSceneTime(10.6, t0);
+  yield* badgeScale(1.12, 0.15, easeOutExpo).to(1.0, 0.2, easeInOutCubic);
+
   // t = 12.8s ("CSPX and VWRA"): pulse IRISH UCITS title & badge (0.35s)
   yield* waitUntilSceneTime(12.8, t0);
   yield* all(
@@ -295,6 +302,14 @@ export default makeScene2D(function* (view) {
   yield* all(
     tier2BadgePulse(1.08, 0.15, easeOutExpo).to(1.0, 0.2, easeInOutCubic),
   );
+
+  // Intermediate micro-choreography at t = 18.6s: pulse UCITS badge (scale: 1.0 -> 1.12 -> 1.0)
+  yield* waitUntilSceneTime(18.6, t0);
+  yield* badgeScale(1.12, 0.15, easeOutExpo).to(1.0, 0.2, easeInOutCubic);
+
+  // Intermediate micro-choreography at t = 21.2s: pulse 0% ESTATE TAX banner (scale: 1.0 -> 1.12 -> 1.0)
+  yield* waitUntilSceneTime(21.2, t0);
+  yield* tier2BadgePulse(1.12, 0.15, easeOutExpo).to(1.0, 0.2, easeInOutCubic);
 
   // t = 23.8s ("Three: for cash dividends"):
   // Dim Tier 2 (stops wobbling) & reveal Tier 3 (starts slow wobble)
