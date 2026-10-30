@@ -1,6 +1,5 @@
 import json
 from pathlib import Path
-from faster_whisper import WhisperModel
 import subprocess
 
 REPO_ROOT = Path("/home/agent/orca/AI-nimate")
@@ -8,6 +7,7 @@ WORK_DIR = REPO_ROOT / "motion-canvas/production/vid_20261029_002"
 WAV_PATH = WORK_DIR / "narration.wav"
 TIMINGS_JSON_PATH = WORK_DIR / "timings.json"
 TIMINGS_TS_PATH = REPO_ROOT / "motion-canvas/src/scenes/vid_20261029_002/timings.ts"
+SCRIPT_JSON_PATH = WORK_DIR / "script.json"
 
 def get_audio_duration(wav_file):
     res = subprocess.run([
@@ -19,6 +19,7 @@ def get_audio_duration(wav_file):
     return round(float(res.stdout.strip()), 3)
 
 def generate():
+    from faster_whisper import WhisperModel
     total_dur = get_audio_duration(WAV_PATH)
     print(f"Loading faster-whisper on {WAV_PATH} (duration: {total_dur}s)...")
     model = WhisperModel("base", device="cpu", compute_type="int8")
@@ -286,5 +287,62 @@ export function focalRotation(
     TIMINGS_TS_PATH.write_text(timings_ts_content)
     print(f"Wrote timings.ts to {TIMINGS_TS_PATH}")
 
+    # Visual cue to acoustic word timestamp lookup table
+    print_visual_cue_lookup(timings_data)
+
+def print_visual_cue_lookup(timings_data=None):
+    """
+    Automatic visual-cue-to-word-timestamp lookup table generator.
+    Prints the exact t_rel and global timestamps for each visual cue and key phrase
+    in script.json based on acoustic word timestamps.
+    """
+    if timings_data is None:
+        if TIMINGS_JSON_PATH.exists():
+            timings_data = json.loads(TIMINGS_JSON_PATH.read_text())
+        else:
+            print("No timings data available for lookup table.")
+            return
+
+    if not SCRIPT_JSON_PATH.exists():
+        print(f"No script.json found at {SCRIPT_JSON_PATH}")
+        return
+
+    script = json.loads(SCRIPT_JSON_PATH.read_text())
+    scenes = timings_data.get("scenes", [])
+    scene_map = {s["id"]: s for s in scenes}
+
+    print("\n" + "=" * 96)
+    print("AUTOMATIC VISUAL CUE TO ACOUSTIC WORD TIMESTAMP LOOKUP TABLE")
+    print("=" * 96)
+
+    for beat in script.get("beats", []):
+        bid = beat.get("beat_id", "")
+        title = beat.get("title", "")
+        archetype = beat.get("diagram_archetype", "Custom Archetype")
+        wrapping = beat.get("camera_wrapping", "Wrapped inside <Node ref={camera}>")
+        sc = scene_map.get(bid, {"start": 0.0, "end": 0.0, "duration": 0.0})
+
+        print(f"\nBeat: {bid} ({title})")
+        print(f"  * Archetype: {archetype}")
+        print(f"  * Camera:    {wrapping}")
+        print(f"  * Window:    start={sc['start']:.2f}s, end={sc['end']:.2f}s (duration: {sc.get('duration', round(sc['end'] - sc['start'], 2)):.2f}s)")
+        print("-" * 96)
+        print(f"{'Cue ID':<9} | {'t_rel':<7} | {'t_abs':<7} | {'Action / Target':<36} | {'Spoken Key Phrase'}")
+        print("-" * 96)
+
+        for cue in beat.get("visual_cues", []):
+            cid = cue.get("cue_id", "")
+            t_rel = cue.get("time_offset_seconds", 0.0)
+            t_abs = cue.get("absolute_timestamp_seconds", 0.0)
+            act_tgt = f"{cue.get('action', '')} -> {cue.get('target', '')}"[:36]
+            phrase = cue.get("matched_spoken_phrase") or cue.get("description", "")[:40]
+            print(f"{cid:<9} | +{t_rel:4.2f}s | {t_abs:5.2f}s | {act_tgt:<36} | {phrase}")
+
+    print("\n" + "=" * 96 + "\n")
+
 if __name__ == "__main__":
-    generate()
+    import sys
+    if "--lookup" in sys.argv or "--lookup-only" in sys.argv:
+        print_visual_cue_lookup()
+    else:
+        generate()

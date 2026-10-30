@@ -691,8 +691,10 @@
   ],
   "subtitle_chunks": [
     {
+      "text": "For three months,",
       "start": 0.0,
-      "end": 1.5,
+      "end": 1.34,
+      "duration": 1.34,
       "words": [
         {
           "w": "For",
@@ -712,8 +714,10 @@
       ]
     },
     {
+      "text": "more people returned",
       "start": 1.7,
       "end": 2.7,
+      "duration": 1.0,
       "words": [
         {
           "w": "more",
@@ -733,8 +737,10 @@
       ]
     },
     {
+      "text": "the AI Pin",
       "start": 2.7,
       "end": 3.66,
+      "duration": 0.96,
       "words": [
         {
           "w": "the",
@@ -754,8 +760,10 @@
       ]
     },
     {
+      "text": "than bought one.",
       "start": 3.66,
-      "end": 4.92,
+      "end": 4.76,
+      "duration": 1.1,
       "words": [
         {
           "w": "than",
@@ -775,8 +783,10 @@
       ]
     },
     {
+      "text": "Humane pitched a $699",
       "start": 5.32,
       "end": 7.36,
+      "duration": 2.04,
       "words": [
         {
           "w": "Humane",
@@ -801,8 +811,10 @@
       ]
     },
     {
+      "text": "lapel pin designed to",
       "start": 7.36,
-      "end": 9.14,
+      "end": 9.4,
+      "duration": 2.04,
       "words": [
         {
           "w": "lapel",
@@ -818,18 +830,20 @@
           "w": "designed",
           "start": 8.38,
           "end": 9.14
-        }
-      ]
-    },
-    {
-      "start": 9.14,
-      "end": 10.44,
-      "words": [
+        },
         {
           "w": "to",
           "start": 9.14,
           "end": 9.4
-        },
+        }
+      ]
+    },
+    {
+      "text": "replace the smartphone.",
+      "start": 9.4,
+      "end": 10.28,
+      "duration": 0.88,
+      "words": [
         {
           "w": "replace",
           "start": 9.4,
@@ -848,8 +862,10 @@
       ]
     },
     {
+      "text": "They shipped",
       "start": 10.82,
-      "end": 13.48,
+      "end": 11.42,
+      "duration": 0.6,
       "words": [
         {
           "w": "They",
@@ -860,7 +876,15 @@
           "w": "shipped",
           "start": 11.26,
           "end": 11.42
-        },
+        }
+      ]
+    },
+    {
+      "text": "about 10,000 units,",
+      "start": 11.42,
+      "end": 13.32,
+      "duration": 1.9,
+      "words": [
         {
           "w": "about",
           "start": 11.42,
@@ -879,8 +903,10 @@
       ]
     },
     {
+      "text": "pulling in",
       "start": 13.84,
-      "end": 15.16,
+      "end": 14.12,
+      "duration": 0.28,
       "words": [
         {
           "w": "pulling",
@@ -891,7 +917,15 @@
           "w": "in",
           "start": 14.0,
           "end": 14.12
-        },
+        }
+      ]
+    },
+    {
+      "text": "roughly $9 million.",
+      "start": 14.12,
+      "end": 15.0,
+      "duration": 0.88,
+      "words": [
         {
           "w": "roughly",
           "start": 14.12,
@@ -910,8 +944,10 @@
       ]
     },
     {
+      "text": "Then net",
       "start": 16.2,
-      "end": 18.48,
+      "end": 17.34,
+      "duration": 1.14,
       "words": [
         {
           "w": "Then",
@@ -922,7 +958,15 @@
           "w": "net",
           "start": 16.58,
           "end": 17.34
-        },
+        }
+      ]
+    },
+    {
+      "text": "sales went negative.",
+      "start": 17.34,
+      "end": 18.32,
+      "duration": 0.98,
+      "words": [
         {
           "w": "sales",
           "start": 17.34,
@@ -941,8 +985,10 @@
       ]
     },
     {
+      "text": "Between May",
       "start": 19.08,
-      "end": 21.12,
+      "end": 19.8,
+      "duration": 0.72,
       "words": [
         {
           "w": "Between",
@@ -953,7 +999,15 @@
           "w": "May",
           "start": 19.48,
           "end": 19.8
-        },
+        }
+      ]
+    },
+    {
+      "text": "and August 2024,",
+      "start": 19.8,
+      "end": 20.96,
+      "duration": 1.16,
+      "words": [
         {
           "w": "and",
           "start": 19.8,
@@ -972,8 +1026,10 @@
       ]
     },
     {
+      "text": "daily returns",
       "start": 21.68,
-      "end": 23.06,
+      "end": 22.26,
+      "duration": 0.58,
       "words": [
         {
           "w": "daily",
@@ -984,23 +1040,33 @@
           "w": "returns",
           "start": 21.78,
           "end": 22.26
-        },
-        {
-          "w": "consistently",
-          "start": 22.26,
-          "end": 23.06
         }
       ]
     },
     {
-      "start": 23.06,
-      "end": 24.32,
+      "text": "consistently surpassed",
+      "start": 22.26,
+      "end": 23.72,
+      "duration": 1.46,
       "words": [
+        {
+          "w": "consistently",
+          "start": 22.26,
+          "end": 23.06
+        },
         {
           "w": "surpassed",
           "start": 23.06,
           "end": 23.72
-        },
+        }
+      ]
+    },
+    {
+      "text": "new orders.",
+      "start": 23.72,
+      "end": 24.16,
+      "duration": 0.44,
+      "words": [
         {
           "w": "new",
           "start": 23.72,
@@ -1014,8 +1080,10 @@
       ]
     },
     {
+      "text": "Over $1 million",
       "start": 24.68,
-      "end": 26.06,
+      "end": 25.64,
+      "duration": 0.96,
       "words": [
         {
           "w": "Over",
@@ -1031,18 +1099,20 @@
           "w": "million",
           "start": 25.38,
           "end": 25.64
-        },
-        {
-          "w": "in",
-          "start": 25.64,
-          "end": 26.06
         }
       ]
     },
     {
-      "start": 26.06,
-      "end": 27.0,
+      "text": "in hardware bounced",
+      "start": 25.64,
+      "end": 26.78,
+      "duration": 1.14,
       "words": [
+        {
+          "w": "in",
+          "start": 25.64,
+          "end": 26.06
+        },
         {
           "w": "hardware",
           "start": 26.06,
@@ -1052,18 +1122,20 @@
           "w": "bounced",
           "start": 26.36,
           "end": 26.78
-        },
-        {
-          "w": "back",
-          "start": 26.78,
-          "end": 27.0
         }
       ]
     },
     {
-      "start": 27.0,
-      "end": 27.8,
+      "text": "back to their warehouse.",
+      "start": 26.78,
+      "end": 27.64,
+      "duration": 0.86,
       "words": [
+        {
+          "w": "back",
+          "start": 26.78,
+          "end": 27.0
+        },
         {
           "w": "to",
           "start": 27.0,
@@ -1082,8 +1154,10 @@
       ]
     },
     {
+      "text": "Worse,",
       "start": 28.6,
-      "end": 29.18,
+      "end": 29.02,
+      "duration": 0.42,
       "words": [
         {
           "w": "Worse,",
@@ -1093,8 +1167,10 @@
       ]
     },
     {
+      "text": "Humane couldn't",
       "start": 29.58,
-      "end": 31.2,
+      "end": 30.4,
+      "duration": 0.82,
       "words": [
         {
           "w": "Humane",
@@ -1105,7 +1181,15 @@
           "w": "couldn't",
           "start": 30.08,
           "end": 30.4
-        },
+        }
+      ]
+    },
+    {
+      "text": "even resell",
+      "start": 30.4,
+      "end": 31.2,
+      "duration": 0.8,
+      "words": [
         {
           "w": "even",
           "start": 30.4,
@@ -1119,8 +1203,10 @@
       ]
     },
     {
+      "text": "the returned devices.",
       "start": 31.2,
-      "end": 32.199999999999996,
+      "end": 32.04,
+      "duration": 0.84,
       "words": [
         {
           "w": "the",
@@ -1140,8 +1226,10 @@
       ]
     },
     {
+      "text": "Because of",
       "start": 32.42,
-      "end": 33.62,
+      "end": 33.28,
+      "duration": 0.86,
       "words": [
         {
           "w": "Because",
@@ -1152,23 +1240,33 @@
           "w": "of",
           "start": 33.12,
           "end": 33.28
-        },
-        {
-          "w": "T-Mobile",
-          "start": 33.28,
-          "end": 33.62
         }
       ]
     },
     {
-      "start": 33.62,
-      "end": 34.879999999999995,
+      "text": "T-Mobile carrier",
+      "start": 33.28,
+      "end": 33.96,
+      "duration": 0.68,
       "words": [
+        {
+          "w": "T-Mobile",
+          "start": 33.28,
+          "end": 33.62
+        },
         {
           "w": "carrier",
           "start": 33.62,
           "end": 33.96
-        },
+        }
+      ]
+    },
+    {
+      "text": "locking constraints,",
+      "start": 33.96,
+      "end": 34.72,
+      "duration": 0.76,
+      "words": [
         {
           "w": "locking",
           "start": 33.96,
@@ -1182,8 +1280,10 @@
       ]
     },
     {
+      "text": "they couldn't wipe",
       "start": 35.12,
       "end": 35.72,
+      "duration": 0.6,
       "words": [
         {
           "w": "they",
@@ -1203,8 +1303,10 @@
       ]
     },
     {
+      "text": "and reassign the",
       "start": 35.72,
       "end": 36.66,
+      "duration": 0.94,
       "words": [
         {
           "w": "and",
@@ -1224,8 +1326,10 @@
       ]
     },
     {
+      "text": "internal cellular chips.",
       "start": 36.66,
-      "end": 37.86,
+      "end": 37.7,
+      "duration": 1.04,
       "words": [
         {
           "w": "internal",
@@ -1245,8 +1349,10 @@
       ]
     },
     {
+      "text": "Thousands of",
       "start": 38.44,
-      "end": 39.68,
+      "end": 39.12,
+      "duration": 0.68,
       "words": [
         {
           "w": "Thousands",
@@ -1257,7 +1363,15 @@
           "w": "of",
           "start": 38.86,
           "end": 39.12
-        },
+        }
+      ]
+    },
+    {
+      "text": "returned pins turned",
+      "start": 39.12,
+      "end": 40.36,
+      "duration": 1.24,
+      "words": [
         {
           "w": "returned",
           "start": 39.12,
@@ -1267,18 +1381,20 @@
           "w": "pins",
           "start": 39.38,
           "end": 39.68
-        }
-      ]
-    },
-    {
-      "start": 39.68,
-      "end": 41.81999999999999,
-      "words": [
+        },
         {
           "w": "turned",
           "start": 39.68,
           "end": 40.36
-        },
+        }
+      ]
+    },
+    {
+      "text": "directly into e-waste.",
+      "start": 40.36,
+      "end": 41.66,
+      "duration": 1.3,
+      "words": [
         {
           "w": "directly",
           "start": 40.36,
@@ -1297,8 +1413,10 @@
       ]
     },
     {
+      "text": "By August,",
       "start": 42.54,
-      "end": 43.199999999999996,
+      "end": 43.04,
+      "duration": 0.5,
       "words": [
         {
           "w": "By",
@@ -1313,8 +1431,10 @@
       ]
     },
     {
+      "text": "active users",
       "start": 43.32,
-      "end": 45.5,
+      "end": 43.84,
+      "duration": 0.52,
       "words": [
         {
           "w": "active",
@@ -1325,7 +1445,15 @@
           "w": "users",
           "start": 43.56,
           "end": 43.84
-        },
+        }
+      ]
+    },
+    {
+      "text": "dropped below 7,000.",
+      "start": 43.84,
+      "end": 45.34,
+      "duration": 1.5,
+      "words": [
         {
           "w": "dropped",
           "start": 43.84,
@@ -1344,8 +1472,10 @@
       ]
     },
     {
+      "text": "And in February 2025,",
       "start": 45.88,
-      "end": 47.54,
+      "end": 47.38,
+      "duration": 1.5,
       "words": [
         {
           "w": "And",
@@ -1370,8 +1500,10 @@
       ]
     },
     {
+      "text": "HP bought",
       "start": 48.06,
-      "end": 49.48,
+      "end": 48.7,
+      "duration": 0.64,
       "words": [
         {
           "w": "HP",
@@ -1382,7 +1514,15 @@
           "w": "bought",
           "start": 48.3,
           "end": 48.7
-        },
+        }
+      ]
+    },
+    {
+      "text": "Humane's software assets",
+      "start": 48.7,
+      "end": 49.86,
+      "duration": 1.16,
+      "words": [
         {
           "w": "Humane's",
           "start": 48.7,
@@ -1392,18 +1532,20 @@
           "w": "software",
           "start": 49.04,
           "end": 49.48
-        }
-      ]
-    },
-    {
-      "start": 49.48,
-      "end": 51.81999999999999,
-      "words": [
+        },
         {
           "w": "assets",
           "start": 49.48,
           "end": 49.86
-        },
+        }
+      ]
+    },
+    {
+      "text": "for $116 million,",
+      "start": 49.86,
+      "end": 51.66,
+      "duration": 1.8,
+      "words": [
         {
           "w": "for",
           "start": 49.86,
@@ -1422,8 +1564,10 @@
       ]
     },
     {
+      "text": "ditching the",
       "start": 52.22,
-      "end": 53.959999999999994,
+      "end": 53.06,
+      "duration": 0.84,
       "words": [
         {
           "w": "ditching",
@@ -1434,7 +1578,15 @@
           "w": "the",
           "start": 52.96,
           "end": 53.06
-        },
+        }
+      ]
+    },
+    {
+      "text": "hardware entirely.",
+      "start": 53.06,
+      "end": 53.8,
+      "duration": 0.74,
+      "words": [
         {
           "w": "hardware",
           "start": 53.06,
@@ -1448,8 +1600,10 @@
       ]
     },
     {
+      "text": "On February 28,",
       "start": 54.55,
-      "end": 55.9,
+      "end": 55.74,
+      "duration": 1.19,
       "words": [
         {
           "w": "On",
@@ -1469,8 +1623,10 @@
       ]
     },
     {
+      "text": "the cloud",
       "start": 56.2,
-      "end": 57.519999999999996,
+      "end": 56.48,
+      "duration": 0.28,
       "words": [
         {
           "w": "the",
@@ -1481,7 +1637,15 @@
           "w": "cloud",
           "start": 56.28,
           "end": 56.48
-        },
+        }
+      ]
+    },
+    {
+      "text": "servers shut down.",
+      "start": 56.48,
+      "end": 57.36,
+      "duration": 0.88,
+      "words": [
         {
           "w": "servers",
           "start": 56.48,
@@ -1500,8 +1664,10 @@
       ]
     },
     {
+      "text": "Every pin,",
       "start": 58.14,
-      "end": 58.86,
+      "end": 58.7,
+      "duration": 0.56,
       "words": [
         {
           "w": "Every",
@@ -1516,8 +1682,10 @@
       ]
     },
     {
+      "text": "bricked instantly.",
       "start": 59.18,
-      "end": 60.199999999999996,
+      "end": 60.04,
+      "duration": 0.86,
       "words": [
         {
           "w": "bricked",
@@ -1532,8 +1700,10 @@
       ]
     },
     {
+      "text": "That's $699 for",
       "start": 60.72,
-      "end": 63.04,
+      "end": 62.9,
+      "duration": 2.18,
       "words": [
         {
           "w": "That's",
@@ -1549,18 +1719,20 @@
           "w": "for",
           "start": 62.0,
           "end": 62.9
-        },
-        {
-          "w": "a",
-          "start": 62.9,
-          "end": 63.04
         }
       ]
     },
     {
-      "start": 63.04,
-      "end": 64.1,
+      "text": "a silent metal badge.",
+      "start": 62.9,
+      "end": 63.94,
+      "duration": 1.04,
       "words": [
+        {
+          "w": "a",
+          "start": 62.9,
+          "end": 63.04
+        },
         {
           "w": "silent",
           "start": 63.04,

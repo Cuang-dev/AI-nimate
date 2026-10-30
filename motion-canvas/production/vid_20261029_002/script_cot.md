@@ -100,56 +100,87 @@ To maintain unbreakable retention, the script abandons listicle "and then" struc
 
 ## [CoT Step 3: 3-to-5 Second Visual Micro-Choreography Plan]
 
-To prevent viewer drop-off, **no visual state is allowed to remain static for longer than 3.5 to 4.0 seconds**. Every beat is choreographed with 4 to 5 discrete visual micro-events mapped to exact timestamps from `timings.json`.
+To prevent viewer drop-off, **no visual state is allowed to remain static for longer than 3.5 to 4.0 seconds**. Every beat is choreographed with discrete visual cues mapped to exact acoustic word timestamps from `timings.json` and executed in `beat_01.tsx` through `beat_05.tsx`.
+
+> [!IMPORTANT]
+> **Rule 1B Architecture Compliance:** Every scene is strictly wrapped inside `<Node ref={camera}>` rather than a bare `<Camera>`. This ensures Motion Canvas coordinate hierarchy stability, smooth camera panning/scaling, and zero transform jitter across vertical (9:16) and widescreen (16:9) formats.
+
+---
 
 ### BEAT 01: THE $600B CHASM (`0.00s` – `26.38s`, Duration: `26.38s`)
+* **Diagram Archetype:** `01: Proportional Scale & Caliper Chasm`
+* **Scene Architecture:** Wrapped inside `<Node ref={camera}>` (Rule 1B: never bare `<Camera>`)
 * **Spoken Text:** *"Everyone calls AI a bubble, but almost nobody explains what is actually inflating. Between 2025 and 2026, Microsoft, Meta, Google, and Amazon are spending over three hundred and twenty billion dollars a year on AI data centers. Yet according to Sequoia's famous six-hundred-billion-dollar formula, all pure-play AI software today earns less than forty-five billion—leaving a massive five-hundred-billion-dollar revenue chasm."*
-* **Micro-Choreography Event Sequence:**
-  1. `t+0.00s` (0.00s abs): **Beat Header Entry.** Title tag `"01 // THE $600B CHASM"` animates across top rule. Card A enters in slot 0 (`x: -470` widescreen / `y: -210` portrait) with `bigtech_capex_badge.png`, Sub-tag `"HYPERSCALER SPEND"`.
-  2. `t+5.62s` (5.62s abs): **Hyperscaler Group Reveal.** Spoken: *"Between 2025 and 2026..."* -> Company emblem chips (Microsoft, Meta, Alphabet, Amazon) pulse sequentially with subtitle tracking.
-  3. `t+10.58s` – `t+12.36s` (10.58s abs): **1.2s Fast Hero Counter Trigger.** Spoken: *"spending over three hundred and twenty billion dollars..."* -> Hero metric executes rapid easeOutQuad counter from `$0B` to `"$320B+ CAPEX"`. Card A border flashes obsidian accent.
-  4. `t+15.34s` (15.34s abs): **Card B Entry.** Spoken: *"Yet according to Sequoia's famous six-hundred-billion-dollar formula..."* -> Card B slides into slot 1 (`x: 470` widescreen / `y: 230` portrait) with `openai_logo.png`, Sub-tag `"PURE SOFTWARE ARR"`.
-  5. `t+20.82s` – `t+22.20s` (20.82s abs): **Counter Resolution.** Spoken: *"earns less than forty-five billion..."* -> Card B Hero Metric counts up in 0.9s to `"<$45B ARR"` in high-alert red (`#FF3B00`).
-  6. `t+23.82s` – `t+26.12s` (23.82s abs): **Forensic Stamp Lock.** Spoken: *"leaving a massive five-hundred-billion-dollar revenue chasm."* -> Center divider snaps in with forensic Delta Banner: `"-$555B REVENUE DEFICIT (SEQUOIA FORMULA)"`. Scale breathe applies to Card B and Delta Banner.
+* **Acoustic Visual Cue Sequence:**
+  1. `[VISUAL CUE v_01_01]` (`t+0.40s` rel | `0.40s` abs): **BASELINE_DRAW (`stage_baseline`).** Swiss editorial baseline draws across stage (`lineWidth: 4`, `duration: 0.7s`, `easeOutExpo`) as voice states *"Everyone calls AI a bubble"*. Wrapped in `<Node ref={camera}>`.
+  2. `[VISUAL CUE v_01_02]` (`t+2.10s` rel | `2.10s` abs): **FADE_IN_SUB_LABEL (`capex_sub_label`).** Left Pillar base subtitle fades in (`duration: 0.5s`, `focalId: 1`) as voice delivers *"what is actually inflating"*. Focal scale active on Left Pillar. Wrapped in `<Node ref={camera}>`.
+  3. `[VISUAL CUE v_01_03]` (`t+5.60s` rel | `5.60s` abs): **PILLAR_STUB_REVEAL (`capex_pillar_bar`).** Left Pillar dark slate bar stub rises (`height: 24`, `val: 50`, `duration: 0.4s`) as voice says *"Between 2025 and 2026"*. Wrapped in `<Node ref={camera}>`.
+  4. `[VISUAL CUE v_01_04]` (`t+8.20s` rel | `8.20s` abs): **BADGE_PULSE_SEQUENCE (`bigtech_capex_badge`).** Big Tech corporate emblems badge pops in over Left Pillar (`scale: 1.15 -> 1.0`, `duration: 0.45s`) as voice lists *"Microsoft, Meta, Google, and Amazon"*. Wrapped in `<Node ref={camera}>`.
+  5. `[VISUAL CUE v_01_05]` (`t+10.60s` rel | `10.60s` abs): **FAST_COUNTER_ROCKET (`capex_hero_pillar`).** Left Pillar rockets up to max height ($320B/YR AI CAPEX) with fast number counter ($50B -> $320B, `duration: 2.0s`) as voice hits *"spending over three hundred and twenty billion dollars a year"*. Wrapped in `<Node ref={camera}>`.
+  6. `[VISUAL CUE v_01_06]` (`t+15.20s` rel | `15.20s` abs): **PILLAR_GROWTH_FORMULA (`sequoia_req_pillar`).** Center dashed requirement pillar towers up to $600B (`focalId: 2`, `duration: 2.1s`) as voice articulates *"according to Sequoia's famous six-hundred-billion-dollar formula"*. Wrapped in `<Node ref={camera}>`.
+  7. `[VISUAL CUE v_01_07]` (`t+19.00s` rel | `19.00s` abs): **ENTRY_REVEAL_PILLAR (`pure_ai_rev_pillar`).** Right diminutive pillar reveals tiny <$45B actual pure AI software revenue (`focalId: 3`, `duration: 0.9s`) as voice delivers *"all pure-play AI software today earns less than forty-five billion"*. Wrapped in `<Node ref={camera}>`.
+  8. `[VISUAL CUE v_01_08]` (`t+21.80s` rel | `21.80s` abs): **CALIPER_CHASM_STAMP (`revenue_chasm_caliper_badge`).** Red Caliper brackets the chasm between $600B and $45B while `-$555B REVENUE CHASM (92% SHORTFALL)` badge slams into place (`focalId: 4`, `duration: 0.7s`). Diagram holds until scene cut at 26.38s. Wrapped in `<Node ref={camera}>`.
+
+---
 
 ### BEAT 02: ROUND-TRIP CLOUD REVENUE (`26.38s` – `47.65s`, Duration: `21.27s`)
+* **Diagram Archetype:** `02: Closed-Loop Orthogonal Conduit`
+* **Scene Architecture:** Wrapped inside `<Node ref={camera}>` (Rule 1B: never bare `<Camera>`)
 * **Spoken Text:** *"Why does cloud revenue look so booming anyway? Because of a Wall Street illusion called round-tripping. Hyperscalers invest tens of billions into AI labs like OpenAI and Anthropic—not just in cash, but in cloud compute credits. When those startups burn those credits training models on Azure or AWS, Big Tech books its own investment right back as cloud revenue."*
-* **Micro-Choreography Event Sequence:**
-  1. `t+0.00s` (26.38s abs): **Scene Cut & Header Swap.** Beat Title changes to `"02 // ROUND-TRIP REVENUE"`. Card A mounts in slot 0 with `aws_azure_badge.png`, Sub-tag `"AZURE CLOUD REV"`.
-  2. `t+1.00s` – `t+2.26s` (27.38s abs): **Headline Metric Flash.** Spoken: *"Why does cloud revenue look so booming anyway?"* -> Card A displays `"+29% GROWTH"` in institutional green (`#1B8354`) with an upward-pointing enterprise growth arrow.
-  3. `t+4.58s` – `t+6.34s` (30.96s abs): **Illusion Warning Shift.** Spoken: *"...called round-tripping."* -> Card A green border desaturates and shifts to warning amber glow. Sub-tag flashes `"ACCOUNTING LOOP"`.
-  4. `t+6.90s` – `t+9.94s` (33.28s abs): **Card B Deployment.** Spoken: *"Hyperscalers invest tens of billions into AI labs like OpenAI and Anthropic..."* -> Card B slides into slot 1 with `openai_logo.png`, Sub-tag `"CIRCULAR CREDITS"`.
-  5. `t+11.82s` – `t+13.20s` (38.20s abs): **In-Kind Credit Metric.** Spoken: *"...not just in cash, but in cloud compute credits."* -> Card B fast counter resolves in 1.1s to `"$13B FUNDED"` with cloud credit token badges.
-  6. `t+14.42s` – `t+17.88s` (40.80s abs): **Dynamic Recirculation Vector.** Spoken: *"When those startups burn those credits training models on Azure or AWS..."* -> Curved animated SVG energy arrows trace from Card B back into Card A's top-line revenue ledger.
-  7. `t+18.42s` – `t+21.27s` (44.80s abs): **Forensic Accounting Verdict.** Spoken: *"Big Tech books its own investment right back as cloud revenue."* -> Forensic Delta Callout stamps: `"ASC 606 CIRCULAR REVENUE LOOP"`.
+* **Acoustic Visual Cue Sequence:**
+  1. `[VISUAL CUE v_02_01]` (`t+0.40s` rel | `26.78s` abs): **STATION_POP_IN (`station_a_hyperscaler`).** Station A (Big Tech Cloud Hub: AWS/Azure) pops into place showing `+29% Y/Y GROWTH` (`focalId: 1`, `duration: 0.6s`) as voice asks *"Why does cloud revenue look so booming anyway?"*. Wrapped in `<Node ref={camera}>`.
+  2. `[VISUAL CUE v_02_02]` (`t+3.20s` rel | `29.58s` abs): **ALERT_STAMP_LOCK (`round_tripping_verdict_badge`).** Central `ROUND-TRIPPING: ZERO EXTERNAL CASH FLOW` warning badge stamps down between nodes (`focalId: 3`, `duration: 0.55s`) as voice explains *"Because of a Wall Street illusion called round-tripping"*. Wrapped in `<Node ref={camera}>`.
+  3. `[VISUAL CUE v_02_03]` (`t+6.20s` rel | `32.58s` abs): **STATION_POP_IN (`station_b_ai_labs`).** Station B (Frontier AI Labs Hub: OpenAI/Anthropic) deploys (`focalId: 2`, `duration: 0.6s`) as voice states *"Hyperscalers invest tens of billions into AI labs like OpenAI and Anthropic"*. Wrapped in `<Node ref={camera}>`.
+  4. `[VISUAL CUE v_02_04]` (`t+8.60s` rel | `34.98s` abs): **ORTHOGONAL_CONDUIT_DRAW (`outbound_conduit_pipe`).** Upper orthogonal conduit pipe draws with dashed flow from Station A towards Station B (`duration: 1.4s`, `easeInOutCubic`) as voice states *"not just in cash"*. Wrapped in `<Node ref={camera}>`.
+  5. `[VISUAL CUE v_02_05]` (`t+11.20s` rel | `37.58s` abs): **CONDUIT_BADGE_POP (`compute_credits_badge`).** Gold `$20B+ COMPUTE CREDITS` badge pops in on the outbound pipe (`focalId: 4`, `duration: 0.55s`) as voice stresses *"but in cloud compute credits"*. Wrapped in `<Node ref={camera}>`.
+  6. `[VISUAL CUE v_02_06]` (`t+13.70s` rel | `40.08s` abs): **RETURN_CONDUIT_DRAW (`inbound_conduit_pipe`).** Lower orthogonal return conduit traces back from Station B into Station A (`duration: 1.4s`, `easeInOutCubic`) as voice says *"When those startups burn those credits training models on Azure or AWS"*. Wrapped in `<Node ref={camera}>`.
+  7. `[VISUAL CUE v_02_07]` (`t+16.80s` rel | `43.18s` abs): **LOOP_CLOSURE_ALERT (`rebooked_cloud_rev_badge`).** Return conduit locks with `100% RE-BOOKED AS CLOUD REVENUE` badge (`focalId: 5`, `duration: 0.6s`), turning Station A border alert red as voice concludes *"Big Tech books its own investment right back as cloud revenue"*. Diagram holds until 47.65s. Wrapped in `<Node ref={camera}>`.
+
+---
 
 ### BEAT 03: THE DEPRECIATION CLOCK (`47.65s` – `67.64s`, Duration: `19.99s`)
+* **Diagram Archetype:** `03: Dual-Axis Parallel Timeline & Wall`
+* **Scene Architecture:** Wrapped inside `<Node ref={camera}>` (Rule 1B: never bare `<Camera>`)
 * **Spoken Text:** *"The real time bomb sits on the balance sheet. Tech giants stretch their server depreciation schedules to six full years to keep quarterly profits looking high. But Nvidia launches a new GPU architecture every twelve to twenty-four months. When Blackwell and Rubin make older chips too power-hungry to run economically, hundreds of billions in silicon face sudden write-downs."*
-* **Micro-Choreography Event Sequence:**
-  1. `t+0.00s` (47.65s abs): **Scene Cut & Header Swap.** Beat Title snaps to `"03 // THE DEPRECIATION CLOCK"`. Card A deploys with `bigtech_capex_badge.png`, Sub-tag `"10-K USEFUL LIFE"`.
-  2. `t+3.17s` – `t+6.77s` (50.82s abs): **10-K Accounting Extension Metric.** Spoken: *"Tech giants stretch their server depreciation schedules to six full years..."* -> Card A displays `"6-YR SCHEDULE"` accompanied by secondary metadata pill `"+$10.8B EPS BOOST"`.
-  3. `t+9.11s` (56.76s abs): **Nvidia Silicon Disruption.** Spoken: *"But Nvidia launches a new GPU architecture..."* -> Card B enters slot 1 with `nvidia_logo.png`, Sub-tag `"SILICON OBSOLETE"`.
-  4. `t+11.19s` – `t+12.50s` (58.84s abs): **1-Year Cadence Snap.** Spoken: *"...every twelve to twenty-four months."* -> Card B Hero Metric counts rapidly to `"12-MO CADENCE"` in electric green/amber.
-  5. `t+12.97s` – `t+15.89s` (60.62s abs): **Architectural Leap Pulse.** Spoken: *"When Blackwell and Rubin make older chips too power-hungry to run economically..."* -> Architecture timeline pips illuminate: `Hopper (700W) → Blackwell (1200W) → Rubin (HBM4)`. Power-per-megawatt warning icon pulses red.
-  6. `t+17.27s` – `t+19.99s` (64.92s abs): **ASC 360 Write-Down Stamp.** Spoken: *"...hundreds of billions in silicon face sudden write-downs."* -> Red warning border snaps on Card A. Center forensic badge seals: `"ASC 360 IMPAIRMENT RISK (WATTS/TOKEN)"`.
+* **Acoustic Visual Cue Sequence:**
+  1. `[VISUAL CUE v_03_01]` (`t+0.30s` rel | `47.95s` abs): **TRACK_HEADER_FADE (`track_1_accounting_schedule`).** Upper Track 1 (10-K Accounting Schedule rail & 6-year markers) fades in (`focalId: 1`, `duration: 0.5s`) as voice states *"The real time bomb sits on the balance sheet"*. Wrapped in `<Node ref={camera}>`.
+  2. `[VISUAL CUE v_03_02]` (`t+2.80s` rel | `50.45s` abs): **TIMELINE_FILL_SEGMENT (`acct_progress_bar_yr3`).** Track 1 gold depreciation bar fills to standard Year 3 (`duration: 1.2s`) as voice begins *"Tech giants stretch their server depreciation"*. Wrapped in `<Node ref={camera}>`.
+  3. `[VISUAL CUE v_03_03]` (`t+5.00s` rel | `52.65s` abs): **TIMELINE_STRETCH_FULL (`acct_progress_bar_yr6`).** Track 1 bar artificially stretches from Year 3 all the way to Year 6 (`duration: 1.3s`) as voice says *"schedules to six full years"*. Wrapped in `<Node ref={camera}>`.
+  4. `[VISUAL CUE v_03_04]` (`t+6.30s` rel | `53.95s` abs): **SCHEDULE_BADGE_POP (`stretched_schedule_badge`).** `STRETCHED TO 6.0 YRS (+ $10.8B EPS BOOST)` badge stamps over Year 6 (`duration: 0.4s`) as voice delivers *"to keep quarterly profits looking high"*. Wrapped in `<Node ref={camera}>`.
+  5. `[VISUAL CUE v_03_05]` (`t+8.90s` rel | `56.55s` abs): **TRACK_HEADER_FADE (`track_2_gpu_silicon`).** Lower Track 2 (GPU Silicon Lifespan) fades in (`focalId: 2`, `duration: 0.5s`) as voice shifts *"But Nvidia launches a new GPU architecture"*. Wrapped in `<Node ref={camera}>`.
+  6. `[VISUAL CUE v_03_06]` (`t+10.80s` rel | `58.45s` abs): **CADENCE_BAR_RACE (`gpu_silicon_bar`).** Track 2 red silicon bar races forward and stops dead at Year 2 (`duration: 1.3s`) as voice says *"every twelve to twenty-four months"*. Wrapped in `<Node ref={camera}>`.
+  7. `[VISUAL CUE v_03_07]` (`t+13.00s` rel | `60.65s` abs): **OBSOLESCENCE_WALL_DROP (`red_obsolescence_wall`).** Heavy vertical Red Obsolescence Wall slams down at Year 2 (`lineWidth: 4`, `duration: 0.7s`) as voice warns *"When Blackwell and Rubin make older chips too power-hungry to run economically"*. Wrapped in `<Node ref={camera}>`.
+  8. `[VISUAL CUE v_03_08]` (`t+15.80s` rel | `63.45s` abs): **WRITEDOWN_GAP_CALIPER (`unamortized_gap_badge`).** Horizontal gap caliper and `4 UNUSED YRS = $100B+ WRITE-DOWNS` callout badge seal the unamortized gap (`focalId: 3`, `duration: 0.6s`). Diagram holds until 67.64s. Wrapped in `<Node ref={camera}>`.
+
+---
 
 ### BEAT 04: 2000 TELECOM VS 2026 AI (`67.64s` – `85.00s`, Duration: `17.36s`)
+* **Diagram Archetype:** `04: Quantitative Asset Decay Slope`
+* **Scene Architecture:** Wrapped inside `<Node ref={camera}>` (Rule 1B: never bare `<Camera>`)
 * **Spoken Text:** *"Is this just the year-two-thousand telecom crash all over again? Not quite. In two thousand, telecoms used junk debt to lay dark fiber cables that lasted twenty-five years in the ground. Today's tech giants are funding AI out of massive cash flows—but they are buying fast-rotting GPUs that lose value in just three years."*
-* **Micro-Choreography Event Sequence:**
-  1. `t+0.00s` (67.64s abs): **Scene Cut & Header Swap.** Beat Title: `"04 // 2000 TELECOM VS 2026 AI"`. Card A enters slot 0 with `telecom_fiber_icon.png`, Sub-tag `"2000 DARK FIBER"`.
-  2. `t+4.50s` – `t+8.74s` (72.14s abs): **Dark Fiber Longevity Metric.** Spoken: *"In two thousand, telecoms used junk debt to lay dark fiber cables that lasted twenty-five years..."* -> Card A Hero Counter spins to `"25-YR LIFE"`. Visual conduit cross-section graphic appears.
-  3. `t+10.60s` – `t+12.88s` (78.24s abs): **Fortress Balance Sheet Pivot.** Spoken: *"Today's tech giants are funding AI out of massive cash flows..."* -> Card B enters slot 1 with `nvidia_logo.png`, Sub-tag `"2026 AI SILICON"`. Cash flow shield badge blinks safe green.
-  4. `t+13.82s` – `t+16.68s` (81.46s abs): **Thermal Silicon Decay Metric.** Spoken: *"...but they are buying fast-rotting GPUs that lose value in just three years."* -> Card B Hero Counter snaps down to `"3-YR DECAY"` in hazard orange. Thermal degradation heat waves animate across the card.
-  5. `t+16.00s` – `t+17.36s` (83.64s abs): **Historical Contrast Verdict.** Central forensic comparative stamp slams down: `"DECAYING SILICON VS PERMANENT GLASS"`.
+* **Acoustic Visual Cue Sequence:**
+  1. `[VISUAL CUE v_04_01]` (`t+0.40s` rel | `68.04s` abs): **AXES_GRID_FADE (`asset_retention_axes`).** Quantitative Cartesian axes (Y: 100%->0% Utility, X: 0->25 Yrs) fade in (`focalId: 1`, `duration: 0.6s`) as voice asks *"Is this just the year-two-thousand telecom crash all over again?"*. Wrapped in `<Node ref={camera}>`.
+  2. `[VISUAL CUE v_04_02]` (`t+2.80s` rel | `70.44s` abs): **CURVE_BADGE_POP (`dark_fiber_badge`).** `2000 DARK FIBER: 25-YR GLASS` header badge pops in (`duration: 0.4s`) on the pattern interrupt *"Not quite"*. Wrapped in `<Node ref={camera}>`.
+  3. `[VISUAL CUE v_04_03]` (`t+5.30s` rel | `72.94s` abs): **DEBT_TAG_POP (`junk_debt_pill`).** Gold `FUNDED BY JUNK DEBT` funding tag pops in (`duration: 0.4s`) as voice notes *"In two thousand, telecoms used junk debt"*. Wrapped in `<Node ref={camera}>`.
+  4. `[VISUAL CUE v_04_04]` (`t+7.00s` rel | `74.64s` abs): **CURVE_DRAW_PERMANENT (`fiber_asset_line`).** Resilient green fiber curve maintains 100% flat retention across the full 25-year horizon (`lineWidth: 8`, `duration: 1.5s`) as voice states *"to lay dark fiber cables that lasted twenty-five years in the ground"*. Wrapped in `<Node ref={camera}>`.
+  5. `[VISUAL CUE v_04_05]` (`t+10.00s` rel | `77.64s` abs): **CASH_TAG_POP (`cash_flow_shield_pill`).** `CASH-FLOW FUNDED • FAST DECAY` fortress tag pops in (`focalId: 2`, `duration: 0.4s`) as voice explains *"Today's tech giants are funding AI out of massive cash flows"*. Wrapped in `<Node ref={camera}>`.
+  6. `[VISUAL CUE v_04_06]` (`t+12.40s` rel | `80.04s` abs): **CLIFF_CURVE_PLUNGE (`gpu_decay_line`).** Red GPU asset curve plunges off a steep exponential cliff down to 0% at Year 3 (`lineWidth: 8`, `duration: 1.2s`) as voice delivers *"but they are buying fast-rotting GPUs"*. Wrapped in `<Node ref={camera}>`.
+  7. `[VISUAL CUE v_04_07]` (`t+13.90s` rel | `81.54s` abs): **CLIFF_BADGE_STAMP (`thermal_cliff_badge`).** `2026 AI GPUS: 3-YR THERMAL CLIFF` callout badge seals at Year 3 (`duration: 0.45s`) as voice concludes *"that lose value in just three years"*. Diagram holds until 85.00s. Wrapped in `<Node ref={camera}>`.
+
+---
 
 ### BEAT 05: WHAT POPS VS SURVIVES (`85.00s` – `102.32s`, Duration: `17.32s`)
+* **Diagram Archetype:** `05: 3-Tier Architectural Dependency Stack`
+* **Scene Architecture:** Wrapped inside `<Node ref={camera}>` (Rule 1B: never bare `<Camera>`)
 * **Spoken Text:** *"So what actually pops when the AI bubble deflates? Overvalued wrapper startups selling generic chatbots on rented compute will get wiped out as model costs fall toward zero. Meanwhile, the real winners—power grid infrastructure and deep workflow automation—will buy up that discounted compute for pennies on the dollar."*
-* **Micro-Choreography Event Sequence:**
-  1. `t+0.00s` (85.00s abs): **Final Climax Header.** Beat Title: `"05 // WHAT POPS VS SURVIVES"`. Card A enters slot 0 with `openai_logo.png`, Sub-tag `"THIN WRAPPERS"`.
-  2. `t+3.46s` – `t+7.58s` (88.46s abs): **Wrapper Margin Liquidation.** Spoken: *"Overvalued wrapper startups selling generic chatbots on rented compute will get wiped out..."* -> Card A Hero Metric drops rapidly to `"~0% MARGIN"`. Card A receives a red diagonal cancellation strike / liquidation tag.
-  3. `t+9.94s` – `t+12.54s` (94.94s abs): **Real Winners Deploy.** Spoken: *"Meanwhile, the real winners—power grid infrastructure and deep workflow automation..."* -> Card B deploys in slot 1 with `aws_azure_badge.png`, Sub-tag `"POWER & MOATS"`.
-  4. `t+13.46s` – `t+16.62s` (98.46s abs): **100% Moat Metric.** Spoken: *"...will buy up that discounted compute for pennies on the dollar."* -> Card B Hero Metric illuminates: `"100% SECURED"` in bright institutional green with power grid / database padlock iconography.
-  5. `t+15.50s` – `t+17.32s` (100.50s abs): **Final Forensic Stamp.** Spoken: *"...pennies on the dollar."* -> Central verdict callout locks into place: `"DISCOUNTED COMPUTE RE-ALLOCATION"`. Complete scene breathing hold until video cut at 102.32s.
+* **Acoustic Visual Cue Sequence:**
+  1. `[VISUAL CUE v_05_01]` (`t+0.30s` rel | `85.30s` abs): **STACK_CASCADE_ENTRY (`3tier_dependency_stack`).** 3-tier architectural stack cascades onto screen with dependency arrows (L1 Utility/Physical -> L2 Systems of Record -> L3 API Consumers) (`focalId: 3`, `duration: 0.6s`) as voice asks *"So what actually pops when the AI bubble deflates?"*. Wrapped in `<Node ref={camera}>`.
+  2. `[VISUAL CUE v_05_02]` (`t+3.40s` rel | `88.40s` abs): **LAYER_VULNERABILITY_HIGHLIGHT (`layer_3_thin_wrappers`).** Layer 3 (Top) badge updates to `RENTED COMPUTE` in gold warning state (`duration: 0.4s`) as voice identifies *"Overvalued wrapper startups selling generic chatbots on rented compute"*. Wrapped in `<Node ref={camera}>`.
+  3. `[VISUAL CUE v_05_03]` (`t+6.40s` rel | `91.40s` abs): **LAYER_COMMODITIZATION_WIPEOUT (`layer_3_wipeout`).** Layer 3 flips to alert red with `90% WIPEOUT (COMMODITIZED)` (`duration: 0.4s`) as voice explains *"will get wiped out as model costs fall toward zero"*. Wrapped in `<Node ref={camera}>`.
+  4. `[VISUAL CUE v_05_04]` (`t+9.80s` rel | `94.80s` abs): **STACK_FOCUS_SHIFT (`layers_1_and_2_expansion`).** Layer 3 compresses slightly while foundation Layers 1 & 2 expand into primary focal clarity (`duration: 0.45s`) as voice introduces *"Meanwhile, the real winners"*. Wrapped in `<Node ref={camera}>`.
+  5. `[VISUAL CUE v_05_05]` (`t+11.50s` rel | `96.50s` abs): **MOAT_EMERALD_LOCK (`layer_1_power_grid`).** Layer 1 locks in with institutional green border and `UTILITY & CLOUD MOAT` badge (`focalId: 1`, `duration: 0.4s`) as voice articulates *"power grid infrastructure"*. Wrapped in `<Node ref={camera}>`.
+  6. `[VISUAL CUE v_05_06]` (`t+13.00s` rel | `98.00s` abs): **MOAT_EMERALD_LOCK (`layer_2_systems_of_record`).** Layer 2 locks in with institutional green border and `ENDURING MOAT` badge (`focalId: 2`, `duration: 0.4s`) as voice states *"and deep workflow automation"*. Wrapped in `<Node ref={camera}>`.
+  7. `[VISUAL CUE v_05_07]` (`t+14.20s` rel | `99.20s` abs): **BARGAIN_INFRA_PULSE (`layer_1_discounted_compute`).** Layer 1 pulses with `DISCOUNTED INFRA ROI` badge (`focalId: 1`, `duration: 0.4s`) as voice concludes *"will buy up that discounted compute for pennies on the dollar"*. Diagram holds until terminal cut at 102.32s. Wrapped in `<Node ref={camera}>`.
 
 ---
 

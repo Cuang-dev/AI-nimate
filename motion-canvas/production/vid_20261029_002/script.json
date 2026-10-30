@@ -24,11 +24,25 @@
       "data": "'JetBrains Mono', 'Liberation Mono', monospace"
     },
     "card_layout": {
-      "slot_0_widescreen": { "x": -470, "y": -40 },
-      "slot_1_widescreen": { "x": 470, "y": -40 },
-      "slot_0_portrait": { "x": 0, "y": -210 },
-      "slot_1_portrait": { "x": 0, "y": 230 },
-      "delta_banner": { "y": 10 }
+      "slot_0_widescreen": {
+        "x": -470,
+        "y": -40
+      },
+      "slot_1_widescreen": {
+        "x": 470,
+        "y": -40
+      },
+      "slot_0_portrait": {
+        "x": 0,
+        "y": -210
+      },
+      "slot_1_portrait": {
+        "x": 0,
+        "y": 230
+      },
+      "delta_banner": {
+        "y": 10
+      }
     }
   },
   "source_urls": [
@@ -127,97 +141,151 @@
       "visual_cues": [
         {
           "cue_id": "v_01_01",
-          "time_offset_seconds": 0.0,
-          "absolute_timestamp_seconds": 0.0,
-          "action": "ENTRY_FADE_SLIDE",
-          "target": "beat_header_and_card_a",
+          "time_offset_seconds": 0.4,
+          "absolute_timestamp_seconds": 0.4,
+          "action": "BASELINE_DRAW",
+          "target": "stage_baseline",
+          "diagram_archetype": "01: Proportional Scale & Caliper Chasm",
+          "camera_node_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)",
+          "matched_spoken_phrase": "Everyone calls AI a bubble",
           "parameters": {
-            "title": "01 // THE $600B CHASM",
-            "card_slot": 0,
-            "logo": "bigtech_capex_badge.png",
-            "sub_tag": "HYPERSCALER SPEND",
-            "duration": 0.6,
-            "easing": "easeOutQuad"
+            "lineWidth": 4,
+            "duration": 0.7,
+            "easing": "easeOutExpo"
           },
-          "description": "Pattern interrupt hook begins. Swiss editorial beat title appears; Card A enters with Big Tech emblem."
+          "description": "Archetype: 01: Proportional Scale & Caliper Chasm. Swiss editorial baseline draws across stage at t+0.40s (0.40s global) as voice states 'Everyone calls AI a bubble'. Rendered inside <Node ref={camera}>."
         },
         {
           "cue_id": "v_01_02",
-          "time_offset_seconds": 5.62,
-          "absolute_timestamp_seconds": 5.62,
-          "action": "BADGE_PULSE_SEQUENCE",
-          "target": "card_a_logo_group",
+          "time_offset_seconds": 2.1,
+          "absolute_timestamp_seconds": 2.1,
+          "action": "FADE_IN_SUB_LABEL",
+          "target": "capex_sub_label",
+          "diagram_archetype": "01: Proportional Scale & Caliper Chasm",
+          "camera_node_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)",
+          "matched_spoken_phrase": "what is actually inflating",
           "parameters": {
-            "entities": ["Microsoft", "Meta", "Alphabet", "Amazon"],
-            "duration": 3.5,
-            "easing": "easeInOutCubic"
+            "focalId": 1,
+            "duration": 0.5
           },
-          "description": "Voice lists 'Between 2025 and 2026, Microsoft, Meta, Google, and Amazon...'. Logos pulse in sequence with Whisper subtitle tracking."
+          "description": "Archetype: 01: Proportional Scale & Caliper Chasm. Left Pillar base subtitle fades in at t+2.10s (2.10s global) as voice delivers 'what is actually inflating'. Focal scale active on Left Pillar. Rendered inside <Node ref={camera}>."
         },
         {
           "cue_id": "v_01_03",
-          "time_offset_seconds": 10.58,
-          "absolute_timestamp_seconds": 10.58,
-          "action": "FAST_COUNTER_TRIGGER",
-          "target": "card_a_hero_number",
+          "time_offset_seconds": 5.6,
+          "absolute_timestamp_seconds": 5.6,
+          "action": "PILLAR_STUB_REVEAL",
+          "target": "capex_pillar_bar",
+          "diagram_archetype": "01: Proportional Scale & Caliper Chasm",
+          "camera_node_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)",
+          "matched_spoken_phrase": "Between 2025 and 2026",
           "parameters": {
-            "start_value": 0,
-            "end_value": 320,
-            "prefix": "$",
-            "suffix": "B+ CAPEX",
-            "counter_duration": 1.2,
-            "easing": "easeOutQuad"
+            "start_height": 24,
+            "val": 50,
+            "duration": 0.4,
+            "easing": "easeOutExpo"
           },
-          "description": "Voice hits 'spending over $320 billion a year'. Hero counter spins up rapidly to $320B+ CAPEX in 1.2s."
+          "description": "Archetype: 01: Proportional Scale & Caliper Chasm. Left Pillar dark slate bar stub rises at t+5.60s (5.60s global) as voice says 'Between 2025 and 2026'. Rendered inside <Node ref={camera}>."
         },
         {
           "cue_id": "v_01_04",
-          "time_offset_seconds": 15.34,
-          "absolute_timestamp_seconds": 15.34,
-          "action": "ENTRY_SLIDE_BOTTOM",
-          "target": "card_b",
+          "time_offset_seconds": 8.2,
+          "absolute_timestamp_seconds": 8.2,
+          "action": "BADGE_PULSE_SEQUENCE",
+          "target": "bigtech_capex_badge",
+          "diagram_archetype": "01: Proportional Scale & Caliper Chasm",
+          "camera_node_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)",
+          "matched_spoken_phrase": "Microsoft, Meta, Google, and Amazon",
           "parameters": {
-            "card_slot": 1,
-            "logo": "openai_logo.png",
-            "sub_tag": "PURE SOFTWARE ARR",
-            "duration": 0.6,
-            "easing": "easeOutBack"
+            "badge": "bigtech_capex_badge.png",
+            "scale": [
+              1.15,
+              1.0
+            ],
+            "duration": 0.45,
+            "easing": "easeOutExpo"
           },
-          "description": "Voice shifts: 'Yet according to Sequoia's famous $600 billion formula...'. Card B slides into position in slot 1."
+          "description": "Archetype: 01: Proportional Scale & Caliper Chasm. Big Tech corporate emblems badge pops in over Left Pillar at t+8.20s (8.20s global) as voice lists 'Microsoft, Meta, Google, and Amazon'. Rendered inside <Node ref={camera}>."
         },
         {
           "cue_id": "v_01_05",
-          "time_offset_seconds": 20.82,
-          "absolute_timestamp_seconds": 20.82,
-          "action": "FAST_COUNTER_TRIGGER",
-          "target": "card_b_hero_number",
+          "time_offset_seconds": 10.6,
+          "absolute_timestamp_seconds": 10.6,
+          "action": "FAST_COUNTER_ROCKET",
+          "target": "capex_hero_pillar",
+          "diagram_archetype": "01: Proportional Scale & Caliper Chasm",
+          "camera_node_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)",
+          "matched_spoken_phrase": "spending over $320 billion a year",
           "parameters": {
-            "start_value": 0,
-            "end_value": 45,
-            "prefix": "<$",
-            "suffix": "B ARR",
-            "counter_duration": 0.9,
-            "color": "#FF3B00",
-            "easing": "easeOutQuad"
+            "start_value": 50,
+            "end_value": 320,
+            "prefix": "$",
+            "suffix": "B/YR",
+            "duration": 2.0,
+            "easing": "easeOutExpo"
           },
-          "description": "Voice articulates 'earns less than forty-five billion'. Fast counter locks in <$45B ARR in warning red."
+          "description": "Archetype: 01: Proportional Scale & Caliper Chasm. Left Pillar rockets up to max height ($320B/YR AI CAPEX) at t+10.60s (10.60s global) as voice hits 'spending over three hundred and twenty billion dollars a year'. Rendered inside <Node ref={camera}>."
         },
         {
           "cue_id": "v_01_06",
-          "time_offset_seconds": 23.82,
-          "absolute_timestamp_seconds": 23.82,
-          "action": "STAMP_LOCK_IMPACT",
-          "target": "delta_callout_banner",
+          "time_offset_seconds": 15.2,
+          "absolute_timestamp_seconds": 15.2,
+          "action": "PILLAR_GROWTH_FORMULA",
+          "target": "sequoia_req_pillar",
+          "diagram_archetype": "01: Proportional Scale & Caliper Chasm",
+          "camera_node_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)",
+          "matched_spoken_phrase": "according to Sequoia's famous $600 billion formula",
           "parameters": {
-            "text": "-$555B REVENUE DEFICIT (SEQUOIA FORMULA)",
-            "color": "#FF3B00",
-            "stamp_scale": [1.15, 1.0],
-            "duration": 0.35,
-            "easing": "easeOutBounce"
+            "focalId": 2,
+            "start_value": 320,
+            "end_value": 600,
+            "prefix": "$",
+            "suffix": "B REQ REV",
+            "duration": 2.1,
+            "easing": "easeOutExpo"
           },
-          "description": "Voice delivers 'leaving a massive five-hundred-billion-dollar revenue chasm'. Forensic Delta Callout slams into divider."
+          "description": "Archetype: 01: Proportional Scale & Caliper Chasm. Center dashed requirement pillar towers up to $600B at t+15.20s (15.20s global) as voice articulates 'according to Sequoia's famous six-hundred-billion-dollar formula'. Rendered inside <Node ref={camera}>."
+        },
+        {
+          "cue_id": "v_01_07",
+          "time_offset_seconds": 19.0,
+          "absolute_timestamp_seconds": 19.0,
+          "action": "ENTRY_REVEAL_PILLAR",
+          "target": "pure_ai_rev_pillar",
+          "diagram_archetype": "01: Proportional Scale & Caliper Chasm",
+          "camera_node_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)",
+          "matched_spoken_phrase": "all pure play AI software today earns less than $45 billion",
+          "parameters": {
+            "focalId": 3,
+            "val": "<$45B",
+            "sub_tag": "ACTUAL AI ARR",
+            "duration": 0.9,
+            "easing": "easeOutExpo"
+          },
+          "description": "Archetype: 01: Proportional Scale & Caliper Chasm. Right diminutive pillar reveals tiny <$45B actual pure AI software revenue at t+19.00s (19.00s global) as voice delivers 'all pure-play AI software today earns less than forty-five billion'. Rendered inside <Node ref={camera}>."
+        },
+        {
+          "cue_id": "v_01_08",
+          "time_offset_seconds": 21.8,
+          "absolute_timestamp_seconds": 21.8,
+          "action": "CALIPER_CHASM_STAMP",
+          "target": "revenue_chasm_caliper_badge",
+          "diagram_archetype": "01: Proportional Scale & Caliper Chasm",
+          "camera_node_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)",
+          "matched_spoken_phrase": "leaving a massive five-hundred-billion-dollar revenue chasm",
+          "parameters": {
+            "focalId": 4,
+            "text": "-$555B REVENUE CHASM",
+            "sub_text": "92% SHORTFALL VS CAPEX TARGET",
+            "color": "#FF3B00",
+            "duration": 0.7,
+            "hold_until": 26.38
+          },
+          "description": "Archetype: 01: Proportional Scale & Caliper Chasm. Red Caliper brackets the chasm between $600B and $45B while -$555B REVENUE CHASM badge slams into place at t+21.80s (21.80s global). Holds until scene cut at 26.38s. Rendered inside <Node ref={camera}>."
         }
-      ]
+      ],
+      "diagram_archetype": "01: Proportional Scale & Caliper Chasm",
+      "camera_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)"
     },
     {
       "beat_id": "beat_02",
@@ -269,111 +337,131 @@
       "visual_cues": [
         {
           "cue_id": "v_02_01",
-          "time_offset_seconds": 0.0,
-          "absolute_timestamp_seconds": 26.38,
-          "action": "SCENE_HEADER_TRANSITION",
-          "target": "beat_header_and_card_a",
+          "time_offset_seconds": 0.4,
+          "absolute_timestamp_seconds": 26.78,
+          "action": "STATION_POP_IN",
+          "target": "station_a_hyperscaler",
+          "diagram_archetype": "02: Closed-Loop Orthogonal Conduit",
+          "camera_node_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)",
+          "matched_spoken_phrase": "Why does cloud revenue look so booming anyway?",
           "parameters": {
-            "title": "02 // ROUND-TRIP REVENUE",
-            "card_slot": 0,
-            "logo": "aws_azure_badge.png",
-            "sub_tag": "AZURE CLOUD REV",
-            "duration": 0.5,
-            "easing": "easeInOutCubic"
+            "focalId": 1,
+            "station": "Station A: Big Tech Cloud Hub",
+            "sub": "MICROSOFT AZURE / AWS",
+            "badge": "aws_azure_badge.png",
+            "metric": "+29% Y/Y GROWTH",
+            "duration": 0.6
           },
-          "description": "Scene transitions to Beat 2. Title updates; Card A enters with AWS/Azure dual cloud badge."
+          "description": "Archetype: 02: Closed-Loop Orthogonal Conduit. Station A (Big Tech Cloud Hub) pops into place at t+0.40s (26.78s global) showing +29% Y/Y GROWTH as voice asks 'Why does cloud revenue look so booming anyway?'. Rendered inside <Node ref={camera}>."
         },
         {
           "cue_id": "v_02_02",
-          "time_offset_seconds": 1.0,
-          "absolute_timestamp_seconds": 27.38,
-          "action": "METRIC_REVEAL_VECTOR",
-          "target": "card_a_hero_number",
+          "time_offset_seconds": 3.2,
+          "absolute_timestamp_seconds": 29.58,
+          "action": "ALERT_STAMP_LOCK",
+          "target": "round_tripping_verdict_badge",
+          "diagram_archetype": "02: Closed-Loop Orthogonal Conduit",
+          "camera_node_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)",
+          "matched_spoken_phrase": "Because of a Wall Street illusion called round-tripping",
           "parameters": {
-            "text": "+29% GROWTH",
-            "color": "#1B8354",
-            "vector_icon": "UPWARD_TREND_ARROW",
-            "duration": 0.8,
-            "easing": "easeOutQuad"
+            "focalId": 3,
+            "text": "ROUND-TRIPPING",
+            "sub_text": "ZERO EXTERNAL CASH FLOW",
+            "duration": 0.55
           },
-          "description": "Voice asks 'Why does cloud revenue look so booming anyway?'. Card A hero metric reveals +29% GROWTH in institutional green."
+          "description": "Archetype: 02: Closed-Loop Orthogonal Conduit. Central ROUND-TRIPPING warning badge stamps down between nodes at t+3.20s (29.58s global) as voice explains 'Because of a Wall Street illusion called round-tripping'. Rendered inside <Node ref={camera}>."
         },
         {
           "cue_id": "v_02_03",
-          "time_offset_seconds": 4.58,
-          "absolute_timestamp_seconds": 30.96,
-          "action": "GLOW_SHIFT_WARNING",
-          "target": "card_a_border",
+          "time_offset_seconds": 6.2,
+          "absolute_timestamp_seconds": 32.58,
+          "action": "STATION_POP_IN",
+          "target": "station_b_ai_labs",
+          "diagram_archetype": "02: Closed-Loop Orthogonal Conduit",
+          "camera_node_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)",
+          "matched_spoken_phrase": "Hyperscalers invest tens of billions into AI labs like OpenAI and Anthropic",
           "parameters": {
-            "color_from": "#1B8354",
-            "color_to": "#D97706",
-            "duration": 0.6,
-            "easing": "easeOutQuad"
+            "focalId": 2,
+            "station": "Station B: Frontier AI Labs",
+            "sub": "OPENAI / ANTHROPIC",
+            "badge": "openai_logo.png",
+            "metric": "VENTURE EQUITY STAKES",
+            "duration": 0.6
           },
-          "description": "Voice hits 'Because of a Wall Street illusion called round-tripping'. Card A border shifts from green to cautionary amber."
+          "description": "Archetype: 02: Closed-Loop Orthogonal Conduit. Station B (Frontier AI Labs Hub) deploys at t+6.20s (32.58s global) as voice states 'Hyperscalers invest tens of billions into AI labs like OpenAI and Anthropic'. Rendered inside <Node ref={camera}>."
         },
         {
           "cue_id": "v_02_04",
-          "time_offset_seconds": 6.9,
-          "absolute_timestamp_seconds": 33.28,
-          "action": "ENTRY_SLIDE_BOTTOM",
-          "target": "card_b",
+          "time_offset_seconds": 8.6,
+          "absolute_timestamp_seconds": 34.98,
+          "action": "ORTHOGONAL_CONDUIT_DRAW",
+          "target": "outbound_conduit_pipe",
+          "diagram_archetype": "02: Closed-Loop Orthogonal Conduit",
+          "camera_node_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)",
+          "matched_spoken_phrase": "not just in cash",
           "parameters": {
-            "card_slot": 1,
-            "logo": "openai_logo.png",
-            "sub_tag": "CIRCULAR CREDITS",
-            "duration": 0.6,
-            "easing": "easeOutBack"
+            "from": "Station A",
+            "to": "Station B",
+            "duration": 1.4,
+            "easing": "easeInOutCubic"
           },
-          "description": "Voice: 'Hyperscalers invest tens of billions into AI labs like OpenAI and Anthropic...'. Card B slides into slot 1."
+          "description": "Archetype: 02: Closed-Loop Orthogonal Conduit. Upper orthogonal conduit pipe draws with dashed flow from Station A towards Station B at t+8.60s (34.98s global). Rendered inside <Node ref={camera}>."
         },
         {
           "cue_id": "v_02_05",
-          "time_offset_seconds": 11.82,
-          "absolute_timestamp_seconds": 38.2,
-          "action": "FAST_COUNTER_TRIGGER",
-          "target": "card_b_hero_number",
+          "time_offset_seconds": 11.2,
+          "absolute_timestamp_seconds": 37.58,
+          "action": "CONDUIT_BADGE_POP",
+          "target": "compute_credits_badge",
+          "diagram_archetype": "02: Closed-Loop Orthogonal Conduit",
+          "camera_node_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)",
+          "matched_spoken_phrase": "but in cloud compute credits",
           "parameters": {
-            "start_value": 0,
-            "end_value": 13,
-            "prefix": "$",
-            "suffix": "B FUNDED",
-            "counter_duration": 1.1,
-            "easing": "easeOutQuad"
+            "focalId": 4,
+            "text": "$20B+ COMPUTE CREDITS",
+            "color": "#D97706",
+            "duration": 0.55
           },
-          "description": "Voice clarifies 'not just in cash, but in cloud compute credits'. Card B counter ramps to $13B FUNDED with credit token icons."
+          "description": "Archetype: 02: Closed-Loop Orthogonal Conduit. Gold $20B+ COMPUTE CREDITS badge pops in on the outbound pipe at t+11.20s (37.58s global) as voice stresses 'not just in cash, but in cloud compute credits'. Rendered inside <Node ref={camera}>."
         },
         {
           "cue_id": "v_02_06",
-          "time_offset_seconds": 14.42,
-          "absolute_timestamp_seconds": 40.8,
-          "action": "RECIRCULATION_FLOW_ANIMATION",
-          "target": "connector_vector_arc",
+          "time_offset_seconds": 13.7,
+          "absolute_timestamp_seconds": 40.08,
+          "action": "RETURN_CONDUIT_DRAW",
+          "target": "inbound_conduit_pipe",
+          "diagram_archetype": "02: Closed-Loop Orthogonal Conduit",
+          "camera_node_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)",
+          "matched_spoken_phrase": "When those startups burn those credits training models on Azure or AWS",
           "parameters": {
-            "from_slot": 1,
-            "to_slot": 0,
-            "dash_array": [12, 6],
-            "speed": 1.5,
-            "duration": 3.4
+            "from": "Station B",
+            "to": "Station A",
+            "duration": 1.4,
+            "easing": "easeInOutCubic"
           },
-          "description": "Voice explains 'When those startups burn those credits training models on Azure or AWS...'. Animated curved arc traces credits flowing back into Card A."
+          "description": "Archetype: 02: Closed-Loop Orthogonal Conduit. Lower orthogonal return conduit traces back from Station B into Station A at t+13.70s (40.08s global) as voice says 'When those startups burn those credits training models on Azure or AWS'. Rendered inside <Node ref={camera}>."
         },
         {
           "cue_id": "v_02_07",
-          "time_offset_seconds": 18.42,
-          "absolute_timestamp_seconds": 44.8,
-          "action": "STAMP_LOCK_IMPACT",
-          "target": "delta_callout_banner",
+          "time_offset_seconds": 16.8,
+          "absolute_timestamp_seconds": 43.18,
+          "action": "LOOP_CLOSURE_ALERT",
+          "target": "rebooked_cloud_rev_badge",
+          "diagram_archetype": "02: Closed-Loop Orthogonal Conduit",
+          "camera_node_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)",
+          "matched_spoken_phrase": "Big Tech books its own investment right back as cloud revenue",
           "parameters": {
-            "text": "ASC 606 CIRCULAR REVENUE LOOP",
-            "color": "#FF3B00",
-            "stamp_scale": [1.1, 1.0],
-            "duration": 0.35,
-            "easing": "easeOutBounce"
+            "focalId": 5,
+            "text": "100% RE-BOOKED AS CLOUD REVENUE",
+            "hubAStroke": "#FF3B00",
+            "duration": 0.6,
+            "hold_until": 47.65
           },
-          "description": "Voice concludes 'Big Tech books its own investment right back as cloud revenue'. Forensic Accounting Stamp locks onto the circuit."
+          "description": "Archetype: 02: Closed-Loop Orthogonal Conduit. Return conduit locks with '100% RE-BOOKED AS CLOUD REVENUE' badge at t+16.80s (43.18s global), turning Station A border alert red. Diagram holds until 47.65s. Rendered inside <Node ref={camera}>."
         }
-      ]
+      ],
+      "diagram_archetype": "02: Closed-Loop Orthogonal Conduit",
+      "camera_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)"
     },
     {
       "beat_id": "beat_03",
@@ -431,95 +519,139 @@
       "visual_cues": [
         {
           "cue_id": "v_03_01",
-          "time_offset_seconds": 0.0,
-          "absolute_timestamp_seconds": 47.65,
-          "action": "SCENE_HEADER_TRANSITION",
-          "target": "beat_header_and_card_a",
+          "time_offset_seconds": 0.3,
+          "absolute_timestamp_seconds": 47.95,
+          "action": "TRACK_HEADER_FADE",
+          "target": "track_1_accounting_schedule",
+          "diagram_archetype": "03: Dual-Axis Parallel Timeline & Wall",
+          "camera_node_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)",
+          "matched_spoken_phrase": "The real time bomb sits on the balance sheet",
           "parameters": {
-            "title": "03 // THE DEPRECIATION CLOCK",
-            "card_slot": 0,
-            "logo": "bigtech_capex_badge.png",
-            "sub_tag": "10-K USEFUL LIFE",
-            "duration": 0.5,
-            "easing": "easeInOutCubic"
+            "focalId": 1,
+            "title": "10-K ACCOUNTING SCHEDULE",
+            "badge": "bigtech_capex_badge.png",
+            "duration": 0.5
           },
-          "description": "Scene cuts to Beat 3. Spoken: 'The real time bomb sits on the balance sheet'. Card A enters with 10-K Useful Life label."
+          "description": "Archetype: 03: Dual-Axis Parallel Timeline & Wall. Upper Track 1 (10-K Accounting Schedule rail & 6-year markers) fades in at t+0.30s (47.95s global) as voice states 'The real time bomb sits on the balance sheet'. Rendered inside <Node ref={camera}>."
         },
         {
           "cue_id": "v_03_02",
-          "time_offset_seconds": 3.17,
-          "absolute_timestamp_seconds": 50.82,
-          "action": "METRIC_REVEAL_PILL",
-          "target": "card_a_hero_number",
+          "time_offset_seconds": 2.8,
+          "absolute_timestamp_seconds": 50.45,
+          "action": "TIMELINE_FILL_SEGMENT",
+          "target": "acct_progress_bar_yr3",
+          "diagram_archetype": "03: Dual-Axis Parallel Timeline & Wall",
+          "camera_node_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)",
+          "matched_spoken_phrase": "Tech giants stretch their server depreciation",
           "parameters": {
-            "text": "6-YR SCHEDULE",
-            "secondary_tag": "+$10.8B EPS BOOST",
-            "duration": 0.8,
-            "easing": "easeOutQuad"
+            "progress": 0.5,
+            "to_year": "YR 3",
+            "duration": 1.2
           },
-          "description": "Voice explains 'Tech giants stretch their server depreciation schedules to six full years to keep quarterly profits looking high'. Card A locks in 6-YR SCHEDULE."
+          "description": "Archetype: 03: Dual-Axis Parallel Timeline & Wall. Track 1 gold depreciation bar fills to standard Year 3 at t+2.80s (50.45s global) as voice begins 'Tech giants stretch their server depreciation'. Rendered inside <Node ref={camera}>."
         },
         {
           "cue_id": "v_03_03",
-          "time_offset_seconds": 9.11,
-          "absolute_timestamp_seconds": 56.76,
-          "action": "ENTRY_SLIDE_BOTTOM",
-          "target": "card_b",
+          "time_offset_seconds": 5.0,
+          "absolute_timestamp_seconds": 52.65,
+          "action": "TIMELINE_STRETCH_FULL",
+          "target": "acct_progress_bar_yr6",
+          "diagram_archetype": "03: Dual-Axis Parallel Timeline & Wall",
+          "camera_node_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)",
+          "matched_spoken_phrase": "schedules to six full years",
           "parameters": {
-            "card_slot": 1,
-            "logo": "nvidia_logo.png",
-            "sub_tag": "SILICON OBSOLETE",
-            "duration": 0.6,
-            "easing": "easeOutBack"
+            "progress": 1.0,
+            "to_year": "YR 6",
+            "duration": 1.3
           },
-          "description": "Voice turns: 'But Nvidia launches a new GPU architecture...'. Card B drops in with Nvidia green spiral."
+          "description": "Archetype: 03: Dual-Axis Parallel Timeline & Wall. Track 1 bar artificially stretches from Year 3 all the way to Year 6 at t+5.00s (52.65s global) as voice says 'schedules to six full years'. Rendered inside <Node ref={camera}>."
         },
         {
           "cue_id": "v_03_04",
-          "time_offset_seconds": 11.19,
-          "absolute_timestamp_seconds": 58.84,
-          "action": "FAST_COUNTER_TRIGGER",
-          "target": "card_b_hero_number",
+          "time_offset_seconds": 6.3,
+          "absolute_timestamp_seconds": 53.95,
+          "action": "SCHEDULE_BADGE_POP",
+          "target": "stretched_schedule_badge",
+          "diagram_archetype": "03: Dual-Axis Parallel Timeline & Wall",
+          "camera_node_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)",
+          "matched_spoken_phrase": "to keep quarterly profits looking high",
           "parameters": {
-            "text": "12-MO CADENCE",
-            "color": "#FF3B00",
-            "duration": 0.7,
-            "easing": "easeOutQuad"
+            "text": "STRETCHED TO 6.0 YRS",
+            "sub_text": "+$10.8B COMBINED EPS BOOST",
+            "duration": 0.4
           },
-          "description": "Voice articulates '...every twelve to twenty-four months'. Card B hero metric triggers 12-MO CADENCE in high contrast."
+          "description": "Archetype: 03: Dual-Axis Parallel Timeline & Wall. 'STRETCHED TO 6.0 YRS (+ $10.8B EPS BOOST)' badge stamps over Year 6 at t+6.30s (53.95s global) as voice delivers 'to keep quarterly profits looking high'. Rendered inside <Node ref={camera}>."
         },
         {
           "cue_id": "v_03_05",
-          "time_offset_seconds": 12.97,
-          "absolute_timestamp_seconds": 60.62,
-          "action": "CHIP_ROADMAP_PULSE",
-          "target": "silicon_timeline_display",
+          "time_offset_seconds": 8.9,
+          "absolute_timestamp_seconds": 56.55,
+          "action": "TRACK_HEADER_FADE",
+          "target": "track_2_gpu_silicon",
+          "diagram_archetype": "03: Dual-Axis Parallel Timeline & Wall",
+          "camera_node_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)",
+          "matched_spoken_phrase": "But Nvidia launches a new GPU architecture",
           "parameters": {
-            "nodes": [
-              { "name": "Hopper", "power": "700W", "status": "OBSOLETE" },
-              { "name": "Blackwell", "power": "1200W", "status": "CURRENT" },
-              { "name": "Rubin", "power": "HBM4", "status": "IMPENDING" }
-            ],
-            "duration": 2.9
+            "focalId": 2,
+            "title": "GPU SILICON LIFESPAN (CADENCE)",
+            "badge": "nvidia_logo.png",
+            "duration": 0.5
           },
-          "description": "Voice: 'When Blackwell and Rubin make older chips too power-hungry to run economically...'. Architecture timeline flashes megawatt penalty."
+          "description": "Archetype: 03: Dual-Axis Parallel Timeline & Wall. Lower Track 2 (GPU Silicon Lifespan) fades in at t+8.90s (56.55s global) as voice shifts 'But Nvidia launches a new GPU architecture'. Rendered inside <Node ref={camera}>."
         },
         {
           "cue_id": "v_03_06",
-          "time_offset_seconds": 17.27,
-          "absolute_timestamp_seconds": 64.92,
-          "action": "STAMP_LOCK_IMPACT",
-          "target": "delta_callout_banner",
+          "time_offset_seconds": 10.8,
+          "absolute_timestamp_seconds": 58.45,
+          "action": "CADENCE_BAR_RACE",
+          "target": "gpu_silicon_bar",
+          "diagram_archetype": "03: Dual-Axis Parallel Timeline & Wall",
+          "camera_node_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)",
+          "matched_spoken_phrase": "every twelve to twenty-four months",
           "parameters": {
-            "text": "ASC 360 IMPAIRMENT RISK (WATTS/TOKEN)",
-            "color": "#FF3B00",
-            "card_a_border_crack": true,
-            "duration": 0.35,
-            "easing": "easeOutBounce"
+            "to_year": "YR 2",
+            "duration": 1.3
           },
-          "description": "Voice delivers 'hundreds of billions in silicon face sudden write-downs'. Forensic Impairment Stamp locks in; Card A border cracks red."
+          "description": "Archetype: 03: Dual-Axis Parallel Timeline & Wall. Track 2 red silicon bar races forward and stops dead at Year 2 at t+10.80s (58.45s global) as voice says 'every twelve to twenty-four months'. Rendered inside <Node ref={camera}>."
+        },
+        {
+          "cue_id": "v_03_07",
+          "time_offset_seconds": 13.0,
+          "absolute_timestamp_seconds": 60.65,
+          "action": "OBSOLESCENCE_WALL_DROP",
+          "target": "red_obsolescence_wall",
+          "diagram_archetype": "03: Dual-Axis Parallel Timeline & Wall",
+          "camera_node_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)",
+          "matched_spoken_phrase": "When Blackwell and Rubin make older chips too power-hungry to run economically",
+          "parameters": {
+            "wall_x": "YR 2",
+            "color": "#FF3B00",
+            "lineWidth": 4,
+            "duration": 0.7
+          },
+          "description": "Archetype: 03: Dual-Axis Parallel Timeline & Wall. Heavy vertical Red Obsolescence Wall slams down at Year 2 at t+13.00s (60.65s global) as voice warns 'When Blackwell and Rubin make older chips too power-hungry to run economically'. Rendered inside <Node ref={camera}>."
+        },
+        {
+          "cue_id": "v_03_08",
+          "time_offset_seconds": 15.8,
+          "absolute_timestamp_seconds": 63.45,
+          "action": "WRITEDOWN_GAP_CALIPER",
+          "target": "unamortized_gap_badge",
+          "diagram_archetype": "03: Dual-Axis Parallel Timeline & Wall",
+          "camera_node_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)",
+          "matched_spoken_phrase": "hundreds of billions in silicon face sudden write-downs",
+          "parameters": {
+            "focalId": 3,
+            "text": "4 UNUSED YRS = $100B+ WRITE-DOWNS",
+            "gap_span": "YR 2 to YR 6",
+            "duration": 0.6,
+            "hold_until": 67.64
+          },
+          "description": "Archetype: 03: Dual-Axis Parallel Timeline & Wall. Horizontal gap caliper and '4 UNUSED YRS = $100B+ WRITE-DOWNS' callout badge seal the unamortized gap at t+15.80s (63.45s global). Diagram holds until 67.64s. Rendered inside <Node ref={camera}>."
         }
-      ]
+      ],
+      "diagram_archetype": "03: Dual-Axis Parallel Timeline & Wall",
+      "camera_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)"
     },
     {
       "beat_id": "beat_04",
@@ -571,82 +703,125 @@
       "visual_cues": [
         {
           "cue_id": "v_04_01",
-          "time_offset_seconds": 0.0,
-          "absolute_timestamp_seconds": 67.64,
-          "action": "SCENE_HEADER_TRANSITION",
-          "target": "beat_header_and_card_a",
+          "time_offset_seconds": 0.4,
+          "absolute_timestamp_seconds": 68.04,
+          "action": "AXES_GRID_FADE",
+          "target": "asset_retention_axes",
+          "diagram_archetype": "04: Quantitative Asset Decay Slope",
+          "camera_node_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)",
+          "matched_spoken_phrase": "Is this just the year-two-thousand telecom crash all over again?",
           "parameters": {
-            "title": "04 // 2000 TELECOM VS 2026 AI",
-            "card_slot": 0,
-            "logo": "telecom_fiber_icon.png",
-            "sub_tag": "2000 DARK FIBER",
-            "duration": 0.5,
-            "easing": "easeInOutCubic"
+            "focalId": 1,
+            "y_label": "ECONOMIC UTILITY (100% -> 0%)",
+            "x_label": "USEFUL LIFESPAN (YEARS: 0 -> 25+)",
+            "duration": 0.6
           },
-          "description": "Scene transitions to Beat 4. Spoken: 'Is this just the year-two-thousand telecom crash all over again? Not quite'. Card A enters with Telecom Cisco bridge icon."
+          "description": "Archetype: 04: Quantitative Asset Decay Slope. Quantitative Cartesian axes (Y: 100%->0% Utility, X: 0->25 Yrs) fade in at t+0.40s (68.04s global) as voice asks 'Is this just the year-two-thousand telecom crash all over again?'. Rendered inside <Node ref={camera}>."
         },
         {
           "cue_id": "v_04_02",
-          "time_offset_seconds": 4.5,
-          "absolute_timestamp_seconds": 72.14,
-          "action": "FAST_COUNTER_TRIGGER",
-          "target": "card_a_hero_number",
+          "time_offset_seconds": 2.8,
+          "absolute_timestamp_seconds": 70.44,
+          "action": "CURVE_BADGE_POP",
+          "target": "dark_fiber_badge",
+          "diagram_archetype": "04: Quantitative Asset Decay Slope",
+          "camera_node_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)",
+          "matched_spoken_phrase": "Not quite",
           "parameters": {
-            "start_value": 0,
-            "end_value": 25,
-            "suffix": "-YR LIFE",
-            "counter_duration": 1.0,
-            "easing": "easeOutQuad"
+            "text": "2000 DARK FIBER: 25-YR GLASS",
+            "badge": "telecom_fiber_icon.png",
+            "duration": 0.4
           },
-          "description": "Voice: 'In two thousand, telecoms used junk debt to lay dark fiber cables that lasted twenty-five years in the ground'. Hero counter resolves to 25-YR LIFE."
+          "description": "Archetype: 04: Quantitative Asset Decay Slope. '2000 DARK FIBER: 25-YR GLASS' header badge pops in at t+2.80s (70.44s global) on the pattern interrupt 'Not quite'. Rendered inside <Node ref={camera}>."
         },
         {
           "cue_id": "v_04_03",
-          "time_offset_seconds": 10.6,
-          "absolute_timestamp_seconds": 78.24,
-          "action": "ENTRY_SLIDE_BOTTOM",
-          "target": "card_b",
+          "time_offset_seconds": 5.3,
+          "absolute_timestamp_seconds": 72.94,
+          "action": "DEBT_TAG_POP",
+          "target": "junk_debt_pill",
+          "diagram_archetype": "04: Quantitative Asset Decay Slope",
+          "camera_node_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)",
+          "matched_spoken_phrase": "In two thousand, telecoms used junk debt",
           "parameters": {
-            "card_slot": 1,
-            "logo": "nvidia_logo.png",
-            "sub_tag": "2026 AI SILICON",
-            "badge_icon": "CASH_FLOW_FORTRESS",
-            "duration": 0.6,
-            "easing": "easeOutBack"
+            "text": "FUNDED BY JUNK DEBT",
+            "color": "#D97706",
+            "duration": 0.4
           },
-          "description": "Voice: 'Today's tech giants are funding AI out of massive cash flows...'. Card B slides into slot 1 with cash flow shield emblem."
+          "description": "Archetype: 04: Quantitative Asset Decay Slope. Gold 'FUNDED BY JUNK DEBT' funding tag pops in at t+5.30s (72.94s global) as voice notes 'In two thousand, telecoms used junk debt'. Rendered inside <Node ref={camera}>."
         },
         {
           "cue_id": "v_04_04",
-          "time_offset_seconds": 13.82,
-          "absolute_timestamp_seconds": 81.46,
-          "action": "DECAY_PULSE_ANIMATION",
-          "target": "card_b_hero_number",
+          "time_offset_seconds": 7.0,
+          "absolute_timestamp_seconds": 74.64,
+          "action": "CURVE_DRAW_PERMANENT",
+          "target": "fiber_asset_line",
+          "diagram_archetype": "04: Quantitative Asset Decay Slope",
+          "camera_node_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)",
+          "matched_spoken_phrase": "to lay dark fiber cables that lasted twenty-five years in the ground",
           "parameters": {
-            "text": "3-YR DECAY",
-            "color": "#FF3B00",
-            "heat_ripple_effect": true,
-            "duration": 0.8,
-            "easing": "easeOutQuad"
+            "stroke": "#1B8354",
+            "lineWidth": 8,
+            "span": "0 to 25 Years",
+            "duration": 1.5
           },
-          "description": "Voice hits '...but they are buying fast-rotting GPUs that lose value in just three years'. Card B displays 3-YR DECAY with thermal heat ripple effect."
+          "description": "Archetype: 04: Quantitative Asset Decay Slope. Resilient green fiber curve maintains 100% flat retention across the full 25-year horizon at t+7.00s (74.64s global) as voice states 'to lay dark fiber cables that lasted twenty-five years in the ground'. Rendered inside <Node ref={camera}>."
         },
         {
           "cue_id": "v_04_05",
-          "time_offset_seconds": 16.0,
-          "absolute_timestamp_seconds": 83.64,
-          "action": "STAMP_LOCK_IMPACT",
-          "target": "delta_callout_banner",
+          "time_offset_seconds": 10.0,
+          "absolute_timestamp_seconds": 77.64,
+          "action": "CASH_TAG_POP",
+          "target": "cash_flow_shield_pill",
+          "diagram_archetype": "04: Quantitative Asset Decay Slope",
+          "camera_node_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)",
+          "matched_spoken_phrase": "Today's tech giants are funding AI out of massive cash flows",
           "parameters": {
-            "text": "DECAYING SILICON VS PERMANENT GLASS",
-            "color": "#FF3B00",
-            "stamp_scale": [1.1, 1.0],
-            "duration": 0.35,
-            "easing": "easeOutBounce"
+            "focalId": 2,
+            "text": "CASH-FLOW FUNDED • FAST DECAY",
+            "color": "#1B8354",
+            "duration": 0.4
           },
-          "description": "Central comparative stamp slams down: DECAYING SILICON VS PERMANENT GLASS."
+          "description": "Archetype: 04: Quantitative Asset Decay Slope. 'CASH-FLOW FUNDED • FAST DECAY' fortress tag pops in at t+10.00s (77.64s global) as voice explains 'Today's tech giants are funding AI out of massive cash flows'. Rendered inside <Node ref={camera}>."
+        },
+        {
+          "cue_id": "v_04_06",
+          "time_offset_seconds": 12.4,
+          "absolute_timestamp_seconds": 80.04,
+          "action": "CLIFF_CURVE_PLUNGE",
+          "target": "gpu_decay_line",
+          "diagram_archetype": "04: Quantitative Asset Decay Slope",
+          "camera_node_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)",
+          "matched_spoken_phrase": "but they are buying fast-rotting GPUs",
+          "parameters": {
+            "stroke": "#FF3B00",
+            "lineWidth": 8,
+            "cliff_target": "Year 3 (0% Utility)",
+            "duration": 1.2
+          },
+          "description": "Archetype: 04: Quantitative Asset Decay Slope. Red GPU asset curve plunges off a steep exponential cliff down to 0% at Year 3 at t+12.40s (80.04s global) as voice delivers 'but they are buying fast-rotting GPUs'. Rendered inside <Node ref={camera}>."
+        },
+        {
+          "cue_id": "v_04_07",
+          "time_offset_seconds": 13.9,
+          "absolute_timestamp_seconds": 81.54,
+          "action": "CLIFF_BADGE_STAMP",
+          "target": "thermal_cliff_badge",
+          "diagram_archetype": "04: Quantitative Asset Decay Slope",
+          "camera_node_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)",
+          "matched_spoken_phrase": "that lose value in just three years",
+          "parameters": {
+            "text": "2026 AI GPUS: 3-YR THERMAL CLIFF",
+            "badge": "nvidia_logo.png",
+            "color": "#FF3B00",
+            "duration": 0.45,
+            "hold_until": 85.0
+          },
+          "description": "Archetype: 04: Quantitative Asset Decay Slope. '2026 AI GPUS: 3-YR THERMAL CLIFF' callout badge seals at Year 3 at t+13.90s (81.54s global) as voice concludes 'that lose value in just three years'. Diagram holds until 85.00s. Rendered inside <Node ref={camera}>."
         }
-      ]
+      ],
+      "diagram_archetype": "04: Quantitative Asset Decay Slope",
+      "camera_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)"
     },
     {
       "beat_id": "beat_05",
@@ -698,82 +873,128 @@
       "visual_cues": [
         {
           "cue_id": "v_05_01",
-          "time_offset_seconds": 0.0,
-          "absolute_timestamp_seconds": 85.0,
-          "action": "SCENE_HEADER_TRANSITION",
-          "target": "beat_header_and_card_a",
+          "time_offset_seconds": 0.3,
+          "absolute_timestamp_seconds": 85.3,
+          "action": "STACK_CASCADE_ENTRY",
+          "target": "3tier_dependency_stack",
+          "diagram_archetype": "05: 3-Tier Architectural Dependency Stack",
+          "camera_node_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)",
+          "matched_spoken_phrase": "So what actually pops when the AI bubble deflates?",
           "parameters": {
-            "title": "05 // WHAT POPS VS SURVIVES",
-            "card_slot": 0,
-            "logo": "openai_logo.png",
-            "sub_tag": "THIN WRAPPERS",
-            "duration": 0.5,
-            "easing": "easeInOutCubic"
+            "focalId": 3,
+            "layers": [
+              "L1: Infrastructure (Bottom)",
+              "L2: Workflows (Middle)",
+              "L3: Wrappers (Top)"
+            ],
+            "arrows": true,
+            "duration": 0.6
           },
-          "description": "Final scene transition. Spoken: 'So what actually pops when the AI bubble deflates?'. Card A enters with Thin Wrappers sub-tag."
+          "description": "Archetype: 05: 3-Tier Architectural Dependency Stack. 3-tier architectural stack cascades onto screen with dependency arrows (L1 Utility/Physical -> L2 Systems of Record -> L3 API Consumers) at t+0.30s (85.30s global) as voice asks 'So what actually pops when the AI bubble deflates?'. Rendered inside <Node ref={camera}>."
         },
         {
           "cue_id": "v_05_02",
-          "time_offset_seconds": 3.46,
-          "absolute_timestamp_seconds": 88.46,
-          "action": "MARGIN_COLLAPSE_SLASH",
-          "target": "card_a_hero_number",
+          "time_offset_seconds": 3.4,
+          "absolute_timestamp_seconds": 88.4,
+          "action": "LAYER_VULNERABILITY_HIGHLIGHT",
+          "target": "layer_3_thin_wrappers",
+          "diagram_archetype": "05: 3-Tier Architectural Dependency Stack",
+          "camera_node_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)",
+          "matched_spoken_phrase": "generic chatbots on rented compute",
           "parameters": {
-            "text": "~0% MARGIN",
-            "color": "#FF3B00",
-            "liquidation_tag": true,
-            "diagonal_strike_line": true,
-            "duration": 0.8,
-            "easing": "easeOutQuad"
+            "badge": "RENTED COMPUTE",
+            "color": "#D97706",
+            "duration": 0.4
           },
-          "description": "Voice explains 'Overvalued wrapper startups selling generic chatbots on rented compute will get wiped out as model costs fall toward zero'. Metric drops to ~0% MARGIN with red liquidation slash."
+          "description": "Archetype: 05: 3-Tier Architectural Dependency Stack. Layer 3 (Top) badge updates to 'RENTED COMPUTE' in gold warning state at t+3.40s (88.40s global) as voice identifies 'Overvalued wrapper startups selling generic chatbots on rented compute'. Rendered inside <Node ref={camera}>."
         },
         {
           "cue_id": "v_05_03",
-          "time_offset_seconds": 9.94,
-          "absolute_timestamp_seconds": 94.94,
-          "action": "ENTRY_SLIDE_BOTTOM",
-          "target": "card_b",
+          "time_offset_seconds": 6.4,
+          "absolute_timestamp_seconds": 91.4,
+          "action": "LAYER_COMMODITIZATION_WIPEOUT",
+          "target": "layer_3_wipeout",
+          "diagram_archetype": "05: 3-Tier Architectural Dependency Stack",
+          "camera_node_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)",
+          "matched_spoken_phrase": "will get wiped out as model costs fall toward zero",
           "parameters": {
-            "card_slot": 1,
-            "logo": "aws_azure_badge.png",
-            "sub_tag": "POWER & MOATS",
-            "duration": 0.6,
-            "easing": "easeOutBack"
+            "badge": "90% WIPEOUT (COMMODITIZED)",
+            "color": "#FF3B00",
+            "duration": 0.4
           },
-          "description": "Voice transitions to the winners: 'Meanwhile, the real winners—power grid infrastructure and deep workflow automation...'. Card B deploys."
+          "description": "Archetype: 05: 3-Tier Architectural Dependency Stack. Layer 3 flips to alert red with '90% WIPEOUT (COMMODITIZED)' at t+6.40s (91.40s global) as voice explains 'will get wiped out as model costs fall toward zero'. Rendered inside <Node ref={camera}>."
         },
         {
           "cue_id": "v_05_04",
-          "time_offset_seconds": 13.46,
-          "absolute_timestamp_seconds": 98.46,
-          "action": "MOAT_METRIC_REVEAL",
-          "target": "card_b_hero_number",
+          "time_offset_seconds": 9.8,
+          "absolute_timestamp_seconds": 94.8,
+          "action": "STACK_FOCUS_SHIFT",
+          "target": "layers_1_and_2_expansion",
+          "diagram_archetype": "05: 3-Tier Architectural Dependency Stack",
+          "camera_node_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)",
+          "matched_spoken_phrase": "Meanwhile, the real winners",
           "parameters": {
-            "text": "100% SECURED",
-            "color": "#1B8354",
-            "shield_icon": "GRID_LOCK",
-            "duration": 0.8,
-            "easing": "easeOutQuad"
+            "l3_compress": 0.96,
+            "l2_expand": 1.0,
+            "l1_expand": 1.0,
+            "duration": 0.45
           },
-          "description": "Voice hits '...will buy up that discounted compute for pennies on the dollar'. Card B displays 100% SECURED in institutional green."
+          "description": "Archetype: 05: 3-Tier Architectural Dependency Stack. Layer 3 compresses slightly while foundation Layers 1 & 2 expand into primary focal clarity at t+9.80s (94.80s global) as voice introduces 'Meanwhile, the real winners'. Rendered inside <Node ref={camera}>."
         },
         {
           "cue_id": "v_05_05",
-          "time_offset_seconds": 15.5,
-          "absolute_timestamp_seconds": 100.5,
-          "action": "STAMP_LOCK_IMPACT",
-          "target": "delta_callout_banner",
+          "time_offset_seconds": 11.5,
+          "absolute_timestamp_seconds": 96.5,
+          "action": "MOAT_EMERALD_LOCK",
+          "target": "layer_1_power_grid",
+          "diagram_archetype": "05: 3-Tier Architectural Dependency Stack",
+          "camera_node_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)",
+          "matched_spoken_phrase": "power grid infrastructure",
           "parameters": {
-            "text": "DISCOUNTED COMPUTE RE-ALLOCATION",
+            "focalId": 1,
+            "badge": "UTILITY & CLOUD MOAT",
             "color": "#1B8354",
-            "stamp_scale": [1.1, 1.0],
-            "duration": 0.35,
-            "easing": "easeOutBounce"
+            "duration": 0.4
           },
-          "description": "Central verdict callout locks into place: DISCOUNTED COMPUTE RE-ALLOCATION. Scene holds until terminal video cut at 102.32s."
+          "description": "Archetype: 05: 3-Tier Architectural Dependency Stack. Layer 1 locks in with institutional green border and 'UTILITY & CLOUD MOAT' badge at t+11.50s (96.50s global) as voice articulates 'power grid infrastructure'. Rendered inside <Node ref={camera}>."
+        },
+        {
+          "cue_id": "v_05_06",
+          "time_offset_seconds": 13.0,
+          "absolute_timestamp_seconds": 98.0,
+          "action": "MOAT_EMERALD_LOCK",
+          "target": "layer_2_systems_of_record",
+          "diagram_archetype": "05: 3-Tier Architectural Dependency Stack",
+          "camera_node_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)",
+          "matched_spoken_phrase": "and deep workflow automation",
+          "parameters": {
+            "focalId": 2,
+            "badge": "ENDURING MOAT",
+            "color": "#1B8354",
+            "duration": 0.4
+          },
+          "description": "Archetype: 05: 3-Tier Architectural Dependency Stack. Layer 2 locks in with institutional green border and 'ENDURING MOAT' badge at t+13.00s (98.00s global) as voice states 'and deep workflow automation'. Rendered inside <Node ref={camera}>."
+        },
+        {
+          "cue_id": "v_05_07",
+          "time_offset_seconds": 14.2,
+          "absolute_timestamp_seconds": 99.2,
+          "action": "BARGAIN_INFRA_PULSE",
+          "target": "layer_1_discounted_compute",
+          "diagram_archetype": "05: 3-Tier Architectural Dependency Stack",
+          "camera_node_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)",
+          "matched_spoken_phrase": "will buy up that discounted compute for pennies on the dollar",
+          "parameters": {
+            "focalId": 1,
+            "badge": "DISCOUNTED INFRA ROI",
+            "duration": 0.4,
+            "hold_until": 102.32
+          },
+          "description": "Archetype: 05: 3-Tier Architectural Dependency Stack. Layer 1 pulses with 'DISCOUNTED INFRA ROI' badge at t+14.20s (99.20s global) as voice concludes 'will buy up that discounted compute for pennies on the dollar'. Holds until terminal video cut at 102.32s. Rendered inside <Node ref={camera}>."
         }
-      ]
+      ],
+      "diagram_archetype": "05: 3-Tier Architectural Dependency Stack",
+      "camera_wrapping": "Wrapped inside <Node ref={camera}> (Rule 1B: never bare <Camera>)"
     }
   ],
   "full_transcript": "Everyone calls AI a bubble, but almost nobody explains what is actually inflating. Between 2025 and 2026, Microsoft, Meta, Google, and Amazon are spending over three hundred and twenty billion dollars a year on AI data centers. Yet according to Sequoia's famous six-hundred-billion-dollar formula, all pure-play AI software today earns less than forty-five billion—leaving a massive five-hundred-billion-dollar revenue chasm. Why does cloud revenue look so booming anyway? Because of a Wall Street illusion called round-tripping. Hyperscalers invest tens of billions into AI labs like OpenAI and Anthropic—not just in cash, but in cloud compute credits. When those startups burn those credits training models on Azure or AWS, Big Tech books its own investment right back as cloud revenue. The real time bomb sits on the balance sheet. Tech giants stretch their server depreciation schedules to six full years to keep quarterly profits looking high. But Nvidia launches a new GPU architecture every twelve to twenty-four months. When Blackwell and Rubin make older chips too power-hungry to run economically, hundreds of billions in silicon face sudden write-downs. Is this just the year-two-thousand telecom crash all over again? Not quite. In two thousand, telecoms used junk debt to lay dark fiber cables that lasted twenty-five years in the ground. Today's tech giants are funding AI out of massive cash flows—but they are buying fast-rotting GPUs that lose value in just three years. So what actually pops when the AI bubble deflates? Overvalued wrapper startups selling generic chatbots on rented compute will get wiped out as model costs fall toward zero. Meanwhile, the real winners—power grid infrastructure and deep workflow automation—will buy up that discounted compute for pennies on the dollar.",

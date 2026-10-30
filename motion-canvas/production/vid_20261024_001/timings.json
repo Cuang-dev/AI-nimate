@@ -2564,10 +2564,10 @@
       ]
     },
     {
-      "text": "Under the UU HPP tax",
+      "text": "Under the UU HPP",
       "start": 16.36,
-      "end": 18.08,
-      "duration": 1.72,
+      "end": 17.68,
+      "duration": 1.32,
       "words": [
         {
           "w": "Under",
@@ -2583,20 +2583,20 @@
           "w": "UU HPP",
           "start": 16.78,
           "end": 17.68
-        },
-        {
-          "w": "tax",
-          "start": 17.68,
-          "end": 18.08
         }
       ]
     },
     {
-      "text": "law,",
-      "start": 18.08,
+      "text": "tax law,",
+      "start": 17.68,
       "end": 18.36,
-      "duration": 0.28,
+      "duration": 0.68,
       "words": [
+        {
+          "w": "tax",
+          "start": 17.68,
+          "end": 18.08
+        },
         {
           "w": "law,",
           "start": 18.08,
