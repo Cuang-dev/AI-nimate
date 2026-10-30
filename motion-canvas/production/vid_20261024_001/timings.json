@@ -1,0 +1,5641 @@
+{
+  "duration_seconds": 185.26,
+  "words": [
+    {
+      "w": "Sell",
+      "start": 0.0,
+      "end": 0.36
+    },
+    {
+      "w": "1",
+      "start": 0.36,
+      "end": 0.84
+    },
+    {
+      "w": "billion",
+      "start": 0.84,
+      "end": 1.1
+    },
+    {
+      "w": "rupiah",
+      "start": 1.1,
+      "end": 1.44
+    },
+    {
+      "w": "of",
+      "start": 1.44,
+      "end": 1.72
+    },
+    {
+      "w": "BCA",
+      "start": 1.72,
+      "end": 2.14
+    },
+    {
+      "w": "stock",
+      "start": 2.14,
+      "end": 2.46
+    },
+    {
+      "w": "on",
+      "start": 2.46,
+      "end": 2.72
+    },
+    {
+      "w": "the",
+      "start": 2.72,
+      "end": 2.82
+    },
+    {
+      "w": "IDX,",
+      "start": 2.82,
+      "end": 3.34
+    },
+    {
+      "w": "and",
+      "start": 3.74,
+      "end": 3.88
+    },
+    {
+      "w": "your",
+      "start": 3.88,
+      "end": 4.02
+    },
+    {
+      "w": "final",
+      "start": 4.02,
+      "end": 4.24
+    },
+    {
+      "w": "tax",
+      "start": 4.24,
+      "end": 4.52
+    },
+    {
+      "w": "is",
+      "start": 4.52,
+      "end": 4.8
+    },
+    {
+      "w": "0.1%",
+      "start": 4.8,
+      "end": 5.88
+    },
+    {
+      "w": "or",
+      "start": 5.88,
+      "end": 6.62
+    },
+    {
+      "w": "1",
+      "start": 6.62,
+      "end": 6.98
+    },
+    {
+      "w": "million",
+      "start": 6.98,
+      "end": 7.24
+    },
+    {
+      "w": "rupiah.",
+      "start": 7.24,
+      "end": 7.56
+    },
+    {
+      "w": "Done.",
+      "start": 7.86,
+      "end": 8.44
+    },
+    {
+      "w": "Sell",
+      "start": 9.3,
+      "end": 9.48
+    },
+    {
+      "w": "that",
+      "start": 9.48,
+      "end": 9.64
+    },
+    {
+      "w": "exact",
+      "start": 9.64,
+      "end": 9.88
+    },
+    {
+      "w": "same",
+      "start": 9.88,
+      "end": 10.24
+    },
+    {
+      "w": "gain",
+      "start": 10.24,
+      "end": 10.42
+    },
+    {
+      "w": "on",
+      "start": 10.42,
+      "end": 10.72
+    },
+    {
+      "w": "Apple,",
+      "start": 10.72,
+      "end": 11.08
+    },
+    {
+      "w": "or",
+      "start": 11.32,
+      "end": 11.4
+    },
+    {
+      "w": "the",
+      "start": 11.4,
+      "end": 11.52
+    },
+    {
+      "w": "S&P",
+      "start": 11.52,
+      "end": 11.8
+    },
+    {
+      "w": "500",
+      "start": 11.8,
+      "end": 12.2
+    },
+    {
+      "w": "from",
+      "start": 12.2,
+      "end": 12.52
+    },
+    {
+      "w": "Jakarta,",
+      "start": 12.52,
+      "end": 12.94
+    },
+    {
+      "w": "and",
+      "start": 13.38,
+      "end": 13.48
+    },
+    {
+      "w": "Indonesia's",
+      "start": 13.48,
+      "end": 14.16
+    },
+    {
+      "w": "worldwide",
+      "start": 14.16,
+      "end": 14.52
+    },
+    {
+      "w": "tax",
+      "start": 14.52,
+      "end": 14.86
+    },
+    {
+      "w": "rules",
+      "start": 14.86,
+      "end": 15.12
+    },
+    {
+      "w": "kick",
+      "start": 15.12,
+      "end": 15.38
+    },
+    {
+      "w": "in.",
+      "start": 15.38,
+      "end": 15.6
+    },
+    {
+      "w": "Under",
+      "start": 16.36,
+      "end": 16.6
+    },
+    {
+      "w": "the",
+      "start": 16.6,
+      "end": 16.78
+    },
+    {
+      "w": "UU HPP",
+      "start": 16.78,
+      "end": 17.68
+    },
+    {
+      "w": "tax",
+      "start": 17.68,
+      "end": 18.08
+    },
+    {
+      "w": "law,",
+      "start": 18.08,
+      "end": 18.36
+    },
+    {
+      "w": "offshore",
+      "start": 18.78,
+      "end": 18.98
+    },
+    {
+      "w": "capital",
+      "start": 18.98,
+      "end": 19.42
+    },
+    {
+      "w": "gains",
+      "start": 19.42,
+      "end": 19.68
+    },
+    {
+      "w": "are",
+      "start": 19.68,
+      "end": 19.92
+    },
+    {
+      "w": "ordinary",
+      "start": 19.92,
+      "end": 20.32
+    },
+    {
+      "w": "income.",
+      "start": 20.32,
+      "end": 20.72
+    },
+    {
+      "w": "Taxed",
+      "start": 21.28,
+      "end": 21.66
+    },
+    {
+      "w": "progressively",
+      "start": 21.66,
+      "end": 22.18
+    },
+    {
+      "w": "up",
+      "start": 22.18,
+      "end": 22.44
+    },
+    {
+      "w": "to",
+      "start": 22.44,
+      "end": 22.58
+    },
+    {
+      "w": "35%,",
+      "start": 22.58,
+      "end": 23.72
+    },
+    {
+      "w": "that's",
+      "start": 23.72,
+      "end": 24.44
+    },
+    {
+      "w": "a",
+      "start": 24.44,
+      "end": 24.5
+    },
+    {
+      "w": "350",
+      "start": 24.5,
+      "end": 25.3
+    },
+    {
+      "w": "times",
+      "start": 25.3,
+      "end": 25.9
+    },
+    {
+      "w": "tax",
+      "start": 25.9,
+      "end": 26.18
+    },
+    {
+      "w": "shock.",
+      "start": 26.18,
+      "end": 26.46
+    },
+    {
+      "w": "Most",
+      "start": 27.22,
+      "end": 27.74
+    },
+    {
+      "w": "Indonesian",
+      "start": 27.74,
+      "end": 28.2
+    },
+    {
+      "w": "investors",
+      "start": 28.2,
+      "end": 28.68
+    },
+    {
+      "w": "open",
+      "start": 28.68,
+      "end": 29.06
+    },
+    {
+      "w": "interactive",
+      "start": 29.06,
+      "end": 29.6
+    },
+    {
+      "w": "brokers,",
+      "start": 29.6,
+      "end": 29.98
+    },
+    {
+      "w": "Pluang,",
+      "start": 30.46,
+      "end": 30.72
+    },
+    {
+      "w": "or",
+      "start": 30.98,
+      "end": 31.06
+    },
+    {
+      "w": "go",
+      "start": 31.06,
+      "end": 31.28
+    },
+    {
+      "w": "trade",
+      "start": 31.28,
+      "end": 31.56
+    },
+    {
+      "w": "to",
+      "start": 31.56,
+      "end": 31.76
+    },
+    {
+      "w": "buy",
+      "start": 31.76,
+      "end": 31.9
+    },
+    {
+      "w": "direct",
+      "start": 31.9,
+      "end": 32.14
+    },
+    {
+      "w": "US",
+      "start": 32.14,
+      "end": 32.44
+    },
+    {
+      "w": "shares.",
+      "start": 32.9,
+      "end": 32.9
+    },
+    {
+      "w": "Filing",
+      "start": 33.4,
+      "end": 33.8
+    },
+    {
+      "w": "form",
+      "start": 33.8,
+      "end": 34.06
+    },
+    {
+      "w": "W-8BEN",
+      "start": 34.06,
+      "end": 34.92
+    },
+    {
+      "w": "cuts",
+      "start": 34.92,
+      "end": 35.12
+    },
+    {
+      "w": "US",
+      "start": 35.12,
+      "end": 35.46
+    },
+    {
+      "w": "dividend",
+      "start": 35.6,
+      "end": 35.72
+    },
+    {
+      "w": "withholding",
+      "start": 35.72,
+      "end": 36.38
+    },
+    {
+      "w": "from",
+      "start": 36.38,
+      "end": 36.52
+    },
+    {
+      "w": "30%",
+      "start": 36.52,
+      "end": 37.18
+    },
+    {
+      "w": "down",
+      "start": 37.18,
+      "end": 37.52
+    },
+    {
+      "w": "to",
+      "start": 37.52,
+      "end": 37.64
+    },
+    {
+      "w": "15%,",
+      "start": 37.64,
+      "end": 38.58
+    },
+    {
+      "w": "creditable",
+      "start": 38.58,
+      "end": 39.2
+    },
+    {
+      "w": "back",
+      "start": 39.2,
+      "end": 39.42
+    },
+    {
+      "w": "home",
+      "start": 39.42,
+      "end": 39.68
+    },
+    {
+      "w": "through",
+      "start": 39.68,
+      "end": 39.94
+    },
+    {
+      "w": "PPh",
+      "start": 39.94,
+      "end": 40.34
+    },
+    {
+      "w": "24.",
+      "start": 40.34,
+      "end": 40.84
+    },
+    {
+      "w": "But",
+      "start": 41.64,
+      "end": 41.94
+    },
+    {
+      "w": "here's",
+      "start": 41.94,
+      "end": 42.46
+    },
+    {
+      "w": "the",
+      "start": 42.46,
+      "end": 42.52
+    },
+    {
+      "w": "trap.",
+      "start": 42.52,
+      "end": 42.74
+    },
+    {
+      "w": "The",
+      "start": 43.34,
+      "end": 43.4
+    },
+    {
+      "w": "US",
+      "start": 43.4,
+      "end": 43.66
+    },
+    {
+      "w": "estate",
+      "start": 43.72,
+      "end": 43.98
+    },
+    {
+      "w": "tax.",
+      "start": 43.98,
+      "end": 44.2
+    },
+    {
+      "w": "If",
+      "start": 45.14,
+      "end": 45.28
+    },
+    {
+      "w": "you're",
+      "start": 45.28,
+      "end": 45.38
+    },
+    {
+      "w": "not",
+      "start": 45.38,
+      "end": 45.54
+    },
+    {
+      "w": "an",
+      "start": 45.54,
+      "end": 45.72
+    },
+    {
+      "w": "American",
+      "start": 45.72,
+      "end": 45.98
+    },
+    {
+      "w": "citizen,",
+      "start": 45.98,
+      "end": 46.38
+    },
+    {
+      "w": "the",
+      "start": 46.78,
+      "end": 46.86
+    },
+    {
+      "w": "IRS",
+      "start": 46.86,
+      "end": 47.06
+    },
+    {
+      "w": "gives",
+      "start": 47.06,
+      "end": 47.38
+    },
+    {
+      "w": "you",
+      "start": 47.38,
+      "end": 47.54
+    },
+    {
+      "w": "an",
+      "start": 47.54,
+      "end": 47.64
+    },
+    {
+      "w": "exemption",
+      "start": 47.64,
+      "end": 47.98
+    },
+    {
+      "w": "of",
+      "start": 47.98,
+      "end": 48.2
+    },
+    {
+      "w": "just",
+      "start": 48.2,
+      "end": 48.34
+    },
+    {
+      "w": "$60,000",
+      "start": 48.34,
+      "end": 49.26
+    },
+    {
+      "w": "Above",
+      "start": 49.78,
+      "end": 50.28
+    },
+    {
+      "w": "that,",
+      "start": 50.28,
+      "end": 50.56
+    },
+    {
+      "w": "the",
+      "start": 50.68,
+      "end": 50.8
+    },
+    {
+      "w": "IRS",
+      "start": 50.8,
+      "end": 51.0
+    },
+    {
+      "w": "takes",
+      "start": 51.0,
+      "end": 51.32
+    },
+    {
+      "w": "up",
+      "start": 51.32,
+      "end": 51.48
+    },
+    {
+      "w": "to",
+      "start": 51.48,
+      "end": 51.62
+    },
+    {
+      "w": "40%",
+      "start": 51.62,
+      "end": 52.3
+    },
+    {
+      "w": "upon",
+      "start": 52.3,
+      "end": 52.6
+    },
+    {
+      "w": "death,",
+      "start": 52.6,
+      "end": 52.88
+    },
+    {
+      "w": "and",
+      "start": 53.32,
+      "end": 53.56
+    },
+    {
+      "w": "Indonesia",
+      "start": 53.56,
+      "end": 54.0
+    },
+    {
+      "w": "has",
+      "start": 54.0,
+      "end": 54.32
+    },
+    {
+      "w": "zero",
+      "start": 54.32,
+      "end": 54.6
+    },
+    {
+      "w": "estate",
+      "start": 54.6,
+      "end": 54.88
+    },
+    {
+      "w": "tax",
+      "start": 54.88,
+      "end": 55.18
+    },
+    {
+      "w": "treaty",
+      "start": 55.18,
+      "end": 55.42
+    },
+    {
+      "w": "with",
+      "start": 55.42,
+      "end": 55.62
+    },
+    {
+      "w": "the",
+      "start": 55.62,
+      "end": 55.72
+    },
+    {
+      "w": "US",
+      "start": 55.72,
+      "end": 55.98
+    },
+    {
+      "w": "Smart",
+      "start": 57.1,
+      "end": 57.22
+    },
+    {
+      "w": "investors",
+      "start": 57.22,
+      "end": 57.66
+    },
+    {
+      "w": "bypass",
+      "start": 57.66,
+      "end": 57.94
+    },
+    {
+      "w": "both",
+      "start": 57.94,
+      "end": 58.52
+    },
+    {
+      "w": "traps,",
+      "start": 58.52,
+      "end": 58.8
+    },
+    {
+      "w": "using",
+      "start": 59.2,
+      "end": 59.38
+    },
+    {
+      "w": "Irish",
+      "start": 59.38,
+      "end": 59.72
+    },
+    {
+      "w": "domiciled",
+      "start": 59.72,
+      "end": 60.3
+    },
+    {
+      "w": "UCITS",
+      "start": 60.3,
+      "end": 60.86
+    },
+    {
+      "w": "ETFs",
+      "start": 60.86,
+      "end": 61.36
+    },
+    {
+      "w": "on",
+      "start": 61.36,
+      "end": 61.48
+    },
+    {
+      "w": "the",
+      "start": 61.48,
+      "end": 61.58
+    },
+    {
+      "w": "London",
+      "start": 61.58,
+      "end": 61.78
+    },
+    {
+      "w": "Stock",
+      "start": 61.78,
+      "end": 62.06
+    },
+    {
+      "w": "Exchange,",
+      "start": 62.06,
+      "end": 62.44
+    },
+    {
+      "w": "like",
+      "start": 62.98,
+      "end": 63.18
+    },
+    {
+      "w": "CSPX",
+      "start": 63.18,
+      "end": 63.94
+    },
+    {
+      "w": "for",
+      "start": 63.94,
+      "end": 64.1
+    },
+    {
+      "w": "the",
+      "start": 64.1,
+      "end": 64.18
+    },
+    {
+      "w": "S&P",
+      "start": 64.18,
+      "end": 64.48
+    },
+    {
+      "w": "500,",
+      "start": 64.48,
+      "end": 64.94
+    },
+    {
+      "w": "or",
+      "start": 65.38,
+      "end": 65.48
+    },
+    {
+      "w": "VWRA",
+      "start": 65.48,
+      "end": 66.36
+    },
+    {
+      "w": "for",
+      "start": 66.36,
+      "end": 66.58
+    },
+    {
+      "w": "global",
+      "start": 66.58,
+      "end": 66.76
+    },
+    {
+      "w": "equities.",
+      "start": 66.76,
+      "end": 67.26
+    },
+    {
+      "w": "First,",
+      "start": 67.84,
+      "end": 68.4
+    },
+    {
+      "w": "Ireland's",
+      "start": 68.9,
+      "end": 69.3
+    },
+    {
+      "w": "US",
+      "start": 69.3,
+      "end": 69.5
+    },
+    {
+      "w": "treaty",
+      "start": 69.66,
+      "end": 69.76
+    },
+    {
+      "w": "caps",
+      "start": 69.76,
+      "end": 70.12
+    },
+    {
+      "w": "internal",
+      "start": 70.12,
+      "end": 70.64
+    },
+    {
+      "w": "dividend",
+      "start": 70.64,
+      "end": 70.96
+    },
+    {
+      "w": "withholding",
+      "start": 70.96,
+      "end": 71.56
+    },
+    {
+      "w": "at",
+      "start": 71.56,
+      "end": 71.66
+    },
+    {
+      "w": "15%,",
+      "start": 71.66,
+      "end": 72.66
+    },
+    {
+      "w": "while",
+      "start": 72.66,
+      "end": 72.94
+    },
+    {
+      "w": "charging",
+      "start": 72.94,
+      "end": 73.18
+    },
+    {
+      "w": "0%",
+      "start": 73.18,
+      "end": 73.92
+    },
+    {
+      "w": "outbound",
+      "start": 73.92,
+      "end": 74.34
+    },
+    {
+      "w": "withholding",
+      "start": 74.34,
+      "end": 74.92
+    },
+    {
+      "w": "to",
+      "start": 74.92,
+      "end": 75.04
+    },
+    {
+      "w": "you.",
+      "start": 75.04,
+      "end": 75.22
+    },
+    {
+      "w": "Second,",
+      "start": 76.02,
+      "end": 76.42
+    },
+    {
+      "w": "Irish",
+      "start": 76.9,
+      "end": 77.02
+    },
+    {
+      "w": "funds",
+      "start": 77.02,
+      "end": 77.26
+    },
+    {
+      "w": "are",
+      "start": 77.26,
+      "end": 77.48
+    },
+    {
+      "w": "non-US",
+      "start": 77.48,
+      "end": 78.04
+    },
+    {
+      "w": "assets,",
+      "start": 78.04,
+      "end": 78.46
+    },
+    {
+      "w": "that",
+      "start": 78.96,
+      "end": 79.12
+    },
+    {
+      "w": "40%",
+      "start": 79.12,
+      "end": 79.7
+    },
+    {
+      "w": "US",
+      "start": 79.7,
+      "end": 80.0
+    },
+    {
+      "w": "estate",
+      "start": 80.06,
+      "end": 80.24
+    },
+    {
+      "w": "tax",
+      "start": 80.24,
+      "end": 80.5
+    },
+    {
+      "w": "drops",
+      "start": 80.5,
+      "end": 80.82
+    },
+    {
+      "w": "to",
+      "start": 80.82,
+      "end": 81.02
+    },
+    {
+      "w": "zero.",
+      "start": 81.02,
+      "end": 81.24
+    },
+    {
+      "w": "Best",
+      "start": 82.04,
+      "end": 82.38
+    },
+    {
+      "w": "of",
+      "start": 82.38,
+      "end": 82.54
+    },
+    {
+      "w": "all,",
+      "start": 82.54,
+      "end": 82.72
+    },
+    {
+      "w": "accumulating",
+      "start": 83.1,
+      "end": 83.58
+    },
+    {
+      "w": "shares",
+      "start": 83.58,
+      "end": 83.94
+    },
+    {
+      "w": "reinvest",
+      "start": 83.94,
+      "end": 84.44
+    },
+    {
+      "w": "dividends",
+      "start": 84.44,
+      "end": 84.86
+    },
+    {
+      "w": "inside",
+      "start": 84.86,
+      "end": 85.38
+    },
+    {
+      "w": "the",
+      "start": 85.38,
+      "end": 85.56
+    },
+    {
+      "w": "fund,",
+      "start": 85.56,
+      "end": 85.8
+    },
+    {
+      "w": "triggering",
+      "start": 86.34,
+      "end": 86.5
+    },
+    {
+      "w": "zero",
+      "start": 86.5,
+      "end": 86.88
+    },
+    {
+      "w": "annual",
+      "start": 86.88,
+      "end": 87.3
+    },
+    {
+      "w": "dividend",
+      "start": 87.3,
+      "end": 87.58
+    },
+    {
+      "w": "tax",
+      "start": 87.58,
+      "end": 88.02
+    },
+    {
+      "w": "events.",
+      "start": 88.02,
+      "end": 88.26
+    },
+    {
+      "w": "What",
+      "start": 89.4,
+      "end": 89.48
+    },
+    {
+      "w": "if",
+      "start": 89.48,
+      "end": 89.6
+    },
+    {
+      "w": "you",
+      "start": 89.6,
+      "end": 89.66
+    },
+    {
+      "w": "receive",
+      "start": 89.66,
+      "end": 89.94
+    },
+    {
+      "w": "cash",
+      "start": 89.94,
+      "end": 90.12
+    },
+    {
+      "w": "dividends",
+      "start": 90.12,
+      "end": 90.48
+    },
+    {
+      "w": "from",
+      "start": 90.48,
+      "end": 90.74
+    },
+    {
+      "w": "abroad?",
+      "start": 90.74,
+      "end": 91.0
+    },
+    {
+      "w": "By",
+      "start": 91.72,
+      "end": 91.96
+    },
+    {
+      "w": "default,",
+      "start": 91.96,
+      "end": 92.22
+    },
+    {
+      "w": "Indonesia",
+      "start": 92.4,
+      "end": 92.58
+    },
+    {
+      "w": "taxes",
+      "start": 92.58,
+      "end": 93.08
+    },
+    {
+      "w": "foreign",
+      "start": 93.08,
+      "end": 93.44
+    },
+    {
+      "w": "dividends",
+      "start": 93.44,
+      "end": 93.78
+    },
+    {
+      "w": "as",
+      "start": 93.78,
+      "end": 94.04
+    },
+    {
+      "w": "ordinary",
+      "start": 94.04,
+      "end": 94.38
+    },
+    {
+      "w": "income,",
+      "start": 94.38,
+      "end": 94.84
+    },
+    {
+      "w": "up",
+      "start": 95.28,
+      "end": 95.38
+    },
+    {
+      "w": "to",
+      "start": 95.38,
+      "end": 95.5
+    },
+    {
+      "w": "35%.",
+      "start": 95.5,
+      "end": 96.52
+    },
+    {
+      "w": "Here's",
+      "start": 96.84,
+      "end": 97.18
+    },
+    {
+      "w": "the",
+      "start": 97.18,
+      "end": 97.26
+    },
+    {
+      "w": "legal",
+      "start": 97.26,
+      "end": 97.46
+    },
+    {
+      "w": "escape",
+      "start": 97.46,
+      "end": 97.76
+    },
+    {
+      "w": "hatch.",
+      "start": 97.76,
+      "end": 98.06
+    },
+    {
+      "w": "Under",
+      "start": 98.9,
+      "end": 98.98
+    },
+    {
+      "w": "the",
+      "start": 98.98,
+      "end": 99.16
+    },
+    {
+      "w": "omnibus",
+      "start": 99.16,
+      "end": 99.58
+    },
+    {
+      "w": "law",
+      "start": 99.58,
+      "end": 99.8
+    },
+    {
+      "w": "and",
+      "start": 99.8,
+      "end": 100.06
+    },
+    {
+      "w": "PMK",
+      "start": 100.06,
+      "end": 100.5
+    },
+    {
+      "w": "18",
+      "start": 100.5,
+      "end": 101.24
+    },
+    {
+      "w": "2021,",
+      "start": 101.24,
+      "end": 102.06
+    },
+    {
+      "w": "foreign",
+      "start": 102.84,
+      "end": 103.14
+    },
+    {
+      "w": "dividends",
+      "start": 103.14,
+      "end": 103.5
+    },
+    {
+      "w": "are",
+      "start": 103.5,
+      "end": 103.82
+    },
+    {
+      "w": "100%",
+      "start": 103.82,
+      "end": 104.84
+    },
+    {
+      "w": "tax",
+      "start": 104.84,
+      "end": 105.28
+    },
+    {
+      "w": "exempt",
+      "start": 105.28,
+      "end": 105.62
+    },
+    {
+      "w": "if",
+      "start": 105.62,
+      "end": 105.86
+    },
+    {
+      "w": "you",
+      "start": 105.86,
+      "end": 105.98
+    },
+    {
+      "w": "repatriate",
+      "start": 105.98,
+      "end": 106.84
+    },
+    {
+      "w": "and",
+      "start": 106.84,
+      "end": 107.02
+    },
+    {
+      "w": "reinvest",
+      "start": 107.02,
+      "end": 107.54
+    },
+    {
+      "w": "them",
+      "start": 107.54,
+      "end": 107.8
+    },
+    {
+      "w": "in",
+      "start": 107.8,
+      "end": 107.88
+    },
+    {
+      "w": "Indonesia",
+      "start": 107.88,
+      "end": 108.3
+    },
+    {
+      "w": "before",
+      "start": 108.3,
+      "end": 108.8
+    },
+    {
+      "w": "March",
+      "start": 108.8,
+      "end": 109.22
+    },
+    {
+      "w": "31.",
+      "start": 109.22,
+      "end": 109.62
+    },
+    {
+      "w": "Lock",
+      "start": 110.44,
+      "end": 110.76
+    },
+    {
+      "w": "the",
+      "start": 110.76,
+      "end": 110.96
+    },
+    {
+      "w": "money",
+      "start": 110.96,
+      "end": 111.16
+    },
+    {
+      "w": "into",
+      "start": 111.16,
+      "end": 111.42
+    },
+    {
+      "w": "Indonesian",
+      "start": 111.42,
+      "end": 111.86
+    },
+    {
+      "w": "government",
+      "start": 111.86,
+      "end": 112.32
+    },
+    {
+      "w": "SBN",
+      "start": 112.32,
+      "end": 112.9
+    },
+    {
+      "w": "bonds,",
+      "start": 112.9,
+      "end": 113.36
+    },
+    {
+      "w": "mutual",
+      "start": 113.62,
+      "end": 113.84
+    },
+    {
+      "w": "funds,",
+      "start": 113.84,
+      "end": 114.24
+    },
+    {
+      "w": "or",
+      "start": 114.4,
+      "end": 114.46
+    },
+    {
+      "w": "deposits",
+      "start": 114.46,
+      "end": 114.94
+    },
+    {
+      "w": "for",
+      "start": 114.94,
+      "end": 115.22
+    },
+    {
+      "w": "three",
+      "start": 115.22,
+      "end": 115.46
+    },
+    {
+      "w": "consecutive",
+      "start": 115.46,
+      "end": 115.86
+    },
+    {
+      "w": "years,",
+      "start": 115.86,
+      "end": 116.26
+    },
+    {
+      "w": "and",
+      "start": 116.54,
+      "end": 116.78
+    },
+    {
+      "w": "your",
+      "start": 116.78,
+      "end": 116.92
+    },
+    {
+      "w": "tax",
+      "start": 116.92,
+      "end": 117.16
+    },
+    {
+      "w": "rate",
+      "start": 117.16,
+      "end": 117.4
+    },
+    {
+      "w": "drops",
+      "start": 117.4,
+      "end": 117.74
+    },
+    {
+      "w": "to",
+      "start": 117.74,
+      "end": 117.98
+    },
+    {
+      "w": "zero.",
+      "start": 117.98,
+      "end": 118.24
+    },
+    {
+      "w": "Can",
+      "start": 119.26,
+      "end": 119.48
+    },
+    {
+      "w": "you",
+      "start": 119.48,
+      "end": 119.64
+    },
+    {
+      "w": "hide",
+      "start": 119.64,
+      "end": 119.96
+    },
+    {
+      "w": "behind",
+      "start": 119.96,
+      "end": 120.22
+    },
+    {
+      "w": "a",
+      "start": 120.22,
+      "end": 120.36
+    },
+    {
+      "w": "Singapore",
+      "start": 120.36,
+      "end": 120.62
+    },
+    {
+      "w": "holding",
+      "start": 120.62,
+      "end": 121.04
+    },
+    {
+      "w": "company",
+      "start": 121.04,
+      "end": 121.4
+    },
+    {
+      "w": "or",
+      "start": 121.4,
+      "end": 121.78
+    },
+    {
+      "w": "a",
+      "start": 121.78,
+      "end": 121.98
+    },
+    {
+      "w": "BVI",
+      "start": 121.98,
+      "end": 122.3
+    },
+    {
+      "w": "paper",
+      "start": 122.3,
+      "end": 122.66
+    },
+    {
+      "w": "shell?",
+      "start": 122.66,
+      "end": 122.92
+    },
+    {
+      "w": "Don't",
+      "start": 123.5,
+      "end": 123.66
+    },
+    {
+      "w": "try",
+      "start": 123.66,
+      "end": 123.86
+    },
+    {
+      "w": "it.",
+      "start": 123.86,
+      "end": 124.06
+    },
+    {
+      "w": "Under",
+      "start": 124.56,
+      "end": 124.72
+    },
+    {
+      "w": "PMK",
+      "start": 124.72,
+      "end": 125.26
+    },
+    {
+      "w": "93",
+      "start": 125.26,
+      "end": 125.7
+    },
+    {
+      "w": "2019,",
+      "start": 125.7,
+      "end": 126.7
+    },
+    {
+      "w": "controlled",
+      "start": 127.26,
+      "end": 127.58
+    },
+    {
+      "w": "foreign",
+      "start": 127.58,
+      "end": 127.92
+    },
+    {
+      "w": "corporation",
+      "start": 127.92,
+      "end": 128.5
+    },
+    {
+      "w": "rules",
+      "start": 128.5,
+      "end": 128.8
+    },
+    {
+      "w": "treat",
+      "start": 128.8,
+      "end": 129.08
+    },
+    {
+      "w": "passive",
+      "start": 129.08,
+      "end": 129.6
+    },
+    {
+      "w": "gains",
+      "start": 129.6,
+      "end": 129.82
+    },
+    {
+      "w": "and",
+      "start": 129.82,
+      "end": 130.08
+    },
+    {
+      "w": "offshore",
+      "start": 130.08,
+      "end": 130.42
+    },
+    {
+      "w": "entities",
+      "start": 130.42,
+      "end": 130.88
+    },
+    {
+      "w": "you",
+      "start": 130.88,
+      "end": 131.14
+    },
+    {
+      "w": "control",
+      "start": 131.14,
+      "end": 131.52
+    },
+    {
+      "w": "as",
+      "start": 131.52,
+      "end": 131.86
+    },
+    {
+      "w": "deemed",
+      "start": 131.86,
+      "end": 132.22
+    },
+    {
+      "w": "dividends,",
+      "start": 132.22,
+      "end": 132.78
+    },
+    {
+      "w": "taxing",
+      "start": 133.28,
+      "end": 133.6
+    },
+    {
+      "w": "them",
+      "start": 133.6,
+      "end": 133.7
+    },
+    {
+      "w": "anyway.",
+      "start": 133.7,
+      "end": 134.0
+    },
+    {
+      "w": "Worse,",
+      "start": 134.62,
+      "end": 134.96
+    },
+    {
+      "w": "bank",
+      "start": 135.24,
+      "end": 135.38
+    },
+    {
+      "w": "secrecy",
+      "start": 135.38,
+      "end": 135.86
+    },
+    {
+      "w": "is",
+      "start": 135.86,
+      "end": 136.14
+    },
+    {
+      "w": "dead.",
+      "start": 136.14,
+      "end": 136.4
+    },
+    {
+      "w": "Under",
+      "start": 136.86,
+      "end": 137.22
+    },
+    {
+      "w": "the",
+      "start": 137.22,
+      "end": 137.38
+    },
+    {
+      "w": "CRS",
+      "start": 137.38,
+      "end": 137.84
+    },
+    {
+      "w": "global",
+      "start": 137.84,
+      "end": 138.16
+    },
+    {
+      "w": "agreement,",
+      "start": 138.16,
+      "end": 138.58
+    },
+    {
+      "w": "over",
+      "start": 138.94,
+      "end": 138.94
+    },
+    {
+      "w": "100",
+      "start": 138.94,
+      "end": 139.48
+    },
+    {
+      "w": "countries,",
+      "start": 139.48,
+      "end": 140.06
+    },
+    {
+      "w": "including",
+      "start": 140.42,
+      "end": 140.68
+    },
+    {
+      "w": "Singapore",
+      "start": 140.68,
+      "end": 141.12
+    },
+    {
+      "w": "and",
+      "start": 141.12,
+      "end": 141.54
+    },
+    {
+      "w": "Switzerland",
+      "start": 141.54,
+      "end": 141.9
+    },
+    {
+      "w": "automatically",
+      "start": 141.9,
+      "end": 142.76
+    },
+    {
+      "w": "report",
+      "start": 142.76,
+      "end": 143.22
+    },
+    {
+      "w": "your",
+      "start": 143.22,
+      "end": 143.46
+    },
+    {
+      "w": "account",
+      "start": 143.46,
+      "end": 143.74
+    },
+    {
+      "w": "balances",
+      "start": 143.74,
+      "end": 144.18
+    },
+    {
+      "w": "to",
+      "start": 144.18,
+      "end": 144.42
+    },
+    {
+      "w": "the",
+      "start": 144.42,
+      "end": 144.5
+    },
+    {
+      "w": "DJP",
+      "start": 144.5,
+      "end": 145.02
+    },
+    {
+      "w": "every",
+      "start": 145.02,
+      "end": 145.42
+    },
+    {
+      "w": "September.",
+      "start": 145.42,
+      "end": 145.9
+    },
+    {
+      "w": "Unreported",
+      "start": 146.48,
+      "end": 147.2
+    },
+    {
+      "w": "offshore",
+      "start": 147.2,
+      "end": 147.48
+    },
+    {
+      "w": "assets",
+      "start": 147.48,
+      "end": 147.98
+    },
+    {
+      "w": "risk",
+      "start": 147.98,
+      "end": 148.34
+    },
+    {
+      "w": "penalties",
+      "start": 148.34,
+      "end": 148.76
+    },
+    {
+      "w": "up",
+      "start": 148.76,
+      "end": 148.94
+    },
+    {
+      "w": "to",
+      "start": 148.94,
+      "end": 149.08
+    },
+    {
+      "w": "200%.",
+      "start": 149.08,
+      "end": 150.16
+    },
+    {
+      "w": "Here's",
+      "start": 150.84,
+      "end": 151.2
+    },
+    {
+      "w": "your",
+      "start": 151.2,
+      "end": 151.3
+    },
+    {
+      "w": "three",
+      "start": 151.3,
+      "end": 151.56
+    },
+    {
+      "w": "tier",
+      "start": 151.56,
+      "end": 151.82
+    },
+    {
+      "w": "playbook.",
+      "start": 151.82,
+      "end": 152.28
+    },
+    {
+      "w": "One,",
+      "start": 152.82,
+      "end": 153.02
+    },
+    {
+      "w": "under",
+      "start": 153.46,
+      "end": 153.78
+    },
+    {
+      "w": "$60,000",
+      "start": 153.78,
+      "end": 154.72
+    },
+    {
+      "w": "direct",
+      "start": 154.96,
+      "end": 155.38
+    },
+    {
+      "w": "US",
+      "start": 155.38,
+      "end": 155.78
+    },
+    {
+      "w": "stocks",
+      "start": 155.96,
+      "end": 156.08
+    },
+    {
+      "w": "with",
+      "start": 156.08,
+      "end": 156.36
+    },
+    {
+      "w": "W-8BEN",
+      "start": 156.36,
+      "end": 157.42
+    },
+    {
+      "w": "are",
+      "start": 157.42,
+      "end": 157.72
+    },
+    {
+      "w": "acceptable.",
+      "start": 157.72,
+      "end": 158.16
+    },
+    {
+      "w": "Two,",
+      "start": 158.84,
+      "end": 159.04
+    },
+    {
+      "w": "above",
+      "start": 159.42,
+      "end": 159.68
+    },
+    {
+      "w": "$60,000",
+      "start": 159.68,
+      "end": 160.68
+    },
+    {
+      "w": "switch",
+      "start": 160.86,
+      "end": 161.22
+    },
+    {
+      "w": "entirely",
+      "start": 161.22,
+      "end": 161.8
+    },
+    {
+      "w": "to",
+      "start": 161.8,
+      "end": 162.02
+    },
+    {
+      "w": "Irish",
+      "start": 162.02,
+      "end": 162.32
+    },
+    {
+      "w": "accumulating",
+      "start": 162.32,
+      "end": 163.02
+    },
+    {
+      "w": "UCITS",
+      "start": 163.02,
+      "end": 163.64
+    },
+    {
+      "w": "ETFs",
+      "start": 163.64,
+      "end": 164.22
+    },
+    {
+      "w": "like",
+      "start": 164.22,
+      "end": 164.4
+    },
+    {
+      "w": "CSPX",
+      "start": 164.4,
+      "end": 165.26
+    },
+    {
+      "w": "and",
+      "start": 165.26,
+      "end": 165.5
+    },
+    {
+      "w": "VWRA.",
+      "start": 165.5,
+      "end": 166.38
+    },
+    {
+      "w": "You",
+      "start": 166.7,
+      "end": 167.02
+    },
+    {
+      "w": "eliminate",
+      "start": 167.02,
+      "end": 167.34
+    },
+    {
+      "w": "the",
+      "start": 167.34,
+      "end": 167.6
+    },
+    {
+      "w": "40%",
+      "start": 167.6,
+      "end": 168.2
+    },
+    {
+      "w": "US",
+      "start": 168.2,
+      "end": 168.5
+    },
+    {
+      "w": "estate",
+      "start": 168.74,
+      "end": 168.78
+    },
+    {
+      "w": "tax,",
+      "start": 168.78,
+      "end": 169.04
+    },
+    {
+      "w": "stop",
+      "start": 169.42,
+      "end": 169.66
+    },
+    {
+      "w": "dividend",
+      "start": 169.66,
+      "end": 169.98
+    },
+    {
+      "w": "drag,",
+      "start": 169.98,
+      "end": 170.36
+    },
+    {
+      "w": "and",
+      "start": 170.68,
+      "end": 170.8
+    },
+    {
+      "w": "report",
+      "start": 170.8,
+      "end": 171.16
+    },
+    {
+      "w": "your",
+      "start": 171.16,
+      "end": 171.34
+    },
+    {
+      "w": "acquisition",
+      "start": 171.34,
+      "end": 171.8
+    },
+    {
+      "w": "cost",
+      "start": 171.8,
+      "end": 172.18
+    },
+    {
+      "w": "in",
+      "start": 172.18,
+      "end": 172.4
+    },
+    {
+      "w": "your",
+      "start": 172.4,
+      "end": 172.52
+    },
+    {
+      "w": "annual",
+      "start": 172.52,
+      "end": 172.88
+    },
+    {
+      "w": "SPT",
+      "start": 172.88,
+      "end": 173.46
+    },
+    {
+      "w": "tax",
+      "start": 173.46,
+      "end": 173.82
+    },
+    {
+      "w": "return.",
+      "start": 173.82,
+      "end": 174.06
+    },
+    {
+      "w": "Three,",
+      "start": 174.7,
+      "end": 175.04
+    },
+    {
+      "w": "for",
+      "start": 175.42,
+      "end": 175.5
+    },
+    {
+      "w": "cash",
+      "start": 175.5,
+      "end": 175.78
+    },
+    {
+      "w": "dividends,",
+      "start": 175.78,
+      "end": 176.14
+    },
+    {
+      "w": "repatriate",
+      "start": 176.52,
+      "end": 177.2
+    },
+    {
+      "w": "into",
+      "start": 177.2,
+      "end": 177.44
+    },
+    {
+      "w": "Indonesian",
+      "start": 177.44,
+      "end": 177.94
+    },
+    {
+      "w": "SBN",
+      "start": 177.94,
+      "end": 178.58
+    },
+    {
+      "w": "bonds",
+      "start": 178.58,
+      "end": 178.82
+    },
+    {
+      "w": "for",
+      "start": 178.82,
+      "end": 179.02
+    },
+    {
+      "w": "three",
+      "start": 179.02,
+      "end": 179.34
+    },
+    {
+      "w": "years",
+      "start": 179.34,
+      "end": 179.56
+    },
+    {
+      "w": "under",
+      "start": 179.56,
+      "end": 179.86
+    },
+    {
+      "w": "PMK",
+      "start": 179.86,
+      "end": 180.34
+    },
+    {
+      "w": "18",
+      "start": 180.34,
+      "end": 180.76
+    },
+    {
+      "w": "to",
+      "start": 180.76,
+      "end": 181.3
+    },
+    {
+      "w": "lock",
+      "start": 181.3,
+      "end": 181.48
+    },
+    {
+      "w": "in",
+      "start": 181.48,
+      "end": 181.68
+    },
+    {
+      "w": "zero",
+      "start": 181.68,
+      "end": 181.92
+    },
+    {
+      "w": "percent",
+      "start": 181.92,
+      "end": 182.24
+    },
+    {
+      "w": "tax.",
+      "start": 182.24,
+      "end": 182.66
+    },
+    {
+      "w": "Structure",
+      "start": 183.08,
+      "end": 183.38
+    },
+    {
+      "w": "properly",
+      "start": 183.38,
+      "end": 183.82
+    },
+    {
+      "w": "and",
+      "start": 183.82,
+      "end": 184.34
+    },
+    {
+      "w": "keep",
+      "start": 184.34,
+      "end": 184.52
+    },
+    {
+      "w": "your",
+      "start": 184.52,
+      "end": 184.7
+    },
+    {
+      "w": "gains.",
+      "start": 184.7,
+      "end": 184.92
+    }
+  ],
+  "beats": [
+    {
+      "beat_id": "beat_01",
+      "start": 0.0,
+      "end": 26.46,
+      "duration": 26.46
+    },
+    {
+      "beat_id": "beat_02",
+      "start": 27.22,
+      "end": 55.98,
+      "duration": 28.76
+    },
+    {
+      "beat_id": "beat_03",
+      "start": 57.1,
+      "end": 88.26,
+      "duration": 31.16
+    },
+    {
+      "beat_id": "beat_04",
+      "start": 89.4,
+      "end": 118.24,
+      "duration": 28.84
+    },
+    {
+      "beat_id": "beat_05",
+      "start": 119.26,
+      "end": 150.16,
+      "duration": 30.9
+    },
+    {
+      "beat_id": "beat_06",
+      "start": 150.84,
+      "end": 184.92,
+      "duration": 34.08
+    }
+  ],
+  "scenes": [
+    {
+      "id": "beat_01",
+      "start": 0.0,
+      "end": 27.22,
+      "duration": 27.22
+    },
+    {
+      "id": "beat_02",
+      "start": 27.22,
+      "end": 57.1,
+      "duration": 29.88
+    },
+    {
+      "id": "beat_03",
+      "start": 57.1,
+      "end": 89.4,
+      "duration": 32.3
+    },
+    {
+      "id": "beat_04",
+      "start": 89.4,
+      "end": 119.26,
+      "duration": 29.86
+    },
+    {
+      "id": "beat_05",
+      "start": 119.26,
+      "end": 150.84,
+      "duration": 31.58
+    },
+    {
+      "id": "beat_06",
+      "start": 150.84,
+      "end": 185.26,
+      "duration": 34.42
+    }
+  ],
+  "subtitle_chunks": [
+    {
+      "text": "Sell 1 billion rupiah",
+      "start": 0.0,
+      "end": 1.44,
+      "duration": 1.44,
+      "words": [
+        {
+          "w": "Sell",
+          "start": 0.0,
+          "end": 0.36
+        },
+        {
+          "w": "1",
+          "start": 0.36,
+          "end": 0.84
+        },
+        {
+          "w": "billion",
+          "start": 0.84,
+          "end": 1.1
+        },
+        {
+          "w": "rupiah",
+          "start": 1.1,
+          "end": 1.44
+        }
+      ]
+    },
+    {
+      "text": "of BCA stock on",
+      "start": 1.44,
+      "end": 2.72,
+      "duration": 1.28,
+      "words": [
+        {
+          "w": "of",
+          "start": 1.44,
+          "end": 1.72
+        },
+        {
+          "w": "BCA",
+          "start": 1.72,
+          "end": 2.14
+        },
+        {
+          "w": "stock",
+          "start": 2.14,
+          "end": 2.46
+        },
+        {
+          "w": "on",
+          "start": 2.46,
+          "end": 2.72
+        }
+      ]
+    },
+    {
+      "text": "the IDX,",
+      "start": 2.72,
+      "end": 3.34,
+      "duration": 0.62,
+      "words": [
+        {
+          "w": "the",
+          "start": 2.72,
+          "end": 2.82
+        },
+        {
+          "w": "IDX,",
+          "start": 2.82,
+          "end": 3.34
+        }
+      ]
+    },
+    {
+      "text": "and your final tax",
+      "start": 3.74,
+      "end": 4.52,
+      "duration": 0.78,
+      "words": [
+        {
+          "w": "and",
+          "start": 3.74,
+          "end": 3.88
+        },
+        {
+          "w": "your",
+          "start": 3.88,
+          "end": 4.02
+        },
+        {
+          "w": "final",
+          "start": 4.02,
+          "end": 4.24
+        },
+        {
+          "w": "tax",
+          "start": 4.24,
+          "end": 4.52
+        }
+      ]
+    },
+    {
+      "text": "is 0.1% or 1",
+      "start": 4.52,
+      "end": 6.98,
+      "duration": 2.46,
+      "words": [
+        {
+          "w": "is",
+          "start": 4.52,
+          "end": 4.8
+        },
+        {
+          "w": "0.1%",
+          "start": 4.8,
+          "end": 5.88
+        },
+        {
+          "w": "or",
+          "start": 5.88,
+          "end": 6.62
+        },
+        {
+          "w": "1",
+          "start": 6.62,
+          "end": 6.98
+        }
+      ]
+    },
+    {
+      "text": "million rupiah.",
+      "start": 6.98,
+      "end": 7.56,
+      "duration": 0.58,
+      "words": [
+        {
+          "w": "million",
+          "start": 6.98,
+          "end": 7.24
+        },
+        {
+          "w": "rupiah.",
+          "start": 7.24,
+          "end": 7.56
+        }
+      ]
+    },
+    {
+      "text": "Done.",
+      "start": 7.86,
+      "end": 8.44,
+      "duration": 0.58,
+      "words": [
+        {
+          "w": "Done.",
+          "start": 7.86,
+          "end": 8.44
+        }
+      ]
+    },
+    {
+      "text": "Sell that exact same",
+      "start": 9.3,
+      "end": 10.24,
+      "duration": 0.94,
+      "words": [
+        {
+          "w": "Sell",
+          "start": 9.3,
+          "end": 9.48
+        },
+        {
+          "w": "that",
+          "start": 9.48,
+          "end": 9.64
+        },
+        {
+          "w": "exact",
+          "start": 9.64,
+          "end": 9.88
+        },
+        {
+          "w": "same",
+          "start": 9.88,
+          "end": 10.24
+        }
+      ]
+    },
+    {
+      "text": "gain on Apple,",
+      "start": 10.24,
+      "end": 11.08,
+      "duration": 0.84,
+      "words": [
+        {
+          "w": "gain",
+          "start": 10.24,
+          "end": 10.42
+        },
+        {
+          "w": "on",
+          "start": 10.42,
+          "end": 10.72
+        },
+        {
+          "w": "Apple,",
+          "start": 10.72,
+          "end": 11.08
+        }
+      ]
+    },
+    {
+      "text": "or the S&P 500",
+      "start": 11.32,
+      "end": 12.2,
+      "duration": 0.88,
+      "words": [
+        {
+          "w": "or",
+          "start": 11.32,
+          "end": 11.4
+        },
+        {
+          "w": "the",
+          "start": 11.4,
+          "end": 11.52
+        },
+        {
+          "w": "S&P",
+          "start": 11.52,
+          "end": 11.8
+        },
+        {
+          "w": "500",
+          "start": 11.8,
+          "end": 12.2
+        }
+      ]
+    },
+    {
+      "text": "from Jakarta,",
+      "start": 12.2,
+      "end": 12.94,
+      "duration": 0.74,
+      "words": [
+        {
+          "w": "from",
+          "start": 12.2,
+          "end": 12.52
+        },
+        {
+          "w": "Jakarta,",
+          "start": 12.52,
+          "end": 12.94
+        }
+      ]
+    },
+    {
+      "text": "and Indonesia's worldwide",
+      "start": 13.38,
+      "end": 14.52,
+      "duration": 1.14,
+      "words": [
+        {
+          "w": "and",
+          "start": 13.38,
+          "end": 13.48
+        },
+        {
+          "w": "Indonesia's",
+          "start": 13.48,
+          "end": 14.16
+        },
+        {
+          "w": "worldwide",
+          "start": 14.16,
+          "end": 14.52
+        }
+      ]
+    },
+    {
+      "text": "tax rules kick in.",
+      "start": 14.52,
+      "end": 15.6,
+      "duration": 1.08,
+      "words": [
+        {
+          "w": "tax",
+          "start": 14.52,
+          "end": 14.86
+        },
+        {
+          "w": "rules",
+          "start": 14.86,
+          "end": 15.12
+        },
+        {
+          "w": "kick",
+          "start": 15.12,
+          "end": 15.38
+        },
+        {
+          "w": "in.",
+          "start": 15.38,
+          "end": 15.6
+        }
+      ]
+    },
+    {
+      "text": "Under the UU HPP tax",
+      "start": 16.36,
+      "end": 18.08,
+      "duration": 1.72,
+      "words": [
+        {
+          "w": "Under",
+          "start": 16.36,
+          "end": 16.6
+        },
+        {
+          "w": "the",
+          "start": 16.6,
+          "end": 16.78
+        },
+        {
+          "w": "UU HPP",
+          "start": 16.78,
+          "end": 17.68
+        },
+        {
+          "w": "tax",
+          "start": 17.68,
+          "end": 18.08
+        }
+      ]
+    },
+    {
+      "text": "law,",
+      "start": 18.08,
+      "end": 18.36,
+      "duration": 0.28,
+      "words": [
+        {
+          "w": "law,",
+          "start": 18.08,
+          "end": 18.36
+        }
+      ]
+    },
+    {
+      "text": "offshore capital gains",
+      "start": 18.78,
+      "end": 19.68,
+      "duration": 0.9,
+      "words": [
+        {
+          "w": "offshore",
+          "start": 18.78,
+          "end": 18.98
+        },
+        {
+          "w": "capital",
+          "start": 18.98,
+          "end": 19.42
+        },
+        {
+          "w": "gains",
+          "start": 19.42,
+          "end": 19.68
+        }
+      ]
+    },
+    {
+      "text": "are ordinary income.",
+      "start": 19.68,
+      "end": 20.72,
+      "duration": 1.04,
+      "words": [
+        {
+          "w": "are",
+          "start": 19.68,
+          "end": 19.92
+        },
+        {
+          "w": "ordinary",
+          "start": 19.92,
+          "end": 20.32
+        },
+        {
+          "w": "income.",
+          "start": 20.32,
+          "end": 20.72
+        }
+      ]
+    },
+    {
+      "text": "Taxed progressively up to",
+      "start": 21.28,
+      "end": 22.58,
+      "duration": 1.3,
+      "words": [
+        {
+          "w": "Taxed",
+          "start": 21.28,
+          "end": 21.66
+        },
+        {
+          "w": "progressively",
+          "start": 21.66,
+          "end": 22.18
+        },
+        {
+          "w": "up",
+          "start": 22.18,
+          "end": 22.44
+        },
+        {
+          "w": "to",
+          "start": 22.44,
+          "end": 22.58
+        }
+      ]
+    },
+    {
+      "text": "35%,",
+      "start": 22.58,
+      "end": 23.72,
+      "duration": 1.14,
+      "words": [
+        {
+          "w": "35%,",
+          "start": 22.58,
+          "end": 23.72
+        }
+      ]
+    },
+    {
+      "text": "that's a 350 times",
+      "start": 23.72,
+      "end": 25.9,
+      "duration": 2.18,
+      "words": [
+        {
+          "w": "that's",
+          "start": 23.72,
+          "end": 24.44
+        },
+        {
+          "w": "a",
+          "start": 24.44,
+          "end": 24.5
+        },
+        {
+          "w": "350",
+          "start": 24.5,
+          "end": 25.3
+        },
+        {
+          "w": "times",
+          "start": 25.3,
+          "end": 25.9
+        }
+      ]
+    },
+    {
+      "text": "tax shock.",
+      "start": 25.9,
+      "end": 26.46,
+      "duration": 0.56,
+      "words": [
+        {
+          "w": "tax",
+          "start": 25.9,
+          "end": 26.18
+        },
+        {
+          "w": "shock.",
+          "start": 26.18,
+          "end": 26.46
+        }
+      ]
+    },
+    {
+      "text": "Most Indonesian investors",
+      "start": 27.22,
+      "end": 28.68,
+      "duration": 1.46,
+      "words": [
+        {
+          "w": "Most",
+          "start": 27.22,
+          "end": 27.74
+        },
+        {
+          "w": "Indonesian",
+          "start": 27.74,
+          "end": 28.2
+        },
+        {
+          "w": "investors",
+          "start": 28.2,
+          "end": 28.68
+        }
+      ]
+    },
+    {
+      "text": "open interactive brokers,",
+      "start": 28.68,
+      "end": 29.98,
+      "duration": 1.3,
+      "words": [
+        {
+          "w": "open",
+          "start": 28.68,
+          "end": 29.06
+        },
+        {
+          "w": "interactive",
+          "start": 29.06,
+          "end": 29.6
+        },
+        {
+          "w": "brokers,",
+          "start": 29.6,
+          "end": 29.98
+        }
+      ]
+    },
+    {
+      "text": "Pluang,",
+      "start": 30.46,
+      "end": 30.72,
+      "duration": 0.26,
+      "words": [
+        {
+          "w": "Pluang,",
+          "start": 30.46,
+          "end": 30.72
+        }
+      ]
+    },
+    {
+      "text": "or go trade to",
+      "start": 30.98,
+      "end": 31.76,
+      "duration": 0.78,
+      "words": [
+        {
+          "w": "or",
+          "start": 30.98,
+          "end": 31.06
+        },
+        {
+          "w": "go",
+          "start": 31.06,
+          "end": 31.28
+        },
+        {
+          "w": "trade",
+          "start": 31.28,
+          "end": 31.56
+        },
+        {
+          "w": "to",
+          "start": 31.56,
+          "end": 31.76
+        }
+      ]
+    },
+    {
+      "text": "buy direct US",
+      "start": 31.76,
+      "end": 32.44,
+      "duration": 0.68,
+      "words": [
+        {
+          "w": "buy",
+          "start": 31.76,
+          "end": 31.9
+        },
+        {
+          "w": "direct",
+          "start": 31.9,
+          "end": 32.14
+        },
+        {
+          "w": "US",
+          "start": 32.14,
+          "end": 32.44
+        }
+      ]
+    },
+    {
+      "text": "shares.",
+      "start": 32.9,
+      "end": 32.9,
+      "duration": 0.0,
+      "words": [
+        {
+          "w": "shares.",
+          "start": 32.9,
+          "end": 32.9
+        }
+      ]
+    },
+    {
+      "text": "Filing form W-8BEN cuts",
+      "start": 33.4,
+      "end": 35.12,
+      "duration": 1.72,
+      "words": [
+        {
+          "w": "Filing",
+          "start": 33.4,
+          "end": 33.8
+        },
+        {
+          "w": "form",
+          "start": 33.8,
+          "end": 34.06
+        },
+        {
+          "w": "W-8BEN",
+          "start": 34.06,
+          "end": 34.92
+        },
+        {
+          "w": "cuts",
+          "start": 34.92,
+          "end": 35.12
+        }
+      ]
+    },
+    {
+      "text": "US dividend withholding",
+      "start": 35.12,
+      "end": 36.38,
+      "duration": 1.26,
+      "words": [
+        {
+          "w": "US",
+          "start": 35.12,
+          "end": 35.46
+        },
+        {
+          "w": "dividend",
+          "start": 35.6,
+          "end": 35.72
+        },
+        {
+          "w": "withholding",
+          "start": 35.72,
+          "end": 36.38
+        }
+      ]
+    },
+    {
+      "text": "from 30% down to",
+      "start": 36.38,
+      "end": 37.64,
+      "duration": 1.26,
+      "words": [
+        {
+          "w": "from",
+          "start": 36.38,
+          "end": 36.52
+        },
+        {
+          "w": "30%",
+          "start": 36.52,
+          "end": 37.18
+        },
+        {
+          "w": "down",
+          "start": 37.18,
+          "end": 37.52
+        },
+        {
+          "w": "to",
+          "start": 37.52,
+          "end": 37.64
+        }
+      ]
+    },
+    {
+      "text": "15%,",
+      "start": 37.64,
+      "end": 38.58,
+      "duration": 0.94,
+      "words": [
+        {
+          "w": "15%,",
+          "start": 37.64,
+          "end": 38.58
+        }
+      ]
+    },
+    {
+      "text": "creditable back home",
+      "start": 38.58,
+      "end": 39.68,
+      "duration": 1.1,
+      "words": [
+        {
+          "w": "creditable",
+          "start": 38.58,
+          "end": 39.2
+        },
+        {
+          "w": "back",
+          "start": 39.2,
+          "end": 39.42
+        },
+        {
+          "w": "home",
+          "start": 39.42,
+          "end": 39.68
+        }
+      ]
+    },
+    {
+      "text": "through PPh 24.",
+      "start": 39.68,
+      "end": 40.84,
+      "duration": 1.16,
+      "words": [
+        {
+          "w": "through",
+          "start": 39.68,
+          "end": 39.94
+        },
+        {
+          "w": "PPh",
+          "start": 39.94,
+          "end": 40.34
+        },
+        {
+          "w": "24.",
+          "start": 40.34,
+          "end": 40.84
+        }
+      ]
+    },
+    {
+      "text": "But here's the trap.",
+      "start": 41.64,
+      "end": 42.74,
+      "duration": 1.1,
+      "words": [
+        {
+          "w": "But",
+          "start": 41.64,
+          "end": 41.94
+        },
+        {
+          "w": "here's",
+          "start": 41.94,
+          "end": 42.46
+        },
+        {
+          "w": "the",
+          "start": 42.46,
+          "end": 42.52
+        },
+        {
+          "w": "trap.",
+          "start": 42.52,
+          "end": 42.74
+        }
+      ]
+    },
+    {
+      "text": "The US estate tax.",
+      "start": 43.34,
+      "end": 44.2,
+      "duration": 0.86,
+      "words": [
+        {
+          "w": "The",
+          "start": 43.34,
+          "end": 43.4
+        },
+        {
+          "w": "US",
+          "start": 43.4,
+          "end": 43.66
+        },
+        {
+          "w": "estate",
+          "start": 43.72,
+          "end": 43.98
+        },
+        {
+          "w": "tax.",
+          "start": 43.98,
+          "end": 44.2
+        }
+      ]
+    },
+    {
+      "text": "If you're not an",
+      "start": 45.14,
+      "end": 45.72,
+      "duration": 0.58,
+      "words": [
+        {
+          "w": "If",
+          "start": 45.14,
+          "end": 45.28
+        },
+        {
+          "w": "you're",
+          "start": 45.28,
+          "end": 45.38
+        },
+        {
+          "w": "not",
+          "start": 45.38,
+          "end": 45.54
+        },
+        {
+          "w": "an",
+          "start": 45.54,
+          "end": 45.72
+        }
+      ]
+    },
+    {
+      "text": "American citizen,",
+      "start": 45.72,
+      "end": 46.38,
+      "duration": 0.66,
+      "words": [
+        {
+          "w": "American",
+          "start": 45.72,
+          "end": 45.98
+        },
+        {
+          "w": "citizen,",
+          "start": 45.98,
+          "end": 46.38
+        }
+      ]
+    },
+    {
+      "text": "the IRS gives you",
+      "start": 46.78,
+      "end": 47.54,
+      "duration": 0.76,
+      "words": [
+        {
+          "w": "the",
+          "start": 46.78,
+          "end": 46.86
+        },
+        {
+          "w": "IRS",
+          "start": 46.86,
+          "end": 47.06
+        },
+        {
+          "w": "gives",
+          "start": 47.06,
+          "end": 47.38
+        },
+        {
+          "w": "you",
+          "start": 47.38,
+          "end": 47.54
+        }
+      ]
+    },
+    {
+      "text": "an exemption of just",
+      "start": 47.54,
+      "end": 48.34,
+      "duration": 0.8,
+      "words": [
+        {
+          "w": "an",
+          "start": 47.54,
+          "end": 47.64
+        },
+        {
+          "w": "exemption",
+          "start": 47.64,
+          "end": 47.98
+        },
+        {
+          "w": "of",
+          "start": 47.98,
+          "end": 48.2
+        },
+        {
+          "w": "just",
+          "start": 48.2,
+          "end": 48.34
+        }
+      ]
+    },
+    {
+      "text": "$60,000",
+      "start": 48.34,
+      "end": 49.26,
+      "duration": 0.92,
+      "words": [
+        {
+          "w": "$60,000",
+          "start": 48.34,
+          "end": 49.26
+        }
+      ]
+    },
+    {
+      "text": "Above that,",
+      "start": 49.78,
+      "end": 50.56,
+      "duration": 0.78,
+      "words": [
+        {
+          "w": "Above",
+          "start": 49.78,
+          "end": 50.28
+        },
+        {
+          "w": "that,",
+          "start": 50.28,
+          "end": 50.56
+        }
+      ]
+    },
+    {
+      "text": "the IRS takes up",
+      "start": 50.68,
+      "end": 51.48,
+      "duration": 0.8,
+      "words": [
+        {
+          "w": "the",
+          "start": 50.68,
+          "end": 50.8
+        },
+        {
+          "w": "IRS",
+          "start": 50.8,
+          "end": 51.0
+        },
+        {
+          "w": "takes",
+          "start": 51.0,
+          "end": 51.32
+        },
+        {
+          "w": "up",
+          "start": 51.32,
+          "end": 51.48
+        }
+      ]
+    },
+    {
+      "text": "to 40% upon death,",
+      "start": 51.48,
+      "end": 52.88,
+      "duration": 1.4,
+      "words": [
+        {
+          "w": "to",
+          "start": 51.48,
+          "end": 51.62
+        },
+        {
+          "w": "40%",
+          "start": 51.62,
+          "end": 52.3
+        },
+        {
+          "w": "upon",
+          "start": 52.3,
+          "end": 52.6
+        },
+        {
+          "w": "death,",
+          "start": 52.6,
+          "end": 52.88
+        }
+      ]
+    },
+    {
+      "text": "and Indonesia has zero",
+      "start": 53.32,
+      "end": 54.6,
+      "duration": 1.28,
+      "words": [
+        {
+          "w": "and",
+          "start": 53.32,
+          "end": 53.56
+        },
+        {
+          "w": "Indonesia",
+          "start": 53.56,
+          "end": 54.0
+        },
+        {
+          "w": "has",
+          "start": 54.0,
+          "end": 54.32
+        },
+        {
+          "w": "zero",
+          "start": 54.32,
+          "end": 54.6
+        }
+      ]
+    },
+    {
+      "text": "estate tax treaty with",
+      "start": 54.6,
+      "end": 55.62,
+      "duration": 1.02,
+      "words": [
+        {
+          "w": "estate",
+          "start": 54.6,
+          "end": 54.88
+        },
+        {
+          "w": "tax",
+          "start": 54.88,
+          "end": 55.18
+        },
+        {
+          "w": "treaty",
+          "start": 55.18,
+          "end": 55.42
+        },
+        {
+          "w": "with",
+          "start": 55.42,
+          "end": 55.62
+        }
+      ]
+    },
+    {
+      "text": "the US",
+      "start": 55.62,
+      "end": 55.98,
+      "duration": 0.36,
+      "words": [
+        {
+          "w": "the",
+          "start": 55.62,
+          "end": 55.72
+        },
+        {
+          "w": "US",
+          "start": 55.72,
+          "end": 55.98
+        }
+      ]
+    },
+    {
+      "text": "Smart investors bypass",
+      "start": 57.1,
+      "end": 57.94,
+      "duration": 0.84,
+      "words": [
+        {
+          "w": "Smart",
+          "start": 57.1,
+          "end": 57.22
+        },
+        {
+          "w": "investors",
+          "start": 57.22,
+          "end": 57.66
+        },
+        {
+          "w": "bypass",
+          "start": 57.66,
+          "end": 57.94
+        }
+      ]
+    },
+    {
+      "text": "both traps,",
+      "start": 57.94,
+      "end": 58.8,
+      "duration": 0.86,
+      "words": [
+        {
+          "w": "both",
+          "start": 57.94,
+          "end": 58.52
+        },
+        {
+          "w": "traps,",
+          "start": 58.52,
+          "end": 58.8
+        }
+      ]
+    },
+    {
+      "text": "using Irish domiciled",
+      "start": 59.2,
+      "end": 60.3,
+      "duration": 1.1,
+      "words": [
+        {
+          "w": "using",
+          "start": 59.2,
+          "end": 59.38
+        },
+        {
+          "w": "Irish",
+          "start": 59.38,
+          "end": 59.72
+        },
+        {
+          "w": "domiciled",
+          "start": 59.72,
+          "end": 60.3
+        }
+      ]
+    },
+    {
+      "text": "UCITS ETFs on the",
+      "start": 60.3,
+      "end": 61.58,
+      "duration": 1.28,
+      "words": [
+        {
+          "w": "UCITS",
+          "start": 60.3,
+          "end": 60.86
+        },
+        {
+          "w": "ETFs",
+          "start": 60.86,
+          "end": 61.36
+        },
+        {
+          "w": "on",
+          "start": 61.36,
+          "end": 61.48
+        },
+        {
+          "w": "the",
+          "start": 61.48,
+          "end": 61.58
+        }
+      ]
+    },
+    {
+      "text": "London Stock Exchange,",
+      "start": 61.58,
+      "end": 62.44,
+      "duration": 0.86,
+      "words": [
+        {
+          "w": "London",
+          "start": 61.58,
+          "end": 61.78
+        },
+        {
+          "w": "Stock",
+          "start": 61.78,
+          "end": 62.06
+        },
+        {
+          "w": "Exchange,",
+          "start": 62.06,
+          "end": 62.44
+        }
+      ]
+    },
+    {
+      "text": "like CSPX for the",
+      "start": 62.98,
+      "end": 64.18,
+      "duration": 1.2,
+      "words": [
+        {
+          "w": "like",
+          "start": 62.98,
+          "end": 63.18
+        },
+        {
+          "w": "CSPX",
+          "start": 63.18,
+          "end": 63.94
+        },
+        {
+          "w": "for",
+          "start": 63.94,
+          "end": 64.1
+        },
+        {
+          "w": "the",
+          "start": 64.1,
+          "end": 64.18
+        }
+      ]
+    },
+    {
+      "text": "S&P 500,",
+      "start": 64.18,
+      "end": 64.94,
+      "duration": 0.76,
+      "words": [
+        {
+          "w": "S&P",
+          "start": 64.18,
+          "end": 64.48
+        },
+        {
+          "w": "500,",
+          "start": 64.48,
+          "end": 64.94
+        }
+      ]
+    },
+    {
+      "text": "or VWRA for global",
+      "start": 65.38,
+      "end": 66.76,
+      "duration": 1.38,
+      "words": [
+        {
+          "w": "or",
+          "start": 65.38,
+          "end": 65.48
+        },
+        {
+          "w": "VWRA",
+          "start": 65.48,
+          "end": 66.36
+        },
+        {
+          "w": "for",
+          "start": 66.36,
+          "end": 66.58
+        },
+        {
+          "w": "global",
+          "start": 66.58,
+          "end": 66.76
+        }
+      ]
+    },
+    {
+      "text": "equities.",
+      "start": 66.76,
+      "end": 67.26,
+      "duration": 0.5,
+      "words": [
+        {
+          "w": "equities.",
+          "start": 66.76,
+          "end": 67.26
+        }
+      ]
+    },
+    {
+      "text": "First,",
+      "start": 67.84,
+      "end": 68.4,
+      "duration": 0.56,
+      "words": [
+        {
+          "w": "First,",
+          "start": 67.84,
+          "end": 68.4
+        }
+      ]
+    },
+    {
+      "text": "Ireland's US treaty caps",
+      "start": 68.9,
+      "end": 70.12,
+      "duration": 1.22,
+      "words": [
+        {
+          "w": "Ireland's",
+          "start": 68.9,
+          "end": 69.3
+        },
+        {
+          "w": "US",
+          "start": 69.3,
+          "end": 69.5
+        },
+        {
+          "w": "treaty",
+          "start": 69.66,
+          "end": 69.76
+        },
+        {
+          "w": "caps",
+          "start": 69.76,
+          "end": 70.12
+        }
+      ]
+    },
+    {
+      "text": "internal dividend",
+      "start": 70.12,
+      "end": 70.96,
+      "duration": 0.84,
+      "words": [
+        {
+          "w": "internal",
+          "start": 70.12,
+          "end": 70.64
+        },
+        {
+          "w": "dividend",
+          "start": 70.64,
+          "end": 70.96
+        }
+      ]
+    },
+    {
+      "text": "withholding at 15%,",
+      "start": 70.96,
+      "end": 72.66,
+      "duration": 1.7,
+      "words": [
+        {
+          "w": "withholding",
+          "start": 70.96,
+          "end": 71.56
+        },
+        {
+          "w": "at",
+          "start": 71.56,
+          "end": 71.66
+        },
+        {
+          "w": "15%,",
+          "start": 71.66,
+          "end": 72.66
+        }
+      ]
+    },
+    {
+      "text": "while charging 0%",
+      "start": 72.66,
+      "end": 73.92,
+      "duration": 1.26,
+      "words": [
+        {
+          "w": "while",
+          "start": 72.66,
+          "end": 72.94
+        },
+        {
+          "w": "charging",
+          "start": 72.94,
+          "end": 73.18
+        },
+        {
+          "w": "0%",
+          "start": 73.18,
+          "end": 73.92
+        }
+      ]
+    },
+    {
+      "text": "outbound withholding to",
+      "start": 73.92,
+      "end": 75.04,
+      "duration": 1.12,
+      "words": [
+        {
+          "w": "outbound",
+          "start": 73.92,
+          "end": 74.34
+        },
+        {
+          "w": "withholding",
+          "start": 74.34,
+          "end": 74.92
+        },
+        {
+          "w": "to",
+          "start": 74.92,
+          "end": 75.04
+        }
+      ]
+    },
+    {
+      "text": "you.",
+      "start": 75.04,
+      "end": 75.22,
+      "duration": 0.18,
+      "words": [
+        {
+          "w": "you.",
+          "start": 75.04,
+          "end": 75.22
+        }
+      ]
+    },
+    {
+      "text": "Second,",
+      "start": 76.02,
+      "end": 76.42,
+      "duration": 0.4,
+      "words": [
+        {
+          "w": "Second,",
+          "start": 76.02,
+          "end": 76.42
+        }
+      ]
+    },
+    {
+      "text": "Irish funds are non-US",
+      "start": 76.9,
+      "end": 78.04,
+      "duration": 1.14,
+      "words": [
+        {
+          "w": "Irish",
+          "start": 76.9,
+          "end": 77.02
+        },
+        {
+          "w": "funds",
+          "start": 77.02,
+          "end": 77.26
+        },
+        {
+          "w": "are",
+          "start": 77.26,
+          "end": 77.48
+        },
+        {
+          "w": "non-US",
+          "start": 77.48,
+          "end": 78.04
+        }
+      ]
+    },
+    {
+      "text": "assets,",
+      "start": 78.04,
+      "end": 78.46,
+      "duration": 0.42,
+      "words": [
+        {
+          "w": "assets,",
+          "start": 78.04,
+          "end": 78.46
+        }
+      ]
+    },
+    {
+      "text": "that 40% US estate",
+      "start": 78.96,
+      "end": 80.24,
+      "duration": 1.28,
+      "words": [
+        {
+          "w": "that",
+          "start": 78.96,
+          "end": 79.12
+        },
+        {
+          "w": "40%",
+          "start": 79.12,
+          "end": 79.7
+        },
+        {
+          "w": "US",
+          "start": 79.7,
+          "end": 80.0
+        },
+        {
+          "w": "estate",
+          "start": 80.06,
+          "end": 80.24
+        }
+      ]
+    },
+    {
+      "text": "tax drops to zero.",
+      "start": 80.24,
+      "end": 81.24,
+      "duration": 1.0,
+      "words": [
+        {
+          "w": "tax",
+          "start": 80.24,
+          "end": 80.5
+        },
+        {
+          "w": "drops",
+          "start": 80.5,
+          "end": 80.82
+        },
+        {
+          "w": "to",
+          "start": 80.82,
+          "end": 81.02
+        },
+        {
+          "w": "zero.",
+          "start": 81.02,
+          "end": 81.24
+        }
+      ]
+    },
+    {
+      "text": "Best of all,",
+      "start": 82.04,
+      "end": 82.72,
+      "duration": 0.68,
+      "words": [
+        {
+          "w": "Best",
+          "start": 82.04,
+          "end": 82.38
+        },
+        {
+          "w": "of",
+          "start": 82.38,
+          "end": 82.54
+        },
+        {
+          "w": "all,",
+          "start": 82.54,
+          "end": 82.72
+        }
+      ]
+    },
+    {
+      "text": "accumulating shares",
+      "start": 83.1,
+      "end": 83.94,
+      "duration": 0.84,
+      "words": [
+        {
+          "w": "accumulating",
+          "start": 83.1,
+          "end": 83.58
+        },
+        {
+          "w": "shares",
+          "start": 83.58,
+          "end": 83.94
+        }
+      ]
+    },
+    {
+      "text": "reinvest dividends inside",
+      "start": 83.94,
+      "end": 85.38,
+      "duration": 1.44,
+      "words": [
+        {
+          "w": "reinvest",
+          "start": 83.94,
+          "end": 84.44
+        },
+        {
+          "w": "dividends",
+          "start": 84.44,
+          "end": 84.86
+        },
+        {
+          "w": "inside",
+          "start": 84.86,
+          "end": 85.38
+        }
+      ]
+    },
+    {
+      "text": "the fund,",
+      "start": 85.38,
+      "end": 85.8,
+      "duration": 0.42,
+      "words": [
+        {
+          "w": "the",
+          "start": 85.38,
+          "end": 85.56
+        },
+        {
+          "w": "fund,",
+          "start": 85.56,
+          "end": 85.8
+        }
+      ]
+    },
+    {
+      "text": "triggering zero annual",
+      "start": 86.34,
+      "end": 87.3,
+      "duration": 0.96,
+      "words": [
+        {
+          "w": "triggering",
+          "start": 86.34,
+          "end": 86.5
+        },
+        {
+          "w": "zero",
+          "start": 86.5,
+          "end": 86.88
+        },
+        {
+          "w": "annual",
+          "start": 86.88,
+          "end": 87.3
+        }
+      ]
+    },
+    {
+      "text": "dividend tax events.",
+      "start": 87.3,
+      "end": 88.26,
+      "duration": 0.96,
+      "words": [
+        {
+          "w": "dividend",
+          "start": 87.3,
+          "end": 87.58
+        },
+        {
+          "w": "tax",
+          "start": 87.58,
+          "end": 88.02
+        },
+        {
+          "w": "events.",
+          "start": 88.02,
+          "end": 88.26
+        }
+      ]
+    },
+    {
+      "text": "What if you receive",
+      "start": 89.4,
+      "end": 89.94,
+      "duration": 0.54,
+      "words": [
+        {
+          "w": "What",
+          "start": 89.4,
+          "end": 89.48
+        },
+        {
+          "w": "if",
+          "start": 89.48,
+          "end": 89.6
+        },
+        {
+          "w": "you",
+          "start": 89.6,
+          "end": 89.66
+        },
+        {
+          "w": "receive",
+          "start": 89.66,
+          "end": 89.94
+        }
+      ]
+    },
+    {
+      "text": "cash dividends from",
+      "start": 89.94,
+      "end": 90.74,
+      "duration": 0.8,
+      "words": [
+        {
+          "w": "cash",
+          "start": 89.94,
+          "end": 90.12
+        },
+        {
+          "w": "dividends",
+          "start": 90.12,
+          "end": 90.48
+        },
+        {
+          "w": "from",
+          "start": 90.48,
+          "end": 90.74
+        }
+      ]
+    },
+    {
+      "text": "abroad?",
+      "start": 90.74,
+      "end": 91.0,
+      "duration": 0.26,
+      "words": [
+        {
+          "w": "abroad?",
+          "start": 90.74,
+          "end": 91.0
+        }
+      ]
+    },
+    {
+      "text": "By default,",
+      "start": 91.72,
+      "end": 92.22,
+      "duration": 0.5,
+      "words": [
+        {
+          "w": "By",
+          "start": 91.72,
+          "end": 91.96
+        },
+        {
+          "w": "default,",
+          "start": 91.96,
+          "end": 92.22
+        }
+      ]
+    },
+    {
+      "text": "Indonesia taxes foreign",
+      "start": 92.4,
+      "end": 93.44,
+      "duration": 1.04,
+      "words": [
+        {
+          "w": "Indonesia",
+          "start": 92.4,
+          "end": 92.58
+        },
+        {
+          "w": "taxes",
+          "start": 92.58,
+          "end": 93.08
+        },
+        {
+          "w": "foreign",
+          "start": 93.08,
+          "end": 93.44
+        }
+      ]
+    },
+    {
+      "text": "dividends as ordinary",
+      "start": 93.44,
+      "end": 94.38,
+      "duration": 0.94,
+      "words": [
+        {
+          "w": "dividends",
+          "start": 93.44,
+          "end": 93.78
+        },
+        {
+          "w": "as",
+          "start": 93.78,
+          "end": 94.04
+        },
+        {
+          "w": "ordinary",
+          "start": 94.04,
+          "end": 94.38
+        }
+      ]
+    },
+    {
+      "text": "income,",
+      "start": 94.38,
+      "end": 94.84,
+      "duration": 0.46,
+      "words": [
+        {
+          "w": "income,",
+          "start": 94.38,
+          "end": 94.84
+        }
+      ]
+    },
+    {
+      "text": "up to 35%.",
+      "start": 95.28,
+      "end": 96.52,
+      "duration": 1.24,
+      "words": [
+        {
+          "w": "up",
+          "start": 95.28,
+          "end": 95.38
+        },
+        {
+          "w": "to",
+          "start": 95.38,
+          "end": 95.5
+        },
+        {
+          "w": "35%.",
+          "start": 95.5,
+          "end": 96.52
+        }
+      ]
+    },
+    {
+      "text": "Here's the legal escape",
+      "start": 96.84,
+      "end": 97.76,
+      "duration": 0.92,
+      "words": [
+        {
+          "w": "Here's",
+          "start": 96.84,
+          "end": 97.18
+        },
+        {
+          "w": "the",
+          "start": 97.18,
+          "end": 97.26
+        },
+        {
+          "w": "legal",
+          "start": 97.26,
+          "end": 97.46
+        },
+        {
+          "w": "escape",
+          "start": 97.46,
+          "end": 97.76
+        }
+      ]
+    },
+    {
+      "text": "hatch.",
+      "start": 97.76,
+      "end": 98.06,
+      "duration": 0.3,
+      "words": [
+        {
+          "w": "hatch.",
+          "start": 97.76,
+          "end": 98.06
+        }
+      ]
+    },
+    {
+      "text": "Under the omnibus law",
+      "start": 98.9,
+      "end": 99.8,
+      "duration": 0.9,
+      "words": [
+        {
+          "w": "Under",
+          "start": 98.9,
+          "end": 98.98
+        },
+        {
+          "w": "the",
+          "start": 98.98,
+          "end": 99.16
+        },
+        {
+          "w": "omnibus",
+          "start": 99.16,
+          "end": 99.58
+        },
+        {
+          "w": "law",
+          "start": 99.58,
+          "end": 99.8
+        }
+      ]
+    },
+    {
+      "text": "and PMK 18 2021,",
+      "start": 99.8,
+      "end": 102.06,
+      "duration": 2.26,
+      "words": [
+        {
+          "w": "and",
+          "start": 99.8,
+          "end": 100.06
+        },
+        {
+          "w": "PMK",
+          "start": 100.06,
+          "end": 100.5
+        },
+        {
+          "w": "18",
+          "start": 100.5,
+          "end": 101.24
+        },
+        {
+          "w": "2021,",
+          "start": 101.24,
+          "end": 102.06
+        }
+      ]
+    },
+    {
+      "text": "foreign dividends are",
+      "start": 102.84,
+      "end": 103.82,
+      "duration": 0.98,
+      "words": [
+        {
+          "w": "foreign",
+          "start": 102.84,
+          "end": 103.14
+        },
+        {
+          "w": "dividends",
+          "start": 103.14,
+          "end": 103.5
+        },
+        {
+          "w": "are",
+          "start": 103.5,
+          "end": 103.82
+        }
+      ]
+    },
+    {
+      "text": "100% tax exempt if",
+      "start": 103.82,
+      "end": 105.86,
+      "duration": 2.04,
+      "words": [
+        {
+          "w": "100%",
+          "start": 103.82,
+          "end": 104.84
+        },
+        {
+          "w": "tax",
+          "start": 104.84,
+          "end": 105.28
+        },
+        {
+          "w": "exempt",
+          "start": 105.28,
+          "end": 105.62
+        },
+        {
+          "w": "if",
+          "start": 105.62,
+          "end": 105.86
+        }
+      ]
+    },
+    {
+      "text": "you repatriate and",
+      "start": 105.86,
+      "end": 107.02,
+      "duration": 1.16,
+      "words": [
+        {
+          "w": "you",
+          "start": 105.86,
+          "end": 105.98
+        },
+        {
+          "w": "repatriate",
+          "start": 105.98,
+          "end": 106.84
+        },
+        {
+          "w": "and",
+          "start": 106.84,
+          "end": 107.02
+        }
+      ]
+    },
+    {
+      "text": "reinvest them in",
+      "start": 107.02,
+      "end": 107.88,
+      "duration": 0.86,
+      "words": [
+        {
+          "w": "reinvest",
+          "start": 107.02,
+          "end": 107.54
+        },
+        {
+          "w": "them",
+          "start": 107.54,
+          "end": 107.8
+        },
+        {
+          "w": "in",
+          "start": 107.8,
+          "end": 107.88
+        }
+      ]
+    },
+    {
+      "text": "Indonesia before March",
+      "start": 107.88,
+      "end": 109.22,
+      "duration": 1.34,
+      "words": [
+        {
+          "w": "Indonesia",
+          "start": 107.88,
+          "end": 108.3
+        },
+        {
+          "w": "before",
+          "start": 108.3,
+          "end": 108.8
+        },
+        {
+          "w": "March",
+          "start": 108.8,
+          "end": 109.22
+        }
+      ]
+    },
+    {
+      "text": "31.",
+      "start": 109.22,
+      "end": 109.62,
+      "duration": 0.4,
+      "words": [
+        {
+          "w": "31.",
+          "start": 109.22,
+          "end": 109.62
+        }
+      ]
+    },
+    {
+      "text": "Lock the money into",
+      "start": 110.44,
+      "end": 111.42,
+      "duration": 0.98,
+      "words": [
+        {
+          "w": "Lock",
+          "start": 110.44,
+          "end": 110.76
+        },
+        {
+          "w": "the",
+          "start": 110.76,
+          "end": 110.96
+        },
+        {
+          "w": "money",
+          "start": 110.96,
+          "end": 111.16
+        },
+        {
+          "w": "into",
+          "start": 111.16,
+          "end": 111.42
+        }
+      ]
+    },
+    {
+      "text": "Indonesian government SBN",
+      "start": 111.42,
+      "end": 112.9,
+      "duration": 1.48,
+      "words": [
+        {
+          "w": "Indonesian",
+          "start": 111.42,
+          "end": 111.86
+        },
+        {
+          "w": "government",
+          "start": 111.86,
+          "end": 112.32
+        },
+        {
+          "w": "SBN",
+          "start": 112.32,
+          "end": 112.9
+        }
+      ]
+    },
+    {
+      "text": "bonds,",
+      "start": 112.9,
+      "end": 113.36,
+      "duration": 0.46,
+      "words": [
+        {
+          "w": "bonds,",
+          "start": 112.9,
+          "end": 113.36
+        }
+      ]
+    },
+    {
+      "text": "mutual funds,",
+      "start": 113.62,
+      "end": 114.24,
+      "duration": 0.62,
+      "words": [
+        {
+          "w": "mutual",
+          "start": 113.62,
+          "end": 113.84
+        },
+        {
+          "w": "funds,",
+          "start": 113.84,
+          "end": 114.24
+        }
+      ]
+    },
+    {
+      "text": "or deposits for three",
+      "start": 114.4,
+      "end": 115.46,
+      "duration": 1.06,
+      "words": [
+        {
+          "w": "or",
+          "start": 114.4,
+          "end": 114.46
+        },
+        {
+          "w": "deposits",
+          "start": 114.46,
+          "end": 114.94
+        },
+        {
+          "w": "for",
+          "start": 114.94,
+          "end": 115.22
+        },
+        {
+          "w": "three",
+          "start": 115.22,
+          "end": 115.46
+        }
+      ]
+    },
+    {
+      "text": "consecutive years,",
+      "start": 115.46,
+      "end": 116.26,
+      "duration": 0.8,
+      "words": [
+        {
+          "w": "consecutive",
+          "start": 115.46,
+          "end": 115.86
+        },
+        {
+          "w": "years,",
+          "start": 115.86,
+          "end": 116.26
+        }
+      ]
+    },
+    {
+      "text": "and your tax rate",
+      "start": 116.54,
+      "end": 117.4,
+      "duration": 0.86,
+      "words": [
+        {
+          "w": "and",
+          "start": 116.54,
+          "end": 116.78
+        },
+        {
+          "w": "your",
+          "start": 116.78,
+          "end": 116.92
+        },
+        {
+          "w": "tax",
+          "start": 116.92,
+          "end": 117.16
+        },
+        {
+          "w": "rate",
+          "start": 117.16,
+          "end": 117.4
+        }
+      ]
+    },
+    {
+      "text": "drops to zero.",
+      "start": 117.4,
+      "end": 118.24,
+      "duration": 0.84,
+      "words": [
+        {
+          "w": "drops",
+          "start": 117.4,
+          "end": 117.74
+        },
+        {
+          "w": "to",
+          "start": 117.74,
+          "end": 117.98
+        },
+        {
+          "w": "zero.",
+          "start": 117.98,
+          "end": 118.24
+        }
+      ]
+    },
+    {
+      "text": "Can you hide behind",
+      "start": 119.26,
+      "end": 120.22,
+      "duration": 0.96,
+      "words": [
+        {
+          "w": "Can",
+          "start": 119.26,
+          "end": 119.48
+        },
+        {
+          "w": "you",
+          "start": 119.48,
+          "end": 119.64
+        },
+        {
+          "w": "hide",
+          "start": 119.64,
+          "end": 119.96
+        },
+        {
+          "w": "behind",
+          "start": 119.96,
+          "end": 120.22
+        }
+      ]
+    },
+    {
+      "text": "a Singapore holding",
+      "start": 120.22,
+      "end": 121.04,
+      "duration": 0.82,
+      "words": [
+        {
+          "w": "a",
+          "start": 120.22,
+          "end": 120.36
+        },
+        {
+          "w": "Singapore",
+          "start": 120.36,
+          "end": 120.62
+        },
+        {
+          "w": "holding",
+          "start": 120.62,
+          "end": 121.04
+        }
+      ]
+    },
+    {
+      "text": "company or a BVI",
+      "start": 121.04,
+      "end": 122.3,
+      "duration": 1.26,
+      "words": [
+        {
+          "w": "company",
+          "start": 121.04,
+          "end": 121.4
+        },
+        {
+          "w": "or",
+          "start": 121.4,
+          "end": 121.78
+        },
+        {
+          "w": "a",
+          "start": 121.78,
+          "end": 121.98
+        },
+        {
+          "w": "BVI",
+          "start": 121.98,
+          "end": 122.3
+        }
+      ]
+    },
+    {
+      "text": "paper shell?",
+      "start": 122.3,
+      "end": 122.92,
+      "duration": 0.62,
+      "words": [
+        {
+          "w": "paper",
+          "start": 122.3,
+          "end": 122.66
+        },
+        {
+          "w": "shell?",
+          "start": 122.66,
+          "end": 122.92
+        }
+      ]
+    },
+    {
+      "text": "Don't try it.",
+      "start": 123.5,
+      "end": 124.06,
+      "duration": 0.56,
+      "words": [
+        {
+          "w": "Don't",
+          "start": 123.5,
+          "end": 123.66
+        },
+        {
+          "w": "try",
+          "start": 123.66,
+          "end": 123.86
+        },
+        {
+          "w": "it.",
+          "start": 123.86,
+          "end": 124.06
+        }
+      ]
+    },
+    {
+      "text": "Under PMK 93 2019,",
+      "start": 124.56,
+      "end": 126.7,
+      "duration": 2.14,
+      "words": [
+        {
+          "w": "Under",
+          "start": 124.56,
+          "end": 124.72
+        },
+        {
+          "w": "PMK",
+          "start": 124.72,
+          "end": 125.26
+        },
+        {
+          "w": "93",
+          "start": 125.26,
+          "end": 125.7
+        },
+        {
+          "w": "2019,",
+          "start": 125.7,
+          "end": 126.7
+        }
+      ]
+    },
+    {
+      "text": "controlled foreign",
+      "start": 127.26,
+      "end": 127.92,
+      "duration": 0.66,
+      "words": [
+        {
+          "w": "controlled",
+          "start": 127.26,
+          "end": 127.58
+        },
+        {
+          "w": "foreign",
+          "start": 127.58,
+          "end": 127.92
+        }
+      ]
+    },
+    {
+      "text": "corporation rules treat",
+      "start": 127.92,
+      "end": 129.08,
+      "duration": 1.16,
+      "words": [
+        {
+          "w": "corporation",
+          "start": 127.92,
+          "end": 128.5
+        },
+        {
+          "w": "rules",
+          "start": 128.5,
+          "end": 128.8
+        },
+        {
+          "w": "treat",
+          "start": 128.8,
+          "end": 129.08
+        }
+      ]
+    },
+    {
+      "text": "passive gains and",
+      "start": 129.08,
+      "end": 130.08,
+      "duration": 1.0,
+      "words": [
+        {
+          "w": "passive",
+          "start": 129.08,
+          "end": 129.6
+        },
+        {
+          "w": "gains",
+          "start": 129.6,
+          "end": 129.82
+        },
+        {
+          "w": "and",
+          "start": 129.82,
+          "end": 130.08
+        }
+      ]
+    },
+    {
+      "text": "offshore entities you",
+      "start": 130.08,
+      "end": 131.14,
+      "duration": 1.06,
+      "words": [
+        {
+          "w": "offshore",
+          "start": 130.08,
+          "end": 130.42
+        },
+        {
+          "w": "entities",
+          "start": 130.42,
+          "end": 130.88
+        },
+        {
+          "w": "you",
+          "start": 130.88,
+          "end": 131.14
+        }
+      ]
+    },
+    {
+      "text": "control as deemed",
+      "start": 131.14,
+      "end": 132.22,
+      "duration": 1.08,
+      "words": [
+        {
+          "w": "control",
+          "start": 131.14,
+          "end": 131.52
+        },
+        {
+          "w": "as",
+          "start": 131.52,
+          "end": 131.86
+        },
+        {
+          "w": "deemed",
+          "start": 131.86,
+          "end": 132.22
+        }
+      ]
+    },
+    {
+      "text": "dividends,",
+      "start": 132.22,
+      "end": 132.78,
+      "duration": 0.56,
+      "words": [
+        {
+          "w": "dividends,",
+          "start": 132.22,
+          "end": 132.78
+        }
+      ]
+    },
+    {
+      "text": "taxing them anyway.",
+      "start": 133.28,
+      "end": 134.0,
+      "duration": 0.72,
+      "words": [
+        {
+          "w": "taxing",
+          "start": 133.28,
+          "end": 133.6
+        },
+        {
+          "w": "them",
+          "start": 133.6,
+          "end": 133.7
+        },
+        {
+          "w": "anyway.",
+          "start": 133.7,
+          "end": 134.0
+        }
+      ]
+    },
+    {
+      "text": "Worse,",
+      "start": 134.62,
+      "end": 134.96,
+      "duration": 0.34,
+      "words": [
+        {
+          "w": "Worse,",
+          "start": 134.62,
+          "end": 134.96
+        }
+      ]
+    },
+    {
+      "text": "bank secrecy is dead.",
+      "start": 135.24,
+      "end": 136.4,
+      "duration": 1.16,
+      "words": [
+        {
+          "w": "bank",
+          "start": 135.24,
+          "end": 135.38
+        },
+        {
+          "w": "secrecy",
+          "start": 135.38,
+          "end": 135.86
+        },
+        {
+          "w": "is",
+          "start": 135.86,
+          "end": 136.14
+        },
+        {
+          "w": "dead.",
+          "start": 136.14,
+          "end": 136.4
+        }
+      ]
+    },
+    {
+      "text": "Under the CRS global",
+      "start": 136.86,
+      "end": 138.16,
+      "duration": 1.3,
+      "words": [
+        {
+          "w": "Under",
+          "start": 136.86,
+          "end": 137.22
+        },
+        {
+          "w": "the",
+          "start": 137.22,
+          "end": 137.38
+        },
+        {
+          "w": "CRS",
+          "start": 137.38,
+          "end": 137.84
+        },
+        {
+          "w": "global",
+          "start": 137.84,
+          "end": 138.16
+        }
+      ]
+    },
+    {
+      "text": "agreement,",
+      "start": 138.16,
+      "end": 138.58,
+      "duration": 0.42,
+      "words": [
+        {
+          "w": "agreement,",
+          "start": 138.16,
+          "end": 138.58
+        }
+      ]
+    },
+    {
+      "text": "over 100 countries,",
+      "start": 138.94,
+      "end": 140.06,
+      "duration": 1.12,
+      "words": [
+        {
+          "w": "over",
+          "start": 138.94,
+          "end": 138.94
+        },
+        {
+          "w": "100",
+          "start": 138.94,
+          "end": 139.48
+        },
+        {
+          "w": "countries,",
+          "start": 139.48,
+          "end": 140.06
+        }
+      ]
+    },
+    {
+      "text": "including Singapore and",
+      "start": 140.42,
+      "end": 141.54,
+      "duration": 1.12,
+      "words": [
+        {
+          "w": "including",
+          "start": 140.42,
+          "end": 140.68
+        },
+        {
+          "w": "Singapore",
+          "start": 140.68,
+          "end": 141.12
+        },
+        {
+          "w": "and",
+          "start": 141.12,
+          "end": 141.54
+        }
+      ]
+    },
+    {
+      "text": "Switzerland automatically",
+      "start": 141.54,
+      "end": 142.76,
+      "duration": 1.22,
+      "words": [
+        {
+          "w": "Switzerland",
+          "start": 141.54,
+          "end": 141.9
+        },
+        {
+          "w": "automatically",
+          "start": 141.9,
+          "end": 142.76
+        }
+      ]
+    },
+    {
+      "text": "report your account",
+      "start": 142.76,
+      "end": 143.74,
+      "duration": 0.98,
+      "words": [
+        {
+          "w": "report",
+          "start": 142.76,
+          "end": 143.22
+        },
+        {
+          "w": "your",
+          "start": 143.22,
+          "end": 143.46
+        },
+        {
+          "w": "account",
+          "start": 143.46,
+          "end": 143.74
+        }
+      ]
+    },
+    {
+      "text": "balances to the DJP",
+      "start": 143.74,
+      "end": 145.02,
+      "duration": 1.28,
+      "words": [
+        {
+          "w": "balances",
+          "start": 143.74,
+          "end": 144.18
+        },
+        {
+          "w": "to",
+          "start": 144.18,
+          "end": 144.42
+        },
+        {
+          "w": "the",
+          "start": 144.42,
+          "end": 144.5
+        },
+        {
+          "w": "DJP",
+          "start": 144.5,
+          "end": 145.02
+        }
+      ]
+    },
+    {
+      "text": "every September.",
+      "start": 145.02,
+      "end": 145.9,
+      "duration": 0.88,
+      "words": [
+        {
+          "w": "every",
+          "start": 145.02,
+          "end": 145.42
+        },
+        {
+          "w": "September.",
+          "start": 145.42,
+          "end": 145.9
+        }
+      ]
+    },
+    {
+      "text": "Unreported offshore",
+      "start": 146.48,
+      "end": 147.48,
+      "duration": 1.0,
+      "words": [
+        {
+          "w": "Unreported",
+          "start": 146.48,
+          "end": 147.2
+        },
+        {
+          "w": "offshore",
+          "start": 147.2,
+          "end": 147.48
+        }
+      ]
+    },
+    {
+      "text": "assets risk penalties up",
+      "start": 147.48,
+      "end": 148.94,
+      "duration": 1.46,
+      "words": [
+        {
+          "w": "assets",
+          "start": 147.48,
+          "end": 147.98
+        },
+        {
+          "w": "risk",
+          "start": 147.98,
+          "end": 148.34
+        },
+        {
+          "w": "penalties",
+          "start": 148.34,
+          "end": 148.76
+        },
+        {
+          "w": "up",
+          "start": 148.76,
+          "end": 148.94
+        }
+      ]
+    },
+    {
+      "text": "to 200%.",
+      "start": 148.94,
+      "end": 150.16,
+      "duration": 1.22,
+      "words": [
+        {
+          "w": "to",
+          "start": 148.94,
+          "end": 149.08
+        },
+        {
+          "w": "200%.",
+          "start": 149.08,
+          "end": 150.16
+        }
+      ]
+    },
+    {
+      "text": "Here's your three tier",
+      "start": 150.84,
+      "end": 151.82,
+      "duration": 0.98,
+      "words": [
+        {
+          "w": "Here's",
+          "start": 150.84,
+          "end": 151.2
+        },
+        {
+          "w": "your",
+          "start": 151.2,
+          "end": 151.3
+        },
+        {
+          "w": "three",
+          "start": 151.3,
+          "end": 151.56
+        },
+        {
+          "w": "tier",
+          "start": 151.56,
+          "end": 151.82
+        }
+      ]
+    },
+    {
+      "text": "playbook.",
+      "start": 151.82,
+      "end": 152.28,
+      "duration": 0.46,
+      "words": [
+        {
+          "w": "playbook.",
+          "start": 151.82,
+          "end": 152.28
+        }
+      ]
+    },
+    {
+      "text": "One,",
+      "start": 152.82,
+      "end": 153.02,
+      "duration": 0.2,
+      "words": [
+        {
+          "w": "One,",
+          "start": 152.82,
+          "end": 153.02
+        }
+      ]
+    },
+    {
+      "text": "under $60,000 direct US",
+      "start": 153.46,
+      "end": 155.78,
+      "duration": 2.32,
+      "words": [
+        {
+          "w": "under",
+          "start": 153.46,
+          "end": 153.78
+        },
+        {
+          "w": "$60,000",
+          "start": 153.78,
+          "end": 154.72
+        },
+        {
+          "w": "direct",
+          "start": 154.96,
+          "end": 155.38
+        },
+        {
+          "w": "US",
+          "start": 155.38,
+          "end": 155.78
+        }
+      ]
+    },
+    {
+      "text": "stocks with W-8BEN are",
+      "start": 155.96,
+      "end": 157.72,
+      "duration": 1.76,
+      "words": [
+        {
+          "w": "stocks",
+          "start": 155.96,
+          "end": 156.08
+        },
+        {
+          "w": "with",
+          "start": 156.08,
+          "end": 156.36
+        },
+        {
+          "w": "W-8BEN",
+          "start": 156.36,
+          "end": 157.42
+        },
+        {
+          "w": "are",
+          "start": 157.42,
+          "end": 157.72
+        }
+      ]
+    },
+    {
+      "text": "acceptable.",
+      "start": 157.72,
+      "end": 158.16,
+      "duration": 0.44,
+      "words": [
+        {
+          "w": "acceptable.",
+          "start": 157.72,
+          "end": 158.16
+        }
+      ]
+    },
+    {
+      "text": "Two,",
+      "start": 158.84,
+      "end": 159.04,
+      "duration": 0.2,
+      "words": [
+        {
+          "w": "Two,",
+          "start": 158.84,
+          "end": 159.04
+        }
+      ]
+    },
+    {
+      "text": "above $60,000 switch",
+      "start": 159.42,
+      "end": 161.22,
+      "duration": 1.8,
+      "words": [
+        {
+          "w": "above",
+          "start": 159.42,
+          "end": 159.68
+        },
+        {
+          "w": "$60,000",
+          "start": 159.68,
+          "end": 160.68
+        },
+        {
+          "w": "switch",
+          "start": 160.86,
+          "end": 161.22
+        }
+      ]
+    },
+    {
+      "text": "entirely to Irish",
+      "start": 161.22,
+      "end": 162.32,
+      "duration": 1.1,
+      "words": [
+        {
+          "w": "entirely",
+          "start": 161.22,
+          "end": 161.8
+        },
+        {
+          "w": "to",
+          "start": 161.8,
+          "end": 162.02
+        },
+        {
+          "w": "Irish",
+          "start": 162.02,
+          "end": 162.32
+        }
+      ]
+    },
+    {
+      "text": "accumulating UCITS ETFs",
+      "start": 162.32,
+      "end": 164.22,
+      "duration": 1.9,
+      "words": [
+        {
+          "w": "accumulating",
+          "start": 162.32,
+          "end": 163.02
+        },
+        {
+          "w": "UCITS",
+          "start": 163.02,
+          "end": 163.64
+        },
+        {
+          "w": "ETFs",
+          "start": 163.64,
+          "end": 164.22
+        }
+      ]
+    },
+    {
+      "text": "like CSPX and VWRA.",
+      "start": 164.22,
+      "end": 166.38,
+      "duration": 2.16,
+      "words": [
+        {
+          "w": "like",
+          "start": 164.22,
+          "end": 164.4
+        },
+        {
+          "w": "CSPX",
+          "start": 164.4,
+          "end": 165.26
+        },
+        {
+          "w": "and",
+          "start": 165.26,
+          "end": 165.5
+        },
+        {
+          "w": "VWRA.",
+          "start": 165.5,
+          "end": 166.38
+        }
+      ]
+    },
+    {
+      "text": "You eliminate the 40%",
+      "start": 166.7,
+      "end": 168.2,
+      "duration": 1.5,
+      "words": [
+        {
+          "w": "You",
+          "start": 166.7,
+          "end": 167.02
+        },
+        {
+          "w": "eliminate",
+          "start": 167.02,
+          "end": 167.34
+        },
+        {
+          "w": "the",
+          "start": 167.34,
+          "end": 167.6
+        },
+        {
+          "w": "40%",
+          "start": 167.6,
+          "end": 168.2
+        }
+      ]
+    },
+    {
+      "text": "US estate tax,",
+      "start": 168.2,
+      "end": 169.04,
+      "duration": 0.84,
+      "words": [
+        {
+          "w": "US",
+          "start": 168.2,
+          "end": 168.5
+        },
+        {
+          "w": "estate",
+          "start": 168.74,
+          "end": 168.78
+        },
+        {
+          "w": "tax,",
+          "start": 168.78,
+          "end": 169.04
+        }
+      ]
+    },
+    {
+      "text": "stop dividend drag,",
+      "start": 169.42,
+      "end": 170.36,
+      "duration": 0.94,
+      "words": [
+        {
+          "w": "stop",
+          "start": 169.42,
+          "end": 169.66
+        },
+        {
+          "w": "dividend",
+          "start": 169.66,
+          "end": 169.98
+        },
+        {
+          "w": "drag,",
+          "start": 169.98,
+          "end": 170.36
+        }
+      ]
+    },
+    {
+      "text": "and report your",
+      "start": 170.68,
+      "end": 171.34,
+      "duration": 0.66,
+      "words": [
+        {
+          "w": "and",
+          "start": 170.68,
+          "end": 170.8
+        },
+        {
+          "w": "report",
+          "start": 170.8,
+          "end": 171.16
+        },
+        {
+          "w": "your",
+          "start": 171.16,
+          "end": 171.34
+        }
+      ]
+    },
+    {
+      "text": "acquisition cost in your",
+      "start": 171.34,
+      "end": 172.52,
+      "duration": 1.18,
+      "words": [
+        {
+          "w": "acquisition",
+          "start": 171.34,
+          "end": 171.8
+        },
+        {
+          "w": "cost",
+          "start": 171.8,
+          "end": 172.18
+        },
+        {
+          "w": "in",
+          "start": 172.18,
+          "end": 172.4
+        },
+        {
+          "w": "your",
+          "start": 172.4,
+          "end": 172.52
+        }
+      ]
+    },
+    {
+      "text": "annual SPT tax return.",
+      "start": 172.52,
+      "end": 174.06,
+      "duration": 1.54,
+      "words": [
+        {
+          "w": "annual",
+          "start": 172.52,
+          "end": 172.88
+        },
+        {
+          "w": "SPT",
+          "start": 172.88,
+          "end": 173.46
+        },
+        {
+          "w": "tax",
+          "start": 173.46,
+          "end": 173.82
+        },
+        {
+          "w": "return.",
+          "start": 173.82,
+          "end": 174.06
+        }
+      ]
+    },
+    {
+      "text": "Three,",
+      "start": 174.7,
+      "end": 175.04,
+      "duration": 0.34,
+      "words": [
+        {
+          "w": "Three,",
+          "start": 174.7,
+          "end": 175.04
+        }
+      ]
+    },
+    {
+      "text": "for cash dividends,",
+      "start": 175.42,
+      "end": 176.14,
+      "duration": 0.72,
+      "words": [
+        {
+          "w": "for",
+          "start": 175.42,
+          "end": 175.5
+        },
+        {
+          "w": "cash",
+          "start": 175.5,
+          "end": 175.78
+        },
+        {
+          "w": "dividends,",
+          "start": 175.78,
+          "end": 176.14
+        }
+      ]
+    },
+    {
+      "text": "repatriate into",
+      "start": 176.52,
+      "end": 177.44,
+      "duration": 0.92,
+      "words": [
+        {
+          "w": "repatriate",
+          "start": 176.52,
+          "end": 177.2
+        },
+        {
+          "w": "into",
+          "start": 177.2,
+          "end": 177.44
+        }
+      ]
+    },
+    {
+      "text": "Indonesian SBN bonds for",
+      "start": 177.44,
+      "end": 179.02,
+      "duration": 1.58,
+      "words": [
+        {
+          "w": "Indonesian",
+          "start": 177.44,
+          "end": 177.94
+        },
+        {
+          "w": "SBN",
+          "start": 177.94,
+          "end": 178.58
+        },
+        {
+          "w": "bonds",
+          "start": 178.58,
+          "end": 178.82
+        },
+        {
+          "w": "for",
+          "start": 178.82,
+          "end": 179.02
+        }
+      ]
+    },
+    {
+      "text": "three years under PMK",
+      "start": 179.02,
+      "end": 180.34,
+      "duration": 1.32,
+      "words": [
+        {
+          "w": "three",
+          "start": 179.02,
+          "end": 179.34
+        },
+        {
+          "w": "years",
+          "start": 179.34,
+          "end": 179.56
+        },
+        {
+          "w": "under",
+          "start": 179.56,
+          "end": 179.86
+        },
+        {
+          "w": "PMK",
+          "start": 179.86,
+          "end": 180.34
+        }
+      ]
+    },
+    {
+      "text": "18 to lock in",
+      "start": 180.34,
+      "end": 181.68,
+      "duration": 1.34,
+      "words": [
+        {
+          "w": "18",
+          "start": 180.34,
+          "end": 180.76
+        },
+        {
+          "w": "to",
+          "start": 180.76,
+          "end": 181.3
+        },
+        {
+          "w": "lock",
+          "start": 181.3,
+          "end": 181.48
+        },
+        {
+          "w": "in",
+          "start": 181.48,
+          "end": 181.68
+        }
+      ]
+    },
+    {
+      "text": "zero percent tax.",
+      "start": 181.68,
+      "end": 182.66,
+      "duration": 0.98,
+      "words": [
+        {
+          "w": "zero",
+          "start": 181.68,
+          "end": 181.92
+        },
+        {
+          "w": "percent",
+          "start": 181.92,
+          "end": 182.24
+        },
+        {
+          "w": "tax.",
+          "start": 182.24,
+          "end": 182.66
+        }
+      ]
+    },
+    {
+      "text": "Structure properly and",
+      "start": 183.08,
+      "end": 184.34,
+      "duration": 1.26,
+      "words": [
+        {
+          "w": "Structure",
+          "start": 183.08,
+          "end": 183.38
+        },
+        {
+          "w": "properly",
+          "start": 183.38,
+          "end": 183.82
+        },
+        {
+          "w": "and",
+          "start": 183.82,
+          "end": 184.34
+        }
+      ]
+    },
+    {
+      "text": "keep your gains.",
+      "start": 184.34,
+      "end": 184.92,
+      "duration": 0.58,
+      "words": [
+        {
+          "w": "keep",
+          "start": 184.34,
+          "end": 184.52
+        },
+        {
+          "w": "your",
+          "start": 184.52,
+          "end": 184.7
+        },
+        {
+          "w": "gains.",
+          "start": 184.7,
+          "end": 184.92
+        }
+      ]
+    }
+  ]
+}

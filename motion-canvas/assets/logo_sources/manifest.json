@@ -1,0 +1,316 @@
+{
+  "version": "1.0.0",
+  "generated_at": "2026-10-29T19:35:00Z",
+  "source_files": {
+    "Logo-idx.png": {
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Logo-idx.png",
+      "source_sha256": "90b8cf6940bfa7a6c106fdd265dc862b143596f06b0a999a74d909bab73ad981",
+      "bytes": 60742
+    },
+    "Interactive_Brokers_Logo_2014.svg": {
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/c/ca/Interactive_Brokers_Logo_%282014%29.svg",
+      "source_sha256": "a360753893157bb1fdea5f41364e53b896c63ba58d447405cb9e38af80d5025c",
+      "bytes": 17394
+    },
+    "Flag_of_the_United_States.svg": {
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg",
+      "source_sha256": "48f0d3e4a7bf2d5c0c8d09cd975696acb2f3af601aaca80c537933ad9ec166ec",
+      "bytes": 823
+    },
+    "Logo_of_the_Internal_Revenue_Service.svg": {
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Logo_of_the_Internal_Revenue_Service.svg",
+      "source_sha256": "aba82d37c430ba319b0a434685716d9ea11d2aa1660e58066eb07a5da2ec59d6",
+      "bytes": 2932
+    },
+    "Coat_of_arms_of_Ireland.svg": {
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Coat_of_arms_of_Ireland.svg",
+      "source_sha256": "af333123808d289917c604beaed5d6c6d2225c25b5ab3069d7d768d86838c78f",
+      "bytes": 173822
+    },
+    "Logo_djp.svg": {
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/c/c9/Logo_djp.svg",
+      "source_sha256": "23e15c51e4ead3f9ec792162b2ccfecf079315095a91f0b36180e2e65d6a4f6d",
+      "bytes": 244513
+    },
+    "OECD_logo.svg": {
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/a/a2/OECD_logo.svg",
+      "source_sha256": "3378462d6ccdaaa4702c5f7eebc5e624c08bc2b478dc83686604e92980063f7f",
+      "bytes": 605336
+    },
+    "Microsoft_logo.svg": {
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
+      "source_sha256": "3d41251f93127b4b42c2f69fa423d204946cf9c307d786ea36b8d9bef4179282",
+      "bytes": 272
+    },
+    "Meta_Platforms_Inc._logo.svg": {
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg",
+      "source_sha256": "b536f39ac80d6b93477ce158e9e0f963504a407da8c35caf5ded3ac072b49176",
+      "bytes": 3383
+    },
+    "OpenAI_Logo.svg": {
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/d/d3/OpenAI_2017-22_logo.svg",
+      "source_sha256": "1422c81b1a366a2a509e19a18c0131dd7ecfc85eb2aa3bf1f27a1163fcca1e20",
+      "bytes": 2729
+    },
+    "Microsoft_Azure.svg": {
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg",
+      "source_sha256": "77d2e821402b72fe78f6dfbc15b96707a0d0ba1e36cccc89e6be99f9c43b54c8",
+      "bytes": 2104
+    },
+    "Google_Cloud_logo.svg": {
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/5/51/Google_Cloud_logo.svg",
+      "source_sha256": "0a70f8a71ec5d3ffc9e2be8cbb1fb70e1378c48fabc3c064ddb6c6a32fd3aa6c",
+      "bytes": 4305
+    },
+    "Nvidia_logo.svg": {
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/a/a4/NVIDIA_logo.svg",
+      "source_sha256": "bb0f6d477d9acbc982070ac20332cd774015062ebd049c0814f7371c63d12a81",
+      "bytes": 3613
+    },
+    "Cisco_logo_blue_2016.svg": {
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/0/08/Cisco_logo_blue_2016.svg",
+      "source_sha256": "5b4035237c926ae0f67b70853f708edaa9616aabeb57610538986a9e351a2581",
+      "bytes": 2396
+    }
+  },
+  "outputs": {
+    "idx_logo.png": {
+      "target_dir": "vid_20261024_001",
+      "sources": [
+        "Logo-idx.png"
+      ],
+      "render_params": {
+        "target_height": 210,
+        "resample": "LANCZOS",
+        "canvas_size": [
+          256,
+          256
+        ]
+      },
+      "output_dimensions": [
+        256,
+        256
+      ],
+      "output_sha256": "7ad72c32207213b83a2adac6122f43cf689a9971d52328f2974fe0ecfab4f464"
+    },
+    "ibkr_gotrade_badges.png": {
+      "target_dir": "vid_20261024_001",
+      "sources": [
+        "Interactive_Brokers_Logo_2014.svg",
+        "Flag_of_the_United_States.svg"
+      ],
+      "render_params": {
+        "card_size": 120,
+        "ibkr_height": 76,
+        "flag_size": 120,
+        "canvas_size": [
+          320,
+          160
+        ]
+      },
+      "output_dimensions": [
+        320,
+        160
+      ],
+      "output_sha256": "5bbb264c3d81e43832cb24e150bfb6c41f0567983897dbb2b777fb9853e72a34"
+    },
+    "irs_eagle_badge.png": {
+      "target_dir": "vid_20261024_001",
+      "sources": [
+        "Logo_of_the_Internal_Revenue_Service.svg"
+      ],
+      "render_params": {
+        "svg_width": 512,
+        "target_width": 210,
+        "canvas_size": [
+          256,
+          256
+        ]
+      },
+      "output_dimensions": [
+        256,
+        256
+      ],
+      "output_sha256": "7ee0a65260bf58692464d05293a8aa8f1f2c0711afe6d5defa67d00be86c2303"
+    },
+    "lse_ucits_badge.png": {
+      "target_dir": "vid_20261024_001",
+      "sources": [
+        "Coat_of_arms_of_Ireland.svg"
+      ],
+      "render_params": {
+        "svg_height": 600,
+        "target_height": 210,
+        "canvas_size": [
+          256,
+          256
+        ]
+      },
+      "output_dimensions": [
+        256,
+        256
+      ],
+      "output_sha256": "1c6888664589fdccc6e1125188ebfc4dd3a73d830fd978689b2040f2dca9bcc2"
+    },
+    "djp_sbn_emblem.png": {
+      "target_dir": "vid_20261024_001",
+      "sources": [
+        "Logo_djp.svg"
+      ],
+      "render_params": {
+        "svg_width": 520,
+        "target_size": 210,
+        "canvas_size": [
+          256,
+          256
+        ]
+      },
+      "output_dimensions": [
+        256,
+        256
+      ],
+      "output_sha256": "62e5a3b58dfa853183b828061743e31900665c686171454a8e561db7124c3bc9"
+    },
+    "crs_globe_node.png": {
+      "target_dir": "vid_20261024_001",
+      "sources": [
+        "OECD_logo.svg"
+      ],
+      "render_params": {
+        "svg_height": 500,
+        "target_width": 210,
+        "canvas_size": [
+          256,
+          256
+        ]
+      },
+      "output_dimensions": [
+        256,
+        256
+      ],
+      "output_sha256": "832572ad509e8983c55cfb5053308d330a86bc895f2b5ed7e1a138f0924f5528"
+    },
+    "bigtech_capex_badge.png": {
+      "target_dir": "vid_20261029_002",
+      "sources": [
+        "Microsoft_logo.svg",
+        "Meta_Platforms_Inc._logo.svg"
+      ],
+      "render_params": {
+        "ms_size": 82,
+        "ms_center": [
+          80,
+          80
+        ],
+        "meta_width": 110,
+        "meta_center": [
+          240,
+          80
+        ],
+        "canvas_size": [
+          320,
+          160
+        ]
+      },
+      "output_dimensions": [
+        320,
+        160
+      ],
+      "output_sha256": "28dead94515335165b97e972ba4903c778c9fba10065097350238f1cda0f5839"
+    },
+    "openai_logo.png": {
+      "target_dir": "vid_20261029_002",
+      "sources": [
+        "OpenAI_Logo.svg"
+      ],
+      "render_params": {
+        "target_height": 210,
+        "center": [
+          128,
+          128
+        ],
+        "canvas_size": [
+          256,
+          256
+        ]
+      },
+      "output_dimensions": [
+        256,
+        256
+      ],
+      "output_sha256": "a3eb1ecf9243d466bed626c3cebfa2b9d3bb94e7712f5e6feac802dddba74e42"
+    },
+    "aws_azure_badge.png": {
+      "target_dir": "vid_20261029_002",
+      "sources": [
+        "Microsoft_Azure.svg",
+        "Google_Cloud_logo.svg"
+      ],
+      "render_params": {
+        "azure_height": 86,
+        "azure_center": [
+          80,
+          80
+        ],
+        "gc_width": 106,
+        "gc_center": [
+          240,
+          80
+        ],
+        "canvas_size": [
+          320,
+          160
+        ]
+      },
+      "output_dimensions": [
+        320,
+        160
+      ],
+      "output_sha256": "8bac87d45139686611167c6eb8e3cc3fb9462c94575efdcb7eca7ce065fc3643"
+    },
+    "nvidia_logo.png": {
+      "target_dir": "vid_20261029_002",
+      "sources": [
+        "Nvidia_logo.svg"
+      ],
+      "render_params": {
+        "target_width": 210,
+        "center": [
+          128,
+          128
+        ],
+        "canvas_size": [
+          256,
+          256
+        ]
+      },
+      "output_dimensions": [
+        256,
+        256
+      ],
+      "output_sha256": "395927bfe26054dfcb09be7471db589a320f6b933889ae55aa7051a89b63b401"
+    },
+    "telecom_fiber_icon.png": {
+      "target_dir": "vid_20261029_002",
+      "sources": [
+        "Cisco_logo_blue_2016.svg"
+      ],
+      "render_params": {
+        "target_width": 210,
+        "center": [
+          128,
+          128
+        ],
+        "canvas_size": [
+          256,
+          256
+        ]
+      },
+      "output_dimensions": [
+        256,
+        256
+      ],
+      "output_sha256": "f8d3d6f7be53316cede5423017e6f1093e740a08a9a48bf86870eb85b36363e6"
+    }
+  }
+}

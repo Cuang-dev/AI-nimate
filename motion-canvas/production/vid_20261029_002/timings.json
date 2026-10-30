@@ -1,0 +1,3655 @@
+{
+  "duration_seconds": 102.32,
+  "scenes": [
+    {
+      "id": "beat_01",
+      "start": 0.0,
+      "end": 26.38,
+      "duration": 26.38
+    },
+    {
+      "id": "beat_02",
+      "start": 26.38,
+      "end": 47.65,
+      "duration": 21.27
+    },
+    {
+      "id": "beat_03",
+      "start": 47.65,
+      "end": 67.64,
+      "duration": 19.99
+    },
+    {
+      "id": "beat_04",
+      "start": 67.64,
+      "end": 85.0,
+      "duration": 17.36
+    },
+    {
+      "id": "beat_05",
+      "start": 85.0,
+      "end": 102.32,
+      "duration": 17.32
+    }
+  ],
+  "beats": [
+    {
+      "beat_id": "beat_01",
+      "start": 0.0,
+      "end": 26.38,
+      "duration": 26.38
+    },
+    {
+      "beat_id": "beat_02",
+      "start": 26.38,
+      "end": 47.65,
+      "duration": 21.27
+    },
+    {
+      "beat_id": "beat_03",
+      "start": 47.65,
+      "end": 67.64,
+      "duration": 19.99
+    },
+    {
+      "beat_id": "beat_04",
+      "start": 67.64,
+      "end": 85.0,
+      "duration": 17.36
+    },
+    {
+      "beat_id": "beat_05",
+      "start": 85.0,
+      "end": 102.32,
+      "duration": 17.32
+    }
+  ],
+  "words": [
+    {
+      "w": "Everyone",
+      "start": 0.0,
+      "end": 0.4
+    },
+    {
+      "w": "calls",
+      "start": 0.4,
+      "end": 0.8
+    },
+    {
+      "w": "AI",
+      "start": 0.8,
+      "end": 1.16
+    },
+    {
+      "w": "a",
+      "start": 1.16,
+      "end": 1.46
+    },
+    {
+      "w": "bubble,",
+      "start": 1.46,
+      "end": 1.74
+    },
+    {
+      "w": "but",
+      "start": 2.12,
+      "end": 2.2
+    },
+    {
+      "w": "almost",
+      "start": 2.2,
+      "end": 2.54
+    },
+    {
+      "w": "nobody",
+      "start": 2.54,
+      "end": 2.98
+    },
+    {
+      "w": "explains",
+      "start": 2.98,
+      "end": 3.4
+    },
+    {
+      "w": "what",
+      "start": 3.4,
+      "end": 3.64
+    },
+    {
+      "w": "is",
+      "start": 3.64,
+      "end": 3.8
+    },
+    {
+      "w": "actually",
+      "start": 3.8,
+      "end": 4.4
+    },
+    {
+      "w": "inflating.",
+      "start": 4.4,
+      "end": 5.04
+    },
+    {
+      "w": "Between",
+      "start": 5.62,
+      "end": 5.9
+    },
+    {
+      "w": "2025",
+      "start": 5.9,
+      "end": 6.66
+    },
+    {
+      "w": "and",
+      "start": 6.66,
+      "end": 6.96
+    },
+    {
+      "w": "2026,",
+      "start": 6.96,
+      "end": 7.76
+    },
+    {
+      "w": "Microsoft,",
+      "start": 8.26,
+      "end": 8.5
+    },
+    {
+      "w": "Meta,",
+      "start": 8.96,
+      "end": 9.16
+    },
+    {
+      "w": "Google,",
+      "start": 9.38,
+      "end": 9.52
+    },
+    {
+      "w": "and",
+      "start": 9.84,
+      "end": 9.88
+    },
+    {
+      "w": "Amazon",
+      "start": 9.88,
+      "end": 10.28
+    },
+    {
+      "w": "are",
+      "start": 10.28,
+      "end": 10.58
+    },
+    {
+      "w": "spending",
+      "start": 10.58,
+      "end": 10.88
+    },
+    {
+      "w": "over",
+      "start": 10.88,
+      "end": 11.18
+    },
+    {
+      "w": "$320",
+      "start": 11.18,
+      "end": 12.36
+    },
+    {
+      "w": "billion",
+      "start": 12.36,
+      "end": 13.0
+    },
+    {
+      "w": "a",
+      "start": 13.0,
+      "end": 13.54
+    },
+    {
+      "w": "year",
+      "start": 13.54,
+      "end": 13.8
+    },
+    {
+      "w": "on",
+      "start": 13.8,
+      "end": 14.04
+    },
+    {
+      "w": "AI",
+      "start": 14.04,
+      "end": 14.26
+    },
+    {
+      "w": "data",
+      "start": 14.26,
+      "end": 14.5
+    },
+    {
+      "w": "centers.",
+      "start": 14.5,
+      "end": 14.92
+    },
+    {
+      "w": "Yet,",
+      "start": 15.34,
+      "end": 15.62
+    },
+    {
+      "w": "according",
+      "start": 15.76,
+      "end": 16.02
+    },
+    {
+      "w": "to",
+      "start": 16.02,
+      "end": 16.24
+    },
+    {
+      "w": "Sequoia's",
+      "start": 16.24,
+      "end": 16.72
+    },
+    {
+      "w": "famous",
+      "start": 16.72,
+      "end": 16.98
+    },
+    {
+      "w": "$600",
+      "start": 16.98,
+      "end": 17.48
+    },
+    {
+      "w": "billion",
+      "start": 17.48,
+      "end": 17.86
+    },
+    {
+      "w": "formula,",
+      "start": 17.86,
+      "end": 18.5
+    },
+    {
+      "w": "all",
+      "start": 19.02,
+      "end": 19.12
+    },
+    {
+      "w": "pure",
+      "start": 19.12,
+      "end": 19.48
+    },
+    {
+      "w": "play",
+      "start": 19.48,
+      "end": 19.76
+    },
+    {
+      "w": "AI",
+      "start": 19.76,
+      "end": 20.02
+    },
+    {
+      "w": "software",
+      "start": 20.02,
+      "end": 20.46
+    },
+    {
+      "w": "today",
+      "start": 20.46,
+      "end": 20.82
+    },
+    {
+      "w": "earns",
+      "start": 20.82,
+      "end": 21.18
+    },
+    {
+      "w": "less",
+      "start": 21.18,
+      "end": 21.44
+    },
+    {
+      "w": "than",
+      "start": 21.44,
+      "end": 21.6
+    },
+    {
+      "w": "$45",
+      "start": 21.6,
+      "end": 22.2
+    },
+    {
+      "w": "billion,",
+      "start": 22.2,
+      "end": 22.66
+    },
+    {
+      "w": "leaving",
+      "start": 22.98,
+      "end": 23.22
+    },
+    {
+      "w": "a",
+      "start": 23.22,
+      "end": 23.46
+    },
+    {
+      "w": "massive",
+      "start": 23.46,
+      "end": 23.82
+    },
+    {
+      "w": "$500",
+      "start": 23.82,
+      "end": 24.54
+    },
+    {
+      "w": "billion",
+      "start": 24.54,
+      "end": 24.96
+    },
+    {
+      "w": "revenue",
+      "start": 24.96,
+      "end": 25.3
+    },
+    {
+      "w": "chasm.",
+      "start": 25.3,
+      "end": 26.12
+    },
+    {
+      "w": "Why",
+      "start": 26.64,
+      "end": 27.2
+    },
+    {
+      "w": "does",
+      "start": 27.2,
+      "end": 27.38
+    },
+    {
+      "w": "cloud",
+      "start": 27.38,
+      "end": 27.62
+    },
+    {
+      "w": "revenue",
+      "start": 27.62,
+      "end": 27.92
+    },
+    {
+      "w": "look",
+      "start": 27.92,
+      "end": 28.12
+    },
+    {
+      "w": "so",
+      "start": 28.12,
+      "end": 28.36
+    },
+    {
+      "w": "booming",
+      "start": 28.36,
+      "end": 28.64
+    },
+    {
+      "w": "anyway?",
+      "start": 28.64,
+      "end": 29.18
+    },
+    {
+      "w": "Because",
+      "start": 29.72,
+      "end": 29.94
+    },
+    {
+      "w": "of",
+      "start": 29.94,
+      "end": 30.08
+    },
+    {
+      "w": "a",
+      "start": 30.08,
+      "end": 30.18
+    },
+    {
+      "w": "Wall",
+      "start": 30.18,
+      "end": 30.36
+    },
+    {
+      "w": "Street",
+      "start": 30.36,
+      "end": 30.6
+    },
+    {
+      "w": "illusion",
+      "start": 30.6,
+      "end": 30.96
+    },
+    {
+      "w": "called",
+      "start": 30.96,
+      "end": 31.26
+    },
+    {
+      "w": "round-tripping.",
+      "start": 31.26,
+      "end": 32.12
+    },
+    {
+      "w": "Hyperscalers",
+      "start": 32.72,
+      "end": 33.28
+    },
+    {
+      "w": "invest",
+      "start": 33.28,
+      "end": 33.56
+    },
+    {
+      "w": "tens",
+      "start": 33.56,
+      "end": 33.9
+    },
+    {
+      "w": "of",
+      "start": 33.9,
+      "end": 34.12
+    },
+    {
+      "w": "billions",
+      "start": 34.12,
+      "end": 34.42
+    },
+    {
+      "w": "into",
+      "start": 34.42,
+      "end": 34.78
+    },
+    {
+      "w": "AI",
+      "start": 34.78,
+      "end": 35.0
+    },
+    {
+      "w": "labs",
+      "start": 35.0,
+      "end": 35.34
+    },
+    {
+      "w": "like",
+      "start": 35.34,
+      "end": 35.56
+    },
+    {
+      "w": "OpenAI",
+      "start": 35.56,
+      "end": 36.02
+    },
+    {
+      "w": "and",
+      "start": 36.02,
+      "end": 36.32
+    },
+    {
+      "w": "Anthropic,",
+      "start": 36.32,
+      "end": 36.76
+    },
+    {
+      "w": "not",
+      "start": 37.22,
+      "end": 37.32
+    },
+    {
+      "w": "just",
+      "start": 37.32,
+      "end": 37.52
+    },
+    {
+      "w": "in",
+      "start": 37.52,
+      "end": 37.66
+    },
+    {
+      "w": "cash,",
+      "start": 37.66,
+      "end": 38.0
+    },
+    {
+      "w": "but",
+      "start": 38.2,
+      "end": 38.3
+    },
+    {
+      "w": "in",
+      "start": 38.3,
+      "end": 38.42
+    },
+    {
+      "w": "cloud",
+      "start": 38.42,
+      "end": 38.72
+    },
+    {
+      "w": "compute",
+      "start": 38.72,
+      "end": 39.2
+    },
+    {
+      "w": "credits.",
+      "start": 39.2,
+      "end": 39.62
+    },
+    {
+      "w": "When",
+      "start": 40.1,
+      "end": 40.32
+    },
+    {
+      "w": "those",
+      "start": 40.32,
+      "end": 40.48
+    },
+    {
+      "w": "startups",
+      "start": 40.48,
+      "end": 40.8
+    },
+    {
+      "w": "burn",
+      "start": 40.8,
+      "end": 41.14
+    },
+    {
+      "w": "those",
+      "start": 41.14,
+      "end": 41.38
+    },
+    {
+      "w": "credits",
+      "start": 41.38,
+      "end": 41.66
+    },
+    {
+      "w": "training",
+      "start": 41.66,
+      "end": 42.0
+    },
+    {
+      "w": "models",
+      "start": 42.0,
+      "end": 42.32
+    },
+    {
+      "w": "on",
+      "start": 42.32,
+      "end": 42.5
+    },
+    {
+      "w": "Azure",
+      "start": 42.5,
+      "end": 42.76
+    },
+    {
+      "w": "or",
+      "start": 42.76,
+      "end": 43.16
+    },
+    {
+      "w": "AWS,",
+      "start": 43.16,
+      "end": 43.62
+    },
+    {
+      "w": "Big",
+      "start": 44.26,
+      "end": 44.3
+    },
+    {
+      "w": "Tech",
+      "start": 44.3,
+      "end": 44.54
+    },
+    {
+      "w": "books",
+      "start": 44.54,
+      "end": 44.8
+    },
+    {
+      "w": "its",
+      "start": 44.8,
+      "end": 45.06
+    },
+    {
+      "w": "own",
+      "start": 45.06,
+      "end": 45.28
+    },
+    {
+      "w": "investment",
+      "start": 45.28,
+      "end": 45.74
+    },
+    {
+      "w": "right",
+      "start": 45.74,
+      "end": 46.06
+    },
+    {
+      "w": "back",
+      "start": 46.06,
+      "end": 46.48
+    },
+    {
+      "w": "as",
+      "start": 46.48,
+      "end": 46.76
+    },
+    {
+      "w": "cloud",
+      "start": 46.76,
+      "end": 47.0
+    },
+    {
+      "w": "revenue.",
+      "start": 47.0,
+      "end": 47.38
+    },
+    {
+      "w": "The",
+      "start": 47.92,
+      "end": 48.2
+    },
+    {
+      "w": "real",
+      "start": 48.2,
+      "end": 48.48
+    },
+    {
+      "w": "time",
+      "start": 48.48,
+      "end": 48.78
+    },
+    {
+      "w": "bomb",
+      "start": 48.78,
+      "end": 49.0
+    },
+    {
+      "w": "sits",
+      "start": 49.0,
+      "end": 49.28
+    },
+    {
+      "w": "on",
+      "start": 49.28,
+      "end": 49.5
+    },
+    {
+      "w": "the",
+      "start": 49.5,
+      "end": 49.62
+    },
+    {
+      "w": "balance",
+      "start": 49.62,
+      "end": 49.9
+    },
+    {
+      "w": "sheet.",
+      "start": 49.9,
+      "end": 50.2
+    },
+    {
+      "w": "Tech",
+      "start": 50.82,
+      "end": 50.96
+    },
+    {
+      "w": "giants",
+      "start": 50.96,
+      "end": 51.24
+    },
+    {
+      "w": "stretch",
+      "start": 51.24,
+      "end": 51.52
+    },
+    {
+      "w": "their",
+      "start": 51.52,
+      "end": 51.74
+    },
+    {
+      "w": "server",
+      "start": 51.74,
+      "end": 52.06
+    },
+    {
+      "w": "depreciation",
+      "start": 52.06,
+      "end": 52.8
+    },
+    {
+      "w": "schedules",
+      "start": 52.8,
+      "end": 53.12
+    },
+    {
+      "w": "to",
+      "start": 53.12,
+      "end": 53.3
+    },
+    {
+      "w": "six",
+      "start": 53.3,
+      "end": 53.58
+    },
+    {
+      "w": "full",
+      "start": 53.58,
+      "end": 53.96
+    },
+    {
+      "w": "years",
+      "start": 53.96,
+      "end": 54.42
+    },
+    {
+      "w": "to",
+      "start": 54.42,
+      "end": 54.66
+    },
+    {
+      "w": "keep",
+      "start": 54.66,
+      "end": 54.8
+    },
+    {
+      "w": "quarterly",
+      "start": 54.8,
+      "end": 55.12
+    },
+    {
+      "w": "profits",
+      "start": 55.12,
+      "end": 55.5
+    },
+    {
+      "w": "looking",
+      "start": 55.5,
+      "end": 55.86
+    },
+    {
+      "w": "high.",
+      "start": 55.86,
+      "end": 56.2
+    },
+    {
+      "w": "But",
+      "start": 56.68,
+      "end": 56.76
+    },
+    {
+      "w": "Nvidia",
+      "start": 56.76,
+      "end": 57.08
+    },
+    {
+      "w": "launches",
+      "start": 57.08,
+      "end": 57.4
+    },
+    {
+      "w": "a",
+      "start": 57.4,
+      "end": 57.56
+    },
+    {
+      "w": "new",
+      "start": 57.56,
+      "end": 57.72
+    },
+    {
+      "w": "GPU",
+      "start": 57.72,
+      "end": 58.0
+    },
+    {
+      "w": "architecture",
+      "start": 58.0,
+      "end": 58.48
+    },
+    {
+      "w": "every",
+      "start": 58.48,
+      "end": 58.84
+    },
+    {
+      "w": "12",
+      "start": 58.84,
+      "end": 59.12
+    },
+    {
+      "w": "to",
+      "start": 59.12,
+      "end": 59.32
+    },
+    {
+      "w": "24",
+      "start": 59.32,
+      "end": 59.64
+    },
+    {
+      "w": "months.",
+      "start": 59.64,
+      "end": 59.96
+    },
+    {
+      "w": "When",
+      "start": 60.48,
+      "end": 60.62
+    },
+    {
+      "w": "Blackwell",
+      "start": 60.62,
+      "end": 61.1
+    },
+    {
+      "w": "and",
+      "start": 61.1,
+      "end": 61.36
+    },
+    {
+      "w": "Rubin",
+      "start": 61.36,
+      "end": 61.68
+    },
+    {
+      "w": "make",
+      "start": 61.68,
+      "end": 61.84
+    },
+    {
+      "w": "older",
+      "start": 61.84,
+      "end": 62.08
+    },
+    {
+      "w": "chips",
+      "start": 62.08,
+      "end": 62.3
+    },
+    {
+      "w": "too",
+      "start": 62.3,
+      "end": 62.56
+    },
+    {
+      "w": "power",
+      "start": 62.56,
+      "end": 62.94
+    },
+    {
+      "w": "hungry",
+      "start": 62.94,
+      "end": 63.2
+    },
+    {
+      "w": "to",
+      "start": 63.2,
+      "end": 63.36
+    },
+    {
+      "w": "run",
+      "start": 63.36,
+      "end": 63.54
+    },
+    {
+      "w": "economically,",
+      "start": 63.54,
+      "end": 64.1
+    },
+    {
+      "w": "hundreds",
+      "start": 64.6,
+      "end": 64.92
+    },
+    {
+      "w": "of",
+      "start": 64.92,
+      "end": 65.22
+    },
+    {
+      "w": "billions",
+      "start": 65.22,
+      "end": 65.56
+    },
+    {
+      "w": "in",
+      "start": 65.56,
+      "end": 65.78
+    },
+    {
+      "w": "silicon",
+      "start": 65.78,
+      "end": 66.08
+    },
+    {
+      "w": "face",
+      "start": 66.08,
+      "end": 66.34
+    },
+    {
+      "w": "sudden",
+      "start": 66.34,
+      "end": 66.72
+    },
+    {
+      "w": "write-downs.",
+      "start": 66.72,
+      "end": 67.28
+    },
+    {
+      "w": "Is",
+      "start": 68.0,
+      "end": 68.26
+    },
+    {
+      "w": "this",
+      "start": 68.26,
+      "end": 68.36
+    },
+    {
+      "w": "just",
+      "start": 68.36,
+      "end": 68.52
+    },
+    {
+      "w": "the",
+      "start": 68.52,
+      "end": 68.7
+    },
+    {
+      "w": "year",
+      "start": 68.7,
+      "end": 68.82
+    },
+    {
+      "w": "2000",
+      "start": 68.82,
+      "end": 69.3
+    },
+    {
+      "w": "telecom",
+      "start": 69.3,
+      "end": 69.76
+    },
+    {
+      "w": "crash",
+      "start": 69.76,
+      "end": 70.06
+    },
+    {
+      "w": "all",
+      "start": 70.06,
+      "end": 70.22
+    },
+    {
+      "w": "over",
+      "start": 70.22,
+      "end": 70.42
+    },
+    {
+      "w": "again?",
+      "start": 70.42,
+      "end": 70.66
+    },
+    {
+      "w": "Not",
+      "start": 71.14,
+      "end": 71.32
+    },
+    {
+      "w": "quite.",
+      "start": 71.32,
+      "end": 71.58
+    },
+    {
+      "w": "In",
+      "start": 72.14,
+      "end": 72.36
+    },
+    {
+      "w": "2000,",
+      "start": 72.36,
+      "end": 72.86
+    },
+    {
+      "w": "telecoms",
+      "start": 73.12,
+      "end": 73.54
+    },
+    {
+      "w": "use",
+      "start": 73.54,
+      "end": 73.64
+    },
+    {
+      "w": "junk",
+      "start": 73.64,
+      "end": 73.98
+    },
+    {
+      "w": "debt",
+      "start": 73.98,
+      "end": 74.22
+    },
+    {
+      "w": "to",
+      "start": 74.22,
+      "end": 74.44
+    },
+    {
+      "w": "lay",
+      "start": 74.44,
+      "end": 74.56
+    },
+    {
+      "w": "dark",
+      "start": 74.56,
+      "end": 74.82
+    },
+    {
+      "w": "fiber",
+      "start": 74.82,
+      "end": 75.1
+    },
+    {
+      "w": "cables",
+      "start": 75.1,
+      "end": 75.44
+    },
+    {
+      "w": "that",
+      "start": 75.44,
+      "end": 75.62
+    },
+    {
+      "w": "lasted",
+      "start": 75.62,
+      "end": 75.82
+    },
+    {
+      "w": "25",
+      "start": 75.82,
+      "end": 76.38
+    },
+    {
+      "w": "years",
+      "start": 76.38,
+      "end": 76.68
+    },
+    {
+      "w": "in",
+      "start": 76.68,
+      "end": 76.82
+    },
+    {
+      "w": "the",
+      "start": 76.82,
+      "end": 76.9
+    },
+    {
+      "w": "ground.",
+      "start": 76.9,
+      "end": 77.16
+    },
+    {
+      "w": "Today's",
+      "start": 77.7,
+      "end": 78.24
+    },
+    {
+      "w": "tech",
+      "start": 78.24,
+      "end": 78.38
+    },
+    {
+      "w": "giants",
+      "start": 78.38,
+      "end": 78.6
+    },
+    {
+      "w": "are",
+      "start": 78.6,
+      "end": 78.78
+    },
+    {
+      "w": "funding",
+      "start": 78.78,
+      "end": 79.08
+    },
+    {
+      "w": "AI",
+      "start": 79.08,
+      "end": 79.42
+    },
+    {
+      "w": "out",
+      "start": 79.42,
+      "end": 79.7
+    },
+    {
+      "w": "of",
+      "start": 79.7,
+      "end": 79.74
+    },
+    {
+      "w": "massive",
+      "start": 79.74,
+      "end": 80.14
+    },
+    {
+      "w": "cash",
+      "start": 80.14,
+      "end": 80.52
+    },
+    {
+      "w": "flows,",
+      "start": 80.52,
+      "end": 80.78
+    },
+    {
+      "w": "but",
+      "start": 80.78,
+      "end": 81.26
+    },
+    {
+      "w": "they",
+      "start": 81.26,
+      "end": 81.4
+    },
+    {
+      "w": "are",
+      "start": 81.4,
+      "end": 81.46
+    },
+    {
+      "w": "buying",
+      "start": 81.46,
+      "end": 81.66
+    },
+    {
+      "w": "fast",
+      "start": 81.66,
+      "end": 82.06
+    },
+    {
+      "w": "rotting",
+      "start": 82.06,
+      "end": 82.44
+    },
+    {
+      "w": "GPUs",
+      "start": 82.44,
+      "end": 83.1
+    },
+    {
+      "w": "that",
+      "start": 83.1,
+      "end": 83.22
+    },
+    {
+      "w": "lose",
+      "start": 83.22,
+      "end": 83.4
+    },
+    {
+      "w": "value",
+      "start": 83.4,
+      "end": 83.7
+    },
+    {
+      "w": "in",
+      "start": 83.7,
+      "end": 83.86
+    },
+    {
+      "w": "just",
+      "start": 83.86,
+      "end": 83.98
+    },
+    {
+      "w": "three",
+      "start": 83.98,
+      "end": 84.32
+    },
+    {
+      "w": "years.",
+      "start": 84.32,
+      "end": 84.66
+    },
+    {
+      "w": "So",
+      "start": 85.34,
+      "end": 85.52
+    },
+    {
+      "w": "what",
+      "start": 85.52,
+      "end": 85.78
+    },
+    {
+      "w": "actually",
+      "start": 85.78,
+      "end": 86.28
+    },
+    {
+      "w": "pops",
+      "start": 86.28,
+      "end": 86.54
+    },
+    {
+      "w": "when",
+      "start": 86.54,
+      "end": 86.8
+    },
+    {
+      "w": "the",
+      "start": 86.8,
+      "end": 86.92
+    },
+    {
+      "w": "AI",
+      "start": 86.92,
+      "end": 87.08
+    },
+    {
+      "w": "bubble",
+      "start": 87.08,
+      "end": 87.32
+    },
+    {
+      "w": "deflates?",
+      "start": 87.32,
+      "end": 87.78
+    },
+    {
+      "w": "Overvalued",
+      "start": 88.46,
+      "end": 89.0
+    },
+    {
+      "w": "wrapper",
+      "start": 89.0,
+      "end": 89.22
+    },
+    {
+      "w": "startups",
+      "start": 89.22,
+      "end": 89.64
+    },
+    {
+      "w": "selling",
+      "start": 89.64,
+      "end": 90.0
+    },
+    {
+      "w": "generic",
+      "start": 90.0,
+      "end": 90.5
+    },
+    {
+      "w": "chatbots",
+      "start": 90.5,
+      "end": 90.96
+    },
+    {
+      "w": "on",
+      "start": 90.96,
+      "end": 91.2
+    },
+    {
+      "w": "rented",
+      "start": 91.2,
+      "end": 91.42
+    },
+    {
+      "w": "compute",
+      "start": 91.42,
+      "end": 91.82
+    },
+    {
+      "w": "will",
+      "start": 91.82,
+      "end": 92.06
+    },
+    {
+      "w": "get",
+      "start": 92.06,
+      "end": 92.2
+    },
+    {
+      "w": "wiped",
+      "start": 92.2,
+      "end": 92.58
+    },
+    {
+      "w": "out",
+      "start": 92.58,
+      "end": 92.84
+    },
+    {
+      "w": "as",
+      "start": 92.84,
+      "end": 93.0
+    },
+    {
+      "w": "model",
+      "start": 93.0,
+      "end": 93.2
+    },
+    {
+      "w": "costs",
+      "start": 93.2,
+      "end": 93.46
+    },
+    {
+      "w": "fall",
+      "start": 93.46,
+      "end": 93.74
+    },
+    {
+      "w": "toward",
+      "start": 93.74,
+      "end": 94.02
+    },
+    {
+      "w": "zero.",
+      "start": 94.02,
+      "end": 94.38
+    },
+    {
+      "w": "Meanwhile,",
+      "start": 94.94,
+      "end": 95.22
+    },
+    {
+      "w": "the",
+      "start": 95.34,
+      "end": 95.56
+    },
+    {
+      "w": "real",
+      "start": 95.56,
+      "end": 95.84
+    },
+    {
+      "w": "winners,",
+      "start": 95.84,
+      "end": 96.18
+    },
+    {
+      "w": "power",
+      "start": 96.58,
+      "end": 96.82
+    },
+    {
+      "w": "grid",
+      "start": 96.82,
+      "end": 97.06
+    },
+    {
+      "w": "infrastructure",
+      "start": 97.06,
+      "end": 97.54
+    },
+    {
+      "w": "and",
+      "start": 97.54,
+      "end": 97.88
+    },
+    {
+      "w": "deep",
+      "start": 97.88,
+      "end": 98.1
+    },
+    {
+      "w": "workflow",
+      "start": 98.1,
+      "end": 98.46
+    },
+    {
+      "w": "automation",
+      "start": 98.46,
+      "end": 98.98
+    },
+    {
+      "w": "will",
+      "start": 98.98,
+      "end": 99.48
+    },
+    {
+      "w": "buy",
+      "start": 99.48,
+      "end": 99.74
+    },
+    {
+      "w": "up",
+      "start": 99.74,
+      "end": 99.86
+    },
+    {
+      "w": "that",
+      "start": 99.86,
+      "end": 100.0
+    },
+    {
+      "w": "discounted",
+      "start": 100.0,
+      "end": 100.44
+    },
+    {
+      "w": "compute",
+      "start": 100.44,
+      "end": 100.76
+    },
+    {
+      "w": "for",
+      "start": 100.76,
+      "end": 101.0
+    },
+    {
+      "w": "pennies",
+      "start": 101.0,
+      "end": 101.44
+    },
+    {
+      "w": "on",
+      "start": 101.44,
+      "end": 101.52
+    },
+    {
+      "w": "the",
+      "start": 101.52,
+      "end": 101.62
+    },
+    {
+      "w": "dollar.",
+      "start": 101.62,
+      "end": 101.86
+    }
+  ],
+  "subtitle_chunks": [
+    {
+      "text": "Everyone calls AI a",
+      "start": 0.0,
+      "end": 1.46,
+      "duration": 1.46,
+      "words": [
+        {
+          "w": "Everyone",
+          "start": 0.0,
+          "end": 0.4
+        },
+        {
+          "w": "calls",
+          "start": 0.4,
+          "end": 0.8
+        },
+        {
+          "w": "AI",
+          "start": 0.8,
+          "end": 1.16
+        },
+        {
+          "w": "a",
+          "start": 1.16,
+          "end": 1.46
+        }
+      ]
+    },
+    {
+      "text": "bubble,",
+      "start": 1.46,
+      "end": 1.74,
+      "duration": 0.28,
+      "words": [
+        {
+          "w": "bubble,",
+          "start": 1.46,
+          "end": 1.74
+        }
+      ]
+    },
+    {
+      "text": "but almost nobody",
+      "start": 2.12,
+      "end": 2.98,
+      "duration": 0.86,
+      "words": [
+        {
+          "w": "but",
+          "start": 2.12,
+          "end": 2.2
+        },
+        {
+          "w": "almost",
+          "start": 2.2,
+          "end": 2.54
+        },
+        {
+          "w": "nobody",
+          "start": 2.54,
+          "end": 2.98
+        }
+      ]
+    },
+    {
+      "text": "explains what is actually",
+      "start": 2.98,
+      "end": 4.4,
+      "duration": 1.42,
+      "words": [
+        {
+          "w": "explains",
+          "start": 2.98,
+          "end": 3.4
+        },
+        {
+          "w": "what",
+          "start": 3.4,
+          "end": 3.64
+        },
+        {
+          "w": "is",
+          "start": 3.64,
+          "end": 3.8
+        },
+        {
+          "w": "actually",
+          "start": 3.8,
+          "end": 4.4
+        }
+      ]
+    },
+    {
+      "text": "inflating.",
+      "start": 4.4,
+      "end": 5.04,
+      "duration": 0.64,
+      "words": [
+        {
+          "w": "inflating.",
+          "start": 4.4,
+          "end": 5.04
+        }
+      ]
+    },
+    {
+      "text": "Between 2025 and 2026,",
+      "start": 5.62,
+      "end": 7.76,
+      "duration": 2.14,
+      "words": [
+        {
+          "w": "Between",
+          "start": 5.62,
+          "end": 5.9
+        },
+        {
+          "w": "2025",
+          "start": 5.9,
+          "end": 6.66
+        },
+        {
+          "w": "and",
+          "start": 6.66,
+          "end": 6.96
+        },
+        {
+          "w": "2026,",
+          "start": 6.96,
+          "end": 7.76
+        }
+      ]
+    },
+    {
+      "text": "Microsoft,",
+      "start": 8.26,
+      "end": 8.5,
+      "duration": 0.24,
+      "words": [
+        {
+          "w": "Microsoft,",
+          "start": 8.26,
+          "end": 8.5
+        }
+      ]
+    },
+    {
+      "text": "Meta,",
+      "start": 8.96,
+      "end": 9.16,
+      "duration": 0.2,
+      "words": [
+        {
+          "w": "Meta,",
+          "start": 8.96,
+          "end": 9.16
+        }
+      ]
+    },
+    {
+      "text": "Google,",
+      "start": 9.38,
+      "end": 9.52,
+      "duration": 0.14,
+      "words": [
+        {
+          "w": "Google,",
+          "start": 9.38,
+          "end": 9.52
+        }
+      ]
+    },
+    {
+      "text": "and Amazon are spending",
+      "start": 9.84,
+      "end": 10.88,
+      "duration": 1.04,
+      "words": [
+        {
+          "w": "and",
+          "start": 9.84,
+          "end": 9.88
+        },
+        {
+          "w": "Amazon",
+          "start": 9.88,
+          "end": 10.28
+        },
+        {
+          "w": "are",
+          "start": 10.28,
+          "end": 10.58
+        },
+        {
+          "w": "spending",
+          "start": 10.58,
+          "end": 10.88
+        }
+      ]
+    },
+    {
+      "text": "over $320 billion a",
+      "start": 10.88,
+      "end": 13.54,
+      "duration": 2.66,
+      "words": [
+        {
+          "w": "over",
+          "start": 10.88,
+          "end": 11.18
+        },
+        {
+          "w": "$320",
+          "start": 11.18,
+          "end": 12.36
+        },
+        {
+          "w": "billion",
+          "start": 12.36,
+          "end": 13.0
+        },
+        {
+          "w": "a",
+          "start": 13.0,
+          "end": 13.54
+        }
+      ]
+    },
+    {
+      "text": "year on AI data",
+      "start": 13.54,
+      "end": 14.5,
+      "duration": 0.96,
+      "words": [
+        {
+          "w": "year",
+          "start": 13.54,
+          "end": 13.8
+        },
+        {
+          "w": "on",
+          "start": 13.8,
+          "end": 14.04
+        },
+        {
+          "w": "AI",
+          "start": 14.04,
+          "end": 14.26
+        },
+        {
+          "w": "data",
+          "start": 14.26,
+          "end": 14.5
+        }
+      ]
+    },
+    {
+      "text": "centers.",
+      "start": 14.5,
+      "end": 14.92,
+      "duration": 0.42,
+      "words": [
+        {
+          "w": "centers.",
+          "start": 14.5,
+          "end": 14.92
+        }
+      ]
+    },
+    {
+      "text": "Yet,",
+      "start": 15.34,
+      "end": 15.62,
+      "duration": 0.28,
+      "words": [
+        {
+          "w": "Yet,",
+          "start": 15.34,
+          "end": 15.62
+        }
+      ]
+    },
+    {
+      "text": "according to Sequoia's",
+      "start": 15.76,
+      "end": 16.72,
+      "duration": 0.96,
+      "words": [
+        {
+          "w": "according",
+          "start": 15.76,
+          "end": 16.02
+        },
+        {
+          "w": "to",
+          "start": 16.02,
+          "end": 16.24
+        },
+        {
+          "w": "Sequoia's",
+          "start": 16.24,
+          "end": 16.72
+        }
+      ]
+    },
+    {
+      "text": "famous $600 billion",
+      "start": 16.72,
+      "end": 17.86,
+      "duration": 1.14,
+      "words": [
+        {
+          "w": "famous",
+          "start": 16.72,
+          "end": 16.98
+        },
+        {
+          "w": "$600",
+          "start": 16.98,
+          "end": 17.48
+        },
+        {
+          "w": "billion",
+          "start": 17.48,
+          "end": 17.86
+        }
+      ]
+    },
+    {
+      "text": "formula,",
+      "start": 17.86,
+      "end": 18.5,
+      "duration": 0.64,
+      "words": [
+        {
+          "w": "formula,",
+          "start": 17.86,
+          "end": 18.5
+        }
+      ]
+    },
+    {
+      "text": "all pure play AI",
+      "start": 19.02,
+      "end": 20.02,
+      "duration": 1.0,
+      "words": [
+        {
+          "w": "all",
+          "start": 19.02,
+          "end": 19.12
+        },
+        {
+          "w": "pure",
+          "start": 19.12,
+          "end": 19.48
+        },
+        {
+          "w": "play",
+          "start": 19.48,
+          "end": 19.76
+        },
+        {
+          "w": "AI",
+          "start": 19.76,
+          "end": 20.02
+        }
+      ]
+    },
+    {
+      "text": "software today earns less",
+      "start": 20.02,
+      "end": 21.44,
+      "duration": 1.42,
+      "words": [
+        {
+          "w": "software",
+          "start": 20.02,
+          "end": 20.46
+        },
+        {
+          "w": "today",
+          "start": 20.46,
+          "end": 20.82
+        },
+        {
+          "w": "earns",
+          "start": 20.82,
+          "end": 21.18
+        },
+        {
+          "w": "less",
+          "start": 21.18,
+          "end": 21.44
+        }
+      ]
+    },
+    {
+      "text": "than $45 billion,",
+      "start": 21.44,
+      "end": 22.66,
+      "duration": 1.22,
+      "words": [
+        {
+          "w": "than",
+          "start": 21.44,
+          "end": 21.6
+        },
+        {
+          "w": "$45",
+          "start": 21.6,
+          "end": 22.2
+        },
+        {
+          "w": "billion,",
+          "start": 22.2,
+          "end": 22.66
+        }
+      ]
+    },
+    {
+      "text": "leaving a massive $500",
+      "start": 22.98,
+      "end": 24.54,
+      "duration": 1.56,
+      "words": [
+        {
+          "w": "leaving",
+          "start": 22.98,
+          "end": 23.22
+        },
+        {
+          "w": "a",
+          "start": 23.22,
+          "end": 23.46
+        },
+        {
+          "w": "massive",
+          "start": 23.46,
+          "end": 23.82
+        },
+        {
+          "w": "$500",
+          "start": 23.82,
+          "end": 24.54
+        }
+      ]
+    },
+    {
+      "text": "billion revenue chasm.",
+      "start": 24.54,
+      "end": 26.12,
+      "duration": 1.58,
+      "words": [
+        {
+          "w": "billion",
+          "start": 24.54,
+          "end": 24.96
+        },
+        {
+          "w": "revenue",
+          "start": 24.96,
+          "end": 25.3
+        },
+        {
+          "w": "chasm.",
+          "start": 25.3,
+          "end": 26.12
+        }
+      ]
+    },
+    {
+      "text": "Why does cloud revenue",
+      "start": 26.64,
+      "end": 27.92,
+      "duration": 1.28,
+      "words": [
+        {
+          "w": "Why",
+          "start": 26.64,
+          "end": 27.2
+        },
+        {
+          "w": "does",
+          "start": 27.2,
+          "end": 27.38
+        },
+        {
+          "w": "cloud",
+          "start": 27.38,
+          "end": 27.62
+        },
+        {
+          "w": "revenue",
+          "start": 27.62,
+          "end": 27.92
+        }
+      ]
+    },
+    {
+      "text": "look so booming anyway?",
+      "start": 27.92,
+      "end": 29.18,
+      "duration": 1.26,
+      "words": [
+        {
+          "w": "look",
+          "start": 27.92,
+          "end": 28.12
+        },
+        {
+          "w": "so",
+          "start": 28.12,
+          "end": 28.36
+        },
+        {
+          "w": "booming",
+          "start": 28.36,
+          "end": 28.64
+        },
+        {
+          "w": "anyway?",
+          "start": 28.64,
+          "end": 29.18
+        }
+      ]
+    },
+    {
+      "text": "Because of a Wall",
+      "start": 29.72,
+      "end": 30.36,
+      "duration": 0.64,
+      "words": [
+        {
+          "w": "Because",
+          "start": 29.72,
+          "end": 29.94
+        },
+        {
+          "w": "of",
+          "start": 29.94,
+          "end": 30.08
+        },
+        {
+          "w": "a",
+          "start": 30.08,
+          "end": 30.18
+        },
+        {
+          "w": "Wall",
+          "start": 30.18,
+          "end": 30.36
+        }
+      ]
+    },
+    {
+      "text": "Street illusion called",
+      "start": 30.36,
+      "end": 31.26,
+      "duration": 0.9,
+      "words": [
+        {
+          "w": "Street",
+          "start": 30.36,
+          "end": 30.6
+        },
+        {
+          "w": "illusion",
+          "start": 30.6,
+          "end": 30.96
+        },
+        {
+          "w": "called",
+          "start": 30.96,
+          "end": 31.26
+        }
+      ]
+    },
+    {
+      "text": "round-tripping.",
+      "start": 31.26,
+      "end": 32.12,
+      "duration": 0.86,
+      "words": [
+        {
+          "w": "round-tripping.",
+          "start": 31.26,
+          "end": 32.12
+        }
+      ]
+    },
+    {
+      "text": "Hyperscalers invest tens",
+      "start": 32.72,
+      "end": 33.9,
+      "duration": 1.18,
+      "words": [
+        {
+          "w": "Hyperscalers",
+          "start": 32.72,
+          "end": 33.28
+        },
+        {
+          "w": "invest",
+          "start": 33.28,
+          "end": 33.56
+        },
+        {
+          "w": "tens",
+          "start": 33.56,
+          "end": 33.9
+        }
+      ]
+    },
+    {
+      "text": "of billions into AI",
+      "start": 33.9,
+      "end": 35.0,
+      "duration": 1.1,
+      "words": [
+        {
+          "w": "of",
+          "start": 33.9,
+          "end": 34.12
+        },
+        {
+          "w": "billions",
+          "start": 34.12,
+          "end": 34.42
+        },
+        {
+          "w": "into",
+          "start": 34.42,
+          "end": 34.78
+        },
+        {
+          "w": "AI",
+          "start": 34.78,
+          "end": 35.0
+        }
+      ]
+    },
+    {
+      "text": "labs like OpenAI and",
+      "start": 35.0,
+      "end": 36.32,
+      "duration": 1.32,
+      "words": [
+        {
+          "w": "labs",
+          "start": 35.0,
+          "end": 35.34
+        },
+        {
+          "w": "like",
+          "start": 35.34,
+          "end": 35.56
+        },
+        {
+          "w": "OpenAI",
+          "start": 35.56,
+          "end": 36.02
+        },
+        {
+          "w": "and",
+          "start": 36.02,
+          "end": 36.32
+        }
+      ]
+    },
+    {
+      "text": "Anthropic,",
+      "start": 36.32,
+      "end": 36.76,
+      "duration": 0.44,
+      "words": [
+        {
+          "w": "Anthropic,",
+          "start": 36.32,
+          "end": 36.76
+        }
+      ]
+    },
+    {
+      "text": "not just in cash,",
+      "start": 37.22,
+      "end": 38.0,
+      "duration": 0.78,
+      "words": [
+        {
+          "w": "not",
+          "start": 37.22,
+          "end": 37.32
+        },
+        {
+          "w": "just",
+          "start": 37.32,
+          "end": 37.52
+        },
+        {
+          "w": "in",
+          "start": 37.52,
+          "end": 37.66
+        },
+        {
+          "w": "cash,",
+          "start": 37.66,
+          "end": 38.0
+        }
+      ]
+    },
+    {
+      "text": "but in cloud compute",
+      "start": 38.2,
+      "end": 39.2,
+      "duration": 1.0,
+      "words": [
+        {
+          "w": "but",
+          "start": 38.2,
+          "end": 38.3
+        },
+        {
+          "w": "in",
+          "start": 38.3,
+          "end": 38.42
+        },
+        {
+          "w": "cloud",
+          "start": 38.42,
+          "end": 38.72
+        },
+        {
+          "w": "compute",
+          "start": 38.72,
+          "end": 39.2
+        }
+      ]
+    },
+    {
+      "text": "credits.",
+      "start": 39.2,
+      "end": 39.62,
+      "duration": 0.42,
+      "words": [
+        {
+          "w": "credits.",
+          "start": 39.2,
+          "end": 39.62
+        }
+      ]
+    },
+    {
+      "text": "When those startups burn",
+      "start": 40.1,
+      "end": 41.14,
+      "duration": 1.04,
+      "words": [
+        {
+          "w": "When",
+          "start": 40.1,
+          "end": 40.32
+        },
+        {
+          "w": "those",
+          "start": 40.32,
+          "end": 40.48
+        },
+        {
+          "w": "startups",
+          "start": 40.48,
+          "end": 40.8
+        },
+        {
+          "w": "burn",
+          "start": 40.8,
+          "end": 41.14
+        }
+      ]
+    },
+    {
+      "text": "those credits training",
+      "start": 41.14,
+      "end": 42.0,
+      "duration": 0.86,
+      "words": [
+        {
+          "w": "those",
+          "start": 41.14,
+          "end": 41.38
+        },
+        {
+          "w": "credits",
+          "start": 41.38,
+          "end": 41.66
+        },
+        {
+          "w": "training",
+          "start": 41.66,
+          "end": 42.0
+        }
+      ]
+    },
+    {
+      "text": "models on Azure or",
+      "start": 42.0,
+      "end": 43.16,
+      "duration": 1.16,
+      "words": [
+        {
+          "w": "models",
+          "start": 42.0,
+          "end": 42.32
+        },
+        {
+          "w": "on",
+          "start": 42.32,
+          "end": 42.5
+        },
+        {
+          "w": "Azure",
+          "start": 42.5,
+          "end": 42.76
+        },
+        {
+          "w": "or",
+          "start": 42.76,
+          "end": 43.16
+        }
+      ]
+    },
+    {
+      "text": "AWS,",
+      "start": 43.16,
+      "end": 43.62,
+      "duration": 0.46,
+      "words": [
+        {
+          "w": "AWS,",
+          "start": 43.16,
+          "end": 43.62
+        }
+      ]
+    },
+    {
+      "text": "Big Tech books its",
+      "start": 44.26,
+      "end": 45.06,
+      "duration": 0.8,
+      "words": [
+        {
+          "w": "Big",
+          "start": 44.26,
+          "end": 44.3
+        },
+        {
+          "w": "Tech",
+          "start": 44.3,
+          "end": 44.54
+        },
+        {
+          "w": "books",
+          "start": 44.54,
+          "end": 44.8
+        },
+        {
+          "w": "its",
+          "start": 44.8,
+          "end": 45.06
+        }
+      ]
+    },
+    {
+      "text": "own investment right back",
+      "start": 45.06,
+      "end": 46.48,
+      "duration": 1.42,
+      "words": [
+        {
+          "w": "own",
+          "start": 45.06,
+          "end": 45.28
+        },
+        {
+          "w": "investment",
+          "start": 45.28,
+          "end": 45.74
+        },
+        {
+          "w": "right",
+          "start": 45.74,
+          "end": 46.06
+        },
+        {
+          "w": "back",
+          "start": 46.06,
+          "end": 46.48
+        }
+      ]
+    },
+    {
+      "text": "as cloud revenue.",
+      "start": 46.48,
+      "end": 47.38,
+      "duration": 0.9,
+      "words": [
+        {
+          "w": "as",
+          "start": 46.48,
+          "end": 46.76
+        },
+        {
+          "w": "cloud",
+          "start": 46.76,
+          "end": 47.0
+        },
+        {
+          "w": "revenue.",
+          "start": 47.0,
+          "end": 47.38
+        }
+      ]
+    },
+    {
+      "text": "The real time bomb",
+      "start": 47.92,
+      "end": 49.0,
+      "duration": 1.08,
+      "words": [
+        {
+          "w": "The",
+          "start": 47.92,
+          "end": 48.2
+        },
+        {
+          "w": "real",
+          "start": 48.2,
+          "end": 48.48
+        },
+        {
+          "w": "time",
+          "start": 48.48,
+          "end": 48.78
+        },
+        {
+          "w": "bomb",
+          "start": 48.78,
+          "end": 49.0
+        }
+      ]
+    },
+    {
+      "text": "sits on the balance",
+      "start": 49.0,
+      "end": 49.9,
+      "duration": 0.9,
+      "words": [
+        {
+          "w": "sits",
+          "start": 49.0,
+          "end": 49.28
+        },
+        {
+          "w": "on",
+          "start": 49.28,
+          "end": 49.5
+        },
+        {
+          "w": "the",
+          "start": 49.5,
+          "end": 49.62
+        },
+        {
+          "w": "balance",
+          "start": 49.62,
+          "end": 49.9
+        }
+      ]
+    },
+    {
+      "text": "sheet.",
+      "start": 49.9,
+      "end": 50.2,
+      "duration": 0.3,
+      "words": [
+        {
+          "w": "sheet.",
+          "start": 49.9,
+          "end": 50.2
+        }
+      ]
+    },
+    {
+      "text": "Tech giants stretch their",
+      "start": 50.82,
+      "end": 51.74,
+      "duration": 0.92,
+      "words": [
+        {
+          "w": "Tech",
+          "start": 50.82,
+          "end": 50.96
+        },
+        {
+          "w": "giants",
+          "start": 50.96,
+          "end": 51.24
+        },
+        {
+          "w": "stretch",
+          "start": 51.24,
+          "end": 51.52
+        },
+        {
+          "w": "their",
+          "start": 51.52,
+          "end": 51.74
+        }
+      ]
+    },
+    {
+      "text": "server depreciation",
+      "start": 51.74,
+      "end": 52.8,
+      "duration": 1.06,
+      "words": [
+        {
+          "w": "server",
+          "start": 51.74,
+          "end": 52.06
+        },
+        {
+          "w": "depreciation",
+          "start": 52.06,
+          "end": 52.8
+        }
+      ]
+    },
+    {
+      "text": "schedules to six full",
+      "start": 52.8,
+      "end": 53.96,
+      "duration": 1.16,
+      "words": [
+        {
+          "w": "schedules",
+          "start": 52.8,
+          "end": 53.12
+        },
+        {
+          "w": "to",
+          "start": 53.12,
+          "end": 53.3
+        },
+        {
+          "w": "six",
+          "start": 53.3,
+          "end": 53.58
+        },
+        {
+          "w": "full",
+          "start": 53.58,
+          "end": 53.96
+        }
+      ]
+    },
+    {
+      "text": "years to keep quarterly",
+      "start": 53.96,
+      "end": 55.12,
+      "duration": 1.16,
+      "words": [
+        {
+          "w": "years",
+          "start": 53.96,
+          "end": 54.42
+        },
+        {
+          "w": "to",
+          "start": 54.42,
+          "end": 54.66
+        },
+        {
+          "w": "keep",
+          "start": 54.66,
+          "end": 54.8
+        },
+        {
+          "w": "quarterly",
+          "start": 54.8,
+          "end": 55.12
+        }
+      ]
+    },
+    {
+      "text": "profits looking high.",
+      "start": 55.12,
+      "end": 56.2,
+      "duration": 1.08,
+      "words": [
+        {
+          "w": "profits",
+          "start": 55.12,
+          "end": 55.5
+        },
+        {
+          "w": "looking",
+          "start": 55.5,
+          "end": 55.86
+        },
+        {
+          "w": "high.",
+          "start": 55.86,
+          "end": 56.2
+        }
+      ]
+    },
+    {
+      "text": "But Nvidia launches a",
+      "start": 56.68,
+      "end": 57.56,
+      "duration": 0.88,
+      "words": [
+        {
+          "w": "But",
+          "start": 56.68,
+          "end": 56.76
+        },
+        {
+          "w": "Nvidia",
+          "start": 56.76,
+          "end": 57.08
+        },
+        {
+          "w": "launches",
+          "start": 57.08,
+          "end": 57.4
+        },
+        {
+          "w": "a",
+          "start": 57.4,
+          "end": 57.56
+        }
+      ]
+    },
+    {
+      "text": "new GPU architecture",
+      "start": 57.56,
+      "end": 58.48,
+      "duration": 0.92,
+      "words": [
+        {
+          "w": "new",
+          "start": 57.56,
+          "end": 57.72
+        },
+        {
+          "w": "GPU",
+          "start": 57.72,
+          "end": 58.0
+        },
+        {
+          "w": "architecture",
+          "start": 58.0,
+          "end": 58.48
+        }
+      ]
+    },
+    {
+      "text": "every 12 to 24",
+      "start": 58.48,
+      "end": 59.64,
+      "duration": 1.16,
+      "words": [
+        {
+          "w": "every",
+          "start": 58.48,
+          "end": 58.84
+        },
+        {
+          "w": "12",
+          "start": 58.84,
+          "end": 59.12
+        },
+        {
+          "w": "to",
+          "start": 59.12,
+          "end": 59.32
+        },
+        {
+          "w": "24",
+          "start": 59.32,
+          "end": 59.64
+        }
+      ]
+    },
+    {
+      "text": "months.",
+      "start": 59.64,
+      "end": 59.96,
+      "duration": 0.32,
+      "words": [
+        {
+          "w": "months.",
+          "start": 59.64,
+          "end": 59.96
+        }
+      ]
+    },
+    {
+      "text": "When Blackwell and Rubin",
+      "start": 60.48,
+      "end": 61.68,
+      "duration": 1.2,
+      "words": [
+        {
+          "w": "When",
+          "start": 60.48,
+          "end": 60.62
+        },
+        {
+          "w": "Blackwell",
+          "start": 60.62,
+          "end": 61.1
+        },
+        {
+          "w": "and",
+          "start": 61.1,
+          "end": 61.36
+        },
+        {
+          "w": "Rubin",
+          "start": 61.36,
+          "end": 61.68
+        }
+      ]
+    },
+    {
+      "text": "make older chips too",
+      "start": 61.68,
+      "end": 62.56,
+      "duration": 0.88,
+      "words": [
+        {
+          "w": "make",
+          "start": 61.68,
+          "end": 61.84
+        },
+        {
+          "w": "older",
+          "start": 61.84,
+          "end": 62.08
+        },
+        {
+          "w": "chips",
+          "start": 62.08,
+          "end": 62.3
+        },
+        {
+          "w": "too",
+          "start": 62.3,
+          "end": 62.56
+        }
+      ]
+    },
+    {
+      "text": "power hungry to run",
+      "start": 62.56,
+      "end": 63.54,
+      "duration": 0.98,
+      "words": [
+        {
+          "w": "power",
+          "start": 62.56,
+          "end": 62.94
+        },
+        {
+          "w": "hungry",
+          "start": 62.94,
+          "end": 63.2
+        },
+        {
+          "w": "to",
+          "start": 63.2,
+          "end": 63.36
+        },
+        {
+          "w": "run",
+          "start": 63.36,
+          "end": 63.54
+        }
+      ]
+    },
+    {
+      "text": "economically,",
+      "start": 63.54,
+      "end": 64.1,
+      "duration": 0.56,
+      "words": [
+        {
+          "w": "economically,",
+          "start": 63.54,
+          "end": 64.1
+        }
+      ]
+    },
+    {
+      "text": "hundreds of billions in",
+      "start": 64.6,
+      "end": 65.78,
+      "duration": 1.18,
+      "words": [
+        {
+          "w": "hundreds",
+          "start": 64.6,
+          "end": 64.92
+        },
+        {
+          "w": "of",
+          "start": 64.92,
+          "end": 65.22
+        },
+        {
+          "w": "billions",
+          "start": 65.22,
+          "end": 65.56
+        },
+        {
+          "w": "in",
+          "start": 65.56,
+          "end": 65.78
+        }
+      ]
+    },
+    {
+      "text": "silicon face sudden",
+      "start": 65.78,
+      "end": 66.72,
+      "duration": 0.94,
+      "words": [
+        {
+          "w": "silicon",
+          "start": 65.78,
+          "end": 66.08
+        },
+        {
+          "w": "face",
+          "start": 66.08,
+          "end": 66.34
+        },
+        {
+          "w": "sudden",
+          "start": 66.34,
+          "end": 66.72
+        }
+      ]
+    },
+    {
+      "text": "write-downs.",
+      "start": 66.72,
+      "end": 67.28,
+      "duration": 0.56,
+      "words": [
+        {
+          "w": "write-downs.",
+          "start": 66.72,
+          "end": 67.28
+        }
+      ]
+    },
+    {
+      "text": "Is this just the",
+      "start": 68.0,
+      "end": 68.7,
+      "duration": 0.7,
+      "words": [
+        {
+          "w": "Is",
+          "start": 68.0,
+          "end": 68.26
+        },
+        {
+          "w": "this",
+          "start": 68.26,
+          "end": 68.36
+        },
+        {
+          "w": "just",
+          "start": 68.36,
+          "end": 68.52
+        },
+        {
+          "w": "the",
+          "start": 68.52,
+          "end": 68.7
+        }
+      ]
+    },
+    {
+      "text": "year 2000 telecom crash",
+      "start": 68.7,
+      "end": 70.06,
+      "duration": 1.36,
+      "words": [
+        {
+          "w": "year",
+          "start": 68.7,
+          "end": 68.82
+        },
+        {
+          "w": "2000",
+          "start": 68.82,
+          "end": 69.3
+        },
+        {
+          "w": "telecom",
+          "start": 69.3,
+          "end": 69.76
+        },
+        {
+          "w": "crash",
+          "start": 69.76,
+          "end": 70.06
+        }
+      ]
+    },
+    {
+      "text": "all over again?",
+      "start": 70.06,
+      "end": 70.66,
+      "duration": 0.6,
+      "words": [
+        {
+          "w": "all",
+          "start": 70.06,
+          "end": 70.22
+        },
+        {
+          "w": "over",
+          "start": 70.22,
+          "end": 70.42
+        },
+        {
+          "w": "again?",
+          "start": 70.42,
+          "end": 70.66
+        }
+      ]
+    },
+    {
+      "text": "Not quite.",
+      "start": 71.14,
+      "end": 71.58,
+      "duration": 0.44,
+      "words": [
+        {
+          "w": "Not",
+          "start": 71.14,
+          "end": 71.32
+        },
+        {
+          "w": "quite.",
+          "start": 71.32,
+          "end": 71.58
+        }
+      ]
+    },
+    {
+      "text": "In 2000,",
+      "start": 72.14,
+      "end": 72.86,
+      "duration": 0.72,
+      "words": [
+        {
+          "w": "In",
+          "start": 72.14,
+          "end": 72.36
+        },
+        {
+          "w": "2000,",
+          "start": 72.36,
+          "end": 72.86
+        }
+      ]
+    },
+    {
+      "text": "telecoms use junk debt",
+      "start": 73.12,
+      "end": 74.22,
+      "duration": 1.1,
+      "words": [
+        {
+          "w": "telecoms",
+          "start": 73.12,
+          "end": 73.54
+        },
+        {
+          "w": "use",
+          "start": 73.54,
+          "end": 73.64
+        },
+        {
+          "w": "junk",
+          "start": 73.64,
+          "end": 73.98
+        },
+        {
+          "w": "debt",
+          "start": 73.98,
+          "end": 74.22
+        }
+      ]
+    },
+    {
+      "text": "to lay dark fiber",
+      "start": 74.22,
+      "end": 75.1,
+      "duration": 0.88,
+      "words": [
+        {
+          "w": "to",
+          "start": 74.22,
+          "end": 74.44
+        },
+        {
+          "w": "lay",
+          "start": 74.44,
+          "end": 74.56
+        },
+        {
+          "w": "dark",
+          "start": 74.56,
+          "end": 74.82
+        },
+        {
+          "w": "fiber",
+          "start": 74.82,
+          "end": 75.1
+        }
+      ]
+    },
+    {
+      "text": "cables that lasted 25",
+      "start": 75.1,
+      "end": 76.38,
+      "duration": 1.28,
+      "words": [
+        {
+          "w": "cables",
+          "start": 75.1,
+          "end": 75.44
+        },
+        {
+          "w": "that",
+          "start": 75.44,
+          "end": 75.62
+        },
+        {
+          "w": "lasted",
+          "start": 75.62,
+          "end": 75.82
+        },
+        {
+          "w": "25",
+          "start": 75.82,
+          "end": 76.38
+        }
+      ]
+    },
+    {
+      "text": "years in the ground.",
+      "start": 76.38,
+      "end": 77.16,
+      "duration": 0.78,
+      "words": [
+        {
+          "w": "years",
+          "start": 76.38,
+          "end": 76.68
+        },
+        {
+          "w": "in",
+          "start": 76.68,
+          "end": 76.82
+        },
+        {
+          "w": "the",
+          "start": 76.82,
+          "end": 76.9
+        },
+        {
+          "w": "ground.",
+          "start": 76.9,
+          "end": 77.16
+        }
+      ]
+    },
+    {
+      "text": "Today's tech giants are",
+      "start": 77.7,
+      "end": 78.78,
+      "duration": 1.08,
+      "words": [
+        {
+          "w": "Today's",
+          "start": 77.7,
+          "end": 78.24
+        },
+        {
+          "w": "tech",
+          "start": 78.24,
+          "end": 78.38
+        },
+        {
+          "w": "giants",
+          "start": 78.38,
+          "end": 78.6
+        },
+        {
+          "w": "are",
+          "start": 78.6,
+          "end": 78.78
+        }
+      ]
+    },
+    {
+      "text": "funding AI out of",
+      "start": 78.78,
+      "end": 79.74,
+      "duration": 0.96,
+      "words": [
+        {
+          "w": "funding",
+          "start": 78.78,
+          "end": 79.08
+        },
+        {
+          "w": "AI",
+          "start": 79.08,
+          "end": 79.42
+        },
+        {
+          "w": "out",
+          "start": 79.42,
+          "end": 79.7
+        },
+        {
+          "w": "of",
+          "start": 79.7,
+          "end": 79.74
+        }
+      ]
+    },
+    {
+      "text": "massive cash flows,",
+      "start": 79.74,
+      "end": 80.78,
+      "duration": 1.04,
+      "words": [
+        {
+          "w": "massive",
+          "start": 79.74,
+          "end": 80.14
+        },
+        {
+          "w": "cash",
+          "start": 80.14,
+          "end": 80.52
+        },
+        {
+          "w": "flows,",
+          "start": 80.52,
+          "end": 80.78
+        }
+      ]
+    },
+    {
+      "text": "but they are buying",
+      "start": 80.78,
+      "end": 81.66,
+      "duration": 0.88,
+      "words": [
+        {
+          "w": "but",
+          "start": 80.78,
+          "end": 81.26
+        },
+        {
+          "w": "they",
+          "start": 81.26,
+          "end": 81.4
+        },
+        {
+          "w": "are",
+          "start": 81.4,
+          "end": 81.46
+        },
+        {
+          "w": "buying",
+          "start": 81.46,
+          "end": 81.66
+        }
+      ]
+    },
+    {
+      "text": "fast rotting GPUs that",
+      "start": 81.66,
+      "end": 83.22,
+      "duration": 1.56,
+      "words": [
+        {
+          "w": "fast",
+          "start": 81.66,
+          "end": 82.06
+        },
+        {
+          "w": "rotting",
+          "start": 82.06,
+          "end": 82.44
+        },
+        {
+          "w": "GPUs",
+          "start": 82.44,
+          "end": 83.1
+        },
+        {
+          "w": "that",
+          "start": 83.1,
+          "end": 83.22
+        }
+      ]
+    },
+    {
+      "text": "lose value in just",
+      "start": 83.22,
+      "end": 83.98,
+      "duration": 0.76,
+      "words": [
+        {
+          "w": "lose",
+          "start": 83.22,
+          "end": 83.4
+        },
+        {
+          "w": "value",
+          "start": 83.4,
+          "end": 83.7
+        },
+        {
+          "w": "in",
+          "start": 83.7,
+          "end": 83.86
+        },
+        {
+          "w": "just",
+          "start": 83.86,
+          "end": 83.98
+        }
+      ]
+    },
+    {
+      "text": "three years.",
+      "start": 83.98,
+      "end": 84.66,
+      "duration": 0.68,
+      "words": [
+        {
+          "w": "three",
+          "start": 83.98,
+          "end": 84.32
+        },
+        {
+          "w": "years.",
+          "start": 84.32,
+          "end": 84.66
+        }
+      ]
+    },
+    {
+      "text": "So what actually pops",
+      "start": 85.34,
+      "end": 86.54,
+      "duration": 1.2,
+      "words": [
+        {
+          "w": "So",
+          "start": 85.34,
+          "end": 85.52
+        },
+        {
+          "w": "what",
+          "start": 85.52,
+          "end": 85.78
+        },
+        {
+          "w": "actually",
+          "start": 85.78,
+          "end": 86.28
+        },
+        {
+          "w": "pops",
+          "start": 86.28,
+          "end": 86.54
+        }
+      ]
+    },
+    {
+      "text": "when the AI bubble",
+      "start": 86.54,
+      "end": 87.32,
+      "duration": 0.78,
+      "words": [
+        {
+          "w": "when",
+          "start": 86.54,
+          "end": 86.8
+        },
+        {
+          "w": "the",
+          "start": 86.8,
+          "end": 86.92
+        },
+        {
+          "w": "AI",
+          "start": 86.92,
+          "end": 87.08
+        },
+        {
+          "w": "bubble",
+          "start": 87.08,
+          "end": 87.32
+        }
+      ]
+    },
+    {
+      "text": "deflates?",
+      "start": 87.32,
+      "end": 87.78,
+      "duration": 0.46,
+      "words": [
+        {
+          "w": "deflates?",
+          "start": 87.32,
+          "end": 87.78
+        }
+      ]
+    },
+    {
+      "text": "Overvalued wrapper",
+      "start": 88.46,
+      "end": 89.22,
+      "duration": 0.76,
+      "words": [
+        {
+          "w": "Overvalued",
+          "start": 88.46,
+          "end": 89.0
+        },
+        {
+          "w": "wrapper",
+          "start": 89.0,
+          "end": 89.22
+        }
+      ]
+    },
+    {
+      "text": "startups selling generic",
+      "start": 89.22,
+      "end": 90.5,
+      "duration": 1.28,
+      "words": [
+        {
+          "w": "startups",
+          "start": 89.22,
+          "end": 89.64
+        },
+        {
+          "w": "selling",
+          "start": 89.64,
+          "end": 90.0
+        },
+        {
+          "w": "generic",
+          "start": 90.0,
+          "end": 90.5
+        }
+      ]
+    },
+    {
+      "text": "chatbots on rented",
+      "start": 90.5,
+      "end": 91.42,
+      "duration": 0.92,
+      "words": [
+        {
+          "w": "chatbots",
+          "start": 90.5,
+          "end": 90.96
+        },
+        {
+          "w": "on",
+          "start": 90.96,
+          "end": 91.2
+        },
+        {
+          "w": "rented",
+          "start": 91.2,
+          "end": 91.42
+        }
+      ]
+    },
+    {
+      "text": "compute will get wiped",
+      "start": 91.42,
+      "end": 92.58,
+      "duration": 1.16,
+      "words": [
+        {
+          "w": "compute",
+          "start": 91.42,
+          "end": 91.82
+        },
+        {
+          "w": "will",
+          "start": 91.82,
+          "end": 92.06
+        },
+        {
+          "w": "get",
+          "start": 92.06,
+          "end": 92.2
+        },
+        {
+          "w": "wiped",
+          "start": 92.2,
+          "end": 92.58
+        }
+      ]
+    },
+    {
+      "text": "out as model costs",
+      "start": 92.58,
+      "end": 93.46,
+      "duration": 0.88,
+      "words": [
+        {
+          "w": "out",
+          "start": 92.58,
+          "end": 92.84
+        },
+        {
+          "w": "as",
+          "start": 92.84,
+          "end": 93.0
+        },
+        {
+          "w": "model",
+          "start": 93.0,
+          "end": 93.2
+        },
+        {
+          "w": "costs",
+          "start": 93.2,
+          "end": 93.46
+        }
+      ]
+    },
+    {
+      "text": "fall toward zero.",
+      "start": 93.46,
+      "end": 94.38,
+      "duration": 0.92,
+      "words": [
+        {
+          "w": "fall",
+          "start": 93.46,
+          "end": 93.74
+        },
+        {
+          "w": "toward",
+          "start": 93.74,
+          "end": 94.02
+        },
+        {
+          "w": "zero.",
+          "start": 94.02,
+          "end": 94.38
+        }
+      ]
+    },
+    {
+      "text": "Meanwhile,",
+      "start": 94.94,
+      "end": 95.22,
+      "duration": 0.28,
+      "words": [
+        {
+          "w": "Meanwhile,",
+          "start": 94.94,
+          "end": 95.22
+        }
+      ]
+    },
+    {
+      "text": "the real winners,",
+      "start": 95.34,
+      "end": 96.18,
+      "duration": 0.84,
+      "words": [
+        {
+          "w": "the",
+          "start": 95.34,
+          "end": 95.56
+        },
+        {
+          "w": "real",
+          "start": 95.56,
+          "end": 95.84
+        },
+        {
+          "w": "winners,",
+          "start": 95.84,
+          "end": 96.18
+        }
+      ]
+    },
+    {
+      "text": "power grid infrastructure",
+      "start": 96.58,
+      "end": 97.54,
+      "duration": 0.96,
+      "words": [
+        {
+          "w": "power",
+          "start": 96.58,
+          "end": 96.82
+        },
+        {
+          "w": "grid",
+          "start": 96.82,
+          "end": 97.06
+        },
+        {
+          "w": "infrastructure",
+          "start": 97.06,
+          "end": 97.54
+        }
+      ]
+    },
+    {
+      "text": "and deep workflow",
+      "start": 97.54,
+      "end": 98.46,
+      "duration": 0.92,
+      "words": [
+        {
+          "w": "and",
+          "start": 97.54,
+          "end": 97.88
+        },
+        {
+          "w": "deep",
+          "start": 97.88,
+          "end": 98.1
+        },
+        {
+          "w": "workflow",
+          "start": 98.1,
+          "end": 98.46
+        }
+      ]
+    },
+    {
+      "text": "automation will buy up",
+      "start": 98.46,
+      "end": 99.86,
+      "duration": 1.4,
+      "words": [
+        {
+          "w": "automation",
+          "start": 98.46,
+          "end": 98.98
+        },
+        {
+          "w": "will",
+          "start": 98.98,
+          "end": 99.48
+        },
+        {
+          "w": "buy",
+          "start": 99.48,
+          "end": 99.74
+        },
+        {
+          "w": "up",
+          "start": 99.74,
+          "end": 99.86
+        }
+      ]
+    },
+    {
+      "text": "that discounted compute",
+      "start": 99.86,
+      "end": 100.76,
+      "duration": 0.9,
+      "words": [
+        {
+          "w": "that",
+          "start": 99.86,
+          "end": 100.0
+        },
+        {
+          "w": "discounted",
+          "start": 100.0,
+          "end": 100.44
+        },
+        {
+          "w": "compute",
+          "start": 100.44,
+          "end": 100.76
+        }
+      ]
+    },
+    {
+      "text": "for pennies on the",
+      "start": 100.76,
+      "end": 101.62,
+      "duration": 0.86,
+      "words": [
+        {
+          "w": "for",
+          "start": 100.76,
+          "end": 101.0
+        },
+        {
+          "w": "pennies",
+          "start": 101.0,
+          "end": 101.44
+        },
+        {
+          "w": "on",
+          "start": 101.44,
+          "end": 101.52
+        },
+        {
+          "w": "the",
+          "start": 101.52,
+          "end": 101.62
+        }
+      ]
+    },
+    {
+      "text": "dollar.",
+      "start": 101.62,
+      "end": 101.86,
+      "duration": 0.24,
+      "words": [
+        {
+          "w": "dollar.",
+          "start": 101.62,
+          "end": 101.86
+        }
+      ]
+    }
+  ]
+}

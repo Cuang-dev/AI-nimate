@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "project_id": "kausalmedia",
+  "channel_alias": "kausal_media",
+  "name": "Kausal Media",
+  "channel_type": "faceless_investigative",
+  "active": true,
+  "description": "Faceless investigative business, corporate forensic anatomy, and financial documentary channel.",
+  "platforms": [
+    "YouTube Shorts",
+    "Instagram Reels",
+    "TikTok"
+  ],
+  "perspective": "third_person_documentary",
+  "script_tone": "Sharp, empirical, dry-witted, grounded in balance sheets, regulatory filings, and historical precedent. Objective third-person voice.",
+  "voice_config": {
+    "voice_id": "kausal_narrator_default",
+    "voice_name": "Kausal Studio Narrator",
+    "voice_type": "third_person_documentary_studio",
+    "engine": "edge-tts",
+    "model": "id-ID-ArdiNeural",
+    "sample_rate_hz": 24000,
+    "rate": "+5%",
+    "pitch": "+0Hz",
+    "cadence_wpm": 135,
+    "personal_voice_clone": false,
+    "forbidden_voices": [
+      "personal_clone_en_id",
+      "personal_clone_*"
+    ],
+    "isolation_policy": "STRICT: Personal voice clones are strictly prohibited for Kausal Media production. Standard third-person studio voice only."
+  },
+  "visual_profile": {
+    "theme": "Ancient Scribe & Indonesian Cultural Archive (Light Mode)",
+    "texture": "aged-papyrus-fibers",
+    "paper_tone": "#faf6ee",
+    "batik_motif": "batik-parang-rusak",
+    "aspect_ratios": {
+      "default": "16:9",
+      "shorts": "9:16"
+    }
+  },
+  "asset_paths": {
+    "workspace_root": "/home/agent/orca/AI-nimate/projects/kausalmedia",
+    "assets_dir": "/home/agent/orca/AI-nimate/projects/kausalmedia/assets",
+    "scenes_dir": "/home/agent/orca/AI-nimate/projects/kausalmedia/scenes",
+    "audio_dir": "/home/agent/orca/AI-nimate/projects/kausalmedia/audio"
+  },
+  "publish_config": {
+    "deployment_endpoint_prefix": "https://cuang.dev/projects/ainimate/kausalmedia/",
+    "url_template": "https://cuang.dev/projects/ainimate/kausalmedia/<slug>/"
+  }
+}

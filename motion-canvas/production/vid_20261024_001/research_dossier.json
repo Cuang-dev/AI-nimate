@@ -1,0 +1,204 @@
+{
+  "project_id": "vid_20261024_001",
+  "title": "External International Investment Options & Taxation Concerns for Indonesian Tax Residents",
+  "target_duration_seconds": "180-240s",
+  "target_audience": "Indonesian retail and affluent investors, tech workers, entrepreneurs holding overseas assets",
+  "executive_summary": "Indonesian tax residents (Wajib Pajak Dalam Negeri / WPDN) face worldwide income taxation. Investing internationally differs fundamentally from the domestic IDX: foreign capital gains face up to 35% progressive personal income tax rather than a 0.1% final tax. Foreign dividends are subject to progressive tax unless reinvested in Indonesia for 3 tax years under PMK 18/2021. Direct US equities carry a severe US Estate Tax trap of up to 40% on US-situs assets exceeding $60,000. Irish-domiciled accumulating UCITS ETFs (e.g., CSPX, VWRA) eliminate the US estate tax and avoid dividend payout friction. Offshore entities in Singapore or tax havens face Indonesian Controlled Foreign Corporation (CFC) deemed dividend rules and full financial transparency via AEoI/CRS.",
+  "core_tax_principles": {
+    "jurisdiction_principle": "Worldwide Income Principle (UU PPh Pasal 4 ayat (1)) — WPDN is taxed on all income earned domestically and internationally.",
+    "individual_tax_brackets_pph_17": {
+      "legal_basis": "UU No. 7 Tahun 2021 tentang Harmonisasi Peraturan Perpajakan (UU HPP), Pasal 17 ayat (1) huruf a",
+      "brackets": [
+        {
+          "income_range_idr": "Rp 0 - Rp 60,000,000",
+          "rate_percent": 5
+        },
+        {
+          "income_range_idr": "> Rp 60,000,000 - Rp 250,000,000",
+          "rate_percent": 15
+        },
+        {
+          "income_range_idr": "> Rp 250,000,000 - Rp 500,000,000",
+          "rate_percent": 25
+        },
+        {
+          "income_range_idr": "> Rp 500,000,000 - Rp 5,000,000,000",
+          "rate_percent": 30
+        },
+        {
+          "income_range_idr": "> Rp 5,000,000,000",
+          "rate_percent": 35
+        }
+      ]
+    },
+    "domestic_vs_offshore_capital_gains": {
+      "domestic_idx": {
+        "legal_basis": "PP No. 14 Tahun 1997 jo PP No. 41 Tahun 1994",
+        "tax_type": "Final Tax (PPh Final)",
+        "rate": "0.1% of gross transaction value (plus 0.5% for founder shares)",
+        "taxable_event": "Per trade execution on Indonesia Stock Exchange (IDX / BEI)"
+      },
+      "offshore_equities": {
+        "legal_basis": "UU PPh Pasal 4 ayat (1) huruf d & UU HPP",
+        "tax_type": "Non-final, ordinary progressive income tax (PPh Pasal 17)",
+        "rate": "5% up to 35% depending on total taxable income (PKP)",
+        "taxable_event": "Net realized capital gain in the tax year, reported in SPT Tahunan (Form 1770/1770 S)",
+        "critical_note": "Unrealized capital gains are not taxed; assets must be reported at acquisition cost in Daftar Harta."
+      }
+    }
+  },
+  "foreign_dividend_taxation_and_exemption": {
+    "default_treatment": "Treated as foreign-source ordinary income taxed at progressive rates (5% to 35%).",
+    "exemption_mechanism": {
+      "legal_basis": "UU No. 11/2020 (Cipta Kerja) / UU No. 6/2023 Pasal 4 ayat (3) huruf f angka 1 & PMK No. 18/PMK.03/2021 Pasal 14-41",
+      "general_rule": "Foreign dividends received by WPDN are 100% EXEMPT from Indonesian income tax if reinvested in the Republic of Indonesia.",
+      "conditions": {
+        "holding_period": "Minimum 3 consecutive tax years (3 tahun pajak) starting from the tax year the dividend is received.",
+        "reinvestment_deadline": "Must be reinvested before the deadline for filing the Annual Tax Return (SPT Tahunan), which is March 31 of the following year for individuals.",
+        "listed_foreign_stocks": "Dividends from publicly listed overseas companies are exempt to the extent reinvested. Partial reinvestment leaves the unreinvested portion subject to PPh Pasal 17.",
+        "non_listed_foreign_companies": "For unlisted foreign entities, taxpayer must reinvest at least 30% of Net Profit After Tax (laba setelah pajak), or reinvest 100% of the dividend if dividend is less than 30% of net profit.",
+        "reporting_requirement": "Mandatory annual filing of Laporan Realisasi Investasi via DJP Online (e-Reporting Investasi) until the 3-year holding period is completed."
+      },
+      "eligible_reinvestment_instruments_in_indonesia": [
+        "Surat Berharga Negara (SBN) including ORI, Sukuk, Surat Utang Negara",
+        "BUMN / Corporate Bonds and Sukuk approved by OJK",
+        "Indonesian Mutual Funds (Reksa Dana)",
+        "Money Market Instruments",
+        "Time deposits and savings in designated Indonesian perception/foreign-exchange banks",
+        "Direct equity investment / capital injection into Indonesian limited liability companies (PT)",
+        "Real sector investments (infrastructure, property, physical business operations)"
+      ]
+    }
+  },
+  "us_direct_equities_vs_irish_ucits_etfs": {
+    "direct_us_stocks_and_etfs": {
+      "examples": "Direct shares of Apple, Microsoft, Nvidia, or US-domiciled ETFs (VOO, SPY, QQQ) via IBKR, Gotrade, Pluang, Schwab",
+      "dividend_withholding_tax": {
+        "statutory_us_nra_rate": "30%",
+        "treaty_reduced_rate": "15% under Article 11 of the US-Indonesia Income Tax Treaty (P3B) upon filing Form W-8BEN",
+        "foreign_tax_credit": "Creditable against Indonesian tax liability via PPh Pasal 24 (subject to ordinary credit formula limit)"
+      },
+      "the_us_estate_tax_trap": {
+        "legal_basis": "US Internal Revenue Code (IRC) §§ 2101-2108",
+        "exemption_threshold": "$60,000 for Non-Resident Aliens (NRAs) vs over $13M for US citizens/residents",
+        "tax_rates": "Progressive rates from 18% up to 40% on US-situs assets exceeding $60,000",
+        "covered_assets": "Direct US corporate stock, US-domiciled ETFs, US real estate",
+        "treaty_protection": "NONE. Indonesia has NO Estate Tax Treaty with the United States.",
+        "practical_impact": "Upon an Indonesian investor's death, an account with $500,000 in VOO faces an estimated $160,000+ (up to 40%) US estate tax liability. Broker freezes account until IRS Form 706-NA clearance is issued."
+      }
+    },
+    "irish_domiciled_ucits_etfs": {
+      "examples": "iShares Core S&P 500 UCITS ETF (CSPX), Vanguard S&P 500 UCITS ETF (VUAA), Vanguard FTSE All-World UCITS ETF (VWRA) traded on London Stock Exchange (LSE) in USD",
+      "internal_dividend_withholding": "15% at fund level under the US-Ireland Double Tax Treaty (identical to direct W-8BEN)",
+      "outbound_dividend_withholding": "0% Irish withholding tax on distributions to non-resident investors",
+      "us_estate_tax_immunity": {
+        "status": "100% EXEMPT from US Estate Tax",
+        "mechanism": "The ETF is an Irish investment company/sub-fund. Shares held by the investor are Irish securities, NOT US-situs assets. Zero US IRS estate tax liability regardless of portfolio size."
+      },
+      "accumulating_share_class_tax_advantage": {
+        "definition": "Accumulating (Acc) funds automatically reinvest underlying dividends into fund Net Asset Value (NAV) without paying cash distributions.",
+        "tax_impact_indonesia": "Eliminates taxable dividend distribution events. Reinvested gains remain unrealized within the NAV. No cash dividend lands in the investor's bank account, deferring Indonesian tax until redemption/sale."
+      }
+    }
+  },
+  "singapore_and_offshore_holding_structures": {
+    "singapore_local_tax_regime": {
+      "capital_gains_tax": "0%",
+      "dividend_withholding_tax": "0% (Single-tier corporate tax system)",
+      "banking_attractiveness": "Global hub for multi-currency priority banking, Variable Capital Companies (VCC), and Family Offices."
+    },
+    "indonesian_cfc_rules": {
+      "legal_basis": "UU PPh Pasal 18 ayat (2) jo PMK No. 107/PMK.03/2017 & PMK No. 93/PMK.03/2019",
+      "scope": "Controlled Foreign Corporation (BULN Non-Bursa) where an Indonesian tax resident directly or indirectly owns >= 50% shares, or >= 50% jointly with other Indonesian residents.",
+      "deemed_dividend_on_passive_income": "Under PMK 93/2019, deemed dividends apply to net passive income (penghasilan tertentu): dividends, interest, royalties, rental income, and capital gains from asset sales.",
+      "consequence": "Holding portfolio investments through a private Singapore Pte Ltd, BVI, or Cayman shell company does not shelter passive income; it triggers deemed dividend taxation in Indonesia."
+    },
+    "aeoi_crs_vs_fatca": {
+      "aeoi_crs": {
+        "legal_framework": "OECD Common Reporting Standard, ratified under Perppu No. 1/2017 (UU No. 9/2017) & PMK No. 19/PMK.03/2018",
+        "reporting_jurisdictions": "Over 100 jurisdictions including Singapore, Hong Kong, Switzerland, BVI, Cayman, UK, Australia",
+        "data_exchanged": "Account holder identity, TIN/NIK, bank/broker account balance as of Dec 31, gross dividends, interest, and gross sale proceeds sent automatically to DJP every September."
+      },
+      "fatca_united_states": {
+        "status": "The US is NOT a participant in CRS. The US enforces FATCA unilaterally.",
+        "reciprocal_reporting": "US-Indonesia Intergovernmental Agreement (IGA Model 1) reciprocal reporting is limited primarily to depository accounts earning interest, not full brokerage transactions."
+      },
+      "spt_reporting_and_compliance": {
+        "asset_disclosure": "WPDN must disclose all foreign assets in SPT Tahunan (Form 1770/1770 S Lampiran II 'Daftar Harta') at historical acquisition exchange rate (Kurs KMK).",
+        "penalties_for_non_disclosure": "Under UU KUP and Tax Amnesty / PPS provisions, undisclosed assets discovered by DJP are treated as deemed income taxed at progressive rates (up to 35%) plus an administrative surcharge/penalty of up to 200%."
+      }
+    }
+  },
+  "actionable_decision_matrix": [
+    {
+      "investment_route": "Direct US Equities (IBKR / Gotrade)",
+      "dividend_tax": "15% US withholding (W-8BEN) + ID PPh 17 top-up",
+      "capital_gains_tax": "5% - 35% progressive PPh 17 in Indonesia",
+      "us_estate_tax": "UP TO 40% above $60,000 threshold (CRITICAL RISK)",
+      "djp_transparency": "Manual SPT disclosure (FATCA limited)",
+      "suitability": "Short-term trading or portfolios < $60,000"
+    },
+    {
+      "investment_route": "Irish UCITS ETF - Accumulating (CSPX/VWRA via LSE)",
+      "dividend_tax": "15% internal treaty withholding; 0% outbound; no cash event",
+      "capital_gains_tax": "5% - 35% progressive PPh 17 upon sale only",
+      "us_estate_tax": "0% (Exempt — Irish security)",
+      "djp_transparency": "Full CRS reporting via broker jurisdiction (e.g., UK/SG/IE)",
+      "suitability": "Optimal for long-term compounding (> $60,000) and wealth transfer"
+    },
+    {
+      "investment_route": "Domestic Indonesian Equities (IDX / BEI)",
+      "dividend_tax": "10% final PPh (0% if reinvested under UU Ciptaker)",
+      "capital_gains_tax": "0.1% final tax on gross sales value",
+      "us_estate_tax": "0% (Not applicable)",
+      "djp_transparency": "Direct domestic DJP integration",
+      "suitability": "Low tax drag, but concentrated Indonesian macro risk"
+    },
+    {
+      "investment_route": "Singapore SPV / Holding Company",
+      "dividend_tax": "0% Singapore tax, but triggers ID CFC deemed dividend",
+      "capital_gains_tax": "0% Singapore tax, but taxed in ID under CFC passive income",
+      "us_estate_tax": "Depends on underlying assets; foreign corporate veil respected by IRS",
+      "djp_transparency": "Automatic CRS exchange directly to DJP annually",
+      "suitability": "High compliance cost; does not shield passive portfolio gains from DJP"
+    }
+  ],
+  "primary_source_citations": [
+    {
+      "law_regulation": "UU No. 7 Tahun 2021 (UU HPP)",
+      "article_reference": "Pasal 17 ayat (1) huruf a",
+      "topic": "Progressive Personal Income Tax Brackets (5% to 35%)",
+      "url": "https://peraturan.bpk.go.id/Details/185162/uu-no-7-tahun-2021"
+    },
+    {
+      "law_regulation": "PMK No. 18/PMK.03/2021",
+      "article_reference": "Pasal 14 - 41",
+      "topic": "Tax Exemption for Domestic and Overseas Dividends with 3-Year Reinvestment",
+      "url": "https://jdih.kemenkeu.go.id/in/dokumen/peraturan/pmk-18-pmk03-2021"
+    },
+    {
+      "law_regulation": "US Internal Revenue Code (IRC)",
+      "article_reference": "26 U.S. Code § 2101 - 2108",
+      "topic": "US Estate Tax on Nonresident Aliens ($60,000 exemption, 18-40% rates)",
+      "url": "https://www.irs.gov/individuals/international-taxpayers/some-nonresidents-with-us-assets-must-file-estate-tax-returns"
+    },
+    {
+      "law_regulation": "US-Indonesia Income Tax Treaty (P3B)",
+      "article_reference": "Article 11 (Dividends)",
+      "topic": "15% Withholding Tax on Dividends with W-8BEN",
+      "url": "https://www.irs.gov/businesses/international-businesses/indonesia-tax-treaty-documents"
+    },
+    {
+      "law_regulation": "PMK No. 93/PMK.03/2019 jo PMK No. 107/PMK.03/2017",
+      "article_reference": "Pasal 1 - 7",
+      "topic": "Indonesian Controlled Foreign Corporation (CFC) Deemed Dividend on Passive Income",
+      "url": "https://jdih.kemenkeu.go.id/in/dokumen/peraturan/pmk-93-pmk03-2019"
+    },
+    {
+      "law_regulation": "UU No. 9 Tahun 2017 jo PMK No. 19/PMK.03/2018",
+      "article_reference": "Pasal 1 - 24",
+      "topic": "Automatic Exchange of Information (AEoI) under OECD Common Reporting Standard (CRS)",
+      "url": "https://peraturan.bpk.go.id/Details/64432/uu-no-9-tahun-2017"
+    }
+  ]
+}

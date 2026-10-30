@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The AI Bubble: What It Actually Is | AI-nimate</title>
+
+  <!-- Open Graph / WhatsApp Rich Link Preview Meta Tags (First 2 KB) -->
+  <meta property="og:site_name" content="Cuang • Tech & Macro Analysis">
+  <meta property="og:type" content="video.other">
+  <meta property="og:title" content="The AI Bubble: What It Actually Is">
+  <meta property="og:description" content="Hyperscaler CapEx vs Pure AI Revenue: The $600B Chasm, Round-Trip Cloud Credits, and Server Depreciation Realities.">
+  <meta property="og:url" content="https://cuang.dev/projects/ainimate/kausalmedia/the-ai-bubble-explained/">
+
+  <!-- Primary WhatsApp Landscape 1.91:1 Preview Image -->
+  <meta property="og:image" content="https://cuang.dev/projects/ainimate/kausalmedia/the-ai-bubble-explained/thumbnail_og.jpg?v=2">
+  <meta property="og:image:secure_url" content="https://cuang.dev/projects/ainimate/kausalmedia/the-ai-bubble-explained/thumbnail_og.jpg?v=2">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="The AI Bubble: What It Actually Is">
+
+  <!-- Secondary WhatsApp Square 1:1 Preview Image -->
+  <meta property="og:image" content="https://cuang.dev/projects/ainimate/kausalmedia/the-ai-bubble-explained/thumbnail_square.jpg?v=2">
+  <meta property="og:image:secure_url" content="https://cuang.dev/projects/ainimate/kausalmedia/the-ai-bubble-explained/thumbnail_square.jpg?v=2">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1080">
+  <meta property="og:image:height" content="1080">
+
+  <!-- WhatsApp Inline Playable Video Stream -->
+  <meta property="og:video" content="https://cuang.dev/projects/ainimate/kausalmedia/the-ai-bubble-explained/video_whatsapp.mp4?v=2">
+  <meta property="og:video:url" content="https://cuang.dev/projects/ainimate/kausalmedia/the-ai-bubble-explained/video_whatsapp.mp4?v=2">
+  <meta property="og:video:secure_url" content="https://cuang.dev/projects/ainimate/kausalmedia/the-ai-bubble-explained/video_whatsapp.mp4?v=2">
+  <meta property="og:video:type" content="video/mp4">
+  <meta property="og:video:width" content="540">
+  <meta property="og:video:height" content="960">
+
+  <!-- Twitter / Discord Player Protocol -->
+  <meta name="twitter:card" content="player">
+  <meta name="twitter:title" content="The AI Bubble: What It Actually Is">
+  <meta name="twitter:description" content="Hyperscaler CapEx vs Pure AI Revenue: The $600B Chasm, Round-Trip Cloud Credits, and Server Depreciation Realities.">
+  <meta name="twitter:image" content="https://cuang.dev/projects/ainimate/kausalmedia/the-ai-bubble-explained/thumbnail_og.jpg?v=2">
+  <meta name="twitter:player" content="https://cuang.dev/projects/ainimate/kausalmedia/the-ai-bubble-explained/embed.html?v=2">
+  <meta name="twitter:player:width" content="540">
+  <meta name="twitter:player:height" content="960">
+  <meta name="twitter:player:stream" content="https://cuang.dev/projects/ainimate/kausalmedia/the-ai-bubble-explained/video_whatsapp.mp4?v=2">
+  <meta name="twitter:player:stream:content_type" content="video/mp4">
+
+  <!-- Schema.org VideoObject Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "The AI Bubble: What It Actually Is",
+    "description": "Hyperscaler CapEx vs Pure AI Revenue: The $600B Chasm, Round-Trip Cloud Credits, and Server Depreciation Realities.",
+    "thumbnailUrl": "https://cuang.dev/projects/ainimate/kausalmedia/the-ai-bubble-explained/thumbnail_og.jpg?v=2",
+    "uploadDate": "2026-10-29T19:30:00+07:00",
+    "duration": "PT1M42S",
+    "contentUrl": "https://cuang.dev/projects/ainimate/kausalmedia/the-ai-bubble-explained/video_whatsapp.mp4?v=2",
+    "embedUrl": "https://cuang.dev/projects/ainimate/kausalmedia/the-ai-bubble-explained/embed.html?v=2"
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0b0f17;
+      --card: #131b26;
+      --card-hover: #182332;
+      --border: #1f2d3d;
+      --accent: #FF3B00;
+      --accent-glow: rgba(255, 59, 0, 0.2);
+      --green: #1B8354;
+      --gold: #D97706;
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem 1rem 4rem;
+    }
+    .container {
+      width: 100%;
+      max-width: 960px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1rem;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .badge-tag {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .hero {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .hero h1 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 640px;
+      line-height: 1.5;
+    }
+
+    /* Aspect Ratio Switcher */
+    .format-switcher {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+      background: var(--card);
+      padding: 0.35rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .format-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 0.5rem 1.25rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .format-btn.active {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 2px 10px var(--accent-glow);
+    }
+
+    /* Video Player Wrapper */
+    .player-section {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+    .video-wrapper {
+      position: relative;
+      background: #000;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+      transition: max-width 0.3s ease, aspect-ratio 0.3s ease;
+      width: 100%;
+    }
+    .video-wrapper.ratio-16x9 {
+      max-width: 960px;
+      aspect-ratio: 16 / 9;
+    }
+    .video-wrapper.ratio-9x16 {
+      max-width: 440px;
+      aspect-ratio: 9 / 16;
+    }
+    video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      background: #000;
+    }
+
+    /* Action Buttons */
+    .action-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.75rem;
+      width: 100%;
+    }
+    .action-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1rem;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      transition: all 0.2s;
+    }
+    .action-btn:hover {
+      background: var(--card-hover);
+      border-color: var(--text-muted);
+    }
+    .action-btn.share-whatsapp {
+      background: #25D366;
+      color: #0b0f17;
+      border-color: #25D366;
+      font-weight: 700;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.25);
+    }
+    .action-btn.share-whatsapp:hover {
+      background: #20bd5a;
+    }
+
+    /* Content Cards Breakdown */
+    .breakdown {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .breakdown h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--text);
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .card-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .card-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
+    }
+    .card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <a href="https://cuang.dev/" class="brand">
+        <span>CUANG</span>
+        <span class="badge-tag">AI-NIMATE</span>
+      </a>
+      <span class="badge-tag">KAUSALMEDIA • EP. 002</span>
+    </header>
+
+    <div class="hero">
+      <h1>The AI Bubble: What It Actually Is</h1>
+      <p>A data-driven breakdown of Hyperscaler CapEx vs Pure AI Revenue, circular round-trip credits, and server depreciation schedules.</p>
+    </div>
+
+    <!-- Interactive Format Switcher -->
+    <div class="format-switcher">
+      <button class="format-btn active" id="btn-16x9" onclick="switchFormat('16x9')">
+        <span>🖥️ 16:9 Widescreen</span>
+      </button>
+      <button class="format-btn" id="btn-9x16" onclick="switchFormat('9x16')">
+        <span>📱 9:16 Vertical</span>
+      </button>
+    </div>
+
+    <!-- Video Player -->
+    <div class="player-section">
+      <div class="video-wrapper ratio-16x9" id="video-wrapper">
+        <video id="main-video" controls playsinline poster="thumbnail_og.jpg?v=2" preload="metadata">
+          <source id="video-source" src="video_16x9.mp4?v=2" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+
+    <!-- Actions & Native WhatsApp Sharing -->
+    <div class="action-grid">
+      <button class="action-btn share-whatsapp" onclick="shareToWhatsApp()">
+        <span>📲 Share Native Video to WhatsApp</span>
+      </button>
+      <a href="video_16x9.mp4" download class="action-btn">
+        <span>⬇️ Download 16:9 Master (1080p)</span>
+      </a>
+      <a href="video_9x16.mp4" download class="action-btn">
+        <span>⬇️ Download 9:16 Master (1080p)</span>
+      </a>
+      <a href="embed.html" target="_blank" class="action-btn">
+        <span>🔗 Embed Player</span>
+      </a>
+    </div>
+
+    <!-- Narrative Breakdown Cards -->
+    <section class="breakdown">
+      <h2>Inside the Five Structural Beats</h2>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-num">BEAT 01</span>
+            <span class="card-tag">$600B CHASM</span>
+          </div>
+          <h3>Hyperscaler CapEx vs Pure AI ARR</h3>
+          <p>Big Tech spends over $320B+/year on AI data centers, requiring $600B in revenue to break even. Yet pure-play AI earns under $45B.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-num">BEAT 02</span>
+            <span class="card-tag">ROUND-TRIP REVENUE</span>
+          </div>
+          <h3>Vendor Cloud Credits</h3>
+          <p>Tens of billions invested in AI startups return directly to Azure and AWS as cloud revenue, creating an illusion of surging market demand.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-num">BEAT 03</span>
+            <span class="card-tag">DEPRECIATION CLOCK</span>
+          </div>
+          <h3>Server Schedules vs Silicon Reality</h3>
+          <p>Tech giants stretch server life to 6 full years on 10-K sheets, while Nvidia releases new GPU architectures every 12–24 months.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-num">BEAT 04</span>
+            <span class="card-tag">TELECOM VS AI</span>
+          </div>
+          <h3>2000 Fiber vs 2026 Compute</h3>
+          <p>Dark fiber survived 25+ years underground to power the next internet. AI servers decay physically and economically in under 3 years.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-num">BEAT 05</span>
+            <span class="card-tag">WHAT SURVIVES</span>
+          </div>
+          <h3>Thin Wrappers vs Deep Infra</h3>
+          <p>Thin API wrappers face a 90% wipeout when foundation models update. Power grids, operational workflows, and proprietary datasets compound.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>© 2026 Cuang.dev • AI-nimate Series • Powered by Motion Canvas & FFMPEG</p>
+    </footer>
+  </div>
+
+  <script>
+    const video = document.getElementById('main-video');
+    const source = document.getElementById('video-source');
+    const wrapper = document.getElementById('video-wrapper');
+    const btn16x9 = document.getElementById('btn-16x9');
+    const btn9x16 = document.getElementById('btn-9x16');
+
+    let currentFormat = '16x9';
+
+    function switchFormat(format) {
+      if (format === currentFormat) return;
+      currentFormat = format;
+
+      const currentTime = video.currentTime;
+      const isPaused = video.paused;
+
+      if (format === '16x9') {
+        btn16x9.classList.add('active');
+        btn9x16.classList.remove('active');
+        wrapper.className = 'video-wrapper ratio-16x9';
+        source.src = 'video_16x9.mp4?v=2';
+        video.poster = 'thumbnail_og.jpg?v=2';
+      } else {
+        btn9x16.classList.add('active');
+        btn16x9.classList.remove('active');
+        wrapper.className = 'video-wrapper ratio-9x16';
+        source.src = 'video_9x16.mp4?v=2';
+        video.poster = 'thumbnail_square.jpg?v=2';
+      }
+
+      video.load();
+      video.currentTime = currentTime;
+      if (!isPaused) {
+        video.play().catch(() => {});
+      }
+    }
+
+    async function shareToWhatsApp() {
+      const shareData = {
+        title: 'The AI Bubble: What It Actually Is',
+        text: 'The $600B CapEx Chasm, Round-Trip Revenue, and Server Depreciation Realities explained visually:',
+        url: window.location.href,
+      };
+
+      // Try native Web Share API with video file if supported
+      if (navigator.canShare) {
+        try {
+          const resp = await fetch('video_whatsapp.mp4');
+          if (resp.ok) {
+            const blob = await resp.blob();
+            const file = new File([blob], 'The_AI_Bubble_Explained.mp4', { type: 'video/mp4' });
+            if (navigator.canShare({ files: [file] })) {
+              await navigator.share({
+                files: [file],
+                title: shareData.title,
+                text: shareData.text,
+              });
+              return;
+            }
+          }
+        } catch (e) {
+          console.log('File share fallback:', e);
+        }
+      }
+
+      // Fallback: Web Share URL or direct WhatsApp deep link
+      if (navigator.share) {
+        try {
+          await navigator.share(shareData);
+          return;
+        } catch (e) {}
+      }
+
+      const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareData.text + ' ' + shareData.url)}`;
+      window.open(waUrl, '_blank');
+    }
+  </script>
+</body>
+</html>

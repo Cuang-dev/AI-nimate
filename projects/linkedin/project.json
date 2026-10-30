@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "project_id": "linkedin",
+  "channel_alias": "personal_linkedin",
+  "name": "Personal LinkedIn",
+  "channel_type": "founder_executive_authority",
+  "active": true,
+  "description": "Personal founder, executive authority, and technical strategy video series specifically designed for LinkedIn.",
+  "platforms": [
+    "LinkedIn"
+  ],
+  "perspective": "first_person_executive",
+  "pronouns": [
+    "I",
+    "we"
+  ],
+  "script_tone": "First-person executive authority, technical architecture strategy, founder perspective, high-trust B2B clarity, and transparent engineering metrics. Zero corporate fluff.",
+  "voice_config": {
+    "voice_id": "personal_clone_en_id",
+    "voice_name": "User Personal Bilingual Clone",
+    "voice_type": "personal_bilingual_voice_clone",
+    "personal_voice_clone": true,
+    "engines": {
+      "primary": {
+        "engine": "VoxCPM2",
+        "version": "OpenBMB/VoxCPM2-June2026",
+        "sample_rate_hz": 48000,
+        "features": "48kHz native bilingual EN/ID zero-shot foundation model, authentic accent preservation"
+      },
+      "fallback": {
+        "engine": "ElevenLabs",
+        "model": "Eleven v4 PVC",
+        "sample_rate_hz": 44100
+      }
+    },
+    "reference_samples_dir": "/home/agent/orca/AI-nimate/projects/linkedin/voice_samples",
+    "calibration_script_file": "/home/agent/orca/AI-nimate/projects/linkedin/voice_samples/CALIBRATION_SCRIPTS.md",
+    "isolation_policy": "EXCLUSIVE: This personal voice clone is strictly reserved for the Personal LinkedIn project. Under no circumstances may it be deployed to Kausal Media or any faceless channel."
+  },
+  "visual_profile": {
+    "theme": "Executive Precision & Engineering Clarity (Swiss Dark/Light)",
+    "typography": "Inter & JetBrains Mono",
+    "aspect_ratios": {
+      "default": "4:5",
+      "supported": {
+        "4:5": {
+          "resolution": [1080, 1350],
+          "label": "LinkedIn Portrait Feed (Standard)"
+        },
+        "1:1": {
+          "resolution": [1080, 1080],
+          "label": "LinkedIn Square"
+        },
+        "9:16": {
+          "resolution": [1080, 1920],
+          "label": "LinkedIn Full Mobile Vertical"
+        }
+      }
+    }
+  },
+  "asset_paths": {
+    "workspace_root": "/home/agent/orca/AI-nimate/projects/linkedin",
+    "voice_samples_dir": "/home/agent/orca/AI-nimate/projects/linkedin/voice_samples",
+    "assets_dir": "/home/agent/orca/AI-nimate/projects/linkedin/assets",
+    "scenes_dir": "/home/agent/orca/AI-nimate/projects/linkedin/scenes",
+    "audio_dir": "/home/agent/orca/AI-nimate/projects/linkedin/audio"
+  },
+  "publish_config": {
+    "deployment_endpoint_prefix": "https://cuang.dev/projects/ainimate/linkedin/",
+    "url_template": "https://cuang.dev/projects/ainimate/linkedin/<slug>/"
+  }
+}

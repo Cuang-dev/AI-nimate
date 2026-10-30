@@ -1,0 +1,33 @@
+[
+  {
+    "beat_id": "beat_01",
+    "spoken_text": "For three months, more people returned the AI Pin than bought one.",
+    "tts_transcript": "For three months... more people returned the A.I. Pin, than bought one.",
+    "first_frame_visual": "Swiss 4x4 layout grid (1px lines #E2DFD7) on #F7F5F0 background. Center grid cell shows heavy grotesk typography in ink #141413: 'HUMANE AI PIN // 2024'. Beneath it, large formula type displays 'RETURNS > SALES' with '>' highlighted in accent #FF3B00. Top right header displays coordinate mark 'FIG. 01: NET INVERSION'.",
+    "visual": "Kinetic typographic breakdown on a structured Swiss editorial grid (#F7F5F0 background, #E2DFD7 1px grid lines, #141413 ink). The words 'RETURNS' and 'SALES' slide into adjacent modular grid cells. Left cell counter displays returned units incrementing upwards, right cell counter stalls. The central inequality sign flashes once in accent #FF3B00, locking the negative ratio."
+  },
+  {
+    "beat_id": "beat_02",
+    "spoken_text": "Humane pitched a six hundred ninety-nine dollar lapel pin designed to replace the smartphone. They shipped about ten thousand units, pulling in roughly nine million dollars. Then net sales went negative. Between May and August 2024, daily returns consistently surpassed new orders.",
+    "tts_transcript": "Humane pitched a six hundred and ninety-nine dollar lapel pin, designed to replace the smartphone. They shipped about ten thousand units... pulling in roughly nine million dollars. Then... net sales went negative. Between May and August twenty twenty-four, daily returns consistently surpassed new orders.",
+    "visual": "Editorial financial ledger on the Swiss grid. Upper row: solid black (#141413) metric card displaying 'RETAIL: $699' and 'SHIPPED: 10,000 UNITS ($9.0M GROSS)'. Lower row: a timeline axis spanning 'MAY -> AUG 2024'. A stepped line chart plots weekly net units: the return curve rises and crosses above the sales curve. Status pill flips to accent #FF3B00 reading '-NET SALES VELOCITY'."
+  },
+  {
+    "beat_id": "beat_03",
+    "spoken_text": "Over one million dollars in hardware bounced back to their warehouse. Worse, Humane could not resell the returned devices. Because of T-Mobile carrier locking constraints, they could not wipe and reassign the internal cellular chips. Thousands of returned pins turned directly into e-waste.",
+    "tts_transcript": "Over one million dollars in hardware bounced back to their warehouse. Worse... Humane couldn't even ree-sell the returned devices. Because of Tee-Mobile carrier locking constraints, they couldn't wipe and re-assign the internal cellular chips. Thousands of returned pins turned directly into ee-waste.",
+    "visual": "Node schematic diagram showing hardware lifecycle. A block marked 'WAREHOUSE RETURN (>$1.0M)' links via a 1px connector toward 'REFURBISH & RE-PROVISION'. The connector terminates at a decision gate marked 'CARRIER RESTRICTION (T-MOBILE)'. The line breaks with an inline strikethrough in #FF3B00. A diverter routes straight down to a dark ink (#141413) container marked 'UNREPAIRABLE E-WASTE // SCRAP'."
+  },
+  {
+    "beat_id": "beat_04",
+    "spoken_text": "By August, active users dropped below seven thousand. In February 2025, HP bought Humane's software assets for one hundred and sixteen million dollars, ditching the hardware entirely.",
+    "tts_transcript": "By August, active users dropped below seven thousand. And in February twenty twenty-five... H.P. bought Humane's software assets for one hundred and sixteen million dollars... ditching the hardware entirely.",
+    "visual": "Stepped metric drop tracking active units: '10,000' down to '8,000', settling at '7,000' in August. The layout splits along the vertical grid axis. Right pane renders an asset partition table: 'HP ACQUISITION: $116M'. Row 1: 'COSMOS OS + PATENTS' checked in ink (#141413). Row 2: 'HARDWARE DIVISION' stamped 'ABANDONED' with an accent strike in #FF3B00."
+  },
+  {
+    "beat_id": "beat_05",
+    "spoken_text": "On February twenty-eighth, the cloud servers shut down. Every pin bricked instantly. That is six hundred ninety-nine dollars for a silent metal badge.",
+    "tts_transcript": "On February twenty-eighth, the cloud servers shut down. Every pin... bricked instantly. That's six hundred and ninety-nine dollars... for a silent metal badge.",
+    "visual": "Terminal status block on the Swiss grid. A timestamp reads '2025-02-28 12:00 PST'. A pill badge transitions from '[SERVER: ONLINE]' to solid accent #FF3B00 '[SERVER: PERMANENTLY OFFLINE]'. Center cell isolates a single specification box: 'DEVICE STATE: BRICKED'. Bottom label reveals final ratio: '$699.00 -> 0.00 MHz'."
+  }
+]
