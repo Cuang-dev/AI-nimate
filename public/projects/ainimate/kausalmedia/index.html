@@ -3,11 +3,552 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kausal Media Productions | AI-nimate Studio</title>
-  <meta http-equiv="refresh" content="0; url=/projects/ainimate/">
-  <script>window.location.replace("/projects/ainimate/");</script>
+  <title>Kausal Media • Autonomous Video Production Hub | AI-nimate</title>
+
+  <!-- Open Graph / Social Embed Protocol -->
+  <meta property="og:site_name" content="Kausal Media • AI-nimate Studio">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Kausal Media • Autonomous Video Production Hub">
+  <meta property="og:description" content="Investigative financial documentaries, macro teardowns, and market microstructure analyses autonomously rendered in 1080p 60 FPS with Dual-Aspect (16:9 & 9:16) support.">
+  <meta property="og:url" content="https://cuang.dev/projects/ainimate/kausalmedia/">
+  <meta property="og:image" content="https://cuang.dev/projects/ainimate/kausalmedia/the-ai-bubble-explained/thumbnail_og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Kausal Media • Autonomous Video Production Hub">
+  <meta name="twitter:description" content="Investigative financial documentaries and macro teardowns with Dual-Aspect (16:9 & 9:16) 60 FPS streaming.">
+  <meta name="twitter:image" content="https://cuang.dev/projects/ainimate/kausalmedia/the-ai-bubble-explained/thumbnail_og.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #070a10;
+      --card-bg: rgba(19, 27, 42, 0.72);
+      --card-border: rgba(31, 45, 69, 0.85);
+      --card-hover: rgba(28, 41, 64, 0.95);
+      --accent-coral: #FF3B00;
+      --accent-coral-glow: rgba(255, 59, 0, 0.22);
+      --emerald: #10b981;
+      --emerald-glow: rgba(16, 185, 129, 0.2);
+      --blue: #3b82f6;
+      --blue-glow: rgba(59, 130, 246, 0.2);
+      --amber: #f59e0b;
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      background-image: 
+        radial-gradient(circle at 12% 10%, rgba(255, 59, 0, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 88% 20%, rgba(16, 185, 129, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 50% 85%, rgba(59, 130, 246, 0.07) 0%, transparent 50%);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3rem 1.5rem 5rem;
+    }
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+    header {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 2.25rem;
+    }
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .top-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent-coral-glow);
+      border: 1px solid var(--accent-coral);
+      color: #ff6b3d;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-family: 'Fira Code', monospace;
+      font-weight: 600;
+      width: fit-content;
+    }
+    .back-nav-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 0.35rem 0.85rem;
+      border-radius: 8px;
+      border: 1px solid var(--card-border);
+      background: rgba(255, 255, 255, 0.03);
+      transition: all 0.2s;
+    }
+    .back-nav-link:hover {
+      color: var(--text);
+      border-color: var(--emerald);
+      background: var(--emerald-glow);
+    }
+    h1 {
+      font-size: clamp(2rem, 4.5vw, 2.75rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+    }
+    p.lead {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 840px;
+      line-height: 1.6;
+    }
+    .stats-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.8rem;
+      color: #94a3b8;
+      padding-top: 0.5rem;
+    }
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .stat-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent-coral);
+    }
+    .stat-dot.emerald { background: var(--emerald); }
+
+    /* Channels Grid Layout */
+    .channels-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    @media (max-width: 1024px) {
+      .channels-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 680px) {
+      .channels-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Video Card Base */
+    .video-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+    .video-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(16, 185, 129, 0.45);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px var(--emerald-glow);
+    }
+
+    /* Flagship Card (Featured Dual-Aspect Hero) */
+    .video-card.flagship {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-direction: row;
+      border-color: rgba(255, 59, 0, 0.45);
+      background: linear-gradient(135deg, rgba(255, 59, 0, 0.05) 0%, rgba(19, 27, 42, 0.85) 100%);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 30px var(--accent-coral-glow);
+    }
+    .video-card.flagship:hover {
+      border-color: rgba(255, 59, 0, 0.85);
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.7), 0 0 40px var(--accent-coral-glow);
+    }
+    .video-card.flagship .thumb-wrapper {
+      flex: 0 0 52%;
+      aspect-ratio: 16/9;
+    }
+    .video-card.flagship .card-content {
+      flex: 1;
+      padding: 2.25rem 2rem;
+      gap: 1.15rem;
+    }
+    .video-card.flagship .card-title {
+      font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+      font-weight: 800;
+    }
+    .video-card.flagship .card-desc {
+      -webkit-line-clamp: 3;
+      font-size: 0.98rem;
+    }
+    @media (max-width: 900px) {
+      .video-card.flagship {
+        flex-direction: column;
+      }
+      .video-card.flagship .thumb-wrapper {
+        flex: unset;
+        width: 100%;
+      }
+      .video-card.flagship .card-content {
+        padding: 1.5rem;
+      }
+    }
+
+    /* Thumbnail Wrapper */
+    .thumb-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #000;
+      overflow: hidden;
+    }
+    .thumb-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+      display: block;
+    }
+    .video-card:hover .thumb-wrapper img {
+      transform: scale(1.04);
+    }
+
+    /* Badges Overlay on Thumbnail */
+    .duration-badge {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .channel-tag {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(16, 185, 129, 0.92);
+      color: #000;
+      font-weight: 800;
+      font-size: 0.72rem;
+      padding: 0.22rem 0.65rem;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .flagship-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: linear-gradient(135deg, #FF3B00, #ff6b3d);
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.72rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      letter-spacing: 0.04em;
+      box-shadow: 0 4px 12px rgba(255, 59, 0, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    /* Card Content */
+    .card-content {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      flex: 1;
+    }
+
+    /* Format Tags Pill Row */
+    .format-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      align-items: center;
+    }
+    .format-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #d1d5db;
+    }
+    .format-tag.tag-dual {
+      background: rgba(255, 59, 0, 0.14);
+      border-color: rgba(255, 59, 0, 0.45);
+      color: #ff6b3d;
+      font-weight: 700;
+    }
+    .format-tag.tag-emerald {
+      background: rgba(16, 185, 129, 0.14);
+      border-color: rgba(16, 185, 129, 0.4);
+      color: #34d399;
+    }
+    .format-tag.tag-blue {
+      background: rgba(59, 130, 246, 0.14);
+      border-color: rgba(59, 130, 246, 0.4);
+      color: #60a5fa;
+    }
+    .format-tag.tag-amber {
+      background: rgba(245, 158, 11, 0.14);
+      border-color: rgba(245, 158, 11, 0.4);
+      color: #fbbf24;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+    }
+    .card-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .card-meta {
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid var(--card-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-family: 'Fira Code', monospace;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .btn-watch {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--emerald);
+      font-weight: 600;
+      transition: color 0.2s, transform 0.2s;
+    }
+    .video-card.flagship .btn-watch {
+      color: #ff6b3d;
+      font-weight: 700;
+    }
+    .video-card:hover .btn-watch {
+      transform: translateX(3px);
+    }
+
+    footer {
+      margin-top: 2rem;
+      border-top: 1px solid var(--card-border);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    footer a {
+      color: var(--emerald);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-  <p>Redirecting to <a href="/projects/ainimate/">AI-nimate Studio Showcase</a>...</p>
+  <div class="container">
+    <header>
+      <div class="header-top">
+        <div class="top-badge">
+          <span>📡 Kausal Media Channel Hub</span>
+        </div>
+        <a href="/projects/ainimate/" class="back-nav-link">
+          <span>← Return to Studio Hub</span>
+        </a>
+      </div>
+      <h1>Kausal Media Video Production Hub</h1>
+      <p class="lead">
+        Investigative financial journalism, macro breakdowns, and market microstructure teardowns autonomously rendered by AI-nimate Studio in full 1080p 60 FPS with interactive dual-aspect (<span style="color: #ff6b3d; font-family: 'Fira Code', monospace;">16:9 &amp; 9:16</span>) player switching.
+      </p>
+      <div class="stats-bar">
+        <div class="stat-item">
+          <span class="stat-dot"></span>
+          <span>4 Channel Releases</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-dot emerald"></span>
+          <span>Dual-Aspect (16:9 / 9:16)</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-dot emerald"></span>
+          <span>60 FPS Master Renders</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-dot emerald"></span>
+          <span>HTTP Byte-Range Seeking</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="channels-grid">
+      <!-- 1. FLAGSHIP: The AI Bubble Explained (Dual Aspect 16:9 + 9:16) -->
+      <a href="/projects/ainimate/kausalmedia/the-ai-bubble-explained/" class="video-card flagship">
+        <div class="thumb-wrapper">
+          <img src="/projects/ainimate/kausalmedia/the-ai-bubble-explained/thumbnail_og.jpg" alt="The AI Bubble Explained: $600B CapEx vs Reality" loading="lazy">
+          <span class="channel-tag">kausalmedia</span>
+          <span class="flagship-badge">⭐ FLAGSHIP RELEASE</span>
+          <span class="duration-badge">01:42 • 60 FPS</span>
+        </div>
+        <div class="card-content">
+          <div class="format-tags">
+            <span class="format-tag tag-dual">⚡ 16:9 + 9:16 Dual-Aspect</span>
+            <span class="format-tag tag-emerald">60 FPS</span>
+            <span class="format-tag">1080p Master</span>
+            <span class="format-tag">Oct 2026</span>
+          </div>
+          <h2 class="card-title">The AI Bubble Explained: $600B CapEx vs Reality</h2>
+          <p class="card-desc">
+            Hyperscaler CapEx vs Pure AI Revenue: The $600B Chasm, Round-Trip Cloud Credits, and Server Depreciation Realities. Features instant dual-aspect ratio switching between 16:9 landscape cinema and 9:16 vertical mobile feeds.
+          </p>
+          <div class="card-meta">
+            <span>01:42 • Dual Format • Cloudflare Edge</span>
+            <span class="btn-watch">▶ Play Dual-Aspect Master →</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 2. Offshore Investing Tax Traps (Indonesia) (Dual Aspect 16:9 + 9:16) -->
+      <a href="/projects/ainimate/kausalmedia/offshore-investing-tax-traps-indonesia/" class="video-card">
+        <div class="thumb-wrapper">
+          <img src="/projects/ainimate/kausalmedia/offshore-investing-tax-traps-indonesia/thumbnail_og.jpg" alt="Offshore Investing Tax Traps (Indonesia)" loading="lazy">
+          <span class="channel-tag">kausalmedia</span>
+          <span class="duration-badge">02:04 • 60 FPS</span>
+        </div>
+        <div class="card-content">
+          <div class="format-tags">
+            <span class="format-tag tag-dual">⚡ 16:9 + 9:16 Dual</span>
+            <span class="format-tag tag-emerald">60 FPS</span>
+            <span class="format-tag">1080p</span>
+            <span class="format-tag">Oct 2026</span>
+          </div>
+          <h2 class="card-title">Offshore Investing Tax Traps (Indonesia): 0.1% vs 35%</h2>
+          <p class="card-desc">
+            Why US ETFs and offshore stocks cost Indonesian investors up to 35% ordinary tax + 40% IRS estate tax, and the PMK 18 repatriation shelter playbook.
+          </p>
+          <div class="card-meta">
+            <span>02:04 • 60 FPS Master</span>
+            <span class="btn-watch">▶ Watch Video →</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 3. MSCI Standalone Market Crash (9:16 / 1080p) -->
+      <a href="/projects/ainimate/kausalmedia/msci-standalone-market-crash/" class="video-card">
+        <div class="thumb-wrapper">
+          <img src="/projects/ainimate/kausalmedia/msci-standalone-market-crash/thumbnail.jpg" alt="MSCI Standalone Market Crash" loading="lazy">
+          <span class="channel-tag">kausalmedia</span>
+          <span class="duration-badge">04:07 • 1080p</span>
+        </div>
+        <div class="card-content">
+          <div class="format-tags">
+            <span class="format-tag tag-blue">9:16 Vertical</span>
+            <span class="format-tag">1080p Master</span>
+            <span class="format-tag">Oct 2026</span>
+          </div>
+          <h2 class="card-title">MSCI Standalone Market Crash: Likuiditas &amp; Ilusi Free Float</h2>
+          <p class="card-desc">
+            Autonomous visual documentary analyzing MSCI downgrade scenarios, Rp 150T foreign capital flight risks, and the true free-float mechanics of BEI.
+          </p>
+          <div class="card-meta">
+            <span>04:07 • 1080p Master</span>
+            <span class="btn-watch">▶ Watch Video →</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 4. Anatomi Saham Gorengan di BEI (16:9 / 1080p) -->
+      <a href="/projects/ainimate/kausalmedia/anatomi-saham-gorengan-di-bei-re/" class="video-card">
+        <div class="thumb-wrapper">
+          <img src="/projects/ainimate/kausalmedia/anatomi-saham-gorengan-di-bei-re/thumbnail.jpg" alt="Anatomi Saham Gorengan di BEI" loading="lazy">
+          <span class="channel-tag">kausalmedia</span>
+          <span class="duration-badge">04:35 • 1080p</span>
+        </div>
+        <div class="card-content">
+          <div class="format-tags">
+            <span class="format-tag tag-amber">16:9 Master</span>
+            <span class="format-tag">51 Beats</span>
+            <span class="format-tag">1080p</span>
+            <span class="format-tag">Oct 2026</span>
+          </div>
+          <h2 class="card-title">Anatomi Saham Gorengan di BEI: Rekayasa Bandar</h2>
+          <p class="card-desc">
+            Investigasi mendalam manipulasi order book, wash trading, dan ilusi likuiditas bandar saham gorengan BEI melalui simulasi visual 5 layer.
+          </p>
+          <div class="card-meta">
+            <span>04:35 • 51 Beats • 40.6 MB</span>
+            <span class="btn-watch">▶ Watch Video →</span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <footer>
+      <div>
+        <span>Kausal Media Channel Hub</span> • <span>AI-nimate Studio Autonomous Pipeline</span>
+      </div>
+      <div>
+        <a href="https://cuang.dev">cuang.dev</a>
+      </div>
+    </footer>
+  </div>
 </body>
 </html>
