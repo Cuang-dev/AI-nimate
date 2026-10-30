@@ -9,10 +9,21 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const CHROME_PATH =
+  process.env.CHROME_BIN ||
   '/home/agent/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome';
 
 const PROJECT_ID = 'vid_20261024_001';
 const BEATS = ['beat1', 'beat2', 'beat3', 'beat4', 'beat5', 'beat6'];
+
+const BROWSER_ARGS = [
+  '--no-sandbox',
+  '--disable-setuid-sandbox',
+  '--disable-dev-shm-usage',
+  '--js-flags=--max-old-space-size=4096',
+  '--disable-background-timer-throttling',
+  '--disable-backgrounding-occluded-windows',
+  '--disable-renderer-backgrounding',
+];
 
 function isValidVideo(filePath, minDuration = 10) {
   if (!fs.existsSync(filePath)) return false;
@@ -30,7 +41,7 @@ function isValidVideo(filePath, minDuration = 10) {
   }
 }
 
-async function renderBeat(serverPort, beatName) {
+async function renderBeat(serverPort, beatName, getBrowser) {
   const fullProjectName = `${PROJECT_ID}_${beatName}`;
   const projectParam = `src/projects/${PROJECT_ID}/${fullProjectName}`;
   const projectOutputDir = path.join(__dirname, 'output', PROJECT_ID);
@@ -46,22 +57,17 @@ async function renderBeat(serverPort, beatName) {
   console.log(`[Sequential Render] Starting ${fullProjectName}...`);
   console.log(`========================================`);
 
-  const browser = await chromium.launch({
-    executablePath: CHROME_PATH,
-    headless: true,
-    args: [
-      '--no-sandbox',
-      '--disable-setuid-sandbox',
-      '--disable-dev-shm-usage',
-      '--js-flags=--max-old-space-size=4096',
-      '--disable-background-timer-throttling',
-      '--disable-backgrounding-occluded-windows',
-      '--disable-renderer-backgrounding',
-    ],
-  });
+  let browser = await getBrowser();
+  let page = null;
+  try {
+    page = await browser.newPage();
+  } catch (err) {
+    console.warn(`[Sequential Render] Error creating page (${err.message}). Relaunching browser...`);
+    browser = await getBrowser();
+    page = await browser.newPage();
+  }
 
   try {
-    const page = await browser.newPage();
     page.on('console', (msg) => {
       const txt = msg.text();
       if (!txt.includes('Download the React DevTools') && !txt.includes('[vite]')) {
@@ -74,8 +80,9 @@ async function renderBeat(serverPort, beatName) {
     console.log(`[Sequential Render] Navigating to ${targetUrl}...`);
     await page.goto(targetUrl);
 
-    console.log('[Sequential Render] Waiting for editor UI...');
-    await page.waitForTimeout(5000);
+    console.log('[Sequential Render] Waiting for editor UI (#render)...');
+    await page.waitForSelector('#render', { timeout: 15000 });
+    await page.waitForTimeout(600);
 
     // Switch exporter to Video (FFmpeg) if not selected
     await page.evaluate(() => {
@@ -90,7 +97,7 @@ async function renderBeat(serverPort, beatName) {
       }
     });
 
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(600);
 
     // Trigger Render
     console.log('[Sequential Render] Triggering render...');
@@ -122,10 +129,32 @@ async function renderBeat(serverPort, beatName) {
       }
     }
 
-    // Wait for FFmpeg process to close output file
-    await page.waitForTimeout(3000);
-
+    // Fast File Flush: Poll rawOutputPath size stability every 300ms (up to 3000ms)
     const rawOutputPath = path.join(__dirname, 'output', `${fullProjectName}.mp4`);
+    const pollStart = Date.now();
+    let lastSize = -1;
+    let stableCount = 0;
+
+    while (Date.now() - pollStart < 3000) {
+      await page.waitForTimeout(300);
+      if (fs.existsSync(rawOutputPath)) {
+        try {
+          const curSize = fs.statSync(rawOutputPath).size;
+          if (curSize > 0 && curSize === lastSize) {
+            stableCount++;
+            if (stableCount >= 2) {
+              break;
+            }
+          } else {
+            stableCount = 0;
+            lastSize = curSize;
+          }
+        } catch (e) {
+          // ignore transient stat locks
+        }
+      }
+    }
+
     if (!fs.existsSync(rawOutputPath)) {
       throw new Error(`Raw output not found at ${rawOutputPath}`);
     }
@@ -138,9 +167,9 @@ async function renderBeat(serverPort, beatName) {
       throw new Error(`Rendered video ${finalBeatPath} is invalid or too short!`);
     }
   } finally {
-    await browser.close();
-    // Brief pause to allow OS socket and memory cleanup
-    await new Promise((r) => setTimeout(r, 1500));
+    if (page) {
+      await page.close().catch(() => {});
+    }
   }
 }
 
@@ -156,9 +185,31 @@ async function runMaster() {
 
   const startTime = Date.now();
 
+  let browser = null;
+  const launchBrowser = async () => {
+    return await chromium.launch({
+      executablePath: CHROME_PATH,
+      headless: true,
+      args: BROWSER_ARGS,
+    });
+  };
+
+  const getOrRelaunchBrowser = async () => {
+    if (!browser || !browser.isConnected()) {
+      if (browser) {
+        try {
+          await browser.close().catch(() => {});
+        } catch (e) {}
+      }
+      console.log('[Master Pipeline] Launching Chromium browser instance...');
+      browser = await launchBrowser();
+    }
+    return browser;
+  };
+
   try {
     for (const beat of BEATS) {
-      await renderBeat(9100, beat);
+      await renderBeat(9100, beat, getOrRelaunchBrowser);
     }
 
     console.log('\n========================================');
@@ -318,6 +369,11 @@ async function runMaster() {
     );
 
   } finally {
+    if (browser) {
+      console.log('[Master Pipeline] Closing Chromium browser instance...');
+      await browser.close().catch(() => {});
+      browser = null;
+    }
     await server.close();
   }
 }
