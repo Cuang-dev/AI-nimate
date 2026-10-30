@@ -12,9 +12,6 @@ const CHROME_PATH =
   process.env.CHROME_BIN ||
   '/home/agent/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome';
 
-const PROJECT_ID = 'vid_20261024_001';
-const BEATS = ['beat1', 'beat2', 'beat3', 'beat4', 'beat5', 'beat6'];
-
 const BROWSER_ARGS = [
   '--no-sandbox',
   '--disable-setuid-sandbox',
@@ -24,6 +21,62 @@ const BROWSER_ARGS = [
   '--disable-backgrounding-occluded-windows',
   '--disable-renderer-backgrounding',
 ];
+
+function parseArgs() {
+  const args = process.argv.slice(2);
+  let projectId = 'vid_20261024_001';
+  let force = false;
+  let beatsArg = null;
+  let port = 9100;
+
+  for (let i = 0; i < args.length; i++) {
+    const arg = args[i];
+    if (arg === '--project' && i + 1 < args.length) {
+      projectId = args[++i];
+    } else if (arg.startsWith('--project=')) {
+      projectId = arg.split('=')[1];
+    } else if (arg === '--force') {
+      force = true;
+    } else if (arg === '--beats' && i + 1 < args.length) {
+      beatsArg = args[++i].split(',').map((b) => b.trim()).filter(Boolean);
+    } else if (arg.startsWith('--beats=')) {
+      beatsArg = arg.split('=')[1].split(',').map((b) => b.trim()).filter(Boolean);
+    } else if (arg === '--port' && i + 1 < args.length) {
+      port = parseInt(args[++i], 10);
+    } else if (arg.startsWith('--port=')) {
+      port = parseInt(arg.split('=')[1], 10);
+    }
+  }
+
+  // Always discover allBeats
+  let allBeats = [];
+  const projectDir = path.join(__dirname, 'src', 'projects', projectId);
+  if (fs.existsSync(projectDir)) {
+    const files = fs.readdirSync(projectDir);
+    const beatRegex = new RegExp(`^${projectId}_(beat\\d+)\\.ts$`);
+    const matched = [];
+    for (const f of files) {
+      const m = f.match(beatRegex);
+      if (m) matched.push(m[1]);
+    }
+    if (matched.length > 0) {
+      matched.sort((a, b) => {
+        const numA = parseInt(a.replace(/\D/g, ''), 10) || 0;
+        const numB = parseInt(b.replace(/\D/g, ''), 10) || 0;
+        return numA - numB;
+      });
+      allBeats = matched;
+    }
+  }
+
+  if (allBeats.length === 0) {
+    allBeats = ['beat1', 'beat2', 'beat3', 'beat4', 'beat5', 'beat6'];
+  }
+
+  const beatsToRender = beatsArg && beatsArg.length > 0 ? beatsArg : allBeats;
+
+  return { projectId, force, beatsToRender, allBeats, port };
+}
 
 function isValidVideo(filePath, minDuration = 10) {
   if (!fs.existsSync(filePath)) return false;
@@ -41,14 +94,14 @@ function isValidVideo(filePath, minDuration = 10) {
   }
 }
 
-async function renderBeat(serverPort, beatName, getBrowser) {
-  const fullProjectName = `${PROJECT_ID}_${beatName}`;
-  const projectParam = `src/projects/${PROJECT_ID}/${fullProjectName}`;
-  const projectOutputDir = path.join(__dirname, 'output', PROJECT_ID);
+async function renderBeat(serverPort, beatName, getBrowser, projectId, force = false) {
+  const fullProjectName = `${projectId}_${beatName}`;
+  const projectParam = `src/projects/${projectId}/${fullProjectName}`;
+  const projectOutputDir = path.join(__dirname, 'output', projectId);
   fs.mkdirSync(projectOutputDir, { recursive: true });
 
   const finalBeatPath = path.join(projectOutputDir, `${fullProjectName}.mp4`);
-  if (isValidVideo(finalBeatPath)) {
+  if (!force && isValidVideo(finalBeatPath)) {
     console.log(`[Sequential Render] ${fullProjectName} already exists and is valid. Skipping.`);
     return;
   }
@@ -174,14 +227,19 @@ async function renderBeat(serverPort, beatName, getBrowser) {
 }
 
 async function runMaster() {
-  console.log(`[Master Pipeline] Starting sequential render pipeline for ${PROJECT_ID}...`);
-  console.log('[Master Pipeline] Launching Vite dev server...');
+  const { projectId, force, beatsToRender, allBeats, port } = parseArgs();
+
+  console.log(`[Master Pipeline] Starting sequential render pipeline for ${projectId}...`);
+  console.log(`[Master Pipeline] All Beats: ${allBeats.join(', ')}`);
+  console.log(`[Master Pipeline] Beats to render: ${beatsToRender.join(', ')}`);
+  console.log(`[Master Pipeline] Force: ${force}`);
+  console.log(`[Master Pipeline] Launching Vite dev server on port ${port}...`);
   const server = await createServer({
     root: __dirname,
-    server: { port: 9100 },
+    server: { port },
   });
   await server.listen();
-  console.log('[Master Pipeline] Server listening on http://localhost:9100');
+  console.log(`[Master Pipeline] Server listening on http://localhost:${port}`);
 
   const startTime = Date.now();
 
@@ -208,25 +266,35 @@ async function runMaster() {
   };
 
   try {
-    for (const beat of BEATS) {
-      await renderBeat(9100, beat, getOrRelaunchBrowser);
+    for (const beat of beatsToRender) {
+      await renderBeat(port, beat, getOrRelaunchBrowser, projectId, force);
     }
 
     console.log('\n========================================');
-    console.log('[Master Pipeline] All 6 beats rendered successfully!');
+    console.log('[Master Pipeline] Render step complete!');
     console.log('========================================');
 
-    const projectOutputDir = path.join(__dirname, 'output', PROJECT_ID);
+    const projectOutputDir = path.join(__dirname, 'output', projectId);
     const concatListPath = path.join(projectOutputDir, 'concat_list_beats.txt');
-    const concatLines = BEATS.map((beat) => {
-      const beatFile = path.join(projectOutputDir, `${PROJECT_ID}_${beat}.mp4`);
+    for (const beat of allBeats) {
+      const beatFile = path.join(projectOutputDir, `${projectId}_${beat}.mp4`);
+      if (!fs.existsSync(beatFile)) {
+        throw new Error(`[Master Pipeline] Cannot concatenate: missing beat file ${beatFile}`);
+      }
+      if (!isValidVideo(beatFile)) {
+        throw new Error(`[Master Pipeline] Cannot concatenate: beat file is invalid or too small ${beatFile}`);
+      }
+    }
+    const concatLines = allBeats.map((beat) => {
+      const beatFile = path.join(projectOutputDir, `${projectId}_${beat}.mp4`);
       return `file '${beatFile}'`;
     }).join('\n');
     fs.writeFileSync(concatListPath, concatLines);
+    fs.writeFileSync(path.join(projectOutputDir, 'concat_list.txt'), concatLines);
     console.log(`[Master Pipeline] Concat list created at ${concatListPath}`);
 
     // Lossless concat of video streams
-    const concatenatedVideo = path.join(projectOutputDir, `${PROJECT_ID}_video_concat.mp4`);
+    const concatenatedVideo = path.join(projectOutputDir, `${projectId}_video_concat.mp4`);
     console.log('[Master Pipeline] Concatenating beats losslessly...');
     execSync(
       `ffmpeg -y -f concat -safe 0 -i "${concatListPath}" -c copy "${concatenatedVideo}"`,
@@ -234,8 +302,14 @@ async function runMaster() {
     );
 
     // Mux master narration audio
-    const masterAudio = path.join(__dirname, 'public', 'audio', `${PROJECT_ID}.wav`);
-    const masterH264 = path.join(projectOutputDir, `${PROJECT_ID}.mp4`);
+    let masterAudio = path.join(__dirname, 'public', 'audio', `${projectId}.wav`);
+    if (!fs.existsSync(masterAudio)) {
+      const altAudio = path.join(__dirname, 'public', 'audio', projectId, 'narration.wav');
+      if (fs.existsSync(altAudio)) {
+        masterAudio = altAudio;
+      }
+    }
+    const masterH264 = path.join(projectOutputDir, `${projectId}.mp4`);
     console.log(`[Master Pipeline] Muxing master narration audio from ${masterAudio}...`);
     execSync(
       `ffmpeg -y -i "${concatenatedVideo}" -i "${masterAudio}" -c:v copy -c:a aac -profile:a aac_low -ar 48000 -ac 2 -b:a 192k -movflags +faststart "${masterH264}"`,
@@ -244,7 +318,7 @@ async function runMaster() {
     console.log(`[Master Pipeline] Master H.264 video saved to ${masterH264}`);
 
     // Intel VAAPI HEVC Master
-    const masterHEVC = path.join(projectOutputDir, `${PROJECT_ID}_hevc.mp4`);
+    const masterHEVC = path.join(projectOutputDir, `${projectId}_hevc.mp4`);
     console.log(`[Master Pipeline] Encoding Intel VAAPI HEVC master to ${masterHEVC}...`);
     const hevcCmd =
       'ffmpeg -y -hwaccel vaapi -hwaccel_device /dev/dri/renderD128 -hwaccel_output_format vaapi ' +

@@ -26,7 +26,7 @@ function parseArgs() {
   const args = process.argv.slice(2);
   let projectId = 'vid_20261029_002';
   let force = false;
-  let beats = null;
+  let beatsArg = null;
   let port = 9102;
 
   for (let i = 0; i < args.length; i++) {
@@ -38,9 +38,9 @@ function parseArgs() {
     } else if (arg === '--force') {
       force = true;
     } else if (arg === '--beats' && i + 1 < args.length) {
-      beats = args[++i].split(',').map((b) => b.trim()).filter(Boolean);
+      beatsArg = args[++i].split(',').map((b) => b.trim()).filter(Boolean);
     } else if (arg.startsWith('--beats=')) {
-      beats = arg.split('=')[1].split(',').map((b) => b.trim()).filter(Boolean);
+      beatsArg = arg.split('=')[1].split(',').map((b) => b.trim()).filter(Boolean);
     } else if (arg === '--port' && i + 1 < args.length) {
       port = parseInt(args[++i], 10);
     } else if (arg.startsWith('--port=')) {
@@ -48,32 +48,34 @@ function parseArgs() {
     }
   }
 
-  if (!beats) {
-    const projectDir = path.join(__dirname, 'src', 'projects', projectId);
-    if (fs.existsSync(projectDir)) {
-      const files = fs.readdirSync(projectDir);
-      const beatRegex = new RegExp(`^${projectId}_(beat\\d+)\\.ts$`);
-      const matched = [];
-      for (const f of files) {
-        const m = f.match(beatRegex);
-        if (m) matched.push(m[1]);
-      }
-      if (matched.length > 0) {
-        matched.sort((a, b) => {
-          const numA = parseInt(a.replace(/\D/g, ''), 10) || 0;
-          const numB = parseInt(b.replace(/\D/g, ''), 10) || 0;
-          return numA - numB;
-        });
-        beats = matched;
-      }
+  // Always discover allBeats
+  let allBeats = [];
+  const projectDir = path.join(__dirname, 'src', 'projects', projectId);
+  if (fs.existsSync(projectDir)) {
+    const files = fs.readdirSync(projectDir);
+    const beatRegex = new RegExp(`^${projectId}_(beat\\d+)\\.ts$`);
+    const matched = [];
+    for (const f of files) {
+      const m = f.match(beatRegex);
+      if (m) matched.push(m[1]);
+    }
+    if (matched.length > 0) {
+      matched.sort((a, b) => {
+        const numA = parseInt(a.replace(/\D/g, ''), 10) || 0;
+        const numB = parseInt(b.replace(/\D/g, ''), 10) || 0;
+        return numA - numB;
+      });
+      allBeats = matched;
     }
   }
 
-  if (!beats || beats.length === 0) {
-    beats = ['beat1', 'beat2', 'beat3', 'beat4', 'beat5'];
+  if (allBeats.length === 0) {
+    allBeats = ['beat1', 'beat2', 'beat3', 'beat4', 'beat5'];
   }
 
-  return { projectId, force, beats, port };
+  const beatsToRender = beatsArg && beatsArg.length > 0 ? beatsArg : allBeats;
+
+  return { projectId, force, beatsToRender, allBeats, port };
 }
 
 function isValidVideo(filePath, minDuration = 10) {
@@ -253,12 +255,12 @@ async function renderBeat(serverPort, beatName, aspectDir, projectId, force, get
   }
 }
 
-async function renderAspectPass(serverPort, aspectName, width, height, projectId, beats, force) {
+async function renderAspectPass(serverPort, aspectName, width, height, projectId, beatsToRender, allBeats, force) {
   console.log(`\n############################################################`);
   console.log(`[Pipeline] STARTING PASS: ${aspectName} (${width}x${height})`);
   console.log(`############################################################`);
 
-  configureMeta(projectId, beats, width, height);
+  configureMeta(projectId, allBeats, width, height);
 
   const aspectOutputDir = path.join(__dirname, 'output', projectId, aspectName);
   fs.mkdirSync(aspectOutputDir, { recursive: true });
@@ -286,7 +288,7 @@ async function renderAspectPass(serverPort, aspectName, width, height, projectId
   };
 
   try {
-    for (const beat of beats) {
+    for (const beat of beatsToRender) {
       await renderBeat(serverPort, beat, aspectName, projectId, force, getOrRelaunchBrowser);
     }
   } finally {
@@ -297,9 +299,18 @@ async function renderAspectPass(serverPort, aspectName, width, height, projectId
     }
   }
 
-  // Create concat list
+  // Create concat list from allBeats
   const concatListPath = path.join(aspectOutputDir, 'concat_list.txt');
-  const concatLines = beats.map((beat) => {
+  for (const beat of allBeats) {
+    const beatFile = path.join(aspectOutputDir, `${projectId}_${beat}.mp4`);
+    if (!fs.existsSync(beatFile)) {
+      throw new Error(`[Pipeline] Cannot concatenate: missing beat file ${beatFile}`);
+    }
+    if (!isValidVideo(beatFile)) {
+      throw new Error(`[Pipeline] Cannot concatenate: beat file is invalid or too small ${beatFile}`);
+    }
+  }
+  const concatLines = allBeats.map((beat) => {
     const beatFile = path.join(aspectOutputDir, `${projectId}_${beat}.mp4`);
     return `file '${beatFile}'`;
   }).join('\n');
@@ -330,10 +341,11 @@ async function renderAspectPass(serverPort, aspectName, width, height, projectId
 }
 
 async function main() {
-  const { projectId, force, beats, port } = parseArgs();
+  const { projectId, force, beatsToRender, allBeats, port } = parseArgs();
 
   console.log(`[Dual-Aspect Pipeline] Project: ${projectId}`);
-  console.log(`[Dual-Aspect Pipeline] Beats: ${beats.join(', ')}`);
+  console.log(`[Dual-Aspect Pipeline] All Beats: ${allBeats.join(', ')}`);
+  console.log(`[Dual-Aspect Pipeline] Beats To Render: ${beatsToRender.join(', ')}`);
   console.log(`[Dual-Aspect Pipeline] Force: ${force}`);
   console.log(`[Dual-Aspect Pipeline] Launching Vite dev server on port ${port}...`);
 
@@ -350,13 +362,13 @@ async function main() {
 
   try {
     // PASS 1: 9:16 (1080x1920) Vertical Master
-    const master9x16 = await renderAspectPass(port, '9x16', 1080, 1920, projectId, beats, force);
+    const master9x16 = await renderAspectPass(port, '9x16', 1080, 1920, projectId, beatsToRender, allBeats, force);
 
     // Also copy to video.mp4
     fs.copyFileSync(master9x16, path.join(projectOutputDir, 'video.mp4'));
 
     // PASS 2: 16:9 (1920x1080) Widescreen Master
-    const master16x9 = await renderAspectPass(port, '16x9', 1920, 1080, projectId, beats, force);
+    const master16x9 = await renderAspectPass(port, '16x9', 1920, 1080, projectId, beatsToRender, allBeats, force);
 
     // Transcode dedicated WhatsApp inline stream (< 4.5 MB, 540x960, Profile Main 3.1)
     const whatsappVideo = path.join(projectOutputDir, 'video_whatsapp.mp4');

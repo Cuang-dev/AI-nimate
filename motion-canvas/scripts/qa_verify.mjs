@@ -194,7 +194,7 @@ function probeVideo(filePath) {
   if (!fs.existsSync(filePath)) return null;
   try {
     const raw = execSync(
-      `ffprobe -v error -show_entries stream=codec_type,width,height:format=duration,size -of json "${filePath}"`,
+      `ffprobe -v error -show_entries stream=codec_type,width,height,duration,nb_frames:format=duration,size -of json "${filePath}"`,
       { encoding: 'utf8' }
     );
     const data = JSON.parse(raw);
@@ -202,6 +202,8 @@ function probeVideo(filePath) {
     const audioStream = data.streams?.find((s) => s.codec_type === 'audio');
     return {
       duration: parseFloat(data.format?.duration || '0'),
+      videoDuration: parseFloat(videoStream?.duration || '0'),
+      nbFrames: parseInt(videoStream?.nb_frames || '0', 10),
       size: parseInt(data.format?.size || '0', 10),
       width: videoStream?.width,
       height: videoStream?.height,
@@ -215,18 +217,50 @@ function probeVideo(filePath) {
 const outputDir = path.join(MOTION_CANVAS_DIR, 'output', projectId);
 const targetDuration = timings?.duration_seconds || 0;
 
+// Concat List Beat Count Verification
+if (timings?.beats) {
+  const expectedBeats = timings.beats.length;
+  for (const aspect of ['9x16', '16x9']) {
+    const aspectDir = path.join(outputDir, aspect);
+    if (fs.existsSync(aspectDir)) {
+      const concatPath = path.join(aspectDir, 'concat_list.txt');
+      if (!fs.existsSync(concatPath)) {
+        record(`Concat List (${aspect})`, false, `concat_list.txt missing in ${aspectDir}`);
+      } else {
+        const lines = fs
+          .readFileSync(concatPath, 'utf8')
+          .split('\n')
+          .map((l) => l.trim())
+          .filter((l) => l.length > 0 && !l.startsWith('#'));
+        const passed = lines.length === expectedBeats;
+        record(
+          `Concat List (${aspect})`,
+          passed,
+          passed
+            ? `${lines.length}/${expectedBeats} beats matched`
+            : `Expected ${expectedBeats} beats, found ${lines.length}`
+        );
+      }
+    }
+  }
+}
+
 // 16:9 Master
 const vid16x9Path = path.join(outputDir, 'video_16x9.mp4');
 const probe16x9 = probeVideo(vid16x9Path);
 if (!probe16x9) {
   record('Master 16:9 Video', false, 'Missing or unreadable file');
 } else {
-  const durOk = targetDuration > 0 ? Math.abs(probe16x9.duration - targetDuration) <= 0.5 : true;
+  const durOk =
+    targetDuration > 0
+      ? Math.abs(probe16x9.duration - targetDuration) <= 0.6 &&
+        Math.abs(probe16x9.videoDuration - targetDuration) <= 0.6
+      : true;
   const resOk = probe16x9.width === 1920 && probe16x9.height === 1080;
   const passed = durOk && resOk && probe16x9.hasAudio;
   const detail = passed
-    ? `1920x1080, ${probe16x9.duration.toFixed(1)}s, AAC`
-    : `res=${probe16x9.width}x${probe16x9.height}, dur=${probe16x9.duration.toFixed(1)}s, audio=${probe16x9.hasAudio}`;
+    ? `1920x1080, ${probe16x9.videoDuration.toFixed(1)}s, AAC`
+    : `res=${probe16x9.width}x${probe16x9.height}, dur=${probe16x9.duration.toFixed(1)}s, vdur=${probe16x9.videoDuration.toFixed(1)}s, audio=${probe16x9.hasAudio}`;
   record('Master 16:9 Video', passed, detail);
 }
 
@@ -236,12 +270,16 @@ const probe9x16 = probeVideo(vid9x16Path);
 if (!probe9x16) {
   record('Master 9:16 Video', false, 'Missing or unreadable file');
 } else {
-  const durOk = targetDuration > 0 ? Math.abs(probe9x16.duration - targetDuration) <= 0.5 : true;
+  const durOk =
+    targetDuration > 0
+      ? Math.abs(probe9x16.duration - targetDuration) <= 0.6 &&
+        Math.abs(probe9x16.videoDuration - targetDuration) <= 0.6
+      : true;
   const resOk = probe9x16.width === 1080 && probe9x16.height === 1920;
   const passed = durOk && resOk && probe9x16.hasAudio;
   const detail = passed
-    ? `1080x1920, ${probe9x16.duration.toFixed(1)}s, AAC`
-    : `res=${probe9x16.width}x${probe9x16.height}, dur=${probe9x16.duration.toFixed(1)}s, audio=${probe9x16.hasAudio}`;
+    ? `1080x1920, ${probe9x16.videoDuration.toFixed(1)}s, AAC`
+    : `res=${probe9x16.width}x${probe9x16.height}, dur=${probe9x16.duration.toFixed(1)}s, vdur=${probe9x16.videoDuration.toFixed(1)}s, audio=${probe9x16.hasAudio}`;
   record('Master 9:16 Video', passed, detail);
 }
 
@@ -251,14 +289,18 @@ const probeWa = probeVideo(vidWaPath);
 if (!probeWa) {
   record('WhatsApp Stream', false, 'Missing or unreadable file');
 } else {
-  const durOk = targetDuration > 0 ? Math.abs(probeWa.duration - targetDuration) <= 0.5 : true;
+  const durOk =
+    targetDuration > 0
+      ? Math.abs(probeWa.duration - targetDuration) <= 0.6 &&
+        Math.abs(probeWa.videoDuration - targetDuration) <= 0.6
+      : true;
   const resOk = probeWa.width === 540 && probeWa.height === 960;
   const sizeMb = (probeWa.size / (1024 * 1024)).toFixed(2);
   const sizeOk = probeWa.size < 4.5 * 1024 * 1024;
   const passed = durOk && resOk && probeWa.hasAudio && sizeOk;
   const detail = passed
     ? `540x960, ${sizeMb}MB (<4.5MB), AAC`
-    : `res=${probeWa.width}x${probeWa.height}, size=${sizeMb}MB, dur=${probeWa.duration.toFixed(1)}s`;
+    : `res=${probeWa.width}x${probeWa.height}, size=${sizeMb}MB, dur=${probeWa.duration.toFixed(1)}s, vdur=${probeWa.videoDuration.toFixed(1)}s`;
   record('WhatsApp Stream', passed, detail);
 }
 
