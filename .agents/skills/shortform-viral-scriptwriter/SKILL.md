@@ -99,3 +99,24 @@ Before handing off a script to the director agent, verify:
 - [ ] Uses punctuation (`...`, `,`, `!`) to control TTS cadence and breathing.
 - [ ] Word count is between **130 and 155 words** for a crisp 55–60 second duration.
 - [ ] Ending delivers a punchline or seamless loop.
+- [ ] Zero unexplained jargon: everyday layman analogies used for any financial concept.
+
+---
+
+## 5. Layman & Non-Investor Accessibility (Zero Unexplained Jargon)
+
+- **Series Brand & TTS Rule**:
+  - Series brand is **`Knp?`** in video titles and top-left stage badges (`KNP? // 01: [BEAT TITLE]`).
+  - In `spoken_text` (fed to AI TTS), **ALWAYS write the full spoken word `"kenapa"`** (never `"K-N-P"`).
+- **Target Audience**:
+  - Assume the viewer has **zero background in finance or stock trading**.
+- **Ban Unexplained Stock-Bro Jargon**:
+  - Never use raw market jargon or acronyms (*free float, ARB, trading halt, capex, rebalancing, outflow, FIF, PBV, PER, Emerging Market, Standalone Market*) without immediately translating them into a concrete, everyday real-life analogy:
+    - *MSCI* -> *"wasit bursa saham dunia yang nentuin negara mana yang layak dimasuki uang triliunan rupiah dari luar negeri"*.
+    - *Emerging to Standalone* -> *"ibarat dari liga utama dunia, Indonesia terancam diturunkan paksa ke kasta terendah—selevel negara yang lagi krisis berat"*.
+    - *Free Float* -> *"saham yang beneran dijual bebas ke warga biasa"*.
+    - *ARB / Crash* -> *"harga saham ambruk mentok batas bawah berhari-hari"*.
+    - *Outflow* -> *"investor asing panik tarik uang triliunan rupiah"*.
+- **Plain Indonesian Diagram Labels**:
+  - On-screen diagram labels, card titles, and pills **MUST use plain Indonesian words first**, never obscure English financial abbreviations.
+

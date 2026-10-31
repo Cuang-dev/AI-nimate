@@ -1,40 +1,51 @@
-# Kausal Media // Master Content Strategy: "Kenapa:" Series
+# Kausal Media // Master Content Strategy: "Knp?" Series
 
 > **Dokumen Strategi Konten & Standar Redaksional Seri Unggulan Kausal Media**  
-> **Versi:** 1.0 (Oktober 2026)  
+> **Versi:** 2.0 (Oktober 2026 — Rebranding & Standar Aksesibilitas Awam)  
 > **Klasifikasi:** Dokumen Internal Produksi & Panduan Penulisan Sub-Agent  
 > **Anchor Waktu:** Akhir 2026 (Refleksi 2024–2026, Horizon 2027)
 
 ---
 
-## 1. Identitas & DNA Seri: "Kenapa:"
+## 1. Identitas & DNA Seri: "Knp?"
 
-**"Kenapa:"** adalah seri konten unggulan (*flagship intellectual franchise*) dari **Kausal Media**. Seri ini dirancang untuk menjawab pertanyaan-pertanyaan kausal yang kerap beredar di kepala masyarakat Indonesia—mulai dari dinamika pengeluaran harian, anomali bisnis, hingga mekanisme pasar modal tingkat tinggi—dengan pendekatan forensik, matematis, dan berkeadilan data.
+**"Knp?"** adalah seri konten unggulan (*flagship intellectual franchise*) dari **Kausal Media**. Seri ini dirancang untuk menjawab pertanyaan-pertanyaan kausal yang kerap beredar di kepala masyarakat Indonesia—mulai dari dinamika pengeluaran dompet harian, anomali bisnis, hingga mekanisme pasar modal—dengan pendekatan forensik, matematis, dan berkeadilan data yang dapat dipahami oleh siapa saja, termasuk warga awam yang sama sekali belum pernah berinvestasi.
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
 │ STRUKTUR IDENTITAS BRAND & RITUS SERIAL                                │
 ├────────────────────────────────────────────────────────────────────────┤
-│ • Series Prefix          : "Kenapa: [Judul Kuriositas Spesifik]"      │
-│ • Visual Badge (Top-Left): "KENAPA // [BEAT_NO]: [BEAT TITLE]"         │
+│ • Series Prefix          : "Knp? [Judul Kuriositas Spesifik]"          │
+│ • Visual Badge (Top-Left): "KNP? // [BEAT_NO]: [BEAT TITLE]"           │
+│ • Ritus Fonetik TTS      : Di teks grafis/judul tulis "Knp?".          │
+│                            Di spoken_text (narator AI TTS), SELALU     │
+│                            tulis kata penuh "kenapa" agar tidak dieja! │
 │ • 3-Detik Spoken Hook    : "Pernah nggak sih kamu mikir, kenapa..."    │
 │ • Spoken Sign-Off        : "Sekarang kamu tahu kenapa."                │
 │ • Bahasa & Tone of Voice : Bahasa Indonesia Urban Percakapan Cerdas    │
 │                            (Aku / Kamu / Kita), tanpa kekakuan formal, │
 │                            100% fokus mekanisme & kalkulasi riil.      │
+│ • Aksesibilitas Awam     : ZERO UNEXPLAINED JARGON (Wajib analogi riil)│
 └────────────────────────────────────────────────────────────────────────┘
 ```
 
 ### 1.1. Formula Kuriositas Judul
-Setiap judul wajib menggunakan prefiks `Kenapa: ` diikuti pertanyaan yang tajam, provokatif, dan berakar pada paradoks nyata:
-- *Contoh Benar:* `Kenapa: Bursa Kita Terancam Didepak MSCI?`
-- *Contoh Benar:* `Kenapa: Bunga Paylater Bisa Tembus 36% Padahal BI Rate Turun?`
+Setiap judul video wajib menggunakan prefiks `Knp? ` diikuti pertanyaan yang tajam, provokatif, dan berakar pada paradoks nyata:
+- *Contoh Benar (Shorts/Teaser 9:16):* `Knp? Bursa Saham Kita Terancam Diboikot Dunia`
+- *Contoh Benar (Deep-Dive 16:9):* `Knp? Bursa Saham Indonesia Terancam Diboikot Dunia (Kasus MSCI)`
+- *Contoh Benar:* `Knp? Bunga Paylater Bisa Tembus 36% Padahal BI Rate Turun?`
 - *Contoh Salah:* `Mengenal MSCI dan Indeks Saham Indonesia` (Terlalu akademis, tanpa kuriositas)
 - *Contoh Salah:* `Gawat! Indonesia Mau Bangkrut Karena Saham Ini!` (Sensasional tanpa mekanisme)
 
 ### 1.2. Top-Left Visual Badge Standard
 Pada setiap kanvas video (baik `9:16` vertical maupun `16:9` widescreen), sudut kiri atas kanvas wajib memuat penanda beat yang konsisten:
-- Format: `KENAPA // [BEAT]: [TOPIK_BEAT]`
+- Format: `KNP? // [BEAT]: [TOPIK_BEAT_DALAM_BAHASA_INDONESIA_SEDERHANA]`
+- Contoh:
+  - `KNP? // 01: ANCAMAN TURUN KASTA`
+  - `KNP? // 02: CUMA 3% DI PASAR`
+  - `KNP? // 03: JEBAKAN DANA ASING`
+  - `KNP? // 04: SAHAM NYANGKUT`
+  - `KNP? // 05: ATURAN BARU 15%`
 - Tipografi: `JetBrains Mono` / Monospace, uppercase, tracking `1.5px`.
 - Ukuran: `30px` (9:16 mobile) / `26px` (16:9 widescreen).
 - Warna: Dark Charcoal (`#141413`) pada light background (`#F7F5F0`), dengan aksen tag amber atau red alert jika berada di beat krisis.
@@ -46,10 +57,50 @@ Pada setiap kanvas video (baik `9:16` vertical maupun `16:9` widescreen), sudut 
 - **Spoken Sign-Off (Detik Terakhir):** Wajib ditutup dengan punchline khas:  
   `"Sekarang kamu tahu kenapa."`  
   Memberikan kepuasan intelektual (*intellectual payoff*) instan sebelum video selesai atau meloop kembali.
+- **Aturan Fonetik Narator AI TTS:**
+  - Di teks visual layar, judul, atau stage badge: gunakan penulisan ringkas `Knp?`, `Rp1.500 Triliun`, `3%`.
+  - Di `spoken_text` (naskah suara yang dibaca oleh narator TTS): **SELALU tuliskan kata utuh dalam bahasa Indonesia** (`"kenapa"`, `"seribu lima ratus triliun rupiah"`, `"tiga persen"`) agar mesin TTS tidak salah membaca atau mengeja huruf per huruf (`"K-N-P"`).
 
 ---
 
-## 2. Tone of Voice & Gaya Bertutur
+## 2. Standar Aksesibilitas Awam & Non-Investor (Zero Unexplained Jargon)
+
+Audiens utama Kausal Media adalah **seluruh masyarakat Indonesia—termasuk warga awam yang bukan investor dan belum pernah membeli saham**. 
+
+### 2.1. Larangan Mutlak Istilah Pasar Modal Tanpa Penjelasan
+Dilarang keras melontarkan istilah teknis *stock-bro* (*trading halt*, *free float*, *Emerging Market*, *Standalone Market*, *Foreign Inclusion Factor / FIF*, *Auto Reject Bawah / ARB*, *market cap*, *big cap*, *capital outflow*, *rebalancing*) tanpa langsung menerjemahkannya ke dalam analogi kehidupan nyata yang dipahami dalam satu detik:
+
+1. **MSCI**:
+   - *Bukan:* "Morgan Stanley Capital International, penyedia indeks acuan global."
+   - *Wajib:* **"Wasit bursa saham dunia yang nentuin negara mana yang layak dimasuki uang triliunan rupiah dari luar negeri."**
+2. **Emerging Market vs Standalone Market**:
+   - *Bukan:* "Penurunan klasifikasi dari Emerging Market menuju Standalone Market."
+   - *Wajib:* **"Ibarat dari liga utama dunia, Indonesia terancam diturunkan paksa ke kasta terendah—selevel negara yang lagi krisis berat dan diisolasi dari pergaulan modal internasional."**
+3. **Free Float**:
+   - *Bukan:* "Rasio kepemilikan saham publik di bawah ketentuan free float."
+   - *Wajib:* **"Saham yang beneran dijual bebas ke warga biasa. Bayangin ada perusahaan raksasa seharga seribu lima ratus triliun rupiah—lebih mahal dari Bank BCA. Tapi ternyata, sembilan puluh tujuh persen sahamnya dikunci rapat oleh empat pemilik aslinya saja. Yang beneran beredar di pasar? Cuma tiga persen!"**
+4. **Jebakan Likuiditas & Pembelian Otomatis (Algoritma Dana Pasif)**:
+   - *Bukan:* "Mandated passive replication ETF mengalami adverse selection pada emiten illiquid."
+   - *Wajib:* **"Karena barangnya langka banget, harga sahamnya gampang banget digoreng naik berkali-kali lipat. Masalahnya, reksa dana raksasa dunia punya sistem komputer otomatis yang wajib beli saham terbesar di tiap negara. Kalau saham yang cuma tiga persen tadi masuk daftar wajib beli, uang triliunan milik bule bakal terjebak beli di harga pucuk—dan pas mau jual, nggak ada pembelinya!"**
+5. **Kejatuhan Harga & Batas Bawah (ARB & Outflow)**:
+   - *Bukan:* "Saham big cap mengalami ARB beruntun dan foreign net outflow masif."
+   - *Wajib:* **"Begitu wasit dunia menolak saham seperti ini dan mengancam membekukan Indonesia, investor besar langsung panik tarik uang. Harga sahamnya langsung ambruk mentok batas bawah berhari-hari, dan nilai ratusan triliun rupiah menguap begitu saja."**
+6. **Reformasi 15% & Kesimpulan Buat Warga Awam**:
+   - *Wajib:* **"Biar Indonesia nggak jadi diboikot dunia, pemerintah lewat OJK dan Bursa Efek terpaksa merombak aturan: sekarang minimal lima belas persen saham perusahaan wajib beredar bebas di masyarakat, dan siapa pun yang punya saham di atas satu persen wajib dibuka namanya ke publik. Pelajarannya buat kita: kalau mau taruh uang di saham atau investasi apa pun, jangan silau sama harga yang naik terus—pastikan barangnya beneran ramai pembelinya, supaya uangmu nggak ikut nyangkut. Sekarang kamu tahu kenapa."**
+
+### 2.2. Standar Label Diagram Spasial
+Semua teks pada kartu diagram dan pill visual di layar **WAJIB menggunakan bahasa Indonesia lugas**, bukan singkatan bahasa Inggris finansial yang membingungkan:
+- `LIGA UTAMA (EMERGING)` -> `LIGA KEDUA (DILEWATI)` -> `ZONA ISOLASI (STANDALONE)`
+- `BURSA ANJLOK 8% (DIBEKUKAN SEMENTARA)`
+- `NILAI PERUSAHAAN: RP 1.500T` vs `97% DIKUNCI 4 PEMILIK` vs `CUMA 3% DI PASAR BEBAS`
+- `HARGA GAMPANG DIGORENG`
+- `DANA RAKSASA DUNIA (OTOMATIS BELI)` -> `DIPAKSA MASUK SAHAM 3%` -> `TERJEBAK DI HARGA PUCUK (NGGAK BISA JUAL)`
+- `SYARAT WASIT DUNIA: MINIMAL 15% BEBAS` vs `DANA ASING KABUR: RP 500T+ MENGUAP`
+- `L3 // BUKA NAMA PEMILIK >1%`, `L2 // WAJIB 15% SAHAM DI MASYARAKAT`, `L1 // CEK APAKAH GAMPANG DIJUAL LAGI`
+
+---
+
+## 3. Tone of Voice & Gaya Bertutur
 
 Kausal Media berbicara bukan seperti dosen mimbar atau guru ekonomi teks kuno, melainkan seperti **sahabat analis finansial pintar di kedai kopi**:
 
@@ -60,13 +111,13 @@ Kausal Media berbicara bukan seperti dosen mimbar atau guru ekonomi teks kuno, m
 2. **Kerapatan Informasi & Zero Fluff (Anti-Slop)**
    - Setiap kalimat berdurasi 4–8 kata, dipisahkan koma atau tanda jeda alami.
    - Haram menggunakan kata-kata klise AI: *"menyelami lebih dalam"*, *"bukan hanya X tapi juga Y"*, *"ibarat pedang bermata dua"*, *"era disrupsi modern"*.
-3. **Mekanisme & Matematika di Atas Opini**
+3. **Mekanisme & Matematika Nyata yang Membumi**
    - Setiap klaim harus disertai angka moneter riil, persentase terverifikasi, atau pasal regulasi.
-   - Jangan sebut *"sahamnya digoreng mahal banget"*; sebut *"market cap menembus seribu lima ratus triliun rupiah dengan PER di atas empat ratus kali dan saham beredar hanya tiga persen"*.
+   - Jelaskan angka besar dengan pembanding nyata (misal: *"seribu lima ratus triliun rupiah—lebih mahal dari Bank BCA"*).
 
 ---
 
-## 3. Protokol Keamanan Hukum: UU ITE & UU Pasar Modal
+## 4. Protokol Keamanan Hukum: UU ITE & UU Pasar Modal
 
 Liputan forensik bisnis dan pasar modal di Indonesia memiliki risiko hukum tinggi apabila tidak dipagari secara ketat. Semua naskah Kausal Media wajib mematuhi **Protokol 4 Pilar Keamanan Hukum Kausal Media**:
 
@@ -96,7 +147,7 @@ Liputan forensik bisnis dan pasar modal di Indonesia memiliki risiko hukum tingg
 
 ---
 
-## 4. Format & Strategi Rilis Ganda (Dual-Release Packaging)
+## 5. Format & Strategi Rilis Ganda (Dual-Release Packaging)
 
 Setiap investigasi diproduksi dan dirilis dalam **dua format komplementer**:
 
@@ -121,7 +172,7 @@ Setiap investigasi diproduksi dan dirilis dalam **dua format komplementer**:
 
 ---
 
-## 5. Komposisi Konten: Proporsi 70/30
+## 6. Komposisi Konten: Proporsi 70/30
 
 Untuk menjaga daya jangkau massa (*mass appeal*) sekaligus mempertahankan kredibilitas intelektual kelas atas (*intellectual authority*), kalender editorial Kausal Media dibagi menjadi:
 
@@ -130,24 +181,24 @@ Untuk menjaga daya jangkau massa (*mass appeal*) sekaligus mempertahankan kredib
 
 ---
 
-## 6. Starter Backlog: 10 Episode Unggulan (2026–2027)
+## 7. Starter Backlog: 10 Episode Unggulan (2026–2027)
 
 | No | Tipe | Judul Episode | Paradoks Utama & Mekanisme Kausal | Diagram Archetype |
 | :-- | :-- | :--- | :--- | :--- |
-| **01** | **30%** | **Kenapa: Bursa Kita Terancam Didepak MSCI?** | Market cap triliunan rupiah tapi free float cair cuma 3%, membuat dana pasif global terjebak likuiditas sempit hingga bursa terancam downgrade ke Standalone Market. | 3-Tier Hierarchy & Scale Chasm |
-| **02** | **70%** | **Kenapa: Biaya Admin Bank & Top-Up Terus Naik Padahal Semuanya Digital?** | Klaim efisiensi sistem pembayaran digital vs skema MDR QRIS, switching fee Gerbang Pembayaran Nasional, dan biaya pemeliharaan server cloud per transaksi. | Closed-Loop Conduit Fee Leakage |
-| **03** | **70%** | **Kenapa: Tiket Pesawat Domestik Lebih Mahal dari Terbang ke Luar Negeri?** | Komponen Avtur Pertamina + PPN 11% + PJP2U bandara vs rute internasional bebas PPN dan subsidi silang maskapai asing. | Stacked Cost Waterfall Bar |
-| **04** | **70%** | **Kenapa: Bunga Paylater Bisa Tembus 36% Padahal BI Rate Sudah Turun?** | Nominal suku bunga bulanan 2.95% tampak kecil, namun setelah dihitung dengan annualized effective APR dan biaya asuransi/layanan, biaya modal riil membengkak gila-gilaan. | Exponential Decay / Cost Slope |
-| **05** | **30%** | **Kenapa: Konglomerat RI Doyan Banget Bikin IPO Anak Perusahaan?** | Mekanisme *double counting* kapitalisasi pasar, *carve-out valuation arbitrage*, dan transfer utang induk ke neraca publik tanpa kehilangan kendali voting. | Multi-Tier Holding Entity Stack |
-| **06** | **70%** | **Kenapa: Rumah Subsidi KPR Makin Jauh dan Menghilang dari Jakarta?** | Batas harga patokan rumah subsidi pemerintah Rp185–240 juta terbentur lonjakan harga tanah per meter dan biaya infrastruktur utilitas dasar pengembang. | Dual-Axis Land Cost vs Price Ceiling |
-| **07** | **30%** | **Kenapa: Rupiah Melemah Pas Cadangan Devisa Kita Catat Rekor Tertinggi?** | Cadangan devisa besar di BI berasal dari penarikan utang valas pemerintah, bukan surplus transaksi berjalan (Current Account Deficit) murni dari ekspor riil. | Inflow Quality Divergence Line |
-| **08** | **70%** | **Kenapa: Minyakita dan Beras SPHP Sering Lenyap Pas Warga Butuh?** | Mekanisme Domestic Market Obligation (DMO) vs selisih harga ekspor CPO global, margin pengecer tradisional yang tercekik HET, dan rantai pasok distributor tier-3. | Supply Choke Bottleneck Pipe |
-| **09** | **70%** | **Kenapa: Skincare Overclaim Berani Lolos Uji Lab Abal-Abal di Medsos?** | Unit ekonomi biaya produksi formula Rp15.000 vs anggaran endorsement selebgram Rp200.000, serta celah izin notifikasi kosmetik tanpa audit acak pre-market. | Unit Economics Breakdown Box |
-| **10** | **30%** | **Kenapa: Surat Utang Negara RI Kalah Diminati Asing Dibanding US Treasury?** | Selisih *yield spread* obligasi 10 tahun RI vs UST menyempit ke bawah 200 bps, membuat kompensasi risiko nilai tukar Rupiah dinilai tidak sebanding bagi *hedge fund* global. | Yield Spread Risk-Premium Caliper |
+| **01** | **30%** | **Knp? Bursa Saham Kita Terancam Diboikot Dunia** | Nilai perusahaan tembus ribuan triliun rupiah tapi saham yang beneran beredar bebas cuma 3%, membuat dana raksasa dunia terancam terjebak di harga pucuk hingga bursa terancam diboikot/diisolasi. | 3-Tier Hierarchy & Scale Chasm |
+| **02** | **70%** | **Knp? Biaya Admin Bank & Top-Up Terus Naik Padahal Semuanya Digital?** | Klaim efisiensi sistem pembayaran digital vs skema MDR QRIS, switching fee Gerbang Pembayaran Nasional, dan biaya pemeliharaan server cloud per transaksi. | Closed-Loop Conduit Fee Leakage |
+| **03** | **70%** | **Knp? Tiket Pesawat Domestik Lebih Mahal dari Terbang ke Luar Negeri?** | Komponen Avtur Pertamina + PPN 11% + PJP2U bandara vs rute internasional bebas PPN dan subsidi silang maskapai asing. | Stacked Cost Waterfall Bar |
+| **04** | **70%** | **Knp? Bunga Paylater Bisa Tembus 36% Padahal BI Rate Sudah Turun?** | Nominal suku bunga bulanan 2.95% tampak kecil, namun setelah dihitung dengan bunga efektif tahunan dan biaya layanan, beban riil membengkak gila-gilaan. | Exponential Decay / Cost Slope |
+| **05** | **30%** | **Knp? Konglomerat RI Doyan Banget Bikin IPO Anak Perusahaan?** | Mekanisme *double counting* kapitalisasi pasar, *carve-out valuation arbitrage*, dan transfer utang induk ke neraca publik tanpa kehilangan kendali voting. | Multi-Tier Holding Entity Stack |
+| **06** | **70%** | **Knp? Rumah Subsidi KPR Makin Jauh dan Menghilang dari Jakarta?** | Batas harga patokan rumah subsidi pemerintah Rp185–240 juta terbentur lonjakan harga tanah per meter dan biaya infrastruktur utilitas dasar pengembang. | Dual-Axis Land Cost vs Price Ceiling |
+| **07** | **30%** | **Knp? Rupiah Melemah Pas Cadangan Devisa Kita Catat Rekor Tertinggi?** | Cadangan devisa besar di BI berasal dari penarikan utang valas pemerintah, bukan surplus transaksi berjalan murni dari ekspor riil. | Inflow Quality Divergence Line |
+| **08** | **70%** | **Knp? Minyakita dan Beras SPHP Sering Lenyap Pas Warga Butuh?** | Mekanisme Domestic Market Obligation (DMO) vs selisih harga ekspor CPO global, margin pengecer tradisional yang tercekik HET, dan rantai pasok distributor tier-3. | Supply Choke Bottleneck Pipe |
+| **09** | **70%** | **Knp? Skincare Overclaim Berani Lolos Uji Lab Abal-Abal di Medsos?** | Unit ekonomi biaya produksi formula Rp15.000 vs anggaran endorsement selebgram Rp200.000, serta celah izin notifikasi kosmetik tanpa audit acak pre-market. | Unit Economics Breakdown Box |
+| **10** | **30%** | **Knp? Surat Utang Negara RI Kalah Diminati Asing Dibanding US Treasury?** | Selisih imbal hasil obligasi 10 tahun RI vs UST menyempit, membuat kompensasi risiko nilai tukar Rupiah dinilai tidak sebanding bagi pengelola dana global. | Yield Spread Risk-Premium Caliper |
 
 ---
 
-## 7. Standar Teknis Animasi & Grafis (Motion Canvas & Terminal Safe)
+## 8. Standar Teknis Animasi & Grafis (Motion Canvas & Terminal Safe)
 
 Semua aset animasi diproduksi dengan standar Motion Canvas AI-nimate:
 1. **Rule 1B Invariant:** Semua diagram wajib dibungkus `<Node ref={camera}>` langsung di bawah `view` (menghindari bug pemotongan kanvas `<Camera>`).
