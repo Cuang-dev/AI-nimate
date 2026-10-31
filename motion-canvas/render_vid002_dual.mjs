@@ -7,6 +7,7 @@ import { execSync } from 'child_process';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+process.chdir(__dirname);
 
 const CHROME_PATH =
   process.env.CHROME_BIN ||
@@ -25,16 +26,38 @@ const BROWSER_ARGS = [
 function parseArgs() {
   const args = process.argv.slice(2);
   let projectId = 'vid_20261029_002';
+  let projectExplicit = false;
+  let slug = null;
+  let slugExplicit = false;
   let force = false;
   let beatsArg = null;
   let port = 9102;
+
+  const SLUG_TO_PROJECT = {
+    'knp-bursa-kita-terancam-diboikot-dunia': 'vid_20261031_001',
+    'the-ai-bubble-explained': 'vid_20261029_002',
+    'offshore-investing-tax-traps-indonesia': 'vid_20261024_001',
+  };
+  const PROJECT_TO_SLUG = {
+    'vid_20261031_001': 'knp-bursa-kita-terancam-diboikot-dunia',
+    'vid_20261029_002': 'the-ai-bubble-explained',
+    'vid_20261024_001': 'offshore-investing-tax-traps-indonesia',
+  };
 
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
     if (arg === '--project' && i + 1 < args.length) {
       projectId = args[++i];
+      projectExplicit = true;
     } else if (arg.startsWith('--project=')) {
       projectId = arg.split('=')[1];
+      projectExplicit = true;
+    } else if (arg === '--slug' && i + 1 < args.length) {
+      slug = args[++i];
+      slugExplicit = true;
+    } else if (arg.startsWith('--slug=')) {
+      slug = arg.split('=')[1];
+      slugExplicit = true;
     } else if (arg === '--force') {
       force = true;
     } else if (arg === '--beats' && i + 1 < args.length) {
@@ -46,6 +69,13 @@ function parseArgs() {
     } else if (arg.startsWith('--port=')) {
       port = parseInt(arg.split('=')[1], 10);
     }
+  }
+
+  if (slugExplicit && !projectExplicit) {
+    projectId = SLUG_TO_PROJECT[slug] || slug;
+  }
+  if (!slugExplicit) {
+    slug = PROJECT_TO_SLUG[projectId] || projectId;
   }
 
   // Always discover allBeats
@@ -75,7 +105,7 @@ function parseArgs() {
 
   const beatsToRender = beatsArg && beatsArg.length > 0 ? beatsArg : allBeats;
 
-  return { projectId, force, beatsToRender, allBeats, port };
+  return { projectId, slug, force, beatsToRender, allBeats, port };
 }
 
 function isValidVideo(filePath, minDuration = 10) {
@@ -341,9 +371,9 @@ async function renderAspectPass(serverPort, aspectName, width, height, projectId
 }
 
 async function main() {
-  const { projectId, force, beatsToRender, allBeats, port } = parseArgs();
+  const { projectId, slug, force, beatsToRender, allBeats, port } = parseArgs();
 
-  console.log(`[Dual-Aspect Pipeline] Project: ${projectId}`);
+  console.log(`[Dual-Aspect Pipeline] Project: ${projectId} (Slug: ${slug})`);
   console.log(`[Dual-Aspect Pipeline] All Beats: ${allBeats.join(', ')}`);
   console.log(`[Dual-Aspect Pipeline] Beats To Render: ${beatsToRender.join(', ')}`);
   console.log(`[Dual-Aspect Pipeline] Force: ${force}`);
@@ -394,6 +424,18 @@ async function main() {
     fs.writeFileSync(playBadgeSvgPath, svgContent);
     execSync(`ffmpeg -y -i "${playBadgeSvgPath}" "${playBadgePngPath}"`, { stdio: 'inherit' });
 
+    // Thumbnails: thumb.jpg, thumb_16x9.jpg, thumb_9x16.jpg, thumbnail.jpg
+    const thumb16x9Path = path.join(projectOutputDir, 'thumb_16x9.jpg');
+    const thumb9x16Path = path.join(projectOutputDir, 'thumb_9x16.jpg');
+    const thumbPath = path.join(projectOutputDir, 'thumb.jpg');
+    const thumbnailPath = path.join(projectOutputDir, 'thumbnail.jpg');
+
+    console.log(`[Pipeline] Generating base thumbnails...`);
+    execSync(`ffmpeg -y -ss 00:00:20.000 -i "${master16x9}" -frames:v 1 -q:v 2 "${thumb16x9Path}"`, { stdio: 'inherit' });
+    execSync(`ffmpeg -y -ss 00:00:20.000 -i "${master9x16}" -frames:v 1 -q:v 2 "${thumb9x16Path}"`, { stdio: 'inherit' });
+    fs.copyFileSync(thumb16x9Path, thumbPath);
+    fs.copyFileSync(thumb16x9Path, thumbnailPath);
+
     // WhatsApp Landscape Thumbnail (1200x630, < 150 KB, generated directly from 16:9 master at t=20s)
     const thumbnailOgPath = path.join(projectOutputDir, 'thumbnail_og.jpg');
     console.log(`[Pipeline] Generating WhatsApp landscape preview thumbnail at ${thumbnailOgPath}...`);
@@ -416,37 +458,80 @@ async function main() {
     );
     console.log(`[Pipeline] thumbnail_square.jpg size: ${fs.statSync(thumbnailSquarePath).size} bytes`);
 
-    // Extract test frames for visual verification: t=20.0s and t=58.0s from BOTH masters
-    console.log('[Pipeline] Extracting test verification frames...');
-    execSync(`ffmpeg -y -ss 00:00:20.000 -i "${master16x9}" -frames:v 1 /tmp/ai_16x9_t20.jpg`, { stdio: 'inherit' });
-    execSync(`ffmpeg -y -ss 00:00:58.000 -i "${master16x9}" -frames:v 1 /tmp/ai_16x9_t58.jpg`, { stdio: 'inherit' });
-    execSync(`ffmpeg -y -ss 00:00:20.000 -i "${master9x16}" -frames:v 1 /tmp/ai_9x16_t20.jpg`, { stdio: 'inherit' });
-    execSync(`ffmpeg -y -ss 00:00:58.000 -i "${master9x16}" -frames:v 1 /tmp/ai_9x16_t58.jpg`, { stdio: 'inherit' });
+    // Extract QA keyframes for Beat 1..5 for both 16:9 and 9:16 into output/${projectId}/qa_frames/
+    const qaFramesDir = path.join(projectOutputDir, 'qa_frames');
+    fs.mkdirSync(qaFramesDir, { recursive: true });
+    console.log(`[Pipeline] Extracting QA keyframes to ${qaFramesDir}...`);
+
+    const timingsFile = path.join(__dirname, 'production', projectId, 'timings.json');
+    let beatTimes = [];
+    if (fs.existsSync(timingsFile)) {
+      try {
+        const tData = JSON.parse(fs.readFileSync(timingsFile, 'utf8'));
+        if (tData.beats && tData.beats.length > 0) {
+          beatTimes = tData.beats.map((b, idx) => ({
+            beatName: `beat${idx + 1}`,
+            time: (b.start + (b.end - b.start) * 0.5).toFixed(3),
+          }));
+        }
+      } catch (e) {}
+    }
+    if (beatTimes.length === 0) {
+      beatTimes = allBeats.map((b, idx) => ({
+        beatName: b,
+        time: (10 + idx * 20).toFixed(3),
+      }));
+    }
+
+    for (const bt of beatTimes) {
+      const out16 = path.join(qaFramesDir, `${bt.beatName}_16x9.jpg`);
+      const out9 = path.join(qaFramesDir, `${bt.beatName}_9x16.jpg`);
+      execSync(`ffmpeg -y -ss ${bt.time} -i "${master16x9}" -frames:v 1 -q:v 2 "${out16}"`, { stdio: 'inherit' });
+      execSync(`ffmpeg -y -ss ${bt.time} -i "${master9x16}" -frames:v 1 -q:v 2 "${out9}"`, { stdio: 'inherit' });
+    }
 
     // Deploy to public directory for cuang.dev and rsync to docker-host
-    const basePublish = '/home/agent/orca/AI-nimate/public/projects/ainimate/kausalmedia';
-    const candidateDirs = [
-      path.join(basePublish, projectId),
-      path.join(basePublish, 'the-ai-bubble-explained'),
-    ];
-    const publishDir = candidateDirs.find((d) => fs.existsSync(d));
+    // Target 1: /home/agent/orca/AI-nimate/public/projects/ainimate/${projectId}/
+    // Target 2: /home/agent/orca/AI-nimate/public/projects/ainimate/kausalmedia/${slug}/
+    const publishDirProject = path.join('/home/agent/orca/AI-nimate/public/projects/ainimate', projectId);
+    const publishDirSlug = path.join('/home/agent/orca/AI-nimate/public/projects/ainimate/kausalmedia', slug);
 
-    if (publishDir) {
-      console.log(`[Pipeline] Deploying artifacts to ${publishDir}...`);
-      fs.copyFileSync(master9x16, path.join(publishDir, 'video.mp4'));
-      fs.copyFileSync(master9x16, path.join(publishDir, 'video_9x16.mp4'));
-      fs.copyFileSync(master16x9, path.join(publishDir, 'video_16x9.mp4'));
-      fs.copyFileSync(whatsappVideo, path.join(publishDir, 'video_whatsapp.mp4'));
-      fs.copyFileSync(thumbnailOgPath, path.join(publishDir, 'thumbnail_og.jpg'));
-      fs.copyFileSync(thumbnailSquarePath, path.join(publishDir, 'thumbnail_square.jpg'));
-
-      console.log('[Pipeline] Syncing to docker-host...');
-      execSync(
-        'rsync -avz /home/agent/orca/AI-nimate/public/projects/ainimate/ docker-host:/home/agent/orca/AI-nimate/public/projects/ainimate/',
-        { stdio: 'inherit' }
-      );
-      console.log('[Pipeline] Successfully deployed and synced to docker-host!');
+    const targetDirs = [publishDirProject, publishDirSlug];
+    for (const pDir of targetDirs) {
+      fs.mkdirSync(pDir, { recursive: true });
+      console.log(`[Pipeline] Deploying artifacts to ${pDir}...`);
+      fs.copyFileSync(master9x16, path.join(pDir, 'video.mp4'));
+      fs.copyFileSync(master9x16, path.join(pDir, 'video_9x16.mp4'));
+      fs.copyFileSync(master16x9, path.join(pDir, 'video_16x9.mp4'));
+      fs.copyFileSync(whatsappVideo, path.join(pDir, 'video_whatsapp.mp4'));
+      fs.copyFileSync(thumbPath, path.join(pDir, 'thumb.jpg'));
+      fs.copyFileSync(thumb16x9Path, path.join(pDir, 'thumb_16x9.jpg'));
+      fs.copyFileSync(thumb9x16Path, path.join(pDir, 'thumb_9x16.jpg'));
+      fs.copyFileSync(thumbnailPath, path.join(pDir, 'thumbnail.jpg'));
+      fs.copyFileSync(thumbnailOgPath, path.join(pDir, 'thumbnail_og.jpg'));
+      fs.copyFileSync(thumbnailSquarePath, path.join(pDir, 'thumbnail_square.jpg'));
     }
+
+    // Ensure convenient symlinks exist
+    const kausalProjSymlink = path.join('/home/agent/orca/AI-nimate/public/projects/ainimate/kausalmedia', projectId);
+    if (!fs.existsSync(kausalProjSymlink)) {
+      try {
+        fs.symlinkSync(slug, kausalProjSymlink);
+      } catch (e) {}
+    }
+    const publicSlugSymlink = path.join('/home/agent/orca/AI-nimate/public/projects/ainimate', slug);
+    if (!fs.existsSync(publicSlugSymlink)) {
+      try {
+        fs.symlinkSync(`kausalmedia/${slug}`, publicSlugSymlink);
+      } catch (e) {}
+    }
+
+    console.log('[Pipeline] Syncing to docker-host...');
+    execSync(
+      'rsync -avz /home/agent/orca/AI-nimate/public/projects/ainimate/ docker-host:/home/agent/orca/AI-nimate/public/projects/ainimate/',
+      { stdio: 'inherit' }
+    );
+    console.log('[Pipeline] Successfully deployed and synced to docker-host!');
 
     const elapsed = Math.round((Date.now() - startTime) / 1000);
     console.log(`\n============================================================`);
