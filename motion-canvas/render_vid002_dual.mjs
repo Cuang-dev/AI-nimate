@@ -381,6 +381,46 @@ async function renderAspectPass(serverPort, aspectName, width, height, projectId
   return finalMaster;
 }
 
+export function extractQaFrames(projectOutputDir, projectId, allBeats, aspects, master16x9, master9x16) {
+  const qaFramesDir = path.join(projectOutputDir, 'qa_frames');
+  fs.mkdirSync(qaFramesDir, { recursive: true });
+  console.log(`[Pipeline] Extracting QA keyframes to ${qaFramesDir}...`);
+
+  const timingsFile = path.join(__dirname, 'production', projectId, 'timings.json');
+  let beatTimes = [];
+  if (fs.existsSync(timingsFile)) {
+    try {
+      const tData = JSON.parse(fs.readFileSync(timingsFile, 'utf8'));
+      if (tData.beats && tData.beats.length > 0) {
+        beatTimes = tData.beats.map((b, idx) => {
+          const midTime = Math.max(b.start + 0.5, b.end - 1.0);
+          return {
+            beatName: `beat${idx + 1}`,
+            time: midTime.toFixed(3),
+          };
+        });
+      }
+    } catch (e) {}
+  }
+  if (beatTimes.length === 0) {
+    beatTimes = allBeats.map((b, idx) => ({
+      beatName: b,
+      time: (10 + idx * 20).toFixed(3),
+    }));
+  }
+
+  for (const bt of beatTimes) {
+    if (aspects.includes('16x9') && master16x9 && fs.existsSync(master16x9)) {
+      const out16 = path.join(qaFramesDir, `${bt.beatName}_16x9.jpg`);
+      execSync(`ffmpeg -y -ss ${bt.time} -i "${master16x9}" -frames:v 1 -q:v 2 "${out16}"`, { stdio: 'inherit' });
+    }
+    if (aspects.includes('9x16') && master9x16 && fs.existsSync(master9x16)) {
+      const out9 = path.join(qaFramesDir, `${bt.beatName}_9x16.jpg`);
+      execSync(`ffmpeg -y -ss ${bt.time} -i "${master9x16}" -frames:v 1 -q:v 2 "${out9}"`, { stdio: 'inherit' });
+    }
+  }
+}
+
 async function main() {
   const { projectId, slug, force, beatsToRender, allBeats, port, aspects } = parseArgs();
 
@@ -512,40 +552,7 @@ async function main() {
     }
 
     // Extract QA keyframes for Beat 1..5 for both 16:9 and 9:16 into output/${projectId}/qa_frames/
-    const qaFramesDir = path.join(projectOutputDir, 'qa_frames');
-    fs.mkdirSync(qaFramesDir, { recursive: true });
-    console.log(`[Pipeline] Extracting QA keyframes to ${qaFramesDir}...`);
-
-    const timingsFile = path.join(__dirname, 'production', projectId, 'timings.json');
-    let beatTimes = [];
-    if (fs.existsSync(timingsFile)) {
-      try {
-        const tData = JSON.parse(fs.readFileSync(timingsFile, 'utf8'));
-        if (tData.beats && tData.beats.length > 0) {
-          beatTimes = tData.beats.map((b, idx) => ({
-            beatName: `beat${idx + 1}`,
-            time: (b.start + (b.end - b.start) * 0.5).toFixed(3),
-          }));
-        }
-      } catch (e) {}
-    }
-    if (beatTimes.length === 0) {
-      beatTimes = allBeats.map((b, idx) => ({
-        beatName: b,
-        time: (10 + idx * 20).toFixed(3),
-      }));
-    }
-
-    for (const bt of beatTimes) {
-      if (aspects.includes('16x9') && master16x9 && fs.existsSync(master16x9)) {
-        const out16 = path.join(qaFramesDir, `${bt.beatName}_16x9.jpg`);
-        execSync(`ffmpeg -y -ss ${bt.time} -i "${master16x9}" -frames:v 1 -q:v 2 "${out16}"`, { stdio: 'inherit' });
-      }
-      if (aspects.includes('9x16') && master9x16 && fs.existsSync(master9x16)) {
-        const out9 = path.join(qaFramesDir, `${bt.beatName}_9x16.jpg`);
-        execSync(`ffmpeg -y -ss ${bt.time} -i "${master9x16}" -frames:v 1 -q:v 2 "${out9}"`, { stdio: 'inherit' });
-      }
-    }
+    extractQaFrames(projectOutputDir, projectId, allBeats, aspects, master16x9, master9x16);
 
     // Deploy to public directory for cuang.dev and rsync to docker-host
     // Target 1: /home/agent/orca/AI-nimate/public/projects/ainimate/${projectId}/
@@ -573,6 +580,16 @@ async function main() {
       if (fs.existsSync(thumbnailPath)) fs.copyFileSync(thumbnailPath, path.join(pDir, 'thumbnail.jpg'));
       if (fs.existsSync(thumbnailOgPath)) fs.copyFileSync(thumbnailOgPath, path.join(pDir, 'thumbnail_og.jpg'));
       if (fs.existsSync(thumbnailSquarePath)) fs.copyFileSync(thumbnailSquarePath, path.join(pDir, 'thumbnail_square.jpg'));
+
+      // Copy QA frames to public targets
+      const qaFramesSource = path.join(projectOutputDir, 'qa_frames');
+      if (fs.existsSync(qaFramesSource)) {
+        const qaFramesTarget = path.join(pDir, 'qa_frames');
+        fs.mkdirSync(qaFramesTarget, { recursive: true });
+        for (const file of fs.readdirSync(qaFramesSource)) {
+          fs.copyFileSync(path.join(qaFramesSource, file), path.join(qaFramesTarget, file));
+        }
+      }
     }
 
     // Ensure convenient symlinks exist
