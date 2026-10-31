@@ -195,6 +195,47 @@ if (!fs.existsSync(scenesDir)) {
       ? 'Clean 90° box-edge entries'
       : `Sideways entries in: ${conduitViolations.join(', ')}`
   );
+
+  // Check 14: Readable Sans Heading & Density Check
+  const layoutPath = path.join(scenesDir, 'layout.tsx');
+  let sansHeadingFail = false;
+  let sansHeadingReason = '';
+  if (fs.existsSync(layoutPath)) {
+    const layoutContent = fs.readFileSync(layoutPath, 'utf8');
+    if (/Instrument Serif/i.test(layoutContent)) {
+      sansHeadingFail = true;
+      sansHeadingReason = "layout.tsx uses 'Instrument Serif' for HEADING_FONT";
+    }
+  }
+
+  let densityFail = false;
+  const densityViolations = [];
+  for (const file of beatFiles) {
+    const filePath = path.join(scenesDir, file);
+    const content = fs.readFileSync(filePath, 'utf8');
+    const stripped = content.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '');
+    const txtMatches = stripped.match(/<Txt\b/g) || [];
+    if (txtMatches.length > 14) {
+      densityViolations.push(`${file} (${txtMatches.length} <Txt> nodes)`);
+      densityFail = true;
+    }
+  }
+
+  const check14Passed = !sansHeadingFail && !densityFail;
+  let check14Detail = 'Clean sans & <=14 <Txt>';
+  if (sansHeadingFail && densityFail) {
+    check14Detail = `${sansHeadingReason}; Too much text on screen! Max 14 <Txt> nodes per beat: ${densityViolations.join(', ')}`;
+  } else if (sansHeadingFail) {
+    check14Detail = sansHeadingReason;
+  } else if (densityFail) {
+    check14Detail = `Too much text on screen! Max 14 <Txt> nodes per beat: ${densityViolations.join(', ')}`;
+  }
+
+  record(
+    'Readable Sans & Density Check',
+    check14Passed,
+    check14Passed ? 'Clean sans & <=14 <Txt>' : check14Detail
+  );
 }
 
 // -----------------------------------------------------------------------------

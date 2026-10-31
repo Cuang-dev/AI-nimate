@@ -15,15 +15,32 @@ export const COLORS = {
   bg: '#F7F5F0',
   surface: '#FFFFFF',
   ink: '#141413',
-  secondaryInk: '#6E6D68',
+  secondaryInk: '#334155',
   gridLine: '#E2DFD7',
   accent: '#FF3B00',
   compliantGreen: '#1B8354',
   goldAccent: '#D97706',
 };
 
+export const HEADING_FONT = "'Plus Jakarta Sans', 'Inter', sans-serif";
+
+export const PALETTE = {
+  crimson: '#D92D20',
+  crimsonBg: '#FEE4E2',
+  emerald: COLORS.compliantGreen,
+  emeraldBg: '#D1FADF',
+  muted: '#334155',
+  mutedBg: '#F2F4F7',
+  amber: COLORS.goldAccent,
+  amberBg: '#FEF0C7',
+  cyan: '#0284C7',
+  cyanBg: '#E0F2FE',
+  surface: COLORS.surface,
+  ink: COLORS.ink,
+};
+
 export const FONTS = {
-  heading: "'Instrument Serif', 'Liberation Serif', 'DejaVu Serif', serif",
+  heading: HEADING_FONT,
   body: "'Inter', 'Liberation Sans', 'DejaVu Sans', sans-serif",
   data: "'JetBrains Mono', 'Liberation Mono', 'DejaVu Sans Mono', monospace",
 };
@@ -126,7 +143,6 @@ export function setupBaseStage(view: View2D, sectionLabel?: string) {
       ? 4
       : 0;
 
-  const currentSectionLabel = sectionLabel || BEAT_LABELS[sceneIdx];
   const sceneStart = SCENE_TIMINGS[sceneIdx]?.start ?? 0;
   const sceneEnd = SCENE_TIMINGS[sceneIdx]?.end ?? 9999;
   const LEAD_OFFSET = 0.22;
@@ -237,28 +253,26 @@ export function setupBaseStage(view: View2D, sectionLabel?: string) {
         })}
       </Rect>
 
-      {/* Section Indicator */}
-      {currentSectionLabel && (
-        <Rect
-          x={wide ? -860 : -460}
-          y={wide ? -460 : -790}
-          offset={[-1, 0]}
-          layout
-          direction={'row'}
-          justifyContent={'start'}
-          alignItems={'center'}
-          opacity={0.85}
-        >
-          <Txt
-            text={currentSectionLabel}
-            fontFamily={FONTS.data}
-            fontSize={typo.sectionLabel}
-            fontWeight={700}
-            fill={COLORS.secondaryInk}
-            letterSpacing={1.5}
-          />
-        </Rect>
-      )}
+      {/* Section Indicator Watermark */}
+      <Rect
+        x={wide ? -860 : -460}
+        y={wide ? -460 : -790}
+        offset={[-1, 0]}
+        layout
+        direction={'row'}
+        justifyContent={'start'}
+        alignItems={'center'}
+        opacity={0.85}
+      >
+        <Txt
+          text={`KNP? // 0${sceneIdx + 1}`}
+          fontFamily={HEADING_FONT}
+          fontSize={typo.sectionLabel}
+          fontWeight={800}
+          fill={COLORS.secondaryInk}
+          letterSpacing={1.5}
+        />
+      </Rect>
 
       {/* Editorial Pill Highlight Subtitle Bar */}
       <Rect

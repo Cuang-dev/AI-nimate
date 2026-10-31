@@ -152,6 +152,30 @@ To prevent split attention between moving graphics, on-screen text, and subtitle
     - Exit vertically (`90°`) from the top edge (`hubAY - cardHalfH`) up to an overhead rail (`hubAY - 245`), cross horizontally, and drop vertically (`90°`) into the top edge of Station 2 (`hubBY - cardHalfH`); mirror on the bottom for the return conduit.
 - **Automated QA Verification**: The Perpendicular Conduit Check in `node scripts/qa_verify.mjs <project_id>` scans all `beat_*.tsx` files for any 4-point `<Line` `points` array sharing identical `y` expressions at the start or end, rejecting sideways border-flush entries.
 
+### Rule 8: Readable Modern Sans-Serif Headings & Strict Screen Text Density Cap (Max 14 `<Txt>` Nodes)
+- **Modern Readable Sans Typography**: NEVER use thin high-contrast decorative serifs like `'Instrument Serif'` for headings on mobile explainer videos. On 6" smartphone screens, thin serif hairlines vanish and cause extreme visual fatigue. Always use bold, clean, modern sans-serifs (`HEADING_FONT = "'Plus Jakarta Sans', 'Inter', sans-serif"`, `fontWeight={800}`).
+- **Strict Text Node Density Cap (`<= 14` `<Txt>` nodes per beat)**:
+  - Every beat scene MUST contain **no more than 14 `<Txt>` nodes** in total.
+  - Eliminate redundant eyebrow badges, card-internal category tags, and bottom summary footers that duplicate information or crowd the subtitle zone.
+  - Inside entity/station cards, restrict text to **at most 2 text elements**: one bold Title (`fontWeight={800}`, `fontSize={32-36}`) and one high-contrast Stat Pill (`fontSize={20-24}`).
+- **Automated QA Verification**: Check 14 (`Readable Sans & Density Check`) in `qa_verify.mjs` automatically inspects `layout.tsx` to reject `'Instrument Serif'` in heading fonts and enforces the `<15` `<Txt>` nodes density cap per beat file.
+
+### Rule 9: Contained Chart Coordinate Safe-Zones & Zero Line-Cutting Invariant
+- **Contained Frame Enclosure**: All quantitative chart lines, plunge curves, benchmark indicators, and milestone callouts must be strictly enclosed inside a dedicated background card frame (e.g., vertical `9:16`: `width = 900`, `x: [-450, +450]`, `height = 680`). Placing chart axes directly on the uncontained canvas causes axis labels and milestone tags to clip off the screen edges (`x = ±540`).
+- **Zero Line-Cutting Invariant**:
+  - Trajectory curves, crash lines, and reference vectors must NEVER slice through milestone labels or callout text boxes.
+  - Place milestone pills cleanly offset above or below line vertices (e.g., `y = -155` above point `[-340, -120]`, or `y = -15` above point `[-60, +20]`), using opaque card fills (`fill={'#FFFFFF'}`) and distinct borders so the data line never intersects text.
+  - Hero summary metrics (`-85% NILAI HILANG`) must sit in an unobstructed dedicated hero slot below the chart plunge.
+
+### Rule 10: Natural Top-to-Bottom Mobile Stack Order & Arrowless Clean Separation
+- **Mobile Ergonomic Flow (Top-to-Bottom `#1 -> #2 -> #3`)**:
+  - In vertical `9:16` multi-tier architectural stacks or checklist cards, cards MUST be arranged and revealed in natural reading order: **Top-to-Bottom** (`#1` at top `y = -310`, `#2` at middle `y = -80`, `#3` at bottom `y = +150`).
+  - Never stack upwards from bottom-to-top (`L1` at bottom to `L3` at top), which forces the viewer's eye to read backwards against mobile scrolling habits.
+- **Arrowless Clean Separation**:
+  - Maintain a clean whitespace gap of **`>= 40px`** between consecutive cards in the stack.
+  - Do NOT draw tiny connector arrows (such as `^` or `v`) between cards; arrows create severe visual collision with card borders and add unnecessary clutter on small screens.
+  - Differentiate hierarchy solely through distinct color-coded numeric badges (`#1`, `#2`) and icon badges with bold heading typography.
+
 ---
 
 ## 2. Research Agent Standards (`deep-researcher` / `SubAgent_Scout`)

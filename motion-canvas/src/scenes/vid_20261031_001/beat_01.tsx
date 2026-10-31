@@ -1,4 +1,4 @@
-import { Img, Line, makeScene2D, Node, Rect, Txt } from '@motion-canvas/2d';
+import { Img, makeScene2D, Node, Rect, Txt } from '@motion-canvas/2d';
 import {
   all,
   createRef,
@@ -28,7 +28,7 @@ const PALETTE = {
   crimsonBg: '#FEE4E2',
   emerald: COLORS.compliantGreen,
   emeraldBg: '#D1FADF',
-  muted: COLORS.secondaryInk,
+  muted: '#334155',
   mutedBg: '#F2F4F7',
   amber: COLORS.goldAccent,
   cyan: '#0284C7',
@@ -54,18 +54,16 @@ export default makeScene2D(function* (view) {
   const refereeX = wide ? -470 : 0;
   const refereeY = wide ? 30 : -420;
   const refereeW = wide ? 740 : 940;
-  const refereeH = wide ? 510 : 250;
+  const refereeH = wide ? 480 : 250;
 
   // Right stack (3-Tier Global Market Caste Hierarchy)
   const stackX = wide ? 460 : 0;
   const tierW = wide ? 780 : 940;
-  const tierH = wide ? 130 : 160;
+  const tierH = wide ? 110 : 120;
 
-  const tier1Y = wide ? -130 : -130;
-  const tier2Y = wide ? 30 : 55;
-  const tier3Y = wide ? 190 : 240;
-
-  const arrowX = wide ? 880 : 430;
+  const tier1Y = wide ? -130 : -110;
+  const tier2Y = wide ? 30 : 40;
+  const tier3Y = wide ? 190 : 190;
 
   // Animation signals
   const focalId = createSignal(0);
@@ -76,9 +74,7 @@ export default makeScene2D(function* (view) {
 
   const crashAlertOpacity = createSignal(0);
   const crashAlertScale = createSignal(0.85);
-  const crashPercent = createSignal(0);
-
-  const msciWarningOpacity = createSignal(0);
+  const crashPercent = createSignal(-1.0);
 
   const tier1Opacity = createSignal(0);
   const tier1Scale = createSignal(0.9);
@@ -88,16 +84,13 @@ export default makeScene2D(function* (view) {
 
   const tier3Opacity = createSignal(0);
   const tier3Scale = createSignal(0.9);
-
-  const arrowProgress = createSignal(0);
   const dangerBadgeScale = createSignal(0.85);
-  const tier3Glow = createSignal(0);
 
   const camera = createRef<Node>();
 
   view.add(
     <Node ref={camera}>
-      {/* ===== HEADER TITLE BLOCK ===== */}
+      {/* ===== HEADER TITLE BLOCK (Eyebrow pill removed) ===== */}
       <Rect
         x={0}
         y={headerY}
@@ -105,33 +98,17 @@ export default makeScene2D(function* (view) {
         layout
         direction="column"
         alignItems="center"
-        gap={wide ? 8 : 10}
       >
-        <Rect
-          layout
-          padding={wide ? [6, 16] : [8, 18]}
-          fill={PALETTE.crimson}
-          radius={6}
-        >
-          <Txt
-            text="PERINGATAN WASIT BURSA DUNIA // MSCI 2026"
-            fontFamily={FONTS.data}
-            fontSize={wide ? 18 : 20}
-            fontWeight={700}
-            fill={PALETTE.surface}
-            letterSpacing={1.2}
-          />
-        </Rect>
         <Txt
           text="ANCAMAN TURUN KASTA BURSA KITA"
           fontFamily={FONTS.heading}
-          fontSize={wide ? 34 : 34}
-          fontWeight={700}
+          fontSize={wide ? 36 : 34}
+          fontWeight={800}
           fill={PALETTE.ink}
         />
       </Rect>
 
-      {/* ===== MSCI REFEREE ALERT CARD (Left on 16:9, Top on 9:16) ===== */}
+      {/* ===== MSCI REFEREE ALERT CARD ===== */}
       <Rect
         x={refereeX}
         y={refereeY}
@@ -160,8 +137,8 @@ export default makeScene2D(function* (view) {
         >
           <Img
             src={'/assets/vid_20261031_001/msci_globe_badge.png'}
-            width={wide ? 88 : 76}
-            height={wide ? 88 : 76}
+            width={wide ? 84 : 74}
+            height={wide ? 84 : 74}
           />
           <Rect
             layout
@@ -172,14 +149,14 @@ export default makeScene2D(function* (view) {
             <Txt
               text="WASIT BURSA DUNIA (MSCI)"
               fontFamily={FONTS.heading}
-              fontSize={wide ? 26 : 24}
-              fontWeight={700}
+              fontSize={wide ? 26 : 22}
+              fontWeight={800}
               fill={PALETTE.ink}
             />
             <Txt
               text="PENENTU ARAH DANA GLOBAL"
               fontFamily={FONTS.data}
-              fontSize={wide ? 18 : 20}
+              fontSize={wide ? 16 : 18}
               fontWeight={700}
               fill={PALETTE.muted}
             />
@@ -205,7 +182,7 @@ export default makeScene2D(function* (view) {
             <Txt
               text={() => `${crashPercent().toFixed(1)}%`}
               fontFamily={FONTS.data}
-              fontSize={wide ? 42 : 40}
+              fontSize={wide ? 42 : 38}
               fontWeight={700}
               fill={PALETTE.crimson}
             />
@@ -218,7 +195,7 @@ export default makeScene2D(function* (view) {
               <Txt
                 text="IHSG ANJLOK"
                 fontFamily={FONTS.data}
-                fontSize={wide ? 18 : 20}
+                fontSize={wide ? 18 : 18}
                 fontWeight={700}
                 fill={PALETTE.surface}
               />
@@ -227,46 +204,16 @@ export default makeScene2D(function* (view) {
           <Txt
             text="PERDAGANGAN DIBEKUKAN SEMENTARA"
             fontFamily={FONTS.data}
-            fontSize={wide ? 18 : 20}
+            fontSize={wide ? 16 : 17}
             fontWeight={700}
             fill={PALETTE.crimson}
           />
         </Rect>
-
-        {/* MSCI Threat Footer (Widescreen only to keep mobile uncluttered) */}
-        {wide && (
-          <Rect
-            opacity={msciWarningOpacity}
-            layout
-            direction="row"
-            alignItems="center"
-            justifyContent="space-between"
-            width="100%"
-            padding={[10, 16]}
-            fill={PALETTE.mutedBg}
-            radius={8}
-          >
-            <Txt
-              text="STATUS: ANCAMAN TURUN KASTA"
-              fontFamily={FONTS.data}
-              fontSize={wide ? 18 : 20}
-              fontWeight={700}
-              fill={PALETTE.muted}
-            />
-            <Txt
-              text="BEKUKAN TAMBAHAN SAHAM RI"
-              fontFamily={FONTS.data}
-              fontSize={wide ? 18 : 20}
-              fontWeight={700}
-              fill={PALETTE.crimson}
-            />
-          </Rect>
-        )}
       </Rect>
 
       {/* ===== 3-TIER GLOBAL MARKET CASTE HIERARCHY STACK ===== */}
 
-      {/* --- TIER 1: LIGA UTAMA (EMERGING MARKET) --- */}
+      {/* --- TIER 1: LIGA UTAMA --- */}
       <Rect
         x={stackX}
         y={tier1Y}
@@ -279,57 +226,35 @@ export default makeScene2D(function* (view) {
         lineWidth={assets.strokePrimary}
         radius={12}
         layout
-        direction="column"
-        justifyContent="center"
-        padding={wide ? [14, 24] : [16, 20]}
-        gap={8}
+        direction="row"
+        alignItems="center"
+        justifyContent="space-between"
+        padding={wide ? [0, 24] : [0, 24]}
       >
+        <Txt
+          text="01 // LIGA UTAMA"
+          fontFamily={FONTS.heading}
+          fontSize={wide ? 26 : 26}
+          fontWeight={800}
+          fill={PALETTE.ink}
+        />
         <Rect
           layout
-          direction="row"
-          alignItems="center"
-          justifyContent="space-between"
-          width="100%"
+          padding={wide ? [6, 14] : [8, 14]}
+          fill={PALETTE.emerald}
+          radius={6}
         >
-          <Rect layout direction="row" alignItems="center" gap={12}>
-            <Img
-              src={'/assets/vid_20261031_001/idx_bull_icon.png'}
-              width={wide ? 42 : 46}
-              height={wide ? 42 : 46}
-            />
-            <Txt
-              text="LIGA UTAMA // EMERGING MARKET"
-              fontFamily={FONTS.heading}
-              fontSize={wide ? 26 : 26}
-              fontWeight={700}
-              fill={PALETTE.ink}
-            />
-          </Rect>
-          <Rect
-            layout
-            padding={wide ? [6, 14] : [8, 14]}
-            fill={PALETTE.emerald}
-            radius={6}
-          >
-            <Txt
-              text="POSISI RI SAAT INI"
-              fontFamily={FONTS.data}
-              fontSize={wide ? 18 : 20}
-              fontWeight={700}
-              fill={PALETTE.surface}
-            />
-          </Rect>
+          <Txt
+            text="POSISI RI SAAT INI"
+            fontFamily={FONTS.data}
+            fontSize={wide ? 18 : 18}
+            fontWeight={700}
+            fill={PALETTE.surface}
+          />
         </Rect>
-        <Txt
-          text="DANA ASING RAKSASA GLOBAL BOLEH MASUK SECARA RESMI"
-          fontFamily={FONTS.data}
-          fontSize={wide ? 18 : 20}
-          fontWeight={600}
-          fill={PALETTE.muted}
-        />
       </Rect>
 
-      {/* --- TIER 2: LIGA KEDUA (FRONTIER MARKET) --- */}
+      {/* --- TIER 2: LIGA KEDUA --- */}
       <Rect
         x={stackX}
         y={tier2Y}
@@ -343,50 +268,35 @@ export default makeScene2D(function* (view) {
         lineDash={[8, 8]}
         radius={12}
         layout
-        direction="column"
-        justifyContent="center"
-        padding={wide ? [14, 24] : [16, 20]}
-        gap={8}
+        direction="row"
+        alignItems="center"
+        justifyContent="space-between"
+        padding={wide ? [0, 24] : [0, 24]}
       >
-        <Rect
-          layout
-          direction="row"
-          alignItems="center"
-          justifyContent="space-between"
-          width="100%"
-        >
-          <Txt
-            text="LIGA KEDUA // FRONTIER MARKET"
-            fontFamily={FONTS.heading}
-            fontSize={wide ? 26 : 26}
-            fontWeight={700}
-            fill={PALETTE.muted}
-          />
-          <Rect
-            layout
-            padding={wide ? [6, 14] : [8, 14]}
-            fill={PALETTE.muted}
-            radius={6}
-          >
-            <Txt
-              text="DILEWATI LANGSUNG"
-              fontFamily={FONTS.data}
-              fontSize={wide ? 18 : 20}
-              fontWeight={700}
-              fill={PALETTE.surface}
-            />
-          </Rect>
-        </Rect>
         <Txt
-          text="PASAR KELAS MENENGAH DUNIA // TIDAK DILIRIK"
-          fontFamily={FONTS.data}
-          fontSize={wide ? 18 : 20}
-          fontWeight={600}
+          text="02 // LIGA KEDUA"
+          fontFamily={FONTS.heading}
+          fontSize={wide ? 26 : 26}
+          fontWeight={800}
           fill={PALETTE.muted}
         />
+        <Rect
+          layout
+          padding={wide ? [6, 14] : [8, 14]}
+          fill={PALETTE.muted}
+          radius={6}
+        >
+          <Txt
+            text="DILEWATI LANGSUNG"
+            fontFamily={FONTS.data}
+            fontSize={wide ? 18 : 18}
+            fontWeight={700}
+            fill={PALETTE.surface}
+          />
+        </Rect>
       </Rect>
 
-      {/* --- TIER 3: KASTA TERENDAH (STANDALONE MARKET) --- */}
+      {/* --- TIER 3: KASTA TERENDAH --- */}
       <Rect
         x={stackX}
         y={tier3Y}
@@ -399,80 +309,33 @@ export default makeScene2D(function* (view) {
         lineWidth={focalId() === 3 ? 4 : assets.strokePrimary}
         radius={12}
         layout
-        direction="column"
-        justifyContent="center"
-        padding={wide ? [14, 24] : [16, 20]}
-        gap={8}
+        direction="row"
+        alignItems="center"
+        justifyContent="space-between"
+        padding={wide ? [0, 24] : [0, 24]}
       >
-        <Rect
-          layout
-          direction="row"
-          alignItems="center"
-          justifyContent="space-between"
-          width="100%"
-        >
-          <Txt
-            text="KASTA TERENDAH // STANDALONE MARKET"
-            fontFamily={FONTS.heading}
-            fontSize={wide ? 26 : 26}
-            fontWeight={700}
-            fill={PALETTE.crimson}
-          />
-          <Rect
-            scale={dangerBadgeScale}
-            layout
-            padding={wide ? [6, 14] : [8, 14]}
-            fill={PALETTE.crimson}
-            radius={6}
-          >
-            <Txt
-              text="ANCAMAN BOIKOT DANA DUNIA"
-              fontFamily={FONTS.data}
-              fontSize={wide ? 18 : 20}
-              fontWeight={700}
-              fill={PALETTE.surface}
-            />
-          </Rect>
-        </Rect>
         <Txt
-          text="ZONA ISOLASI // DANA ASING WAJIB KELUAR OTOMATIS"
-          fontFamily={FONTS.data}
-          fontSize={wide ? 18 : 20}
-          fontWeight={700}
+          text="03 // KASTA TERENDAH"
+          fontFamily={FONTS.heading}
+          fontSize={wide ? 26 : 26}
+          fontWeight={800}
           fill={PALETTE.crimson}
         />
-      </Rect>
-
-      {/* ===== PLUNGING DOWNGRADE ARROW (Bypasses Tier 2 into Tier 3) ===== */}
-      <Line
-        points={[
-          [arrowX, tier1Y + (wide ? 50 : 65)],
-          [arrowX, tier3Y - (wide ? 50 : 65)],
-        ]}
-        stroke={PALETTE.crimson}
-        lineWidth={5}
-        endArrow
-        arrowSize={16}
-        end={arrowProgress}
-      />
-
-      {/* Callout Tag on Plunging Arrow */}
-      <Rect
-        x={wide ? arrowX - 95 : arrowX - 110}
-        y={tier2Y}
-        opacity={arrowProgress}
-        layout
-        padding={wide ? [4, 10] : [6, 12]}
-        fill={PALETTE.crimson}
-        radius={4}
-      >
-        <Txt
-          text="DITURUNKAN PAKSA"
-          fontFamily={FONTS.data}
-          fontSize={wide ? 18 : 20}
-          fontWeight={700}
-          fill={PALETTE.surface}
-        />
+        <Rect
+          scale={dangerBadgeScale}
+          layout
+          padding={wide ? [6, 14] : [8, 14]}
+          fill={PALETTE.crimson}
+          radius={6}
+        >
+          <Txt
+            text="ANCAMAN BOIKOT DUNIA"
+            fontFamily={FONTS.data}
+            fontSize={wide ? 18 : 18}
+            fontWeight={700}
+            fill={PALETTE.surface}
+          />
+        </Rect>
       </Rect>
     </Node>
   );
@@ -494,17 +357,11 @@ export default makeScene2D(function* (view) {
   yield* all(
     crashAlertOpacity(1, 0.3, easeOutExpo),
     crashAlertScale(1, 0.4, easeOutExpo),
-    crashPercent(-8.0, 0.6, easeOutCubic),
-  );
-
-  // t = 7.6s: Narrator: "wasit bursa saham dunia, bernama MSCI" (~7.68s - 9.28s)
-  yield* waitUntilSceneTime(7.6, t0);
-  yield* all(
-    msciWarningOpacity(1, 0.3),
-    refereeScale(1.04, 0.25, easeOutExpo).to(1.0, 0.2, easeInOutCubic),
+    crashPercent(-8.0, 0.46, easeOutCubic),
   );
 
   // t = 12.5s: Narrator: "Ibarat dari liga utama dunia" (~12.52s - 13.90s)
+  // Revealing strictly Top-to-Bottom: Tier 1 -> Tier 2 -> Tier 3
   yield* waitUntilSceneTime(12.5, t0);
   focalId(2);
   yield* all(
@@ -515,7 +372,7 @@ export default makeScene2D(function* (view) {
   // t = 14.7s: Narrator: "Indonesia terancam diturunkan paksa" (~14.72s - 15.46s)
   yield* waitUntilSceneTime(14.7, t0);
   yield* all(
-    tier2Opacity(0.7, 0.3, easeOutExpo),
+    tier2Opacity(1, 0.3, easeOutExpo),
     tier2Scale(1, 0.4, easeOutExpo),
   );
 
@@ -525,13 +382,11 @@ export default makeScene2D(function* (view) {
   yield* all(
     tier3Opacity(1, 0.4, easeOutExpo),
     tier3Scale(1, 0.5, easeOutExpo),
-    arrowProgress(1, 0.6, easeOutExpo),
   );
 
   // t = 17.7s: Narrator: "zona isolasi selevel negara yang lagi krisis berat" (~17.70s - 18.38s)
   yield* waitUntilSceneTime(17.7, t0);
   yield* all(
-    tier3Glow(1, 0.3),
     dangerBadgeScale(1.15, 0.25, easeOutExpo).to(1.0, 0.2, easeInOutCubic),
   );
 

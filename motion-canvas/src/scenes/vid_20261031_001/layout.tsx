@@ -15,17 +15,24 @@ export const COLORS = {
   bg: '#F7F5F0',
   surface: '#FFFFFF',
   ink: '#141413',
-  secondaryInk: '#6E6D68',
+  secondaryInk: '#334155',
   gridLine: '#E2DFD7',
   accent: '#FF3B00',
   compliantGreen: '#1B8354',
   goldAccent: '#D97706',
 };
 
+export const HEADING_FONT = "'Plus Jakarta Sans', 'Inter', sans-serif";
+
 export const FONTS = {
-  heading: "'Instrument Serif', 'Liberation Serif', 'DejaVu Serif', serif",
+  heading: "'Plus Jakarta Sans', 'Inter', sans-serif",
   body: "'Inter', 'Liberation Sans', 'DejaVu Sans', sans-serif",
   data: "'JetBrains Mono', 'Liberation Mono', 'DejaVu Sans Mono', monospace",
+};
+
+export const PALETTE = {
+  ...COLORS,
+  muted: '#334155',
 };
 
 /**
