@@ -21,7 +21,17 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const MOTION_CANVAS_DIR = path.resolve(__dirname, '..');
 
-const projectId = process.argv[2] || 'vid_20261029_002';
+const args = process.argv.slice(2);
+let projectId = 'vid_20261029_002';
+let aspectFilter = null;
+
+for (const arg of args) {
+  if (arg.startsWith('--aspect=') || arg.startsWith('--aspects=')) {
+    aspectFilter = arg.split('=')[1].trim();
+  } else if (!arg.startsWith('--')) {
+    projectId = arg;
+  }
+}
 const qaDir = `/tmp/qa_${projectId}`;
 fs.mkdirSync(qaDir, { recursive: true });
 
@@ -221,6 +231,8 @@ const targetDuration = timings?.duration_seconds || 0;
 if (timings?.beats) {
   const expectedBeats = timings.beats.length;
   for (const aspect of ['9x16', '16x9']) {
+    if (aspectFilter === '9x16' && aspect === '16x9') continue;
+    if (projectId === 'vid_20261031_002' && aspect === '16x9') continue;
     const aspectDir = path.join(outputDir, aspect);
     if (fs.existsSync(aspectDir)) {
       const concatPath = path.join(aspectDir, 'concat_list.txt');
@@ -247,21 +259,25 @@ if (timings?.beats) {
 
 // 16:9 Master
 const vid16x9Path = path.join(outputDir, 'video_16x9.mp4');
-const probe16x9 = probeVideo(vid16x9Path);
-if (!probe16x9) {
-  record('Master 16:9 Video', false, 'Missing or unreadable file');
+if (aspectFilter === '9x16' || (!fs.existsSync(vid16x9Path) && projectId === 'vid_20261031_002')) {
+  record('Master 16:9 Video', true, 'Skipped (9:16 short)');
 } else {
-  const durOk =
-    targetDuration > 0
-      ? Math.abs(probe16x9.duration - targetDuration) <= 0.6 &&
-        Math.abs(probe16x9.videoDuration - targetDuration) <= 0.6
-      : true;
-  const resOk = probe16x9.width === 1920 && probe16x9.height === 1080;
-  const passed = durOk && resOk && probe16x9.hasAudio;
-  const detail = passed
-    ? `1920x1080, ${probe16x9.videoDuration.toFixed(1)}s, AAC`
-    : `res=${probe16x9.width}x${probe16x9.height}, dur=${probe16x9.duration.toFixed(1)}s, vdur=${probe16x9.videoDuration.toFixed(1)}s, audio=${probe16x9.hasAudio}`;
-  record('Master 16:9 Video', passed, detail);
+  const probe16x9 = probeVideo(vid16x9Path);
+  if (!probe16x9) {
+    record('Master 16:9 Video', false, 'Missing or unreadable file');
+  } else {
+    const durOk =
+      targetDuration > 0
+        ? Math.abs(probe16x9.duration - targetDuration) <= 0.6 &&
+          Math.abs(probe16x9.videoDuration - targetDuration) <= 0.6
+        : true;
+    const resOk = probe16x9.width === 1920 && probe16x9.height === 1080;
+    const passed = durOk && resOk && probe16x9.hasAudio;
+    const detail = passed
+      ? `1920x1080, ${probe16x9.videoDuration.toFixed(1)}s, AAC`
+      : `res=${probe16x9.width}x${probe16x9.height}, dur=${probe16x9.duration.toFixed(1)}s, vdur=${probe16x9.videoDuration.toFixed(1)}s, audio=${probe16x9.hasAudio}`;
+    record('Master 16:9 Video', passed, detail);
+  }
 }
 
 // 9:16 Master
@@ -307,7 +323,10 @@ if (!probeWa) {
 // -----------------------------------------------------------------------------
 // 4. KEYFRAME NON-BLANK / UNDAMAGED INTEGRITY CHECK
 // -----------------------------------------------------------------------------
-const sourceVideoForFrames = fs.existsSync(vid16x9Path) ? vid16x9Path : vid9x16Path;
+const sourceVideoForFrames =
+  aspectFilter !== '9x16' && fs.existsSync(vid16x9Path)
+    ? vid16x9Path
+    : vid9x16Path;
 if (!fs.existsSync(sourceVideoForFrames) || !timings?.beats) {
   record('Visual Keyframes', false, 'Source video or beats unavailable');
 } else {

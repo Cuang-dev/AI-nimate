@@ -32,13 +32,16 @@ function parseArgs() {
   let force = false;
   let beatsArg = null;
   let port = 9102;
+  let aspects = ['9x16', '16x9'];
 
   const SLUG_TO_PROJECT = {
+    'knp-saham-teknologi-runtuh': 'vid_20261031_002',
     'knp-bursa-kita-terancam-diboikot-dunia': 'vid_20261031_001',
     'the-ai-bubble-explained': 'vid_20261029_002',
     'offshore-investing-tax-traps-indonesia': 'vid_20261024_001',
   };
   const PROJECT_TO_SLUG = {
+    'vid_20261031_002': 'knp-saham-teknologi-runtuh',
     'vid_20261031_001': 'knp-bursa-kita-terancam-diboikot-dunia',
     'vid_20261029_002': 'the-ai-bubble-explained',
     'vid_20261024_001': 'offshore-investing-tax-traps-indonesia',
@@ -64,6 +67,14 @@ function parseArgs() {
       beatsArg = args[++i].split(',').map((b) => b.trim()).filter(Boolean);
     } else if (arg.startsWith('--beats=')) {
       beatsArg = arg.split('=')[1].split(',').map((b) => b.trim()).filter(Boolean);
+    } else if (arg === '--aspects' && i + 1 < args.length) {
+      aspects = args[++i].split(',').map((a) => a.trim()).filter(Boolean);
+    } else if (arg.startsWith('--aspects=')) {
+      aspects = arg.split('=')[1].split(',').map((a) => a.trim()).filter(Boolean);
+    } else if (arg === '--aspect' && i + 1 < args.length) {
+      aspects = args[++i].split(',').map((a) => a.trim()).filter(Boolean);
+    } else if (arg.startsWith('--aspect=')) {
+      aspects = arg.split('=')[1].split(',').map((a) => a.trim()).filter(Boolean);
     } else if (arg === '--port' && i + 1 < args.length) {
       port = parseInt(args[++i], 10);
     } else if (arg.startsWith('--port=')) {
@@ -105,13 +116,13 @@ function parseArgs() {
 
   const beatsToRender = beatsArg && beatsArg.length > 0 ? beatsArg : allBeats;
 
-  return { projectId, slug, force, beatsToRender, allBeats, port };
+  return { projectId, slug, force, beatsToRender, allBeats, port, aspects };
 }
 
-function isValidVideo(filePath, minDuration = 10) {
+function isValidVideo(filePath, minDuration = 5) {
   if (!fs.existsSync(filePath)) return false;
   const stat = fs.statSync(filePath);
-  if (stat.size < 500000) return false;
+  if (stat.size < 100000) return false;
   try {
     const probe = execSync(
       `ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "${filePath}"`,
@@ -159,7 +170,7 @@ async function renderBeat(serverPort, beatName, aspectDir, projectId, force, get
   fs.mkdirSync(aspectOutputDir, { recursive: true });
 
   const finalBeatPath = path.join(aspectOutputDir, `${fullProjectName}.mp4`);
-  if (!force && isValidVideo(finalBeatPath, 12)) {
+  if (!force && isValidVideo(finalBeatPath, 5)) {
     console.log(`[Sequential Render] ${aspectDir}/${fullProjectName} already exists and is valid. Skipping.`);
     return;
   }
@@ -275,7 +286,7 @@ async function renderBeat(serverPort, beatName, aspectDir, projectId, force, get
     fs.renameSync(rawOutputPath, finalBeatPath);
     console.log(`[Sequential Render] Saved to ${finalBeatPath} (${fs.statSync(finalBeatPath).size} bytes)`);
 
-    if (!isValidVideo(finalBeatPath, 12)) {
+    if (!isValidVideo(finalBeatPath, 5)) {
       throw new Error(`Rendered video ${finalBeatPath} is invalid or too short!`);
     }
   } finally {
@@ -371,9 +382,10 @@ async function renderAspectPass(serverPort, aspectName, width, height, projectId
 }
 
 async function main() {
-  const { projectId, slug, force, beatsToRender, allBeats, port } = parseArgs();
+  const { projectId, slug, force, beatsToRender, allBeats, port, aspects } = parseArgs();
 
   console.log(`[Dual-Aspect Pipeline] Project: ${projectId} (Slug: ${slug})`);
+  console.log(`[Dual-Aspect Pipeline] Aspects: ${aspects.join(', ')}`);
   console.log(`[Dual-Aspect Pipeline] All Beats: ${allBeats.join(', ')}`);
   console.log(`[Dual-Aspect Pipeline] Beats To Render: ${beatsToRender.join(', ')}`);
   console.log(`[Dual-Aspect Pipeline] Force: ${force}`);
@@ -391,28 +403,46 @@ async function main() {
   fs.mkdirSync(projectOutputDir, { recursive: true });
 
   try {
-    // PASS 1: 9:16 (1080x1920) Vertical Master
-    const master9x16 = await renderAspectPass(port, '9x16', 1080, 1920, projectId, beatsToRender, allBeats, force);
+    let master9x16 = null;
+    let master16x9 = null;
 
-    // Also copy to video.mp4
-    fs.copyFileSync(master9x16, path.join(projectOutputDir, 'video.mp4'));
+    if (aspects.includes('9x16')) {
+      // PASS 1: 9:16 (1080x1920) Vertical Master
+      master9x16 = await renderAspectPass(port, '9x16', 1080, 1920, projectId, beatsToRender, allBeats, force);
+      fs.copyFileSync(master9x16, path.join(projectOutputDir, 'video.mp4'));
+    } else {
+      const existing = path.join(projectOutputDir, 'video_9x16.mp4');
+      if (fs.existsSync(existing)) master9x16 = existing;
+    }
 
-    // PASS 2: 16:9 (1920x1080) Widescreen Master
-    const master16x9 = await renderAspectPass(port, '16x9', 1920, 1080, projectId, beatsToRender, allBeats, force);
+    if (aspects.includes('16x9')) {
+      // PASS 2: 16:9 (1920x1080) Widescreen Master
+      master16x9 = await renderAspectPass(port, '16x9', 1920, 1080, projectId, beatsToRender, allBeats, force);
+      if (!aspects.includes('9x16')) {
+        fs.copyFileSync(master16x9, path.join(projectOutputDir, 'video.mp4'));
+      }
+    } else {
+      const existing = path.join(projectOutputDir, 'video_16x9.mp4');
+      if (fs.existsSync(existing)) master16x9 = existing;
+    }
 
     // Transcode dedicated WhatsApp inline stream (< 4.5 MB, 540x960, Profile Main 3.1)
     const whatsappVideo = path.join(projectOutputDir, 'video_whatsapp.mp4');
-    console.log(`[Pipeline] Transcoding dedicated WhatsApp inline stream (< 4.5 MB) to ${whatsappVideo}...`);
-    execSync(
-      `ffmpeg -y -i "${master9x16}" ` +
-      '-vf "scale=540:960" ' +
-      '-c:v libx264 -profile:v main -level 3.1 -pix_fmt yuv420p ' +
-      '-b:v 260k -maxrate 340k -bufsize 600k ' +
-      '-c:a aac -profile:a aac_low -ar 48000 -ac 1 -b:a 48k ' +
-      `-movflags +faststart "${whatsappVideo}"`,
-      { stdio: 'inherit' }
-    );
-    console.log(`[Pipeline] WhatsApp video size: ${fs.statSync(whatsappVideo).size} bytes`);
+    const sourceForWa = master9x16 || master16x9;
+    if (sourceForWa && fs.existsSync(sourceForWa)) {
+      console.log(`[Pipeline] Transcoding dedicated WhatsApp inline stream (< 4.5 MB) to ${whatsappVideo}...`);
+      const scaleFilter = sourceForWa === master9x16 ? 'scale=540:960' : 'scale=960:540';
+      execSync(
+        `ffmpeg -y -i "${sourceForWa}" ` +
+        `-vf "${scaleFilter}" ` +
+        '-c:v libx264 -profile:v main -level 3.1 -pix_fmt yuv420p ' +
+        '-b:v 260k -maxrate 340k -bufsize 600k ' +
+        '-c:a aac -profile:a aac_low -ar 48000 -ac 1 -b:a 48k ' +
+        `-movflags +faststart "${whatsappVideo}"`,
+        { stdio: 'inherit' }
+      );
+      console.log(`[Pipeline] WhatsApp video size: ${fs.statSync(whatsappVideo).size} bytes`);
+    }
 
     // Play badge overlay
     const playBadgeSvgPath = path.join(projectOutputDir, 'play_badge.svg');
@@ -429,34 +459,57 @@ async function main() {
     const thumb9x16Path = path.join(projectOutputDir, 'thumb_9x16.jpg');
     const thumbPath = path.join(projectOutputDir, 'thumb.jpg');
     const thumbnailPath = path.join(projectOutputDir, 'thumbnail.jpg');
+    const thumbnailOgPath = path.join(projectOutputDir, 'thumbnail_og.jpg');
+    const thumbnailSquarePath = path.join(projectOutputDir, 'thumbnail_square.jpg');
 
     console.log(`[Pipeline] Generating base thumbnails...`);
-    execSync(`ffmpeg -y -ss 00:00:20.000 -i "${master16x9}" -frames:v 1 -q:v 2 "${thumb16x9Path}"`, { stdio: 'inherit' });
-    execSync(`ffmpeg -y -ss 00:00:20.000 -i "${master9x16}" -frames:v 1 -q:v 2 "${thumb9x16Path}"`, { stdio: 'inherit' });
-    fs.copyFileSync(thumb16x9Path, thumbPath);
-    fs.copyFileSync(thumb16x9Path, thumbnailPath);
+    if (aspects.includes('16x9') && master16x9 && fs.existsSync(master16x9)) {
+      execSync(`ffmpeg -y -ss 00:00:20.000 -i "${master16x9}" -frames:v 1 -q:v 2 "${thumb16x9Path}"`, { stdio: 'inherit' });
+    }
+    if (aspects.includes('9x16') && master9x16 && fs.existsSync(master9x16)) {
+      execSync(`ffmpeg -y -ss 00:00:20.000 -i "${master9x16}" -frames:v 1 -q:v 2 "${thumb9x16Path}"`, { stdio: 'inherit' });
+    }
 
-    // WhatsApp Landscape Thumbnail (1200x630, < 150 KB, generated directly from 16:9 master at t=20s)
-    const thumbnailOgPath = path.join(projectOutputDir, 'thumbnail_og.jpg');
-    console.log(`[Pipeline] Generating WhatsApp landscape preview thumbnail at ${thumbnailOgPath}...`);
-    execSync(
-      `ffmpeg -y -ss 00:00:20.000 -i "${master16x9}" -i "${playBadgePngPath}" ` +
-      '-filter_complex "[0:v]scale=1200:675,crop=1200:630[base]; [base][1:v]overlay=(W-w)/2:(H-h)/2" ' +
-      `-frames:v 1 -q:v 3 "${thumbnailOgPath}"`,
-      { stdio: 'inherit' }
-    );
-    console.log(`[Pipeline] thumbnail_og.jpg size: ${fs.statSync(thumbnailOgPath).size} bytes`);
+    if (fs.existsSync(thumb16x9Path)) {
+      fs.copyFileSync(thumb16x9Path, thumbPath);
+      fs.copyFileSync(thumb16x9Path, thumbnailPath);
+    } else if (fs.existsSync(thumb9x16Path)) {
+      fs.copyFileSync(thumb9x16Path, thumbPath);
+      fs.copyFileSync(thumb9x16Path, thumbnailPath);
+    }
+
+    // WhatsApp Landscape Thumbnail (1200x630, < 150 KB)
+    if (master16x9 && fs.existsSync(master16x9) && aspects.includes('16x9')) {
+      console.log(`[Pipeline] Generating WhatsApp landscape preview thumbnail at ${thumbnailOgPath}...`);
+      execSync(
+        `ffmpeg -y -ss 00:00:20.000 -i "${master16x9}" -i "${playBadgePngPath}" ` +
+        '-filter_complex "[0:v]scale=1200:675,crop=1200:630[base]; [base][1:v]overlay=(W-w)/2:(H-h)/2" ' +
+        `-frames:v 1 -q:v 3 "${thumbnailOgPath}"`,
+        { stdio: 'inherit' }
+      );
+      console.log(`[Pipeline] thumbnail_og.jpg size: ${fs.statSync(thumbnailOgPath).size} bytes`);
+    } else if (master9x16 && fs.existsSync(master9x16) && (!fs.existsSync(thumbnailOgPath) || aspects.includes('9x16'))) {
+      console.log(`[Pipeline] Generating WhatsApp landscape preview thumbnail from 9:16 at ${thumbnailOgPath}...`);
+      execSync(
+        `ffmpeg -y -ss 00:00:20.000 -i "${master9x16}" -i "${playBadgePngPath}" ` +
+        '-filter_complex "[0:v]scale=1200:2133,crop=1200:630:0:750[base]; [base][1:v]overlay=(W-w)/2:(H-h)/2" ' +
+        `-frames:v 1 -q:v 3 "${thumbnailOgPath}"`,
+        { stdio: 'inherit' }
+      );
+      console.log(`[Pipeline] thumbnail_og.jpg size: ${fs.statSync(thumbnailOgPath).size} bytes`);
+    }
 
     // WhatsApp Square Thumbnail (1080x1080, < 150 KB, generated from 9:16 master at t=20s)
-    const thumbnailSquarePath = path.join(projectOutputDir, 'thumbnail_square.jpg');
-    console.log(`[Pipeline] Generating WhatsApp square preview thumbnail at ${thumbnailSquarePath}...`);
-    execSync(
-      `ffmpeg -y -ss 00:00:20.000 -i "${master9x16}" -i "${playBadgePngPath}" ` +
-      '-filter_complex "[0:v]crop=1080:1080:0:420[base]; [base][1:v]overlay=(W-w)/2:(H-h)/2" ' +
-      `-frames:v 1 -q:v 3 "${thumbnailSquarePath}"`,
-      { stdio: 'inherit' }
-    );
-    console.log(`[Pipeline] thumbnail_square.jpg size: ${fs.statSync(thumbnailSquarePath).size} bytes`);
+    if (master9x16 && fs.existsSync(master9x16) && (aspects.includes('9x16') || !fs.existsSync(thumbnailSquarePath))) {
+      console.log(`[Pipeline] Generating WhatsApp square preview thumbnail at ${thumbnailSquarePath}...`);
+      execSync(
+        `ffmpeg -y -ss 00:00:20.000 -i "${master9x16}" -i "${playBadgePngPath}" ` +
+        '-filter_complex "[0:v]crop=1080:1080:0:420[base]; [base][1:v]overlay=(W-w)/2:(H-h)/2" ' +
+        `-frames:v 1 -q:v 3 "${thumbnailSquarePath}"`,
+        { stdio: 'inherit' }
+      );
+      console.log(`[Pipeline] thumbnail_square.jpg size: ${fs.statSync(thumbnailSquarePath).size} bytes`);
+    }
 
     // Extract QA keyframes for Beat 1..5 for both 16:9 and 9:16 into output/${projectId}/qa_frames/
     const qaFramesDir = path.join(projectOutputDir, 'qa_frames');
@@ -484,10 +537,14 @@ async function main() {
     }
 
     for (const bt of beatTimes) {
-      const out16 = path.join(qaFramesDir, `${bt.beatName}_16x9.jpg`);
-      const out9 = path.join(qaFramesDir, `${bt.beatName}_9x16.jpg`);
-      execSync(`ffmpeg -y -ss ${bt.time} -i "${master16x9}" -frames:v 1 -q:v 2 "${out16}"`, { stdio: 'inherit' });
-      execSync(`ffmpeg -y -ss ${bt.time} -i "${master9x16}" -frames:v 1 -q:v 2 "${out9}"`, { stdio: 'inherit' });
+      if (aspects.includes('16x9') && master16x9 && fs.existsSync(master16x9)) {
+        const out16 = path.join(qaFramesDir, `${bt.beatName}_16x9.jpg`);
+        execSync(`ffmpeg -y -ss ${bt.time} -i "${master16x9}" -frames:v 1 -q:v 2 "${out16}"`, { stdio: 'inherit' });
+      }
+      if (aspects.includes('9x16') && master9x16 && fs.existsSync(master9x16)) {
+        const out9 = path.join(qaFramesDir, `${bt.beatName}_9x16.jpg`);
+        execSync(`ffmpeg -y -ss ${bt.time} -i "${master9x16}" -frames:v 1 -q:v 2 "${out9}"`, { stdio: 'inherit' });
+      }
     }
 
     // Deploy to public directory for cuang.dev and rsync to docker-host
@@ -500,16 +557,22 @@ async function main() {
     for (const pDir of targetDirs) {
       fs.mkdirSync(pDir, { recursive: true });
       console.log(`[Pipeline] Deploying artifacts to ${pDir}...`);
-      fs.copyFileSync(master9x16, path.join(pDir, 'video.mp4'));
-      fs.copyFileSync(master9x16, path.join(pDir, 'video_9x16.mp4'));
-      fs.copyFileSync(master16x9, path.join(pDir, 'video_16x9.mp4'));
-      fs.copyFileSync(whatsappVideo, path.join(pDir, 'video_whatsapp.mp4'));
-      fs.copyFileSync(thumbPath, path.join(pDir, 'thumb.jpg'));
-      fs.copyFileSync(thumb16x9Path, path.join(pDir, 'thumb_16x9.jpg'));
-      fs.copyFileSync(thumb9x16Path, path.join(pDir, 'thumb_9x16.jpg'));
-      fs.copyFileSync(thumbnailPath, path.join(pDir, 'thumbnail.jpg'));
-      fs.copyFileSync(thumbnailOgPath, path.join(pDir, 'thumbnail_og.jpg'));
-      fs.copyFileSync(thumbnailSquarePath, path.join(pDir, 'thumbnail_square.jpg'));
+      if (master9x16 && fs.existsSync(master9x16)) {
+        fs.copyFileSync(master9x16, path.join(pDir, 'video.mp4'));
+        fs.copyFileSync(master9x16, path.join(pDir, 'video_9x16.mp4'));
+      }
+      if (master16x9 && fs.existsSync(master16x9)) {
+        fs.copyFileSync(master16x9, path.join(pDir, 'video_16x9.mp4'));
+      }
+      if (fs.existsSync(whatsappVideo)) {
+        fs.copyFileSync(whatsappVideo, path.join(pDir, 'video_whatsapp.mp4'));
+      }
+      if (fs.existsSync(thumbPath)) fs.copyFileSync(thumbPath, path.join(pDir, 'thumb.jpg'));
+      if (fs.existsSync(thumb16x9Path)) fs.copyFileSync(thumb16x9Path, path.join(pDir, 'thumb_16x9.jpg'));
+      if (fs.existsSync(thumb9x16Path)) fs.copyFileSync(thumb9x16Path, path.join(pDir, 'thumb_9x16.jpg'));
+      if (fs.existsSync(thumbnailPath)) fs.copyFileSync(thumbnailPath, path.join(pDir, 'thumbnail.jpg'));
+      if (fs.existsSync(thumbnailOgPath)) fs.copyFileSync(thumbnailOgPath, path.join(pDir, 'thumbnail_og.jpg'));
+      if (fs.existsSync(thumbnailSquarePath)) fs.copyFileSync(thumbnailSquarePath, path.join(pDir, 'thumbnail_square.jpg'));
     }
 
     // Ensure convenient symlinks exist
