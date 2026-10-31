@@ -3,7 +3,7 @@
   "video_id": "vid_20261031_001",
   "series": "Knp?",
   "hook_text": "Pernah nggak sih kamu mikir, kenapa bursa saham kita tiba-tiba anjlok delapan persen sampai perdagangan dibekukan sementara?",
-  "duration_seconds": 78.5,
+  "duration_seconds": 88.5,
   "word_count": 195,
   "core_angle": "Bursa saham Indonesia terancam diturunkan wasit dunia dari liga utama ke zona isolasi karena saham raksasa Rp1.500 triliun ternyata 97 persennya dikunci empat orang dan cuma 3 persen yang dijual bebas ke warga.",
   "tts_style_prompt": "Smart urban conversational Indonesian (Aku/Kamu/Kita), clear everyday layman analogies, crisp spoken numbers, dramatic pauses at ellipses, zero unexplained financial jargon.",
@@ -406,84 +406,63 @@
     },
     {
       "beat_id": "beat_05",
-      "title": "KNP? // 05: ATURAN BARU 15%",
-      "spoken_text": "Biar Indonesia nggak jadi diboikot dunia, pemerintah lewat OJK dan Bursa Efek terpaksa merombak aturan: sekarang minimal lima belas persen saham perusahaan wajib beredar bebas di masyarakat, dan siapa pun yang punya saham di atas satu persen wajib dibuka namanya ke publik. Pelajarannya buat kita: kalau mau taruh uang di saham atau investasi apa pun, jangan silau sama harga yang naik terus—pastikan barangnya beneran ramai pembelinya, supaya uangmu nggak ikut nyangkut. Sekarang kamu tahu kenapa.",
-      "tts_transcript": "Biar Indonesia nggak jadi diboikot dunia, pemerintah lewat O-J-K dan Bursa Efek terpaksa merombak aturan: sekarang minimal lima belas persen saham perusahaan wajib beredar bebas di masyarakat... dan siapa pun yang punya saham di atas satu persen wajib dibuka namanya ke publik. Pelajarannya buat kita: kalau mau taruh uang di saham atau investasi apa pun, jangan silau sama harga yang naik terus—pastikan barangnya beneran ramai pembelinya, supaya uangmu nggak ikut nyangkut... Sekarang kamu tahu kenapa.",
+      "title": "KNP? // 05: CEK FULL DI YT",
+      "spoken_text": "Terus gimana cara pemerintah menyelamatkan bursa kita dari ancaman boikot dunia, dan tiga cara simpel mengecek saham biar tabunganmu nggak ikut nyangkut? Tonton bedah lengkapnya di YouTube Kausal Media sekarang!",
+      "tts_transcript": "Terus gimana cara pemerintah menyelamatkan bursa kita dari ancaman boikot dunia... dan tiga cara simpel mengecek saham biar tabunganmu nggak ikut nyangkut? Tonton bedah lengkapnya di YouTube Kausal Media sekarang!",
       "timing_window": {
-        "start": 62.8,
-        "end": 78.5,
-        "duration": 15.7
+        "start": 77.72,
+        "end": 88.5,
+        "duration": 10.78
       },
-      "diagram_archetype": "3-Tier Regulatory & Retail Defense Stack",
+      "diagram_archetype": "3-Card Cliffhanger & CTA Stack",
       "contrast_cards": {
         "card_a": {
           "slot": 0,
-          "sub_tag": "ATURAN BARU OJK & BEI",
-          "hero_number": "L2 // WAJIB 15% SAHAM DI MASYARAKAT",
+          "sub_tag": "OPERASI PENYELAMATAN BURSA 2027",
+          "hero_number": "ATURAN BARU 15% & >1%",
           "logo_asset": "ojk_idx_shield.png",
-          "description": "Minimal 15% saham dijual bebas ke warga",
-          "accent_color": "#1B8354"
+          "description": "Aturan baru selamatkan bursa dari ancaman boikot",
+          "accent_color": "#16A34A"
         },
         "card_b": {
           "slot": 1,
-          "sub_tag": "TIPS AMAN BUAT KITA",
-          "hero_number": "L1 // CEK APAKAH GAMPANG DIJUAL LAGI",
-          "logo_asset": "retail_filter_icon.png",
-          "description": "Pastikan ramai pembeli sebelum taruh uang",
+          "sub_tag": "KASUS NYATA ARGENTINA & NIGERIA",
+          "hero_number": "DIDEPAK KE ZONA ISOLASI",
+          "logo_asset": "market_crash_icon.png",
+          "description": "Saat didepak ke zona isolasi krisis modal",
           "accent_color": "#D97706"
         },
         "delta_badge": {
-          "text": "L3 // BUKA NAMA PEMILIK >1%",
-          "color": "#141413"
+          "text": "TONTON LENGKAP DI YOUTUBE (9 MENIT)",
+          "color": "#0284C7"
         }
       },
       "visual_cues": [
         {
-          "action": "draw_baseline",
-          "target": "stack_foundation_rails",
-          "phrase": "Biar Indonesia nggak jadi diboikot dunia",
-          "duration": "0.55s",
-          "focalId": 1
-        },
-        {
-          "action": "pop_station",
-          "target": "tier_l3_transparency",
-          "phrase": "pemerintah lewat OJK dan Bursa Efek terpaksa merombak aturan",
+          "action": "pop_card",
+          "target": "mystery_card_1_penyelamatan",
+          "phrase": "Terus gimana cara pemerintah menyelamatkan bursa kita",
           "duration": "0.5s",
           "focalId": 1
         },
         {
-          "action": "pop_station",
-          "target": "tier_l2_bei_reform",
-          "phrase": "minimal lima belas persen saham perusahaan wajib beredar bebas",
+          "action": "pop_card",
+          "target": "mystery_card_2_argentina",
+          "phrase": "tiga cara simpel mengecek saham",
           "duration": "0.5s",
           "focalId": 2
         },
         {
-          "action": "pop_station",
-          "target": "tier_l1_retail_defense",
-          "phrase": "siapa pun yang punya saham di atas satu persen wajib dibuka",
-          "duration": "0.5s",
-          "focalId": 2
-        },
-        {
-          "action": "drop_wall",
-          "target": "caliper_true_liquidity",
-          "phrase": "pastikan barangnya beneran ramai pembelinya",
+          "action": "pop_cta",
+          "target": "cta_hero_youtube",
+          "phrase": "Tonton bedah lengkapnya di YouTube Kausal Media sekarang",
           "duration": "0.6s",
-          "focalId": 3
-        },
-        {
-          "action": "stamp_seal",
-          "target": "kausal_closing_seal",
-          "phrase": "Sekarang kamu tahu kenapa",
-          "duration": "0.55s",
           "focalId": 3
         }
       ],
       "forensic_citations": [
-        "Rancangan Perubahan Peraturan Pencatatan Efek BEI (Revisi Saham Beredar 15%)",
-        "Protokol Perlindungan Investor Masyarakat Kausal Media"
+        "Bedah Lengkap Kausal Media Episode 01: Krisis Free Float IHSG",
+        "YouTube: Kausal Media — Seri KNP? Episode 01"
       ]
     }
   ]

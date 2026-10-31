@@ -77,7 +77,7 @@ def normalize_words(raw_words):
         w = dict(raw_words[i])
         txt = w["w"]
 
-        # 4-word replacement: di Jualbeba Skwar Gabyasa. -> dijual bebas ke warga biasa.
+        # 3-word replacement: di Jualbeba Skwar Gabyasa. -> dijual bebas ke warga biasa.
         if i + 3 < n:
             w1 = raw_words[i+1]["w"]
             w2 = raw_words[i+2]["w"]
@@ -93,10 +93,26 @@ def normalize_words(raw_words):
                 i += 4
                 continue
 
+        # 3-word replacement: tabungan -bungan gak -> tabunganmu nggak
+        if i + 2 < n:
+            w1 = raw_words[i+1]["w"]
+            w2 = raw_words[i+2]["w"]
+            if txt == "tabungan" and "-bungan" in w1 and w2 in ("gak", "nggak"):
+                fixed.append({"w": "tabunganmu", "start": w["start"], "end": raw_words[i+1]["end"]})
+                fixed.append({"w": "nggak", "start": raw_words[i+2]["start"], "end": raw_words[i+2]["end"]})
+                i += 3
+                continue
+
         # 2-word merges / replacements
         if i + 1 < n:
             w_next = raw_words[i+1]
             t_next = w_next["w"]
+
+            if txt == "buruh" and t_next == "sakit":
+                fixed.append({"w": "bursa", "start": w["start"], "end": w["end"]})
+                fixed.append({"w": "kita", "start": w_next["start"], "end": w_next["end"]})
+                i += 2
+                continue
 
             if txt == "tiba" and t_next == "-tiba":
                 fixed.append({"w": "tiba-tiba", "start": w["start"], "end": w_next["end"]})
@@ -220,6 +236,19 @@ def normalize_words(raw_words):
             continue
         elif txt == "Plajarnya":
             w["w"] = "Pelajarannya"
+        elif txt == "Dan,":
+            w["w"] = "dan"
+        elif txt == "dunia?":
+            w["w"] = "dunia,"
+        elif txt == "budah":
+            w["w"] = "bedah"
+        elif txt == "sekarang.":
+            w["w"] = "sekarang!"
+        elif txt == "nyangkut.":
+            w["w"] = "nyangkut?"
+
+        if w["end"] <= w["start"]:
+            w["end"] = round(w["start"] + 0.15, 3)
 
         fixed.append(w)
         i += 1

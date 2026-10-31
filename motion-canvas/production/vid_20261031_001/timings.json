@@ -1,5 +1,5 @@
 {
-  "duration_seconds": 106.92,
+  "duration_seconds": 88.51,
   "scenes": [
     {
       "id": "beat_01",
@@ -28,8 +28,8 @@
     {
       "id": "beat_05",
       "start": 77.72,
-      "end": 106.92,
-      "duration": 29.2
+      "end": 88.51,
+      "duration": 10.79
     }
   ],
   "beats": [
@@ -60,8 +60,8 @@
     {
       "beat_id": "beat_05",
       "start": 77.72,
-      "end": 106.92,
-      "duration": 29.2
+      "end": 88.51,
+      "duration": 10.79
     }
   ],
   "words": [
@@ -1011,364 +1011,154 @@
       "end": 77.36
     },
     {
-      "w": "Biar",
-      "start": 78.08,
-      "end": 78.72
+      "w": "Terus",
+      "start": 77.72,
+      "end": 78.2
     },
     {
-      "w": "Indonesia",
-      "start": 78.72,
-      "end": 79.02
+      "w": "gimana",
+      "start": 78.2,
+      "end": 78.56
     },
     {
-      "w": "nggak",
-      "start": 79.02,
-      "end": 79.28
-    },
-    {
-      "w": "jadi",
-      "start": 79.28,
-      "end": 79.5
-    },
-    {
-      "w": "diboikot",
-      "start": 79.5,
-      "end": 79.88
-    },
-    {
-      "w": "dunia,",
-      "start": 79.88,
-      "end": 80.22
+      "w": "cara",
+      "start": 78.56,
+      "end": 78.78
     },
     {
       "w": "pemerintah",
-      "start": 80.8,
-      "end": 81.34
+      "start": 78.78,
+      "end": 79.24
     },
     {
-      "w": "lewat",
-      "start": 81.34,
-      "end": 81.72
+      "w": "menyelamatkan",
+      "start": 79.24,
+      "end": 79.8
     },
     {
-      "w": "OJK",
-      "start": 81.72,
-      "end": 82.22
+      "w": "bursa",
+      "start": 79.8,
+      "end": 80.02
+    },
+    {
+      "w": "kita",
+      "start": 80.02,
+      "end": 80.28
+    },
+    {
+      "w": "dari",
+      "start": 80.28,
+      "end": 80.48
+    },
+    {
+      "w": "ancaman",
+      "start": 80.48,
+      "end": 80.86
+    },
+    {
+      "w": "boikot",
+      "start": 80.86,
+      "end": 81.18
+    },
+    {
+      "w": "dunia,",
+      "start": 81.18,
+      "end": 81.46
     },
     {
       "w": "dan",
-      "start": 82.22,
-      "end": 82.4
+      "start": 82.08,
+      "end": 82.24
     },
     {
-      "w": "Bursa",
-      "start": 82.4,
-      "end": 82.6
+      "w": "tiga",
+      "start": 82.5,
+      "end": 82.72
     },
     {
-      "w": "Efek",
-      "start": 82.6,
-      "end": 83.02
+      "w": "cara",
+      "start": 82.72,
+      "end": 82.9
     },
     {
-      "w": "terpaksa",
-      "start": 83.02,
-      "end": 83.78
+      "w": "simpel",
+      "start": 82.9,
+      "end": 83.2
     },
     {
-      "w": "merombak",
-      "start": 83.78,
-      "end": 84.06
-    },
-    {
-      "w": "aturan.",
-      "start": 84.06,
-      "end": 84.34
-    },
-    {
-      "w": "Sekarang",
-      "start": 85.08,
-      "end": 85.4
-    },
-    {
-      "w": "minimal",
-      "start": 85.4,
-      "end": 85.6
-    },
-    {
-      "w": "15%",
-      "start": 85.6,
-      "end": 86.36
+      "w": "mengecek",
+      "start": 83.2,
+      "end": 83.52
     },
     {
       "w": "saham",
-      "start": 86.36,
-      "end": 86.66
+      "start": 83.52,
+      "end": 83.86
     },
     {
-      "w": "perusahaan",
-      "start": 86.66,
-      "end": 87.14
+      "w": "biar",
+      "start": 83.86,
+      "end": 84.18
     },
     {
-      "w": "wajib",
-      "start": 87.14,
-      "end": 87.5
-    },
-    {
-      "w": "beredar",
-      "start": 87.5,
-      "end": 87.84
-    },
-    {
-      "w": "bebas",
-      "start": 87.84,
-      "end": 88.12
-    },
-    {
-      "w": "di",
-      "start": 88.12,
-      "end": 88.32
-    },
-    {
-      "w": "masyarakat.",
-      "start": 88.32,
-      "end": 88.9
-    },
-    {
-      "w": "Dan",
-      "start": 89.48,
-      "end": 89.66
-    },
-    {
-      "w": "siapa",
-      "start": 89.66,
-      "end": 89.887
-    },
-    {
-      "w": "pun",
-      "start": 89.887,
-      "end": 90.113
-    },
-    {
-      "w": "yang",
-      "start": 90.113,
-      "end": 90.34
-    },
-    {
-      "w": "punya",
-      "start": 90.34,
-      "end": 90.56
-    },
-    {
-      "w": "saham",
-      "start": 90.56,
-      "end": 90.88
-    },
-    {
-      "w": "di",
-      "start": 90.88,
-      "end": 90.98
-    },
-    {
-      "w": "atas",
-      "start": 90.98,
-      "end": 91.16
-    },
-    {
-      "w": "1%,",
-      "start": 91.16,
-      "end": 91.86
-    },
-    {
-      "w": "wajib",
-      "start": 91.86,
-      "end": 92.4
-    },
-    {
-      "w": "dibuka",
-      "start": 92.4,
-      "end": 92.8
-    },
-    {
-      "w": "namanya",
-      "start": 92.8,
-      "end": 93.22
-    },
-    {
-      "w": "ke",
-      "start": 93.22,
-      "end": 93.34
-    },
-    {
-      "w": "publik.",
-      "start": 93.34,
-      "end": 93.74
-    },
-    {
-      "w": "Pelajarannya",
-      "start": 94.82,
-      "end": 95.3
-    },
-    {
-      "w": "buat",
-      "start": 95.3,
-      "end": 95.46
-    },
-    {
-      "w": "kita,",
-      "start": 95.46,
-      "end": 95.78
-    },
-    {
-      "w": "kalau",
-      "start": 96.26,
-      "end": 96.4
-    },
-    {
-      "w": "mau",
-      "start": 96.4,
-      "end": 96.58
-    },
-    {
-      "w": "taruh",
-      "start": 96.58,
-      "end": 96.88
-    },
-    {
-      "w": "uang",
-      "start": 96.88,
-      "end": 97.1
-    },
-    {
-      "w": "di",
-      "start": 97.1,
-      "end": 97.24
-    },
-    {
-      "w": "saham",
-      "start": 97.24,
-      "end": 97.6
-    },
-    {
-      "w": "atau",
-      "start": 97.6,
-      "end": 97.78
-    },
-    {
-      "w": "investasi",
-      "start": 97.78,
-      "end": 98.18
-    },
-    {
-      "w": "apapun,",
-      "start": 98.18,
-      "end": 98.66
-    },
-    {
-      "w": "jangan",
-      "start": 99.08,
-      "end": 99.22
-    },
-    {
-      "w": "silau",
-      "start": 99.22,
-      "end": 99.58
-    },
-    {
-      "w": "sama",
-      "start": 99.58,
-      "end": 99.76
-    },
-    {
-      "w": "harga",
-      "start": 99.76,
-      "end": 100.02
-    },
-    {
-      "w": "yang",
-      "start": 100.02,
-      "end": 100.14
-    },
-    {
-      "w": "naik",
-      "start": 100.14,
-      "end": 100.34
-    },
-    {
-      "w": "terus,",
-      "start": 100.34,
-      "end": 100.5
-    },
-    {
-      "w": "pastikan",
-      "start": 101.16,
-      "end": 101.44
-    },
-    {
-      "w": "barangnya",
-      "start": 101.44,
-      "end": 101.88
-    },
-    {
-      "w": "beneran",
-      "start": 101.88,
-      "end": 102.2
-    },
-    {
-      "w": "ramai",
-      "start": 102.2,
-      "end": 102.48
-    },
-    {
-      "w": "pembelinya,",
-      "start": 102.48,
-      "end": 102.88
-    },
-    {
-      "w": "supaya",
-      "start": 103.38,
-      "end": 103.6
-    },
-    {
-      "w": "uangmu",
-      "start": 103.6,
-      "end": 103.96
+      "w": "tabunganmu",
+      "start": 84.18,
+      "end": 84.7
     },
     {
       "w": "nggak",
-      "start": 103.96,
-      "end": 104.16
+      "start": 84.7,
+      "end": 84.76
     },
     {
       "w": "ikut",
-      "start": 104.16,
-      "end": 104.36
+      "start": 84.76,
+      "end": 84.92
     },
     {
-      "w": "nyangkut.",
-      "start": 104.36,
-      "end": 104.72
+      "w": "nyangkut?",
+      "start": 84.92,
+      "end": 85.2
     },
     {
-      "w": "Sekarang",
-      "start": 105.28,
-      "end": 105.82
+      "w": "Tonton",
+      "start": 85.68,
+      "end": 86.04
     },
     {
-      "w": "kamu",
-      "start": 105.82,
-      "end": 106.18
+      "w": "bedah",
+      "start": 86.04,
+      "end": 86.3
     },
     {
-      "w": "tahu",
-      "start": 106.18,
-      "end": 106.36
+      "w": "lengkapnya",
+      "start": 86.3,
+      "end": 86.68
     },
     {
-      "w": "kenapa?",
-      "start": 106.36,
-      "end": 106.68
+      "w": "di",
+      "start": 86.68,
+      "end": 86.82
+    },
+    {
+      "w": "YouTube",
+      "start": 86.82,
+      "end": 87.1
+    },
+    {
+      "w": "Kausal",
+      "start": 87.1,
+      "end": 87.52
+    },
+    {
+      "w": "Media",
+      "start": 87.52,
+      "end": 87.72
+    },
+    {
+      "w": "sekarang!",
+      "start": 87.72,
+      "end": 88.1
     }
   ],
   "subtitle_chunks": [
@@ -2862,570 +2652,240 @@
       ]
     },
     {
-      "text": "Biar Indonesia nggak jadi",
-      "start": 78.08,
-      "end": 79.5,
-      "duration": 1.42,
+      "text": "Terus gimana cara",
+      "start": 77.72,
+      "end": 78.78,
+      "duration": 1.06,
       "words": [
         {
-          "w": "Biar",
-          "start": 78.08,
-          "end": 78.72
+          "w": "Terus",
+          "start": 77.72,
+          "end": 78.2
         },
         {
-          "w": "Indonesia",
-          "start": 78.72,
-          "end": 79.02
+          "w": "gimana",
+          "start": 78.2,
+          "end": 78.56
         },
         {
-          "w": "nggak",
-          "start": 79.02,
-          "end": 79.28
-        },
-        {
-          "w": "jadi",
-          "start": 79.28,
-          "end": 79.5
+          "w": "cara",
+          "start": 78.56,
+          "end": 78.78
         }
       ]
     },
     {
-      "text": "diboikot dunia,",
-      "start": 79.5,
-      "end": 80.22,
-      "duration": 0.72,
-      "words": [
-        {
-          "w": "diboikot",
-          "start": 79.5,
-          "end": 79.88
-        },
-        {
-          "w": "dunia,",
-          "start": 79.88,
-          "end": 80.22
-        }
-      ]
-    },
-    {
-      "text": "pemerintah lewat OJK dan",
-      "start": 80.8,
-      "end": 82.4,
-      "duration": 1.6,
+      "text": "pemerintah menyelamatkan",
+      "start": 78.78,
+      "end": 79.8,
+      "duration": 1.02,
       "words": [
         {
           "w": "pemerintah",
-          "start": 80.8,
-          "end": 81.34
+          "start": 78.78,
+          "end": 79.24
         },
         {
-          "w": "lewat",
-          "start": 81.34,
-          "end": 81.72
+          "w": "menyelamatkan",
+          "start": 79.24,
+          "end": 79.8
+        }
+      ]
+    },
+    {
+      "text": "bursa kita dari ancaman",
+      "start": 79.8,
+      "end": 80.86,
+      "duration": 1.06,
+      "words": [
+        {
+          "w": "bursa",
+          "start": 79.8,
+          "end": 80.02
         },
         {
-          "w": "OJK",
-          "start": 81.72,
-          "end": 82.22
+          "w": "kita",
+          "start": 80.02,
+          "end": 80.28
         },
+        {
+          "w": "dari",
+          "start": 80.28,
+          "end": 80.48
+        },
+        {
+          "w": "ancaman",
+          "start": 80.48,
+          "end": 80.86
+        }
+      ]
+    },
+    {
+      "text": "boikot dunia,",
+      "start": 80.86,
+      "end": 81.46,
+      "duration": 0.6,
+      "words": [
+        {
+          "w": "boikot",
+          "start": 80.86,
+          "end": 81.18
+        },
+        {
+          "w": "dunia,",
+          "start": 81.18,
+          "end": 81.46
+        }
+      ]
+    },
+    {
+      "text": "dan tiga cara simpel",
+      "start": 82.08,
+      "end": 83.2,
+      "duration": 1.12,
+      "words": [
         {
           "w": "dan",
-          "start": 82.22,
-          "end": 82.4
+          "start": 82.08,
+          "end": 82.24
+        },
+        {
+          "w": "tiga",
+          "start": 82.5,
+          "end": 82.72
+        },
+        {
+          "w": "cara",
+          "start": 82.72,
+          "end": 82.9
+        },
+        {
+          "w": "simpel",
+          "start": 82.9,
+          "end": 83.2
         }
       ]
     },
     {
-      "text": "Bursa Efek terpaksa",
-      "start": 82.4,
-      "end": 83.78,
-      "duration": 1.38,
-      "words": [
-        {
-          "w": "Bursa",
-          "start": 82.4,
-          "end": 82.6
-        },
-        {
-          "w": "Efek",
-          "start": 82.6,
-          "end": 83.02
-        },
-        {
-          "w": "terpaksa",
-          "start": 83.02,
-          "end": 83.78
-        }
-      ]
-    },
-    {
-      "text": "merombak aturan.",
-      "start": 83.78,
-      "end": 84.34,
-      "duration": 0.56,
-      "words": [
-        {
-          "w": "merombak",
-          "start": 83.78,
-          "end": 84.06
-        },
-        {
-          "w": "aturan.",
-          "start": 84.06,
-          "end": 84.34
-        }
-      ]
-    },
-    {
-      "text": "Sekarang minimal 15%",
-      "start": 85.08,
-      "end": 86.36,
-      "duration": 1.28,
-      "words": [
-        {
-          "w": "Sekarang",
-          "start": 85.08,
-          "end": 85.4
-        },
-        {
-          "w": "minimal",
-          "start": 85.4,
-          "end": 85.6
-        },
-        {
-          "w": "15%",
-          "start": 85.6,
-          "end": 86.36
-        }
-      ]
-    },
-    {
-      "text": "saham perusahaan wajib",
-      "start": 86.36,
-      "end": 87.5,
-      "duration": 1.14,
-      "words": [
-        {
-          "w": "saham",
-          "start": 86.36,
-          "end": 86.66
-        },
-        {
-          "w": "perusahaan",
-          "start": 86.66,
-          "end": 87.14
-        },
-        {
-          "w": "wajib",
-          "start": 87.14,
-          "end": 87.5
-        }
-      ]
-    },
-    {
-      "text": "beredar bebas di",
-      "start": 87.5,
-      "end": 88.32,
-      "duration": 0.82,
-      "words": [
-        {
-          "w": "beredar",
-          "start": 87.5,
-          "end": 87.84
-        },
-        {
-          "w": "bebas",
-          "start": 87.84,
-          "end": 88.12
-        },
-        {
-          "w": "di",
-          "start": 88.12,
-          "end": 88.32
-        }
-      ]
-    },
-    {
-      "text": "masyarakat.",
-      "start": 88.32,
-      "end": 88.9,
-      "duration": 0.58,
-      "words": [
-        {
-          "w": "masyarakat.",
-          "start": 88.32,
-          "end": 88.9
-        }
-      ]
-    },
-    {
-      "text": "Dan siapa pun yang",
-      "start": 89.48,
-      "end": 90.34,
-      "duration": 0.86,
-      "words": [
-        {
-          "w": "Dan",
-          "start": 89.48,
-          "end": 89.66
-        },
-        {
-          "w": "siapa",
-          "start": 89.66,
-          "end": 89.887
-        },
-        {
-          "w": "pun",
-          "start": 89.887,
-          "end": 90.113
-        },
-        {
-          "w": "yang",
-          "start": 90.113,
-          "end": 90.34
-        }
-      ]
-    },
-    {
-      "text": "punya saham di atas",
-      "start": 90.34,
-      "end": 91.16,
-      "duration": 0.82,
-      "words": [
-        {
-          "w": "punya",
-          "start": 90.34,
-          "end": 90.56
-        },
-        {
-          "w": "saham",
-          "start": 90.56,
-          "end": 90.88
-        },
-        {
-          "w": "di",
-          "start": 90.88,
-          "end": 90.98
-        },
-        {
-          "w": "atas",
-          "start": 90.98,
-          "end": 91.16
-        }
-      ]
-    },
-    {
-      "text": "1%,",
-      "start": 91.16,
-      "end": 91.86,
-      "duration": 0.7,
-      "words": [
-        {
-          "w": "1%,",
-          "start": 91.16,
-          "end": 91.86
-        }
-      ]
-    },
-    {
-      "text": "wajib dibuka namanya ke",
-      "start": 91.86,
-      "end": 93.34,
-      "duration": 1.48,
-      "words": [
-        {
-          "w": "wajib",
-          "start": 91.86,
-          "end": 92.4
-        },
-        {
-          "w": "dibuka",
-          "start": 92.4,
-          "end": 92.8
-        },
-        {
-          "w": "namanya",
-          "start": 92.8,
-          "end": 93.22
-        },
-        {
-          "w": "ke",
-          "start": 93.22,
-          "end": 93.34
-        }
-      ]
-    },
-    {
-      "text": "publik.",
-      "start": 93.34,
-      "end": 93.74,
-      "duration": 0.4,
-      "words": [
-        {
-          "w": "publik.",
-          "start": 93.34,
-          "end": 93.74
-        }
-      ]
-    },
-    {
-      "text": "Pelajarannya buat kita,",
-      "start": 94.82,
-      "end": 95.78,
-      "duration": 0.96,
-      "words": [
-        {
-          "w": "Pelajarannya",
-          "start": 94.82,
-          "end": 95.3
-        },
-        {
-          "w": "buat",
-          "start": 95.3,
-          "end": 95.46
-        },
-        {
-          "w": "kita,",
-          "start": 95.46,
-          "end": 95.78
-        }
-      ]
-    },
-    {
-      "text": "kalau mau taruh uang",
-      "start": 96.26,
-      "end": 97.1,
-      "duration": 0.84,
-      "words": [
-        {
-          "w": "kalau",
-          "start": 96.26,
-          "end": 96.4
-        },
-        {
-          "w": "mau",
-          "start": 96.4,
-          "end": 96.58
-        },
-        {
-          "w": "taruh",
-          "start": 96.58,
-          "end": 96.88
-        },
-        {
-          "w": "uang",
-          "start": 96.88,
-          "end": 97.1
-        }
-      ]
-    },
-    {
-      "text": "di saham atau investasi",
-      "start": 97.1,
-      "end": 98.18,
-      "duration": 1.08,
-      "words": [
-        {
-          "w": "di",
-          "start": 97.1,
-          "end": 97.24
-        },
-        {
-          "w": "saham",
-          "start": 97.24,
-          "end": 97.6
-        },
-        {
-          "w": "atau",
-          "start": 97.6,
-          "end": 97.78
-        },
-        {
-          "w": "investasi",
-          "start": 97.78,
-          "end": 98.18
-        }
-      ]
-    },
-    {
-      "text": "apapun,",
-      "start": 98.18,
-      "end": 98.66,
-      "duration": 0.48,
-      "words": [
-        {
-          "w": "apapun,",
-          "start": 98.18,
-          "end": 98.66
-        }
-      ]
-    },
-    {
-      "text": "jangan silau sama harga",
-      "start": 99.08,
-      "end": 100.02,
-      "duration": 0.94,
-      "words": [
-        {
-          "w": "jangan",
-          "start": 99.08,
-          "end": 99.22
-        },
-        {
-          "w": "silau",
-          "start": 99.22,
-          "end": 99.58
-        },
-        {
-          "w": "sama",
-          "start": 99.58,
-          "end": 99.76
-        },
-        {
-          "w": "harga",
-          "start": 99.76,
-          "end": 100.02
-        }
-      ]
-    },
-    {
-      "text": "yang naik terus,",
-      "start": 100.02,
-      "end": 100.5,
-      "duration": 0.48,
-      "words": [
-        {
-          "w": "yang",
-          "start": 100.02,
-          "end": 100.14
-        },
-        {
-          "w": "naik",
-          "start": 100.14,
-          "end": 100.34
-        },
-        {
-          "w": "terus,",
-          "start": 100.34,
-          "end": 100.5
-        }
-      ]
-    },
-    {
-      "text": "pastikan barangnya",
-      "start": 101.16,
-      "end": 101.88,
-      "duration": 0.72,
-      "words": [
-        {
-          "w": "pastikan",
-          "start": 101.16,
-          "end": 101.44
-        },
-        {
-          "w": "barangnya",
-          "start": 101.44,
-          "end": 101.88
-        }
-      ]
-    },
-    {
-      "text": "beneran ramai pembelinya,",
-      "start": 101.88,
-      "end": 102.88,
-      "duration": 1.0,
-      "words": [
-        {
-          "w": "beneran",
-          "start": 101.88,
-          "end": 102.2
-        },
-        {
-          "w": "ramai",
-          "start": 102.2,
-          "end": 102.48
-        },
-        {
-          "w": "pembelinya,",
-          "start": 102.48,
-          "end": 102.88
-        }
-      ]
-    },
-    {
-      "text": "supaya uangmu nggak ikut",
-      "start": 103.38,
-      "end": 104.36,
+      "text": "mengecek saham biar",
+      "start": 83.2,
+      "end": 84.18,
       "duration": 0.98,
       "words": [
         {
-          "w": "supaya",
-          "start": 103.38,
-          "end": 103.6
+          "w": "mengecek",
+          "start": 83.2,
+          "end": 83.52
         },
         {
-          "w": "uangmu",
-          "start": 103.6,
-          "end": 103.96
+          "w": "saham",
+          "start": 83.52,
+          "end": 83.86
+        },
+        {
+          "w": "biar",
+          "start": 83.86,
+          "end": 84.18
+        }
+      ]
+    },
+    {
+      "text": "tabunganmu nggak ikut",
+      "start": 84.18,
+      "end": 84.92,
+      "duration": 0.74,
+      "words": [
+        {
+          "w": "tabunganmu",
+          "start": 84.18,
+          "end": 84.7
         },
         {
           "w": "nggak",
-          "start": 103.96,
-          "end": 104.16
+          "start": 84.7,
+          "end": 84.76
         },
         {
           "w": "ikut",
-          "start": 104.16,
-          "end": 104.36
+          "start": 84.76,
+          "end": 84.92
         }
       ]
     },
     {
-      "text": "nyangkut.",
-      "start": 104.36,
-      "end": 104.72,
-      "duration": 0.36,
+      "text": "nyangkut?",
+      "start": 84.92,
+      "end": 85.2,
+      "duration": 0.28,
       "words": [
         {
-          "w": "nyangkut.",
-          "start": 104.36,
-          "end": 104.72
+          "w": "nyangkut?",
+          "start": 84.92,
+          "end": 85.2
         }
       ]
     },
     {
-      "text": "Sekarang kamu tahu",
-      "start": 105.28,
-      "end": 106.36,
-      "duration": 1.08,
+      "text": "Tonton bedah lengkapnya",
+      "start": 85.68,
+      "end": 86.68,
+      "duration": 1.0,
       "words": [
         {
-          "w": "Sekarang",
-          "start": 105.28,
-          "end": 105.82
+          "w": "Tonton",
+          "start": 85.68,
+          "end": 86.04
         },
         {
-          "w": "kamu",
-          "start": 105.82,
-          "end": 106.18
+          "w": "bedah",
+          "start": 86.04,
+          "end": 86.3
         },
         {
-          "w": "tahu",
-          "start": 106.18,
-          "end": 106.36
+          "w": "lengkapnya",
+          "start": 86.3,
+          "end": 86.68
         }
       ]
     },
     {
-      "text": "kenapa?",
-      "start": 106.36,
-      "end": 106.68,
-      "duration": 0.32,
+      "text": "di YouTube Kausal Media",
+      "start": 86.68,
+      "end": 87.72,
+      "duration": 1.04,
       "words": [
         {
-          "w": "kenapa?",
-          "start": 106.36,
-          "end": 106.68
+          "w": "di",
+          "start": 86.68,
+          "end": 86.82
+        },
+        {
+          "w": "YouTube",
+          "start": 86.82,
+          "end": 87.1
+        },
+        {
+          "w": "Kausal",
+          "start": 87.1,
+          "end": 87.52
+        },
+        {
+          "w": "Media",
+          "start": 87.52,
+          "end": 87.72
+        }
+      ]
+    },
+    {
+      "text": "sekarang!",
+      "start": 87.72,
+      "end": 88.1,
+      "duration": 0.38,
+      "words": [
+        {
+          "w": "sekarang!",
+          "start": 87.72,
+          "end": 88.1
         }
       ]
     }

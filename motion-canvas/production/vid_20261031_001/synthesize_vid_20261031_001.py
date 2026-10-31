@@ -19,6 +19,14 @@ TIMINGS_TS_PATH = REPO_ROOT / "motion-canvas/src/scenes/vid_20261031_001/timings
 PUBLIC_AUDIO_PATH = REPO_ROOT / "motion-canvas/public/audio/vid_20261031_001/narration.wav"
 SRC_AUDIO_PATH = REPO_ROOT / "motion-canvas/src/audio/vid_20261031_001.wav"
 
+BEAT_WAVS = [
+    WORK_DIR / "beat_01.wav",
+    WORK_DIR / "beat_02.wav",
+    WORK_DIR / "beat_03.wav",
+    WORK_DIR / "beat_04.wav",
+    WORK_DIR / "beat_05.wav",
+]
+
 def get_api_key():
     env_file = REPO_ROOT / ".env"
     if not env_file.exists():
@@ -69,24 +77,9 @@ def update_quota_file(model_name, prompt_tokens, total_tokens):
     QUOTA_TRACKER.write_text(json.dumps(data, indent=2))
     print(f"Updated quota tracker: date={data['date']}, rpd={data['tts_rpd_used_today']}, tokens={data['tts_tokens_today']}")
 
-def run_tts():
+def synthesize_text_tts(prompt_text: str, out_wav_path: Path):
     api_key = get_api_key()
-    script_data = json.loads(SCRIPT_PATH.read_text())
-    
-    # Read beat spoken text / tts transcripts
-    beats = script_data.get("beats", [])
-    if not beats:
-        raise RuntimeError("No beats found in script.json")
-    
-    beat_texts = []
-    for b in beats:
-        text = b.get("tts_transcript") or b.get("spoken_text", "")
-        if text.strip():
-            beat_texts.append(text.strip())
-            
-    prompt_text = "\n\n".join(beat_texts)
-    print("Full prompt to Gemini TTS:")
-    print(prompt_text[:180] + "... [truncated]\n")
+    print(f"Synthesizing text with Gemini TTS: {prompt_text[:100]}...")
 
     models = [
         "gemini-3.8-flash-tts",
@@ -168,9 +161,9 @@ def run_tts():
         raise RuntimeError("No inline audio data found in response")
 
     audio_bytes = base64.b64decode(audio_data_b64)
-    raw_path = WORK_DIR / "raw_initial.bin"
+    raw_path = WORK_DIR / "raw_beat_05.bin"
     raw_path.write_bytes(audio_bytes)
-    initial_wav = WORK_DIR / "initial_audio.wav"
+    initial_wav = WORK_DIR / "initial_beat_05.wav"
 
     if audio_bytes[:4] == b"RIFF":
         subprocess.run(["ffmpeg", "-y", "-i", str(raw_path), str(initial_wav)], check=True)
@@ -189,28 +182,90 @@ def run_tts():
             str(initial_wav)
         ], check=True)
 
-    print(f"Initial raw audio written to {initial_wav}, duration={get_audio_duration(initial_wav)}s")
-
-    # Convert to 48kHz normalized WAV at -16 LUFS
-    final_wav = WORK_DIR / "narration.wav"
+    # Convert to 48kHz normalized WAV at -16 LUFS with energetic cliffhanger tempo (10.78s)
     subprocess.run([
         "ffmpeg", "-y",
         "-i", str(initial_wav),
+        "-filter:a", "atempo=1.21,loudnorm=I=-16:TP=-1.5:LRA=11",
         "-ar", "48000",
         "-ac", "1",
-        "-af", "loudnorm=I=-16:TP=-1.5:LRA=11",
-        str(final_wav)
+        str(out_wav_path)
     ], check=True)
 
-    final_dur = get_audio_duration(final_wav)
-    print(f"Final 48kHz normalized audio duration: {final_dur}s at {final_wav}")
+    dur = get_audio_duration(out_wav_path)
+    print(f"Beat audio normalized to {dur}s at {out_wav_path}")
+    return out_wav_path
 
-    # Copy to public audio destination
+def ensure_beats_1_to_4():
+    """Ensure beat_01.wav through beat_04.wav exist, slicing from narration.wav if needed."""
+    slice_windows = [
+        (WORK_DIR / "beat_01.wav", 0.0, 20.75),
+        (WORK_DIR / "beat_02.wav", 20.75, 39.46),
+        (WORK_DIR / "beat_03.wav", 39.46, 61.72),
+        (WORK_DIR / "beat_04.wav", 61.72, 77.72),
+    ]
+    narration_file = WORK_DIR / "narration.wav"
+    for wav_file, start_s, end_s in slice_windows:
+        if not wav_file.exists():
+            print(f"Slicing {wav_file.name} ({start_s}s -> {end_s}s) from {narration_file}...")
+            subprocess.run([
+                "ffmpeg", "-y",
+                "-ss", str(start_s),
+                "-to", str(end_s),
+                "-i", str(narration_file),
+                str(wav_file)
+            ], check=True)
+        dur = get_audio_duration(wav_file)
+        expected = round(end_s - start_s, 3)
+        print(f"Cached {wav_file.name}: duration={dur}s (expected ~{expected}s)")
+
+def run_tts():
+    script_data = json.loads(SCRIPT_PATH.read_text())
+    beats = script_data.get("beats", [])
+    if not beats:
+        raise RuntimeError("No beats found in script.json")
+
+    # 1. Ensure beats 1-4 are cached
+    ensure_beats_1_to_4()
+
+    # 2. Get Beat 5 text and synthesize beat_05.wav
+    beat_05_obj = next(b for b in beats if b.get("beat_id") == "beat_05")
+    beat_05_text = beat_05_obj.get("tts_transcript") or beat_05_obj.get("spoken_text", "")
+    beat_05_wav = WORK_DIR / "beat_05.wav"
+
+    print(f"\n--- Synthesizing Beat 5 Cliffhanger ---")
+    print(f"Text: {beat_05_text}")
+    synthesize_text_tts(beat_05_text, beat_05_wav)
+    b5_dur = get_audio_duration(beat_05_wav)
+    print(f"Beat 5 duration: {b5_dur}s")
+
+    # 3. Concatenate beat_01 through beat_05 into narration.wav
+    final_wav = WORK_DIR / "narration.wav"
+    print("\n--- Concatenating Beats 1-5 ---")
+    concat_inputs = []
+    filter_parts = []
+    for i, bw in enumerate(BEAT_WAVS):
+        concat_inputs.extend(["-i", str(bw)])
+        filter_parts.append(f"[{i}:0]")
+    filter_expr = f"{''.join(filter_parts)}concat=n={len(BEAT_WAVS)}:v=0:a=1[out]"
+
+    cmd = ["ffmpeg", "-y"] + concat_inputs + [
+        "-filter_complex", filter_expr,
+        "-map", "[out]",
+        "-ar", "48000",
+        "-ac", "1",
+        str(final_wav)
+    ]
+    subprocess.run(cmd, check=True)
+    total_dur = get_audio_duration(final_wav)
+    print(f"Total narration duration: {total_dur}s (Beats 1-4: 77.72s + Beat 5: {b5_dur}s)")
+
+    # 4. Copy to public and src audio locations
     PUBLIC_AUDIO_PATH.parent.mkdir(parents=True, exist_ok=True)
     subprocess.run(["cp", str(final_wav), str(PUBLIC_AUDIO_PATH)], check=True)
     if SRC_AUDIO_PATH.parent.exists():
         subprocess.run(["cp", str(final_wav), str(SRC_AUDIO_PATH)], check=True)
-    print(f"Copied audio to {PUBLIC_AUDIO_PATH}")
+    print(f"Copied audio to {PUBLIC_AUDIO_PATH} and {SRC_AUDIO_PATH}")
 
     return final_wav
 
