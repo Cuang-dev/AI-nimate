@@ -1,0 +1,1317 @@
+[
+  {
+    "w": "Pernah",
+    "start": 0.0,
+    "end": 0.4
+  },
+  {
+    "w": "gak",
+    "start": 0.4,
+    "end": 0.54
+  },
+  {
+    "w": "sih",
+    "start": 0.54,
+    "end": 0.66
+  },
+  {
+    "w": "kemumikir?",
+    "start": 0.66,
+    "end": 1.22
+  },
+  {
+    "w": "Kenapa",
+    "start": 1.56,
+    "end": 1.76
+  },
+  {
+    "w": "burusan",
+    "start": 1.76,
+    "end": 2.04
+  },
+  {
+    "w": "saham",
+    "start": 2.04,
+    "end": 2.32
+  },
+  {
+    "w": "kita",
+    "start": 2.32,
+    "end": 2.6
+  },
+  {
+    "w": "tiba",
+    "start": 2.6,
+    "end": 2.86
+  },
+  {
+    "w": "-tiba",
+    "start": 2.86,
+    "end": 3.06
+  },
+  {
+    "w": "anjulok",
+    "start": 3.06,
+    "end": 3.46
+  },
+  {
+    "w": "8",
+    "start": 3.46,
+    "end": 3.72
+  },
+  {
+    "w": "%",
+    "start": 3.72,
+    "end": 4.1
+  },
+  {
+    "w": "sampai",
+    "start": 4.1,
+    "end": 4.52
+  },
+  {
+    "w": "perdagangan",
+    "start": 4.52,
+    "end": 5.04
+  },
+  {
+    "w": "dibegukan",
+    "start": 5.04,
+    "end": 5.5
+  },
+  {
+    "w": "sementara?",
+    "start": 5.5,
+    "end": 5.98
+  },
+  {
+    "w": "Ternyata,",
+    "start": 6.72,
+    "end": 7.26
+  },
+  {
+    "w": "wasit",
+    "start": 7.68,
+    "end": 7.96
+  },
+  {
+    "w": "burusan",
+    "start": 7.96,
+    "end": 8.2
+  },
+  {
+    "w": "saham",
+    "start": 8.2,
+    "end": 8.5
+  },
+  {
+    "w": "dunia,",
+    "start": 8.5,
+    "end": 8.92
+  },
+  {
+    "w": "bernama",
+    "start": 9.06,
+    "end": 9.28
+  },
+  {
+    "w": "MSCI,",
+    "start": 9.28,
+    "end": 10.02
+  },
+  {
+    "w": "baru",
+    "start": 10.56,
+    "end": 10.64
+  },
+  {
+    "w": "saja",
+    "start": 10.64,
+    "end": 10.88
+  },
+  {
+    "w": "memberi",
+    "start": 10.88,
+    "end": 11.16
+  },
+  {
+    "w": "ancaman",
+    "start": 11.16,
+    "end": 11.48
+  },
+  {
+    "w": "keras.",
+    "start": 11.48,
+    "end": 11.76
+  },
+  {
+    "w": "Ibarat",
+    "start": 12.52,
+    "end": 13.08
+  },
+  {
+    "w": "dari",
+    "start": 13.08,
+    "end": 13.38
+  },
+  {
+    "w": "legal",
+    "start": 13.38,
+    "end": 13.64
+  },
+  {
+    "w": "utama",
+    "start": 13.64,
+    "end": 13.9
+  },
+  {
+    "w": "dunia,",
+    "start": 13.9,
+    "end": 14.28
+  },
+  {
+    "w": "Indonesia",
+    "start": 14.72,
+    "end": 14.96
+  },
+  {
+    "w": "terancam",
+    "start": 14.96,
+    "end": 15.46
+  },
+  {
+    "w": "diturunkan",
+    "start": 15.46,
+    "end": 15.9
+  },
+  {
+    "w": "paksa",
+    "start": 15.9,
+    "end": 16.3
+  },
+  {
+    "w": "kekasta",
+    "start": 16.3,
+    "end": 16.68
+  },
+  {
+    "w": "terandah,",
+    "start": 16.68,
+    "end": 17.14
+  },
+  {
+    "w": "Zona",
+    "start": 17.7,
+    "end": 17.96
+  },
+  {
+    "w": "isolasi",
+    "start": 17.96,
+    "end": 18.38
+  },
+  {
+    "w": "selevel",
+    "start": 18.38,
+    "end": 18.76
+  },
+  {
+    "w": "negara",
+    "start": 18.76,
+    "end": 19.22
+  },
+  {
+    "w": "yang",
+    "start": 19.22,
+    "end": 19.38
+  },
+  {
+    "w": "lagi",
+    "start": 19.38,
+    "end": 19.54
+  },
+  {
+    "w": "krisis",
+    "start": 19.54,
+    "end": 19.92
+  },
+  {
+    "w": "berat.",
+    "start": 19.92,
+    "end": 20.3
+  },
+  {
+    "w": "Akhir",
+    "start": 21.2,
+    "end": 21.58
+  },
+  {
+    "w": "masalahnya",
+    "start": 21.58,
+    "end": 22.1
+  },
+  {
+    "w": "ada",
+    "start": 22.1,
+    "end": 22.34
+  },
+  {
+    "w": "di",
+    "start": 22.34,
+    "end": 22.5
+  },
+  {
+    "w": "saham",
+    "start": 22.5,
+    "end": 22.84
+  },
+  {
+    "w": "yang",
+    "start": 22.84,
+    "end": 22.96
+  },
+  {
+    "w": "beneran",
+    "start": 22.96,
+    "end": 23.32
+  },
+  {
+    "w": "di",
+    "start": 23.32,
+    "end": 23.42
+  },
+  {
+    "w": "Jualbeba",
+    "start": 23.42,
+    "end": 23.82
+  },
+  {
+    "w": "Skwar",
+    "start": 23.82,
+    "end": 24.1
+  },
+  {
+    "w": "Gabyasa.",
+    "start": 24.1,
+    "end": 24.62
+  },
+  {
+    "w": "Bayangin",
+    "start": 25.36,
+    "end": 26.0
+  },
+  {
+    "w": "ada",
+    "start": 26.0,
+    "end": 26.36
+  },
+  {
+    "w": "perusahaan",
+    "start": 26.36,
+    "end": 26.78
+  },
+  {
+    "w": "raksasa",
+    "start": 26.78,
+    "end": 27.14
+  },
+  {
+    "w": "seharga",
+    "start": 27.14,
+    "end": 27.54
+  },
+  {
+    "w": "3500",
+    "start": 27.54,
+    "end": 28.38
+  },
+  {
+    "w": "rupiah,",
+    "start": 28.38,
+    "end": 29.1
+  },
+  {
+    "w": "lebih",
+    "start": 29.56,
+    "end": 29.72
+  },
+  {
+    "w": "mahal",
+    "start": 29.72,
+    "end": 30.02
+  },
+  {
+    "w": "dari",
+    "start": 30.02,
+    "end": 30.2
+  },
+  {
+    "w": "bang",
+    "start": 30.2,
+    "end": 30.42
+  },
+  {
+    "w": "BSA.",
+    "start": 30.42,
+    "end": 30.74
+  },
+  {
+    "w": "Tapi",
+    "start": 31.4,
+    "end": 31.7
+  },
+  {
+    "w": "ternyata,",
+    "start": 31.7,
+    "end": 32.06
+  },
+  {
+    "w": "97",
+    "start": 32.54,
+    "end": 32.9
+  },
+  {
+    "w": "%",
+    "start": 32.9,
+    "end": 33.3
+  },
+  {
+    "w": "sahamnya",
+    "start": 33.3,
+    "end": 33.82
+  },
+  {
+    "w": "di",
+    "start": 33.82,
+    "end": 33.94
+  },
+  {
+    "w": "kunci",
+    "start": 33.94,
+    "end": 34.22
+  },
+  {
+    "w": "rapat",
+    "start": 34.22,
+    "end": 34.56
+  },
+  {
+    "w": "oleh",
+    "start": 34.56,
+    "end": 34.76
+  },
+  {
+    "w": "4",
+    "start": 34.76,
+    "end": 34.98
+  },
+  {
+    "w": "pemilik",
+    "start": 34.98,
+    "end": 35.32
+  },
+  {
+    "w": "aslinya",
+    "start": 35.32,
+    "end": 35.72
+  },
+  {
+    "w": "saja,",
+    "start": 35.72,
+    "end": 36.0
+  },
+  {
+    "w": "yang",
+    "start": 36.64,
+    "end": 36.92
+  },
+  {
+    "w": "beneran",
+    "start": 36.92,
+    "end": 37.26
+  },
+  {
+    "w": "beredar",
+    "start": 37.26,
+    "end": 37.54
+  },
+  {
+    "w": "di",
+    "start": 37.54,
+    "end": 37.66
+  },
+  {
+    "w": "pasar,",
+    "start": 37.66,
+    "end": 37.9
+  },
+  {
+    "w": "cuma",
+    "start": 38.5,
+    "end": 38.62
+  },
+  {
+    "w": "3%.",
+    "start": 38.62,
+    "end": 39.46
+  },
+  {
+    "w": "Karena",
+    "start": 39.46,
+    "end": 40.56
+  },
+  {
+    "w": "barangnya",
+    "start": 40.56,
+    "end": 40.96
+  },
+  {
+    "w": "langkah",
+    "start": 40.96,
+    "end": 41.22
+  },
+  {
+    "w": "banget,",
+    "start": 41.22,
+    "end": 41.48
+  },
+  {
+    "w": "harga",
+    "start": 41.84,
+    "end": 42.02
+  },
+  {
+    "w": "sahamnya",
+    "start": 42.02,
+    "end": 42.4
+  },
+  {
+    "w": "gampang",
+    "start": 42.4,
+    "end": 42.66
+  },
+  {
+    "w": "banget",
+    "start": 42.66,
+    "end": 42.94
+  },
+  {
+    "w": "di",
+    "start": 42.94,
+    "end": 43.06
+  },
+  {
+    "w": "Goreng",
+    "start": 43.06,
+    "end": 43.34
+  },
+  {
+    "w": "Naik",
+    "start": 43.34,
+    "end": 43.64
+  },
+  {
+    "w": "berkali",
+    "start": 43.64,
+    "end": 43.92
+  },
+  {
+    "w": "-kali",
+    "start": 43.92,
+    "end": 44.12
+  },
+  {
+    "w": "lipat.",
+    "start": 44.12,
+    "end": 44.44
+  },
+  {
+    "w": "Masalahnya,",
+    "start": 45.36,
+    "end": 46.0
+  },
+  {
+    "w": "raksa",
+    "start": 46.26,
+    "end": 46.46
+  },
+  {
+    "w": "dan",
+    "start": 46.46,
+    "end": 46.56
+  },
+  {
+    "w": "raksasa",
+    "start": 46.56,
+    "end": 46.92
+  },
+  {
+    "w": "dunia",
+    "start": 46.92,
+    "end": 47.36
+  },
+  {
+    "w": "punya",
+    "start": 47.36,
+    "end": 47.64
+  },
+  {
+    "w": "sistem",
+    "start": 47.64,
+    "end": 47.92
+  },
+  {
+    "w": "komputer",
+    "start": 47.92,
+    "end": 48.26
+  },
+  {
+    "w": "otomatis",
+    "start": 48.26,
+    "end": 48.88
+  },
+  {
+    "w": "yang",
+    "start": 48.88,
+    "end": 49.38
+  },
+  {
+    "w": "wajib",
+    "start": 49.38,
+    "end": 49.8
+  },
+  {
+    "w": "beli",
+    "start": 49.8,
+    "end": 50.02
+  },
+  {
+    "w": "saham",
+    "start": 50.02,
+    "end": 50.28
+  },
+  {
+    "w": "terbesar",
+    "start": 50.28,
+    "end": 50.74
+  },
+  {
+    "w": "di",
+    "start": 50.74,
+    "end": 50.92
+  },
+  {
+    "w": "tiap",
+    "start": 50.92,
+    "end": 51.18
+  },
+  {
+    "w": "negara.",
+    "start": 51.18,
+    "end": 51.5
+  },
+  {
+    "w": "Kalau",
+    "start": 51.5,
+    "end": 52.54
+  },
+  {
+    "w": "sahamnya",
+    "start": 52.54,
+    "end": 52.9
+  },
+  {
+    "w": "cuma",
+    "start": 52.9,
+    "end": 53.08
+  },
+  {
+    "w": "3",
+    "start": 53.08,
+    "end": 53.34
+  },
+  {
+    "w": "%",
+    "start": 53.34,
+    "end": 53.64
+  },
+  {
+    "w": "tadi,",
+    "start": 53.64,
+    "end": 54.02
+  },
+  {
+    "w": "masuk",
+    "start": 54.24,
+    "end": 54.4
+  },
+  {
+    "w": "daftar",
+    "start": 54.4,
+    "end": 54.76
+  },
+  {
+    "w": "wajib",
+    "start": 54.76,
+    "end": 55.06
+  },
+  {
+    "w": "beli,",
+    "start": 55.06,
+    "end": 55.3
+  },
+  {
+    "w": "uang",
+    "start": 55.8,
+    "end": 55.96
+  },
+  {
+    "w": "triliunan",
+    "start": 55.96,
+    "end": 56.4
+  },
+  {
+    "w": "milik",
+    "start": 56.4,
+    "end": 56.68
+  },
+  {
+    "w": "-bule",
+    "start": 56.68,
+    "end": 56.86
+  },
+  {
+    "w": "bakal",
+    "start": 56.86,
+    "end": 57.16
+  },
+  {
+    "w": "terjebak",
+    "start": 57.16,
+    "end": 57.48
+  },
+  {
+    "w": "beli",
+    "start": 57.48,
+    "end": 57.8
+  },
+  {
+    "w": "di",
+    "start": 57.8,
+    "end": 57.92
+  },
+  {
+    "w": "harga",
+    "start": 57.92,
+    "end": 58.08
+  },
+  {
+    "w": "pucuk.",
+    "start": 58.08,
+    "end": 58.46
+  },
+  {
+    "w": "Dan",
+    "start": 58.96,
+    "end": 59.2
+  },
+  {
+    "w": "pas",
+    "start": 59.2,
+    "end": 59.38
+  },
+  {
+    "w": "mau",
+    "start": 59.38,
+    "end": 59.54
+  },
+  {
+    "w": "jual,",
+    "start": 59.54,
+    "end": 59.9
+  },
+  {
+    "w": "nggak",
+    "start": 60.4,
+    "end": 60.6
+  },
+  {
+    "w": "ada",
+    "start": 60.6,
+    "end": 60.72
+  },
+  {
+    "w": "pembelinya.",
+    "start": 60.72,
+    "end": 61.12
+  },
+  {
+    "w": "Begitu",
+    "start": 62.32,
+    "end": 62.7
+  },
+  {
+    "w": "wasit",
+    "start": 62.7,
+    "end": 62.94
+  },
+  {
+    "w": "dunia",
+    "start": 62.94,
+    "end": 63.22
+  },
+  {
+    "w": "menolak",
+    "start": 63.22,
+    "end": 63.58
+  },
+  {
+    "w": "saham",
+    "start": 63.58,
+    "end": 63.94
+  },
+  {
+    "w": "seperti",
+    "start": 63.94,
+    "end": 64.2
+  },
+  {
+    "w": "ini",
+    "start": 64.2,
+    "end": 64.52
+  },
+  {
+    "w": "dan",
+    "start": 64.52,
+    "end": 64.84
+  },
+  {
+    "w": "mengancam",
+    "start": 64.84,
+    "end": 65.28
+  },
+  {
+    "w": "membekukan",
+    "start": 65.28,
+    "end": 65.6
+  },
+  {
+    "w": "Indonesia,",
+    "start": 65.6,
+    "end": 66.06
+  },
+  {
+    "w": "investor",
+    "start": 66.76,
+    "end": 67.14
+  },
+  {
+    "w": "besar",
+    "start": 67.14,
+    "end": 67.34
+  },
+  {
+    "w": "langsung",
+    "start": 67.34,
+    "end": 67.64
+  },
+  {
+    "w": "panik",
+    "start": 67.64,
+    "end": 68.0
+  },
+  {
+    "w": "tarik",
+    "start": 68.0,
+    "end": 68.24
+  },
+  {
+    "w": "uang.",
+    "start": 68.24,
+    "end": 68.46
+  },
+  {
+    "w": "Tampak",
+    "start": 68.9,
+    "end": 69.5
+  },
+  {
+    "w": "ampun,",
+    "start": 69.5,
+    "end": 69.88
+  },
+  {
+    "w": "harga",
+    "start": 70.16,
+    "end": 70.36
+  },
+  {
+    "w": "saham",
+    "start": 70.36,
+    "end": 70.64
+  },
+  {
+    "w": "langsung",
+    "start": 70.64,
+    "end": 70.9
+  },
+  {
+    "w": "ambruk",
+    "start": 70.9,
+    "end": 71.38
+  },
+  {
+    "w": "mentok",
+    "start": 71.38,
+    "end": 71.6
+  },
+  {
+    "w": "batas",
+    "start": 71.6,
+    "end": 71.88
+  },
+  {
+    "w": "bahwa",
+    "start": 71.88,
+    "end": 72.1
+  },
+  {
+    "w": "berhari",
+    "start": 72.1,
+    "end": 72.5
+  },
+  {
+    "w": "-hari,",
+    "start": 72.5,
+    "end": 72.72
+  },
+  {
+    "w": "uang",
+    "start": 73.26,
+    "end": 73.32
+  },
+  {
+    "w": "asing",
+    "start": 73.32,
+    "end": 73.6
+  },
+  {
+    "w": "kabur,",
+    "start": 73.6,
+    "end": 73.98
+  },
+  {
+    "w": "dan",
+    "start": 74.36,
+    "end": 74.54
+  },
+  {
+    "w": "nilai",
+    "start": 74.54,
+    "end": 74.82
+  },
+  {
+    "w": "lebih",
+    "start": 74.82,
+    "end": 75.08
+  },
+  {
+    "w": "dari",
+    "start": 75.08,
+    "end": 75.22
+  },
+  {
+    "w": "500",
+    "start": 75.22,
+    "end": 75.52
+  },
+  {
+    "w": "triliun",
+    "start": 75.52,
+    "end": 75.98
+  },
+  {
+    "w": "rupiah",
+    "start": 75.98,
+    "end": 76.28
+  },
+  {
+    "w": "menguap",
+    "start": 76.28,
+    "end": 76.78
+  },
+  {
+    "w": "begitu",
+    "start": 76.78,
+    "end": 77.1
+  },
+  {
+    "w": "saja.",
+    "start": 77.1,
+    "end": 77.36
+  },
+  {
+    "w": "Biar",
+    "start": 78.08,
+    "end": 78.72
+  },
+  {
+    "w": "Indonesia",
+    "start": 78.72,
+    "end": 79.02
+  },
+  {
+    "w": "nggak",
+    "start": 79.02,
+    "end": 79.28
+  },
+  {
+    "w": "jadi",
+    "start": 79.28,
+    "end": 79.5
+  },
+  {
+    "w": "diboy",
+    "start": 79.5,
+    "end": 79.72
+  },
+  {
+    "w": "kut",
+    "start": 79.72,
+    "end": 79.88
+  },
+  {
+    "w": "dunia,",
+    "start": 79.88,
+    "end": 80.22
+  },
+  {
+    "w": "pemerintah",
+    "start": 80.8,
+    "end": 81.34
+  },
+  {
+    "w": "lewat",
+    "start": 81.34,
+    "end": 81.72
+  },
+  {
+    "w": "OJK",
+    "start": 81.72,
+    "end": 82.22
+  },
+  {
+    "w": "dan",
+    "start": 82.22,
+    "end": 82.4
+  },
+  {
+    "w": "buru",
+    "start": 82.4,
+    "end": 82.6
+  },
+  {
+    "w": "seeffek",
+    "start": 82.6,
+    "end": 83.02
+  },
+  {
+    "w": "terpaksa",
+    "start": 83.02,
+    "end": 83.78
+  },
+  {
+    "w": "merombak",
+    "start": 83.78,
+    "end": 84.06
+  },
+  {
+    "w": "aturan.",
+    "start": 84.06,
+    "end": 84.34
+  },
+  {
+    "w": "Sekarang",
+    "start": 85.08,
+    "end": 85.4
+  },
+  {
+    "w": "minimal",
+    "start": 85.4,
+    "end": 85.6
+  },
+  {
+    "w": "15",
+    "start": 85.6,
+    "end": 86.06
+  },
+  {
+    "w": "%",
+    "start": 86.06,
+    "end": 86.36
+  },
+  {
+    "w": "saham",
+    "start": 86.36,
+    "end": 86.66
+  },
+  {
+    "w": "perusahaan",
+    "start": 86.66,
+    "end": 87.14
+  },
+  {
+    "w": "wajib",
+    "start": 87.14,
+    "end": 87.5
+  },
+  {
+    "w": "berbedar",
+    "start": 87.5,
+    "end": 87.84
+  },
+  {
+    "w": "bebas",
+    "start": 87.84,
+    "end": 88.12
+  },
+  {
+    "w": "di",
+    "start": 88.12,
+    "end": 88.32
+  },
+  {
+    "w": "masyarakat.",
+    "start": 88.32,
+    "end": 88.9
+  },
+  {
+    "w": "Dan",
+    "start": 89.48,
+    "end": 89.66
+  },
+  {
+    "w": "siapapunnya",
+    "start": 89.66,
+    "end": 90.34
+  },
+  {
+    "w": "punya",
+    "start": 90.34,
+    "end": 90.56
+  },
+  {
+    "w": "saham",
+    "start": 90.56,
+    "end": 90.88
+  },
+  {
+    "w": "di",
+    "start": 90.88,
+    "end": 90.98
+  },
+  {
+    "w": "atas",
+    "start": 90.98,
+    "end": 91.16
+  },
+  {
+    "w": "1%,",
+    "start": 91.16,
+    "end": 91.86
+  },
+  {
+    "w": "wajib",
+    "start": 91.86,
+    "end": 92.4
+  },
+  {
+    "w": "dibuka",
+    "start": 92.4,
+    "end": 92.8
+  },
+  {
+    "w": "namanya",
+    "start": 92.8,
+    "end": 93.22
+  },
+  {
+    "w": "ke",
+    "start": 93.22,
+    "end": 93.34
+  },
+  {
+    "w": "publik.",
+    "start": 93.34,
+    "end": 93.74
+  },
+  {
+    "w": "Plajarnya",
+    "start": 94.82,
+    "end": 95.3
+  },
+  {
+    "w": "buat",
+    "start": 95.3,
+    "end": 95.46
+  },
+  {
+    "w": "kita,",
+    "start": 95.46,
+    "end": 95.78
+  },
+  {
+    "w": "kalau",
+    "start": 96.26,
+    "end": 96.4
+  },
+  {
+    "w": "mau",
+    "start": 96.4,
+    "end": 96.58
+  },
+  {
+    "w": "taruh",
+    "start": 96.58,
+    "end": 96.88
+  },
+  {
+    "w": "uang",
+    "start": 96.88,
+    "end": 97.1
+  },
+  {
+    "w": "di",
+    "start": 97.1,
+    "end": 97.24
+  },
+  {
+    "w": "saham",
+    "start": 97.24,
+    "end": 97.6
+  },
+  {
+    "w": "atau",
+    "start": 97.6,
+    "end": 97.78
+  },
+  {
+    "w": "investasi",
+    "start": 97.78,
+    "end": 98.18
+  },
+  {
+    "w": "apapun,",
+    "start": 98.18,
+    "end": 98.66
+  },
+  {
+    "w": "jangan",
+    "start": 99.08,
+    "end": 99.22
+  },
+  {
+    "w": "silau",
+    "start": 99.22,
+    "end": 99.58
+  },
+  {
+    "w": "sama",
+    "start": 99.58,
+    "end": 99.76
+  },
+  {
+    "w": "harga",
+    "start": 99.76,
+    "end": 100.02
+  },
+  {
+    "w": "yang",
+    "start": 100.02,
+    "end": 100.14
+  },
+  {
+    "w": "naik",
+    "start": 100.14,
+    "end": 100.34
+  },
+  {
+    "w": "terus,",
+    "start": 100.34,
+    "end": 100.5
+  },
+  {
+    "w": "pastikan",
+    "start": 101.16,
+    "end": 101.44
+  },
+  {
+    "w": "barangnya",
+    "start": 101.44,
+    "end": 101.88
+  },
+  {
+    "w": "beneran",
+    "start": 101.88,
+    "end": 102.2
+  },
+  {
+    "w": "ramai",
+    "start": 102.2,
+    "end": 102.48
+  },
+  {
+    "w": "pembelinya,",
+    "start": 102.48,
+    "end": 102.88
+  },
+  {
+    "w": "supaya",
+    "start": 103.38,
+    "end": 103.6
+  },
+  {
+    "w": "uang",
+    "start": 103.6,
+    "end": 103.82
+  },
+  {
+    "w": "-mu",
+    "start": 103.82,
+    "end": 103.96
+  },
+  {
+    "w": "nggak",
+    "start": 103.96,
+    "end": 104.16
+  },
+  {
+    "w": "ikut",
+    "start": 104.16,
+    "end": 104.36
+  },
+  {
+    "w": "nyangkut.",
+    "start": 104.36,
+    "end": 104.72
+  },
+  {
+    "w": "Sekarang",
+    "start": 105.28,
+    "end": 105.82
+  },
+  {
+    "w": "kamu",
+    "start": 105.82,
+    "end": 106.18
+  },
+  {
+    "w": "tahu",
+    "start": 106.18,
+    "end": 106.36
+  },
+  {
+    "w": "kenapa?",
+    "start": 106.36,
+    "end": 106.68
+  }
+]
