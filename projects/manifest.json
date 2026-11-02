@@ -1,5 +1,321 @@
 [
   {
+    "id": "vid_20261102_001",
+    "dirName": "kausalmedia_20261102_pov-buka-sewa-meja-mahjong",
+    "channel": "kausalmedia",
+    "channelLabel": "Kausal Media",
+    "series": "POV:",
+    "date": "2026-11-02",
+    "dateCompact": "20261102",
+    "slug": "pov-buka-sewa-meja-mahjong",
+    "title": "POV: Lo Buka Bisnis Sewa Meja Mahjong (Rahasia Cuan 5 Jam & Mesin Uang Tersembunyi)",
+    "subtitle": "Bongkar Mesin Uang Lounge Mahjong Otomatis vs Sewa Harian",
+    "description": "Bisnis lounge mahjong otomatis bukan sekadar menyewakan meja, melainkan mengunci 4 pemain selama 5 jam untuk memanen laba kotor 70% dari pesanan makanan dan minuman, sementara rental portabel harian menawarkan efisiensi modal 6 kali lipat lebih cepat balik modal.",
+    "language": "ID",
+    "durationSec": 539.257,
+    "aspects": [
+      "16:9"
+    ],
+    "primaryVideo": "video_16x9.mp4",
+    "poster": "thumbnail.jpg",
+    "files": {
+      "embed.html": 3540,
+      "index.html": 108389,
+      "meta.json": 19423,
+      "narration.wav": 25884400,
+      "play_badge.png": 2593,
+      "play_badge.svg": 254,
+      "project_config.json": 5422,
+      "script.json": 17059,
+      "thumb.jpg": 589058,
+      "thumb_16x9.jpg": 589058,
+      "thumbnail.jpg": 589058,
+      "thumbnail_og.jpg": 589058,
+      "timings.json": 370043,
+      "video.mp4": 33921101,
+      "video_16x9.mp4": 33921101,
+      "qa_frames/beat1.jpg": 181701,
+      "qa_frames/beat10.jpg": 142493,
+      "qa_frames/beat10_16x9.jpg": 145102,
+      "qa_frames/beat1_16x9.jpg": 182589,
+      "qa_frames/beat2.jpg": 169219,
+      "qa_frames/beat2_16x9.jpg": 169219,
+      "qa_frames/beat3.jpg": 139518,
+      "qa_frames/beat3_16x9.jpg": 139065,
+      "qa_frames/beat4.jpg": 129666,
+      "qa_frames/beat4_16x9.jpg": 129666,
+      "qa_frames/beat5.jpg": 128755,
+      "qa_frames/beat5_16x9.jpg": 129663,
+      "qa_frames/beat6.jpg": 112931,
+      "qa_frames/beat6_16x9.jpg": 115595,
+      "qa_frames/beat7.jpg": 145038,
+      "qa_frames/beat7_16x9.jpg": 143302,
+      "qa_frames/beat8.jpg": 162739,
+      "qa_frames/beat8_16x9.jpg": 164974,
+      "qa_frames/beat9.jpg": 171200,
+      "qa_frames/beat9_16x9.jpg": 174331
+    },
+    "qaStatus": "14/14 PASS",
+    "qaFrameFiles": [
+      "beat1.jpg",
+      "beat10.jpg",
+      "beat10_16x9.jpg",
+      "beat1_16x9.jpg",
+      "beat2.jpg",
+      "beat2_16x9.jpg",
+      "beat3.jpg",
+      "beat3_16x9.jpg",
+      "beat4.jpg",
+      "beat4_16x9.jpg",
+      "beat5.jpg",
+      "beat5_16x9.jpg",
+      "beat6.jpg",
+      "beat6_16x9.jpg",
+      "beat7.jpg",
+      "beat7_16x9.jpg",
+      "beat8.jpg",
+      "beat8_16x9.jpg",
+      "beat9.jpg",
+      "beat9_16x9.jpg"
+    ],
+    "beats": [
+      {
+        "beat": "01",
+        "title": "Beat 1",
+        "startSec": 0,
+        "endSec": 53.991,
+        "durationSec": 53.991,
+        "narration": "Poof, bayangin posisi lo lagi jalan malaminggu di Kauasan Rukopantai Indah Kapuk atau Gadding Serpong. Di balik pintu kaca transparan berpendingin udara, lo meninar suara gemeretak batu beradu cepat disambut tawa lepas 4 orang yang lagi duduk mengelilingi meja kain hijau. Di papan depan kasir, tertulis tarif sewa yang kelihatan sangat murah meriah, cuma 60 riburupia per meja untuk 1 jam, alias 15 riburupia saja per kepala. Tapi anehnya, daftar antreantamu di aplikasi reservasi sudah mengular panjang sampai tengah malam, bahkan ruangan privat penuh di pesan berminggung -minggung sebelumnya. Buat orang awam, ini cuma tempat non -kronksantai main permainan papan tradisional. Tapi buat pemilik ruko yang paham mesin uangnya, meja hijau otomatis ini diam -diam mencetak omset puluhan hingga ratusan juta rupia perbulan. Pertanyaannya, bagaimana bisnis yang tarifnya cuma yajahan ini bisa menghasilkan mergin fantastis?",
+        "keyframe": "qa_frames/beat1.jpg",
+        "keyframe9x16": "qa_frames/beat1.jpg",
+        "keyframe16x9": "qa_frames/beat1_16x9.jpg"
+      },
+      {
+        "beat": "02",
+        "title": "Beat 2",
+        "startSec": 53.991,
+        "endSec": 110.622,
+        "durationSec": 56.631,
+        "narration": "POV untuk memahami kenapa orang ketagihan lo harus melihat teknologi di dalam meja seharga 12 juta rupiah ini. Dulu, main majong tradisional itu melelahkan karena setiap ronda pemain harus mengocok batu secara manual dan menumpuk tembok selama 5 menit. Tapi, mesin 4 motor import dari fosian di sini mengubah segalanya. Meja ini bekerja dengan 2 set batu magnetik berisi 144 batu dengan inti besi polaritas khusus, biasanya 1 set berwanda diru dan 1 set hijau. Begitu ronda selesai pemain cukup menekan tombol tengah. Lubang meja terbuka, batu kotor di telan masuk ke dalam dramb pemutar magnetik dan dalam waktu 35 detik saja, elevatore otomatis mendorong naik 4 baris batu baru yang sudah tersusun rapi sempurna. Kecepatan putaran tanpa jadah ini menciptakan efek psikologikasino, pemain tidak pernah sempat bosan atau pun berfigur untuk berhenti. POV,",
+        "keyframe": "qa_frames/beat2.jpg",
+        "keyframe9x16": "qa_frames/beat2.jpg",
+        "keyframe16x9": "qa_frames/beat2_16x9.jpg"
+      },
+      {
+        "beat": "03",
+        "title": "Beat 3",
+        "startSec": 110.622,
+        "endSec": 158.893,
+        "durationSec": 48.271,
+        "narration": "POV, sekarang kita beda senjata paling mematikan dari bisnis ini, durasi retensi pelanggan. Kalau lo buka kafe kopi kekinian, orang beli satu cangkir kopi susu 35 ribu rupiah, lalu duduk menyeniri sambil kerja seharian memakai sambungan internet gratis. Kalau lo buka arena biliar, orang sewa meja 1 -2 jam lalu langsung bubar begitu selesai bermain. Tapi, mahjong punya aturan sakral yang sangat unik, satu sesistandar terdiri dari 4 putaran angin, yaitu angin timur, selatan, barat, dan utara, dengan total 16 ronde. Format permainan ini mengwajibkan tepat -empat orang duduk bersama, dan tidak ada 1 orang pun yang boleh pulang duluan sebelum putaran selesai. Akibatnya, satu kelompok pemain otomatis terkunci duduk di meja lo selama 4 -5 jam penuh tanpa bisa kabur ke mana -mana.",
+        "keyframe": "qa_frames/beat3.jpg",
+        "keyframe9x16": "qa_frames/beat3.jpg",
+        "keyframe16x9": "qa_frames/beat3_16x9.jpg"
+      },
+      {
+        "beat": "04",
+        "title": "Beat 4",
+        "startSec": 158.893,
+        "endSec": 214.684,
+        "durationSec": 55.791,
+        "narration": "POV kalau lo tergior membuka launch fisik di Rukokomersial berapa modal awal yang harus lo siapkan di rekening? Mari kita hitung anggaran belanja modal untuk kapasitas 8 meja. Pertama, sewa Rukko 2 lantai di lokasi strategis memakan biaya sekitar 150 juta rupiah per tahun. Kedua, pembelian 8 unit meja otomatis kelas komersial seharga 12 juta rupiah per unit memakan biaya 96 juta rupiah. Ketiga, renovasi partisi dinding ke dap suara dan pemasangan pendingin -udara pendingin di setiap ruang menghabiskan 75 juta rupiah. Ini crucial karena benturan ratusan batu majong sangat berisik dan bisa memicuk komplent tetangga Rukko. Terakhir, installasi kamera pengawas pengaman, sistem kasir dan legalitas izin usaha memakan 29 juta rupiah. Total modal awal mencapai 350 juta rupiah.",
+        "keyframe": "qa_frames/beat4.jpg",
+        "keyframe9x16": "qa_frames/beat4.jpg",
+        "keyframe16x9": "qa_frames/beat4_16x9.jpg"
+      },
+      {
+        "beat": "05",
+        "title": "Beat 5",
+        "startSec": 214.684,
+        "endSec": 271.315,
+        "durationSec": 56.631,
+        "narration": "POV, lo pasti heran, bagaimana model 350 juta rupiah bisa balik kalau tarif sewanya cuma 60 ribu rupiah perjamb. Di sini lah rahasia dapur para pemilik launch berpengalaman. Tarif sewa meja 60 ribu rupiah perjamb itu sebenarnya hanya lah umpan pancingan atau produk rugi untuk menarik pengunjung masuk. Uang sewa meja murni bahkan hampir tidak cukup untuk membayar tagihan listrik pendingin udara dan biaya sewarukok. Mesin uang aslinya yang sesungguhnya ada pada penjualan makanan dan minuman, bayangkan empat orang yang duduk berfigur keras selama 5 jam tanpa henti pasti akan kehausan dan kelataran. Mereka memesan gelas asli yang teh manis, kopi susu, seporti migor yang instan hingga aneka keranjang dimsam hangat. Seluruh menopraktis ini memiliki margin laba kotor luar biasa tebal, mencapai 70 persen.",
+        "keyframe": "qa_frames/beat5.jpg",
+        "keyframe9x16": "qa_frames/beat5.jpg",
+        "keyframe16x9": "qa_frames/beat5_16x9.jpg"
+      },
+      {
+        "beat": "06",
+        "title": "Beat 6",
+        "startSec": 271.315,
+        "endSec": 320.546,
+        "durationSec": 49.231,
+        "narration": "P -O -V, mari kita beda stru kasir nyata dari satu sesi meja perifat selama lima jam. Pertama, biaya sewa meja lima jam tercatat 300 ribu rupiah. Kedua, selama lima jam bermain, empat orang memesan 8 gelas minuman dingin seharga 166 ribu rupiah, empat porsi migorang spesial seharga 180 ribu rupiah, dan tiga keranjang siomai seharga 110 ribu rupiah. Total tagihan di stru kasir menjadi 750 ribu rupiah. Sekarang, kita kurangi biaya modalnya. Harga pokok bahan bagumakanan dan minuman hanya menghabiskan 135 ribu rupiah. Sedangkan biaya listrik untuk lampu dan pendingin udara sekitar 45 ribu rupiah. Artinya, dari satu meja saja dalam lima jam, lo mengantongi laba kotor sebesar 570 ribu rupiah.",
+        "keyframe": "qa_frames/beat6.jpg",
+        "keyframe9x16": "qa_frames/beat6.jpg",
+        "keyframe16x9": "qa_frames/beat6_16x9.jpg"
+      },
+      {
+        "beat": "07",
+        "title": "Beat 7",
+        "startSec": 320.546,
+        "endSec": 374.657,
+        "durationSec": 54.111,
+        "narration": "POV, kalau angka di atas kertas terdengar sangat menggirkan, bersiaplah menghadapi jubakan operasional pertama yang paling mematikan. Kutukan hari kerja. Banyak pengusaha pemula menghitung proyeksi pendapatan dengan asumsi delapan meja trisi penuh dari pagi sampai malam setiap hari. Realitas dilapangan sangat berbeda dan gejam. Dari hari senin sampai kamis yang, tingkat ke trisian meja lo biasanya anjloc di bawah 15 persen. Meja meja kosong melompong, tapi tagihkan sewaruku dan gaji karyawan tetap berjalan setiap detik. Sebaliknya, saat hari jumat malam hingga minggu malam, permintaan meledak 100 persen hinggal lo terpaksa menolak belasan calontamu karena kapasitas meja terkunci maksimal 32 orang. Praktis, lo jumap punya jendela masa kita 30 jam per minggu untuk menutupi seluruh biaya operasional 168 jam seminggu.",
+        "keyframe": "qa_frames/beat7.jpg",
+        "keyframe9x16": "qa_frames/beat7.jpg",
+        "keyframe16x9": "qa_frames/beat7_16x9.jpg"
+      },
+      {
+        "beat": "08",
+        "title": "Beat 8",
+        "startSec": 374.657,
+        "endSec": 428.077,
+        "durationSec": 53.42,
+        "narration": "POV, jebakan kedua yang sering bikin pemilik pusing tujuk liling adalah kerapuhan perangkat -keras meja automatis. Saat permainan berlangsung tegang, pemain tanpa sengaja, menyenggol glass ST Manis atau boba di pinggir meja. Cairan Manis yang lain kait merimbus masuk ke dalam lubang mekanik, melunggu resensor optik inframerah, dan membuat rodak -gerigi motor pengocok macet total. Tapi ada mimpi buruk yang jauh lebih mengerikan, sinrom satu batu hilang. Perluluh ingat, batu meja automatis bukan batu biasa. Melainkan batu khusus dengan inti magnet dan boba yang di kalibrasi presisi hingga sub millimeter. Kalau ada satu batu saja yang hilang terselep, atau retak terinjak, lo tidak bisa menggantinya dengan batu macong manual sembarangan. Akibatnya, 144 batu dalam satu seterusnya tersebut langsung lumpur total sampai suku cadang pengganti tiba. POV,",
+        "keyframe": "qa_frames/beat8.jpg",
+        "keyframe9x16": "qa_frames/beat8.jpg",
+        "keyframe16x9": "qa_frames/beat8_16x9.jpg"
+      },
+      {
+        "beat": "09",
+        "title": "Beat 9",
+        "startSec": 428.077,
+        "endSec": 486.457,
+        "durationSec": 58.38,
+        "narration": "POV, selain urusan mesin, lo harus berhadapan dengan garis hukum yang sangat tipis di Indonesia. Pasal 3003 kita pendang -undang hukum pidana tentang perjudian. Jika ada pengunjung yang ketahuan menaruh uang tunai di atas meja atau menggunakan koin taruhan, ijin kavelu bisa dicabut dan pengelola bisa terancam pidana penjara. Ini lah sebabnya pemilih clowns majong modern menerapkan protokol pertahanan yang sangat ketat. Pertama, aturan besi tanpa kompromi, enol uang tunai dan enol koin taruhan di atas meja. Kedua, seluruh pencetatan kemenangan wajib penggunakan lembar skor olahraga atau aplikasi pelacak digital di ponsel pintar. Ketiga, tidak ada ruangan gelap tertutup rapat, semua pintu memakai kacau bening transparan. Kempat, kamera pengawas bersuara aktif 24 jam yang merekam setiap sudut meja sebagai buktisah bahwa tempat lo murni wadah olahraga ketangkasan rekreasi. POV,",
+        "keyframe": "qa_frames/beat9.jpg",
+        "keyframe9x16": "qa_frames/beat9.jpg",
+        "keyframe16x9": "qa_frames/beat9_16x9.jpg"
+      },
+      {
+        "beat": "10",
+        "title": "Beat 10",
+        "startSec": 486.457,
+        "endSec": 539.257,
+        "durationSec": 52.8,
+        "narration": "POV, sekarang sampai pada pilihan terakhir bagi lo yang ingin terjun ke industri ini. Opsi pertama adalah membuka launch Rukofisik. Modanya besar, mencapai 350 juta Rupiah. Beban operasional bulanannya tinggi, dan masa balik modal memakan waktu sekitar 20 bulan dengan risiko hukum yang harus dijaga ketat. Tapi ada obisi kedua yang jauh lebih cerda untuk memulah. Business sewa meja majong lipat panggilan harian. Cukup dengan modal 55 juta Rupiah untuk membeli 5 meja portabel di garasi rumah, lo bisa menyawakannya dengan tarif 400 ribu rupiah per hari. Caroma pribadi atau fila. Menariknya saat musim libur hari raya Imlek, tarif sewa mulonjak hingga 1 ,5 juta Rupiah per hari, dan meja ludes di sewa berhari -hari. Business panggilan ini bisa balik modal cuma dalam 8 bulan, tanpa pusing memikirkan biaya sewa Rukofisik.",
+        "keyframe": "qa_frames/beat10.jpg",
+        "keyframe9x16": "qa_frames/beat10.jpg",
+        "keyframe16x9": "qa_frames/beat10_16x9.jpg"
+      }
+    ],
+    "wordCount": 1323,
+    "projectConfig": {
+      "id": "vid_20261102_001",
+      "dirName": "kausalmedia_20261102_pov-buka-sewa-meja-mahjong",
+      "channel": "kausalmedia",
+      "series": "POV:",
+      "date": "2026-11-02",
+      "slug": "pov-buka-sewa-meja-mahjong",
+      "title": "POV: Lo Buka Bisnis Sewa Meja Mahjong (Rahasia Cuan 5 Jam & Mesin Uang Tersembunyi)",
+      "subtitle": "Bongkar Mesin Uang Lounge Mahjong Otomatis vs Sewa Harian",
+      "topicSummary": "Investigasi dan simulasi operasional mendalam membuka bisnis lounge meja mahjong otomatis 8 meja di ruko: rincian CAPEX Rp350 juta, mekanika durasi 5 jam, jebakan hari kerja sepi, risiko mesin macet, serta rahasia margin laba kotor 70% dari F&B.",
+      "coreAngle": "Bisnis sewa meja mahjong sejatinya bukan bisnis sewa furnitur, melainkan bisnis F&B bertarif tinggi yang disamarkan oleh mesin otomatis pengunci durasi bermain 5 jam.",
+      "voice": {
+        "provider": "gemini-tts",
+        "model": "gemini-2.5-flash-preview-tts",
+        "fallbackModel": "gemini-2.5-pro-preview-tts",
+        "voiceName": "Kore",
+        "language": "ID",
+        "sampleRateHz": 24000,
+        "leadOffsetSec": 0.22,
+        "ttsStylePrompt": "Immersive, conversational Indonesian business breakdown (Lo/Gue, kita), energetic storytelling, punchy dramatic pauses, crisp numbers and clear operational metrics.",
+        "pronunciationMap": {
+          "POV": "P-O-V",
+          "CAPEX": "Ka-peks",
+          "OPEX": "O-peks",
+          "BEP": "B-E-P",
+          "F&B": "F and B"
+        }
+      },
+      "style": {
+        "theme": "swiss-editorial-light",
+        "aspects": [
+          "16:9"
+        ],
+        "resolution": {
+          "16:9": [
+            1920,
+            1080
+          ]
+        },
+        "fps": 60,
+        "topBrowFormat": "POV: | <Chapter Name>",
+        "headingFont": "'Plus Jakarta Sans', 'Inter', sans-serif",
+        "headingWeight": 800,
+        "bodyFont": "'Plus Jakarta Sans', sans-serif",
+        "monoFont": "'JetBrains Mono', 'Liberation Mono', monospace",
+        "palette": {
+          "bg": "#F8FAFC",
+          "surface": "#FFFFFF",
+          "ink": "#0F172A",
+          "secondaryInk": "#334155",
+          "gridLine": "#E2E8F0",
+          "crimson": "#E11D48",
+          "emerald": "#059669",
+          "amber": "#D97706",
+          "cobalt": "#2563EB"
+        },
+        "beatArchetypes": [
+          {
+            "beat": "01",
+            "chapterTitle": "Fenomena Meja Hijau Otomatis",
+            "archetype": "Immersive Urban Night Lounge Arrival & Automatic Green Table Craze"
+          },
+          {
+            "beat": "02",
+            "chapterTitle": "Anatomi Meja Otomatis Rp12 Juta",
+            "archetype": "Mechanical Cutaway Diagram of Central Elevator & Magnetic 144-Tile Shuffler"
+          },
+          {
+            "beat": "03",
+            "chapterTitle": "Jebakan Waktu: Kunci 5 Jam Non-Stop",
+            "archetype": "Duration Lock-in Comparative Table (Cafe vs Billiards vs Mahjong 5-Hour Retention)"
+          },
+          {
+            "beat": "04",
+            "chapterTitle": "Bongkar CAPEX Lounge 8 Meja (Rp350 Juta)",
+            "archetype": "Financial Waterfall Card Stack: Ruko Lease, 8 Foshan Tables, Acoustic Partitions & Permits"
+          },
+          {
+            "beat": "05",
+            "chapterTitle": "Rahasia Uang Asli: Bukan dari Sewa Meja!",
+            "archetype": "Revenue Conversion Flow: Table Rent Covers Fixed Overhead, F&B Generates 70% Net Margin"
+          },
+          {
+            "beat": "06",
+            "chapterTitle": "Bedah Struk 1 Meja VIP (Margin 70%)",
+            "archetype": "Interactive Itemized Receipt Teardown: Table Rent, Drinks, Fried Noodles, Dimsum (76% Gross Margin)"
+          },
+          {
+            "beat": "07",
+            "chapterTitle": "Kutukan Hari Kerja (Senin–Kamis Kosong)",
+            "archetype": "Weekly Calendar Heatmap: Mon-Thu <15% Occupancy Bleed vs Weekend 100% Bottleneck"
+          },
+          {
+            "beat": "08",
+            "chapterTitle": "Mimpi Buruk Mesin Macet & Batu Hilang",
+            "archetype": "Operational Hazard Warning: Spilled Boba Motor Jam & 1 Missing Calibrated Magnetic Tile Brick"
+          },
+          {
+            "beat": "09",
+            "chapterTitle": "Garis Tipis Hukum (Pasal 303 vs Rekreasi)",
+            "archetype": "4-Pillar Legal Compliance Shield: Digital Scorecards, No Cash, Glass Panes & 24/7 CCTV"
+          },
+          {
+            "beat": "10",
+            "chapterTitle": "Lounge Ruko vs Sewa Harian Panggilan",
+            "archetype": "Business Model Dual Comparison: High-Capex Ruko Lounge vs Mobile Door-to-Door Rental Service"
+          }
+        ]
+      },
+      "prompts": {
+        "ttsStylePrompt": "Immersive, conversational Indonesian business breakdown (Lo/Gue, kita), energetic storytelling, punchy dramatic pauses, crisp numbers and clear operational metrics.",
+        "scriptPromptSummary": "10-beat immersive business documentary breaking down the unit economics, CAPEX, hidden F&B margins, and operational nightmares of running an automatic mahjong table lounge.",
+        "iconGenerationPrompt": "256x256 transparent background flat Swiss vector icon, bold #0F172A outlines, high-contrast fills, zero baked text.",
+        "visualCueRules": "Widescreen 16:9 layout, single top brow badge 'POV: | <Chapter Name>', clean geometric Plus Jakarta Sans, high-contrast secondary labels, full X/Y axes on charts, strictly <= 18 Txt nodes per beat."
+      },
+      "paths": {
+        "productionDir": "motion-canvas/production/vid_20261102_001",
+        "scenesDir": "motion-canvas/src/scenes/vid_20261102_001",
+        "assetsDir": "motion-canvas/public/assets/vid_20261102_001",
+        "audioFile": "motion-canvas/public/audio/vid_20261102_001_narration.wav",
+        "outputDir": "projects/kausalmedia_20261102_pov-buka-sewa-meja-mahjong"
+      }
+    }
+  },
+  {
     "id": "vid_20261031_002",
     "dirName": "kausalmedia_20261031_knp-saham-teknologi-runtuh",
     "channel": "kausalmedia",
@@ -20,7 +336,7 @@
     "poster": "thumbnail.jpg",
     "files": {
       "embed.html": 3198,
-      "index.html": 76732,
+      "index.html": 76857,
       "meta.json": 9004,
       "narration.wav": 7394330,
       "project_config.json": 4143,

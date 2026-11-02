@@ -79,17 +79,32 @@ if (!outputDir || !fs.existsSync(outputDir)) {
   outputDir = path.join(MOTION_CANVAS_DIR, 'output', inputTarget);
 }
 
-// Resolve projectId from meta.json if present
+// Resolve projectId and meta from meta.json if present
+let projectMeta = null;
 if (fs.existsSync(path.join(outputDir, 'meta.json'))) {
   try {
-    const meta = JSON.parse(fs.readFileSync(path.join(outputDir, 'meta.json'), 'utf8'));
-    if (meta.id) projectId = meta.id;
+    projectMeta = JSON.parse(fs.readFileSync(path.join(outputDir, 'meta.json'), 'utf8'));
+    if (projectMeta.id) projectId = projectMeta.id;
   } catch (e) {}
 }
 
 if (SLUG_TO_PROJECT[projectId]) {
   projectId = SLUG_TO_PROJECT[projectId];
 }
+
+const scriptJsonPath = path.join(MOTION_CANVAS_DIR, 'production', projectId, 'script.json');
+let scriptAspects = null;
+if (fs.existsSync(scriptJsonPath)) {
+  try {
+    const sj = JSON.parse(fs.readFileSync(scriptJsonPath, 'utf8'));
+    if (sj.aspect_ratios) scriptAspects = sj.aspect_ratios;
+  } catch (e) {}
+}
+
+const is16x9Only =
+  (projectMeta?.aspects && !projectMeta.aspects.includes('9x16')) ||
+  (scriptAspects && !scriptAspects.includes('9x16')) ||
+  aspectFilter === '16x9';
 
 const qaDir = `/tmp/qa_${projectId}`;
 fs.mkdirSync(qaDir, { recursive: true });
@@ -307,16 +322,16 @@ if (!fs.existsSync(scenesDir)) {
   );
 
   // Check 15: Clean Brow & Chart Axes Check (Rule 11 & Rule 12)
-  if (projectId.startsWith('vid_20261031_')) {
+  if (projectId.startsWith('vid_20261031_') || projectId.startsWith('vid_20261102_')) {
     let check15Fail = false;
     const check15Reasons = [];
 
     if (fs.existsSync(layoutPath)) {
       const layoutContent = fs.readFileSync(layoutPath, 'utf8');
-      const hasKnpPipe = /Knp\?\s*\|/.test(layoutContent) && /BEAT_LABELS/.test(layoutContent);
-      if (!hasKnpPipe) {
+      const hasCleanBrow = /(?:Knp\?|POV:)\s*\|/.test(layoutContent) && /BEAT_LABELS/.test(layoutContent);
+      if (!hasCleanBrow) {
         check15Fail = true;
-        check15Reasons.push("layout.tsx missing 'Knp? |' in BEAT_LABELS");
+        check15Reasons.push("layout.tsx missing '(Knp?|POV:) |' in BEAT_LABELS");
       }
       if (/TOP_PILL_ITEMS/i.test(layoutContent) || /nav-pill/i.test(layoutContent)) {
         check15Fail = true;
@@ -324,16 +339,24 @@ if (!fs.existsSync(scenesDir)) {
       }
     }
 
-    const beat04Path = path.join(scenesDir, 'beat_04.tsx');
-    if (fs.existsSync(beat04Path)) {
-      const beat04Content = fs.readFileSync(beat04Path, 'utf8');
-      const stripped = beat04Content.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '');
-      const lineElements = stripped.match(/<Line\b[\s\S]*?\/>/g) || [];
-      const endArrowLines = lineElements.filter((el) => /\bendArrow\b/.test(el));
-      if (endArrowLines.length < 2) {
-        check15Fail = true;
-        check15Reasons.push(`beat_04.tsx has ${endArrowLines.length} axis <Line> with endArrow (expected >= 2)`);
+    const chartCandidateFiles = ['beat_04.tsx', 'beat_10.tsx'];
+    let foundAxes = false;
+    for (const cFile of chartCandidateFiles) {
+      const cPath = path.join(scenesDir, cFile);
+      if (fs.existsSync(cPath)) {
+        const cContent = fs.readFileSync(cPath, 'utf8');
+        const stripped = cContent.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '');
+        const lineElements = stripped.match(/<Line\b[\s\S]*?\/>/g) || [];
+        const endArrowLines = lineElements.filter((el) => /\bendArrow\b/.test(el));
+        if (endArrowLines.length >= 2) {
+          foundAxes = true;
+          break;
+        }
       }
+    }
+    if (!foundAxes) {
+      check15Fail = true;
+      check15Reasons.push(`Chart scene missing >= 2 axis <Line endArrow /> (checked ${chartCandidateFiles.join(', ')})`);
     }
 
     record(
@@ -380,6 +403,8 @@ if (timings?.beats) {
   const expectedBeats = timings.beats.length;
   for (const aspect of ['9x16', '16x9']) {
     if (aspectFilter === '9x16' && aspect === '16x9') continue;
+    if (aspectFilter === '16x9' && aspect === '9x16') continue;
+    if (is16x9Only && aspect === '9x16') continue;
     if (projectId === 'vid_20261031_002' && aspect === '16x9') continue;
 
     const aspectCacheDir = path.join(MOTION_CANVAS_DIR, '.cache', projectId, aspect);
@@ -438,49 +463,57 @@ if (aspectFilter === '9x16' || (!fs.existsSync(vid16x9Path) && projectId === 'vi
 
 // 9:16 Master
 const vid9x16Path = path.join(outputDir, 'video_9x16.mp4');
-const probe9x16 = probeVideo(vid9x16Path);
-if (!probe9x16) {
-  record('Master 9:16 Video', false, 'Missing or unreadable file');
+if (is16x9Only && !fs.existsSync(vid9x16Path)) {
+  record('Master 9:16 Video', true, 'Skipped (16:9 widescreen only)');
 } else {
-  const durOk =
-    targetDuration > 0
-      ? Math.abs(probe9x16.duration - targetDuration) <= 0.6 &&
-        Math.abs(probe9x16.videoDuration - targetDuration) <= 0.6
-      : true;
-  const resOk = probe9x16.width === 1080 && probe9x16.height === 1920;
-  const passed = durOk && resOk && probe9x16.hasAudio;
-  const detail = passed
-    ? `1080x1920, ${probe9x16.videoDuration.toFixed(1)}s, AAC`
-    : `res=${probe9x16.width}x${probe9x16.height}, dur=${probe9x16.duration.toFixed(1)}s, vdur=${probe9x16.videoDuration.toFixed(1)}s, audio=${probe9x16.hasAudio}`;
-  record('Master 9:16 Video', passed, detail);
+  const probe9x16 = probeVideo(vid9x16Path);
+  if (!probe9x16) {
+    record('Master 9:16 Video', false, 'Missing or unreadable file');
+  } else {
+    const durOk =
+      targetDuration > 0
+        ? Math.abs(probe9x16.duration - targetDuration) <= 0.6 &&
+          Math.abs(probe9x16.videoDuration - targetDuration) <= 0.6
+        : true;
+    const resOk = probe9x16.width === 1080 && probe9x16.height === 1920;
+    const passed = durOk && resOk && probe9x16.hasAudio;
+    const detail = passed
+      ? `1080x1920, ${probe9x16.videoDuration.toFixed(1)}s, AAC`
+      : `res=${probe9x16.width}x${probe9x16.height}, dur=${probe9x16.duration.toFixed(1)}s, vdur=${probe9x16.videoDuration.toFixed(1)}s, audio=${probe9x16.hasAudio}`;
+    record('Master 9:16 Video', passed, detail);
+  }
 }
 
 // WhatsApp Stream (< 4.5 MB, 540x960, AAC)
 const vidWaPath = path.join(outputDir, 'video_whatsapp.mp4');
-const probeWa = probeVideo(vidWaPath);
-if (!probeWa) {
-  record('WhatsApp Stream', false, 'Missing or unreadable file');
+if (is16x9Only && !fs.existsSync(vidWaPath)) {
+  record('WhatsApp Stream', true, 'Skipped (16:9 widescreen only)');
 } else {
-  const durOk =
-    targetDuration > 0
-      ? Math.abs(probeWa.duration - targetDuration) <= 0.6 &&
-        Math.abs(probeWa.videoDuration - targetDuration) <= 0.6
-      : true;
-  const resOk = probeWa.width === 540 && probeWa.height === 960;
-  const sizeMb = (probeWa.size / (1024 * 1024)).toFixed(2);
-  const sizeOk = probeWa.size < 4.5 * 1024 * 1024;
-  const passed = durOk && resOk && probeWa.hasAudio && sizeOk;
-  const detail = passed
-    ? `540x960, ${sizeMb}MB (<4.5MB), AAC`
-    : `res=${probeWa.width}x${probeWa.height}, size=${sizeMb}MB, dur=${probeWa.duration.toFixed(1)}s, vdur=${probeWa.videoDuration.toFixed(1)}s`;
-  record('WhatsApp Stream', passed, detail);
+  const probeWa = probeVideo(vidWaPath);
+  if (!probeWa) {
+    record('WhatsApp Stream', false, 'Missing or unreadable file');
+  } else {
+    const durOk =
+      targetDuration > 0
+        ? Math.abs(probeWa.duration - targetDuration) <= 0.6 &&
+          Math.abs(probeWa.videoDuration - targetDuration) <= 0.6
+        : true;
+    const resOk = probeWa.width === 540 && probeWa.height === 960;
+    const sizeMb = (probeWa.size / (1024 * 1024)).toFixed(2);
+    const sizeOk = probeWa.size < 4.5 * 1024 * 1024;
+    const passed = durOk && resOk && probeWa.hasAudio && sizeOk;
+    const detail = passed
+      ? `540x960, ${sizeMb}MB (<4.5MB), AAC`
+      : `res=${probeWa.width}x${probeWa.height}, size=${sizeMb}MB, dur=${probeWa.duration.toFixed(1)}s, vdur=${probeWa.videoDuration.toFixed(1)}s`;
+    record('WhatsApp Stream', passed, detail);
+  }
 }
 
 // -----------------------------------------------------------------------------
 // 4. KEYFRAME NON-BLANK / UNDAMAGED INTEGRITY CHECK
 // -----------------------------------------------------------------------------
 const sourceVideoForFrames =
-  aspectFilter !== '9x16' && fs.existsSync(vid16x9Path)
+  (aspectFilter === '16x9' || is16x9Only || !fs.existsSync(vid9x16Path)) && fs.existsSync(vid16x9Path)
     ? vid16x9Path
     : vid9x16Path;
 if (!fs.existsSync(sourceVideoForFrames) || !timings?.beats) {

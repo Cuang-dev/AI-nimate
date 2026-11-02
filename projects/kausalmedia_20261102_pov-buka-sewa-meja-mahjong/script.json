@@ -1,0 +1,177 @@
+{
+  "project_id": "vid_20261102_001",
+  "slug": "pov-buka-sewa-meja-mahjong",
+  "channel": "kausalmedia",
+  "series": "POV:",
+  "title": "POV: Lo Buka Bisnis Sewa Meja Mahjong (Rahasia Cuan 5 Jam & Mesin Uang Tersembunyi)",
+  "subtitle": "Bongkar Mesin Uang Lounge Mahjong Otomatis vs Sewa Harian",
+  "aspect_ratios": [
+    "16:9"
+  ],
+  "language": "ID",
+  "voice": "Kore",
+  "duration_seconds": 545,
+  "word_count": 1323,
+  "core_angle": "Bisnis lounge mahjong otomatis bukan sekadar menyewakan meja, melainkan mengunci 4 pemain selama 5 jam untuk memanen laba kotor 70% dari pesanan makanan dan minuman, sementara rental portabel harian menawarkan efisiensi modal 6 kali lipat lebih cepat balik modal.",
+  "tts_style_prompt": "Bicaralah seperti kreator bisnis Indonesia yang cerdas, santai, tajam, dan seru (gaya bercerita investigatif tapi membumi, menggunakan kata ganti 'lo' dan 'kita'). Gunakan intonasi natural, jeda napas yang enak didengar di tanda koma dan titik, penekanan tegas saat membongkar angka rupiah dan rahasia dapur bisnis, tanpa terdengar kaku.",
+  "visual_design_spec": {
+    "grid": "Swiss Editorial 16:9 Landscape (1920x1080)",
+    "color_palette": {
+      "bg": "#F8FAFC",
+      "surface": "#FFFFFF",
+      "ink": "#0F172A",
+      "secondary_ink": "#475569",
+      "felt_green": "#059669",
+      "accent_green": "#10B981",
+      "gold_accent": "#D97706",
+      "alert_red": "#EF4444",
+      "grid_line": "#E2E8F0"
+    },
+    "typography": {
+      "heading": "'Plus Jakarta Sans', 'Inter', sans-serif",
+      "headingWeight": 800,
+      "body": "'Inter', 'Liberation Sans', sans-serif",
+      "data": "'JetBrains Mono', monospace"
+    }
+  },
+  "forensic_sources": [
+    {
+      "source": "Katalog Tokopedia & Importir Resmi Foshan (2025-2026)",
+      "detail": "Landed price 4-motor automatic mahjong table Rp7.5M - Rp16.0M per unit dengan 2 set 144 batu magnetik."
+    },
+    {
+      "source": "Observasi Operasional Lounge PIK, Gading Serpong, Kelapa Gading (2025-2026)",
+      "detail": "Tarif sewa meja Rp60.000 - Rp100.000 per jam, durasi rata-rata sesi 4-5 jam, porsi omzet F&B 60% total struk."
+    },
+    {
+      "source": "Layanan Rental Mahjong Harian Jabodetabek (LapakMahjong & Private Fleets)",
+      "detail": "Tarif sewa meja portabel lipat Rp350.000 - Rp500.000/24 jam, surge Imlek Rp1.200.000 - Rp1.500.000/hari."
+    },
+    {
+      "source": "Kitab Undang-Undang Hukum Pidana (KUHP) & UU No. 7 Tahun 1974",
+      "detail": "Ketentuan Pasal 303 dan 303bis KUHP tentang penertiban perjudian dan batasan legalitas rekreasi ketangkasan."
+    }
+  ],
+  "beats": [
+    {
+      "beat_id": "beat_01",
+      "chapter_badge": "POV: | FENOMENA MEJA HIJAU OTOMATIS",
+      "title": "POV: | Fenomena Meja Hijau Otomatis",
+      "spoken_text": "P-O-V, bayangin posisi lo lagi jalan malam minggu di kawasan ruko Pantai Indah Kapuk atau Gading Serpong. Di balik pintu kaca transparan berpendingin udara, lo mendengar suara gemeretak batu beradu cepat, disambut tawa lepas empat orang yang lagi duduk mengelilingi meja kain hijau. Di papan depan kasir, tertulis tarif sewa yang kelihatan sangat murah meriah: cuma enam puluh ribu rupiah per meja untuk satu jam, alias lima belas ribu rupiah saja per kepala. Tapi anehnya, daftar antrean tamu di aplikasi reservasi sudah mengular panjang sampai tengah malam, bahkan ruangan privat penuh dipesan berminggu-minggu sebelumnya. Buat orang awam, ini cuma tempat nongkrong santai main permainan papan tradisional. Tapi buat pemilik ruko yang paham mesin uangnya, meja hijau otomatis ini diam-diam mencetak omzet puluhan hingga ratusan juta rupiah per bulan. Pertanyaannya, bagaimana bisnis yang tarifnya cuma recehan ini bisa menghasilkan margin fantastis?",
+      "visual_cues": {
+        "hero_stat": "TARIF SEWA: Rp60.000 / JAM",
+        "sub_stat": "Cuma Rp15.000 / orang per jam",
+        "visual_anchor": "Pintu kaca ruko PIK/Serpong, meja mahjong hijau otomatis menyala, antrean reservasi penuh hingga tengah malam",
+        "callout_badge": "OMZET PULUHAN JUTA DARI TARIF RECEHAN"
+      }
+    },
+    {
+      "beat_id": "beat_02",
+      "chapter_badge": "POV: | ANATOMI MEJA OTOMATIS RP12 JUTA",
+      "title": "POV: | Anatomi Meja Otomatis Rp12 Juta",
+      "spoken_text": "P-O-V, untuk memahami kenapa orang ketagihan, lo harus melihat teknologi di dalam meja seharga dua belas juta rupiah ini. Dulu, main mahjong tradisional itu melelahkan karena setiap ronde pemain harus mengocok batu secara manual dan menumpuk tembok selama lima menit. Tapi mesin empat motor impor dari Foshan ini mengubah segalanya. Meja ini bekerja dengan dua set batu magnetik berisi seratus empat puluh empat batu dengan inti besi polaritas khusus, biasanya satu set berwarna biru dan satu set hijau. Begitu ronde selesai, pemain cukup menekan tombol tengah. Lubang meja terbuka, batu kotor ditelan masuk ke dalam drum pemutar magnetik, dan dalam waktu tiga puluh lima detik saja, elevator otomatis mendorong naik empat baris batu baru yang sudah tersusun rapi sempurna. Kecepatan putaran tanpa jeda ini menciptakan efek psikologi kasino: pemain tidak pernah sempat bosan ataupun berpikir untuk berhenti.",
+      "visual_cues": {
+        "hero_stat": "4-MOTOR FOSHAN // 35 DETIK AUTO-SHUFFLE",
+        "sub_stat": "Modal Meja Komersial: Rp12 Juta / Unit",
+        "visual_anchor": "Diagram mekatronik meja otomatis: elevator tengah naik-turun, drum magnetik bawah, 2 set 144 batu (biru & hijau)",
+        "callout_badge": "PSIKOLOGI PUTARAN CEPAT TANPA JEDA"
+      }
+    },
+    {
+      "beat_id": "beat_03",
+      "chapter_badge": "POV: | JEBAKAN WAKTU: KUNCI 5 JAM NON-STOP",
+      "title": "POV: | Jebakan Waktu: Kunci 5 Jam Non-Stop",
+      "spoken_text": "P-O-V, sekarang kita bedah senjata paling mematikan dari bisnis ini: durasi retensi pelanggan. Kalau lo buka kafe kopi kekinian, orang beli satu cangkir kopi susu tiga puluh lima ribu rupiah, lalu duduk menyendiri sambil kerja seharian memakai sambungan internet gratis. Kalau lo buka arena biliar, orang sewa meja satu sampai dua jam lalu langsung bubar begitu selesai bermain. Tapi mahjong punya aturan sakral yang sangat unik: satu sesi standar terdiri dari empat putaran angin, yaitu angin timur, selatan, barat, dan utara, dengan total enam belas ronde. Format permainan ini mewajibkan tepat empat orang duduk bersama, dan tidak ada satu orang pun yang boleh pulang duluan sebelum putaran selesai! Akibatnya, satu kelompok pemain otomatis terkunci duduk di meja lo selama empat sampai lima jam penuh tanpa bisa kabur ke mana-mana.",
+      "visual_cues": {
+        "hero_stat": "THE 5-HOUR RETENTION LOCK",
+        "sub_stat": "4 Putaran Angin = 16 Ronde Non-Stop",
+        "visual_anchor": "Tabel perbandingan durasi: Coffee Shop (1 orang, 3 jam, Rp35rb) vs Biliar (2-4 orang, 1-2 jam) vs Mahjong (4 orang terkunci 4-5 jam)",
+        "callout_badge": "TIDAK BISA PULANG SEBELUM 16 RONDE SELESAI"
+      }
+    },
+    {
+      "beat_id": "beat_04",
+      "chapter_badge": "POV: | BONGKAR CAPEX LOUNGE 8 MEJA (RP350 JUTA)",
+      "title": "POV: | Bongkar CAPEX Lounge 8 Meja (Rp350 Juta)",
+      "spoken_text": "P-O-V, kalau lo tergiur membuka lounge fisik di ruko komersial, berapa modal awal yang harus lo siapkan di rekening? Mari kita hitung anggaran belanja modal untuk kapasitas delapan meja. Pertama, sewa ruko dua lantai di lokasi strategis memakan biaya sekitar seratus lima puluh juta rupiah per tahun. Kedua, pembelian delapan unit meja otomatis kelas komersial seharga dua belas juta rupiah per unit, memakan biaya sembilan puluh enam juta rupiah. Ketiga, renovasi partisi dinding kedap suara dan pemasangan pendingin udara pendingin di setiap ruang menghabiskan tujuh puluh lima juta rupiah. Ini krusial, karena benturan ratusan batu mahjong sangat berisik dan bisa memicu komplain tetangga ruko. Terakhir, instalasi kamera pengawas pengaman, sistem kasir, dan legalitas izin usaha memakan dua puluh sembilan juta rupiah. Total modal awal mencapai tiga ratus lima puluh juta rupiah.",
+      "visual_cues": {
+        "hero_stat": "TOTAL CAPEX: Rp350.000.000",
+        "sub_stat": "Kapasitas 8 Meja Komersial",
+        "visual_anchor": "Waterfall breakdown kartu finansial: Sewa Ruko (Rp150Jt), 8 Meja Foshan (Rp96Jt), Sekat Akustik & AC (Rp75Jt), CCTV & Izin (Rp29Jt)",
+        "callout_badge": "INVESTASI FISIK RUKO 2 LANTAI"
+      }
+    },
+    {
+      "beat_id": "beat_05",
+      "chapter_badge": "POV: | RAHASIA UANG ASLI: BUKAN DARI SEWA MEJA!",
+      "title": "POV: | Rahasia Uang Asli: Bukan dari Sewa Meja!",
+      "spoken_text": "P-O-V, lo pasti heran, bagaimana modal tiga ratus lima puluh juta rupiah bisa balik kalau tarif sewanya cuma enam puluh ribu rupiah per jam? Di sinilah rahasia dapur para pemilik lounge berpengalaman. Tarif sewa meja enam puluh ribu rupiah per jam itu sebenarnya hanyalah umpan pancingan atau produk rugi untuk menarik pengunjung masuk. Uang sewa meja murni bahkan hampir tidak cukup untuk membayar tagihan listrik pendingin udara dan biaya sewa ruko. Mesin uang aslinya yang sesungguhnya ada pada penjualan makanan dan minuman. Bayangkan, empat orang yang duduk berpikir keras selama lima jam tanpa henti pasti akan kehausan dan kelaparan. Mereka memesan gelas es liang teh manis, kopi susu, seporsi mi goreng instan, hingga aneka keranjang dimsum hangat. Seluruh menu praktis ini memiliki margin laba kotor luar biasa tebal, mencapai tujuh puluh persen!",
+      "visual_cues": {
+        "hero_stat": "SEWA MEJA = UMPAN // F&B MARGIN = 70%",
+        "sub_stat": "60-70% Laba Bersih Berasal dari Konsumsi",
+        "visual_anchor": "Diagram alur konversi: Sewa Meja (menutup biaya tetap ruko & AC) -> Pesanan F&B sampingan (pencetak profit bersih 70%)",
+        "callout_badge": "THE F&B CASH COW MACHINE"
+      }
+    },
+    {
+      "beat_id": "beat_06",
+      "chapter_badge": "POV: | BEDAH STRUK 1 MEJA VIP (MARGIN 70%)",
+      "title": "POV: | Bedah Struk 1 Meja VIP (Margin 70%)",
+      "spoken_text": "P-O-V, mari kita bedah struk kasir nyata dari satu sesi meja privat selama lima jam. Pertama, biaya sewa meja lima jam tercatat tiga ratus ribu rupiah. Kedua, selama lima jam bermain, empat orang memesan delapan gelas minuman dingin seharga seratus enam puluh ribu rupiah, empat porsi mi goreng spesial seharga seratus delapan puluh ribu rupiah, dan tiga keranjang siomay seharga seratus sepuluh ribu rupiah. Total tagihan di struk kasir menjadi tujuh ratus lima puluh ribu rupiah. Sekarang kita kurangi biaya modalnya: harga pokok bahan baku makanan dan minuman hanya menghabiskan seratus tiga puluh lima ribu rupiah, sedangkan biaya listrik untuk lampu dan pendingin udara sekitar empat puluh lima ribu rupiah. Artinya, dari satu meja saja dalam lima jam, lo mengantongi laba kotor sebesar lima ratus tujuh puluh ribu rupiah!",
+      "visual_cues": {
+        "hero_stat": "STRUK 1 SESI: Rp750.000 // LABA: Rp570.000",
+        "sub_stat": "Durasi 5 Jam Meja VIP (4 Orang)",
+        "visual_anchor": "Struk kasir interaktif: Sewa Meja (Rp300k), Minuman 8x (Rp160k), Mie Goreng 4x (Rp180k), Dimsum 3x (Rp110k). Laba kotor Rp570.000 (76%)",
+        "callout_badge": "LABA KOTOR Rp570.000 PER SESI MEJA"
+      }
+    },
+    {
+      "beat_id": "beat_07",
+      "chapter_badge": "POV: | KUTUKAN HARI KERJA (SENIN–KAMIS KOSONG)",
+      "title": "POV: | Kutukan Hari Kerja (Senin–Kamis Kosong)",
+      "spoken_text": "P-O-V, kalau angka di atas kertas terdengar sangat menggiurkan, bersiaplah menghadapi jebakan operasional pertama yang paling mematikan: kutukan hari kerja. Banyak pengusaha pemula menghitung proyeksi pendapatan dengan asumsi delapan meja terisi penuh dari pagi sampai malam setiap hari. Realitas di lapangan sangat berbeda dan kejam. Dari hari Senin sampai Kamis siang, tingkat keterisian meja lo biasanya anjlok di bawah lima belas persen. Meja-meja kosong melompong, tapi tagihan sewa ruko dan gaji karyawan tetap berjalan setiap detik. Sebaliknya, saat hari Jumat malam hingga Minggu malam, permintaan meledak seratus persen hingga lo terpaksa menolak belasan calon tamu karena kapasitas meja terkunci maksimal tiga puluh dua orang. Praktis, lo cuma punya jendela emas sekitar tiga puluh jam per minggu untuk menutupi seluruh biaya operasional seratus enam puluh delapan jam seminggu.",
+      "visual_cues": {
+        "hero_stat": "SENIN–KAMIS: <15% // WEEKEND: 100% BOTTLENECK",
+        "sub_stat": "Hanya 30 Jam Emas Per Minggu",
+        "visual_anchor": "Kalender heatmap mingguan: Senin-Kamis merah menyala kosong, Jumat malam-Minggu hijau penuh terblokir kapasitas 32 orang",
+        "callout_badge": "JEBAKAN BEBAN TETAP 168 JAM OPERASIONAL"
+      }
+    },
+    {
+      "beat_id": "beat_08",
+      "chapter_badge": "POV: | MIMPI BURUK MESIN MACET & BATU HILANG",
+      "title": "POV: | Mimpi Buruk Mesin Macet & Batu Hilang",
+      "spoken_text": "P-O-V, jebakan kedua yang sering bikin pemilik pusing tujuh keliling adalah kerapuhan perangkat keras meja otomatis. Saat permainan berlangsung tegang, pemain tanpa sengaja menyenggol gelas es teh manis atau boba di pinggir meja. Cairan manis yang lengket merembes masuk ke dalam lubang mekanik, melumuri sensor optik inframerah, dan membuat roda gerigi motor pengocok macet total. Tapi ada mimpi buruk yang jauh lebih mengerikan: sindrom satu batu hilang. Perlu lo ingat, batu meja otomatis bukan batu biasa, melainkan batu khusus dengan inti magnet dan bobot yang dikalibrasi presisi hingga sub-milimeter. Kalau ada satu batu saja yang hilang terselip atau retak terinjak, lo tidak bisa menggantinya dengan batu mahjong manual sembarangan. Akibatnya, seluruh seratus empat puluh empat batu dalam satu set tersebut langsung lumpuh total sampai suku cadang pengganti tiba.",
+      "visual_cues": {
+        "hero_stat": "1 BATU HILANG = 1 SET BRICKED",
+        "sub_stat": "Sensor Optik Rentan Tumpahan Manis Boba",
+        "visual_anchor": "Visual peringatan kerusakan: tumpahan cairan ke drum elevator motor, serta ubin magnetik presisi 144 batu yang hilang 1 ubin",
+        "callout_badge": "KERAPUHAN MEKANIKAL & SUKU CADANG"
+      }
+    },
+    {
+      "beat_id": "beat_09",
+      "chapter_badge": "POV: | GARIS TIPIS HUKUM (PASAL 303 VS REKREASI)",
+      "title": "POV: | Garis Tipis Hukum (Pasal 303 vs Rekreasi)",
+      "spoken_text": "P-O-V, selain urusan mesin, lo harus berhadapan dengan garis hukum yang sangat tipis di Indonesia: Pasal tiga ratus tiga Kitab Undang-Undang Hukum Pidana tentang perjudian. Jika ada pengunjung yang ketahuan menaruh uang tunai di atas meja atau menggunakan koin taruhan, izin kafe lo bisa dicabut dan pengelola bisa terancam pidana penjara. Inilah sebabnya pemilik lounge mahjong modern menerapkan protokol pertahanan yang sangat ketat. Pertama, aturan besi tanpa kompromi: nol uang tunai dan nol koin taruhan di atas meja. Kedua, seluruh pencatatan kemenangan wajib menggunakan lembar skor olahraga atau aplikasi pelacak digital di ponsel pintar. Ketiga, tidak ada ruangan gelap tertutup rapat; semua pintu memakai kaca bening transparan. Keempat, kamera pengawas bersuara aktif dua puluh empat jam yang merekam setiap sudut meja sebagai bukti sah bahwa tempat lo murni wadah olahraga ketangkasan rekreasi.",
+      "visual_cues": {
+        "hero_stat": "PASAL 303 KUHP // ZERO CASH PROTOCOL",
+        "sub_stat": "Legal Defense: Pintu Kaca & CCTV 24 Jam",
+        "visual_anchor": "4 Perisai Kepatuhan Hukum: 1. No Cash/Chips on Table, 2. Digital Scorecard Apps, 3. Pintu Kaca Bening, 4. 24/7 Cloud CCTV",
+        "callout_badge": "BENTENG HUKUM OLAHRAGA REKREASI"
+      }
+    },
+    {
+      "beat_id": "beat_10",
+      "chapter_badge": "POV: | LOUNGE RUKO VS SEWA HARIAN PANGGILAN",
+      "title": "POV: | Lounge Ruko vs Sewa Harian Panggilan",
+      "spoken_text": "P-O-V, sekarang sampai pada pilihan terakhir bagi lo yang ingin terjun ke industri ini. Opsi pertama adalah membuka lounge ruko fisik. Modalnya besar mencapai tiga ratus lima puluh juta rupiah, beban operasional bulanannya tinggi, dan masa balik modal memakan waktu sekitar dua puluh bulan dengan risiko hukum yang harus dijaga ketat. Tapi ada opsi kedua yang jauh lebih cerdas untuk pemula: bisnis sewa meja mahjong lipat panggilan harian. Cukup dengan modal lima puluh lima juta rupiah untuk membeli lima meja portabel di garasi rumah, lo bisa menyewakannya dengan tarif empat ratus ribu rupiah per hari ke rumah pribadi atau vila. Menariknya, saat musim libur hari raya Imlek, tarif sewa melonjak hingga satu setengah juta rupiah per hari dan meja ludes disewa berhari-hari. Bisnis panggilan ini bisa balik modal cuma dalam delapan bulan tanpa pusing memikirkan biaya sewa ruko!",
+      "visual_cues": {
+        "hero_stat": "LOUNGE (20 BLN) VS HOME DELIVERY (8 BLN)",
+        "sub_stat": "Modal Rp55 Juta (5 Meja Lipat Garasi)",
+        "visual_anchor": "Kartu duel komparasi: Lounge Ruko (Capex Rp350Jt, BEP 20 Bulan, Opex tinggi) vs Rental Panggilan Rumah (Capex Rp55Jt, BEP 8 Bulan, Surge Imlek Rp1,5Jt/hari)",
+        "callout_badge": "PILIHAN STRATEGIS: BOOMING RENTAL HARIAN"
+      }
+    }
+  ]
+}
