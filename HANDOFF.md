@@ -19,9 +19,37 @@
 
 2. **[`Guide.md`](file:///home/agent/orca/AI-nimate/Guide.md)** — Master Production & Orchestrator Guide:
    - Rules 1–6: `focalScale` stillness by default, Rule 1B camera cacheBBox invariant, authentic Wikimedia vector marks, 5 distinct diagram archetypes, sample-accurate `±0.3s` triggers, symmetrical subtitle pill margins, and Rule 6 shared screen calibration module (`src/shared/screenCalibration.ts`) with Phone Font Floor.
+   - Section 6: Web Portal, canonical `projects/<channel>_<date>_<project_name>/` layout, `deploy_portal.sh`, and Nginx HTTP Basic Auth Admin Gate on `cuang.dev`.
 
 3. **[`AGENTS.md`](file:///home/agent/orca/AI-nimate/AGENTS.md)** — Antigravity Agent Guidelines:
    - Strict `≤76` character terminal width budget, raw Mermaid CLI block ban, and 2025–2026 temporal anchoring.
+
+---
+
+## Web Portal & Automated Deployment Pipeline (Step 4 Complete)
+
+- **Standard Project Output Directory Structure**:
+  All render outputs are normalized under `/home/agent/orca/AI-nimate/projects/<channel>_<date>_<project_name>/`:
+  - `kausalmedia_20261021_anatomi-saham-gorengan-di-bei/`
+  - `kausalmedia_20261024_the-ai-bubble-explained/`
+  - `kausalmedia_20261029_offshore-investing-tax-traps-indonesia/`
+  - `kausalmedia_20261031_knp-bursa-kita-terancam-diboikot-dunia/`
+  - `kausalmedia_20261031_knp-saham-teknologi-runtuh/`
+  Backward-compatible relative symlinks are preserved (e.g. `projects/<video_id> -> <canonical_project_dir>`). All symlinks inside `projects/` strictly use relative paths within `projects/` to prevent escaping the mount root.
+
+- **Automated Portal Builder (`motion-canvas/scripts/build_portal.mjs`)**:
+  - Automatically enriches and generates `manifest.json`, discovery hub `projects/index.html`, channel hub `projects/kausalmedia/index.html`, and interactive dual-aspect players (`index.html`, `embed.html`) for every project.
+
+- **Deployment Script (`motion-canvas/scripts/deploy_portal.sh` & `npm run deploy`)**:
+  - Executes `build_portal.mjs`.
+  - Syncs `projects/` to `docker-host:/home/agent/orca/AI-nimate/projects/` and `docker-host:/home/agent/orca/AI-nimate/public/projects/ainimate/` via `rsync -az --delete`.
+  - Fixes permissions for Nginx container worker process.
+
+- **Production Nginx HTTP Basic Auth Gate (`cuang.dev`)**:
+  - Live at `https://cuang.dev/projects/ainimate/`
+  - Root URL and all sub-URLs are gated by Nginx Basic Auth (`auth_basic "AI-nimate Admin"; auth_basic_user_file /etc/nginx/.htpasswd;`).
+  - Byte-range requests (`Accept-Ranges: bytes`) and MP4 streaming are verified across all video files.
+  - Credentials stored in `.env` (`AINIMATE_ADMIN_USER`, `AINIMATE_ADMIN_PASS`, `AINIMATE_PORTAL_URL`).
 
 ---
 

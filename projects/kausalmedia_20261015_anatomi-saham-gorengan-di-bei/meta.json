@@ -1,0 +1,101 @@
+{
+  "id": "vid_20261015_001",
+  "dirName": "kausalmedia_20261015_anatomi-saham-gorengan-di-bei",
+  "channel": "kausalmedia",
+  "channelLabel": "Kausal Media",
+  "series": "Forensic Deep-Dive",
+  "date": "2026-10-15",
+  "dateCompact": "20261015",
+  "slug": "anatomi-saham-gorengan-di-bei",
+  "title": "Anatomi Saham Gorengan di BEI: Rekayasa Likuiditas Bandar",
+  "subtitle": "Rekayasa Likuiditas, Repo Saham & Distribusi Ritel",
+  "description": "Investigasi forensik mendalam mengenai anatomi rekayasa saham gorengan di Bursa Efek Indonesia: mulai dari akumulasi float, manipulasi volume wash trading, skema repo bayangan, hingga distribusi masif ke ritel.",
+  "language": "ID",
+  "durationSec": 274.97,
+  "aspects": [
+    "16:9"
+  ],
+  "primaryVideo": "video_16x9.mp4",
+  "poster": "thumbnail.jpg",
+  "files": {
+    "embed.html": 3341,
+    "index.html": 55548,
+    "meta.json": 3563,
+    "thumb.jpg": 101673,
+    "thumb_16x9.jpg": 101673,
+    "thumbnail.jpg": 101673,
+    "video.mp4": 42570399,
+    "video_16x9.mp4": 42570399,
+    "qa_frames/beat1.jpg": 101673,
+    "qa_frames/beat2.jpg": 146265,
+    "qa_frames/beat3.jpg": 89851,
+    "qa_frames/beat4.jpg": 135190,
+    "qa_frames/beat5.jpg": 109930
+  },
+  "qaStatus": "14/14 PASS",
+  "qaFrameFiles": [
+    "beat1.jpg",
+    "beat2.jpg",
+    "beat3.jpg",
+    "beat4.jpg",
+    "beat5.jpg"
+  ],
+  "beats": [
+    {
+      "beat": "01",
+      "title": "Akumulasi & Penguncian Float",
+      "startSec": 0,
+      "endSec": 55,
+      "durationSec": 55,
+      "narration": "Bandar mengakumulasi saham secara senyap di pasar reguler dan negosiasi untuk mengunci free float saham hingga peredaran ritel sangat tipis.",
+      "keyframe": "qa_frames/beat1.jpg",
+      "keyframe9x16": "qa_frames/beat1.jpg",
+      "keyframe16x9": "qa_frames/beat1.jpg"
+    },
+    {
+      "beat": "02",
+      "title": "Wash Trading & Ilusi Volume",
+      "startSec": 55,
+      "endSec": 110,
+      "durationSec": 55,
+      "narration": "Melalui transaksi semu antar rekening terafiliasi (wash trading), volume harian direkayasa seolah-olah saham memiliki likuiditas dan minat pasar yang tinggi.",
+      "keyframe": "qa_frames/beat2.jpg",
+      "keyframe9x16": "qa_frames/beat2.jpg",
+      "keyframe16x9": "qa_frames/beat2.jpg"
+    },
+    {
+      "beat": "03",
+      "title": "Repo Saham & Kreditor Bayangan",
+      "startSec": 110,
+      "endSec": 165,
+      "durationSec": 55,
+      "narration": "Saham yang harganya sudah dikerek dijadikan jaminan pinjaman repo ke kreditor atau institusi untuk mencairkan dana segar sebelum distribusi.",
+      "keyframe": "qa_frames/beat3.jpg",
+      "keyframe9x16": "qa_frames/beat3.jpg",
+      "keyframe16x9": "qa_frames/beat3.jpg"
+    },
+    {
+      "beat": "04",
+      "title": "Pompa Narasi & FOMO Ritel",
+      "startSec": 165,
+      "endSec": 220,
+      "durationSec": 55,
+      "narration": "Penyebaran rumor akuisisi, rekomendasi influencer pasar modal, dan pemberitaan media memicu sentimen FOMO di kalangan investor ritel.",
+      "keyframe": "qa_frames/beat4.jpg",
+      "keyframe9x16": "qa_frames/beat4.jpg",
+      "keyframe16x9": "qa_frames/beat4.jpg"
+    },
+    {
+      "beat": "05",
+      "title": "Distribusi Masif & Auto Reject Bawah",
+      "startSec": 220,
+      "endSec": 274.97,
+      "durationSec": 54.97,
+      "narration": "Bandar melepas seluruh kepemilikan saham di harga puncak ke investor ritel yang masuk, memicu kejatuhan harga beruntun hingga Auto Reject Bawah.",
+      "keyframe": "qa_frames/beat5.jpg",
+      "keyframe9x16": "qa_frames/beat5.jpg",
+      "keyframe16x9": "qa_frames/beat5.jpg"
+    }
+  ],
+  "wordCount": 97
+}

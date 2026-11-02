@@ -1,0 +1,2914 @@
+{
+  "duration_seconds": 77.023,
+  "scenes": [
+    {
+      "id": "beat_01",
+      "start": 0.0,
+      "end": 14.231,
+      "duration": 14.231
+    },
+    {
+      "id": "beat_02",
+      "start": 14.231,
+      "end": 31.081,
+      "duration": 16.85
+    },
+    {
+      "id": "beat_03",
+      "start": 31.081,
+      "end": 48.668,
+      "duration": 17.587
+    },
+    {
+      "id": "beat_04",
+      "start": 48.668,
+      "end": 63.11,
+      "duration": 14.442
+    },
+    {
+      "id": "beat_05",
+      "start": 63.11,
+      "end": 77.023,
+      "duration": 13.913
+    }
+  ],
+  "beats": [
+    {
+      "beat_id": "beat_01",
+      "start": 0.0,
+      "end": 14.231,
+      "duration": 14.231,
+      "speech_duration": 13.731
+    },
+    {
+      "beat_id": "beat_02",
+      "start": 14.231,
+      "end": 31.081,
+      "duration": 16.85,
+      "speech_duration": 16.35
+    },
+    {
+      "beat_id": "beat_03",
+      "start": 31.081,
+      "end": 48.668,
+      "duration": 17.587,
+      "speech_duration": 17.087
+    },
+    {
+      "beat_id": "beat_04",
+      "start": 48.668,
+      "end": 63.11,
+      "duration": 14.442,
+      "speech_duration": 13.942
+    },
+    {
+      "beat_id": "beat_05",
+      "start": 63.11,
+      "end": 77.023,
+      "duration": 13.913,
+      "speech_duration": 13.914
+    }
+  ],
+  "words": [
+    {
+      "w": "Pernah",
+      "start": 0.0,
+      "end": 0.207,
+      "beat_id": "beat_01"
+    },
+    {
+      "w": "nggak",
+      "start": 0.207,
+      "end": 0.413,
+      "beat_id": "beat_01"
+    },
+    {
+      "w": "sih",
+      "start": 0.413,
+      "end": 0.62,
+      "beat_id": "beat_01"
+    },
+    {
+      "w": "kamu",
+      "start": 0.62,
+      "end": 0.84,
+      "beat_id": "beat_01"
+    },
+    {
+      "w": "mikir,",
+      "start": 0.84,
+      "end": 1.18,
+      "beat_id": "beat_01"
+    },
+    {
+      "w": "kenapa",
+      "start": 1.58,
+      "end": 1.88,
+      "beat_id": "beat_01"
+    },
+    {
+      "w": "saham",
+      "start": 1.88,
+      "end": 2.24,
+      "beat_id": "beat_01"
+    },
+    {
+      "w": "perusahaan",
+      "start": 2.24,
+      "end": 2.78,
+      "beat_id": "beat_01"
+    },
+    {
+      "w": "teknologi",
+      "start": 2.78,
+      "end": 3.32,
+      "beat_id": "beat_01"
+    },
+    {
+      "w": "yang",
+      "start": 3.32,
+      "end": 3.46,
+      "beat_id": "beat_01"
+    },
+    {
+      "w": "aplikasinya",
+      "start": 3.46,
+      "end": 4.1,
+      "beat_id": "beat_01"
+    },
+    {
+      "w": "kita",
+      "start": 4.1,
+      "end": 4.38,
+      "beat_id": "beat_01"
+    },
+    {
+      "w": "pakai",
+      "start": 4.38,
+      "end": 4.6,
+      "beat_id": "beat_01"
+    },
+    {
+      "w": "tiap",
+      "start": 4.6,
+      "end": 4.96,
+      "beat_id": "beat_01"
+    },
+    {
+      "w": "hari,",
+      "start": 4.96,
+      "end": 5.18,
+      "beat_id": "beat_01"
+    },
+    {
+      "w": "mulai",
+      "start": 5.66,
+      "end": 5.84,
+      "beat_id": "beat_01"
+    },
+    {
+      "w": "dari",
+      "start": 5.84,
+      "end": 6.04,
+      "beat_id": "beat_01"
+    },
+    {
+      "w": "raksasa",
+      "start": 6.04,
+      "end": 6.44,
+      "beat_id": "beat_01"
+    },
+    {
+      "w": "akal",
+      "start": 6.44,
+      "end": 6.84,
+      "beat_id": "beat_01"
+    },
+    {
+      "w": "imitasi",
+      "start": 6.84,
+      "end": 7.26,
+      "beat_id": "beat_01"
+    },
+    {
+      "w": "dunia,",
+      "start": 7.26,
+      "end": 7.64,
+      "beat_id": "beat_01"
+    },
+    {
+      "w": "sampai",
+      "start": 8.04,
+      "end": 8.2,
+      "beat_id": "beat_01"
+    },
+    {
+      "w": "belanja",
+      "start": 8.2,
+      "end": 8.52,
+      "beat_id": "beat_01"
+    },
+    {
+      "w": "online",
+      "start": 8.52,
+      "end": 8.84,
+      "beat_id": "beat_01"
+    },
+    {
+      "w": "lokal,",
+      "start": 8.84,
+      "end": 9.22,
+      "beat_id": "beat_01"
+    },
+    {
+      "w": "mendadak",
+      "start": 9.64,
+      "end": 10.0,
+      "beat_id": "beat_01"
+    },
+    {
+      "w": "anjlok",
+      "start": 10.0,
+      "end": 10.5,
+      "beat_id": "beat_01"
+    },
+    {
+      "w": "berjamaah",
+      "start": 10.5,
+      "end": 11.08,
+      "beat_id": "beat_01"
+    },
+    {
+      "w": "dan",
+      "start": 11.08,
+      "end": 11.5,
+      "beat_id": "beat_01"
+    },
+    {
+      "w": "menghapus",
+      "start": 11.5,
+      "end": 11.94,
+      "beat_id": "beat_01"
+    },
+    {
+      "w": "nilai",
+      "start": 11.94,
+      "end": 12.24,
+      "beat_id": "beat_01"
+    },
+    {
+      "w": "ribuan",
+      "start": 12.24,
+      "end": 12.64,
+      "beat_id": "beat_01"
+    },
+    {
+      "w": "triliun",
+      "start": 12.64,
+      "end": 13.12,
+      "beat_id": "beat_01"
+    },
+    {
+      "w": "rupiah.",
+      "start": 13.12,
+      "end": 13.5,
+      "beat_id": "beat_01"
+    },
+    {
+      "w": "Selama",
+      "start": 14.231,
+      "end": 14.811,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "bertahun-tahun,",
+      "start": 14.811,
+      "end": 15.551,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "saham",
+      "start": 15.891,
+      "end": 16.051,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "teknologi",
+      "start": 16.051,
+      "end": 16.591,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "dinilai",
+      "start": 16.591,
+      "end": 16.951,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "bukan",
+      "start": 16.951,
+      "end": 17.251,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "dari",
+      "start": 17.251,
+      "end": 17.511,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "untung",
+      "start": 17.511,
+      "end": 17.811,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "nyatanya,",
+      "start": 17.811,
+      "end": 18.211,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "tapi",
+      "start": 18.551,
+      "end": 18.751,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "dari",
+      "start": 18.751,
+      "end": 18.971,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "seberapa",
+      "start": 18.971,
+      "end": 19.431,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "heboh",
+      "start": 19.431,
+      "end": 19.771,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "janjinya.",
+      "start": 19.771,
+      "end": 20.331,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "Di",
+      "start": 20.811,
+      "end": 20.971,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "Indonesia",
+      "start": 20.971,
+      "end": 21.351,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "mereka",
+      "start": 21.351,
+      "end": 21.971,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "bakar",
+      "start": 21.971,
+      "end": 22.511,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "uang",
+      "start": 22.511,
+      "end": 22.751,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "triliunan",
+      "start": 22.751,
+      "end": 23.311,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "buat",
+      "start": 23.311,
+      "end": 23.531,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "kasih",
+      "start": 23.531,
+      "end": 23.791,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "diskon",
+      "start": 23.791,
+      "end": 24.191,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "dan",
+      "start": 24.191,
+      "end": 24.351,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "gratis",
+      "start": 24.351,
+      "end": 24.711,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "ongkir.",
+      "start": 24.711,
+      "end": 25.051,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "Di",
+      "start": 25.491,
+      "end": 25.591,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "Amerika,",
+      "start": 25.591,
+      "end": 25.971,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "raksasa",
+      "start": 26.451,
+      "end": 26.691,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "teknologi",
+      "start": 26.691,
+      "end": 27.271,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "bakar",
+      "start": 27.271,
+      "end": 27.651,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "ribuan",
+      "start": 27.651,
+      "end": 28.011,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "triliun",
+      "start": 28.011,
+      "end": 28.471,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "buat",
+      "start": 28.471,
+      "end": 28.751,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "borong",
+      "start": 28.751,
+      "end": 29.091,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "mesin",
+      "start": 29.091,
+      "end": 29.431,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "akal",
+      "start": 29.431,
+      "end": 29.751,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "imitasi.",
+      "start": 29.751,
+      "end": 30.211,
+      "beat_id": "beat_02"
+    },
+    {
+      "w": "Masalahnya",
+      "start": 31.081,
+      "end": 31.861,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "meledak",
+      "start": 31.861,
+      "end": 32.321,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "saat",
+      "start": 32.321,
+      "end": 32.601,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "uang",
+      "start": 32.601,
+      "end": 32.921,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "yang",
+      "start": 32.921,
+      "end": 33.081,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "dibakar",
+      "start": 33.081,
+      "end": 33.561,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "nggak",
+      "start": 33.561,
+      "end": 33.801,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "balik",
+      "start": 33.801,
+      "end": 34.041,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "modal",
+      "start": 34.041,
+      "end": 34.301,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "secepat",
+      "start": 34.301,
+      "end": 34.661,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "itu.",
+      "start": 34.661,
+      "end": 35.021,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "Di",
+      "start": 35.581,
+      "end": 35.761,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "dunia,",
+      "start": 35.761,
+      "end": 36.141,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "muncul",
+      "start": 36.361,
+      "end": 36.581,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "pesaing",
+      "start": 36.581,
+      "end": 36.961,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "baru",
+      "start": 36.961,
+      "end": 37.261,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "yang",
+      "start": 37.261,
+      "end": 37.481,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "jauh",
+      "start": 37.481,
+      "end": 37.841,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "lebih",
+      "start": 37.841,
+      "end": 38.001,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "hemat",
+      "start": 38.001,
+      "end": 38.241,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "biaya,",
+      "start": 38.241,
+      "end": 38.481,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "bikin",
+      "start": 38.961,
+      "end": 39.321,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "saham",
+      "start": 39.321,
+      "end": 39.601,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "chip",
+      "start": 39.601,
+      "end": 40.041,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "raksasa",
+      "start": 40.041,
+      "end": 40.321,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "langsung",
+      "start": 40.321,
+      "end": 40.561,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "rontok.",
+      "start": 40.561,
+      "end": 40.861,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "Di",
+      "start": 41.501,
+      "end": 41.721,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "Indonesia,",
+      "start": 41.721,
+      "end": 42.101,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "begitu",
+      "start": 42.581,
+      "end": 42.781,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "diskon",
+      "start": 42.781,
+      "end": 43.221,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "distop",
+      "start": 43.221,
+      "end": 43.541,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "demi",
+      "start": 43.541,
+      "end": 43.781,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "cari",
+      "start": 43.781,
+      "end": 44.021,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "untung,",
+      "start": 44.021,
+      "end": 44.441,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "pembeli",
+      "start": 44.741,
+      "end": 45.021,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "sepi",
+      "start": 45.021,
+      "end": 45.281,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "sampai",
+      "start": 45.281,
+      "end": 45.641,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "Bukalapak",
+      "start": 45.641,
+      "end": 46.241,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "tutup",
+      "start": 46.241,
+      "end": 46.601,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "layanan",
+      "start": 46.601,
+      "end": 46.921,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "belanja",
+      "start": 46.921,
+      "end": 47.261,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "barang",
+      "start": 47.261,
+      "end": 47.521,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "fisiknya.",
+      "start": 47.521,
+      "end": 47.921,
+      "beat_id": "beat_03"
+    },
+    {
+      "w": "Di",
+      "start": 48.668,
+      "end": 48.968,
+      "beat_id": "beat_04"
+    },
+    {
+      "w": "bursa",
+      "start": 48.968,
+      "end": 49.348,
+      "beat_id": "beat_04"
+    },
+    {
+      "w": "kita,",
+      "start": 49.348,
+      "end": 49.628,
+      "beat_id": "beat_04"
+    },
+    {
+      "w": "saham",
+      "start": 50.208,
+      "end": 50.368,
+      "beat_id": "beat_04"
+    },
+    {
+      "w": "teknologi",
+      "start": 50.368,
+      "end": 50.868,
+      "beat_id": "beat_04"
+    },
+    {
+      "w": "yang",
+      "start": 50.868,
+      "end": 50.988,
+      "beat_id": "beat_04"
+    },
+    {
+      "w": "dulunya",
+      "start": 50.988,
+      "end": 51.348,
+      "beat_id": "beat_04"
+    },
+    {
+      "w": "dijual",
+      "start": 51.348,
+      "end": 51.768,
+      "beat_id": "beat_04"
+    },
+    {
+      "w": "ratusan",
+      "start": 51.768,
+      "end": 52.208,
+      "beat_id": "beat_04"
+    },
+    {
+      "w": "rupiah",
+      "start": 52.208,
+      "end": 52.608,
+      "beat_id": "beat_04"
+    },
+    {
+      "w": "saat",
+      "start": 52.608,
+      "end": 52.888,
+      "beat_id": "beat_04"
+    },
+    {
+      "w": "pertama",
+      "start": 52.888,
+      "end": 53.188,
+      "beat_id": "beat_04"
+    },
+    {
+      "w": "masuk",
+      "start": 53.188,
+      "end": 53.448,
+      "beat_id": "beat_04"
+    },
+    {
+      "w": "pasar,",
+      "start": 53.448,
+      "end": 53.828,
+      "beat_id": "beat_04"
+    },
+    {
+      "w": "kini",
+      "start": 54.348,
+      "end": 54.468,
+      "beat_id": "beat_04"
+    },
+    {
+      "w": "terjun",
+      "start": 54.468,
+      "end": 54.768,
+      "beat_id": "beat_04"
+    },
+    {
+      "w": "bebas,",
+      "start": 54.768,
+      "end": 55.168,
+      "beat_id": "beat_04"
+    },
+    {
+      "w": "kehilangan",
+      "start": 55.508,
+      "end": 55.828,
+      "beat_id": "beat_04"
+    },
+    {
+      "w": "lebih",
+      "start": 55.828,
+      "end": 56.208,
+      "beat_id": "beat_04"
+    },
+    {
+      "w": "dari",
+      "start": 56.208,
+      "end": 56.408,
+      "beat_id": "beat_04"
+    },
+    {
+      "w": "85%",
+      "start": 56.408,
+      "end": 57.468,
+      "beat_id": "beat_04"
+    },
+    {
+      "w": "nilainya.",
+      "start": 57.468,
+      "end": 57.968,
+      "beat_id": "beat_04"
+    },
+    {
+      "w": "Era",
+      "start": 58.688,
+      "end": 59.048,
+      "beat_id": "beat_04"
+    },
+    {
+      "w": "membeli",
+      "start": 59.048,
+      "end": 59.368,
+      "beat_id": "beat_04"
+    },
+    {
+      "w": "saham",
+      "start": 59.368,
+      "end": 59.728,
+      "beat_id": "beat_04"
+    },
+    {
+      "w": "cuma",
+      "start": 59.728,
+      "end": 59.968,
+      "beat_id": "beat_04"
+    },
+    {
+      "w": "karena",
+      "start": 59.968,
+      "end": 60.228,
+      "beat_id": "beat_04"
+    },
+    {
+      "w": "janji",
+      "start": 60.228,
+      "end": 60.588,
+      "beat_id": "beat_04"
+    },
+    {
+      "w": "manis",
+      "start": 60.588,
+      "end": 60.828,
+      "beat_id": "beat_04"
+    },
+    {
+      "w": "masa",
+      "start": 60.828,
+      "end": 61.028,
+      "beat_id": "beat_04"
+    },
+    {
+      "w": "depan",
+      "start": 61.028,
+      "end": 61.388,
+      "beat_id": "beat_04"
+    },
+    {
+      "w": "sudah",
+      "start": 61.388,
+      "end": 61.848,
+      "beat_id": "beat_04"
+    },
+    {
+      "w": "resmi",
+      "start": 61.848,
+      "end": 62.148,
+      "beat_id": "beat_04"
+    },
+    {
+      "w": "tamat.",
+      "start": 62.148,
+      "end": 62.488,
+      "beat_id": "beat_04"
+    },
+    {
+      "w": "Pelajaran",
+      "start": 63.11,
+      "end": 63.65,
+      "beat_id": "beat_05"
+    },
+    {
+      "w": "pentingnya",
+      "start": 63.65,
+      "end": 64.09,
+      "beat_id": "beat_05"
+    },
+    {
+      "w": "buat",
+      "start": 64.09,
+      "end": 64.29,
+      "beat_id": "beat_05"
+    },
+    {
+      "w": "dompet",
+      "start": 64.29,
+      "end": 64.57,
+      "beat_id": "beat_05"
+    },
+    {
+      "w": "kita.",
+      "start": 64.57,
+      "end": 64.81,
+      "beat_id": "beat_05"
+    },
+    {
+      "w": "Aplikasi",
+      "start": 65.27,
+      "end": 65.73,
+      "beat_id": "beat_05"
+    },
+    {
+      "w": "yang",
+      "start": 65.73,
+      "end": 65.85,
+      "beat_id": "beat_05"
+    },
+    {
+      "w": "ramai",
+      "start": 65.85,
+      "end": 66.09,
+      "beat_id": "beat_05"
+    },
+    {
+      "w": "dipakai",
+      "start": 66.09,
+      "end": 66.53,
+      "beat_id": "beat_05"
+    },
+    {
+      "w": "belum",
+      "start": 66.53,
+      "end": 66.87,
+      "beat_id": "beat_05"
+    },
+    {
+      "w": "tentu",
+      "start": 66.87,
+      "end": 67.21,
+      "beat_id": "beat_05"
+    },
+    {
+      "w": "perusahaannya",
+      "start": 67.21,
+      "end": 67.79,
+      "beat_id": "beat_05"
+    },
+    {
+      "w": "cetak",
+      "start": 67.79,
+      "end": 68.03,
+      "beat_id": "beat_05"
+    },
+    {
+      "w": "untung.",
+      "start": 68.03,
+      "end": 68.37,
+      "beat_id": "beat_05"
+    },
+    {
+      "w": "Sebelum",
+      "start": 68.83,
+      "end": 69.13,
+      "beat_id": "beat_05"
+    },
+    {
+      "w": "ikut",
+      "start": 69.13,
+      "end": 69.33,
+      "beat_id": "beat_05"
+    },
+    {
+      "w": "beli,",
+      "start": 69.33,
+      "end": 69.59,
+      "beat_id": "beat_05"
+    },
+    {
+      "w": "cek",
+      "start": 69.99,
+      "end": 70.11,
+      "beat_id": "beat_05"
+    },
+    {
+      "w": "apakah",
+      "start": 70.11,
+      "end": 70.39,
+      "beat_id": "beat_05"
+    },
+    {
+      "w": "bisnisnya",
+      "start": 70.39,
+      "end": 70.85,
+      "beat_id": "beat_05"
+    },
+    {
+      "w": "beneran",
+      "start": 70.85,
+      "end": 71.13,
+      "beat_id": "beat_05"
+    },
+    {
+      "w": "untung",
+      "start": 71.13,
+      "end": 71.47,
+      "beat_id": "beat_05"
+    },
+    {
+      "w": "tanpa",
+      "start": 71.47,
+      "end": 71.83,
+      "beat_id": "beat_05"
+    },
+    {
+      "w": "bakar",
+      "start": 71.83,
+      "end": 72.13,
+      "beat_id": "beat_05"
+    },
+    {
+      "w": "uang",
+      "start": 72.13,
+      "end": 72.35,
+      "beat_id": "beat_05"
+    },
+    {
+      "w": "dan",
+      "start": 72.35,
+      "end": 72.81,
+      "beat_id": "beat_05"
+    },
+    {
+      "w": "apakah",
+      "start": 72.81,
+      "end": 73.13,
+      "beat_id": "beat_05"
+    },
+    {
+      "w": "produknya",
+      "start": 73.13,
+      "end": 73.57,
+      "beat_id": "beat_05"
+    },
+    {
+      "w": "tetap",
+      "start": 73.57,
+      "end": 73.79,
+      "beat_id": "beat_05"
+    },
+    {
+      "w": "laku",
+      "start": 73.79,
+      "end": 74.07,
+      "beat_id": "beat_05"
+    },
+    {
+      "w": "tanpa",
+      "start": 74.07,
+      "end": 74.57,
+      "beat_id": "beat_05"
+    },
+    {
+      "w": "subsidi",
+      "start": 74.57,
+      "end": 74.88,
+      "beat_id": "beat_05"
+    },
+    {
+      "w": "diskon.",
+      "start": 74.88,
+      "end": 75.19,
+      "beat_id": "beat_05"
+    },
+    {
+      "w": "Sekarang",
+      "start": 75.59,
+      "end": 76.07,
+      "beat_id": "beat_05"
+    },
+    {
+      "w": "kamu",
+      "start": 76.07,
+      "end": 76.33,
+      "beat_id": "beat_05"
+    },
+    {
+      "w": "tahu",
+      "start": 76.33,
+      "end": 76.53,
+      "beat_id": "beat_05"
+    },
+    {
+      "w": "kenapa?",
+      "start": 76.53,
+      "end": 76.81,
+      "beat_id": "beat_05"
+    }
+  ],
+  "subtitle_chunks": [
+    {
+      "text": "Pernah nggak sih kamu",
+      "start": 0.0,
+      "end": 0.84,
+      "duration": 0.84,
+      "words": [
+        {
+          "w": "Pernah",
+          "start": 0.0,
+          "end": 0.207,
+          "beat_id": "beat_01"
+        },
+        {
+          "w": "nggak",
+          "start": 0.207,
+          "end": 0.413,
+          "beat_id": "beat_01"
+        },
+        {
+          "w": "sih",
+          "start": 0.413,
+          "end": 0.62,
+          "beat_id": "beat_01"
+        },
+        {
+          "w": "kamu",
+          "start": 0.62,
+          "end": 0.84,
+          "beat_id": "beat_01"
+        }
+      ],
+      "beat_id": "beat_01"
+    },
+    {
+      "text": "mikir,",
+      "start": 0.84,
+      "end": 1.18,
+      "duration": 0.34,
+      "words": [
+        {
+          "w": "mikir,",
+          "start": 0.84,
+          "end": 1.18,
+          "beat_id": "beat_01"
+        }
+      ],
+      "beat_id": "beat_01"
+    },
+    {
+      "text": "kenapa saham perusahaan",
+      "start": 1.58,
+      "end": 2.78,
+      "duration": 1.2,
+      "words": [
+        {
+          "w": "kenapa",
+          "start": 1.58,
+          "end": 1.88,
+          "beat_id": "beat_01"
+        },
+        {
+          "w": "saham",
+          "start": 1.88,
+          "end": 2.24,
+          "beat_id": "beat_01"
+        },
+        {
+          "w": "perusahaan",
+          "start": 2.24,
+          "end": 2.78,
+          "beat_id": "beat_01"
+        }
+      ],
+      "beat_id": "beat_01"
+    },
+    {
+      "text": "teknologi yang",
+      "start": 2.78,
+      "end": 3.46,
+      "duration": 0.68,
+      "words": [
+        {
+          "w": "teknologi",
+          "start": 2.78,
+          "end": 3.32,
+          "beat_id": "beat_01"
+        },
+        {
+          "w": "yang",
+          "start": 3.32,
+          "end": 3.46,
+          "beat_id": "beat_01"
+        }
+      ],
+      "beat_id": "beat_01"
+    },
+    {
+      "text": "aplikasinya kita pakai",
+      "start": 3.46,
+      "end": 4.6,
+      "duration": 1.14,
+      "words": [
+        {
+          "w": "aplikasinya",
+          "start": 3.46,
+          "end": 4.1,
+          "beat_id": "beat_01"
+        },
+        {
+          "w": "kita",
+          "start": 4.1,
+          "end": 4.38,
+          "beat_id": "beat_01"
+        },
+        {
+          "w": "pakai",
+          "start": 4.38,
+          "end": 4.6,
+          "beat_id": "beat_01"
+        }
+      ],
+      "beat_id": "beat_01"
+    },
+    {
+      "text": "tiap hari,",
+      "start": 4.6,
+      "end": 5.18,
+      "duration": 0.58,
+      "words": [
+        {
+          "w": "tiap",
+          "start": 4.6,
+          "end": 4.96,
+          "beat_id": "beat_01"
+        },
+        {
+          "w": "hari,",
+          "start": 4.96,
+          "end": 5.18,
+          "beat_id": "beat_01"
+        }
+      ],
+      "beat_id": "beat_01"
+    },
+    {
+      "text": "mulai dari raksasa akal",
+      "start": 5.66,
+      "end": 6.84,
+      "duration": 1.18,
+      "words": [
+        {
+          "w": "mulai",
+          "start": 5.66,
+          "end": 5.84,
+          "beat_id": "beat_01"
+        },
+        {
+          "w": "dari",
+          "start": 5.84,
+          "end": 6.04,
+          "beat_id": "beat_01"
+        },
+        {
+          "w": "raksasa",
+          "start": 6.04,
+          "end": 6.44,
+          "beat_id": "beat_01"
+        },
+        {
+          "w": "akal",
+          "start": 6.44,
+          "end": 6.84,
+          "beat_id": "beat_01"
+        }
+      ],
+      "beat_id": "beat_01"
+    },
+    {
+      "text": "imitasi dunia,",
+      "start": 6.84,
+      "end": 7.64,
+      "duration": 0.8,
+      "words": [
+        {
+          "w": "imitasi",
+          "start": 6.84,
+          "end": 7.26,
+          "beat_id": "beat_01"
+        },
+        {
+          "w": "dunia,",
+          "start": 7.26,
+          "end": 7.64,
+          "beat_id": "beat_01"
+        }
+      ],
+      "beat_id": "beat_01"
+    },
+    {
+      "text": "sampai belanja online",
+      "start": 8.04,
+      "end": 8.84,
+      "duration": 0.8,
+      "words": [
+        {
+          "w": "sampai",
+          "start": 8.04,
+          "end": 8.2,
+          "beat_id": "beat_01"
+        },
+        {
+          "w": "belanja",
+          "start": 8.2,
+          "end": 8.52,
+          "beat_id": "beat_01"
+        },
+        {
+          "w": "online",
+          "start": 8.52,
+          "end": 8.84,
+          "beat_id": "beat_01"
+        }
+      ],
+      "beat_id": "beat_01"
+    },
+    {
+      "text": "lokal,",
+      "start": 8.84,
+      "end": 9.22,
+      "duration": 0.38,
+      "words": [
+        {
+          "w": "lokal,",
+          "start": 8.84,
+          "end": 9.22,
+          "beat_id": "beat_01"
+        }
+      ],
+      "beat_id": "beat_01"
+    },
+    {
+      "text": "mendadak anjlok berjamaah",
+      "start": 9.64,
+      "end": 11.08,
+      "duration": 1.44,
+      "words": [
+        {
+          "w": "mendadak",
+          "start": 9.64,
+          "end": 10.0,
+          "beat_id": "beat_01"
+        },
+        {
+          "w": "anjlok",
+          "start": 10.0,
+          "end": 10.5,
+          "beat_id": "beat_01"
+        },
+        {
+          "w": "berjamaah",
+          "start": 10.5,
+          "end": 11.08,
+          "beat_id": "beat_01"
+        }
+      ],
+      "beat_id": "beat_01"
+    },
+    {
+      "text": "dan menghapus nilai",
+      "start": 11.08,
+      "end": 12.24,
+      "duration": 1.16,
+      "words": [
+        {
+          "w": "dan",
+          "start": 11.08,
+          "end": 11.5,
+          "beat_id": "beat_01"
+        },
+        {
+          "w": "menghapus",
+          "start": 11.5,
+          "end": 11.94,
+          "beat_id": "beat_01"
+        },
+        {
+          "w": "nilai",
+          "start": 11.94,
+          "end": 12.24,
+          "beat_id": "beat_01"
+        }
+      ],
+      "beat_id": "beat_01"
+    },
+    {
+      "text": "ribuan triliun rupiah.",
+      "start": 12.24,
+      "end": 13.5,
+      "duration": 1.26,
+      "words": [
+        {
+          "w": "ribuan",
+          "start": 12.24,
+          "end": 12.64,
+          "beat_id": "beat_01"
+        },
+        {
+          "w": "triliun",
+          "start": 12.64,
+          "end": 13.12,
+          "beat_id": "beat_01"
+        },
+        {
+          "w": "rupiah.",
+          "start": 13.12,
+          "end": 13.5,
+          "beat_id": "beat_01"
+        }
+      ],
+      "beat_id": "beat_01"
+    },
+    {
+      "text": "Selama bertahun-tahun,",
+      "start": 14.231,
+      "end": 15.551,
+      "duration": 1.32,
+      "words": [
+        {
+          "w": "Selama",
+          "start": 14.231,
+          "end": 14.811,
+          "beat_id": "beat_02"
+        },
+        {
+          "w": "bertahun-tahun,",
+          "start": 14.811,
+          "end": 15.551,
+          "beat_id": "beat_02"
+        }
+      ],
+      "beat_id": "beat_02"
+    },
+    {
+      "text": "saham teknologi dinilai",
+      "start": 15.891,
+      "end": 16.951,
+      "duration": 1.06,
+      "words": [
+        {
+          "w": "saham",
+          "start": 15.891,
+          "end": 16.051,
+          "beat_id": "beat_02"
+        },
+        {
+          "w": "teknologi",
+          "start": 16.051,
+          "end": 16.591,
+          "beat_id": "beat_02"
+        },
+        {
+          "w": "dinilai",
+          "start": 16.591,
+          "end": 16.951,
+          "beat_id": "beat_02"
+        }
+      ],
+      "beat_id": "beat_02"
+    },
+    {
+      "text": "bukan dari untung",
+      "start": 16.951,
+      "end": 17.811,
+      "duration": 0.86,
+      "words": [
+        {
+          "w": "bukan",
+          "start": 16.951,
+          "end": 17.251,
+          "beat_id": "beat_02"
+        },
+        {
+          "w": "dari",
+          "start": 17.251,
+          "end": 17.511,
+          "beat_id": "beat_02"
+        },
+        {
+          "w": "untung",
+          "start": 17.511,
+          "end": 17.811,
+          "beat_id": "beat_02"
+        }
+      ],
+      "beat_id": "beat_02"
+    },
+    {
+      "text": "nyatanya,",
+      "start": 17.811,
+      "end": 18.211,
+      "duration": 0.4,
+      "words": [
+        {
+          "w": "nyatanya,",
+          "start": 17.811,
+          "end": 18.211,
+          "beat_id": "beat_02"
+        }
+      ],
+      "beat_id": "beat_02"
+    },
+    {
+      "text": "tapi dari seberapa heboh",
+      "start": 18.551,
+      "end": 19.771,
+      "duration": 1.22,
+      "words": [
+        {
+          "w": "tapi",
+          "start": 18.551,
+          "end": 18.751,
+          "beat_id": "beat_02"
+        },
+        {
+          "w": "dari",
+          "start": 18.751,
+          "end": 18.971,
+          "beat_id": "beat_02"
+        },
+        {
+          "w": "seberapa",
+          "start": 18.971,
+          "end": 19.431,
+          "beat_id": "beat_02"
+        },
+        {
+          "w": "heboh",
+          "start": 19.431,
+          "end": 19.771,
+          "beat_id": "beat_02"
+        }
+      ],
+      "beat_id": "beat_02"
+    },
+    {
+      "text": "janjinya.",
+      "start": 19.771,
+      "end": 20.331,
+      "duration": 0.56,
+      "words": [
+        {
+          "w": "janjinya.",
+          "start": 19.771,
+          "end": 20.331,
+          "beat_id": "beat_02"
+        }
+      ],
+      "beat_id": "beat_02"
+    },
+    {
+      "text": "Di Indonesia mereka bakar",
+      "start": 20.811,
+      "end": 22.511,
+      "duration": 1.7,
+      "words": [
+        {
+          "w": "Di",
+          "start": 20.811,
+          "end": 20.971,
+          "beat_id": "beat_02"
+        },
+        {
+          "w": "Indonesia",
+          "start": 20.971,
+          "end": 21.351,
+          "beat_id": "beat_02"
+        },
+        {
+          "w": "mereka",
+          "start": 21.351,
+          "end": 21.971,
+          "beat_id": "beat_02"
+        },
+        {
+          "w": "bakar",
+          "start": 21.971,
+          "end": 22.511,
+          "beat_id": "beat_02"
+        }
+      ],
+      "beat_id": "beat_02"
+    },
+    {
+      "text": "uang triliunan buat kasih",
+      "start": 22.511,
+      "end": 23.791,
+      "duration": 1.28,
+      "words": [
+        {
+          "w": "uang",
+          "start": 22.511,
+          "end": 22.751,
+          "beat_id": "beat_02"
+        },
+        {
+          "w": "triliunan",
+          "start": 22.751,
+          "end": 23.311,
+          "beat_id": "beat_02"
+        },
+        {
+          "w": "buat",
+          "start": 23.311,
+          "end": 23.531,
+          "beat_id": "beat_02"
+        },
+        {
+          "w": "kasih",
+          "start": 23.531,
+          "end": 23.791,
+          "beat_id": "beat_02"
+        }
+      ],
+      "beat_id": "beat_02"
+    },
+    {
+      "text": "diskon dan gratis ongkir.",
+      "start": 23.791,
+      "end": 25.051,
+      "duration": 1.26,
+      "words": [
+        {
+          "w": "diskon",
+          "start": 23.791,
+          "end": 24.191,
+          "beat_id": "beat_02"
+        },
+        {
+          "w": "dan",
+          "start": 24.191,
+          "end": 24.351,
+          "beat_id": "beat_02"
+        },
+        {
+          "w": "gratis",
+          "start": 24.351,
+          "end": 24.711,
+          "beat_id": "beat_02"
+        },
+        {
+          "w": "ongkir.",
+          "start": 24.711,
+          "end": 25.051,
+          "beat_id": "beat_02"
+        }
+      ],
+      "beat_id": "beat_02"
+    },
+    {
+      "text": "Di Amerika,",
+      "start": 25.491,
+      "end": 25.971,
+      "duration": 0.48,
+      "words": [
+        {
+          "w": "Di",
+          "start": 25.491,
+          "end": 25.591,
+          "beat_id": "beat_02"
+        },
+        {
+          "w": "Amerika,",
+          "start": 25.591,
+          "end": 25.971,
+          "beat_id": "beat_02"
+        }
+      ],
+      "beat_id": "beat_02"
+    },
+    {
+      "text": "raksasa teknologi bakar",
+      "start": 26.451,
+      "end": 27.651,
+      "duration": 1.2,
+      "words": [
+        {
+          "w": "raksasa",
+          "start": 26.451,
+          "end": 26.691,
+          "beat_id": "beat_02"
+        },
+        {
+          "w": "teknologi",
+          "start": 26.691,
+          "end": 27.271,
+          "beat_id": "beat_02"
+        },
+        {
+          "w": "bakar",
+          "start": 27.271,
+          "end": 27.651,
+          "beat_id": "beat_02"
+        }
+      ],
+      "beat_id": "beat_02"
+    },
+    {
+      "text": "ribuan triliun buat",
+      "start": 27.651,
+      "end": 28.751,
+      "duration": 1.1,
+      "words": [
+        {
+          "w": "ribuan",
+          "start": 27.651,
+          "end": 28.011,
+          "beat_id": "beat_02"
+        },
+        {
+          "w": "triliun",
+          "start": 28.011,
+          "end": 28.471,
+          "beat_id": "beat_02"
+        },
+        {
+          "w": "buat",
+          "start": 28.471,
+          "end": 28.751,
+          "beat_id": "beat_02"
+        }
+      ],
+      "beat_id": "beat_02"
+    },
+    {
+      "text": "borong mesin akal",
+      "start": 28.751,
+      "end": 29.751,
+      "duration": 1.0,
+      "words": [
+        {
+          "w": "borong",
+          "start": 28.751,
+          "end": 29.091,
+          "beat_id": "beat_02"
+        },
+        {
+          "w": "mesin",
+          "start": 29.091,
+          "end": 29.431,
+          "beat_id": "beat_02"
+        },
+        {
+          "w": "akal",
+          "start": 29.431,
+          "end": 29.751,
+          "beat_id": "beat_02"
+        }
+      ],
+      "beat_id": "beat_02"
+    },
+    {
+      "text": "imitasi.",
+      "start": 29.751,
+      "end": 30.211,
+      "duration": 0.46,
+      "words": [
+        {
+          "w": "imitasi.",
+          "start": 29.751,
+          "end": 30.211,
+          "beat_id": "beat_02"
+        }
+      ],
+      "beat_id": "beat_02"
+    },
+    {
+      "text": "Masalahnya meledak saat",
+      "start": 31.081,
+      "end": 32.601,
+      "duration": 1.52,
+      "words": [
+        {
+          "w": "Masalahnya",
+          "start": 31.081,
+          "end": 31.861,
+          "beat_id": "beat_03"
+        },
+        {
+          "w": "meledak",
+          "start": 31.861,
+          "end": 32.321,
+          "beat_id": "beat_03"
+        },
+        {
+          "w": "saat",
+          "start": 32.321,
+          "end": 32.601,
+          "beat_id": "beat_03"
+        }
+      ],
+      "beat_id": "beat_03"
+    },
+    {
+      "text": "uang yang dibakar nggak",
+      "start": 32.601,
+      "end": 33.801,
+      "duration": 1.2,
+      "words": [
+        {
+          "w": "uang",
+          "start": 32.601,
+          "end": 32.921,
+          "beat_id": "beat_03"
+        },
+        {
+          "w": "yang",
+          "start": 32.921,
+          "end": 33.081,
+          "beat_id": "beat_03"
+        },
+        {
+          "w": "dibakar",
+          "start": 33.081,
+          "end": 33.561,
+          "beat_id": "beat_03"
+        },
+        {
+          "w": "nggak",
+          "start": 33.561,
+          "end": 33.801,
+          "beat_id": "beat_03"
+        }
+      ],
+      "beat_id": "beat_03"
+    },
+    {
+      "text": "balik modal secepat itu.",
+      "start": 33.801,
+      "end": 35.021,
+      "duration": 1.22,
+      "words": [
+        {
+          "w": "balik",
+          "start": 33.801,
+          "end": 34.041,
+          "beat_id": "beat_03"
+        },
+        {
+          "w": "modal",
+          "start": 34.041,
+          "end": 34.301,
+          "beat_id": "beat_03"
+        },
+        {
+          "w": "secepat",
+          "start": 34.301,
+          "end": 34.661,
+          "beat_id": "beat_03"
+        },
+        {
+          "w": "itu.",
+          "start": 34.661,
+          "end": 35.021,
+          "beat_id": "beat_03"
+        }
+      ],
+      "beat_id": "beat_03"
+    },
+    {
+      "text": "Di dunia,",
+      "start": 35.581,
+      "end": 36.141,
+      "duration": 0.56,
+      "words": [
+        {
+          "w": "Di",
+          "start": 35.581,
+          "end": 35.761,
+          "beat_id": "beat_03"
+        },
+        {
+          "w": "dunia,",
+          "start": 35.761,
+          "end": 36.141,
+          "beat_id": "beat_03"
+        }
+      ],
+      "beat_id": "beat_03"
+    },
+    {
+      "text": "muncul pesaing baru yang",
+      "start": 36.361,
+      "end": 37.481,
+      "duration": 1.12,
+      "words": [
+        {
+          "w": "muncul",
+          "start": 36.361,
+          "end": 36.581,
+          "beat_id": "beat_03"
+        },
+        {
+          "w": "pesaing",
+          "start": 36.581,
+          "end": 36.961,
+          "beat_id": "beat_03"
+        },
+        {
+          "w": "baru",
+          "start": 36.961,
+          "end": 37.261,
+          "beat_id": "beat_03"
+        },
+        {
+          "w": "yang",
+          "start": 37.261,
+          "end": 37.481,
+          "beat_id": "beat_03"
+        }
+      ],
+      "beat_id": "beat_03"
+    },
+    {
+      "text": "jauh lebih hemat biaya,",
+      "start": 37.481,
+      "end": 38.481,
+      "duration": 1.0,
+      "words": [
+        {
+          "w": "jauh",
+          "start": 37.481,
+          "end": 37.841,
+          "beat_id": "beat_03"
+        },
+        {
+          "w": "lebih",
+          "start": 37.841,
+          "end": 38.001,
+          "beat_id": "beat_03"
+        },
+        {
+          "w": "hemat",
+          "start": 38.001,
+          "end": 38.241,
+          "beat_id": "beat_03"
+        },
+        {
+          "w": "biaya,",
+          "start": 38.241,
+          "end": 38.481,
+          "beat_id": "beat_03"
+        }
+      ],
+      "beat_id": "beat_03"
+    },
+    {
+      "text": "bikin saham chip raksasa",
+      "start": 38.961,
+      "end": 40.321,
+      "duration": 1.36,
+      "words": [
+        {
+          "w": "bikin",
+          "start": 38.961,
+          "end": 39.321,
+          "beat_id": "beat_03"
+        },
+        {
+          "w": "saham",
+          "start": 39.321,
+          "end": 39.601,
+          "beat_id": "beat_03"
+        },
+        {
+          "w": "chip",
+          "start": 39.601,
+          "end": 40.041,
+          "beat_id": "beat_03"
+        },
+        {
+          "w": "raksasa",
+          "start": 40.041,
+          "end": 40.321,
+          "beat_id": "beat_03"
+        }
+      ],
+      "beat_id": "beat_03"
+    },
+    {
+      "text": "langsung rontok.",
+      "start": 40.321,
+      "end": 40.861,
+      "duration": 0.54,
+      "words": [
+        {
+          "w": "langsung",
+          "start": 40.321,
+          "end": 40.561,
+          "beat_id": "beat_03"
+        },
+        {
+          "w": "rontok.",
+          "start": 40.561,
+          "end": 40.861,
+          "beat_id": "beat_03"
+        }
+      ],
+      "beat_id": "beat_03"
+    },
+    {
+      "text": "Di Indonesia,",
+      "start": 41.501,
+      "end": 42.101,
+      "duration": 0.6,
+      "words": [
+        {
+          "w": "Di",
+          "start": 41.501,
+          "end": 41.721,
+          "beat_id": "beat_03"
+        },
+        {
+          "w": "Indonesia,",
+          "start": 41.721,
+          "end": 42.101,
+          "beat_id": "beat_03"
+        }
+      ],
+      "beat_id": "beat_03"
+    },
+    {
+      "text": "begitu diskon distop demi",
+      "start": 42.581,
+      "end": 43.781,
+      "duration": 1.2,
+      "words": [
+        {
+          "w": "begitu",
+          "start": 42.581,
+          "end": 42.781,
+          "beat_id": "beat_03"
+        },
+        {
+          "w": "diskon",
+          "start": 42.781,
+          "end": 43.221,
+          "beat_id": "beat_03"
+        },
+        {
+          "w": "distop",
+          "start": 43.221,
+          "end": 43.541,
+          "beat_id": "beat_03"
+        },
+        {
+          "w": "demi",
+          "start": 43.541,
+          "end": 43.781,
+          "beat_id": "beat_03"
+        }
+      ],
+      "beat_id": "beat_03"
+    },
+    {
+      "text": "cari untung,",
+      "start": 43.781,
+      "end": 44.441,
+      "duration": 0.66,
+      "words": [
+        {
+          "w": "cari",
+          "start": 43.781,
+          "end": 44.021,
+          "beat_id": "beat_03"
+        },
+        {
+          "w": "untung,",
+          "start": 44.021,
+          "end": 44.441,
+          "beat_id": "beat_03"
+        }
+      ],
+      "beat_id": "beat_03"
+    },
+    {
+      "text": "pembeli sepi sampai",
+      "start": 44.741,
+      "end": 45.641,
+      "duration": 0.9,
+      "words": [
+        {
+          "w": "pembeli",
+          "start": 44.741,
+          "end": 45.021,
+          "beat_id": "beat_03"
+        },
+        {
+          "w": "sepi",
+          "start": 45.021,
+          "end": 45.281,
+          "beat_id": "beat_03"
+        },
+        {
+          "w": "sampai",
+          "start": 45.281,
+          "end": 45.641,
+          "beat_id": "beat_03"
+        }
+      ],
+      "beat_id": "beat_03"
+    },
+    {
+      "text": "Bukalapak tutup layanan",
+      "start": 45.641,
+      "end": 46.921,
+      "duration": 1.28,
+      "words": [
+        {
+          "w": "Bukalapak",
+          "start": 45.641,
+          "end": 46.241,
+          "beat_id": "beat_03"
+        },
+        {
+          "w": "tutup",
+          "start": 46.241,
+          "end": 46.601,
+          "beat_id": "beat_03"
+        },
+        {
+          "w": "layanan",
+          "start": 46.601,
+          "end": 46.921,
+          "beat_id": "beat_03"
+        }
+      ],
+      "beat_id": "beat_03"
+    },
+    {
+      "text": "belanja barang fisiknya.",
+      "start": 46.921,
+      "end": 47.921,
+      "duration": 1.0,
+      "words": [
+        {
+          "w": "belanja",
+          "start": 46.921,
+          "end": 47.261,
+          "beat_id": "beat_03"
+        },
+        {
+          "w": "barang",
+          "start": 47.261,
+          "end": 47.521,
+          "beat_id": "beat_03"
+        },
+        {
+          "w": "fisiknya.",
+          "start": 47.521,
+          "end": 47.921,
+          "beat_id": "beat_03"
+        }
+      ],
+      "beat_id": "beat_03"
+    },
+    {
+      "text": "Di bursa kita,",
+      "start": 48.668,
+      "end": 49.628,
+      "duration": 0.96,
+      "words": [
+        {
+          "w": "Di",
+          "start": 48.668,
+          "end": 48.968,
+          "beat_id": "beat_04"
+        },
+        {
+          "w": "bursa",
+          "start": 48.968,
+          "end": 49.348,
+          "beat_id": "beat_04"
+        },
+        {
+          "w": "kita,",
+          "start": 49.348,
+          "end": 49.628,
+          "beat_id": "beat_04"
+        }
+      ],
+      "beat_id": "beat_04"
+    },
+    {
+      "text": "saham teknologi yang",
+      "start": 50.208,
+      "end": 50.988,
+      "duration": 0.78,
+      "words": [
+        {
+          "w": "saham",
+          "start": 50.208,
+          "end": 50.368,
+          "beat_id": "beat_04"
+        },
+        {
+          "w": "teknologi",
+          "start": 50.368,
+          "end": 50.868,
+          "beat_id": "beat_04"
+        },
+        {
+          "w": "yang",
+          "start": 50.868,
+          "end": 50.988,
+          "beat_id": "beat_04"
+        }
+      ],
+      "beat_id": "beat_04"
+    },
+    {
+      "text": "dulunya dijual ratusan",
+      "start": 50.988,
+      "end": 52.208,
+      "duration": 1.22,
+      "words": [
+        {
+          "w": "dulunya",
+          "start": 50.988,
+          "end": 51.348,
+          "beat_id": "beat_04"
+        },
+        {
+          "w": "dijual",
+          "start": 51.348,
+          "end": 51.768,
+          "beat_id": "beat_04"
+        },
+        {
+          "w": "ratusan",
+          "start": 51.768,
+          "end": 52.208,
+          "beat_id": "beat_04"
+        }
+      ],
+      "beat_id": "beat_04"
+    },
+    {
+      "text": "rupiah saat pertama masuk",
+      "start": 52.208,
+      "end": 53.448,
+      "duration": 1.24,
+      "words": [
+        {
+          "w": "rupiah",
+          "start": 52.208,
+          "end": 52.608,
+          "beat_id": "beat_04"
+        },
+        {
+          "w": "saat",
+          "start": 52.608,
+          "end": 52.888,
+          "beat_id": "beat_04"
+        },
+        {
+          "w": "pertama",
+          "start": 52.888,
+          "end": 53.188,
+          "beat_id": "beat_04"
+        },
+        {
+          "w": "masuk",
+          "start": 53.188,
+          "end": 53.448,
+          "beat_id": "beat_04"
+        }
+      ],
+      "beat_id": "beat_04"
+    },
+    {
+      "text": "pasar,",
+      "start": 53.448,
+      "end": 53.828,
+      "duration": 0.38,
+      "words": [
+        {
+          "w": "pasar,",
+          "start": 53.448,
+          "end": 53.828,
+          "beat_id": "beat_04"
+        }
+      ],
+      "beat_id": "beat_04"
+    },
+    {
+      "text": "kini terjun bebas,",
+      "start": 54.348,
+      "end": 55.168,
+      "duration": 0.82,
+      "words": [
+        {
+          "w": "kini",
+          "start": 54.348,
+          "end": 54.468,
+          "beat_id": "beat_04"
+        },
+        {
+          "w": "terjun",
+          "start": 54.468,
+          "end": 54.768,
+          "beat_id": "beat_04"
+        },
+        {
+          "w": "bebas,",
+          "start": 54.768,
+          "end": 55.168,
+          "beat_id": "beat_04"
+        }
+      ],
+      "beat_id": "beat_04"
+    },
+    {
+      "text": "kehilangan lebih dari 85%",
+      "start": 55.508,
+      "end": 57.468,
+      "duration": 1.96,
+      "words": [
+        {
+          "w": "kehilangan",
+          "start": 55.508,
+          "end": 55.828,
+          "beat_id": "beat_04"
+        },
+        {
+          "w": "lebih",
+          "start": 55.828,
+          "end": 56.208,
+          "beat_id": "beat_04"
+        },
+        {
+          "w": "dari",
+          "start": 56.208,
+          "end": 56.408,
+          "beat_id": "beat_04"
+        },
+        {
+          "w": "85%",
+          "start": 56.408,
+          "end": 57.468,
+          "beat_id": "beat_04"
+        }
+      ],
+      "beat_id": "beat_04"
+    },
+    {
+      "text": "nilainya.",
+      "start": 57.468,
+      "end": 57.968,
+      "duration": 0.5,
+      "words": [
+        {
+          "w": "nilainya.",
+          "start": 57.468,
+          "end": 57.968,
+          "beat_id": "beat_04"
+        }
+      ],
+      "beat_id": "beat_04"
+    },
+    {
+      "text": "Era membeli saham cuma",
+      "start": 58.688,
+      "end": 59.968,
+      "duration": 1.28,
+      "words": [
+        {
+          "w": "Era",
+          "start": 58.688,
+          "end": 59.048,
+          "beat_id": "beat_04"
+        },
+        {
+          "w": "membeli",
+          "start": 59.048,
+          "end": 59.368,
+          "beat_id": "beat_04"
+        },
+        {
+          "w": "saham",
+          "start": 59.368,
+          "end": 59.728,
+          "beat_id": "beat_04"
+        },
+        {
+          "w": "cuma",
+          "start": 59.728,
+          "end": 59.968,
+          "beat_id": "beat_04"
+        }
+      ],
+      "beat_id": "beat_04"
+    },
+    {
+      "text": "karena janji manis masa",
+      "start": 59.968,
+      "end": 61.028,
+      "duration": 1.06,
+      "words": [
+        {
+          "w": "karena",
+          "start": 59.968,
+          "end": 60.228,
+          "beat_id": "beat_04"
+        },
+        {
+          "w": "janji",
+          "start": 60.228,
+          "end": 60.588,
+          "beat_id": "beat_04"
+        },
+        {
+          "w": "manis",
+          "start": 60.588,
+          "end": 60.828,
+          "beat_id": "beat_04"
+        },
+        {
+          "w": "masa",
+          "start": 60.828,
+          "end": 61.028,
+          "beat_id": "beat_04"
+        }
+      ],
+      "beat_id": "beat_04"
+    },
+    {
+      "text": "depan sudah resmi tamat.",
+      "start": 61.028,
+      "end": 62.488,
+      "duration": 1.46,
+      "words": [
+        {
+          "w": "depan",
+          "start": 61.028,
+          "end": 61.388,
+          "beat_id": "beat_04"
+        },
+        {
+          "w": "sudah",
+          "start": 61.388,
+          "end": 61.848,
+          "beat_id": "beat_04"
+        },
+        {
+          "w": "resmi",
+          "start": 61.848,
+          "end": 62.148,
+          "beat_id": "beat_04"
+        },
+        {
+          "w": "tamat.",
+          "start": 62.148,
+          "end": 62.488,
+          "beat_id": "beat_04"
+        }
+      ],
+      "beat_id": "beat_04"
+    },
+    {
+      "text": "Pelajaran pentingnya buat",
+      "start": 63.11,
+      "end": 64.29,
+      "duration": 1.18,
+      "words": [
+        {
+          "w": "Pelajaran",
+          "start": 63.11,
+          "end": 63.65,
+          "beat_id": "beat_05"
+        },
+        {
+          "w": "pentingnya",
+          "start": 63.65,
+          "end": 64.09,
+          "beat_id": "beat_05"
+        },
+        {
+          "w": "buat",
+          "start": 64.09,
+          "end": 64.29,
+          "beat_id": "beat_05"
+        }
+      ],
+      "beat_id": "beat_05"
+    },
+    {
+      "text": "dompet kita.",
+      "start": 64.29,
+      "end": 64.81,
+      "duration": 0.52,
+      "words": [
+        {
+          "w": "dompet",
+          "start": 64.29,
+          "end": 64.57,
+          "beat_id": "beat_05"
+        },
+        {
+          "w": "kita.",
+          "start": 64.57,
+          "end": 64.81,
+          "beat_id": "beat_05"
+        }
+      ],
+      "beat_id": "beat_05"
+    },
+    {
+      "text": "Aplikasi yang ramai",
+      "start": 65.27,
+      "end": 66.09,
+      "duration": 0.82,
+      "words": [
+        {
+          "w": "Aplikasi",
+          "start": 65.27,
+          "end": 65.73,
+          "beat_id": "beat_05"
+        },
+        {
+          "w": "yang",
+          "start": 65.73,
+          "end": 65.85,
+          "beat_id": "beat_05"
+        },
+        {
+          "w": "ramai",
+          "start": 65.85,
+          "end": 66.09,
+          "beat_id": "beat_05"
+        }
+      ],
+      "beat_id": "beat_05"
+    },
+    {
+      "text": "dipakai belum tentu",
+      "start": 66.09,
+      "end": 67.21,
+      "duration": 1.12,
+      "words": [
+        {
+          "w": "dipakai",
+          "start": 66.09,
+          "end": 66.53,
+          "beat_id": "beat_05"
+        },
+        {
+          "w": "belum",
+          "start": 66.53,
+          "end": 66.87,
+          "beat_id": "beat_05"
+        },
+        {
+          "w": "tentu",
+          "start": 66.87,
+          "end": 67.21,
+          "beat_id": "beat_05"
+        }
+      ],
+      "beat_id": "beat_05"
+    },
+    {
+      "text": "perusahaannya cetak",
+      "start": 67.21,
+      "end": 68.03,
+      "duration": 0.82,
+      "words": [
+        {
+          "w": "perusahaannya",
+          "start": 67.21,
+          "end": 67.79,
+          "beat_id": "beat_05"
+        },
+        {
+          "w": "cetak",
+          "start": 67.79,
+          "end": 68.03,
+          "beat_id": "beat_05"
+        }
+      ],
+      "beat_id": "beat_05"
+    },
+    {
+      "text": "untung.",
+      "start": 68.03,
+      "end": 68.37,
+      "duration": 0.34,
+      "words": [
+        {
+          "w": "untung.",
+          "start": 68.03,
+          "end": 68.37,
+          "beat_id": "beat_05"
+        }
+      ],
+      "beat_id": "beat_05"
+    },
+    {
+      "text": "Sebelum ikut beli,",
+      "start": 68.83,
+      "end": 69.59,
+      "duration": 0.76,
+      "words": [
+        {
+          "w": "Sebelum",
+          "start": 68.83,
+          "end": 69.13,
+          "beat_id": "beat_05"
+        },
+        {
+          "w": "ikut",
+          "start": 69.13,
+          "end": 69.33,
+          "beat_id": "beat_05"
+        },
+        {
+          "w": "beli,",
+          "start": 69.33,
+          "end": 69.59,
+          "beat_id": "beat_05"
+        }
+      ],
+      "beat_id": "beat_05"
+    },
+    {
+      "text": "cek apakah bisnisnya",
+      "start": 69.99,
+      "end": 70.85,
+      "duration": 0.86,
+      "words": [
+        {
+          "w": "cek",
+          "start": 69.99,
+          "end": 70.11,
+          "beat_id": "beat_05"
+        },
+        {
+          "w": "apakah",
+          "start": 70.11,
+          "end": 70.39,
+          "beat_id": "beat_05"
+        },
+        {
+          "w": "bisnisnya",
+          "start": 70.39,
+          "end": 70.85,
+          "beat_id": "beat_05"
+        }
+      ],
+      "beat_id": "beat_05"
+    },
+    {
+      "text": "beneran untung tanpa",
+      "start": 70.85,
+      "end": 71.83,
+      "duration": 0.98,
+      "words": [
+        {
+          "w": "beneran",
+          "start": 70.85,
+          "end": 71.13,
+          "beat_id": "beat_05"
+        },
+        {
+          "w": "untung",
+          "start": 71.13,
+          "end": 71.47,
+          "beat_id": "beat_05"
+        },
+        {
+          "w": "tanpa",
+          "start": 71.47,
+          "end": 71.83,
+          "beat_id": "beat_05"
+        }
+      ],
+      "beat_id": "beat_05"
+    },
+    {
+      "text": "bakar uang dan apakah",
+      "start": 71.83,
+      "end": 73.13,
+      "duration": 1.3,
+      "words": [
+        {
+          "w": "bakar",
+          "start": 71.83,
+          "end": 72.13,
+          "beat_id": "beat_05"
+        },
+        {
+          "w": "uang",
+          "start": 72.13,
+          "end": 72.35,
+          "beat_id": "beat_05"
+        },
+        {
+          "w": "dan",
+          "start": 72.35,
+          "end": 72.81,
+          "beat_id": "beat_05"
+        },
+        {
+          "w": "apakah",
+          "start": 72.81,
+          "end": 73.13,
+          "beat_id": "beat_05"
+        }
+      ],
+      "beat_id": "beat_05"
+    },
+    {
+      "text": "produknya tetap laku",
+      "start": 73.13,
+      "end": 74.07,
+      "duration": 0.94,
+      "words": [
+        {
+          "w": "produknya",
+          "start": 73.13,
+          "end": 73.57,
+          "beat_id": "beat_05"
+        },
+        {
+          "w": "tetap",
+          "start": 73.57,
+          "end": 73.79,
+          "beat_id": "beat_05"
+        },
+        {
+          "w": "laku",
+          "start": 73.79,
+          "end": 74.07,
+          "beat_id": "beat_05"
+        }
+      ],
+      "beat_id": "beat_05"
+    },
+    {
+      "text": "tanpa subsidi diskon.",
+      "start": 74.07,
+      "end": 75.19,
+      "duration": 1.12,
+      "words": [
+        {
+          "w": "tanpa",
+          "start": 74.07,
+          "end": 74.57,
+          "beat_id": "beat_05"
+        },
+        {
+          "w": "subsidi",
+          "start": 74.57,
+          "end": 74.88,
+          "beat_id": "beat_05"
+        },
+        {
+          "w": "diskon.",
+          "start": 74.88,
+          "end": 75.19,
+          "beat_id": "beat_05"
+        }
+      ],
+      "beat_id": "beat_05"
+    },
+    {
+      "text": "Sekarang kamu tahu",
+      "start": 75.59,
+      "end": 76.53,
+      "duration": 0.94,
+      "words": [
+        {
+          "w": "Sekarang",
+          "start": 75.59,
+          "end": 76.07,
+          "beat_id": "beat_05"
+        },
+        {
+          "w": "kamu",
+          "start": 76.07,
+          "end": 76.33,
+          "beat_id": "beat_05"
+        },
+        {
+          "w": "tahu",
+          "start": 76.33,
+          "end": 76.53,
+          "beat_id": "beat_05"
+        }
+      ],
+      "beat_id": "beat_05"
+    },
+    {
+      "text": "kenapa?",
+      "start": 76.53,
+      "end": 76.81,
+      "duration": 0.28,
+      "words": [
+        {
+          "w": "kenapa?",
+          "start": 76.53,
+          "end": 76.81,
+          "beat_id": "beat_05"
+        }
+      ],
+      "beat_id": "beat_05"
+    }
+  ]
+}

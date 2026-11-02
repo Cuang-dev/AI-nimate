@@ -2,8 +2,10 @@
   "name": "ai-animation-workflows",
   "version": "1.0.0",
   "private": true,
-  "workspaces": [
-    "remotion",
-    "motion-canvas"
-  ]
+  "scripts": {
+    "dev": "npm run dev --prefix motion-canvas",
+    "build": "npm run build --prefix motion-canvas",
+    "render": "npm run render --prefix motion-canvas",
+    "deploy": "bash motion-canvas/scripts/deploy_portal.sh"
+  }
 }

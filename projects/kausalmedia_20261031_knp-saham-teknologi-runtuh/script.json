@@ -1,0 +1,85 @@
+{
+  "title": "Knp? Saham Teknologi Raksasa Runtuh Berjamaah",
+  "video_id": "vid_20261031_002",
+  "series": "Knp?",
+  "hook_text": "Pernah nggak sih kamu mikir, kenapa saham perusahaan teknologi yang aplikasinya kita pakai tiap hari—mulai dari raksasa akal imitasi dunia sampai belanja online lokal—mendadak anjlok berjamaah dan menghapus nilai ribuan triliun rupiah?",
+  "duration_seconds": 80.0,
+  "word_count": 194,
+  "core_angle": "Saham teknologi global maupun lokal rontok karena model bisnis bakar uang dan janji masa depan gagal menghasilkan laba nyata secepat ekspektasi investor.",
+  "tts_style_prompt": "Smart urban conversational Indonesian (Aku/Kamu/Kita), clear everyday layman analogies, crisp spoken numbers, dramatic pauses at ellipses, zero unexplained financial jargon.",
+  "visual_design_spec": {
+    "grid": "Swiss Editorial 9:16 Vertical (1080x1920) and Responsive 16:9 Landscape (1920x1080)",
+    "color_palette": {
+      "bg": "#F7F5F0",
+      "surface": "#FFFFFF",
+      "ink": "#141413",
+      "secondary_ink": "#6E6D68",
+      "grid_line": "#E2DFD7",
+      "accent_alert": "#FF3B00",
+      "compliant_green": "#1B8354",
+      "gold_accent": "#D97706"
+    },
+    "typography": {
+      "heading": "'Instrument Serif', 'Liberation Serif', serif",
+      "body": "'Inter', 'Liberation Sans', sans-serif",
+      "data": "'JetBrains Mono', 'Liberation Mono', monospace"
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "beat_01",
+      "title": "KNP? // 01: SAHAM TECH RUNTUH",
+      "spoken_text": "Pernah nggak sih kamu mikir, kenapa saham perusahaan teknologi yang aplikasinya kita pakai tiap hari—mulai dari raksasa akal imitasi dunia sampai belanja online lokal—mendadak anjlok berjamaah dan menghapus nilai ribuan triliun rupiah?",
+      "tts_transcript": "Pernah nggak sih kamu mikir, kenapa saham perusahaan teknologi yang aplikasinya kita pakai tiap hari—mulai dari raksasa akal imitasi dunia sampai belanja online lokal—mendadak anjlok berjamaah dan menghapus nilai ribuan triliun rupiah?",
+      "timing_window": {
+        "start": 0.0,
+        "end": 17.0,
+        "duration": 17.0
+      }
+    },
+    {
+      "beat_id": "beat_02",
+      "title": "KNP? // 02: ILUSI BAKAR UANG",
+      "spoken_text": "Selama bertahun-tahun, saham teknologi dinilai bukan dari untung nyatanya, tapi dari seberapa heboh janjinya. Di Indonesia, mereka bakar uang triliunan buat kasih diskon dan gratis ongkir. Di Amerika, raksasa teknologi bakar ribuan triliun buat borong mesin akal imitasi.",
+      "tts_transcript": "Selama bertahun-tahun, saham teknologi dinilai bukan dari untung nyatanya, tapi dari seberapa heboh janjinya. Di Indonesia, mereka bakar uang triliunan buat kasih diskon dan gratis ongkir. Di Amerika, raksasa teknologi bakar ribuan triliun buat borong mesin akal imitasi.",
+      "timing_window": {
+        "start": 17.0,
+        "end": 34.0,
+        "duration": 17.0
+      }
+    },
+    {
+      "beat_id": "beat_03",
+      "title": "KNP? // 03: JEBAKAN DISKON & AI",
+      "spoken_text": "Masalahnya meledak saat uang yang dibakar nggak balik modal secepat itu! Di dunia, muncul pesaing baru yang jauh lebih hemat biaya, bikin saham chip raksasa langsung rontok. Di Indonesia, begitu diskon distop demi cari untung, pembeli sepi sampai Bukalapak tutup layanan belanja barang fisiknya.",
+      "tts_transcript": "Masalahnya meledak saat uang yang dibakar nggak balik modal secepat itu! Di dunia, muncul pesaing baru yang jauh lebih hemat biaya, bikin saham chip raksasa langsung rontok. Di Indonesia, begitu diskon distop demi cari untung, pembeli sepi sampai Bukalapak tutup layanan belanja barang fisiknya.",
+      "timing_window": {
+        "start": 34.0,
+        "end": 52.0,
+        "duration": 18.0
+      }
+    },
+    {
+      "beat_id": "beat_04",
+      "title": "KNP? // 04: ANJLOK 85% DARI PUCUK",
+      "spoken_text": "Di bursa kita, saham teknologi yang dulunya dijual ratusan rupiah saat pertama masuk pasar, kini terjun bebas kehilangan lebih dari delapan puluh lima persen nilainya. Era membeli saham cuma karena janji manis masa depan sudah resmi tamat.",
+      "tts_transcript": "Di bursa kita, saham teknologi yang dulunya dijual ratusan rupiah saat pertama masuk pasar, kini terjun bebas kehilangan lebih dari delapan puluh lima persen nilainya. Era membeli saham cuma karena janji manis masa depan sudah resmi tamat.",
+      "timing_window": {
+        "start": 52.0,
+        "end": 67.0,
+        "duration": 15.0
+      }
+    },
+    {
+      "beat_id": "beat_05",
+      "title": "KNP? // 05: 3 FILTER SAHAM TECH",
+      "spoken_text": "Pelajaran pentingnya buat dompet kita: aplikasi yang ramai dipakai belum tentu perusahaannya cetak untung. Sebelum ikut beli, cek apakah bisnisnya beneran untung tanpa bakar uang, dan apakah produknya tetap laku tanpa subsidi diskon. Sekarang kamu tahu kenapa.",
+      "tts_transcript": "Pelajaran pentingnya buat dompet kita: aplikasi yang ramai dipakai belum tentu perusahaannya cetak untung. Sebelum ikut beli, cek apakah bisnisnya beneran untung tanpa bakar uang, dan apakah produknya tetap laku tanpa subsidi diskon. Sekarang kamu tahu kenapa.",
+      "timing_window": {
+        "start": 67.0,
+        "end": 82.0,
+        "duration": 15.0
+      }
+    }
+  ]
+}

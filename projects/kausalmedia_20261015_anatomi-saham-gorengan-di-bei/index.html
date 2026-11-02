@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anatomi Saham Gorengan di BEI: Rekayasa Likuiditas Bandar | AI-nimate Studio</title>
+
+  <!-- Open Graph / WhatsApp Rich Link Protocol -->
+  <meta property="og:site_name" content="Kausal Media • AI-nimate Studio">
+  <meta property="og:type" content="video.other">
+  <meta property="og:title" content="Anatomi Saham Gorengan di BEI: Rekayasa Likuiditas Bandar">
+  <meta property="og:description" content="Investigasi forensik mendalam mengenai anatomi rekayasa saham gorengan di Bursa Efek Indonesia: mulai dari akumulasi float, manipulasi volume wash trading, skema repo bayangan, hingga distribusi masif ke ritel.">
+  <meta property="og:url" content="https://cuang.dev/projects/ainimate/kausalmedia_20261015_anatomi-saham-gorengan-di-bei/">
+  <meta property="og:image" content="thumbnail.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="player">
+  <meta name="twitter:title" content="Anatomi Saham Gorengan di BEI: Rekayasa Likuiditas Bandar">
+  <meta name="twitter:description" content="Investigasi forensik mendalam mengenai anatomi rekayasa saham gorengan di Bursa Efek Indonesia: mulai dari akumulasi float, manipulasi volume wash trading, skema repo bayangan, hingga distribusi masif ke ritel.">
+  <meta name="twitter:image" content="thumbnail.jpg">
+  <meta name="twitter:player" content="./embed.html">
+  <meta name="twitter:player:width" content="540">
+  <meta name="twitter:player:height" content="960">
+
+  <!-- Schema.org VideoObject Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Anatomi Saham Gorengan di BEI: Rekayasa Likuiditas Bandar",
+    "description": "Investigasi forensik mendalam mengenai anatomi rekayasa saham gorengan di Bursa Efek Indonesia: mulai dari akumulasi float, manipulasi volume wash trading, skema repo bayangan, hingga distribusi masif ke ritel.",
+    "thumbnailUrl": "https://cuang.dev/projects/ainimate/kausalmedia_20261015_anatomi-saham-gorengan-di-bei/thumbnail.jpg",
+    "uploadDate": "2026-10-15T10:00:00+07:00",
+    "duration": "PT4M34S",
+    "contentUrl": "https://cuang.dev/projects/ainimate/kausalmedia_20261015_anatomi-saham-gorengan-di-bei/video_16x9.mp4",
+    "embedUrl": "https://cuang.dev/projects/ainimate/kausalmedia_20261015_anatomi-saham-gorengan-di-bei/embed.html"
+  }
+  </script>
+
+  <!-- Typography: Plus Jakarta Sans + Instrument Serif + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #07090e;
+      --surface: #0e131f;
+      --surface-elevated: #141b2c;
+      --card-bg: rgba(15, 22, 36, 0.76);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-hover-border: rgba(255, 59, 0, 0.45);
+      --accent: #ff3b00;
+      --accent-glow: rgba(255, 59, 0, 0.22);
+      --emerald: #10b981;
+      --emerald-glow: rgba(16, 185, 129, 0.18);
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-serif: 'Instrument Serif', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      background-image: 
+        radial-gradient(circle at 10% 8%, rgba(255, 59, 0, 0.07) 0%, transparent 45%),
+        radial-gradient(circle at 90% 12%, rgba(16, 185, 129, 0.06) 0%, transparent 45%),
+        radial-gradient(circle at 50% 90%, rgba(59, 130, 246, 0.05) 0%, transparent 55%);
+      color: var(--text);
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem 1.25rem 5rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1260px;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* Header Bar */
+    .header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 1.25rem;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--card-border);
+      padding: 0.35rem 0.85rem;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+
+    .back-btn:hover {
+      background: var(--accent-glow);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .canonical-path-badge {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      background: rgba(255, 59, 0, 0.08);
+      border: 1px solid rgba(255, 59, 0, 0.25);
+      padding: 0.35rem 0.75rem;
+      border-radius: 8px;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-arrow-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--card-border);
+      padding: 0.35rem 0.75rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .nav-arrow-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .qa-pass-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #34d399;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      padding: 0.35rem 0.75rem;
+      border-radius: 8px;
+    }
+
+    /* Hero Headline */
+    .project-header-hero {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .project-meta-strip {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--accent);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .project-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.15;
+      font-weight: 400;
+      color: #fff;
+    }
+
+    .project-subtitle {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .project-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 900px;
+    }
+
+    /* Workspace 2-Column Layout */
+    .workspace-grid {
+      display: grid;
+      grid-template-columns: 440px 1fr;
+      gap: 2.25rem;
+      align-items: start;
+    }
+
+    @media (max-width: 1040px) {
+      .workspace-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Left Column: Sticky Cinema Player */
+    .player-col {
+      position: sticky;
+      top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.15rem;
+    }
+
+    .cinema-viewport {
+      position: relative;
+      background: #000;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.12);
+      transition: aspect-ratio 0.3s ease, max-width 0.3s ease;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .cinema-viewport.aspect-9x16 {
+      aspect-ratio: 9 / 16;
+      max-width: 400px;
+    }
+
+    .cinema-viewport.aspect-16x9 {
+      aspect-ratio: 16 / 9;
+      max-width: 100%;
+    }
+
+    .cinema-viewport video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #000;
+      display: block;
+      outline: none;
+    }
+
+    /* Player Controls Bar */
+    .player-controls-panel {
+      background: var(--surface);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 0.85rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .ctrl-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .ctrl-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 0.35rem;
+      align-items: center;
+    }
+
+    .ctrl-pill-btn {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .ctrl-pill-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+
+    .ctrl-pill-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+      box-shadow: 0 0 10px var(--accent-glow);
+    }
+
+    .loop-toggle-btn {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      padding: 0.35rem 0.75rem;
+      border-radius: 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s;
+    }
+
+    .loop-toggle-btn.active {
+      background: rgba(255, 59, 0, 0.15);
+      border-color: var(--accent);
+      color: var(--accent);
+      box-shadow: 0 0 14px var(--accent-glow);
+    }
+
+    /* Segmented Proportional 5-Beat Timeline Bar */
+    .timeline-bar-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .timeline-bar {
+      display: flex;
+      width: 100%;
+      height: 28px;
+      background: #000;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+
+    .timeline-segment {
+      position: relative;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      border-right: 1px solid rgba(255, 255, 255, 0.12);
+      cursor: pointer;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      transition: background 0.15s;
+    }
+
+    .timeline-segment:last-child {
+      border-right: none;
+    }
+
+    .timeline-segment:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .timeline-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #ff3b00 0%, #ff6b3d 100%);
+      pointer-events: none;
+      transition: width 0.08s linear;
+    }
+
+    .timeline-label {
+      position: relative;
+      z-index: 2;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+      pointer-events: none;
+    }
+
+    /* Downloads & Embed Panel */
+    .downloads-panel {
+      background: var(--surface);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 1rem 1.15rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .dl-title {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .dl-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .dl-pill {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--card-border);
+      padding: 0.35rem 0.65rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .dl-pill:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-copy-embed {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #fff;
+      background: rgba(255, 59, 0, 0.15);
+      border: 1px solid rgba(255, 59, 0, 0.35);
+      padding: 0.5rem 0.85rem;
+      border-radius: 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      transition: all 0.2s;
+    }
+
+    .btn-copy-embed:hover {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 0 14px var(--accent-glow);
+    }
+
+    /* Right Column: Walkthrough Workspace Tabs */
+    .walkthrough-col {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 0.75rem;
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: transparent;
+      border: 1px solid transparent;
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .tab-btn.active {
+      color: #fff;
+      background: rgba(255, 59, 0, 0.12);
+      border-color: rgba(255, 59, 0, 0.35);
+      font-weight: 700;
+    }
+
+    .tab-content {
+      display: none;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .tab-content.active {
+      display: flex;
+    }
+
+    /* Tab 1: Beat-by-Beat Cards */
+    .beat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 1.35rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.25s ease;
+    }
+
+    .beat-card:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+      background: rgba(20, 29, 46, 0.85);
+    }
+
+    .beat-card.active-beat {
+      border-color: var(--accent);
+      background: linear-gradient(135deg, rgba(255, 59, 0, 0.1) 0%, rgba(15, 22, 36, 0.9) 100%);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 0 25px var(--accent-glow);
+    }
+
+    .beat-card-progress {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      transition: width 0.1s linear;
+    }
+
+    .beat-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .beat-pill-group {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .beat-pill {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 800;
+      background: var(--accent);
+      color: #fff;
+      padding: 0.2rem 0.55rem;
+      border-radius: 6px;
+    }
+
+    .beat-time-range {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--text-dim);
+    }
+
+    .beat-duration-badge {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.05);
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+    }
+
+    .btn-play-beat {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--card-border);
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.15s;
+    }
+
+    .btn-play-beat:hover, .beat-card.active-beat .btn-play-beat {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .beat-title {
+      font-family: var(--font-serif);
+      font-size: 1.45rem;
+      font-weight: 400;
+      color: #fff;
+      line-height: 1.25;
+    }
+
+    .beat-card-body {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 1.25rem;
+      align-items: start;
+    }
+
+    @media (max-width: 640px) {
+      .beat-card-body {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .beat-thumb-box {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      cursor: zoom-in;
+    }
+
+    .beat-thumb-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.25s;
+    }
+
+    .beat-thumb-box:hover img {
+      transform: scale(1.05);
+    }
+
+    .beat-thumb-zoom-icon {
+      position: absolute;
+      bottom: 6px;
+      right: 6px;
+      background: rgba(0, 0, 0, 0.75);
+      color: #fff;
+      font-size: 0.7rem;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      pointer-events: none;
+    }
+
+    .beat-narration-box {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: var(--text-primary);
+    }
+
+    /* Tab 2: QA Keyframes & Visual Grid */
+    .qa-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .qa-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      overflow: hidden;
+      cursor: zoom-in;
+      transition: all 0.2s;
+    }
+
+    .qa-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    }
+
+    .qa-card-img-wrap {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .qa-card-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .qa-card-info {
+      padding: 0.75rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+    }
+
+    .qa-card-title {
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .qa-card-badge {
+      color: var(--accent);
+      background: rgba(255, 59, 0, 0.1);
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+    }
+
+    /* Tab 3: Specs & Timings Table */
+    .specs-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .specs-card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+
+    .specs-table td, .specs-table th {
+      padding: 0.65rem 0.75rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      text-align: left;
+    }
+
+    .specs-table th {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+    }
+
+    .specs-label {
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+    }
+
+    .specs-val {
+      color: #fff;
+      font-family: var(--font-mono);
+      font-weight: 600;
+    }
+
+    /* Fullscreen Keyframe Lightbox Modal */
+    .lightbox-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .lightbox-modal.open {
+      display: flex;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.2);
+    }
+
+    .lightbox-caption {
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      color: #fff;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 0.4rem 1rem;
+      border-radius: 8px;
+      border: 1px solid var(--card-border);
+    }
+
+    .lightbox-close-btn {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 1.8rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: #10b981;
+      color: #000;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.82rem;
+      padding: 0.65rem 1.25rem;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.25s ease;
+      z-index: 2000;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header Bar -->
+    <header class="header-bar">
+      <div class="header-left">
+        <a href="../" class="back-btn">← All Projects</a>
+        <span class="canonical-path-badge">projects/kausalmedia_20261015_anatomi-saham-gorengan-di-bei</span>
+      </div>
+      <div class="header-right">
+        
+        <a href="../kausalmedia_20261021_humane-ai-pin-hardware-collapse/" class="nav-arrow-btn">Next: Humane AI Pin: The $699 ... →</a>
+        <span class="qa-pass-badge">✓ 14/14 PASS</span>
+      </div>
+    </header>
+
+    <!-- Project Title Hero -->
+    <section class="project-header-hero">
+      <div class="project-meta-strip">
+        <span>Kausal Media</span>
+        <span>•</span>
+        <span>Forensic Deep-Dive</span>
+        <span>•</span>
+        <span>2026-10-15</span>
+      </div>
+      <h1 class="project-title">Anatomi Saham Gorengan di BEI: Rekayasa Likuiditas Bandar</h1>
+      <div class="project-subtitle">Rekayasa Likuiditas, Repo Saham &amp; Distribusi Ritel</div>
+      <p class="project-desc">Investigasi forensik mendalam mengenai anatomi rekayasa saham gorengan di Bursa Efek Indonesia: mulai dari akumulasi float, manipulasi volume wash trading, skema repo bayangan, hingga distribusi masif ke ritel.</p>
+    </section>
+
+    <!-- Two-Column Cinema + Walkthrough Workspace -->
+    <div class="workspace-grid">
+      <!-- Left Column: Sticky Cinema Player -->
+      <div class="player-col">
+        <!-- Adaptive Viewport Frame -->
+        <div class="cinema-viewport aspect-16x9" id="cinema-frame">
+          <video 
+            id="main-video" 
+            controls 
+            playsinline 
+            poster="thumbnail.jpg" 
+            preload="metadata"
+          >
+            <source id="video-source" src="video_16x9.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+
+        <!-- Player Controls & Aspect Switcher -->
+        <div class="player-controls-panel">
+          <div class="ctrl-row">
+            <span class="ctrl-label">Aspect Switcher</span>
+            <div class="btn-group">
+              
+              <button class="ctrl-pill-btn active" data-aspect="16x9" data-src="video_16x9.mp4">16:9 Widescreen</button>
+              
+            </div>
+          </div>
+
+          <div class="ctrl-row">
+            <span class="ctrl-label">Playback Speed</span>
+            <div class="btn-group">
+              <button class="ctrl-pill-btn" data-speed="0.75">0.75x</button>
+              <button class="ctrl-pill-btn active" data-speed="1.0">1.0x</button>
+              <button class="ctrl-pill-btn" data-speed="1.25">1.25x</button>
+              <button class="ctrl-pill-btn" data-speed="1.5">1.5x</button>
+            </div>
+          </div>
+
+          <div class="ctrl-row" style="padding-top: 0.25rem;">
+            <button class="loop-toggle-btn" id="loop-beat-btn">
+              <span>🔁</span>
+              <span>Loop Active Beat</span>
+            </button>
+            <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim);" id="time-display">00:00.0 / 04:34.9</span>
+          </div>
+        </div>
+
+        <!-- Segmented Proportional 5-Beat Timeline Bar -->
+        <div class="timeline-bar-wrapper">
+          <div class="timeline-bar" id="timeline-bar">
+            
+              <div 
+                class="timeline-segment" 
+                style="flex: 55;" 
+                data-beat="01" 
+                data-start="0" 
+                data-end="55"
+                title="Beat 01: Akumulasi &amp; Penguncian Float (55s)"
+              >
+                <div class="timeline-fill" id="fill-beat-01"></div>
+                <span class="timeline-label">B01</span>
+              </div>
+              
+              <div 
+                class="timeline-segment" 
+                style="flex: 55;" 
+                data-beat="02" 
+                data-start="55" 
+                data-end="110"
+                title="Beat 02: Wash Trading &amp; Ilusi Volume (55s)"
+              >
+                <div class="timeline-fill" id="fill-beat-02"></div>
+                <span class="timeline-label">B02</span>
+              </div>
+              
+              <div 
+                class="timeline-segment" 
+                style="flex: 55;" 
+                data-beat="03" 
+                data-start="110" 
+                data-end="165"
+                title="Beat 03: Repo Saham &amp; Kreditor Bayangan (55s)"
+              >
+                <div class="timeline-fill" id="fill-beat-03"></div>
+                <span class="timeline-label">B03</span>
+              </div>
+              
+              <div 
+                class="timeline-segment" 
+                style="flex: 55;" 
+                data-beat="04" 
+                data-start="165" 
+                data-end="220"
+                title="Beat 04: Pompa Narasi &amp; FOMO Ritel (55s)"
+              >
+                <div class="timeline-fill" id="fill-beat-04"></div>
+                <span class="timeline-label">B04</span>
+              </div>
+              
+              <div 
+                class="timeline-segment" 
+                style="flex: 54.97;" 
+                data-beat="05" 
+                data-start="220" 
+                data-end="274.97"
+                title="Beat 05: Distribusi Masif &amp; Auto Reject Bawah (54.97s)"
+              >
+                <div class="timeline-fill" id="fill-beat-05"></div>
+                <span class="timeline-label">B05</span>
+              </div>
+              
+          </div>
+        </div>
+
+        <!-- Downloads & Share Panel -->
+        <div class="downloads-panel">
+          <div class="dl-title">Download Master Assets</div>
+          <div class="dl-grid">
+            
+            <a href="video_16x9.mp4" download class="dl-pill">16:9 Video (40.6 MB)</a>
+            
+            
+            
+            
+            <a href="meta.json" download class="dl-pill">meta.json</a>
+          </div>
+          <button class="btn-copy-embed" id="copy-embed-btn">
+            <span>&lt;/&gt; Copy &lt;iframe&gt; Embed Code</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Walkthrough Workspace Tabs -->
+      <div class="walkthrough-col">
+        <!-- Tab Navigation Buttons -->
+        <nav class="nav-tabs">
+          <button class="tab-btn active" data-tab="tab-beats">⚡ Beat-by-Beat Walkthrough</button>
+          <button class="tab-btn" data-tab="tab-keyframes">🖼️ QA Keyframes &amp; Visual Grid</button>
+          <button class="tab-btn" data-tab="tab-specs">⚙️ Production Specs &amp; Timings</button>
+        </nav>
+
+        <!-- Tab 1: Beat-by-Beat Walkthrough Cards -->
+        <div class="tab-content active" id="tab-beats">
+          
+            <article 
+              class="beat-card" 
+              id="beat-card-01" 
+              data-beat="01" 
+              data-start="0" 
+              data-end="55"
+            >
+              <div class="beat-card-progress" id="progress-beat-01"></div>
+
+              <div class="beat-card-header">
+                <div class="beat-pill-group">
+                  <span class="beat-pill">BEAT 01</span>
+                  <span class="beat-time-range">00:00.0 – 00:55.0</span>
+                  <span class="beat-duration-badge">55s</span>
+                </div>
+                <button class="btn-play-beat" data-start="0">
+                  <span>▶ Play Beat</span>
+                </button>
+              </div>
+
+              <h2 class="beat-title">Akumulasi &amp; Penguncian Float</h2>
+
+              <div class="beat-card-body">
+                <div 
+                  class="beat-thumb-box" 
+                  data-zoom-src="qa_frames/beat1.jpg" 
+                  data-caption="Beat 01: Akumulasi &amp; Penguncian Float (00:00.0 - 00:55.0)"
+                >
+                  <img src="qa_frames/beat1.jpg" alt="Beat 01 Keyframe" loading="lazy">
+                  <span class="beat-thumb-zoom-icon">🔍 Zoom</span>
+                </div>
+
+                <div class="beat-narration-box">
+                  Bandar mengakumulasi saham secara senyap di pasar reguler dan negosiasi untuk mengunci free float saham hingga peredaran ritel sangat tipis.
+                </div>
+              </div>
+            </article>
+          
+            <article 
+              class="beat-card" 
+              id="beat-card-02" 
+              data-beat="02" 
+              data-start="55" 
+              data-end="110"
+            >
+              <div class="beat-card-progress" id="progress-beat-02"></div>
+
+              <div class="beat-card-header">
+                <div class="beat-pill-group">
+                  <span class="beat-pill">BEAT 02</span>
+                  <span class="beat-time-range">00:55.0 – 01:50.0</span>
+                  <span class="beat-duration-badge">55s</span>
+                </div>
+                <button class="btn-play-beat" data-start="55">
+                  <span>▶ Play Beat</span>
+                </button>
+              </div>
+
+              <h2 class="beat-title">Wash Trading &amp; Ilusi Volume</h2>
+
+              <div class="beat-card-body">
+                <div 
+                  class="beat-thumb-box" 
+                  data-zoom-src="qa_frames/beat2.jpg" 
+                  data-caption="Beat 02: Wash Trading &amp; Ilusi Volume (00:55.0 - 01:50.0)"
+                >
+                  <img src="qa_frames/beat2.jpg" alt="Beat 02 Keyframe" loading="lazy">
+                  <span class="beat-thumb-zoom-icon">🔍 Zoom</span>
+                </div>
+
+                <div class="beat-narration-box">
+                  Melalui transaksi semu antar rekening terafiliasi (wash trading), volume harian direkayasa seolah-olah saham memiliki likuiditas dan minat pasar yang tinggi.
+                </div>
+              </div>
+            </article>
+          
+            <article 
+              class="beat-card" 
+              id="beat-card-03" 
+              data-beat="03" 
+              data-start="110" 
+              data-end="165"
+            >
+              <div class="beat-card-progress" id="progress-beat-03"></div>
+
+              <div class="beat-card-header">
+                <div class="beat-pill-group">
+                  <span class="beat-pill">BEAT 03</span>
+                  <span class="beat-time-range">01:50.0 – 02:45.0</span>
+                  <span class="beat-duration-badge">55s</span>
+                </div>
+                <button class="btn-play-beat" data-start="110">
+                  <span>▶ Play Beat</span>
+                </button>
+              </div>
+
+              <h2 class="beat-title">Repo Saham &amp; Kreditor Bayangan</h2>
+
+              <div class="beat-card-body">
+                <div 
+                  class="beat-thumb-box" 
+                  data-zoom-src="qa_frames/beat3.jpg" 
+                  data-caption="Beat 03: Repo Saham &amp; Kreditor Bayangan (01:50.0 - 02:45.0)"
+                >
+                  <img src="qa_frames/beat3.jpg" alt="Beat 03 Keyframe" loading="lazy">
+                  <span class="beat-thumb-zoom-icon">🔍 Zoom</span>
+                </div>
+
+                <div class="beat-narration-box">
+                  Saham yang harganya sudah dikerek dijadikan jaminan pinjaman repo ke kreditor atau institusi untuk mencairkan dana segar sebelum distribusi.
+                </div>
+              </div>
+            </article>
+          
+            <article 
+              class="beat-card" 
+              id="beat-card-04" 
+              data-beat="04" 
+              data-start="165" 
+              data-end="220"
+            >
+              <div class="beat-card-progress" id="progress-beat-04"></div>
+
+              <div class="beat-card-header">
+                <div class="beat-pill-group">
+                  <span class="beat-pill">BEAT 04</span>
+                  <span class="beat-time-range">02:45.0 – 03:40.0</span>
+                  <span class="beat-duration-badge">55s</span>
+                </div>
+                <button class="btn-play-beat" data-start="165">
+                  <span>▶ Play Beat</span>
+                </button>
+              </div>
+
+              <h2 class="beat-title">Pompa Narasi &amp; FOMO Ritel</h2>
+
+              <div class="beat-card-body">
+                <div 
+                  class="beat-thumb-box" 
+                  data-zoom-src="qa_frames/beat4.jpg" 
+                  data-caption="Beat 04: Pompa Narasi &amp; FOMO Ritel (02:45.0 - 03:40.0)"
+                >
+                  <img src="qa_frames/beat4.jpg" alt="Beat 04 Keyframe" loading="lazy">
+                  <span class="beat-thumb-zoom-icon">🔍 Zoom</span>
+                </div>
+
+                <div class="beat-narration-box">
+                  Penyebaran rumor akuisisi, rekomendasi influencer pasar modal, dan pemberitaan media memicu sentimen FOMO di kalangan investor ritel.
+                </div>
+              </div>
+            </article>
+          
+            <article 
+              class="beat-card" 
+              id="beat-card-05" 
+              data-beat="05" 
+              data-start="220" 
+              data-end="274.97"
+            >
+              <div class="beat-card-progress" id="progress-beat-05"></div>
+
+              <div class="beat-card-header">
+                <div class="beat-pill-group">
+                  <span class="beat-pill">BEAT 05</span>
+                  <span class="beat-time-range">03:40.0 – 04:34.9</span>
+                  <span class="beat-duration-badge">54.97s</span>
+                </div>
+                <button class="btn-play-beat" data-start="220">
+                  <span>▶ Play Beat</span>
+                </button>
+              </div>
+
+              <h2 class="beat-title">Distribusi Masif &amp; Auto Reject Bawah</h2>
+
+              <div class="beat-card-body">
+                <div 
+                  class="beat-thumb-box" 
+                  data-zoom-src="qa_frames/beat5.jpg" 
+                  data-caption="Beat 05: Distribusi Masif &amp; Auto Reject Bawah (03:40.0 - 04:34.9)"
+                >
+                  <img src="qa_frames/beat5.jpg" alt="Beat 05 Keyframe" loading="lazy">
+                  <span class="beat-thumb-zoom-icon">🔍 Zoom</span>
+                </div>
+
+                <div class="beat-narration-box">
+                  Bandar melepas seluruh kepemilikan saham di harga puncak ke investor ritel yang masuk, memicu kejatuhan harga beruntun hingga Auto Reject Bawah.
+                </div>
+              </div>
+            </article>
+          
+        </div>
+
+        <!-- Tab 2: QA Keyframes & Visual Grid -->
+        <div class="tab-content" id="tab-keyframes">
+          <div class="qa-grid">
+            
+              <div class="qa-card" data-zoom-src="qa_frames/beat1.jpg" data-caption="beat1.jpg (1:1 / Master)">
+                <div class="qa-card-img-wrap">
+                  <img src="qa_frames/beat1.jpg" alt="beat1.jpg" loading="lazy">
+                </div>
+                <div class="qa-card-info">
+                  <span class="qa-card-title">beat1.jpg</span>
+                  <span class="qa-card-badge">1:1 / Master</span>
+                </div>
+              </div>
+              
+              <div class="qa-card" data-zoom-src="qa_frames/beat2.jpg" data-caption="beat2.jpg (1:1 / Master)">
+                <div class="qa-card-img-wrap">
+                  <img src="qa_frames/beat2.jpg" alt="beat2.jpg" loading="lazy">
+                </div>
+                <div class="qa-card-info">
+                  <span class="qa-card-title">beat2.jpg</span>
+                  <span class="qa-card-badge">1:1 / Master</span>
+                </div>
+              </div>
+              
+              <div class="qa-card" data-zoom-src="qa_frames/beat3.jpg" data-caption="beat3.jpg (1:1 / Master)">
+                <div class="qa-card-img-wrap">
+                  <img src="qa_frames/beat3.jpg" alt="beat3.jpg" loading="lazy">
+                </div>
+                <div class="qa-card-info">
+                  <span class="qa-card-title">beat3.jpg</span>
+                  <span class="qa-card-badge">1:1 / Master</span>
+                </div>
+              </div>
+              
+              <div class="qa-card" data-zoom-src="qa_frames/beat4.jpg" data-caption="beat4.jpg (1:1 / Master)">
+                <div class="qa-card-img-wrap">
+                  <img src="qa_frames/beat4.jpg" alt="beat4.jpg" loading="lazy">
+                </div>
+                <div class="qa-card-info">
+                  <span class="qa-card-title">beat4.jpg</span>
+                  <span class="qa-card-badge">1:1 / Master</span>
+                </div>
+              </div>
+              
+              <div class="qa-card" data-zoom-src="qa_frames/beat5.jpg" data-caption="beat5.jpg (1:1 / Master)">
+                <div class="qa-card-img-wrap">
+                  <img src="qa_frames/beat5.jpg" alt="beat5.jpg" loading="lazy">
+                </div>
+                <div class="qa-card-info">
+                  <span class="qa-card-title">beat5.jpg</span>
+                  <span class="qa-card-badge">1:1 / Master</span>
+                </div>
+              </div>
+              
+          </div>
+        </div>
+
+        <!-- Tab 3: Production Specs & Timings -->
+        <div class="tab-content" id="tab-specs">
+          <div class="specs-card">
+            <div class="specs-card-title">
+              <span>⚙️ Technical Specifications</span>
+            </div>
+            <table class="specs-table">
+              <tr>
+                <td class="specs-label">Channel</td>
+                <td class="specs-val">Kausal Media (kausalmedia)</td>
+              </tr>
+              <tr>
+                <td class="specs-label">Series</td>
+                <td class="specs-val">Forensic Deep-Dive</td>
+              </tr>
+              <tr>
+                <td class="specs-label">Project ID</td>
+                <td class="specs-val">vid_20261015_001</td>
+              </tr>
+              <tr>
+                <td class="specs-label">Canonical Folder</td>
+                <td class="specs-val">projects/kausalmedia_20261015_anatomi-saham-gorengan-di-bei</td>
+              </tr>
+              <tr>
+                <td class="specs-label">Release Date</td>
+                <td class="specs-val">2026-10-15</td>
+              </tr>
+              <tr>
+                <td class="specs-label">Supported Aspects</td>
+                <td class="specs-val">16:9</td>
+              </tr>
+              <tr>
+                <td class="specs-label">Language</td>
+                <td class="specs-val">Bahasa Indonesia (ID)</td>
+              </tr>
+              <tr>
+                <td class="specs-label">Spoken Word Count</td>
+                <td class="specs-val">97 words</td>
+              </tr>
+              <tr>
+                <td class="specs-label">Total Duration</td>
+                <td class="specs-val">274.97s (16498 frames @ 60 FPS)</td>
+              </tr>
+              <tr>
+                <td class="specs-label">QA Status</td>
+                <td class="specs-val" style="color: #34d399;">14/14 PASS</td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="specs-card">
+            <div class="specs-card-title">
+              <span>⏱️ Beat Durations &amp; Timeline Architecture</span>
+            </div>
+            <table class="specs-table">
+              <thead>
+                <tr>
+                  <th>Beat</th>
+                  <th>Chapter Title</th>
+                  <th>Start</th>
+                  <th>End</th>
+                  <th>Duration</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                  <tr>
+                    <td class="specs-val">B01</td>
+                    <td>Akumulasi &amp; Penguncian Float</td>
+                    <td class="specs-val">00:00.0</td>
+                    <td class="specs-val">00:55.0</td>
+                    <td class="specs-val">55s</td>
+                    <td>
+                      <button class="btn-play-beat" data-start="0" style="padding: 0.2rem 0.5rem;">
+                        ▶ Jump
+                      </button>
+                    </td>
+                  </tr>
+                
+                  <tr>
+                    <td class="specs-val">B02</td>
+                    <td>Wash Trading &amp; Ilusi Volume</td>
+                    <td class="specs-val">00:55.0</td>
+                    <td class="specs-val">01:50.0</td>
+                    <td class="specs-val">55s</td>
+                    <td>
+                      <button class="btn-play-beat" data-start="55" style="padding: 0.2rem 0.5rem;">
+                        ▶ Jump
+                      </button>
+                    </td>
+                  </tr>
+                
+                  <tr>
+                    <td class="specs-val">B03</td>
+                    <td>Repo Saham &amp; Kreditor Bayangan</td>
+                    <td class="specs-val">01:50.0</td>
+                    <td class="specs-val">02:45.0</td>
+                    <td class="specs-val">55s</td>
+                    <td>
+                      <button class="btn-play-beat" data-start="110" style="padding: 0.2rem 0.5rem;">
+                        ▶ Jump
+                      </button>
+                    </td>
+                  </tr>
+                
+                  <tr>
+                    <td class="specs-val">B04</td>
+                    <td>Pompa Narasi &amp; FOMO Ritel</td>
+                    <td class="specs-val">02:45.0</td>
+                    <td class="specs-val">03:40.0</td>
+                    <td class="specs-val">55s</td>
+                    <td>
+                      <button class="btn-play-beat" data-start="165" style="padding: 0.2rem 0.5rem;">
+                        ▶ Jump
+                      </button>
+                    </td>
+                  </tr>
+                
+                  <tr>
+                    <td class="specs-val">B05</td>
+                    <td>Distribusi Masif &amp; Auto Reject Bawah</td>
+                    <td class="specs-val">03:40.0</td>
+                    <td class="specs-val">04:34.9</td>
+                    <td class="specs-val">54.97s</td>
+                    <td>
+                      <button class="btn-play-beat" data-start="220" style="padding: 0.2rem 0.5rem;">
+                        ▶ Jump
+                      </button>
+                    </td>
+                  </tr>
+                
+              </tbody>
+            </table>
+          </div>
+
+          <div class="specs-card">
+            <div class="specs-card-title">
+              <span>📁 Raw JSON Manifest Files</span>
+            </div>
+            <div class="dl-grid">
+              <a href="meta.json" target="_blank" class="dl-pill">View meta.json ↗</a>
+              <a href="timings.json" target="_blank" class="dl-pill">View timings.json ↗</a>
+              <a href="script.json" target="_blank" class="dl-pill">View script.json ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox-modal" id="lightbox-modal">
+    <div class="lightbox-content">
+      <button class="lightbox-close-btn" id="lightbox-close-btn">×</button>
+      <img class="lightbox-img" id="lightbox-img" src="" alt="Keyframe Full View">
+      <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">Copied embed code to clipboard! ✓</div>
+
+  <!-- Interactive Player Script -->
+  <script>
+    const BEATS = [{"beat":"01","title":"Akumulasi & Penguncian Float","startSec":0,"endSec":55,"durationSec":55,"narration":"Bandar mengakumulasi saham secara senyap di pasar reguler dan negosiasi untuk mengunci free float saham hingga peredaran ritel sangat tipis.","keyframe":"qa_frames/beat1.jpg","keyframe9x16":"qa_frames/beat1.jpg","keyframe16x9":"qa_frames/beat1.jpg"},{"beat":"02","title":"Wash Trading & Ilusi Volume","startSec":55,"endSec":110,"durationSec":55,"narration":"Melalui transaksi semu antar rekening terafiliasi (wash trading), volume harian direkayasa seolah-olah saham memiliki likuiditas dan minat pasar yang tinggi.","keyframe":"qa_frames/beat2.jpg","keyframe9x16":"qa_frames/beat2.jpg","keyframe16x9":"qa_frames/beat2.jpg"},{"beat":"03","title":"Repo Saham & Kreditor Bayangan","startSec":110,"endSec":165,"durationSec":55,"narration":"Saham yang harganya sudah dikerek dijadikan jaminan pinjaman repo ke kreditor atau institusi untuk mencairkan dana segar sebelum distribusi.","keyframe":"qa_frames/beat3.jpg","keyframe9x16":"qa_frames/beat3.jpg","keyframe16x9":"qa_frames/beat3.jpg"},{"beat":"04","title":"Pompa Narasi & FOMO Ritel","startSec":165,"endSec":220,"durationSec":55,"narration":"Penyebaran rumor akuisisi, rekomendasi influencer pasar modal, dan pemberitaan media memicu sentimen FOMO di kalangan investor ritel.","keyframe":"qa_frames/beat4.jpg","keyframe9x16":"qa_frames/beat4.jpg","keyframe16x9":"qa_frames/beat4.jpg"},{"beat":"05","title":"Distribusi Masif & Auto Reject Bawah","startSec":220,"endSec":274.97,"durationSec":54.97,"narration":"Bandar melepas seluruh kepemilikan saham di harga puncak ke investor ritel yang masuk, memicu kejatuhan harga beruntun hingga Auto Reject Bawah.","keyframe":"qa_frames/beat5.jpg","keyframe9x16":"qa_frames/beat5.jpg","keyframe16x9":"qa_frames/beat5.jpg"}];
+    const TOTAL_DURATION = 274.97;
+
+    const video = document.getElementById('main-video');
+    const cinemaFrame = document.getElementById('cinema-frame');
+    const loopBtn = document.getElementById('loop-beat-btn');
+    const timeDisplay = document.getElementById('time-display');
+
+    let activeBeat = BEATS[0] || null;
+    let isLoopingActiveBeat = false;
+
+    function formatTimeStr(sec) {
+      if (isNaN(sec) || sec == null) return '00:00.0';
+      const m = Math.floor(sec / 60);
+      const s = Math.floor(sec % 60);
+      const ms = Math.floor((sec % 1) * 10);
+      return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0') + '.' + ms;
+    }
+
+    // Seek to beat
+    function seekToBeat(beatNum, andPlay = true) {
+      const b = BEATS.find(item => item.beat === String(beatNum).padStart(2, '0') || item.beat === String(beatNum));
+      if (!b) return;
+      activeBeat = b;
+      video.currentTime = b.startSec;
+      if (andPlay) {
+        video.play().catch(() => {});
+      }
+      updateActiveBeatUI(b);
+    }
+
+    // Highlight active beat UI
+    function updateActiveBeatUI(beat) {
+      if (!beat) return;
+      document.querySelectorAll('.beat-card').forEach(card => {
+        card.classList.remove('active-beat');
+      });
+      const card = document.getElementById('beat-card-' + beat.beat);
+      if (card) {
+        card.classList.add('active-beat');
+        card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+
+    // Live video timeupdate sync
+    video.addEventListener('timeupdate', () => {
+      const t = video.currentTime;
+      timeDisplay.textContent = formatTimeStr(t) + ' / ' + formatTimeStr(TOTAL_DURATION);
+
+      // Identify active beat
+      let current = BEATS.find(b => t >= b.startSec && t < b.endSec);
+      if (!current && t >= (BEATS[BEATS.length - 1]?.endSec || 0)) {
+        current = BEATS[BEATS.length - 1];
+      }
+
+      if (current && current.beat !== activeBeat?.beat) {
+        activeBeat = current;
+        updateActiveBeatUI(current);
+      }
+
+      // Loop active beat check
+      if (isLoopingActiveBeat && activeBeat) {
+        if (t >= activeBeat.endSec) {
+          video.currentTime = activeBeat.startSec;
+        }
+      }
+
+      // Update timeline fill bars & card progress bars
+      BEATS.forEach(b => {
+        const fillBar = document.getElementById('fill-beat-' + b.beat);
+        const cardBar = document.getElementById('progress-beat-' + b.beat);
+        let pct = 0;
+        if (t >= b.endSec) pct = 100;
+        else if (t > b.startSec) pct = ((t - b.startSec) / (b.durationSec || 1)) * 100;
+
+        if (fillBar) fillBar.style.width = pct + '%';
+        if (cardBar) cardBar.style.width = pct + '%';
+      });
+    });
+
+    // Loop active beat toggle
+    loopBtn.addEventListener('click', () => {
+      isLoopingActiveBeat = !isLoopingActiveBeat;
+      if (isLoopingActiveBeat) {
+        loopBtn.classList.add('active');
+      } else {
+        loopBtn.classList.remove('active');
+      }
+    });
+
+    // Play Beat button clicks
+    document.querySelectorAll('.btn-play-beat').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const start = parseFloat(btn.dataset.start);
+        video.currentTime = start;
+        video.play().catch(() => {});
+      });
+    });
+
+    // Clicking anywhere on beat card seeks to that beat
+    document.querySelectorAll('.beat-card').forEach(card => {
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('.beat-thumb-box')) return;
+        const start = parseFloat(card.dataset.start);
+        video.currentTime = start;
+        video.play().catch(() => {});
+      });
+    });
+
+    // Timeline segments click to jump
+    document.querySelectorAll('.timeline-segment').forEach(seg => {
+      seg.addEventListener('click', () => {
+        const start = parseFloat(seg.dataset.start);
+        video.currentTime = start;
+        video.play().catch(() => {});
+      });
+    });
+
+    // Aspect Switcher
+    document.querySelectorAll('[data-aspect]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-aspect]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const aspect = btn.dataset.aspect;
+        const newSrc = btn.dataset.src;
+        const currentTime = video.currentTime;
+        const isPaused = video.paused;
+
+        cinemaFrame.className = 'cinema-viewport aspect-' + aspect;
+        video.src = newSrc;
+        video.currentTime = currentTime;
+        if (!isPaused) {
+          video.play().catch(() => {});
+        }
+      });
+    });
+
+    // Playback Speed buttons
+    document.querySelectorAll('[data-speed]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-speed]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        video.playbackRate = parseFloat(btn.dataset.speed);
+      });
+    });
+
+    // Tab Navigation
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+        btn.classList.add('active');
+        const target = document.getElementById(btn.dataset.tab);
+        if (target) target.classList.add('active');
+      });
+    });
+
+    // Keyframe Lightbox
+    const lightboxModal = document.getElementById('lightbox-modal');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const lightboxCloseBtn = document.getElementById('lightbox-close-btn');
+
+    function openLightbox(src, caption) {
+      lightboxImg.src = src;
+      lightboxCaption.textContent = caption || '';
+      lightboxModal.classList.add('open');
+    }
+
+    function closeLightbox() {
+      lightboxModal.classList.remove('open');
+    }
+
+    document.querySelectorAll('[data-zoom-src]').forEach(elem => {
+      elem.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openLightbox(elem.dataset.zoomSrc, elem.dataset.caption);
+      });
+    });
+
+    lightboxCloseBtn.addEventListener('click', closeLightbox);
+    lightboxModal.addEventListener('click', (e) => {
+      if (e.target === lightboxModal) closeLightbox();
+    });
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Copy Embed Code
+    const copyEmbedBtn = document.getElementById('copy-embed-btn');
+    const toast = document.getElementById('toast');
+    copyEmbedBtn.addEventListener('click', () => {
+      const code = '<iframe src="./embed.html" width="100%" height="640" frameborder="0" allowfullscreen></iframe>';
+      navigator.clipboard.writeText(code).then(() => {
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2500);
+      });
+    });
+
+    // URL Query Parameter on load: ?beat=01 or ?beat=1
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const beatParam = params.get('beat');
+      if (beatParam) {
+        seekToBeat(beatParam, false);
+      } else {
+        updateActiveBeatUI(BEATS[0]);
+      }
+    });
+  </script>
+</body>
+</html>

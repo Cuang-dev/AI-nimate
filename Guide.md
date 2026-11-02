@@ -320,3 +320,37 @@ node render_sequential.mjs
 # 4. Run automated QA verification for timing sync, hold times, and visual rules
 node scripts/qa_verify.mjs vid_20261024_001
 ```
+
+---
+
+## 6. Web Portal & Cloud Deployment Architecture
+
+### 1. Canonical Project Output Layout
+All animated documentary video releases are stored under:
+`/home/agent/orca/AI-nimate/projects/<channel>_<date>_<project_name>/`
+
+Contents per project directory:
+- `index.html`: Interactive dual-aspect responsive showcase player with beat jumper navigation, script annotations, and direct download buttons.
+- `embed.html`: Clean iframe embed player for Discord embeds and external web pages.
+- `video_9x16.mp4`: Vertical 1080x1920 @ 60fps render.
+- `video.mp4` / `video_16x9.mp4`: Horizontal 1920x1080 @ 60fps render.
+- `video_whatsapp.mp4`: Compressed preview (<16MB).
+- `narration.wav`: Studio vocal narration.
+- `thumb.jpg` / `thumb_9x16.jpg`: Social card & poster previews.
+
+### 2. Portal Build & Deployment Commands
+- **Rebuild HTML portals & manifests**:
+  ```bash
+  node motion-canvas/scripts/build_portal.mjs
+  ```
+- **Deploy to cuang.dev**:
+  ```bash
+  npm run deploy
+  # Or directly: bash motion-canvas/scripts/deploy_portal.sh
+  ```
+
+### 3. Nginx Gateway & HTTP Basic Auth Admin Gate
+- **Public URL**: `https://cuang.dev/projects/ainimate/`
+- **Reverse Proxy Path**: Cloudflare -> Express `portfolio-web` -> `projects-cuang-nginx:80`
+- **Authentication**: HTTP Basic Auth (`auth_basic "AI-nimate Admin"; auth_basic_user_file /etc/nginx/.htpasswd;`) protecting `/projects/ainimate/` and all sub-paths.
+- **Byte Ranges**: Supports streaming video scrubbing via `Accept-Ranges: bytes` (HTTP 206 Partial Content).

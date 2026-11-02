@@ -1,0 +1,120 @@
+{
+  "id": "vid_20261024_001",
+  "dirName": "kausalmedia_20261024_offshore-investing-tax-traps-indonesia",
+  "channel": "kausalmedia",
+  "channelLabel": "Kausal Media",
+  "series": "Forensic Deep-Dive",
+  "date": "2026-10-24",
+  "dateCompact": "20261024",
+  "slug": "offshore-investing-tax-traps-indonesia",
+  "title": "Offshore Investing Tax Traps (Indonesia): 0.1% vs 35%",
+  "subtitle": "Indonesian Offshore Stock Tax Traps (0.1% vs 35%)",
+  "description": "Indonesian offshore investors face progressive income tax up to 35% on global capital gains and a 40% US estate tax on direct holdings above $60,000. Navigating international investing requires Irish-domiciled accumulating UCITS ETFs, PMK 18 repatriation for 0% dividend tax, and full AEOI/CRS compliance.",
+  "language": "EN",
+  "durationSec": 185.26,
+  "aspects": [
+    "9:16"
+  ],
+  "primaryVideo": "video_9x16.mp4",
+  "poster": "thumbnail.jpg",
+  "files": {
+    "embed.html": 3538,
+    "index.html": 63408,
+    "meta.json": 6165,
+    "narration.wav": 8892558,
+    "script.json": 7260,
+    "thumb.jpg": 55819,
+    "thumb_9x16.jpg": 97824,
+    "thumbnail.jpg": 55819,
+    "thumbnail_og.jpg": 60596,
+    "thumbnail_square.jpg": 65773,
+    "timings.json": 95587,
+    "video.mp4": 24805611,
+    "video_9x16.mp4": 24805611,
+    "video_whatsapp.mp4": 4463200,
+    "qa_frames/beat1.jpg": 97287,
+    "qa_frames/beat2.jpg": 66125,
+    "qa_frames/beat3.jpg": 79400,
+    "qa_frames/beat4.jpg": 82025,
+    "qa_frames/beat5.jpg": 70823,
+    "qa_frames/beat6.jpg": 88475
+  },
+  "qaStatus": "14/14 PASS",
+  "qaFrameFiles": [
+    "beat1.jpg",
+    "beat2.jpg",
+    "beat3.jpg",
+    "beat4.jpg",
+    "beat5.jpg",
+    "beat6.jpg"
+  ],
+  "beats": [
+    {
+      "beat": "01",
+      "title": "Capital Gains Asymmetry",
+      "startSec": 0,
+      "endSec": 26.46,
+      "durationSec": 26.46,
+      "narration": "Sell 1 billion rupiah of BCA stock on the IDX, and your final tax is 0.1% or 1 million rupiah. Done. Sell that exact same gain on Apple, or the S&P 500 from Jakarta, and Indonesia's worldwide tax rules kick in. Under the UU HPP tax law, offshore capital gains are ordinary income. Taxed progressively up to 35%, that's a 350 times tax shock.",
+      "keyframe": "qa_frames/beat1.jpg",
+      "keyframe9x16": "qa_frames/beat1.jpg",
+      "keyframe16x9": "qa_frames/beat1.jpg"
+    },
+    {
+      "beat": "02",
+      "title": "The US Estate Tax Trap",
+      "startSec": 27.22,
+      "endSec": 55.98,
+      "durationSec": 28.76,
+      "narration": "Most Indonesian investors open interactive brokers, Pluang, or go trade to buy direct US shares. Filing form W-8BEN cuts US dividend withholding from 30% down to 15%, creditable back home through PPh 24. But here's the trap. The US estate tax. If you're not an American citizen, the IRS gives you an exemption of just $60,000 Above that, the IRS takes up to 40% upon death, and Indonesia has zero estate tax treaty with the US",
+      "keyframe": "qa_frames/beat2.jpg",
+      "keyframe9x16": "qa_frames/beat2.jpg",
+      "keyframe16x9": "qa_frames/beat2.jpg"
+    },
+    {
+      "beat": "03",
+      "title": "Irish UCITS ETFs Bypass",
+      "startSec": 57.1,
+      "endSec": 88.26,
+      "durationSec": 31.16,
+      "narration": "Smart investors bypass both traps, using Irish domiciled UCITS ETFs on the London Stock Exchange, like CSPX for the S&P 500, or VWRA for global equities. First, Ireland's US treaty caps internal dividend withholding at 15%, while charging 0% outbound withholding to you. Second, Irish funds are non-US assets, that 40% US estate tax drops to zero. Best of all, accumulating shares reinvest dividends inside the fund, triggering zero annual dividend tax events.",
+      "keyframe": "qa_frames/beat3.jpg",
+      "keyframe9x16": "qa_frames/beat3.jpg",
+      "keyframe16x9": "qa_frames/beat3.jpg"
+    },
+    {
+      "beat": "04",
+      "title": "Foreign Dividend Exemption",
+      "startSec": 89.4,
+      "endSec": 118.24,
+      "durationSec": 28.84,
+      "narration": "What if you receive cash dividends from abroad? By default, Indonesia taxes foreign dividends as ordinary income, up to 35%. Here's the legal escape hatch. Under the omnibus law and PMK 18 2021, foreign dividends are 100% tax exempt if you repatriate and reinvest them in Indonesia before March 31. Lock the money into Indonesian government SBN bonds, mutual funds, or deposits for three consecutive years, and your tax rate drops to zero.",
+      "keyframe": "qa_frames/beat4.jpg",
+      "keyframe9x16": "qa_frames/beat4.jpg",
+      "keyframe16x9": "qa_frames/beat4.jpg"
+    },
+    {
+      "beat": "05",
+      "title": "CFC Rules & CRS Transparency",
+      "startSec": 119.26,
+      "endSec": 150.16,
+      "durationSec": 30.9,
+      "narration": "Can you hide behind a Singapore holding company or a BVI paper shell? Don't try it. Under PMK 93 2019, controlled foreign corporation rules treat passive gains and offshore entities you control as deemed dividends, taxing them anyway. Worse, bank secrecy is dead. Under the CRS global agreement, over 100 countries, including Singapore and Switzerland automatically report your account balances to the DJP every September. Unreported offshore assets risk penalties up to 200%.",
+      "keyframe": "qa_frames/beat5.jpg",
+      "keyframe9x16": "qa_frames/beat5.jpg",
+      "keyframe16x9": "qa_frames/beat5.jpg"
+    },
+    {
+      "beat": "06",
+      "title": "Three-Tier Implementation Playbook",
+      "startSec": 150.84,
+      "endSec": 184.92,
+      "durationSec": 34.08,
+      "narration": "Here's your three tier playbook. One, under $60,000 direct US stocks with W-8BEN are acceptable. Two, above $60,000 switch entirely to Irish accumulating UCITS ETFs like CSPX and VWRA. You eliminate the 40% US estate tax, stop dividend drag, and report your acquisition cost in your annual SPT tax return. Three, for cash dividends, repatriate into Indonesian SBN bonds for three years under PMK 18 to lock in zero percent tax. Structure properly and keep your gains.",
+      "keyframe": "qa_frames/beat6.jpg",
+      "keyframe9x16": "qa_frames/beat6.jpg",
+      "keyframe16x9": "qa_frames/beat6.jpg"
+    }
+  ],
+  "wordCount": 445
+}

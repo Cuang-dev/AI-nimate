@@ -9,6 +9,8 @@ renders/
 media/
 output/
 dist/
+motion-canvas/output/
+motion-canvas/dist/
 
 # Caches and temporary files
 caches/
@@ -18,8 +20,12 @@ __pycache__/
 *.pyc
 .pytest_cache/
 
-# Video renders (exclude all .mp4 except docs samples)
+# Project Large Binary Deliverables
+projects/*/*.mp4
+projects/*/*.wav
 *.mp4
+*.wav
+*.bin
 !docs/**/*.mp4
 !docs/*.mp4
 
@@ -28,14 +34,8 @@ __pycache__/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+logs/
 
 # Secrets
 .env
-
-# Nested repos and large binary intermediates
-styknimate/repo/
-*.wav
-*.bin
-voice_samples/
-logs/
-
+.env.*

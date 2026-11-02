@@ -1,0 +1,105 @@
+{
+  "id": "vid_20261021_001",
+  "dirName": "kausalmedia_20261021_humane-ai-pin-hardware-collapse",
+  "channel": "kausalmedia",
+  "channelLabel": "Kausal Media",
+  "series": "Forensic Deep-Dive",
+  "date": "2026-10-21",
+  "dateCompact": "20261021",
+  "slug": "humane-ai-pin-hardware-collapse",
+  "title": "Humane AI Pin: The $699 Hardware Collapse",
+  "subtitle": "When Daily Returns Surpassed New Sales",
+  "description": "A venture-backed hardware failure where telecom IMEI constraints turned returns into unrefurbishable e-waste, driving negative sales velocity until HP acquired the software and bricked the hardware.",
+  "language": "EN",
+  "durationSec": 64.32,
+  "aspects": [
+    "9:16"
+  ],
+  "primaryVideo": "video_9x16.mp4",
+  "poster": "thumbnail.jpg",
+  "files": {
+    "embed.html": 3275,
+    "index.html": 56325,
+    "meta.json": 3854,
+    "narration.wav": 3087438,
+    "script.json": 3039,
+    "thumb.jpg": 109503,
+    "thumb_9x16.jpg": 109503,
+    "thumbnail.jpg": 109503,
+    "timings.json": 29401,
+    "video.mp4": 10087088,
+    "video_9x16.mp4": 10087088,
+    "video_whatsapp.mp4": 2575779,
+    "qa_frames/beat1.jpg": 109503,
+    "qa_frames/beat2.jpg": 99838,
+    "qa_frames/beat3.jpg": 104410,
+    "qa_frames/beat4.jpg": 93312,
+    "qa_frames/beat5.jpg": 85808
+  },
+  "qaStatus": "14/14 PASS",
+  "qaFrameFiles": [
+    "beat1.jpg",
+    "beat2.jpg",
+    "beat3.jpg",
+    "beat4.jpg",
+    "beat5.jpg"
+  ],
+  "beats": [
+    {
+      "beat": "01",
+      "title": "Sales & Returns Inversion",
+      "startSec": 0,
+      "endSec": 4.76,
+      "durationSec": 4.76,
+      "narration": "For three months, more people returned the AI Pin than bought one.",
+      "keyframe": "qa_frames/beat1.jpg",
+      "keyframe9x16": "qa_frames/beat1.jpg",
+      "keyframe16x9": "qa_frames/beat1.jpg"
+    },
+    {
+      "beat": "02",
+      "title": "Launch & Negative Velocity",
+      "startSec": 5.32,
+      "endSec": 24.16,
+      "durationSec": 18.84,
+      "narration": "Humane pitched a $699 lapel pin designed to replace the smartphone. They shipped about 10,000 units, pulling in roughly $9 million. Then net sales went negative. Between May and August 2024, daily returns consistently surpassed new orders.",
+      "keyframe": "qa_frames/beat2.jpg",
+      "keyframe9x16": "qa_frames/beat2.jpg",
+      "keyframe16x9": "qa_frames/beat2.jpg"
+    },
+    {
+      "beat": "03",
+      "title": "Carrier Locking & E-Waste Trap",
+      "startSec": 24.68,
+      "endSec": 41.66,
+      "durationSec": 16.98,
+      "narration": "Over $1 million in hardware bounced back to their warehouse. Worse, Humane couldn't even resell the returned devices. Because of T-Mobile carrier locking constraints, they couldn't wipe and reassign the internal cellular chips. Thousands of returned pins turned directly into e-waste.",
+      "keyframe": "qa_frames/beat3.jpg",
+      "keyframe9x16": "qa_frames/beat3.jpg",
+      "keyframe16x9": "qa_frames/beat3.jpg"
+    },
+    {
+      "beat": "04",
+      "title": "Asset Sale & Hardware Abandonment",
+      "startSec": 42.54,
+      "endSec": 53.8,
+      "durationSec": 11.26,
+      "narration": "By August, active users dropped below 7,000. And in February 2025, HP bought Humane's software assets for $116 million, ditching the hardware entirely.",
+      "keyframe": "qa_frames/beat4.jpg",
+      "keyframe9x16": "qa_frames/beat4.jpg",
+      "keyframe16x9": "qa_frames/beat4.jpg"
+    },
+    {
+      "beat": "05",
+      "title": "Cloud Shutdown & Bricked Hardware",
+      "startSec": 54.55,
+      "endSec": 63.94,
+      "durationSec": 9.39,
+      "narration": "On February 28, the cloud servers shut down. Every pin, bricked instantly. That's $699 for a silent metal badge.",
+      "keyframe": "qa_frames/beat5.jpg",
+      "keyframe9x16": "qa_frames/beat5.jpg",
+      "keyframe16x9": "qa_frames/beat5.jpg"
+    }
+  ],
+  "wordCount": 147
+}

@@ -1,0 +1,2120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI-nimate Studio • Discovery Hub & Production Gallery</title>
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:site_name" content="AI-nimate Studio">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AI-nimate Studio • Autonomous Video Production Gallery">
+  <meta property="og:description" content="Pristine 1080p 60 FPS investigative documentaries and financial visual essays rendered autonomously with Dual-Aspect (16:9 & 9:16) support.">
+  <meta property="og:url" content="https://cuang.dev/projects/ainimate/">
+  <meta property="og:image" content="./kausalmedia_20261031_knp-saham-teknologi-runtuh/thumbnail_og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI-nimate Studio • Autonomous Video Production Gallery">
+  <meta name="twitter:description" content="Pristine 1080p 60 FPS investigative documentaries rendered autonomously.">
+  <meta name="twitter:image" content="./kausalmedia_20261031_knp-saham-teknologi-runtuh/thumbnail_og.jpg">
+
+  <!-- Typography: Plus Jakarta Sans + Instrument Serif + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #07090e;
+      --surface: #0e131f;
+      --surface-elevated: #141b2c;
+      --card-bg: rgba(15, 22, 36, 0.76);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-hover-border: rgba(255, 59, 0, 0.45);
+      --accent: #ff3b00;
+      --accent-glow: rgba(255, 59, 0, 0.22);
+      --emerald: #10b981;
+      --emerald-glow: rgba(16, 185, 129, 0.18);
+      --blue: #3b82f6;
+      --blue-glow: rgba(59, 130, 246, 0.18);
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-serif: 'Instrument Serif', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      background-image: 
+        radial-gradient(circle at 10% 12%, rgba(255, 59, 0, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 90% 18%, rgba(16, 185, 129, 0.07) 0%, transparent 45%),
+        radial-gradient(circle at 50% 85%, rgba(59, 130, 246, 0.06) 0%, transparent 55%);
+      color: var(--text);
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1.25rem 5rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      display: flex;
+      flex-direction: column;
+      gap: 2.75rem;
+    }
+
+    /* Top Brand Navigation */
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 1.5rem;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .brand-logo-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--accent) 0%, #ff7700 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-weight: 800;
+      color: #fff;
+      font-size: 1rem;
+      box-shadow: 0 0 16px var(--accent-glow);
+    }
+
+    .brand-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+
+    .brand-title span {
+      color: var(--accent);
+    }
+
+    .nav-badges {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #34d399;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--emerald);
+      box-shadow: 0 0 8px var(--emerald);
+      animation: pulseDot 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .pill-info {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--card-border);
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+    }
+
+    /* Hero Banner */
+    .hero-banner {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: 2.25rem;
+      background: linear-gradient(135deg, rgba(255, 59, 0, 0.08) 0%, rgba(14, 19, 31, 0.85) 60%);
+      border: 1px solid rgba(255, 59, 0, 0.3);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 40px var(--accent-glow);
+      border-radius: 24px;
+      padding: 2.25rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @media (max-width: 960px) {
+      .hero-banner {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-video-box {
+      position: relative;
+      background: #000;
+      border-radius: 16px;
+      overflow: hidden;
+      aspect-ratio: 9 / 16;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.12);
+      max-height: 520px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-video-box video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-video-overlay {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      right: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      pointer-events: none;
+    }
+
+    .hero-aspect-badge {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+    }
+
+    .hero-video-controls {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      right: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(10px);
+      padding: 0.4rem 0.75rem;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .hero-ctl-btn {
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 0.8rem;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+
+    .hero-ctl-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1.25rem;
+    }
+
+    .hero-tagline {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--accent);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3.5vw, 2.9rem);
+      line-height: 1.15;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      color: #fff;
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .hero-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 680px;
+    }
+
+    /* Chapter Pills on Hero */
+    .hero-chapters-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .hero-chapters-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-chapters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .hero-chapter-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      color: var(--text-primary);
+      text-decoration: none;
+      padding: 0.35rem 0.75rem;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+
+    .hero-chapter-pill:hover {
+      background: var(--accent-glow);
+      border-color: var(--accent);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .hero-chapter-pill span.num {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+      padding-top: 0.5rem;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.92rem;
+      padding: 0.75rem 1.4rem;
+      border-radius: 12px;
+      text-decoration: none;
+      box-shadow: 0 4px 18px var(--accent-glow);
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background: #ff5520;
+      box-shadow: 0 6px 24px rgba(255, 59, 0, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      color: var(--text-primary);
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 0.75rem 1.15rem;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Controls Bar: Search + Filters + Sort */
+    .discovery-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      background: var(--surface);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 1.35rem 1.5rem;
+    }
+
+    .search-row {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .search-box {
+      position: relative;
+      flex: 1;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-dim);
+      font-size: 1rem;
+      pointer-events: none;
+    }
+
+    .search-input {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 0.85rem 3.5rem 0.85rem 2.85rem;
+      color: #fff;
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 15px var(--accent-glow);
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    .search-shortcut-badge {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--card-border);
+      color: var(--text-dim);
+      padding: 0.15rem 0.45rem;
+      border-radius: 6px;
+      pointer-events: none;
+    }
+
+    .sort-select-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .sort-select-wrap label {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      white-space: nowrap;
+    }
+
+    .sort-select {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--card-border);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      padding: 0.8rem 1rem;
+      border-radius: 12px;
+      outline: none;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+
+    .sort-select:focus {
+      border-color: var(--accent);
+    }
+
+    .filter-pills-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .filter-pill {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 500;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s;
+      user-select: none;
+    }
+
+    .filter-pill:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+    }
+
+    .filter-pill.active {
+      background: var(--accent-glow);
+      border-color: var(--accent);
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .results-count {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      margin-left: auto;
+    }
+
+    /* Cards Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 2rem;
+    }
+
+    @media (max-width: 680px) {
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 59, 0, 0.4);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 30px var(--accent-glow);
+    }
+
+    .card-meta-bar {
+      padding: 0.9rem 1.25rem 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .dir-badge {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      background: rgba(255, 59, 0, 0.1);
+      border: 1px solid rgba(255, 59, 0, 0.25);
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 210px;
+    }
+
+    .meta-tags {
+      display: flex;
+      gap: 0.4rem;
+      align-items: center;
+    }
+
+    .tag-pill {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+    }
+
+    .tag-pass {
+      color: #34d399;
+      background: rgba(16, 185, 129, 0.1);
+      border-color: rgba(16, 185, 129, 0.3);
+      font-weight: 700;
+    }
+
+    /* Thumbnail + Scrubber Container */
+    .card-thumb-container {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .card-thumb-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .card-thumb-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .card-thumb-container.video-playing .card-thumb-video {
+      opacity: 1;
+    }
+
+    .card-thumb-overlay {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      display: flex;
+      gap: 0.4rem;
+      pointer-events: none;
+    }
+
+    .card-overlay-badge {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(6px);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      color: #fff;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    /* 5-Beat Keyframe Scrubber */
+    .card-scrubber-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      z-index: 10;
+    }
+
+    .scrub-segment {
+      flex: 1;
+      padding: 0.35rem 0.15rem;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .scrub-segment:last-child {
+      border-right: none;
+    }
+
+    .scrub-segment:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .scrub-tooltip {
+      position: absolute;
+      bottom: 34px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.95);
+      border: 1px solid var(--accent);
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s;
+      z-index: 20;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.8);
+    }
+
+    .scrub-tooltip.show {
+      opacity: 1;
+    }
+
+    .card-body {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      flex: 1;
+    }
+
+    .card-title {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 400;
+      line-height: 1.25;
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .card-title:hover {
+      color: var(--accent);
+    }
+
+    .card-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* Transcript Match Highlight Box */
+    .transcript-match-box {
+      background: rgba(255, 59, 0, 0.08);
+      border: 1px dashed rgba(255, 59, 0, 0.4);
+      border-radius: 8px;
+      padding: 0.6rem 0.75rem;
+      font-size: 0.78rem;
+      color: #fed7aa;
+      line-height: 1.45;
+      display: none;
+    }
+
+    .transcript-match-box.show {
+      display: block;
+    }
+
+    .transcript-match-box mark {
+      background: var(--accent);
+      color: #fff;
+      padding: 0.1rem 0.25rem;
+      border-radius: 3px;
+      font-weight: 700;
+    }
+
+    .card-footer {
+      margin-top: auto;
+      padding: 0.85rem 1.25rem 1.15rem;
+      border-top: 1px solid var(--card-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card-actions-left {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .card-btn {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--card-border);
+      padding: 0.4rem 0.85rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .card-btn:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .card-btn-walkthrough {
+      background: rgba(255, 59, 0, 0.15);
+      border-color: rgba(255, 59, 0, 0.35);
+      color: #ff8866;
+    }
+
+    .card-btn-walkthrough:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .download-dropdown {
+      position: relative;
+    }
+
+    .download-menu {
+      position: absolute;
+      right: 0;
+      bottom: calc(100% + 6px);
+      background: #0d121c;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 0.35rem 0;
+      min-width: 160px;
+      display: none;
+      flex-direction: column;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+      z-index: 50;
+    }
+
+    .download-dropdown:hover .download-menu {
+      display: flex;
+    }
+
+    .download-item {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      padding: 0.45rem 0.85rem;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .download-item:hover {
+      background: var(--accent-glow);
+      color: #fff;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    .footer-left {
+      font-family: var(--font-mono);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Top Navigation -->
+    <header class="top-nav">
+      <div class="brand-group">
+        <div class="brand-logo-mark">⚡</div>
+        <div class="brand-title">AI-nimate <span>Studio</span></div>
+      </div>
+      <div class="nav-badges">
+        <div class="status-badge">
+          <div class="status-dot"></div>
+          <span>Autonomous Render Engine</span>
+        </div>
+        <div class="pill-info">60 FPS Pristine</div>
+        <div class="pill-info">Dual-Aspect (9:16 &amp; 16:9)</div>
+        <div class="pill-info">6 Total Productions</div>
+      </div>
+    </header>
+
+    <!-- Featured Hero Banner (Newest Production) -->
+    <section class="hero-banner">
+      <div class="hero-video-box">
+        <video id="hero-video" muted playsinline loop poster="./kausalmedia_20261031_knp-saham-teknologi-runtuh/thumbnail.jpg">
+          <source src="./kausalmedia_20261031_knp-saham-teknologi-runtuh/video_9x16.mp4" type="video/mp4">
+          <source src="./kausalmedia_20261031_knp-saham-teknologi-runtuh/video_whatsapp.mp4" type="video/mp4">
+        </video>
+        <div class="hero-video-overlay">
+          <span class="hero-aspect-badge">9:16</span>
+          <span class="hero-aspect-badge" style="color: #34d399;">14/14 PASS</span>
+        </div>
+        <div class="hero-video-controls">
+          <button class="hero-ctl-btn" id="hero-play-toggle">▶ Play</button>
+          <button class="hero-ctl-btn" id="hero-sound-toggle">🔇 Unmute</button>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted);">01:17</span>
+        </div>
+      </div>
+
+      <div class="hero-content">
+        <div class="hero-tagline">
+          <span>★ Featured Production</span>
+          <span>•</span>
+          <span>Knp?</span>
+          <span>•</span>
+          <span>2026-10-31</span>
+        </div>
+
+        <h1 class="hero-title">Knp? Saham Teknologi Raksasa Runtuh Berjamaah</h1>
+        <div class="hero-subtitle">Valuasi Semu, Bakar Uang &amp; Jebakan Diskon</div>
+        <p class="hero-desc">Saham teknologi global maupun lokal rontok karena model bisnis bakar uang dan janji masa depan gagal menghasilkan laba nyata secepat ekspektasi investor.</p>
+
+        <!-- Chapter Deep-Link Pills -->
+        <div class="hero-chapters-wrap">
+          <span class="hero-chapters-label">Interactive Beats &amp; Chapters</span>
+          <div class="hero-chapters">
+            
+              <a href="./kausalmedia_20261031_knp-saham-teknologi-runtuh/?beat=01" class="hero-chapter-pill" data-start="0" title="Jump to Beat 01: Saham Tech Runtuh">
+                <span class="num">01</span>
+                <span>Saham Tech Runtuh</span>
+              </a>
+            
+              <a href="./kausalmedia_20261031_knp-saham-teknologi-runtuh/?beat=02" class="hero-chapter-pill" data-start="14.231" title="Jump to Beat 02: Ilusi Bakar Uang">
+                <span class="num">02</span>
+                <span>Ilusi Bakar Uang</span>
+              </a>
+            
+              <a href="./kausalmedia_20261031_knp-saham-teknologi-runtuh/?beat=03" class="hero-chapter-pill" data-start="31.081" title="Jump to Beat 03: Jebakan Diskon &amp; AI">
+                <span class="num">03</span>
+                <span>Jebakan Diskon &amp; AI</span>
+              </a>
+            
+              <a href="./kausalmedia_20261031_knp-saham-teknologi-runtuh/?beat=04" class="hero-chapter-pill" data-start="48.668" title="Jump to Beat 04: Anjlok 85% Dari Pucuk">
+                <span class="num">04</span>
+                <span>Anjlok 85% Dari Pucuk</span>
+              </a>
+            
+              <a href="./kausalmedia_20261031_knp-saham-teknologi-runtuh/?beat=05" class="hero-chapter-pill" data-start="63.11" title="Jump to Beat 05: 3 Filter Saham Tech">
+                <span class="num">05</span>
+                <span>3 Filter Saham Tech</span>
+              </a>
+            
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <a href="./kausalmedia_20261031_knp-saham-teknologi-runtuh/" class="btn-primary">
+            <span>Launch Interactive Walkthrough</span>
+            <span>→</span>
+          </a>
+          <a href="./kausalmedia_20261031_knp-saham-teknologi-runtuh/embed.html" class="btn-secondary">
+            <span>Embed Player</span>
+          </a>
+          <a href="./kausalmedia_20261031_knp-saham-teknologi-runtuh/video_whatsapp.mp4" download class="btn-secondary">
+            <span>↓ WhatsApp MP4</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Video Discovery Controls -->
+    <section class="discovery-controls">
+      <div class="search-row">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input 
+            type="text" 
+            id="search-input" 
+            class="search-input" 
+            placeholder="Search projects, directory names, series, or spoken transcripts... (Press '/' to focus)"
+            autocomplete="off"
+          />
+          <span class="search-shortcut-badge">/</span>
+        </div>
+
+        <div class="sort-select-wrap">
+          <label for="sort-select">Sort By:</label>
+          <select id="sort-select" class="sort-select">
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
+            <option value="longest">Longest Duration</option>
+            <option value="shortest">Shortest Duration</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="filter-pills-row">
+        <div class="filter-pill active" data-filter="all">All (6)</div>
+        <div class="filter-pill" data-filter="knp">Knp? Series</div>
+        <div class="filter-pill" data-filter="forensic">Forensic Deep-Dive</div>
+        <div class="filter-pill" data-filter="9x16">9:16 Vertical</div>
+        <div class="filter-pill" data-filter="16x9">16:9 Widescreen</div>
+        <div class="filter-pill" data-filter="dual">Dual-Aspect</div>
+        <div class="filter-pill" data-filter="id">Bahasa Indonesia</div>
+        <div class="filter-pill" data-filter="en">English</div>
+        <div class="results-count" id="results-count">Showing 6 of 6 productions</div>
+      </div>
+    </section>
+
+    <!-- Discovery Project Cards Grid -->
+    <section class="cards-grid" id="cards-grid">
+      
+        <article 
+          class="project-card" 
+          id="card-vid_20261031_002"
+          data-id="vid_20261031_002"
+          data-dir="kausalmedia_20261031_knp-saham-teknologi-runtuh"
+          data-series="Knp?"
+          data-lang="ID"
+          data-date="2026-10-31"
+          data-duration="77.023"
+          data-aspects="9:16"
+          data-dual="false"
+        >
+          <!-- Metadata Bar -->
+          <div class="card-meta-bar">
+            <span class="dir-badge" title="kausalmedia_20261031_knp-saham-teknologi-runtuh">kausalmedia_20261031_knp-saham-teknologi-runtuh</span>
+            <div class="meta-tags">
+              <span class="tag-pill">ID</span>
+              <span class="tag-pill">9:16</span>
+              <span class="tag-pill tag-pass">14/14 PASS</span>
+            </div>
+          </div>
+
+          <!-- Thumbnail with Hover Video & 5-Beat Keyframe Scrubber -->
+          <div class="card-thumb-container" id="thumb-container-vid_20261031_002">
+            <img class="card-thumb-img" id="thumb-img-vid_20261031_002" src="./kausalmedia_20261031_knp-saham-teknologi-runtuh/thumbnail.jpg" alt="Knp? Saham Teknologi Raksasa Runtuh Berjamaah" loading="lazy" />
+            <video class="card-thumb-video" id="thumb-video-vid_20261031_002" muted loop playsinline preload="none" src="./kausalmedia_20261031_knp-saham-teknologi-runtuh/video_whatsapp.mp4"></video>
+            
+            <div class="card-thumb-overlay">
+              <span class="card-overlay-badge">01:17</span>
+              <span class="card-overlay-badge">Knp?</span>
+            </div>
+
+            <!-- 5-Beat Keyframe Scrubber -->
+            <div class="card-scrubber-bar">
+              
+                <div 
+                  class="scrub-segment" 
+                  data-card-id="vid_20261031_002"
+                  data-default-poster="./kausalmedia_20261031_knp-saham-teknologi-runtuh/thumbnail.jpg"
+                  data-keyframe="./kausalmedia_20261031_knp-saham-teknologi-runtuh/qa_frames/beat1.jpg" 
+                  data-beat="01" 
+                  data-title="Saham Tech Runtuh"
+                  data-time="00:00"
+                  onclick="event.stopPropagation(); window.location.href='./kausalmedia_20261031_knp-saham-teknologi-runtuh/?beat=01';"
+                >
+                  B01
+                </div>
+              
+                <div 
+                  class="scrub-segment" 
+                  data-card-id="vid_20261031_002"
+                  data-default-poster="./kausalmedia_20261031_knp-saham-teknologi-runtuh/thumbnail.jpg"
+                  data-keyframe="./kausalmedia_20261031_knp-saham-teknologi-runtuh/qa_frames/beat2.jpg" 
+                  data-beat="02" 
+                  data-title="Ilusi Bakar Uang"
+                  data-time="00:14"
+                  onclick="event.stopPropagation(); window.location.href='./kausalmedia_20261031_knp-saham-teknologi-runtuh/?beat=02';"
+                >
+                  B02
+                </div>
+              
+                <div 
+                  class="scrub-segment" 
+                  data-card-id="vid_20261031_002"
+                  data-default-poster="./kausalmedia_20261031_knp-saham-teknologi-runtuh/thumbnail.jpg"
+                  data-keyframe="./kausalmedia_20261031_knp-saham-teknologi-runtuh/qa_frames/beat3.jpg" 
+                  data-beat="03" 
+                  data-title="Jebakan Diskon &amp; AI"
+                  data-time="00:31"
+                  onclick="event.stopPropagation(); window.location.href='./kausalmedia_20261031_knp-saham-teknologi-runtuh/?beat=03';"
+                >
+                  B03
+                </div>
+              
+                <div 
+                  class="scrub-segment" 
+                  data-card-id="vid_20261031_002"
+                  data-default-poster="./kausalmedia_20261031_knp-saham-teknologi-runtuh/thumbnail.jpg"
+                  data-keyframe="./kausalmedia_20261031_knp-saham-teknologi-runtuh/qa_frames/beat4.jpg" 
+                  data-beat="04" 
+                  data-title="Anjlok 85% Dari Pucuk"
+                  data-time="00:48"
+                  onclick="event.stopPropagation(); window.location.href='./kausalmedia_20261031_knp-saham-teknologi-runtuh/?beat=04';"
+                >
+                  B04
+                </div>
+              
+                <div 
+                  class="scrub-segment" 
+                  data-card-id="vid_20261031_002"
+                  data-default-poster="./kausalmedia_20261031_knp-saham-teknologi-runtuh/thumbnail.jpg"
+                  data-keyframe="./kausalmedia_20261031_knp-saham-teknologi-runtuh/qa_frames/beat5.jpg" 
+                  data-beat="05" 
+                  data-title="3 Filter Saham Tech"
+                  data-time="01:03"
+                  onclick="event.stopPropagation(); window.location.href='./kausalmedia_20261031_knp-saham-teknologi-runtuh/?beat=05';"
+                >
+                  B05
+                </div>
+              
+            </div>
+            <div class="scrub-tooltip" id="tooltip-vid_20261031_002"></div>
+          </div>
+
+          <!-- Card Content -->
+          <div class="card-body">
+            <a href="./kausalmedia_20261031_knp-saham-teknologi-runtuh/" class="card-title">Knp? Saham Teknologi Raksasa Runtuh Berjamaah</a>
+            <p class="card-desc">Saham teknologi global maupun lokal rontok karena model bisnis bakar uang dan janji masa depan gagal menghasilkan laba nyata secepat ekspektasi investor.</p>
+
+            <!-- Dynamic Transcript Match Box -->
+            <div class="transcript-match-box" id="transcript-match-vid_20261031_002"></div>
+          </div>
+
+          <!-- Card Footer Actions -->
+          <div class="card-footer">
+            <div class="card-actions-left">
+              <a href="./kausalmedia_20261031_knp-saham-teknologi-runtuh/" class="card-btn card-btn-walkthrough">
+                <span>Walkthrough</span>
+                <span>→</span>
+              </a>
+              <a href="./kausalmedia_20261031_knp-saham-teknologi-runtuh/embed.html" class="card-btn">
+                <span>Embed</span>
+              </a>
+            </div>
+
+            <div class="download-dropdown">
+              <button class="card-btn" type="button">
+                <span>Download ↓</span>
+              </button>
+              <div class="download-menu">
+                <a href="./kausalmedia_20261031_knp-saham-teknologi-runtuh/video_9x16.mp4" download class="download-item">9:16 Vertical MP4 (9.2 MB)</a>
+                
+                <a href="./kausalmedia_20261031_knp-saham-teknologi-runtuh/video_whatsapp.mp4" download class="download-item">WhatsApp MP4 (2.6 MB)</a>
+                <a href="./kausalmedia_20261031_knp-saham-teknologi-runtuh/narration.wav" download class="download-item">Audio WAV (7.1 MB)</a>
+              </div>
+            </div>
+          </div>
+        </article>
+        
+        <article 
+          class="project-card" 
+          id="card-vid_20261031_001"
+          data-id="vid_20261031_001"
+          data-dir="kausalmedia_20261031_knp-bursa-kita-terancam-diboikot-dunia"
+          data-series="Knp?"
+          data-lang="ID"
+          data-date="2026-10-31"
+          data-duration="88.51"
+          data-aspects="9:16,16:9"
+          data-dual="true"
+        >
+          <!-- Metadata Bar -->
+          <div class="card-meta-bar">
+            <span class="dir-badge" title="kausalmedia_20261031_knp-bursa-kita-terancam-diboikot-dunia">kausalmedia_20261031_knp-bursa-kita-terancam-diboikot-dunia</span>
+            <div class="meta-tags">
+              <span class="tag-pill">ID</span>
+              <span class="tag-pill">9:16/16:9</span>
+              <span class="tag-pill tag-pass">14/14 PASS</span>
+            </div>
+          </div>
+
+          <!-- Thumbnail with Hover Video & 5-Beat Keyframe Scrubber -->
+          <div class="card-thumb-container" id="thumb-container-vid_20261031_001">
+            <img class="card-thumb-img" id="thumb-img-vid_20261031_001" src="./kausalmedia_20261031_knp-bursa-kita-terancam-diboikot-dunia/thumbnail.jpg" alt="Knp? Bursa Saham Kita Terancam Diboikot Dunia" loading="lazy" />
+            <video class="card-thumb-video" id="thumb-video-vid_20261031_001" muted loop playsinline preload="none" src="./kausalmedia_20261031_knp-bursa-kita-terancam-diboikot-dunia/video_whatsapp.mp4"></video>
+            
+            <div class="card-thumb-overlay">
+              <span class="card-overlay-badge">01:28</span>
+              <span class="card-overlay-badge">Knp?</span>
+            </div>
+
+            <!-- 5-Beat Keyframe Scrubber -->
+            <div class="card-scrubber-bar">
+              
+                <div 
+                  class="scrub-segment" 
+                  data-card-id="vid_20261031_001"
+                  data-default-poster="./kausalmedia_20261031_knp-bursa-kita-terancam-diboikot-dunia/thumbnail.jpg"
+                  data-keyframe="./kausalmedia_20261031_knp-bursa-kita-terancam-diboikot-dunia/qa_frames/beat1.jpg" 
+                  data-beat="01" 
+                  data-title="Ancaman Turun Kasta"
+                  data-time="00:00"
+                  onclick="event.stopPropagation(); window.location.href='./kausalmedia_20261031_knp-bursa-kita-terancam-diboikot-dunia/?beat=01';"
+                >
+                  B01
+                </div>
+              
+                <div 
+                  class="scrub-segment" 
+                  data-card-id="vid_20261031_001"
+                  data-default-poster="./kausalmedia_20261031_knp-bursa-kita-terancam-diboikot-dunia/thumbnail.jpg"
+                  data-keyframe="./kausalmedia_20261031_knp-bursa-kita-terancam-diboikot-dunia/qa_frames/beat2.jpg" 
+                  data-beat="02" 
+                  data-title="Cuma 3% Di Pasar"
+                  data-time="00:20"
+                  onclick="event.stopPropagation(); window.location.href='./kausalmedia_20261031_knp-bursa-kita-terancam-diboikot-dunia/?beat=02';"
+                >
+                  B02
+                </div>
+              
+                <div 
+                  class="scrub-segment" 
+                  data-card-id="vid_20261031_001"
+                  data-default-poster="./kausalmedia_20261031_knp-bursa-kita-terancam-diboikot-dunia/thumbnail.jpg"
+                  data-keyframe="./kausalmedia_20261031_knp-bursa-kita-terancam-diboikot-dunia/qa_frames/beat3.jpg" 
+                  data-beat="03" 
+                  data-title="Jebakan Dana Asing"
+                  data-time="00:39"
+                  onclick="event.stopPropagation(); window.location.href='./kausalmedia_20261031_knp-bursa-kita-terancam-diboikot-dunia/?beat=03';"
+                >
+                  B03
+                </div>
+              
+                <div 
+                  class="scrub-segment" 
+                  data-card-id="vid_20261031_001"
+                  data-default-poster="./kausalmedia_20261031_knp-bursa-kita-terancam-diboikot-dunia/thumbnail.jpg"
+                  data-keyframe="./kausalmedia_20261031_knp-bursa-kita-terancam-diboikot-dunia/qa_frames/beat4.jpg" 
+                  data-beat="04" 
+                  data-title="Saham Nyangkut"
+                  data-time="01:01"
+                  onclick="event.stopPropagation(); window.location.href='./kausalmedia_20261031_knp-bursa-kita-terancam-diboikot-dunia/?beat=04';"
+                >
+                  B04
+                </div>
+              
+                <div 
+                  class="scrub-segment" 
+                  data-card-id="vid_20261031_001"
+                  data-default-poster="./kausalmedia_20261031_knp-bursa-kita-terancam-diboikot-dunia/thumbnail.jpg"
+                  data-keyframe="./kausalmedia_20261031_knp-bursa-kita-terancam-diboikot-dunia/qa_frames/beat5.jpg" 
+                  data-beat="05" 
+                  data-title="Lanjut Di YouTube"
+                  data-time="01:17"
+                  onclick="event.stopPropagation(); window.location.href='./kausalmedia_20261031_knp-bursa-kita-terancam-diboikot-dunia/?beat=05';"
+                >
+                  B05
+                </div>
+              
+            </div>
+            <div class="scrub-tooltip" id="tooltip-vid_20261031_001"></div>
+          </div>
+
+          <!-- Card Content -->
+          <div class="card-body">
+            <a href="./kausalmedia_20261031_knp-bursa-kita-terancam-diboikot-dunia/" class="card-title">Knp? Bursa Saham Kita Terancam Diboikot Dunia</a>
+            <p class="card-desc">Bursa saham Indonesia terancam diturunkan wasit dunia dari liga utama ke zona isolasi karena saham raksasa Rp1.500 triliun ternyata 97 persennya dikunci empat orang dan cuma 3 persen yang dijual bebas ke warga.</p>
+
+            <!-- Dynamic Transcript Match Box -->
+            <div class="transcript-match-box" id="transcript-match-vid_20261031_001"></div>
+          </div>
+
+          <!-- Card Footer Actions -->
+          <div class="card-footer">
+            <div class="card-actions-left">
+              <a href="./kausalmedia_20261031_knp-bursa-kita-terancam-diboikot-dunia/" class="card-btn card-btn-walkthrough">
+                <span>Walkthrough</span>
+                <span>→</span>
+              </a>
+              <a href="./kausalmedia_20261031_knp-bursa-kita-terancam-diboikot-dunia/embed.html" class="card-btn">
+                <span>Embed</span>
+              </a>
+            </div>
+
+            <div class="download-dropdown">
+              <button class="card-btn" type="button">
+                <span>Download ↓</span>
+              </button>
+              <div class="download-menu">
+                <a href="./kausalmedia_20261031_knp-bursa-kita-terancam-diboikot-dunia/video_9x16.mp4" download class="download-item">9:16 Vertical MP4 (9.1 MB)</a>
+                <a href="./kausalmedia_20261031_knp-bursa-kita-terancam-diboikot-dunia/video_16x9.mp4" download class="download-item">16:9 Widescreen MP4 (13.2 MB)</a>
+                <a href="./kausalmedia_20261031_knp-bursa-kita-terancam-diboikot-dunia/video_whatsapp.mp4" download class="download-item">WhatsApp MP4 (2.7 MB)</a>
+                <a href="./kausalmedia_20261031_knp-bursa-kita-terancam-diboikot-dunia/narration.wav" download class="download-item">Audio WAV (8.1 MB)</a>
+              </div>
+            </div>
+          </div>
+        </article>
+        
+        <article 
+          class="project-card" 
+          id="card-vid_20261029_002"
+          data-id="vid_20261029_002"
+          data-dir="kausalmedia_20261029_the-ai-bubble-explained"
+          data-series="Forensic Deep-Dive"
+          data-lang="EN"
+          data-date="2026-10-29"
+          data-duration="102.32"
+          data-aspects="9:16,16:9"
+          data-dual="true"
+        >
+          <!-- Metadata Bar -->
+          <div class="card-meta-bar">
+            <span class="dir-badge" title="kausalmedia_20261029_the-ai-bubble-explained">kausalmedia_20261029_the-ai-bubble-explained</span>
+            <div class="meta-tags">
+              <span class="tag-pill">EN</span>
+              <span class="tag-pill">9:16/16:9</span>
+              <span class="tag-pill tag-pass">14/14 PASS</span>
+            </div>
+          </div>
+
+          <!-- Thumbnail with Hover Video & 5-Beat Keyframe Scrubber -->
+          <div class="card-thumb-container" id="thumb-container-vid_20261029_002">
+            <img class="card-thumb-img" id="thumb-img-vid_20261029_002" src="./kausalmedia_20261029_the-ai-bubble-explained/thumbnail.jpg" alt="The AI Bubble: What It Actually Is" loading="lazy" />
+            <video class="card-thumb-video" id="thumb-video-vid_20261029_002" muted loop playsinline preload="none" src="./kausalmedia_20261029_the-ai-bubble-explained/video_whatsapp.mp4"></video>
+            
+            <div class="card-thumb-overlay">
+              <span class="card-overlay-badge">01:42</span>
+              <span class="card-overlay-badge">Forensic Deep-Dive</span>
+            </div>
+
+            <!-- 5-Beat Keyframe Scrubber -->
+            <div class="card-scrubber-bar">
+              
+                <div 
+                  class="scrub-segment" 
+                  data-card-id="vid_20261029_002"
+                  data-default-poster="./kausalmedia_20261029_the-ai-bubble-explained/thumbnail.jpg"
+                  data-keyframe="./kausalmedia_20261029_the-ai-bubble-explained/qa_frames/beat1.jpg" 
+                  data-beat="01" 
+                  data-title="The $600B Chasm"
+                  data-time="00:00"
+                  onclick="event.stopPropagation(); window.location.href='./kausalmedia_20261029_the-ai-bubble-explained/?beat=01';"
+                >
+                  B01
+                </div>
+              
+                <div 
+                  class="scrub-segment" 
+                  data-card-id="vid_20261029_002"
+                  data-default-poster="./kausalmedia_20261029_the-ai-bubble-explained/thumbnail.jpg"
+                  data-keyframe="./kausalmedia_20261029_the-ai-bubble-explained/qa_frames/beat2.jpg" 
+                  data-beat="02" 
+                  data-title="Round-Trip Revenue"
+                  data-time="00:26"
+                  onclick="event.stopPropagation(); window.location.href='./kausalmedia_20261029_the-ai-bubble-explained/?beat=02';"
+                >
+                  B02
+                </div>
+              
+                <div 
+                  class="scrub-segment" 
+                  data-card-id="vid_20261029_002"
+                  data-default-poster="./kausalmedia_20261029_the-ai-bubble-explained/thumbnail.jpg"
+                  data-keyframe="./kausalmedia_20261029_the-ai-bubble-explained/qa_frames/beat3.jpg" 
+                  data-beat="03" 
+                  data-title="The Depreciation Clock"
+                  data-time="00:47"
+                  onclick="event.stopPropagation(); window.location.href='./kausalmedia_20261029_the-ai-bubble-explained/?beat=03';"
+                >
+                  B03
+                </div>
+              
+                <div 
+                  class="scrub-segment" 
+                  data-card-id="vid_20261029_002"
+                  data-default-poster="./kausalmedia_20261029_the-ai-bubble-explained/thumbnail.jpg"
+                  data-keyframe="./kausalmedia_20261029_the-ai-bubble-explained/qa_frames/beat4.jpg" 
+                  data-beat="04" 
+                  data-title="2000 Telecom vs 2026 AI"
+                  data-time="01:07"
+                  onclick="event.stopPropagation(); window.location.href='./kausalmedia_20261029_the-ai-bubble-explained/?beat=04';"
+                >
+                  B04
+                </div>
+              
+                <div 
+                  class="scrub-segment" 
+                  data-card-id="vid_20261029_002"
+                  data-default-poster="./kausalmedia_20261029_the-ai-bubble-explained/thumbnail.jpg"
+                  data-keyframe="./kausalmedia_20261029_the-ai-bubble-explained/qa_frames/beat5.jpg" 
+                  data-beat="05" 
+                  data-title="What Pops vs Survives"
+                  data-time="01:25"
+                  onclick="event.stopPropagation(); window.location.href='./kausalmedia_20261029_the-ai-bubble-explained/?beat=05';"
+                >
+                  B05
+                </div>
+              
+            </div>
+            <div class="scrub-tooltip" id="tooltip-vid_20261029_002"></div>
+          </div>
+
+          <!-- Card Content -->
+          <div class="card-body">
+            <a href="./kausalmedia_20261029_the-ai-bubble-explained/" class="card-title">The AI Bubble: What It Actually Is</a>
+            <p class="card-desc">The AI bubble is not just hype—it is a $500B revenue gap funded by round-trip cloud accounting and masked by aggressive 6-year GPU depreciation schedules on 3-year silicon obsolescence cycles.</p>
+
+            <!-- Dynamic Transcript Match Box -->
+            <div class="transcript-match-box" id="transcript-match-vid_20261029_002"></div>
+          </div>
+
+          <!-- Card Footer Actions -->
+          <div class="card-footer">
+            <div class="card-actions-left">
+              <a href="./kausalmedia_20261029_the-ai-bubble-explained/" class="card-btn card-btn-walkthrough">
+                <span>Walkthrough</span>
+                <span>→</span>
+              </a>
+              <a href="./kausalmedia_20261029_the-ai-bubble-explained/embed.html" class="card-btn">
+                <span>Embed</span>
+              </a>
+            </div>
+
+            <div class="download-dropdown">
+              <button class="card-btn" type="button">
+                <span>Download ↓</span>
+              </button>
+              <div class="download-menu">
+                <a href="./kausalmedia_20261029_the-ai-bubble-explained/video_9x16.mp4" download class="download-item">9:16 Vertical MP4 (12.3 MB)</a>
+                <a href="./kausalmedia_20261029_the-ai-bubble-explained/video_16x9.mp4" download class="download-item">16:9 Widescreen MP4 (12.6 MB)</a>
+                <a href="./kausalmedia_20261029_the-ai-bubble-explained/video_whatsapp.mp4" download class="download-item">WhatsApp MP4 (3.3 MB)</a>
+                <a href="./kausalmedia_20261029_the-ai-bubble-explained/narration.wav" download class="download-item">Audio WAV (9.4 MB)</a>
+              </div>
+            </div>
+          </div>
+        </article>
+        
+        <article 
+          class="project-card" 
+          id="card-vid_20261024_001"
+          data-id="vid_20261024_001"
+          data-dir="kausalmedia_20261024_offshore-investing-tax-traps-indonesia"
+          data-series="Forensic Deep-Dive"
+          data-lang="EN"
+          data-date="2026-10-24"
+          data-duration="185.26"
+          data-aspects="9:16"
+          data-dual="false"
+        >
+          <!-- Metadata Bar -->
+          <div class="card-meta-bar">
+            <span class="dir-badge" title="kausalmedia_20261024_offshore-investing-tax-traps-indonesia">kausalmedia_20261024_offshore-investing-tax-traps-indonesia</span>
+            <div class="meta-tags">
+              <span class="tag-pill">EN</span>
+              <span class="tag-pill">9:16</span>
+              <span class="tag-pill tag-pass">14/14 PASS</span>
+            </div>
+          </div>
+
+          <!-- Thumbnail with Hover Video & 5-Beat Keyframe Scrubber -->
+          <div class="card-thumb-container" id="thumb-container-vid_20261024_001">
+            <img class="card-thumb-img" id="thumb-img-vid_20261024_001" src="./kausalmedia_20261024_offshore-investing-tax-traps-indonesia/thumbnail.jpg" alt="Offshore Investing Tax Traps (Indonesia): 0.1% vs 35%" loading="lazy" />
+            <video class="card-thumb-video" id="thumb-video-vid_20261024_001" muted loop playsinline preload="none" src="./kausalmedia_20261024_offshore-investing-tax-traps-indonesia/video_whatsapp.mp4"></video>
+            
+            <div class="card-thumb-overlay">
+              <span class="card-overlay-badge">03:05</span>
+              <span class="card-overlay-badge">Forensic Deep-Dive</span>
+            </div>
+
+            <!-- 5-Beat Keyframe Scrubber -->
+            <div class="card-scrubber-bar">
+              
+                <div 
+                  class="scrub-segment" 
+                  data-card-id="vid_20261024_001"
+                  data-default-poster="./kausalmedia_20261024_offshore-investing-tax-traps-indonesia/thumbnail.jpg"
+                  data-keyframe="./kausalmedia_20261024_offshore-investing-tax-traps-indonesia/qa_frames/beat1.jpg" 
+                  data-beat="01" 
+                  data-title="Capital Gains Asymmetry"
+                  data-time="00:00"
+                  onclick="event.stopPropagation(); window.location.href='./kausalmedia_20261024_offshore-investing-tax-traps-indonesia/?beat=01';"
+                >
+                  B01
+                </div>
+              
+                <div 
+                  class="scrub-segment" 
+                  data-card-id="vid_20261024_001"
+                  data-default-poster="./kausalmedia_20261024_offshore-investing-tax-traps-indonesia/thumbnail.jpg"
+                  data-keyframe="./kausalmedia_20261024_offshore-investing-tax-traps-indonesia/qa_frames/beat2.jpg" 
+                  data-beat="02" 
+                  data-title="The US Estate Tax Trap"
+                  data-time="00:27"
+                  onclick="event.stopPropagation(); window.location.href='./kausalmedia_20261024_offshore-investing-tax-traps-indonesia/?beat=02';"
+                >
+                  B02
+                </div>
+              
+                <div 
+                  class="scrub-segment" 
+                  data-card-id="vid_20261024_001"
+                  data-default-poster="./kausalmedia_20261024_offshore-investing-tax-traps-indonesia/thumbnail.jpg"
+                  data-keyframe="./kausalmedia_20261024_offshore-investing-tax-traps-indonesia/qa_frames/beat3.jpg" 
+                  data-beat="03" 
+                  data-title="Irish UCITS ETFs Bypass"
+                  data-time="00:57"
+                  onclick="event.stopPropagation(); window.location.href='./kausalmedia_20261024_offshore-investing-tax-traps-indonesia/?beat=03';"
+                >
+                  B03
+                </div>
+              
+                <div 
+                  class="scrub-segment" 
+                  data-card-id="vid_20261024_001"
+                  data-default-poster="./kausalmedia_20261024_offshore-investing-tax-traps-indonesia/thumbnail.jpg"
+                  data-keyframe="./kausalmedia_20261024_offshore-investing-tax-traps-indonesia/qa_frames/beat4.jpg" 
+                  data-beat="04" 
+                  data-title="Foreign Dividend Exemption"
+                  data-time="01:29"
+                  onclick="event.stopPropagation(); window.location.href='./kausalmedia_20261024_offshore-investing-tax-traps-indonesia/?beat=04';"
+                >
+                  B04
+                </div>
+              
+                <div 
+                  class="scrub-segment" 
+                  data-card-id="vid_20261024_001"
+                  data-default-poster="./kausalmedia_20261024_offshore-investing-tax-traps-indonesia/thumbnail.jpg"
+                  data-keyframe="./kausalmedia_20261024_offshore-investing-tax-traps-indonesia/qa_frames/beat5.jpg" 
+                  data-beat="05" 
+                  data-title="CFC Rules &amp; CRS Transparency"
+                  data-time="01:59"
+                  onclick="event.stopPropagation(); window.location.href='./kausalmedia_20261024_offshore-investing-tax-traps-indonesia/?beat=05';"
+                >
+                  B05
+                </div>
+              
+                <div 
+                  class="scrub-segment" 
+                  data-card-id="vid_20261024_001"
+                  data-default-poster="./kausalmedia_20261024_offshore-investing-tax-traps-indonesia/thumbnail.jpg"
+                  data-keyframe="./kausalmedia_20261024_offshore-investing-tax-traps-indonesia/qa_frames/beat6.jpg" 
+                  data-beat="06" 
+                  data-title="Three-Tier Implementation Playbook"
+                  data-time="02:30"
+                  onclick="event.stopPropagation(); window.location.href='./kausalmedia_20261024_offshore-investing-tax-traps-indonesia/?beat=06';"
+                >
+                  B06
+                </div>
+              
+            </div>
+            <div class="scrub-tooltip" id="tooltip-vid_20261024_001"></div>
+          </div>
+
+          <!-- Card Content -->
+          <div class="card-body">
+            <a href="./kausalmedia_20261024_offshore-investing-tax-traps-indonesia/" class="card-title">Offshore Investing Tax Traps (Indonesia): 0.1% vs 35%</a>
+            <p class="card-desc">Indonesian offshore investors face progressive income tax up to 35% on global capital gains and a 40% US estate tax on direct holdings above $60,000. Navigating international investing requires Irish-domiciled accumulating UCITS ETFs, PMK 18 repatriation for 0% dividend tax, and full AEOI/CRS compliance.</p>
+
+            <!-- Dynamic Transcript Match Box -->
+            <div class="transcript-match-box" id="transcript-match-vid_20261024_001"></div>
+          </div>
+
+          <!-- Card Footer Actions -->
+          <div class="card-footer">
+            <div class="card-actions-left">
+              <a href="./kausalmedia_20261024_offshore-investing-tax-traps-indonesia/" class="card-btn card-btn-walkthrough">
+                <span>Walkthrough</span>
+                <span>→</span>
+              </a>
+              <a href="./kausalmedia_20261024_offshore-investing-tax-traps-indonesia/embed.html" class="card-btn">
+                <span>Embed</span>
+              </a>
+            </div>
+
+            <div class="download-dropdown">
+              <button class="card-btn" type="button">
+                <span>Download ↓</span>
+              </button>
+              <div class="download-menu">
+                <a href="./kausalmedia_20261024_offshore-investing-tax-traps-indonesia/video_9x16.mp4" download class="download-item">9:16 Vertical MP4 (23.7 MB)</a>
+                
+                <a href="./kausalmedia_20261024_offshore-investing-tax-traps-indonesia/video_whatsapp.mp4" download class="download-item">WhatsApp MP4 (4.3 MB)</a>
+                <a href="./kausalmedia_20261024_offshore-investing-tax-traps-indonesia/narration.wav" download class="download-item">Audio WAV (8.5 MB)</a>
+              </div>
+            </div>
+          </div>
+        </article>
+        
+        <article 
+          class="project-card" 
+          id="card-vid_20261021_001"
+          data-id="vid_20261021_001"
+          data-dir="kausalmedia_20261021_humane-ai-pin-hardware-collapse"
+          data-series="Forensic Deep-Dive"
+          data-lang="EN"
+          data-date="2026-10-21"
+          data-duration="64.32"
+          data-aspects="9:16"
+          data-dual="false"
+        >
+          <!-- Metadata Bar -->
+          <div class="card-meta-bar">
+            <span class="dir-badge" title="kausalmedia_20261021_humane-ai-pin-hardware-collapse">kausalmedia_20261021_humane-ai-pin-hardware-collapse</span>
+            <div class="meta-tags">
+              <span class="tag-pill">EN</span>
+              <span class="tag-pill">9:16</span>
+              <span class="tag-pill tag-pass">14/14 PASS</span>
+            </div>
+          </div>
+
+          <!-- Thumbnail with Hover Video & 5-Beat Keyframe Scrubber -->
+          <div class="card-thumb-container" id="thumb-container-vid_20261021_001">
+            <img class="card-thumb-img" id="thumb-img-vid_20261021_001" src="./kausalmedia_20261021_humane-ai-pin-hardware-collapse/thumbnail.jpg" alt="Humane AI Pin: The $699 Hardware Collapse" loading="lazy" />
+            <video class="card-thumb-video" id="thumb-video-vid_20261021_001" muted loop playsinline preload="none" src="./kausalmedia_20261021_humane-ai-pin-hardware-collapse/video_whatsapp.mp4"></video>
+            
+            <div class="card-thumb-overlay">
+              <span class="card-overlay-badge">01:04</span>
+              <span class="card-overlay-badge">Forensic Deep-Dive</span>
+            </div>
+
+            <!-- 5-Beat Keyframe Scrubber -->
+            <div class="card-scrubber-bar">
+              
+                <div 
+                  class="scrub-segment" 
+                  data-card-id="vid_20261021_001"
+                  data-default-poster="./kausalmedia_20261021_humane-ai-pin-hardware-collapse/thumbnail.jpg"
+                  data-keyframe="./kausalmedia_20261021_humane-ai-pin-hardware-collapse/qa_frames/beat1.jpg" 
+                  data-beat="01" 
+                  data-title="Sales &amp; Returns Inversion"
+                  data-time="00:00"
+                  onclick="event.stopPropagation(); window.location.href='./kausalmedia_20261021_humane-ai-pin-hardware-collapse/?beat=01';"
+                >
+                  B01
+                </div>
+              
+                <div 
+                  class="scrub-segment" 
+                  data-card-id="vid_20261021_001"
+                  data-default-poster="./kausalmedia_20261021_humane-ai-pin-hardware-collapse/thumbnail.jpg"
+                  data-keyframe="./kausalmedia_20261021_humane-ai-pin-hardware-collapse/qa_frames/beat2.jpg" 
+                  data-beat="02" 
+                  data-title="Launch &amp; Negative Velocity"
+                  data-time="00:05"
+                  onclick="event.stopPropagation(); window.location.href='./kausalmedia_20261021_humane-ai-pin-hardware-collapse/?beat=02';"
+                >
+                  B02
+                </div>
+              
+                <div 
+                  class="scrub-segment" 
+                  data-card-id="vid_20261021_001"
+                  data-default-poster="./kausalmedia_20261021_humane-ai-pin-hardware-collapse/thumbnail.jpg"
+                  data-keyframe="./kausalmedia_20261021_humane-ai-pin-hardware-collapse/qa_frames/beat3.jpg" 
+                  data-beat="03" 
+                  data-title="Carrier Locking &amp; E-Waste Trap"
+                  data-time="00:24"
+                  onclick="event.stopPropagation(); window.location.href='./kausalmedia_20261021_humane-ai-pin-hardware-collapse/?beat=03';"
+                >
+                  B03
+                </div>
+              
+                <div 
+                  class="scrub-segment" 
+                  data-card-id="vid_20261021_001"
+                  data-default-poster="./kausalmedia_20261021_humane-ai-pin-hardware-collapse/thumbnail.jpg"
+                  data-keyframe="./kausalmedia_20261021_humane-ai-pin-hardware-collapse/qa_frames/beat4.jpg" 
+                  data-beat="04" 
+                  data-title="Asset Sale &amp; Hardware Abandonment"
+                  data-time="00:42"
+                  onclick="event.stopPropagation(); window.location.href='./kausalmedia_20261021_humane-ai-pin-hardware-collapse/?beat=04';"
+                >
+                  B04
+                </div>
+              
+                <div 
+                  class="scrub-segment" 
+                  data-card-id="vid_20261021_001"
+                  data-default-poster="./kausalmedia_20261021_humane-ai-pin-hardware-collapse/thumbnail.jpg"
+                  data-keyframe="./kausalmedia_20261021_humane-ai-pin-hardware-collapse/qa_frames/beat5.jpg" 
+                  data-beat="05" 
+                  data-title="Cloud Shutdown &amp; Bricked Hardware"
+                  data-time="00:54"
+                  onclick="event.stopPropagation(); window.location.href='./kausalmedia_20261021_humane-ai-pin-hardware-collapse/?beat=05';"
+                >
+                  B05
+                </div>
+              
+            </div>
+            <div class="scrub-tooltip" id="tooltip-vid_20261021_001"></div>
+          </div>
+
+          <!-- Card Content -->
+          <div class="card-body">
+            <a href="./kausalmedia_20261021_humane-ai-pin-hardware-collapse/" class="card-title">Humane AI Pin: The $699 Hardware Collapse</a>
+            <p class="card-desc">A venture-backed hardware failure where telecom IMEI constraints turned returns into unrefurbishable e-waste, driving negative sales velocity until HP acquired the software and bricked the hardware.</p>
+
+            <!-- Dynamic Transcript Match Box -->
+            <div class="transcript-match-box" id="transcript-match-vid_20261021_001"></div>
+          </div>
+
+          <!-- Card Footer Actions -->
+          <div class="card-footer">
+            <div class="card-actions-left">
+              <a href="./kausalmedia_20261021_humane-ai-pin-hardware-collapse/" class="card-btn card-btn-walkthrough">
+                <span>Walkthrough</span>
+                <span>→</span>
+              </a>
+              <a href="./kausalmedia_20261021_humane-ai-pin-hardware-collapse/embed.html" class="card-btn">
+                <span>Embed</span>
+              </a>
+            </div>
+
+            <div class="download-dropdown">
+              <button class="card-btn" type="button">
+                <span>Download ↓</span>
+              </button>
+              <div class="download-menu">
+                <a href="./kausalmedia_20261021_humane-ai-pin-hardware-collapse/video_9x16.mp4" download class="download-item">9:16 Vertical MP4 (9.6 MB)</a>
+                
+                <a href="./kausalmedia_20261021_humane-ai-pin-hardware-collapse/video_whatsapp.mp4" download class="download-item">WhatsApp MP4 (2.5 MB)</a>
+                <a href="./kausalmedia_20261021_humane-ai-pin-hardware-collapse/narration.wav" download class="download-item">Audio WAV (2.9 MB)</a>
+              </div>
+            </div>
+          </div>
+        </article>
+        
+        <article 
+          class="project-card" 
+          id="card-vid_20261015_001"
+          data-id="vid_20261015_001"
+          data-dir="kausalmedia_20261015_anatomi-saham-gorengan-di-bei"
+          data-series="Forensic Deep-Dive"
+          data-lang="ID"
+          data-date="2026-10-15"
+          data-duration="274.97"
+          data-aspects="16:9"
+          data-dual="false"
+        >
+          <!-- Metadata Bar -->
+          <div class="card-meta-bar">
+            <span class="dir-badge" title="kausalmedia_20261015_anatomi-saham-gorengan-di-bei">kausalmedia_20261015_anatomi-saham-gorengan-di-bei</span>
+            <div class="meta-tags">
+              <span class="tag-pill">ID</span>
+              <span class="tag-pill">16:9</span>
+              <span class="tag-pill tag-pass">14/14 PASS</span>
+            </div>
+          </div>
+
+          <!-- Thumbnail with Hover Video & 5-Beat Keyframe Scrubber -->
+          <div class="card-thumb-container" id="thumb-container-vid_20261015_001">
+            <img class="card-thumb-img" id="thumb-img-vid_20261015_001" src="./kausalmedia_20261015_anatomi-saham-gorengan-di-bei/thumbnail.jpg" alt="Anatomi Saham Gorengan di BEI: Rekayasa Likuiditas Bandar" loading="lazy" />
+            <video class="card-thumb-video" id="thumb-video-vid_20261015_001" muted loop playsinline preload="none" src="./kausalmedia_20261015_anatomi-saham-gorengan-di-bei/video_16x9.mp4"></video>
+            
+            <div class="card-thumb-overlay">
+              <span class="card-overlay-badge">04:34</span>
+              <span class="card-overlay-badge">Forensic Deep-Dive</span>
+            </div>
+
+            <!-- 5-Beat Keyframe Scrubber -->
+            <div class="card-scrubber-bar">
+              
+                <div 
+                  class="scrub-segment" 
+                  data-card-id="vid_20261015_001"
+                  data-default-poster="./kausalmedia_20261015_anatomi-saham-gorengan-di-bei/thumbnail.jpg"
+                  data-keyframe="./kausalmedia_20261015_anatomi-saham-gorengan-di-bei/qa_frames/beat1.jpg" 
+                  data-beat="01" 
+                  data-title="Akumulasi &amp; Penguncian Float"
+                  data-time="00:00"
+                  onclick="event.stopPropagation(); window.location.href='./kausalmedia_20261015_anatomi-saham-gorengan-di-bei/?beat=01';"
+                >
+                  B01
+                </div>
+              
+                <div 
+                  class="scrub-segment" 
+                  data-card-id="vid_20261015_001"
+                  data-default-poster="./kausalmedia_20261015_anatomi-saham-gorengan-di-bei/thumbnail.jpg"
+                  data-keyframe="./kausalmedia_20261015_anatomi-saham-gorengan-di-bei/qa_frames/beat2.jpg" 
+                  data-beat="02" 
+                  data-title="Wash Trading &amp; Ilusi Volume"
+                  data-time="00:55"
+                  onclick="event.stopPropagation(); window.location.href='./kausalmedia_20261015_anatomi-saham-gorengan-di-bei/?beat=02';"
+                >
+                  B02
+                </div>
+              
+                <div 
+                  class="scrub-segment" 
+                  data-card-id="vid_20261015_001"
+                  data-default-poster="./kausalmedia_20261015_anatomi-saham-gorengan-di-bei/thumbnail.jpg"
+                  data-keyframe="./kausalmedia_20261015_anatomi-saham-gorengan-di-bei/qa_frames/beat3.jpg" 
+                  data-beat="03" 
+                  data-title="Repo Saham &amp; Kreditor Bayangan"
+                  data-time="01:50"
+                  onclick="event.stopPropagation(); window.location.href='./kausalmedia_20261015_anatomi-saham-gorengan-di-bei/?beat=03';"
+                >
+                  B03
+                </div>
+              
+                <div 
+                  class="scrub-segment" 
+                  data-card-id="vid_20261015_001"
+                  data-default-poster="./kausalmedia_20261015_anatomi-saham-gorengan-di-bei/thumbnail.jpg"
+                  data-keyframe="./kausalmedia_20261015_anatomi-saham-gorengan-di-bei/qa_frames/beat4.jpg" 
+                  data-beat="04" 
+                  data-title="Pompa Narasi &amp; FOMO Ritel"
+                  data-time="02:45"
+                  onclick="event.stopPropagation(); window.location.href='./kausalmedia_20261015_anatomi-saham-gorengan-di-bei/?beat=04';"
+                >
+                  B04
+                </div>
+              
+                <div 
+                  class="scrub-segment" 
+                  data-card-id="vid_20261015_001"
+                  data-default-poster="./kausalmedia_20261015_anatomi-saham-gorengan-di-bei/thumbnail.jpg"
+                  data-keyframe="./kausalmedia_20261015_anatomi-saham-gorengan-di-bei/qa_frames/beat5.jpg" 
+                  data-beat="05" 
+                  data-title="Distribusi Masif &amp; Auto Reject Bawah"
+                  data-time="03:40"
+                  onclick="event.stopPropagation(); window.location.href='./kausalmedia_20261015_anatomi-saham-gorengan-di-bei/?beat=05';"
+                >
+                  B05
+                </div>
+              
+            </div>
+            <div class="scrub-tooltip" id="tooltip-vid_20261015_001"></div>
+          </div>
+
+          <!-- Card Content -->
+          <div class="card-body">
+            <a href="./kausalmedia_20261015_anatomi-saham-gorengan-di-bei/" class="card-title">Anatomi Saham Gorengan di BEI: Rekayasa Likuiditas Bandar</a>
+            <p class="card-desc">Investigasi forensik mendalam mengenai anatomi rekayasa saham gorengan di Bursa Efek Indonesia: mulai dari akumulasi float, manipulasi volume wash trading, skema repo bayangan, hingga distribusi masif ke ritel.</p>
+
+            <!-- Dynamic Transcript Match Box -->
+            <div class="transcript-match-box" id="transcript-match-vid_20261015_001"></div>
+          </div>
+
+          <!-- Card Footer Actions -->
+          <div class="card-footer">
+            <div class="card-actions-left">
+              <a href="./kausalmedia_20261015_anatomi-saham-gorengan-di-bei/" class="card-btn card-btn-walkthrough">
+                <span>Walkthrough</span>
+                <span>→</span>
+              </a>
+              <a href="./kausalmedia_20261015_anatomi-saham-gorengan-di-bei/embed.html" class="card-btn">
+                <span>Embed</span>
+              </a>
+            </div>
+
+            <div class="download-dropdown">
+              <button class="card-btn" type="button">
+                <span>Download ↓</span>
+              </button>
+              <div class="download-menu">
+                
+                <a href="./kausalmedia_20261015_anatomi-saham-gorengan-di-bei/video_16x9.mp4" download class="download-item">16:9 Widescreen MP4 (40.6 MB)</a>
+                
+                
+              </div>
+            </div>
+          </div>
+        </article>
+        
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-left">
+        AI-nimate Studio • Autonomous Video Architecture • 2026
+      </div>
+      <div>
+        Kinetic Visual Essay Generator • Pristine Dual-Aspect 60 FPS
+      </div>
+    </footer>
+  </div>
+
+  <!-- Client-side Interactive Search, Scrubbing & Filter Script -->
+  <script>
+    const PROJECTS_DATA = [{"id":"vid_20261031_002","dirName":"kausalmedia_20261031_knp-saham-teknologi-runtuh","channel":"kausalmedia","channelLabel":"Kausal Media","series":"Knp?","date":"2026-10-31","dateCompact":"20261031","slug":"knp-saham-teknologi-runtuh","title":"Knp? Saham Teknologi Raksasa Runtuh Berjamaah","subtitle":"Valuasi Semu, Bakar Uang & Jebakan Diskon","description":"Saham teknologi global maupun lokal rontok karena model bisnis bakar uang dan janji masa depan gagal menghasilkan laba nyata secepat ekspektasi investor.","language":"ID","durationSec":77.023,"aspects":["9:16"],"primaryVideo":"video_9x16.mp4","poster":"thumbnail.jpg","files":{"embed.html":3198,"index.html":59161,"meta.json":4605,"narration.wav":7394330,"script.json":5257,"thumb.jpg":92181,"thumb_9x16.jpg":92181,"thumbnail.jpg":92181,"thumbnail_og.jpg":35542,"thumbnail_square.jpg":44451,"timings.json":55732,"video.mp4":9605511,"video_9x16.mp4":9605511,"video_whatsapp.mp4":2691970,"qa_frames/beat1.jpg":146320,"qa_frames/beat1_9x16.jpg":146320,"qa_frames/beat2.jpg":110942,"qa_frames/beat2_9x16.jpg":110942,"qa_frames/beat3.jpg":136963,"qa_frames/beat3_9x16.jpg":136963,"qa_frames/beat4.jpg":135900,"qa_frames/beat4_9x16.jpg":135900,"qa_frames/beat5.jpg":126469,"qa_frames/beat5_9x16.jpg":126469},"qaStatus":"14/14 PASS","qaFrameFiles":["beat1.jpg","beat1_9x16.jpg","beat2.jpg","beat2_9x16.jpg","beat3.jpg","beat3_9x16.jpg","beat4.jpg","beat4_9x16.jpg","beat5.jpg","beat5_9x16.jpg"],"beats":[{"beat":"01","title":"Saham Tech Runtuh","startSec":0,"endSec":14.231,"durationSec":14.231,"narration":"Pernah nggak sih kamu mikir, kenapa saham perusahaan teknologi yang aplikasinya kita pakai tiap hari—mulai dari raksasa akal imitasi dunia sampai belanja online lokal—mendadak anjlok berjamaah dan menghapus nilai ribuan triliun rupiah?","keyframe":"qa_frames/beat1.jpg","keyframe9x16":"qa_frames/beat1_9x16.jpg","keyframe16x9":"qa_frames/beat1.jpg"},{"beat":"02","title":"Ilusi Bakar Uang","startSec":14.231,"endSec":31.081,"durationSec":16.85,"narration":"Selama bertahun-tahun, saham teknologi dinilai bukan dari untung nyatanya, tapi dari seberapa heboh janjinya. Di Indonesia, mereka bakar uang triliunan buat kasih diskon dan gratis ongkir. Di Amerika, raksasa teknologi bakar ribuan triliun buat borong mesin akal imitasi.","keyframe":"qa_frames/beat2.jpg","keyframe9x16":"qa_frames/beat2_9x16.jpg","keyframe16x9":"qa_frames/beat2.jpg"},{"beat":"03","title":"Jebakan Diskon & AI","startSec":31.081,"endSec":48.668,"durationSec":17.587,"narration":"Masalahnya meledak saat uang yang dibakar nggak balik modal secepat itu! Di dunia, muncul pesaing baru yang jauh lebih hemat biaya, bikin saham chip raksasa langsung rontok. Di Indonesia, begitu diskon distop demi cari untung, pembeli sepi sampai Bukalapak tutup layanan belanja barang fisiknya.","keyframe":"qa_frames/beat3.jpg","keyframe9x16":"qa_frames/beat3_9x16.jpg","keyframe16x9":"qa_frames/beat3.jpg"},{"beat":"04","title":"Anjlok 85% Dari Pucuk","startSec":48.668,"endSec":63.11,"durationSec":14.442,"narration":"Di bursa kita, saham teknologi yang dulunya dijual ratusan rupiah saat pertama masuk pasar, kini terjun bebas kehilangan lebih dari delapan puluh lima persen nilainya. Era membeli saham cuma karena janji manis masa depan sudah resmi tamat.","keyframe":"qa_frames/beat4.jpg","keyframe9x16":"qa_frames/beat4_9x16.jpg","keyframe16x9":"qa_frames/beat4.jpg"},{"beat":"05","title":"3 Filter Saham Tech","startSec":63.11,"endSec":77.023,"durationSec":13.913,"narration":"Pelajaran pentingnya buat dompet kita: aplikasi yang ramai dipakai belum tentu perusahaannya cetak untung. Sebelum ikut beli, cek apakah bisnisnya beneran untung tanpa bakar uang, dan apakah produknya tetap laku tanpa subsidi diskon. Sekarang kamu tahu kenapa.","keyframe":"qa_frames/beat5.jpg","keyframe9x16":"qa_frames/beat5_9x16.jpg","keyframe16x9":"qa_frames/beat5.jpg"}],"wordCount":194},{"id":"vid_20261031_001","dirName":"kausalmedia_20261031_knp-bursa-kita-terancam-diboikot-dunia","channel":"kausalmedia","channelLabel":"Kausal Media","series":"Knp?","date":"2026-10-31","dateCompact":"20261031","slug":"knp-bursa-kita-terancam-diboikot-dunia","title":"Knp? Bursa Saham Kita Terancam Diboikot Dunia","subtitle":"Saham Rp1.500T, Free Float Cuma 3%","description":"Bursa saham Indonesia terancam diturunkan wasit dunia dari liga utama ke zona isolasi karena saham raksasa Rp1.500 triliun ternyata 97 persennya dikunci empat orang dan cuma 3 persen yang dijual bebas ke warga.","language":"ID","durationSec":88.51,"aspects":["9:16","16:9"],"primaryVideo":"video_9x16.mp4","poster":"thumbnail.jpg","files":{"embed.html":3370,"index.html":62616,"meta.json":5296,"narration.wav":8496992,"script.json":18761,"thumb.jpg":185866,"thumb_16x9.jpg":185866,"thumb_9x16.jpg":138311,"thumbnail.jpg":185866,"thumbnail_og.jpg":56179,"thumbnail_square.jpg":88482,"timings.json":48869,"video.mp4":9587092,"video_16x9.mp4":13868113,"video_9x16.mp4":9587092,"video_whatsapp.mp4":2836538,"qa_frames/beat1.jpg":138280,"qa_frames/beat1_16x9.jpg":120446,"qa_frames/beat1_9x16.jpg":138280,"qa_frames/beat2.jpg":100925,"qa_frames/beat2_16x9.jpg":94877,"qa_frames/beat2_9x16.jpg":100925,"qa_frames/beat3.jpg":122105,"qa_frames/beat3_16x9.jpg":121651,"qa_frames/beat3_9x16.jpg":122105,"qa_frames/beat4.jpg":131335,"qa_frames/beat4_16x9.jpg":126422,"qa_frames/beat4_9x16.jpg":131335,"qa_frames/beat5.jpg":116717,"qa_frames/beat5_16x9.jpg":136380,"qa_frames/beat5_9x16.jpg":116717},"qaStatus":"14/14 PASS","qaFrameFiles":["beat1.jpg","beat1_16x9.jpg","beat1_9x16.jpg","beat2.jpg","beat2_16x9.jpg","beat2_9x16.jpg","beat3.jpg","beat3_16x9.jpg","beat3_9x16.jpg","beat4.jpg","beat4_16x9.jpg","beat4_9x16.jpg","beat5.jpg","beat5_16x9.jpg","beat5_9x16.jpg"],"beats":[{"beat":"01","title":"Ancaman Turun Kasta","startSec":0,"endSec":20.75,"durationSec":20.75,"narration":"Pernah nggak sih kamu mikir, kenapa bursa saham kita tiba-tiba anjlok delapan persen sampai perdagangan dibekukan sementara? Ternyata, wasit bursa saham dunia bernama MSCI baru saja memberi ancaman keras: ibarat dari liga utama dunia, Indonesia terancam diturunkan paksa ke kasta terendah—zona isolasi selevel negara yang lagi krisis berat.","keyframe":"qa_frames/beat1.jpg","keyframe9x16":"qa_frames/beat1_9x16.jpg","keyframe16x9":"qa_frames/beat1_16x9.jpg"},{"beat":"02","title":"Cuma 3% Di Pasar","startSec":20.75,"endSec":39.46,"durationSec":18.71,"narration":"Akar masalahnya ada di saham yang beneran dijual bebas ke warga biasa. Bayangin ada perusahaan raksasa seharga seribu lima ratus triliun rupiah—lebih mahal dari Bank BCA. Tapi ternyata, sembilan puluh tujuh persen sahamnya dikunci rapat oleh empat pemilik aslinya saja. Yang beneran beredar di pasar? Cuma tiga persen!","keyframe":"qa_frames/beat2.jpg","keyframe9x16":"qa_frames/beat2_9x16.jpg","keyframe16x9":"qa_frames/beat2_16x9.jpg"},{"beat":"03","title":"Jebakan Dana Asing","startSec":39.46,"endSec":61.72,"durationSec":22.26,"narration":"Karena barangnya langka banget, harga sahamnya gampang banget digoreng naik berkali-kali lipat. Masalahnya, reksa dana raksasa dunia punya sistem komputer otomatis yang wajib beli saham terbesar di tiap negara. Kalau saham yang cuma tiga persen tadi masuk daftar wajib beli, uang triliunan milik bule bakal terjebak beli di harga pucuk—dan pas mau jual, nggak ada pembelinya!","keyframe":"qa_frames/beat3.jpg","keyframe9x16":"qa_frames/beat3_9x16.jpg","keyframe16x9":"qa_frames/beat3_16x9.jpg"},{"beat":"04","title":"Saham Nyangkut","startSec":61.72,"endSec":77.72,"durationSec":16,"narration":"Begitu wasit dunia menolak saham seperti ini dan mengancam membekukan Indonesia, investor besar langsung panik tarik uang. Tanpa ampun, harga saham langsung ambruk mentok batas bawah berhari-hari, uang asing kabur, dan nilai lebih dari lima ratus triliun rupiah menguap begitu saja.","keyframe":"qa_frames/beat4.jpg","keyframe9x16":"qa_frames/beat4_9x16.jpg","keyframe16x9":"qa_frames/beat4_16x9.jpg"},{"beat":"05","title":"Lanjut Di YouTube","startSec":77.72,"endSec":88.51,"durationSec":10.79,"narration":"Terus gimana cara pemerintah menyelamatkan bursa kita dari ancaman boikot dunia, dan tiga cara simpel mengecek saham biar tabunganmu nggak ikut nyangkut? Tonton bedah lengkapnya di YouTube Kausal Media sekarang!","keyframe":"qa_frames/beat5.jpg","keyframe9x16":"qa_frames/beat5_9x16.jpg","keyframe16x9":"qa_frames/beat5_16x9.jpg"}],"wordCount":195},{"id":"vid_20261029_002","dirName":"kausalmedia_20261029_the-ai-bubble-explained","channel":"kausalmedia","channelLabel":"Kausal Media","series":"Forensic Deep-Dive","date":"2026-10-29","dateCompact":"20261029","slug":"the-ai-bubble-explained","title":"The AI Bubble: What It Actually Is","subtitle":"$600B CapEx vs Reality","description":"The AI bubble is not just hype—it is a $500B revenue gap funded by round-trip cloud accounting and masked by aggressive 6-year GPU depreciation schedules on 3-year silicon obsolescence cycles.","language":"EN","durationSec":102.32,"aspects":["9:16","16:9"],"primaryVideo":"video_9x16.mp4","poster":"thumbnail.jpg","files":{"embed.html":3290,"index.html":58003,"meta.json":4860,"narration.wav":9822798,"script.json":56492,"thumb.jpg":58575,"thumb_16x9.jpg":62211,"thumb_9x16.jpg":54273,"thumbnail.jpg":58575,"thumbnail_og.jpg":43840,"thumbnail_square.jpg":58575,"timings.json":61362,"video.mp4":12860689,"video_16x9.mp4":13165806,"video_9x16.mp4":12860689,"video_whatsapp.mp4":3490495,"qa_frames/beat1.jpg":62086,"qa_frames/beat2.jpg":96152,"qa_frames/beat3.jpg":98304,"qa_frames/beat4.jpg":88555,"qa_frames/beat5.jpg":97102},"qaStatus":"14/14 PASS","qaFrameFiles":["beat1.jpg","beat2.jpg","beat3.jpg","beat4.jpg","beat5.jpg"],"beats":[{"beat":"01","title":"The $600B Chasm","startSec":0,"endSec":26.38,"durationSec":26.38,"narration":"Everyone calls AI a bubble, but almost nobody explains what is actually inflating. Between 2025 and 2026, Microsoft, Meta, Google, and Amazon are spending over three hundred and twenty billion dollars a year on AI data centers. Yet according to Sequoia's famous six-hundred-billion-dollar formula, all pure-play AI software today earns less than forty-five billion—leaving a massive five-hundred-billion-dollar revenue chasm.","keyframe":"qa_frames/beat1.jpg","keyframe9x16":"qa_frames/beat1.jpg","keyframe16x9":"qa_frames/beat1.jpg"},{"beat":"02","title":"Round-Trip Revenue","startSec":26.38,"endSec":47.65,"durationSec":21.27,"narration":"Why does cloud revenue look so booming anyway? Because of a Wall Street illusion called round-tripping. Hyperscalers invest tens of billions into AI labs like OpenAI and Anthropic—not just in cash, but in cloud compute credits. When those startups burn those credits training models on Azure or AWS, Big Tech books its own investment right back as cloud revenue.","keyframe":"qa_frames/beat2.jpg","keyframe9x16":"qa_frames/beat2.jpg","keyframe16x9":"qa_frames/beat2.jpg"},{"beat":"03","title":"The Depreciation Clock","startSec":47.65,"endSec":67.64,"durationSec":19.99,"narration":"The real time bomb sits on the balance sheet. Tech giants stretch their server depreciation schedules to six full years to keep quarterly profits looking high. But Nvidia launches a new GPU architecture every twelve to twenty-four months. When Blackwell and Rubin make older chips too power-hungry to run economically, hundreds of billions in silicon face sudden write-downs.","keyframe":"qa_frames/beat3.jpg","keyframe9x16":"qa_frames/beat3.jpg","keyframe16x9":"qa_frames/beat3.jpg"},{"beat":"04","title":"2000 Telecom vs 2026 AI","startSec":67.64,"endSec":85,"durationSec":17.36,"narration":"Is this just the year-two-thousand telecom crash all over again? Not quite. In two thousand, telecoms used junk debt to lay dark fiber cables that lasted twenty-five years in the ground. Today's tech giants are funding AI out of massive cash flows—but they are buying fast-rotting GPUs that lose value in just three years.","keyframe":"qa_frames/beat4.jpg","keyframe9x16":"qa_frames/beat4.jpg","keyframe16x9":"qa_frames/beat4.jpg"},{"beat":"05","title":"What Pops vs Survives","startSec":85,"endSec":102.32,"durationSec":17.32,"narration":"So what actually pops when the AI bubble deflates? Overvalued wrapper startups selling generic chatbots on rented compute will get wiped out as model costs fall toward zero. Meanwhile, the real winners—power grid infrastructure and deep workflow automation—will buy up that discounted compute for pennies on the dollar.","keyframe":"qa_frames/beat5.jpg","keyframe9x16":"qa_frames/beat5.jpg","keyframe16x9":"qa_frames/beat5.jpg"}],"wordCount":288},{"id":"vid_20261024_001","dirName":"kausalmedia_20261024_offshore-investing-tax-traps-indonesia","channel":"kausalmedia","channelLabel":"Kausal Media","series":"Forensic Deep-Dive","date":"2026-10-24","dateCompact":"20261024","slug":"offshore-investing-tax-traps-indonesia","title":"Offshore Investing Tax Traps (Indonesia): 0.1% vs 35%","subtitle":"Indonesian Offshore Stock Tax Traps (0.1% vs 35%)","description":"Indonesian offshore investors face progressive income tax up to 35% on global capital gains and a 40% US estate tax on direct holdings above $60,000. Navigating international investing requires Irish-domiciled accumulating UCITS ETFs, PMK 18 repatriation for 0% dividend tax, and full AEOI/CRS compliance.","language":"EN","durationSec":185.26,"aspects":["9:16"],"primaryVideo":"video_9x16.mp4","poster":"thumbnail.jpg","files":{"embed.html":3538,"index.html":63408,"meta.json":6165,"narration.wav":8892558,"script.json":7260,"thumb.jpg":55819,"thumb_9x16.jpg":97824,"thumbnail.jpg":55819,"thumbnail_og.jpg":60596,"thumbnail_square.jpg":65773,"timings.json":95587,"video.mp4":24805611,"video_9x16.mp4":24805611,"video_whatsapp.mp4":4463200,"qa_frames/beat1.jpg":97287,"qa_frames/beat2.jpg":66125,"qa_frames/beat3.jpg":79400,"qa_frames/beat4.jpg":82025,"qa_frames/beat5.jpg":70823,"qa_frames/beat6.jpg":88475},"qaStatus":"14/14 PASS","qaFrameFiles":["beat1.jpg","beat2.jpg","beat3.jpg","beat4.jpg","beat5.jpg","beat6.jpg"],"beats":[{"beat":"01","title":"Capital Gains Asymmetry","startSec":0,"endSec":26.46,"durationSec":26.46,"narration":"Sell 1 billion rupiah of BCA stock on the IDX, and your final tax is 0.1% or 1 million rupiah. Done. Sell that exact same gain on Apple, or the S&P 500 from Jakarta, and Indonesia's worldwide tax rules kick in. Under the UU HPP tax law, offshore capital gains are ordinary income. Taxed progressively up to 35%, that's a 350 times tax shock.","keyframe":"qa_frames/beat1.jpg","keyframe9x16":"qa_frames/beat1.jpg","keyframe16x9":"qa_frames/beat1.jpg"},{"beat":"02","title":"The US Estate Tax Trap","startSec":27.22,"endSec":55.98,"durationSec":28.76,"narration":"Most Indonesian investors open interactive brokers, Pluang, or go trade to buy direct US shares. Filing form W-8BEN cuts US dividend withholding from 30% down to 15%, creditable back home through PPh 24. But here's the trap. The US estate tax. If you're not an American citizen, the IRS gives you an exemption of just $60,000 Above that, the IRS takes up to 40% upon death, and Indonesia has zero estate tax treaty with the US","keyframe":"qa_frames/beat2.jpg","keyframe9x16":"qa_frames/beat2.jpg","keyframe16x9":"qa_frames/beat2.jpg"},{"beat":"03","title":"Irish UCITS ETFs Bypass","startSec":57.1,"endSec":88.26,"durationSec":31.16,"narration":"Smart investors bypass both traps, using Irish domiciled UCITS ETFs on the London Stock Exchange, like CSPX for the S&P 500, or VWRA for global equities. First, Ireland's US treaty caps internal dividend withholding at 15%, while charging 0% outbound withholding to you. Second, Irish funds are non-US assets, that 40% US estate tax drops to zero. Best of all, accumulating shares reinvest dividends inside the fund, triggering zero annual dividend tax events.","keyframe":"qa_frames/beat3.jpg","keyframe9x16":"qa_frames/beat3.jpg","keyframe16x9":"qa_frames/beat3.jpg"},{"beat":"04","title":"Foreign Dividend Exemption","startSec":89.4,"endSec":118.24,"durationSec":28.84,"narration":"What if you receive cash dividends from abroad? By default, Indonesia taxes foreign dividends as ordinary income, up to 35%. Here's the legal escape hatch. Under the omnibus law and PMK 18 2021, foreign dividends are 100% tax exempt if you repatriate and reinvest them in Indonesia before March 31. Lock the money into Indonesian government SBN bonds, mutual funds, or deposits for three consecutive years, and your tax rate drops to zero.","keyframe":"qa_frames/beat4.jpg","keyframe9x16":"qa_frames/beat4.jpg","keyframe16x9":"qa_frames/beat4.jpg"},{"beat":"05","title":"CFC Rules & CRS Transparency","startSec":119.26,"endSec":150.16,"durationSec":30.9,"narration":"Can you hide behind a Singapore holding company or a BVI paper shell? Don't try it. Under PMK 93 2019, controlled foreign corporation rules treat passive gains and offshore entities you control as deemed dividends, taxing them anyway. Worse, bank secrecy is dead. Under the CRS global agreement, over 100 countries, including Singapore and Switzerland automatically report your account balances to the DJP every September. Unreported offshore assets risk penalties up to 200%.","keyframe":"qa_frames/beat5.jpg","keyframe9x16":"qa_frames/beat5.jpg","keyframe16x9":"qa_frames/beat5.jpg"},{"beat":"06","title":"Three-Tier Implementation Playbook","startSec":150.84,"endSec":184.92,"durationSec":34.08,"narration":"Here's your three tier playbook. One, under $60,000 direct US stocks with W-8BEN are acceptable. Two, above $60,000 switch entirely to Irish accumulating UCITS ETFs like CSPX and VWRA. You eliminate the 40% US estate tax, stop dividend drag, and report your acquisition cost in your annual SPT tax return. Three, for cash dividends, repatriate into Indonesian SBN bonds for three years under PMK 18 to lock in zero percent tax. Structure properly and keep your gains.","keyframe":"qa_frames/beat6.jpg","keyframe9x16":"qa_frames/beat6.jpg","keyframe16x9":"qa_frames/beat6.jpg"}],"wordCount":445},{"id":"vid_20261021_001","dirName":"kausalmedia_20261021_humane-ai-pin-hardware-collapse","channel":"kausalmedia","channelLabel":"Kausal Media","series":"Forensic Deep-Dive","date":"2026-10-21","dateCompact":"20261021","slug":"humane-ai-pin-hardware-collapse","title":"Humane AI Pin: The $699 Hardware Collapse","subtitle":"When Daily Returns Surpassed New Sales","description":"A venture-backed hardware failure where telecom IMEI constraints turned returns into unrefurbishable e-waste, driving negative sales velocity until HP acquired the software and bricked the hardware.","language":"EN","durationSec":64.32,"aspects":["9:16"],"primaryVideo":"video_9x16.mp4","poster":"thumbnail.jpg","files":{"embed.html":3275,"index.html":56325,"meta.json":3854,"narration.wav":3087438,"script.json":3039,"thumb.jpg":109503,"thumb_9x16.jpg":109503,"thumbnail.jpg":109503,"timings.json":29401,"video.mp4":10087088,"video_9x16.mp4":10087088,"video_whatsapp.mp4":2575779,"qa_frames/beat1.jpg":109503,"qa_frames/beat2.jpg":99838,"qa_frames/beat3.jpg":104410,"qa_frames/beat4.jpg":93312,"qa_frames/beat5.jpg":85808},"qaStatus":"14/14 PASS","qaFrameFiles":["beat1.jpg","beat2.jpg","beat3.jpg","beat4.jpg","beat5.jpg"],"beats":[{"beat":"01","title":"Sales & Returns Inversion","startSec":0,"endSec":4.76,"durationSec":4.76,"narration":"For three months, more people returned the AI Pin than bought one.","keyframe":"qa_frames/beat1.jpg","keyframe9x16":"qa_frames/beat1.jpg","keyframe16x9":"qa_frames/beat1.jpg"},{"beat":"02","title":"Launch & Negative Velocity","startSec":5.32,"endSec":24.16,"durationSec":18.84,"narration":"Humane pitched a $699 lapel pin designed to replace the smartphone. They shipped about 10,000 units, pulling in roughly $9 million. Then net sales went negative. Between May and August 2024, daily returns consistently surpassed new orders.","keyframe":"qa_frames/beat2.jpg","keyframe9x16":"qa_frames/beat2.jpg","keyframe16x9":"qa_frames/beat2.jpg"},{"beat":"03","title":"Carrier Locking & E-Waste Trap","startSec":24.68,"endSec":41.66,"durationSec":16.98,"narration":"Over $1 million in hardware bounced back to their warehouse. Worse, Humane couldn't even resell the returned devices. Because of T-Mobile carrier locking constraints, they couldn't wipe and reassign the internal cellular chips. Thousands of returned pins turned directly into e-waste.","keyframe":"qa_frames/beat3.jpg","keyframe9x16":"qa_frames/beat3.jpg","keyframe16x9":"qa_frames/beat3.jpg"},{"beat":"04","title":"Asset Sale & Hardware Abandonment","startSec":42.54,"endSec":53.8,"durationSec":11.26,"narration":"By August, active users dropped below 7,000. And in February 2025, HP bought Humane's software assets for $116 million, ditching the hardware entirely.","keyframe":"qa_frames/beat4.jpg","keyframe9x16":"qa_frames/beat4.jpg","keyframe16x9":"qa_frames/beat4.jpg"},{"beat":"05","title":"Cloud Shutdown & Bricked Hardware","startSec":54.55,"endSec":63.94,"durationSec":9.39,"narration":"On February 28, the cloud servers shut down. Every pin, bricked instantly. That's $699 for a silent metal badge.","keyframe":"qa_frames/beat5.jpg","keyframe9x16":"qa_frames/beat5.jpg","keyframe16x9":"qa_frames/beat5.jpg"}],"wordCount":147},{"id":"vid_20261015_001","dirName":"kausalmedia_20261015_anatomi-saham-gorengan-di-bei","channel":"kausalmedia","channelLabel":"Kausal Media","series":"Forensic Deep-Dive","date":"2026-10-15","dateCompact":"20261015","slug":"anatomi-saham-gorengan-di-bei","title":"Anatomi Saham Gorengan di BEI: Rekayasa Likuiditas Bandar","subtitle":"Rekayasa Likuiditas, Repo Saham & Distribusi Ritel","description":"Investigasi forensik mendalam mengenai anatomi rekayasa saham gorengan di Bursa Efek Indonesia: mulai dari akumulasi float, manipulasi volume wash trading, skema repo bayangan, hingga distribusi masif ke ritel.","language":"ID","durationSec":274.97,"aspects":["16:9"],"primaryVideo":"video_16x9.mp4","poster":"thumbnail.jpg","files":{"embed.html":3341,"index.html":55548,"meta.json":3563,"thumb.jpg":101673,"thumb_16x9.jpg":101673,"thumbnail.jpg":101673,"video.mp4":42570399,"video_16x9.mp4":42570399,"qa_frames/beat1.jpg":101673,"qa_frames/beat2.jpg":146265,"qa_frames/beat3.jpg":89851,"qa_frames/beat4.jpg":135190,"qa_frames/beat5.jpg":109930},"qaStatus":"14/14 PASS","qaFrameFiles":["beat1.jpg","beat2.jpg","beat3.jpg","beat4.jpg","beat5.jpg"],"beats":[{"beat":"01","title":"Akumulasi & Penguncian Float","startSec":0,"endSec":55,"durationSec":55,"narration":"Bandar mengakumulasi saham secara senyap di pasar reguler dan negosiasi untuk mengunci free float saham hingga peredaran ritel sangat tipis.","keyframe":"qa_frames/beat1.jpg","keyframe9x16":"qa_frames/beat1.jpg","keyframe16x9":"qa_frames/beat1.jpg"},{"beat":"02","title":"Wash Trading & Ilusi Volume","startSec":55,"endSec":110,"durationSec":55,"narration":"Melalui transaksi semu antar rekening terafiliasi (wash trading), volume harian direkayasa seolah-olah saham memiliki likuiditas dan minat pasar yang tinggi.","keyframe":"qa_frames/beat2.jpg","keyframe9x16":"qa_frames/beat2.jpg","keyframe16x9":"qa_frames/beat2.jpg"},{"beat":"03","title":"Repo Saham & Kreditor Bayangan","startSec":110,"endSec":165,"durationSec":55,"narration":"Saham yang harganya sudah dikerek dijadikan jaminan pinjaman repo ke kreditor atau institusi untuk mencairkan dana segar sebelum distribusi.","keyframe":"qa_frames/beat3.jpg","keyframe9x16":"qa_frames/beat3.jpg","keyframe16x9":"qa_frames/beat3.jpg"},{"beat":"04","title":"Pompa Narasi & FOMO Ritel","startSec":165,"endSec":220,"durationSec":55,"narration":"Penyebaran rumor akuisisi, rekomendasi influencer pasar modal, dan pemberitaan media memicu sentimen FOMO di kalangan investor ritel.","keyframe":"qa_frames/beat4.jpg","keyframe9x16":"qa_frames/beat4.jpg","keyframe16x9":"qa_frames/beat4.jpg"},{"beat":"05","title":"Distribusi Masif & Auto Reject Bawah","startSec":220,"endSec":274.97,"durationSec":54.97,"narration":"Bandar melepas seluruh kepemilikan saham di harga puncak ke investor ritel yang masuk, memicu kejatuhan harga beruntun hingga Auto Reject Bawah.","keyframe":"qa_frames/beat5.jpg","keyframe9x16":"qa_frames/beat5.jpg","keyframe16x9":"qa_frames/beat5.jpg"}],"wordCount":97}];
+
+    // Hero video player controls
+    const heroVid = document.getElementById('hero-video');
+    const heroPlayBtn = document.getElementById('hero-play-toggle');
+    const heroSoundBtn = document.getElementById('hero-sound-toggle');
+
+    if (heroVid && heroPlayBtn && heroSoundBtn) {
+      // Autoplay attempt (muted)
+      heroVid.play().then(() => {
+        heroPlayBtn.textContent = '❚❚ Pause';
+      }).catch(() => {
+        heroPlayBtn.textContent = '▶ Play';
+      });
+
+      heroPlayBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (heroVid.paused) {
+          heroVid.play();
+          heroPlayBtn.textContent = '❚❚ Pause';
+        } else {
+          heroVid.pause();
+          heroPlayBtn.textContent = '▶ Play';
+        }
+      });
+
+      heroSoundBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (heroVid.muted) {
+          heroVid.muted = false;
+          heroSoundBtn.textContent = '🔊 Mute';
+        } else {
+          heroVid.muted = true;
+          heroSoundBtn.textContent = '🔇 Unmute';
+        }
+      });
+    }
+
+    // Scrubber hover & card video preview interactions
+    document.querySelectorAll('.card-thumb-container').forEach(container => {
+      const card = container.closest('.project-card');
+      const cardId = card.dataset.id;
+      const img = container.querySelector('.card-thumb-img');
+      const video = container.querySelector('.card-thumb-video');
+      const tooltip = document.getElementById('tooltip-' + cardId);
+      const defaultPoster = img.getAttribute('src');
+
+      // Video hover preview
+      let hoverTimeout;
+      container.addEventListener('mouseenter', (e) => {
+        if (e.target.closest('.card-scrubber-bar')) return;
+        hoverTimeout = setTimeout(() => {
+          container.classList.add('video-playing');
+          video.currentTime = 0;
+          video.play().catch(() => {});
+        }, 180);
+      });
+
+      container.addEventListener('mouseleave', () => {
+        clearTimeout(hoverTimeout);
+        container.classList.remove('video-playing');
+        video.pause();
+        video.currentTime = 0;
+        img.src = defaultPoster;
+        if (tooltip) tooltip.classList.remove('show');
+      });
+
+      // Scrub segments
+      container.querySelectorAll('.scrub-segment').forEach(seg => {
+        seg.addEventListener('mouseenter', (e) => {
+          e.stopPropagation();
+          container.classList.remove('video-playing');
+          video.pause();
+          
+          const kf = seg.dataset.keyframe;
+          const beat = seg.dataset.beat;
+          const title = seg.dataset.title;
+          const time = seg.dataset.time;
+
+          img.src = kf;
+          if (tooltip) {
+            tooltip.textContent = 'Beat ' + beat + ': ' + title + ' (' + time + ')';
+            tooltip.classList.add('show');
+          }
+        });
+
+        seg.addEventListener('mouseleave', (e) => {
+          e.stopPropagation();
+          if (tooltip) tooltip.classList.remove('show');
+        });
+      });
+    });
+
+    // Keyboard shortcut '/' to focus search
+    window.addEventListener('keydown', (e) => {
+      if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+        e.preventDefault();
+        const searchInput = document.getElementById('search-input');
+        if (searchInput) {
+          searchInput.focus();
+          searchInput.select();
+        }
+      }
+    });
+
+    // Instant Search & Filtering
+    const searchInput = document.getElementById('search-input');
+    const sortSelect = document.getElementById('sort-select');
+    const filterPills = document.querySelectorAll('.filter-pill');
+    const cardsGrid = document.getElementById('cards-grid');
+    const resultsCount = document.getElementById('results-count');
+
+    let currentFilter = 'all';
+    let currentSearch = '';
+    let currentSort = 'newest';
+
+    function filterAndSort() {
+      const q = currentSearch.trim().toLowerCase();
+      const filtered = [];
+
+      PROJECTS_DATA.forEach(p => {
+        const cardElem = document.getElementById('card-' + p.id);
+        const matchBox = document.getElementById('transcript-match-' + p.id);
+        if (!cardElem) return;
+
+        // Filter pills check
+        let passesFilter = true;
+        if (currentFilter === 'knp') passesFilter = p.series === 'Knp?';
+        else if (currentFilter === 'forensic') passesFilter = p.series === 'Forensic Deep-Dive';
+        else if (currentFilter === '9x16') passesFilter = p.aspects.includes('9:16');
+        else if (currentFilter === '16x9') passesFilter = p.aspects.includes('16:9');
+        else if (currentFilter === 'dual') passesFilter = p.aspects.length > 1;
+        else if (currentFilter === 'id') passesFilter = p.language === 'ID';
+        else if (currentFilter === 'en') passesFilter = p.language === 'EN';
+
+        if (!passesFilter) {
+          cardElem.style.display = 'none';
+          if (matchBox) matchBox.classList.remove('show');
+          return;
+        }
+
+        // Search check
+        let passesSearch = false;
+        let matchSnippet = null;
+
+        if (!q) {
+          passesSearch = true;
+        } else {
+          const inTitle = p.title.toLowerCase().includes(q);
+          const inDir = p.dirName.toLowerCase().includes(q);
+          const inSeries = (p.series || '').toLowerCase().includes(q);
+          const inDesc = (p.description || '').toLowerCase().includes(q);
+
+          if (inTitle || inDir || inSeries || inDesc) {
+            passesSearch = true;
+          }
+
+          // Search transcripts across all beats
+          for (const b of (p.beats || [])) {
+            const narr = b.narration || '';
+            const lowerNarr = narr.toLowerCase();
+            const idx = lowerNarr.indexOf(q);
+            if (idx !== -1) {
+              passesSearch = true;
+              const start = Math.max(0, idx - 40);
+              const end = Math.min(narr.length, idx + q.length + 40);
+              const snippetText = (start > 0 ? '...' : '') +
+                escapeHtml(narr.slice(start, idx)) +
+                '<mark>' + escapeHtml(narr.slice(idx, idx + q.length)) + '</mark>' +
+                escapeHtml(narr.slice(idx + q.length, end)) +
+                (end < narr.length ? '...' : '');
+              matchSnippet = '⚡ Transcript Match in <strong>Beat ' + b.beat + ' (' + escapeHtml(b.title) + ')</strong>: "' + snippetText + '"';
+              break;
+            }
+          }
+        }
+
+        if (passesSearch) {
+          cardElem.style.display = 'flex';
+          if (matchSnippet && matchBox) {
+            matchBox.innerHTML = matchSnippet;
+            matchBox.classList.add('show');
+          } else if (matchBox) {
+            matchBox.classList.remove('show');
+          }
+          filtered.push({ p, elem: cardElem });
+        } else {
+          cardElem.style.display = 'none';
+          if (matchBox) matchBox.classList.remove('show');
+        }
+      });
+
+      // Sort
+      filtered.sort((a, b) => {
+        if (currentSort === 'newest') return (b.p.date || '').localeCompare(a.p.date || '') || b.p.id.localeCompare(a.p.id);
+        if (currentSort === 'oldest') return (a.p.date || '').localeCompare(b.p.date || '') || a.p.id.localeCompare(b.p.id);
+        if (currentSort === 'longest') return (b.p.durationSec || 0) - (a.p.durationSec || 0);
+        if (currentSort === 'shortest') return (a.p.durationSec || 0) - (b.p.durationSec || 0);
+        return 0;
+      });
+
+      filtered.forEach(item => cardsGrid.appendChild(item.elem));
+      resultsCount.textContent = 'Showing ' + filtered.length + ' of ' + PROJECTS_DATA.length + ' productions';
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    searchInput.addEventListener('input', (e) => {
+      currentSearch = e.target.value;
+      filterAndSort();
+    });
+
+    sortSelect.addEventListener('change', (e) => {
+      currentSort = e.target.value;
+      filterAndSort();
+    });
+
+    filterPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        filterPills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        currentFilter = pill.dataset.filter;
+        filterAndSort();
+      });
+    });
+  </script>
+</body>
+</html>
