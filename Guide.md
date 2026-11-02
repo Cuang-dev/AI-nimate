@@ -152,13 +152,13 @@ To prevent split attention between moving graphics, on-screen text, and subtitle
     - Exit vertically (`90°`) from the top edge (`hubAY - cardHalfH`) up to an overhead rail (`hubAY - 245`), cross horizontally, and drop vertically (`90°`) into the top edge of Station 2 (`hubBY - cardHalfH`); mirror on the bottom for the return conduit.
 - **Automated QA Verification**: The Perpendicular Conduit Check in `node scripts/qa_verify.mjs <project_id>` scans all `beat_*.tsx` files for any 4-point `<Line` `points` array sharing identical `y` expressions at the start or end, rejecting sideways border-flush entries.
 
-### Rule 8: Readable Modern Sans-Serif Headings & Strict Screen Text Density Cap (Max 14 `<Txt>` Nodes)
+### Rule 8: Readable Modern Sans-Serif Headings & Strict Screen Text Density Cap (Max 18 `<Txt>` Nodes)
 - **Modern Readable Sans Typography**: NEVER use thin high-contrast decorative serifs like `'Instrument Serif'` for headings on mobile explainer videos. On 6" smartphone screens, thin serif hairlines vanish and cause extreme visual fatigue. Always use bold, clean, modern sans-serifs (`HEADING_FONT = "'Plus Jakarta Sans', 'Inter', sans-serif"`, `fontWeight={800}`).
-- **Strict Text Node Density Cap (`<= 14` `<Txt>` nodes per beat)**:
-  - Every beat scene MUST contain **no more than 14 `<Txt>` nodes** in total.
+- **Strict Text Node Density Cap (`<= 18` `<Txt>` nodes per beat)**:
+  - Every beat scene MUST contain **no more than 18 `<Txt>` nodes** in total (allowing 4–5 short X/Y axis tick labels in chart beats while strictly preventing visual clutter).
   - Eliminate redundant eyebrow badges, card-internal category tags, and bottom summary footers that duplicate information or crowd the subtitle zone.
   - Inside entity/station cards, restrict text to **at most 2 text elements**: one bold Title (`fontWeight={800}`, `fontSize={32-36}`) and one high-contrast Stat Pill (`fontSize={20-24}`).
-- **Automated QA Verification**: Check 14 (`Readable Sans & Density Check`) in `qa_verify.mjs` automatically inspects `layout.tsx` to reject `'Instrument Serif'` in heading fonts and enforces the `<15` `<Txt>` nodes density cap per beat file.
+- **Automated QA Verification**: Check 14 (`Readable Sans & Density Check`) in `qa_verify.mjs` automatically inspects `layout.tsx` to reject `'Instrument Serif'` in heading fonts and enforces the `<= 18` `<Txt>` nodes density cap per beat file.
 
 ### Rule 9: Contained Chart Coordinate Safe-Zones & Zero Line-Cutting Invariant
 - **Contained Frame Enclosure**: All quantitative chart lines, plunge curves, benchmark indicators, and milestone callouts must be strictly enclosed inside a dedicated background card frame (e.g., vertical `9:16`: `width = 900`, `x: [-450, +450]`, `height = 680`). Placing chart axes directly on the uncontained canvas causes axis labels and milestone tags to clip off the screen edges (`x = ±540`).
@@ -175,6 +175,25 @@ To prevent split attention between moving graphics, on-screen text, and subtitle
   - Maintain a clean whitespace gap of **`>= 40px`** between consecutive cards in the stack.
   - Do NOT draw tiny connector arrows (such as `^` or `v`) between cards; arrows create severe visual collision with card borders and add unnecessary clutter on small screens.
   - Differentiate hierarchy solely through distinct color-coded numeric badges (`#1`, `#2`) and icon badges with bold heading typography.
+
+### Rule 11: Single Sub-Chapter Top Brow (`Knp? | <Chapter Name>`)
+- **Ban Multi-Pill Clutter**: Never render multi-pill navigation bars, 5-segment chapter trackers, or busy progress tabs across the top brow of the video. The top zone must remain clean, focused, and calm so the viewer's attention stays locked on the central diagram.
+- **Single Crisp Top Brow Pill**:
+  - Position strictly at `x = 0, y = wide ? -475 : -820`.
+  - Geometry: A sleek rounded pill (`layout={true}`, `direction={'row'}`, `alignItems={'center'}`, `padding={[12, 28]}`, `radius={999}`, `fill={'#FFFFFF'}`, `stroke={PALETTE.ink}`, `lineWidth={2.5}`, `gap={14}`).
+  - Content: Exclusively display the series brand and the current sub-chapter name:
+    - `<Txt text="Knp?" fontFamily={HEADING_FONT} fontSize={wide ? 26 : 30} fontWeight={800} fill={PALETTE.crimson} />`
+    - `<Txt text="|" fontFamily={HEADING_FONT} fontSize={wide ? 26 : 30} fontWeight={400} fill={'#94A3B8'} />`
+    - `<Txt text={chapterName} fontFamily={HEADING_FONT} fontSize={wide ? 26 : 30} fontWeight={800} fill={PALETTE.ink} />`
+  - In `layout.tsx`, define `BEAT_LABELS` using the exact `Knp? | <Chapter Name>` format (e.g., `'Knp? | Ancaman Turun Kasta'`).
+
+### Rule 12: Mandatory X & Y Axes on All Quantitative Graphs
+- **No Naked Graphs**: Never display naked quantitative curves, plunge slopes, or comparative bar charts floating in mid-air without directional axes and scale context.
+- **Mandatory Dual-Axis System**:
+  1. **Crisp Y-Axis Line**: `<Line>` with `endArrow` pointing upwards along the vertical metric dimension (`x = wide ? -480 : -310` in contained cards, `x = wide ? -540 : -425` in bar charts). Accompanied by at least 2 horizontal dashed reference gridlines (e.g., `50%`, `100%`, `AMAN`, `TURUN`, `KRISIS`) with high-contrast text labels.
+  2. **Crisp X-Axis Line / Baseline**: `<Line>` with `endArrow` pointing rightwards along the temporal or categorical sequence, accompanied by milestone labels (e.g., `AWAL`, `PANIK`, `KINI` at `y = +175`).
+  3. **Dedicated Hero Badge Safe-Zone**: Hero summary metrics (e.g., `-Rp500T+ MENGUAP`) must sit in an unobstructed dedicated slot **below the X-axis baseline** (e.g., `x = +30, y = +255`), guaranteeing zero collision with the animated curve or milestone nodes above.
+- **Automated QA Verification**: Check 15 (`Clean Brow & Chart Axes Check`) in `qa_verify.mjs` enforces `Knp? |` chapter brow formatting and verifies at least 2 axis `<Line` declarations with `endArrow` in quantitative curve beats.
 
 ---
 

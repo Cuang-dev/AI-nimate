@@ -46,20 +46,14 @@ export const FONTS = {
 };
 
 export const BEAT_LABELS = [
-  'KNP? // 01: SAHAM TECH RUNTUH',
-  'KNP? // 02: ILUSI BAKAR UANG',
-  'KNP? // 03: JEBAKAN DISKON & AI',
-  'KNP? // 04: ANJLOK 85% DARI PUCUK',
-  'KNP? // 05: 3 FILTER SAHAM TECH',
+  'Knp? | Saham Tech Runtuh',
+  'Knp? | Ilusi Bakar Uang',
+  'Knp? | Jebakan Diskon & AI',
+  'Knp? | Anjlok 85% Dari Pucuk',
+  'Knp? | 3 Filter Saham Tech',
 ];
 
-export const TOP_PILL_ITEMS = [
-  '01 // RUNTUH',
-  '02 // BAKAR UANG',
-  '03 // JEBAKAN',
-  '04 // ANJLOK 85%',
-  '05 // 3 FILTER',
-];
+export const TOP_PILL_ITEMS: string[] = [];
 
 /**
  * Detects whether the current view is in widescreen mode (16:9, 1920x1080)
@@ -114,7 +108,7 @@ export function getCardWidth(view: View2D): number {
  * NOTE: Scenes MUST wrap animated stage content in `<Node ref={stage}>`
  * (never bare `<Camera>`).
  */
-export function setupBaseStage(view: View2D, sectionLabel?: string) {
+export function setupBaseStage(view: View2D, sectionLabel?: string | number) {
   const wide = isWidescreen(view);
   const typo = getTypo(wide);
   const assets = getAssets(wide);
@@ -131,17 +125,31 @@ export function setupBaseStage(view: View2D, sectionLabel?: string) {
 
   const time = useThread().time;
   const t0 = time();
-  const label = sectionLabel || '';
+  const label =
+    typeof sectionLabel === 'string'
+      ? sectionLabel
+      : typeof sectionLabel === 'number'
+      ? BEAT_LABELS[sectionLabel] ?? ''
+      : '';
   const sceneIdx =
-    label.includes('02:') || label.includes('// 02') || label.startsWith('02')
+    typeof sectionLabel === 'number'
+      ? sectionLabel
+      : BEAT_LABELS.indexOf(label) >= 0
+      ? BEAT_LABELS.indexOf(label)
+      : label.includes('02') || label.includes('Bakar')
       ? 1
-      : label.includes('03:') || label.includes('// 03') || label.startsWith('03')
+      : label.includes('03') || label.includes('Jebakan')
       ? 2
-      : label.includes('04:') || label.includes('// 04') || label.startsWith('04')
+      : label.includes('04') || label.includes('Anjlok')
       ? 3
-      : label.includes('05:') || label.includes('// 05') || label.startsWith('05')
+      : label.includes('05') || label.includes('Filter')
       ? 4
       : 0;
+
+  const chapterName =
+    (label.split('|')[1] ?? '').trim() ||
+    (BEAT_LABELS[sceneIdx] ?? '').split('|')[1]?.trim() ||
+    label;
 
   const sceneStart = SCENE_TIMINGS[sceneIdx]?.start ?? 0;
   const sceneEnd = SCENE_TIMINGS[sceneIdx]?.end ?? 9999;
@@ -217,60 +225,40 @@ export function setupBaseStage(view: View2D, sectionLabel?: string) {
         />
       ))}
 
-      {/* Top Chapter Navigation Pill Bar (5 Items) */}
+      {/* Single Top Brow Badge */}
       <Rect
-        x={wide ? 380 : 0}
-        y={wide ? -460 : -850}
-        layout
+        x={0}
+        y={wide ? -475 : -820}
+        layout={true}
         direction={'row'}
-        justifyContent={'center'}
         alignItems={'center'}
-        gap={wide ? 12 : 8}
-        opacity={0.92}
-      >
-        {TOP_PILL_ITEMS.map((item, idx) => {
-          const isActive = idx === sceneIdx;
-          return (
-            <Rect
-              key={`nav-pill-${idx}`}
-              layout
-              padding={wide ? [4, 10] : [6, 9]}
-              radius={6}
-              fill={isActive ? COLORS.ink : 'rgba(255,255,255,0.7)'}
-              stroke={isActive ? COLORS.ink : COLORS.gridLine}
-              lineWidth={1.5}
-            >
-              <Txt
-                text={item}
-                fontFamily={FONTS.data}
-                fontSize={wide ? 18 : 20}
-                fontWeight={isActive ? 800 : 600}
-                fill={isActive ? COLORS.surface : COLORS.secondaryInk}
-                letterSpacing={0.5}
-              />
-            </Rect>
-          );
-        })}
-      </Rect>
-
-      {/* Section Indicator Watermark */}
-      <Rect
-        x={wide ? -860 : -460}
-        y={wide ? -460 : -790}
-        offset={[-1, 0]}
-        layout
-        direction={'row'}
-        justifyContent={'start'}
-        alignItems={'center'}
-        opacity={0.85}
+        padding={[12, 28]}
+        radius={999}
+        fill={'#FFFFFF'}
+        stroke={PALETTE.ink}
+        lineWidth={2.5}
+        gap={14}
       >
         <Txt
-          text={`KNP? // 0${sceneIdx + 1}`}
+          text="Knp?"
           fontFamily={HEADING_FONT}
-          fontSize={typo.sectionLabel}
+          fontSize={wide ? 26 : 30}
           fontWeight={800}
-          fill={COLORS.secondaryInk}
-          letterSpacing={1.5}
+          fill={PALETTE.crimson}
+        />
+        <Txt
+          text="|"
+          fontFamily={HEADING_FONT}
+          fontSize={wide ? 26 : 30}
+          fontWeight={400}
+          fill={'#94A3B8'}
+        />
+        <Txt
+          text={chapterName}
+          fontFamily={HEADING_FONT}
+          fontSize={wide ? 26 : 30}
+          fontWeight={800}
+          fill={PALETTE.ink}
         />
       </Rect>
 

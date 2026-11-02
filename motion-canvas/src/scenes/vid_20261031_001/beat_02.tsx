@@ -13,6 +13,7 @@ import {
   getTypo,
   isWidescreen,
   setupBaseStage,
+  BEAT_LABELS,
 } from './layout';
 import {
   finishSceneAt,
@@ -40,7 +41,7 @@ export default makeScene2D(function* (view) {
   const t0 = time();
 
   // Setup Swiss Base Stage (Grid lines, section indicator, subtitle pill)
-  setupBaseStage(view, 'KNP? // 02: CUMA 3% DI PASAR');
+  setupBaseStage(view, BEAT_LABELS[1]);
 
   const wide = isWidescreen(view);
   const typo = getTypo(wide);
@@ -50,6 +51,7 @@ export default makeScene2D(function* (view) {
   const headerY = wide ? -350 : -640;
   const baseY = wide ? 175 : 240;
   const colSpan = wide ? 680 : 460;
+  const yAxisX = wide ? -540 : -425;
 
   const leftX = wide ? -460 : -310;
   const midX = 0;
@@ -102,15 +104,75 @@ export default makeScene2D(function* (view) {
         />
       </Rect>
 
-      {/* ===== QUANTITATIVE CHART BASELINE ===== */}
+      {/* ===== QUANTITATIVE CHART AXES & GRIDLINES ===== */}
+      {/* Y-Axis Line (Directional Arrow pointing UP) */}
       <Line
         points={[
-          [-colSpan, baseY],
-          [colSpan, baseY],
+          [yAxisX, baseY],
+          [yAxisX, baseY - maxChartH - (wide ? 35 : 40)],
+        ]}
+        stroke={PALETTE.ink}
+        lineWidth={assets.strokePrimary}
+        endArrow
+        end={baselineEnd}
+      />
+
+      {/* 2 Subtle Horizontal Dashed Gridlines across plot (50%, 100%) */}
+      <Line
+        points={[
+          [yAxisX, baseY - maxChartH],
+          [colSpan, baseY - maxChartH],
+        ]}
+        stroke={COLORS.gridLine}
+        lineWidth={1.5}
+        lineDash={[8, 6]}
+        opacity={0.8}
+        end={baselineEnd}
+      />
+      <Line
+        points={[
+          [yAxisX, baseY - maxChartH * 0.5],
+          [colSpan, baseY - maxChartH * 0.5],
+        ]}
+        stroke={COLORS.gridLine}
+        lineWidth={1.5}
+        lineDash={[8, 6]}
+        opacity={0.8}
+        end={baselineEnd}
+      />
+
+      {/* Gridline Ticks beside Y-Axis */}
+      <Txt
+        text="100%"
+        x={yAxisX - (wide ? 35 : 32)}
+        y={baseY - maxChartH}
+        fontFamily={FONTS.data}
+        fontSize={18}
+        fontWeight={700}
+        fill={PALETTE.muted}
+        opacity={baselineEnd}
+      />
+      <Txt
+        text="50%"
+        x={yAxisX - (wide ? 35 : 32)}
+        y={baseY - maxChartH * 0.5}
+        fontFamily={FONTS.data}
+        fontSize={18}
+        fontWeight={700}
+        fill={PALETTE.muted}
+        opacity={baselineEnd}
+      />
+
+      {/* X-Axis Baseline (With Directional Arrow pointing RIGHT) */}
+      <Line
+        points={[
+          [yAxisX, baseY],
+          [colSpan + (wide ? 20 : 15), baseY],
         ]}
         stroke={PALETTE.ink}
         lineWidth={assets.strokePrimary}
         lineCap="round"
+        endArrow
         end={baselineEnd}
       />
 

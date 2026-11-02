@@ -14,6 +14,7 @@ import {
   getTypo,
   isWidescreen,
   setupBaseStage,
+  BEAT_LABELS,
 } from './layout';
 import { finishSceneAt, focalScale, waitUntilSceneTime } from './timings';
 
@@ -35,7 +36,7 @@ export default makeScene2D(function* (view) {
   const t0 = time();
 
   // Setup Swiss Base Stage (Grid lines, section indicator, subtitle pill)
-  setupBaseStage(view, 'KNP? // 04: SAHAM NYANGKUT');
+  setupBaseStage(view, BEAT_LABELS[3]);
 
   const wide = isWidescreen(view);
   const typo = getTypo(wide);
@@ -43,14 +44,14 @@ export default makeScene2D(function* (view) {
 
   // Card dimensions
   const cardW = wide ? 1100 : 900;
-  const cardH = wide ? 500 : 520;
-  const cardY = wide ? 20 : -40;
+  const cardH = wide ? 560 : 600;
+  const cardY = wide ? 20 : -70;
 
   // Milestone points on plunge curve (relative to chart container)
-  const p0: [number, number] = [-360, -100];
-  const p1: [number, number] = [-160, -20];
-  const p2: [number, number] = [60, 60];
-  const p3: [number, number] = [320, 170];
+  const p0: [number, number] = [wide ? -260 : -200, -140];
+  const p1: [number, number] = [wide ? -110 : -90, -20];
+  const p2: [number, number] = [wide ? 70 : 50, 50];
+  const p3: [number, number] = [wide ? 250 : 190, 110];
 
   // Animation signals
   const focalId = createSignal(0);
@@ -101,167 +102,276 @@ export default makeScene2D(function* (view) {
       </Rect>
 
       {/* ===== CLEAN CONTAINED 900PX CHART CARD ===== */}
-      <Rect
-        x={0}
-        y={cardY}
-        width={cardW}
-        height={cardH}
-        opacity={cardOpacity}
-        fill={PALETTE.surface}
-        stroke={PALETTE.ink}
-        lineWidth={3}
-        radius={16}
-      >
-        {/* Top Reference Line: World Standard */}
-        <Line
-          points={[
-            [-380, -170],
-            [380, -170],
-          ]}
-          stroke={PALETTE.emerald}
-          lineWidth={3.5}
-          lineDash={[8, 6]}
-          end={refLineEnd}
-        />
-
-        {/* Single Centered Green Benchmark Pill */}
-        <Rect
-          x={0}
-          y={-170}
-          opacity={refBadgeOpacity}
-          layout
-          padding={wide ? [6, 16] : [7, 18]}
-          fill={PALETTE.surface}
-          stroke={PALETTE.emerald}
-          lineWidth={2.5}
-          radius={6}
-        >
-          <Txt
-            text="STANDAR BURSA DUNIA: AMAN"
-            fontFamily={FONTS.data}
-            fontSize={wide ? 18 : 18}
-            fontWeight={700}
-            fill={PALETTE.emerald}
-          />
-        </Rect>
-
-        {/* Plunging Red Crash Curve */}
-        <Line
-          points={[p0, p1, p2, p3]}
-          stroke={PALETTE.crimson}
-          lineWidth={wide ? 7 : 8}
-          radius={32}
-          end={crashLineEnd}
-        />
-
-        {/* Milestone Node 1: WASIT CURIGA */}
-        <Node
-          x={p1[0]}
-          y={p1[1]}
-          opacity={node1Opacity}
-          scale={() => focalScale(focalId, 1, node1Scale, time)}
-        >
+      {(() => {
+        const yAxisX = wide ? -480 : -310;
+        return (
           <Rect
-            width={18}
-            height={18}
-            radius={9}
-            fill={PALETTE.crimson}
-            stroke={PALETTE.surface}
-            lineWidth={3}
-          />
-          <Rect
-            y={-48}
-            layout
-            padding={[6, 12]}
+            x={0}
+            y={cardY}
+            width={cardW}
+            height={cardH}
+            opacity={cardOpacity}
             fill={PALETTE.surface}
             stroke={PALETTE.ink}
-            lineWidth={2.5}
-            radius={6}
+            lineWidth={3}
+            radius={16}
           >
+            {/* Y-Axis Line (Directional Arrow pointing UP) */}
+            <Line
+              points={[
+                [yAxisX, 140],
+                [yAxisX, -255],
+              ]}
+              stroke={PALETTE.ink}
+              lineWidth={2.5}
+              endArrow
+            />
+
+            {/* X-Axis Line (Directional Arrow pointing RIGHT) */}
+            <Line
+              points={[
+                [wide ? -490 : -325, 140],
+                [wide ? 470 : 405, 140],
+              ]}
+              stroke={PALETTE.ink}
+              lineWidth={2.5}
+              endArrow
+            />
+
+            {/* Horizontal Dashed Gridlines: 100% (-180), -50% (-20), -85% (+110) */}
+            <Line
+              points={[
+                [yAxisX, -180],
+                [wide ? 450 : 380, -180],
+              ]}
+              stroke={PALETTE.emerald}
+              lineWidth={2}
+              lineDash={[8, 6]}
+              end={refLineEnd}
+            />
+            <Line
+              points={[
+                [yAxisX, -20],
+                [wide ? 450 : 380, -20],
+              ]}
+              stroke={'#94A3B8'}
+              lineWidth={1.5}
+              lineDash={[6, 6]}
+              opacity={0.6}
+            />
+            <Line
+              points={[
+                [yAxisX, 110],
+                [wide ? 450 : 380, 110],
+              ]}
+              stroke={PALETTE.crimson}
+              lineWidth={1.5}
+              lineDash={[6, 6]}
+              opacity={0.6}
+            />
+
+            {/* Inside-Card Y-Axis Labels at x = wide ? -510 : -375 */}
             <Txt
-              text="WASIT CURIGA"
+              text="AMAN"
+              x={wide ? -510 : -375}
+              y={-180}
               fontFamily={FONTS.data}
               fontSize={18}
               fontWeight={700}
-              fill={PALETTE.ink}
+              fill={PALETTE.emerald}
             />
-          </Rect>
-        </Node>
-
-        {/* Milestone Node 2: MODAL ASING KABUR */}
-        <Node
-          x={p2[0]}
-          y={p2[1]}
-          opacity={node2Opacity}
-          scale={() => focalScale(focalId, 2, node2Scale, time)}
-        >
-          <Rect
-            width={18}
-            height={18}
-            radius={9}
-            fill={PALETTE.crimson}
-            stroke={PALETTE.surface}
-            lineWidth={3}
-          />
-          <Rect
-            y={-48}
-            layout
-            padding={[6, 12]}
-            fill={PALETTE.surface}
-            stroke={PALETTE.crimson}
-            lineWidth={2.5}
-            radius={6}
-          >
             <Txt
-              text="MODAL ASING KABUR"
+              text="TURUN"
+              x={wide ? -510 : -375}
+              y={-20}
+              fontFamily={FONTS.data}
+              fontSize={18}
+              fontWeight={700}
+              fill={PALETTE.secondaryInk}
+            />
+            <Txt
+              text="KRISIS"
+              x={wide ? -510 : -375}
+              y={110}
               fontFamily={FONTS.data}
               fontSize={18}
               fontWeight={700}
               fill={PALETTE.crimson}
             />
-          </Rect>
-        </Node>
 
-        {/* Milestone Node 3: -Rp500T+ MENGUAP */}
-        <Node
-          x={p3[0]}
-          y={p3[1]}
-          opacity={node3Opacity}
-          scale={() => focalScale(focalId, 3, node3Scale, time)}
-        >
-          <Rect
-            width={22}
-            height={22}
-            radius={11}
-            fill={PALETTE.crimson}
-            stroke={PALETTE.surface}
-            lineWidth={4}
-          />
-          <Rect
-            x={-120}
-            y={-48}
-            layout
-            padding={[8, 16]}
-            fill={PALETTE.crimson}
-            stroke={PALETTE.ink}
-            lineWidth={2.5}
-            radius={8}
-          >
+            {/* X-Axis Labels below baseline at y = +175 */}
             <Txt
-              text={() => `-Rp${Math.round(menguapVal())}T+ MENGUAP`}
+              text="AWAL"
+              x={wide ? -240 : -180}
+              y={175}
               fontFamily={FONTS.data}
-              fontSize={22}
+              fontSize={18}
               fontWeight={700}
-              fill={PALETTE.surface}
+              fill={PALETTE.secondaryInk}
             />
+            <Txt
+              text="PANIK"
+              x={wide ? 0 : 20}
+              y={175}
+              fontFamily={FONTS.data}
+              fontSize={18}
+              fontWeight={700}
+              fill={PALETTE.crimson}
+            />
+            <Txt
+              text="KINI"
+              x={wide ? 260 : 200}
+              y={175}
+              fontFamily={FONTS.data}
+              fontSize={18}
+              fontWeight={700}
+              fill={PALETTE.crimson}
+            />
+
+            {/* Single Centered Green Benchmark Pill */}
+            <Rect
+              x={wide ? -40 : 0}
+              y={-180}
+              opacity={refBadgeOpacity}
+              layout
+              padding={wide ? [6, 16] : [7, 18]}
+              fill={PALETTE.surface}
+              stroke={PALETTE.emerald}
+              lineWidth={2.5}
+              radius={6}
+            >
+              <Txt
+                text="STANDAR BURSA DUNIA: AMAN"
+                fontFamily={FONTS.data}
+                fontSize={18}
+                fontWeight={700}
+                fill={PALETTE.emerald}
+              />
+            </Rect>
+
+            {/* Plunging Red Crash Curve */}
+            <Line
+              points={[p0, p1, p2, p3]}
+              stroke={PALETTE.crimson}
+              lineWidth={wide ? 7 : 8}
+              radius={32}
+              end={crashLineEnd}
+            />
+
+            {/* Milestone Node 1: WASIT CURIGA */}
+            <Node
+              x={p1[0]}
+              y={p1[1]}
+              opacity={node1Opacity}
+              scale={() => focalScale(focalId, 1, node1Scale, time)}
+            >
+              <Rect
+                width={18}
+                height={18}
+                radius={9}
+                fill={PALETTE.crimson}
+                stroke={PALETTE.surface}
+                lineWidth={3}
+              />
+              <Rect
+                y={-48}
+                layout
+                padding={[6, 12]}
+                fill={PALETTE.surface}
+                stroke={PALETTE.ink}
+                lineWidth={2.5}
+                radius={6}
+              >
+                <Txt
+                  text="WASIT CURIGA"
+                  fontFamily={FONTS.data}
+                  fontSize={18}
+                  fontWeight={700}
+                  fill={PALETTE.ink}
+                />
+              </Rect>
+            </Node>
+
+            {/* Milestone Node 2: MODAL ASING KABUR */}
+            <Node
+              x={p2[0]}
+              y={p2[1]}
+              opacity={node2Opacity}
+              scale={() => focalScale(focalId, 2, node2Scale, time)}
+            >
+              <Rect
+                width={18}
+                height={18}
+                radius={9}
+                fill={PALETTE.crimson}
+                stroke={PALETTE.surface}
+                lineWidth={3}
+              />
+              <Rect
+                y={-48}
+                layout
+                padding={[6, 12]}
+                fill={PALETTE.surface}
+                stroke={PALETTE.crimson}
+                lineWidth={2.5}
+                radius={6}
+              >
+                <Txt
+                  text="MODAL ASING KABUR"
+                  fontFamily={FONTS.data}
+                  fontSize={18}
+                  fontWeight={700}
+                  fill={PALETTE.crimson}
+                />
+              </Rect>
+            </Node>
+
+            {/* Milestone Node 3 Dot: Plunge Terminus on KRISIS Line */}
+            <Node
+              x={p3[0]}
+              y={p3[1]}
+              opacity={node3Opacity}
+              scale={() => focalScale(focalId, 3, node3Scale, time)}
+            >
+              <Rect
+                width={22}
+                height={22}
+                radius={11}
+                fill={PALETTE.crimson}
+                stroke={PALETTE.surface}
+                lineWidth={4}
+              />
+            </Node>
+
+            {/* Hero Badge cleanly positioned below X-axis at x = +30, y = +255 */}
+            <Rect
+              x={30}
+              y={255}
+              opacity={node3Opacity}
+              scale={() => focalScale(focalId, 3, node3Scale, time)}
+              layout
+              padding={wide ? [10, 24] : [10, 20]}
+              fill={PALETTE.crimson}
+              stroke={PALETTE.ink}
+              lineWidth={2.5}
+              radius={10}
+            >
+              <Txt
+                text={() => `-Rp${Math.round(menguapVal())}T+ MENGUAP`}
+                fontFamily={FONTS.data}
+                fontSize={wide ? 24 : 22}
+                fontWeight={800}
+                fill={PALETTE.surface}
+              />
+            </Rect>
           </Rect>
-        </Node>
-      </Rect>
+        );
+      })()}
 
       {/* ===== BOTTOM IMPACT CALLOUT CARD ===== */}
       <Rect
         x={0}
-        y={wide ? 310 : 355}
+        y={wide ? 340 : 365}
         width={cardW}
         opacity={impactOpacity}
         scale={impactScale}

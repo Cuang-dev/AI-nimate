@@ -40,7 +40,9 @@ export default makeScene2D(function* (view) {
   const baseY = wide ? 220 : 260;
   const colX = wide ? [-380, 0, 380] : [-300, 0, 300];
   const barW = wide ? 240 : 220;
-  const baselineSpan = wide ? 560 : 440;
+  const yAxisX = wide ? -540 : -425;
+  const baselineLeft = wide ? -550 : -435;
+  const baselineRight = wide ? 560 : 435;
 
   // Animation signals
   const focalId = createSignal(0);
@@ -80,15 +82,76 @@ export default makeScene2D(function* (view) {
         fill={PALETTE.ink}
       />
 
-      {/* ===== QUANTITATIVE CHART BASELINE ===== */}
+      {/* ===== QUANTITATIVE CHART AXES & GRIDLINES ===== */}
+      {/* 50% Horizontal Gridline */}
       <Line
         points={[
-          [-baselineSpan, baseY],
-          [baselineSpan, baseY],
+          [yAxisX, baseY - 230],
+          [baselineRight, baseY - 230],
+        ]}
+        stroke={'#CBD5E1'}
+        lineWidth={1.5}
+        lineDash={[6, 6]}
+        opacity={() => baselineEnd() * 0.75}
+      />
+      <Txt
+        x={yAxisX - 35}
+        y={baseY - 230}
+        text="50%"
+        fontFamily={FONTS.data}
+        fontSize={18}
+        fontWeight={700}
+        fill={PALETTE.muted}
+        opacity={() => baselineEnd() * 0.8}
+        textAlign="right"
+      />
+
+      {/* 100% Horizontal Gridline */}
+      <Line
+        points={[
+          [yAxisX, baseY - 460],
+          [baselineRight, baseY - 460],
+        ]}
+        stroke={'#CBD5E1'}
+        lineWidth={1.5}
+        lineDash={[6, 6]}
+        opacity={() => baselineEnd() * 0.75}
+      />
+      <Txt
+        x={yAxisX - 35}
+        y={baseY - 460}
+        text="100%"
+        fontFamily={FONTS.data}
+        fontSize={18}
+        fontWeight={700}
+        fill={PALETTE.muted}
+        opacity={() => baselineEnd() * 0.8}
+        textAlign="right"
+      />
+
+      {/* Y-Axis Line */}
+      <Line
+        points={[
+          [yAxisX, baseY + 10],
+          [yAxisX, baseY - 520],
         ]}
         stroke={PALETTE.ink}
         lineWidth={assets.strokePrimary}
-        lineCap="round"
+        endArrow
+        arrowSize={12}
+        end={baselineEnd}
+      />
+
+      {/* X-Axis Baseline */}
+      <Line
+        points={[
+          [baselineLeft, baseY],
+          [baselineRight, baseY],
+        ]}
+        stroke={PALETTE.ink}
+        lineWidth={assets.strokePrimary}
+        endArrow
+        arrowSize={12}
         end={baselineEnd}
       />
 

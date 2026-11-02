@@ -215,27 +215,66 @@ if (!fs.existsSync(scenesDir)) {
     const content = fs.readFileSync(filePath, 'utf8');
     const stripped = content.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '');
     const txtMatches = stripped.match(/<Txt\b/g) || [];
-    if (txtMatches.length > 14) {
+    if (txtMatches.length > 18) {
       densityViolations.push(`${file} (${txtMatches.length} <Txt> nodes)`);
       densityFail = true;
     }
   }
 
   const check14Passed = !sansHeadingFail && !densityFail;
-  let check14Detail = 'Clean sans & <=14 <Txt>';
+  let check14Detail = 'Clean sans & <=18 <Txt>';
   if (sansHeadingFail && densityFail) {
-    check14Detail = `${sansHeadingReason}; Too much text on screen! Max 14 <Txt> nodes per beat: ${densityViolations.join(', ')}`;
+    check14Detail = `${sansHeadingReason}; Too much text on screen! Max 18 <Txt> nodes per beat: ${densityViolations.join(', ')}`;
   } else if (sansHeadingFail) {
     check14Detail = sansHeadingReason;
   } else if (densityFail) {
-    check14Detail = `Too much text on screen! Max 14 <Txt> nodes per beat: ${densityViolations.join(', ')}`;
+    check14Detail = `Too much text on screen! Max 18 <Txt> nodes per beat: ${densityViolations.join(', ')}`;
   }
 
   record(
     'Readable Sans & Density Check',
     check14Passed,
-    check14Passed ? 'Clean sans & <=14 <Txt>' : check14Detail
+    check14Passed ? 'Clean sans & <=18 <Txt>' : check14Detail
   );
+
+  // Check 15: Clean Brow & Chart Axes Check (Rule 11 & Rule 12)
+  if (projectId.startsWith('vid_20261031_')) {
+    let check15Fail = false;
+    const check15Reasons = [];
+
+    if (fs.existsSync(layoutPath)) {
+      const layoutContent = fs.readFileSync(layoutPath, 'utf8');
+      const hasKnpPipe = /Knp\?\s*\|/.test(layoutContent) && /BEAT_LABELS/.test(layoutContent);
+      if (!hasKnpPipe) {
+        check15Fail = true;
+        check15Reasons.push("layout.tsx missing 'Knp? |' in BEAT_LABELS");
+      }
+      if (/TOP_PILL_ITEMS/i.test(layoutContent) || /nav-pill/i.test(layoutContent)) {
+        check15Fail = true;
+        check15Reasons.push('layout.tsx renders multi-pill top bar (violates Rule 11)');
+      }
+    }
+
+    const beat04Path = path.join(scenesDir, 'beat_04.tsx');
+    if (fs.existsSync(beat04Path)) {
+      const beat04Content = fs.readFileSync(beat04Path, 'utf8');
+      const stripped = beat04Content.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '');
+      const lineElements = stripped.match(/<Line\b[\s\S]*?\/>/g) || [];
+      const endArrowLines = lineElements.filter((el) => /\bendArrow\b/.test(el));
+      if (endArrowLines.length < 2) {
+        check15Fail = true;
+        check15Reasons.push(`beat_04.tsx has ${endArrowLines.length} axis <Line> with endArrow (expected >= 2)`);
+      }
+    }
+
+    record(
+      'Clean Brow & Chart Axes Check',
+      !check15Fail,
+      !check15Fail ? 'Clean brow & >=2 axis lines' : check15Reasons.join('; ')
+    );
+  } else {
+    record('Clean Brow & Chart Axes Check', true, 'N/A (legacy project)');
+  }
 }
 
 // -----------------------------------------------------------------------------

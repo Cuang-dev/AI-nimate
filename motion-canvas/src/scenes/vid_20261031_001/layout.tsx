@@ -33,7 +33,17 @@ export const FONTS = {
 export const PALETTE = {
   ...COLORS,
   muted: '#334155',
+  crimson: '#D92D20',
+  crimsonBg: '#FEE4E2',
 };
+
+export const BEAT_LABELS = [
+  'Knp? | Ancaman Turun Kasta',
+  'Knp? | Cuma 3% Di Pasar',
+  'Knp? | Jebakan Dana Asing',
+  'Knp? | Saham Nyangkut',
+  'Knp? | Lanjut Di YouTube',
+];
 
 /**
  * Detects whether the current view is in widescreen mode (16:9, 1920x1080)
@@ -91,7 +101,7 @@ export function getCardWidth(view: View2D): number {
  * the entire left (x < 0) and top (y < 0) halves of fading elements to be clipped.
  * `<Node>` directly preserves the View2D centered coordinate origin [-width/2..width/2].
  */
-export function setupBaseStage(view: View2D, sectionLabel?: string) {
+export function setupBaseStage(view: View2D, beatOrLabel: number | string = 0) {
   const wide = isWidescreen(view);
   const typo = getTypo(wide);
   const assets = getAssets(wide);
@@ -108,17 +118,62 @@ export function setupBaseStage(view: View2D, sectionLabel?: string) {
 
   const time = useThread().time;
   const t0 = time();
-  const label = sectionLabel || '';
-  const sceneIdx =
-    label.includes('02:') || label.includes('// 02') || label.startsWith('02')
-      ? 1
-      : label.includes('03:') || label.includes('// 03') || label.startsWith('03')
-      ? 2
-      : label.includes('04:') || label.includes('// 04') || label.startsWith('04')
-      ? 3
-      : label.includes('05:') || label.includes('// 05') || label.startsWith('05')
-      ? 4
-      : 0;
+
+  let sceneIdx = 0;
+  let chapterName = '';
+
+  if (typeof beatOrLabel === 'number') {
+    sceneIdx = Math.max(0, Math.min(4, Math.floor(beatOrLabel)));
+    const full = BEAT_LABELS[sceneIdx] || BEAT_LABELS[0];
+    chapterName = full.includes('|') ? full.split('|')[1].trim() : full;
+  } else if (typeof beatOrLabel === 'string') {
+    if (beatOrLabel.includes('|')) {
+      chapterName = beatOrLabel.split('|')[1].trim();
+      const foundIdx = BEAT_LABELS.findIndex((l) =>
+        l.toLowerCase().includes(chapterName.toLowerCase())
+      );
+      sceneIdx = foundIdx >= 0 ? foundIdx : 0;
+    } else {
+      if (
+        beatOrLabel.includes('02:') ||
+        beatOrLabel.includes('// 02') ||
+        beatOrLabel.startsWith('02') ||
+        beatOrLabel.toLowerCase().includes('cuma')
+      ) {
+        sceneIdx = 1;
+      } else if (
+        beatOrLabel.includes('03:') ||
+        beatOrLabel.includes('// 03') ||
+        beatOrLabel.startsWith('03') ||
+        beatOrLabel.toLowerCase().includes('jebakan')
+      ) {
+        sceneIdx = 2;
+      } else if (
+        beatOrLabel.includes('04:') ||
+        beatOrLabel.includes('// 04') ||
+        beatOrLabel.startsWith('04') ||
+        beatOrLabel.toLowerCase().includes('nyangkut')
+      ) {
+        sceneIdx = 3;
+      } else if (
+        beatOrLabel.includes('05:') ||
+        beatOrLabel.includes('// 05') ||
+        beatOrLabel.startsWith('05') ||
+        beatOrLabel.toLowerCase().includes('yt') ||
+        beatOrLabel.toLowerCase().includes('youtube')
+      ) {
+        sceneIdx = 4;
+      } else {
+        sceneIdx = 0;
+      }
+      const full = BEAT_LABELS[sceneIdx] || BEAT_LABELS[0];
+      chapterName = full.includes('|') ? full.split('|')[1].trim() : full;
+    }
+  } else {
+    sceneIdx = 0;
+    const full = BEAT_LABELS[0];
+    chapterName = full.includes('|') ? full.split('|')[1].trim() : full;
+  }
 
   const sceneStart = SCENE_TIMINGS[sceneIdx]?.start ?? 0;
   const sceneEnd = SCENE_TIMINGS[sceneIdx]?.end ?? 9999;
@@ -194,28 +249,42 @@ export function setupBaseStage(view: View2D, sectionLabel?: string) {
         />
       ))}
 
-      {/* Section Indicator */}
-      {sectionLabel && (
-        <Rect
-          x={wide ? -860 : -460}
-          y={wide ? -460 : -800}
-          offset={[-1, 0]}
-          layout
-          direction={'row'}
-          justifyContent={'start'}
-          alignItems={'center'}
-          opacity={0.78}
-        >
-          <Txt
-            text={sectionLabel}
-            fontFamily={FONTS.data}
-            fontSize={typo.sectionLabel}
-            fontWeight={700}
-            fill={COLORS.secondaryInk}
-            letterSpacing={1.5}
-          />
-        </Rect>
-      )}
+      {/* Sleek Single Top Brow Sub-Chapter Pill */}
+      <Rect
+        x={0}
+        y={wide ? -475 : -820}
+        layout={true}
+        direction={'row'}
+        alignItems={'center'}
+        padding={[12, 28]}
+        radius={999}
+        fill={'#FFFFFF'}
+        stroke={PALETTE.ink}
+        lineWidth={2.5}
+        gap={14}
+      >
+        <Txt
+          text="Knp?"
+          fontFamily={HEADING_FONT}
+          fontSize={wide ? 26 : 30}
+          fontWeight={800}
+          fill={PALETTE.crimson}
+        />
+        <Txt
+          text="|"
+          fontFamily={HEADING_FONT}
+          fontSize={wide ? 26 : 30}
+          fontWeight={400}
+          fill={'#94A3B8'}
+        />
+        <Txt
+          text={chapterName}
+          fontFamily={HEADING_FONT}
+          fontSize={wide ? 26 : 30}
+          fontWeight={800}
+          fill={PALETTE.ink}
+        />
+      </Rect>
 
       {/* Editorial Pill Highlight Subtitle Bar */}
       <Rect

@@ -14,17 +14,20 @@ export default makeScene2D(function* (view) {
   const sceneDuration = SCENE_TIMINGS[3].duration;
 
   // Contained Chart Card dimensions
-  const cardW = wide ? 1300 : 900;
+  const cardW = wide ? 1280 : 900;
   const cardH = wide ? 520 : 680;
-  const cardY = wide ? 30 : -80;
+  const cardY = wide ? 20 : -70;
+
+  // Plot bounds inside contained card
+  const axisLeft = wide ? -480 : -310;
+  const axisRight = wide ? +520 : +390;
+  const axisTop = wide ? -190 : -240;
+  const axisBottom = wide ? 140 : 140;
 
   // Milestone points along the plunge curve inside contained card
-  const p0: [number, number] = wide ? [-460, -100] : [-340, -120];
-  const p1: [number, number] = wide ? [-80, 15] : [-60, 20];
-  const p2: [number, number] = wide ? [340, 130] : [240, 170];
-
-  const benchY = wide ? -180 : -230;
-  const benchLineX = wide ? 540 : 380;
+  const p0: [number, number] = [-260, -140];
+  const p1: [number, number] = [20, -20];
+  const p2: [number, number] = [300, 110];
 
   // Animation signals
   const focalId = createSignal(0);
@@ -35,6 +38,7 @@ export default makeScene2D(function* (view) {
   const chartOpacity = createSignal(0);
   const chartScale = createSignal(0.95);
 
+  const axisLineEnd = createSignal(0);
   const refLineEnd = createSignal(0);
   const refBadgeOpacity = createSignal(0);
 
@@ -83,38 +87,152 @@ export default makeScene2D(function* (view) {
         opacity={chartOpacity}
         scale={chartScale}
       >
-        {/* Top Green Benchmark Line */}
+        {/* Y-Axis Line */}
         <Line
           points={[
-            [-benchLineX, benchY],
-            [benchLineX, benchY],
+            [axisLeft, axisBottom + 15],
+            [axisLeft, axisTop - 25],
+          ]}
+          stroke={PALETTE.ink}
+          lineWidth={3.5}
+          endArrow
+          arrowSize={12}
+          end={axisLineEnd}
+        />
+
+        {/* X-Axis Line */}
+        <Line
+          points={[
+            [axisLeft - 15, axisBottom],
+            [axisRight + 20, axisBottom],
+          ]}
+          stroke={PALETTE.ink}
+          lineWidth={3.5}
+          endArrow
+          arrowSize={12}
+          end={axisLineEnd}
+        />
+
+        {/* Horizontal Dashed Gridlines & Y-Axis Labels */}
+        {/* Top (y = -180): 100% Benchmark */}
+        <Txt
+          x={axisLeft - 65}
+          y={-180}
+          text="100%"
+          fontFamily={FONTS.data}
+          fontSize={22}
+          fontWeight={800}
+          fill={PALETTE.emerald}
+          textAlign="center"
+        />
+        <Line
+          points={[
+            [axisLeft, -180],
+            [axisRight, -180],
           ]}
           stroke={PALETTE.emerald}
-          lineWidth={3}
+          lineWidth={2.5}
           lineDash={[8, 6]}
           end={refLineEnd}
         />
-
-        {/* Top Green Benchmark Centered Pill */}
         <Rect
-          x={0}
-          y={benchY}
-          width={520}
-          height={52}
+          x={40}
+          y={-225}
+          width={440}
+          height={46}
           radius={10}
           fill={'#ECFDF5'}
           stroke={PALETTE.emerald}
           lineWidth={2}
           opacity={refBadgeOpacity}
+          layout
+          justifyContent="center"
+          alignItems="center"
         >
           <Txt
             text="BISNIS SEHAT: UNTUNG NYATA"
             fontFamily={FONTS.data}
-            fontSize={22}
+            fontSize={20}
             fontWeight={800}
             fill={PALETTE.emerald}
           />
         </Rect>
+
+        {/* Mid (y = -20): -50% Gridline */}
+        <Txt
+          x={axisLeft - 65}
+          y={-20}
+          text="-50%"
+          fontFamily={FONTS.data}
+          fontSize={22}
+          fontWeight={700}
+          fill={PALETTE.muted}
+          textAlign="center"
+        />
+        <Line
+          points={[
+            [axisLeft, -20],
+            [axisRight, -20],
+          ]}
+          stroke={'#CBD5E1'}
+          lineWidth={2}
+          lineDash={[6, 6]}
+          opacity={0.8}
+        />
+
+        {/* Bottom (y = +110): -85% Gridline */}
+        <Txt
+          x={axisLeft - 65}
+          y={110}
+          text="-85%"
+          fontFamily={FONTS.data}
+          fontSize={22}
+          fontWeight={800}
+          fill={PALETTE.crimson}
+          textAlign="center"
+        />
+        <Line
+          points={[
+            [axisLeft, 110],
+            [axisRight, 110],
+          ]}
+          stroke={'#FECDD3'}
+          lineWidth={2}
+          lineDash={[6, 6]}
+          opacity={0.8}
+        />
+
+        {/* X-Axis Time Labels */}
+        <Txt
+          x={-240}
+          y={axisBottom + 35}
+          text="AWAL IPO"
+          fontFamily={FONTS.data}
+          fontSize={20}
+          fontWeight={800}
+          fill={PALETTE.muted}
+          textAlign="center"
+        />
+        <Txt
+          x={30}
+          y={axisBottom + 35}
+          text="MODAL HABIS"
+          fontFamily={FONTS.data}
+          fontSize={20}
+          fontWeight={800}
+          fill={PALETTE.muted}
+          textAlign="center"
+        />
+        <Txt
+          x={300}
+          y={axisBottom + 35}
+          text="SEKARANG"
+          fontFamily={FONTS.data}
+          fontSize={20}
+          fontWeight={800}
+          fill={PALETTE.crimson}
+          textAlign="center"
+        />
 
         {/* Plunging Crimson Crash Line */}
         <Line
@@ -138,19 +256,22 @@ export default makeScene2D(function* (view) {
           opacity={node1Opacity}
         />
         <Rect
-          x={wide ? -260 : -150}
-          y={wide ? -135 : -155}
-          width={340}
-          height={52}
+          x={-90}
+          y={-155}
+          width={280}
+          height={48}
           radius={8}
           fill={'#FFFFFF'}
           stroke={PALETTE.ink}
           lineWidth={2.5}
           opacity={node1Opacity}
           scale={() => focalScale(focalId, 1, () => node1Scale(), time)}
+          layout
+          justifyContent="center"
+          alignItems="center"
         >
           <Txt
-            text="IPO RATUSAN RUPIAH"
+            text="IPO RATUSAN RP"
             fontFamily={FONTS.data}
             fontSize={20}
             fontWeight={800}
@@ -171,19 +292,22 @@ export default makeScene2D(function* (view) {
           opacity={node2Opacity}
         />
         <Rect
-          x={wide ? 130 : 140}
-          y={wide ? -20 : -15}
-          width={320}
-          height={52}
+          x={190}
+          y={-50}
+          width={240}
+          height={48}
           radius={8}
           fill={'#FFFFFF'}
           stroke={PALETTE.crimson}
           lineWidth={2.5}
           opacity={node2Opacity}
           scale={() => focalScale(focalId, 2, () => node2Scale(), time)}
+          layout
+          justifyContent="center"
+          alignItems="center"
         >
           <Txt
-            text="MODAL BAKAR HABIS"
+            text="MODAL HABIS"
             fontFamily={FONTS.data}
             fontSize={20}
             fontWeight={800}
@@ -204,21 +328,24 @@ export default makeScene2D(function* (view) {
           opacity={node3Opacity}
         />
         <Rect
-          x={0}
-          y={wide ? 190 : 245}
-          width={540}
-          height={84}
+          x={30}
+          y={wide ? 205 : 255}
+          width={520}
+          height={76}
           radius={14}
           fill={PALETTE.crimson}
           stroke={PALETTE.ink}
           lineWidth={3}
           opacity={node3Opacity}
           scale={() => focalScale(focalId, 3, () => node3Scale(), time)}
+          layout
+          justifyContent="center"
+          alignItems="center"
         >
           <Txt
             text={() => `-${Math.round(crashPercentVal())}% NILAI HILANG`}
             fontFamily={FONTS.data}
-            fontSize={36}
+            fontSize={34}
             fontWeight={800}
             fill={'#FFFFFF'}
           />
@@ -251,13 +378,14 @@ export default makeScene2D(function* (view) {
 
   // --- Choreography & Sync (Duration: 14.442s, global: 48.668s - 63.11s) ---
 
-  // t = 0.20s (global 48.97s "bursa"): Header, contained chart card, and benchmark line fade in
+  // t = 0.20s (global 48.97s "bursa"): Header, contained chart card, axes, and benchmark line fade in
   yield* waitUntilSceneTime(0.2, t0);
   yield* all(
     headerOpacity(1, 0.4),
     headerScale(1.0, 0.5, easeOutExpo),
     chartOpacity(1, 0.5, easeOutExpo),
     chartScale(1.0, 0.5, easeOutExpo),
+    axisLineEnd(1, 0.8, easeOutExpo),
     refLineEnd(1, 0.8, easeOutExpo),
     refBadgeOpacity(1, 0.4),
   );
