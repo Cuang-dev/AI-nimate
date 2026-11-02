@@ -53,8 +53,6 @@ export const BEAT_LABELS = [
   'Knp? | 3 Filter Saham Tech',
 ];
 
-export const TOP_PILL_ITEMS: string[] = [];
-
 /**
  * Detects whether the current view is in widescreen mode (16:9, 1920x1080)
  * or vertical portrait mode (9:16, 1080x1920).
