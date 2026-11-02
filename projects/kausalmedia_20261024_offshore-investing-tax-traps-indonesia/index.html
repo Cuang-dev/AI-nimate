@@ -1058,6 +1058,7 @@
             
             <a href="video_whatsapp.mp4" download class="dl-pill">WhatsApp Video (4.3 MB)</a>
             <a href="narration.wav" download class="dl-pill">Narration Audio (8.5 MB)</a>
+            <a href="project_config.json" download class="dl-pill">project_config.json</a>
             <a href="script.json" download class="dl-pill">script.json</a>
             <a href="timings.json" download class="dl-pill">timings.json</a>
             <a href="meta.json" download class="dl-pill">meta.json</a>
@@ -1526,11 +1527,266 @@
             </table>
           </div>
 
+          <!-- Voice, Style, Palette & Prompts Configuration Card -->
+          
+          <div class="specs-card">
+            <div class="specs-card-title">
+              <span>🎙️ Voice, Style, Palette &amp; Prompts Configuration</span>
+            </div>
+            
+            <!-- Voice & TTS Settings -->
+            <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.25rem;">
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); font-weight: 700; text-transform: uppercase;">
+                Voice &amp; Audio Synthesis (Gemini TTS)
+              </div>
+              <table class="specs-table">
+                <tr>
+                  <td class="specs-label">Provider &amp; Model</td>
+                  <td class="specs-val">gemini-tts / gemini-2.5-pro-preview-tts</td>
+                </tr>
+                <tr>
+                  <td class="specs-label">Prebuilt Voice</td>
+                  <td class="specs-val">Charon (EN @ 24000 Hz)</td>
+                </tr>
+                <tr>
+                  <td class="specs-label">Acoustic Lead Offset</td>
+                  <td class="specs-val">0.22s (compensates Whisper alignment delay)</td>
+                </tr>
+                
+                <tr>
+                  <td class="specs-label">TTS Style Prompt</td>
+                  <td class="specs-val" style="font-family: var(--font-sans); font-size: 0.85rem; color: #e2e8f0; line-height: 1.4; background: rgba(0,0,0,0.25); padding: 0.5rem; border-radius: 6px;">
+                    &ldquo;Speak like a sharp, authoritative, charismatic fintech &amp; wealth strategist (think Plain Bagel meets Fireship) breaking down high-stakes international tax rules for smart investors. Use natural human cadence, conversational pauses at ellipses, crisp emphasis on numbers and tax rates, and a grounded, incisive tone:&rdquo;
+                  </td>
+                </tr>
+                
+                
+                <tr>
+                  <td class="specs-label">Pronunciation Map</td>
+                  <td class="specs-val">
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.35rem;">
+                      
+                        <span style="font-size: 0.72rem; background: rgba(255,255,255,0.06); padding: 0.2rem 0.45rem; border-radius: 4px; border: 1px solid var(--card-border);">
+                          <strong>UU HPP</strong> &rarr; <em>U-U H-P-P</em>
+                        </span>
+                      
+                        <span style="font-size: 0.72rem; background: rgba(255,255,255,0.06); padding: 0.2rem 0.45rem; border-radius: 4px; border: 1px solid var(--card-border);">
+                          <strong>PMK</strong> &rarr; <em>P-M-K</em>
+                        </span>
+                      
+                        <span style="font-size: 0.72rem; background: rgba(255,255,255,0.06); padding: 0.2rem 0.45rem; border-radius: 4px; border: 1px solid var(--card-border);">
+                          <strong>UCITS</strong> &rarr; <em>Yoo-sits</em>
+                        </span>
+                      
+                        <span style="font-size: 0.72rem; background: rgba(255,255,255,0.06); padding: 0.2rem 0.45rem; border-radius: 4px; border: 1px solid var(--card-border);">
+                          <strong>CSPX</strong> &rarr; <em>C-S-P-X</em>
+                        </span>
+                      
+                        <span style="font-size: 0.72rem; background: rgba(255,255,255,0.06); padding: 0.2rem 0.45rem; border-radius: 4px; border: 1px solid var(--card-border);">
+                          <strong>VWRA</strong> &rarr; <em>V-W-R-A</em>
+                        </span>
+                      
+                        <span style="font-size: 0.72rem; background: rgba(255,255,255,0.06); padding: 0.2rem 0.45rem; border-radius: 4px; border: 1px solid var(--card-border);">
+                          <strong>DJP</strong> &rarr; <em>D-J-P</em>
+                        </span>
+                      
+                        <span style="font-size: 0.72rem; background: rgba(255,255,255,0.06); padding: 0.2rem 0.45rem; border-radius: 4px; border: 1px solid var(--card-border);">
+                          <strong>SPT</strong> &rarr; <em>S-P-T</em>
+                        </span>
+                      
+                    </div>
+                  </td>
+                </tr>
+                
+              </table>
+            </div>
+
+            <!-- Visual Style, Fonts & Palette -->
+            <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.75rem;">
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #38bdf8; font-weight: 700; text-transform: uppercase;">
+                Visual Style, Palette &amp; Typography
+              </div>
+              <table class="specs-table">
+                <tr>
+                  <td class="specs-label">Theme &amp; Top Brow</td>
+                  <td class="specs-val">swiss-editorial-light (FIG. 0X // &lt;Chapter Name&gt;)</td>
+                </tr>
+                <tr>
+                  <td class="specs-label">Fonts</td>
+                  <td class="specs-val" style="font-size: 0.78rem;">
+                    Heading: <code>&#39;Instrument Serif&#39;, &#39;Liberation Serif&#39;, serif</code> (400)<br>
+                    Body: <code>&#39;Inter&#39;, &#39;Liberation Sans&#39;, sans-serif</code><br>
+                    Data/Mono: <code>&#39;JetBrains Mono&#39;, &#39;Liberation Mono&#39;, monospace</code>
+                  </td>
+                </tr>
+                
+                <tr>
+                  <td class="specs-label">Color Palette</td>
+                  <td class="specs-val">
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;">
+                      
+                        <div style="display: inline-flex; align-items: center; gap: 0.35rem; background: rgba(255,255,255,0.05); padding: 0.2rem 0.5rem; border-radius: 6px; font-size: 0.72rem;">
+                          <span style="display: inline-block; width: 14px; height: 14px; border-radius: 3px; background: #F7F5F0; border: 1px solid rgba(255,255,255,0.2);"></span>
+                          <span style="color: var(--text-muted);">bg:</span>
+                          <code style="color: #fff;">#F7F5F0</code>
+                        </div>
+                      
+                        <div style="display: inline-flex; align-items: center; gap: 0.35rem; background: rgba(255,255,255,0.05); padding: 0.2rem 0.5rem; border-radius: 6px; font-size: 0.72rem;">
+                          <span style="display: inline-block; width: 14px; height: 14px; border-radius: 3px; background: #FFFFFF; border: 1px solid rgba(255,255,255,0.2);"></span>
+                          <span style="color: var(--text-muted);">surface:</span>
+                          <code style="color: #fff;">#FFFFFF</code>
+                        </div>
+                      
+                        <div style="display: inline-flex; align-items: center; gap: 0.35rem; background: rgba(255,255,255,0.05); padding: 0.2rem 0.5rem; border-radius: 6px; font-size: 0.72rem;">
+                          <span style="display: inline-block; width: 14px; height: 14px; border-radius: 3px; background: #141413; border: 1px solid rgba(255,255,255,0.2);"></span>
+                          <span style="color: var(--text-muted);">ink:</span>
+                          <code style="color: #fff;">#141413</code>
+                        </div>
+                      
+                        <div style="display: inline-flex; align-items: center; gap: 0.35rem; background: rgba(255,255,255,0.05); padding: 0.2rem 0.5rem; border-radius: 6px; font-size: 0.72rem;">
+                          <span style="display: inline-block; width: 14px; height: 14px; border-radius: 3px; background: #6E6D68; border: 1px solid rgba(255,255,255,0.2);"></span>
+                          <span style="color: var(--text-muted);">secondaryInk:</span>
+                          <code style="color: #fff;">#6E6D68</code>
+                        </div>
+                      
+                        <div style="display: inline-flex; align-items: center; gap: 0.35rem; background: rgba(255,255,255,0.05); padding: 0.2rem 0.5rem; border-radius: 6px; font-size: 0.72rem;">
+                          <span style="display: inline-block; width: 14px; height: 14px; border-radius: 3px; background: #E2DFD7; border: 1px solid rgba(255,255,255,0.2);"></span>
+                          <span style="color: var(--text-muted);">gridLine:</span>
+                          <code style="color: #fff;">#E2DFD7</code>
+                        </div>
+                      
+                        <div style="display: inline-flex; align-items: center; gap: 0.35rem; background: rgba(255,255,255,0.05); padding: 0.2rem 0.5rem; border-radius: 6px; font-size: 0.72rem;">
+                          <span style="display: inline-block; width: 14px; height: 14px; border-radius: 3px; background: #FF3B00; border: 1px solid rgba(255,255,255,0.2);"></span>
+                          <span style="color: var(--text-muted);">accent:</span>
+                          <code style="color: #fff;">#FF3B00</code>
+                        </div>
+                      
+                        <div style="display: inline-flex; align-items: center; gap: 0.35rem; background: rgba(255,255,255,0.05); padding: 0.2rem 0.5rem; border-radius: 6px; font-size: 0.72rem;">
+                          <span style="display: inline-block; width: 14px; height: 14px; border-radius: 3px; background: #1B8354; border: 1px solid rgba(255,255,255,0.2);"></span>
+                          <span style="color: var(--text-muted);">compliantGreen:</span>
+                          <code style="color: #fff;">#1B8354</code>
+                        </div>
+                      
+                        <div style="display: inline-flex; align-items: center; gap: 0.35rem; background: rgba(255,255,255,0.05); padding: 0.2rem 0.5rem; border-radius: 6px; font-size: 0.72rem;">
+                          <span style="display: inline-block; width: 14px; height: 14px; border-radius: 3px; background: #D97706; border: 1px solid rgba(255,255,255,0.2);"></span>
+                          <span style="color: var(--text-muted);">goldAccent:</span>
+                          <code style="color: #fff;">#D97706</code>
+                        </div>
+                      
+                    </div>
+                  </td>
+                </tr>
+                
+              </table>
+            </div>
+
+            <!-- Beat Archetypes -->
+            
+            <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.75rem;">
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #a78bfa; font-weight: 700; text-transform: uppercase;">
+                Scene &amp; Diagram Archetypes
+              </div>
+              <table class="specs-table">
+                <thead>
+                  <tr>
+                    <th>Beat</th>
+                    <th>Chapter</th>
+                    <th>Diagram Archetype</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                    <tr>
+                      <td class="specs-val">B01</td>
+                      <td style="color: #fff;">CAPITAL GAINS ASYMMETRY</td>
+                      <td class="specs-val" style="color: #38bdf8;">Two-Pane Comparison Ledger (0.1% IDX Final vs 35% Global Ordinary Tax Shock)</td>
+                    </tr>
+                  
+                    <tr>
+                      <td class="specs-val">B02</td>
+                      <td style="color: #fff;">US ESTATE TAX TRAP</td>
+                      <td class="specs-val" style="color: #38bdf8;">Broker Audit Gauge &amp; $60k Non-Resident Estate Tax Threshold Meter</td>
+                    </tr>
+                  
+                    <tr>
+                      <td class="specs-val">B03</td>
+                      <td style="color: #fff;">IRISH UCITS SOLUTION</td>
+                      <td class="specs-val" style="color: #38bdf8;">Dual-Column Structural Shield Architecture (US-Ireland Treaty + Accumulating NAV)</td>
+                    </tr>
+                  
+                    <tr>
+                      <td class="specs-val">B04</td>
+                      <td style="color: #fff;">FOREIGN DIVIDEND EXEMPTION</td>
+                      <td class="specs-val" style="color: #38bdf8;">PMK 18/2021 Legal Repatriation Waterfall &amp; 3-Year SBN Holding Lock</td>
+                    </tr>
+                  
+                    <tr>
+                      <td class="specs-val">B05</td>
+                      <td style="color: #fff;">CFC RULES &amp; CRS TRANSPARENCY</td>
+                      <td class="specs-val" style="color: #38bdf8;">AEOI/CRS Multi-National Data Beam Map &amp; Shell Company Penalty Audit</td>
+                    </tr>
+                  
+                    <tr>
+                      <td class="specs-val">B06</td>
+                      <td style="color: #fff;">3-TIER PLAYBOOK</td>
+                      <td class="specs-val" style="color: #38bdf8;">Portfolio Wealth Allocation Matrix by Size (&lt;$60k vs &gt;$60k vs Cash Flow)</td>
+                    </tr>
+                  
+                </tbody>
+              </table>
+            </div>
+            
+
+            <!-- Editorial Prompts -->
+            
+            <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.75rem;">
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #34d399; font-weight: 700; text-transform: uppercase;">
+                Editorial System Prompts &amp; Rules
+              </div>
+              <table class="specs-table">
+                
+                <tr>
+                  <td class="specs-label">Script Framework</td>
+                  <td class="specs-val" style="font-family: var(--font-sans); font-size: 0.85rem; color: #cbd5e1;">
+                    Tax engineering playbook citing UU HPP, PMK 18/2021, IRC 2101, and OECD Common Reporting Standard.
+                  </td>
+                </tr>
+                
+                
+                <tr>
+                  <td class="specs-label">Icon Vector Prompt</td>
+                  <td class="specs-val" style="font-family: var(--font-sans); font-size: 0.85rem; color: #cbd5e1;">
+                    <code>256x256 transparent background flat Swiss vector icon, bold #141413 outlines, emerald/accent fills, zero baked text.</code>
+                  </td>
+                </tr>
+                
+                
+                <tr>
+                  <td class="specs-label">Visual Cue Rules</td>
+                  <td class="specs-val" style="font-family: var(--font-sans); font-size: 0.85rem; color: #cbd5e1;">
+                    Vertical 9:16 Swiss grid, split-ledger cards, precise metric tickers, and compliant green approval stamps.
+                  </td>
+                </tr>
+                
+              </table>
+            </div>
+            
+
+            <!-- Download Button -->
+            <div style="margin-top: 0.5rem; display: flex; gap: 0.5rem;">
+              <a href="project_config.json" target="_blank" class="dl-pill" style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.4);">
+                <span>📋</span> View Full project_config.json ↗
+              </a>
+            </div>
+          </div>
+          
+
           <div class="specs-card">
             <div class="specs-card-title">
               <span>📁 Raw JSON Manifest Files</span>
             </div>
             <div class="dl-grid">
+              <a href="project_config.json" target="_blank" class="dl-pill">View project_config.json ↗</a>
               <a href="meta.json" target="_blank" class="dl-pill">View meta.json ↗</a>
               <a href="timings.json" target="_blank" class="dl-pill">View timings.json ↗</a>
               <a href="script.json" target="_blank" class="dl-pill">View script.json ↗</a>

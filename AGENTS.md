@@ -50,12 +50,21 @@ Unless explicitly specified by the user, **every project must be treated as a co
      - `projects/<channel_name>_<date>_<project_name>/`
    - Every new project MUST allocate a fresh `vid_YYYYMMDD_NNN` identifier and write its outputs exclusively to its own canonical directory: `projects/<channel_name>_<YYYYMMDD>_<project_slug>/`.
 
+3. **Projects Configuration Registry (`projects/projects_config.json`)**:
+   - Always inspect [`projects/projects_config.json`](file:///home/agent/orca/AI-nimate/projects/projects_config.json) before generating scripts, voiceovers, or scenes. It is the authoritative single source of truth for:
+     - Voice configurations (`gemini-tts`, `voiceName`, `sampleRateHz`, `leadOffsetSec: 0.22`, `spokenBrandReplacement`).
+     - Series presets (`Knp?`, `Forensic Deep-Dive`), editorial prompt templates, and icon vector generation prompts.
+     - Brand color palettes, Swiss layout rules, and typography contracts.
+   - When scaffolding a new project, register its entry in `projects/projects_config.json`.
+   - `render.mjs` and `build_portal.mjs` automatically synchronize the per-project `projects/<dirName>/project_config.json` and display its voice, style, palette, and prompt specifications inside the project's walkthrough portal.
+
 ## 6. Canonical AI-nimate Production Workflow
 
 All agents building or updating videos in `/home/agent/orca/AI-nimate` must follow this 6-step pipeline (detailed in [`Guide.md`](file:///home/agent/orca/AI-nimate/Guide.md) and [`HANDOFF.md`](file:///home/agent/orca/AI-nimate/HANDOFF.md)):
 
-1. **Isolated Project Scaffolding**:
+1. **Isolated Project Scaffolding & Registry Entry**:
    - Create a fresh `vid_YYYYMMDD_NNN` namespace across `motion-canvas/production/vid_YYYYMMDD_NNN/`, `motion-canvas/src/scenes/vid_YYYYMMDD_NNN/`, `motion-canvas/src/projects/vid_YYYYMMDD_NNN/`, and `motion-canvas/public/assets/vid_YYYYMMDD_NNN/`.
+   - Inspect [`projects/projects_config.json`](file:///home/agent/orca/AI-nimate/projects/projects_config.json) for series presets and register the new project under `projects.<channel>_<YYYYMMDD>_<slug>`.
 2. **Scriptwriting & Layman Accessibility**:
    - Author `script.json` with 5 beats (`beat_01`–`beat_05`). For `Knp?` episodes, explain all financial/technical concepts in plain everyday language (zero unexplained jargon) and write `"kenapa"` in `spoken_text` for TTS.
 3. **TTS Synthesis & Word-Level Whisper Alignment**:

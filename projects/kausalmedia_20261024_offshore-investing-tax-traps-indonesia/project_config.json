@@ -1,0 +1,104 @@
+{
+  "id": "vid_20261024_001",
+  "dirName": "kausalmedia_20261024_offshore-investing-tax-traps-indonesia",
+  "channel": "kausalmedia",
+  "series": "Forensic Deep-Dive",
+  "date": "2026-10-24",
+  "slug": "offshore-investing-tax-traps-indonesia",
+  "title": "Offshore Investing Tax Traps: Indonesian Investor Teardown",
+  "subtitle": "UU HPP 35% Capital Gains, 40% US Estate Tax & Irish UCITS Bypass",
+  "topicSummary": "Comprehensive regulatory guide for Indonesian offshore investors navigating progressive income taxes up to 35%, the lethal $60,000 US estate tax trap, PMK 18 repatriation exemptions, and CRS automated global tax reporting.",
+  "coreAngle": "Direct US stock holdings create severe estate and progressive tax liabilities that can be legally eliminated using Irish UCITS accumulating ETFs and PMK 18 repatriation.",
+  "voice": {
+    "provider": "gemini-tts",
+    "model": "gemini-2.5-pro-preview-tts",
+    "fallbackModel": "gemini-2.5-flash-preview-tts",
+    "voiceName": "Charon",
+    "language": "EN",
+    "sampleRateHz": 24000,
+    "leadOffsetSec": 0.22,
+    "ttsStylePrompt": "Speak like a sharp, authoritative, charismatic fintech & wealth strategist (think Plain Bagel meets Fireship) breaking down high-stakes international tax rules for smart investors. Use natural human cadence, conversational pauses at ellipses, crisp emphasis on numbers and tax rates, and a grounded, incisive tone:",
+    "pronunciationMap": {
+      "UU HPP": "U-U H-P-P",
+      "PMK": "P-M-K",
+      "UCITS": "Yoo-sits",
+      "CSPX": "C-S-P-X",
+      "VWRA": "V-W-R-A",
+      "DJP": "D-J-P",
+      "SPT": "S-P-T"
+    }
+  },
+  "style": {
+    "theme": "swiss-editorial-light",
+    "aspects": [
+      "9:16"
+    ],
+    "resolution": {
+      "9:16": [
+        1080,
+        1920
+      ]
+    },
+    "fps": 60,
+    "topBrowFormat": "FIG. 0X // <Chapter Name>",
+    "headingFont": "'Instrument Serif', 'Liberation Serif', serif",
+    "headingWeight": 400,
+    "bodyFont": "'Inter', 'Liberation Sans', sans-serif",
+    "monoFont": "'JetBrains Mono', 'Liberation Mono', monospace",
+    "palette": {
+      "bg": "#F7F5F0",
+      "surface": "#FFFFFF",
+      "ink": "#141413",
+      "secondaryInk": "#6E6D68",
+      "gridLine": "#E2DFD7",
+      "accent": "#FF3B00",
+      "compliantGreen": "#1B8354",
+      "goldAccent": "#D97706"
+    },
+    "beatArchetypes": [
+      {
+        "beat": "01",
+        "chapterTitle": "CAPITAL GAINS ASYMMETRY",
+        "archetype": "Two-Pane Comparison Ledger (0.1% IDX Final vs 35% Global Ordinary Tax Shock)"
+      },
+      {
+        "beat": "02",
+        "chapterTitle": "US ESTATE TAX TRAP",
+        "archetype": "Broker Audit Gauge & $60k Non-Resident Estate Tax Threshold Meter"
+      },
+      {
+        "beat": "03",
+        "chapterTitle": "IRISH UCITS SOLUTION",
+        "archetype": "Dual-Column Structural Shield Architecture (US-Ireland Treaty + Accumulating NAV)"
+      },
+      {
+        "beat": "04",
+        "chapterTitle": "FOREIGN DIVIDEND EXEMPTION",
+        "archetype": "PMK 18/2021 Legal Repatriation Waterfall & 3-Year SBN Holding Lock"
+      },
+      {
+        "beat": "05",
+        "chapterTitle": "CFC RULES & CRS TRANSPARENCY",
+        "archetype": "AEOI/CRS Multi-National Data Beam Map & Shell Company Penalty Audit"
+      },
+      {
+        "beat": "06",
+        "chapterTitle": "3-TIER PLAYBOOK",
+        "archetype": "Portfolio Wealth Allocation Matrix by Size (<$60k vs >$60k vs Cash Flow)"
+      }
+    ]
+  },
+  "prompts": {
+    "ttsStylePrompt": "Speak like a sharp, authoritative, charismatic fintech & wealth strategist breaking down high-stakes international tax rules for smart investors.",
+    "scriptPromptSummary": "Tax engineering playbook citing UU HPP, PMK 18/2021, IRC 2101, and OECD Common Reporting Standard.",
+    "iconGenerationPrompt": "256x256 transparent background flat Swiss vector icon, bold #141413 outlines, emerald/accent fills, zero baked text.",
+    "visualCueRules": "Vertical 9:16 Swiss grid, split-ledger cards, precise metric tickers, and compliant green approval stamps."
+  },
+  "paths": {
+    "productionDir": "motion-canvas/production/vid_20261024_001",
+    "scenesDir": "motion-canvas/src/scenes/vid_20261024_001",
+    "assetsDir": "motion-canvas/public/assets/vid_20261024_001",
+    "audioFile": "motion-canvas/public/audio/vid_20261024_001/narration.wav",
+    "outputDir": "projects/kausalmedia_20261024_offshore-investing-tax-traps-indonesia"
+  }
+}

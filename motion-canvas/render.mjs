@@ -514,6 +514,24 @@ function updateMetaAndManifest(projectOutputDir, projectDirName, channel, dateCo
     keyframe: `qa_frames/beat${idx + 1}.jpg`,
   }));
 
+  // Sync per-project project_config.json from projects_config.json
+  const projectsConfigPath = path.join(PROJECTS_DIR, 'projects_config.json');
+  let projectConfig = null;
+  if (fs.existsSync(projectsConfigPath)) {
+    try {
+      const projectsConfig = JSON.parse(fs.readFileSync(projectsConfigPath, 'utf8'));
+      const projEntry = (projectsConfig.projects && projectsConfig.projects[projectDirName]) ||
+        Object.values(projectsConfig.projects || {}).find(p => p.id === projectId || p.slug === slug);
+      if (projEntry) {
+        projectConfig = projEntry;
+        fs.writeFileSync(path.join(projectOutputDir, 'project_config.json'), JSON.stringify(projEntry, null, 2));
+        console.log(`[Pipeline] Synced project_config.json to ${projectOutputDir}`);
+      }
+    } catch (e) {
+      console.warn(`[Pipeline] Failed syncing project_config.json:`, e);
+    }
+  }
+
   const files = {};
   for (const root of [projectOutputDir]) {
     for (const f of fs.readdirSync(root)) {
@@ -545,6 +563,7 @@ function updateMetaAndManifest(projectOutputDir, projectDirName, channel, dateCo
     files,
     qaStatus: '14/14 PASS',
     beats,
+    projectConfig: projectConfig || null,
   };
 
   fs.writeFileSync(path.join(projectOutputDir, 'meta.json'), JSON.stringify(meta, null, 2));

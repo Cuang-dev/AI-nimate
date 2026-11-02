@@ -1,0 +1,104 @@
+{
+  "id": "vid_20261031_001",
+  "dirName": "kausalmedia_20261031_knp-bursa-kita-terancam-diboikot-dunia",
+  "channel": "kausalmedia",
+  "series": "Knp?",
+  "date": "2026-10-31",
+  "slug": "knp-bursa-kita-terancam-diboikot-dunia",
+  "title": "Knp? Bursa Kita Terancam Diboikot Dunia: Jebakan Free Float 3%",
+  "subtitle": "Jebakan Free Float 3%, Risiko Downgrade MSCI & Eksodus Dana Asing",
+  "topicSummary": "Mengapa bursa saham Indonesia terancam diturunkan statusnya oleh penyedia indeks global seperti MSCI/FTSE: raksasa konglomerasi mengunci hingga 97% saham di tangan pengendali, menyisakan hanya 3% likuiditas riil di pasar.",
+  "coreAngle": "Free float semu membuat saham konglomerasi gampang dikerek tapi mustahil dibeli atau dijual oleh dana institusi global tanpa memicu kejatuhan harga ekstrem.",
+  "voice": {
+    "provider": "gemini-tts",
+    "model": "gemini-2.5-pro-preview-tts",
+    "fallbackModel": "gemini-2.5-flash-preview-tts",
+    "voiceName": "Charon",
+    "language": "ID",
+    "sampleRateHz": 24000,
+    "leadOffsetSec": 0.22,
+    "ttsStylePrompt": "Smart urban conversational Indonesian (Aku/Kamu/Kita), clear everyday layman analogies, crisp spoken numbers, dramatic pauses at ellipses, zero unexplained financial jargon.",
+    "pronunciationMap": {
+      "Knp?": "kenapa",
+      "MSCI": "M-S-C-I",
+      "BEI": "B-E-I",
+      "IHSG": "I-H-S-G",
+      "Free Float": "Fri Flot"
+    }
+  },
+  "style": {
+    "theme": "swiss-editorial-light",
+    "aspects": [
+      "9:16",
+      "16:9"
+    ],
+    "resolution": {
+      "9:16": [
+        1080,
+        1920
+      ],
+      "16:9": [
+        1920,
+        1080
+      ]
+    },
+    "fps": 60,
+    "topBrowFormat": "Knp? | <Chapter Name>",
+    "headingFont": "'Plus Jakarta Sans', 'Inter', sans-serif",
+    "headingWeight": 800,
+    "bodyFont": "'Inter', 'Liberation Sans', 'DejaVu Sans', sans-serif",
+    "monoFont": "'JetBrains Mono', 'Liberation Mono', 'DejaVu Sans Mono', monospace",
+    "palette": {
+      "bg": "#F7F5F0",
+      "surface": "#FFFFFF",
+      "ink": "#141413",
+      "secondaryInk": "#334155",
+      "gridLine": "#E2DFD7",
+      "crimson": "#D92D20",
+      "crimsonBg": "#FEE4E2",
+      "emerald": "#1B8354",
+      "amber": "#D97706",
+      "cyan": "#0284C7"
+    },
+    "beatArchetypes": [
+      {
+        "beat": "01",
+        "chapterTitle": "Ancaman Turun Kasta",
+        "archetype": "Global Index Downgrade Card with Frontier Market Warning Banner"
+      },
+      {
+        "beat": "02",
+        "chapterTitle": "Cuma 3% Di Pasar",
+        "archetype": "Free Float Asymmetry Comparison (97% Locked vs 3% Liquid Float Bar)"
+      },
+      {
+        "beat": "03",
+        "chapterTitle": "Jebakan Dana Asing",
+        "archetype": "Passive Foreign Outflow Waterfall & Index Tracking Exodus Schematic"
+      },
+      {
+        "beat": "04",
+        "chapterTitle": "Saham Nyangkut",
+        "archetype": "Order Book Illiquidity Squeeze with Bid-Ask Spread Escalation"
+      },
+      {
+        "beat": "05",
+        "chapterTitle": "Lanjut Di YouTube",
+        "archetype": "3 Takeaway Action Cards & Autonomous YouTube Deep-Dive CTA"
+      }
+    ]
+  },
+  "prompts": {
+    "ttsStylePrompt": "Smart urban conversational Indonesian (Aku/Kamu/Kita), clear everyday layman analogies, crisp spoken numbers, dramatic pauses at ellipses, zero unexplained financial jargon.",
+    "scriptPromptSummary": "5-beat investigative video breaking down MSCI index rules and why 3% free float creates liquidity traps for Indonesian retail investors.",
+    "iconGenerationPrompt": "256x256 transparent background flat Swiss vector icon, bold #0F172A outlines, high-contrast crimson/emerald/amber fills, strictly zero baked text or letters",
+    "visualCueRules": "Display single clean top brow badge 'Knp? | <Title>', require explicit XY gridlines, ensure <= 18 text nodes."
+  },
+  "paths": {
+    "productionDir": "motion-canvas/production/vid_20261031_001",
+    "scenesDir": "motion-canvas/src/scenes/vid_20261031_001",
+    "assetsDir": "motion-canvas/public/assets/vid_20261031_001",
+    "audioFile": "motion-canvas/public/audio/vid_20261031_001/narration.wav",
+    "outputDir": "projects/kausalmedia_20261031_knp-bursa-kita-terancam-diboikot-dunia"
+  }
+}

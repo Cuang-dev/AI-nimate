@@ -1046,6 +1046,7 @@
             
             <a href="video_whatsapp.mp4" download class="dl-pill">WhatsApp Video (2.6 MB)</a>
             <a href="narration.wav" download class="dl-pill">Narration Audio (7.1 MB)</a>
+            <a href="project_config.json" download class="dl-pill">project_config.json</a>
             <a href="script.json" download class="dl-pill">script.json</a>
             <a href="timings.json" download class="dl-pill">timings.json</a>
             <a href="meta.json" download class="dl-pill">meta.json</a>
@@ -1503,11 +1504,282 @@
             </table>
           </div>
 
+          <!-- Voice, Style, Palette & Prompts Configuration Card -->
+          
+          <div class="specs-card">
+            <div class="specs-card-title">
+              <span>🎙️ Voice, Style, Palette &amp; Prompts Configuration</span>
+            </div>
+            
+            <!-- Voice & TTS Settings -->
+            <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.25rem;">
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); font-weight: 700; text-transform: uppercase;">
+                Voice &amp; Audio Synthesis (Gemini TTS)
+              </div>
+              <table class="specs-table">
+                <tr>
+                  <td class="specs-label">Provider &amp; Model</td>
+                  <td class="specs-val">gemini-tts / gemini-2.5-pro-preview-tts</td>
+                </tr>
+                <tr>
+                  <td class="specs-label">Prebuilt Voice</td>
+                  <td class="specs-val">Charon (ID @ 24000 Hz)</td>
+                </tr>
+                <tr>
+                  <td class="specs-label">Acoustic Lead Offset</td>
+                  <td class="specs-val">0.22s (compensates Whisper alignment delay)</td>
+                </tr>
+                
+                <tr>
+                  <td class="specs-label">TTS Style Prompt</td>
+                  <td class="specs-val" style="font-family: var(--font-sans); font-size: 0.85rem; color: #e2e8f0; line-height: 1.4; background: rgba(0,0,0,0.25); padding: 0.5rem; border-radius: 6px;">
+                    &ldquo;Smart urban conversational Indonesian (Aku/Kamu/Kita), clear everyday layman analogies, crisp spoken numbers, dramatic pauses at ellipses, zero unexplained financial jargon.&rdquo;
+                  </td>
+                </tr>
+                
+                
+                <tr>
+                  <td class="specs-label">Pronunciation Map</td>
+                  <td class="specs-val">
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.35rem;">
+                      
+                        <span style="font-size: 0.72rem; background: rgba(255,255,255,0.06); padding: 0.2rem 0.45rem; border-radius: 4px; border: 1px solid var(--card-border);">
+                          <strong>Knp?</strong> &rarr; <em>kenapa</em>
+                        </span>
+                      
+                        <span style="font-size: 0.72rem; background: rgba(255,255,255,0.06); padding: 0.2rem 0.45rem; border-radius: 4px; border: 1px solid var(--card-border);">
+                          <strong>AI</strong> &rarr; <em>A-I</em>
+                        </span>
+                      
+                        <span style="font-size: 0.72rem; background: rgba(255,255,255,0.06); padding: 0.2rem 0.45rem; border-radius: 4px; border: 1px solid var(--card-border);">
+                          <strong>Tech</strong> &rarr; <em>Tek</em>
+                        </span>
+                      
+                        <span style="font-size: 0.72rem; background: rgba(255,255,255,0.06); padding: 0.2rem 0.45rem; border-radius: 4px; border: 1px solid var(--card-border);">
+                          <strong>GOTO</strong> &rarr; <em>Go-to</em>
+                        </span>
+                      
+                        <span style="font-size: 0.72rem; background: rgba(255,255,255,0.06); padding: 0.2rem 0.45rem; border-radius: 4px; border: 1px solid var(--card-border);">
+                          <strong>IPO</strong> &rarr; <em>I-P-O</em>
+                        </span>
+                      
+                    </div>
+                  </td>
+                </tr>
+                
+              </table>
+            </div>
+
+            <!-- Visual Style, Fonts & Palette -->
+            <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.75rem;">
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #38bdf8; font-weight: 700; text-transform: uppercase;">
+                Visual Style, Palette &amp; Typography
+              </div>
+              <table class="specs-table">
+                <tr>
+                  <td class="specs-label">Theme &amp; Top Brow</td>
+                  <td class="specs-val">swiss-editorial-light (Knp? | &lt;Chapter Name&gt;)</td>
+                </tr>
+                <tr>
+                  <td class="specs-label">Fonts</td>
+                  <td class="specs-val" style="font-size: 0.78rem;">
+                    Heading: <code>&#39;Plus Jakarta Sans&#39;, &#39;Inter&#39;, sans-serif</code> (800)<br>
+                    Body: <code>&#39;Inter&#39;, &#39;Liberation Sans&#39;, &#39;DejaVu Sans&#39;, sans-serif</code><br>
+                    Data/Mono: <code>&#39;JetBrains Mono&#39;, &#39;Liberation Mono&#39;, &#39;DejaVu Sans Mono&#39;, monospace</code>
+                  </td>
+                </tr>
+                
+                <tr>
+                  <td class="specs-label">Color Palette</td>
+                  <td class="specs-val">
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;">
+                      
+                        <div style="display: inline-flex; align-items: center; gap: 0.35rem; background: rgba(255,255,255,0.05); padding: 0.2rem 0.5rem; border-radius: 6px; font-size: 0.72rem;">
+                          <span style="display: inline-block; width: 14px; height: 14px; border-radius: 3px; background: #F7F5F0; border: 1px solid rgba(255,255,255,0.2);"></span>
+                          <span style="color: var(--text-muted);">bg:</span>
+                          <code style="color: #fff;">#F7F5F0</code>
+                        </div>
+                      
+                        <div style="display: inline-flex; align-items: center; gap: 0.35rem; background: rgba(255,255,255,0.05); padding: 0.2rem 0.5rem; border-radius: 6px; font-size: 0.72rem;">
+                          <span style="display: inline-block; width: 14px; height: 14px; border-radius: 3px; background: #FFFFFF; border: 1px solid rgba(255,255,255,0.2);"></span>
+                          <span style="color: var(--text-muted);">surface:</span>
+                          <code style="color: #fff;">#FFFFFF</code>
+                        </div>
+                      
+                        <div style="display: inline-flex; align-items: center; gap: 0.35rem; background: rgba(255,255,255,0.05); padding: 0.2rem 0.5rem; border-radius: 6px; font-size: 0.72rem;">
+                          <span style="display: inline-block; width: 14px; height: 14px; border-radius: 3px; background: #141413; border: 1px solid rgba(255,255,255,0.2);"></span>
+                          <span style="color: var(--text-muted);">ink:</span>
+                          <code style="color: #fff;">#141413</code>
+                        </div>
+                      
+                        <div style="display: inline-flex; align-items: center; gap: 0.35rem; background: rgba(255,255,255,0.05); padding: 0.2rem 0.5rem; border-radius: 6px; font-size: 0.72rem;">
+                          <span style="display: inline-block; width: 14px; height: 14px; border-radius: 3px; background: #334155; border: 1px solid rgba(255,255,255,0.2);"></span>
+                          <span style="color: var(--text-muted);">secondaryInk:</span>
+                          <code style="color: #fff;">#334155</code>
+                        </div>
+                      
+                        <div style="display: inline-flex; align-items: center; gap: 0.35rem; background: rgba(255,255,255,0.05); padding: 0.2rem 0.5rem; border-radius: 6px; font-size: 0.72rem;">
+                          <span style="display: inline-block; width: 14px; height: 14px; border-radius: 3px; background: #E2DFD7; border: 1px solid rgba(255,255,255,0.2);"></span>
+                          <span style="color: var(--text-muted);">gridLine:</span>
+                          <code style="color: #fff;">#E2DFD7</code>
+                        </div>
+                      
+                        <div style="display: inline-flex; align-items: center; gap: 0.35rem; background: rgba(255,255,255,0.05); padding: 0.2rem 0.5rem; border-radius: 6px; font-size: 0.72rem;">
+                          <span style="display: inline-block; width: 14px; height: 14px; border-radius: 3px; background: #D92D20; border: 1px solid rgba(255,255,255,0.2);"></span>
+                          <span style="color: var(--text-muted);">crimson:</span>
+                          <code style="color: #fff;">#D92D20</code>
+                        </div>
+                      
+                        <div style="display: inline-flex; align-items: center; gap: 0.35rem; background: rgba(255,255,255,0.05); padding: 0.2rem 0.5rem; border-radius: 6px; font-size: 0.72rem;">
+                          <span style="display: inline-block; width: 14px; height: 14px; border-radius: 3px; background: #FEE4E2; border: 1px solid rgba(255,255,255,0.2);"></span>
+                          <span style="color: var(--text-muted);">crimsonBg:</span>
+                          <code style="color: #fff;">#FEE4E2</code>
+                        </div>
+                      
+                        <div style="display: inline-flex; align-items: center; gap: 0.35rem; background: rgba(255,255,255,0.05); padding: 0.2rem 0.5rem; border-radius: 6px; font-size: 0.72rem;">
+                          <span style="display: inline-block; width: 14px; height: 14px; border-radius: 3px; background: #1B8354; border: 1px solid rgba(255,255,255,0.2);"></span>
+                          <span style="color: var(--text-muted);">emerald:</span>
+                          <code style="color: #fff;">#1B8354</code>
+                        </div>
+                      
+                        <div style="display: inline-flex; align-items: center; gap: 0.35rem; background: rgba(255,255,255,0.05); padding: 0.2rem 0.5rem; border-radius: 6px; font-size: 0.72rem;">
+                          <span style="display: inline-block; width: 14px; height: 14px; border-radius: 3px; background: #D1FADF; border: 1px solid rgba(255,255,255,0.2);"></span>
+                          <span style="color: var(--text-muted);">emeraldBg:</span>
+                          <code style="color: #fff;">#D1FADF</code>
+                        </div>
+                      
+                        <div style="display: inline-flex; align-items: center; gap: 0.35rem; background: rgba(255,255,255,0.05); padding: 0.2rem 0.5rem; border-radius: 6px; font-size: 0.72rem;">
+                          <span style="display: inline-block; width: 14px; height: 14px; border-radius: 3px; background: #D97706; border: 1px solid rgba(255,255,255,0.2);"></span>
+                          <span style="color: var(--text-muted);">amber:</span>
+                          <code style="color: #fff;">#D97706</code>
+                        </div>
+                      
+                        <div style="display: inline-flex; align-items: center; gap: 0.35rem; background: rgba(255,255,255,0.05); padding: 0.2rem 0.5rem; border-radius: 6px; font-size: 0.72rem;">
+                          <span style="display: inline-block; width: 14px; height: 14px; border-radius: 3px; background: #FEF0C7; border: 1px solid rgba(255,255,255,0.2);"></span>
+                          <span style="color: var(--text-muted);">amberBg:</span>
+                          <code style="color: #fff;">#FEF0C7</code>
+                        </div>
+                      
+                        <div style="display: inline-flex; align-items: center; gap: 0.35rem; background: rgba(255,255,255,0.05); padding: 0.2rem 0.5rem; border-radius: 6px; font-size: 0.72rem;">
+                          <span style="display: inline-block; width: 14px; height: 14px; border-radius: 3px; background: #0284C7; border: 1px solid rgba(255,255,255,0.2);"></span>
+                          <span style="color: var(--text-muted);">cyan:</span>
+                          <code style="color: #fff;">#0284C7</code>
+                        </div>
+                      
+                        <div style="display: inline-flex; align-items: center; gap: 0.35rem; background: rgba(255,255,255,0.05); padding: 0.2rem 0.5rem; border-radius: 6px; font-size: 0.72rem;">
+                          <span style="display: inline-block; width: 14px; height: 14px; border-radius: 3px; background: #E0F2FE; border: 1px solid rgba(255,255,255,0.2);"></span>
+                          <span style="color: var(--text-muted);">cyanBg:</span>
+                          <code style="color: #fff;">#E0F2FE</code>
+                        </div>
+                      
+                    </div>
+                  </td>
+                </tr>
+                
+              </table>
+            </div>
+
+            <!-- Beat Archetypes -->
+            
+            <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.75rem;">
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #a78bfa; font-weight: 700; text-transform: uppercase;">
+                Scene &amp; Diagram Archetypes
+              </div>
+              <table class="specs-table">
+                <thead>
+                  <tr>
+                    <th>Beat</th>
+                    <th>Chapter</th>
+                    <th>Diagram Archetype</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                    <tr>
+                      <td class="specs-val">B01</td>
+                      <td style="color: #fff;">Saham Tech Runtuh</td>
+                      <td class="specs-val" style="color: #38bdf8;">Trio Valuation Crash Cards with Delta Badges</td>
+                    </tr>
+                  
+                    <tr>
+                      <td class="specs-val">B02</td>
+                      <td style="color: #fff;">Ilusi Bakar Uang</td>
+                      <td class="specs-val" style="color: #38bdf8;">Dual-Node Financial Divergence (Gross Revenue vs Net Loss Flow)</td>
+                    </tr>
+                  
+                    <tr>
+                      <td class="specs-val">B03</td>
+                      <td style="color: #fff;">Jebakan Diskon &amp; AI</td>
+                      <td class="specs-val" style="color: #38bdf8;">Customer Churn Cycle Loop &amp; Circular AI Rebranding Trap</td>
+                    </tr>
+                  
+                    <tr>
+                      <td class="specs-val">B04</td>
+                      <td style="color: #fff;">Anjlok 85% Dari Pucuk</td>
+                      <td class="specs-val" style="color: #38bdf8;">XY-Axis Drawdown Line Chart with Arrow Heads &amp; Gridlines</td>
+                    </tr>
+                  
+                    <tr>
+                      <td class="specs-val">B05</td>
+                      <td style="color: #fff;">3 Filter Saham Tech</td>
+                      <td class="specs-val" style="color: #38bdf8;">3-Tier Practical Investor Filter Checklist &amp; Layman Rules</td>
+                    </tr>
+                  
+                </tbody>
+              </table>
+            </div>
+            
+
+            <!-- Editorial Prompts -->
+            
+            <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.75rem;">
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #34d399; font-weight: 700; text-transform: uppercase;">
+                Editorial System Prompts &amp; Rules
+              </div>
+              <table class="specs-table">
+                
+                <tr>
+                  <td class="specs-label">Script Framework</td>
+                  <td class="specs-val" style="font-family: var(--font-sans); font-size: 0.85rem; color: #cbd5e1;">
+                    5-beat causal narrative explaining why popular tech apps crashed 85%, replacing technical EBITDA/burn rate jargon with warung/ojek real-world analogies.
+                  </td>
+                </tr>
+                
+                
+                <tr>
+                  <td class="specs-label">Icon Vector Prompt</td>
+                  <td class="specs-val" style="font-family: var(--font-sans); font-size: 0.85rem; color: #cbd5e1;">
+                    <code>256x256 transparent background flat Swiss vector icon, bold #0F172A outlines, high-contrast crimson/emerald/amber fills, strictly zero baked text or letters</code>
+                  </td>
+                </tr>
+                
+                
+                <tr>
+                  <td class="specs-label">Visual Cue Rules</td>
+                  <td class="specs-val" style="font-family: var(--font-sans); font-size: 0.85rem; color: #cbd5e1;">
+                    Keep &lt;=18 Txt nodes per beat, reveal cards top-to-bottom and left-to-right, enforce single focal wobble per keyframe.
+                  </td>
+                </tr>
+                
+              </table>
+            </div>
+            
+
+            <!-- Download Button -->
+            <div style="margin-top: 0.5rem; display: flex; gap: 0.5rem;">
+              <a href="project_config.json" target="_blank" class="dl-pill" style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.4);">
+                <span>📋</span> View Full project_config.json ↗
+              </a>
+            </div>
+          </div>
+          
+
           <div class="specs-card">
             <div class="specs-card-title">
               <span>📁 Raw JSON Manifest Files</span>
             </div>
             <div class="dl-grid">
+              <a href="project_config.json" target="_blank" class="dl-pill">View project_config.json ↗</a>
               <a href="meta.json" target="_blank" class="dl-pill">View meta.json ↗</a>
               <a href="timings.json" target="_blank" class="dl-pill">View timings.json ↗</a>
               <a href="script.json" target="_blank" class="dl-pill">View script.json ↗</a>

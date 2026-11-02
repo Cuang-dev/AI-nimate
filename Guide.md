@@ -14,6 +14,13 @@ Unless explicitly instructed otherwise by the user, **every project/episode MUST
 2. **Zero Cross-Project Contamination**:
    - Never overwrite, rename, or mutate existing episodes inside `motion-canvas/production/vid_*`, `motion-canvas/src/scenes/vid_*`, `motion-canvas/src/projects/vid_*`, `motion-canvas/public/assets/vid_*`, `motion-canvas/public/audio/vid_*`, or `projects/<channel_name>_<date>_<project_name>/`.
    - Every new project MUST allocate a fresh `vid_YYYYMMDD_NNN` ID and output exclusively to its own canonical directory: `/home/agent/orca/AI-nimate/projects/<channel_name>_<YYYYMMDD>_<project_slug>/`.
+3. **Projects Configuration Registry (`projects/projects_config.json`)**:
+   - Always inspect [`projects/projects_config.json`](file:///home/agent/orca/AI-nimate/projects/projects_config.json) before generating scripts, voiceovers, or scenes. It is the authoritative single source of truth for:
+     - Voice configurations (`gemini-tts`, `voiceName`, `sampleRateHz`, `leadOffsetSec: 0.22`, `spokenBrandReplacement`).
+     - Series presets (`Knp?`, `Forensic Deep-Dive`), editorial prompt templates, and icon vector generation prompts.
+     - Brand color palettes, Swiss layout rules, and typography contracts.
+   - When scaffolding a new project, register its entry in `projects/projects_config.json`.
+   - `render.mjs` and `build_portal.mjs` automatically write the per-project `projects/<dirName>/project_config.json` and display its voice, style, palette, and prompt specifications inside the project's walkthrough portal.
 
 ---
 
@@ -340,6 +347,7 @@ cd /home/agent/orca/AI-nimate && npm run deploy
 All animated video releases are stored exclusively in `/home/agent/orca/AI-nimate/projects/<channel_name>_<date>_<project_name>/` (with zero loose symlinks or intermediate beat caches):
 - `index.html`: Two-column Cinema + Interactive 5-Beat Walkthrough UI (adaptive `9:16` / `16:9` viewport, "Loop Beat" toggle, segmented 5-beat progress bar, live-synced beat transcript cards, QA keyframe lightbox, and asset downloads).
 - `embed.html`: Responsive iframe embed player.
+- `project_config.json`: Project-specific configuration (voice settings, style, palette, prompt specs, and beat archetypes).
 - `meta.json`: Standardized project metadata, beat timings, transcripts, and QA status (`15/15 PASS`).
 - `script.json` & `timings.json`: Full narrative script and Whisper word-level alignment data.
 - `narration.wav`: Master vocal narration audio.

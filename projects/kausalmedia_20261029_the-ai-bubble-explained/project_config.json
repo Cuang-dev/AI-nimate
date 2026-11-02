@@ -1,0 +1,101 @@
+{
+  "id": "vid_20261029_002",
+  "dirName": "kausalmedia_20261029_the-ai-bubble-explained",
+  "channel": "kausalmedia",
+  "series": "Forensic Deep-Dive",
+  "date": "2026-10-29",
+  "slug": "the-ai-bubble-explained",
+  "title": "The AI Bubble: What It Actually Is",
+  "subtitle": "The $600B Revenue Chasm, Round-Trip Cloud Accounting & 6-Year GPU Depreciation",
+  "topicSummary": "A forensic examination of the generative AI economy: exposing the $600B annual CapEx-to-revenue chasm, circular balance sheet investments between hyperscalers and model labs, and aggressive 6-year server depreciation against 2-year GPU obsolescence.",
+  "coreAngle": "The AI bubble is not just speculative hype—it is an accounting disconnect between hyperscaler CapEx amortization and frontier lab unit monetization.",
+  "voice": {
+    "provider": "gemini-tts",
+    "model": "gemini-2.5-pro-preview-tts",
+    "fallbackModel": "gemini-2.5-flash-preview-tts",
+    "voiceName": "Charon",
+    "language": "EN",
+    "sampleRateHz": 24000,
+    "leadOffsetSec": 0.22,
+    "ttsStylePrompt": "Speak like an authoritative, incisive investigative financial analyst breaking down tech market mechanics. Use natural human cadence, deliberate breathing pauses at ellipses and paragraph breaks, crisp articulation of figures and company names, and a grounded, razor-sharp tone.",
+    "pronunciationMap": {
+      "CapEx": "Cap-Ex",
+      "ARR": "A-R-R",
+      "Nvidia": "En-vid-ee-uh",
+      "GPU": "G-P-U"
+    }
+  },
+  "style": {
+    "theme": "swiss-editorial-light",
+    "aspects": [
+      "9:16",
+      "16:9"
+    ],
+    "resolution": {
+      "9:16": [
+        1080,
+        1920
+      ],
+      "16:9": [
+        1920,
+        1080
+      ]
+    },
+    "fps": 60,
+    "topBrowFormat": "0X // <Chapter Name>",
+    "headingFont": "'Instrument Serif', 'Liberation Serif', serif",
+    "headingWeight": 400,
+    "bodyFont": "'Inter', 'Liberation Sans', sans-serif",
+    "monoFont": "'JetBrains Mono', 'Liberation Mono', monospace",
+    "palette": {
+      "bg": "#F7F5F0",
+      "surface": "#FFFFFF",
+      "ink": "#141413",
+      "secondaryInk": "#6E6D68",
+      "gridLine": "#E2DFD7",
+      "accent": "#FF3B00",
+      "compliantGreen": "#1B8354",
+      "goldAccent": "#D97706"
+    },
+    "beatArchetypes": [
+      {
+        "beat": "01",
+        "chapterTitle": "THE $600B CHASM",
+        "archetype": "Dual-Column CapEx vs Actual Run-Rate Revenue Comparison Bar Chart"
+      },
+      {
+        "beat": "02",
+        "chapterTitle": "ROUND-TRIP REVENUE",
+        "archetype": "Circular Flow Accounting Loop (Hyperscaler Cloud Credits to Model Labs)"
+      },
+      {
+        "beat": "03",
+        "chapterTitle": "THE DEPRECIATION CLOCK",
+        "archetype": "Split-Timeline Collision (6-Year 10-K Depreciation vs 2-Year Silicon Obsolescence)"
+      },
+      {
+        "beat": "04",
+        "chapterTitle": "2000 TELECOM VS 2026 AI",
+        "archetype": "Historical Parallel Cycle Chart (Fiber Glut 2000 vs GPU Overhang 2026)"
+      },
+      {
+        "beat": "05",
+        "chapterTitle": "WHAT POPS VS SURVIVES",
+        "archetype": "3-Tier Structural Stack (Wrapper Mortalities vs Power & Deep Workflows)"
+      }
+    ]
+  },
+  "prompts": {
+    "ttsStylePrompt": "Speak like an authoritative, incisive investigative financial analyst breaking down tech market mechanics. Use natural human cadence, deliberate breathing pauses at ellipses and paragraph breaks, crisp articulation of figures and company names, and a grounded, razor-sharp tone.",
+    "scriptPromptSummary": "Forensic financial teardown grounded in 10-K SEC filings and Sequoia Capital research dissecting the $600B AI revenue shortfall.",
+    "iconGenerationPrompt": "256x256 transparent background flat Swiss vector icon, bold #141413 outlines, high-contrast accent fills, zero baked text.",
+    "visualCueRules": "Dual-aspect responsive layouts (16:9 side-by-side vs 9:16 vertical stack), instrument serif typographic elegance."
+  },
+  "paths": {
+    "productionDir": "motion-canvas/production/vid_20261029_002",
+    "scenesDir": "motion-canvas/src/scenes/vid_20261029_002",
+    "assetsDir": "motion-canvas/public/assets/vid_20261029_002",
+    "audioFile": "motion-canvas/public/audio/vid_20261029_002/narration.wav",
+    "outputDir": "projects/kausalmedia_20261029_the-ai-bubble-explained"
+  }
+}

@@ -8,6 +8,7 @@ const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, '../..');
 const PROJECTS_DIR = path.resolve(REPO_ROOT, 'projects');
 const MANIFEST_PATH = path.resolve(PROJECTS_DIR, 'manifest.json');
+const PROJECTS_CONFIG_PATH = path.resolve(PROJECTS_DIR, 'projects_config.json');
 
 function round(val, dec = 3) {
   if (val == null || isNaN(val)) return 0;
@@ -47,6 +48,15 @@ function escapeHtml(str) {
 export function enrichProjects() {
   if (!fs.existsSync(MANIFEST_PATH)) {
     throw new Error(`Manifest not found at ${MANIFEST_PATH}`);
+  }
+
+  let projectsConfig = null;
+  if (fs.existsSync(PROJECTS_CONFIG_PATH)) {
+    try {
+      projectsConfig = JSON.parse(fs.readFileSync(PROJECTS_CONFIG_PATH, 'utf8'));
+    } catch (e) {
+      console.warn(`[build_portal] Error reading projects_config.json:`, e);
+    }
   }
 
   const rawManifest = fs.existsSync(MANIFEST_PATH) ? JSON.parse(fs.readFileSync(MANIFEST_PATH, 'utf8')) : [];
@@ -93,6 +103,26 @@ export function enrichProjects() {
       try {
         metaData = JSON.parse(fs.readFileSync(metaPath, 'utf8'));
       } catch (e) {}
+    }
+
+    // Inspect and sync per-project project_config.json
+    let projectConfig = null;
+    const projectConfigPath = path.join(projectDir, 'project_config.json');
+    if (projectsConfig && projectsConfig.projects && projectsConfig.projects[dirName]) {
+      projectConfig = projectsConfig.projects[dirName];
+      fs.writeFileSync(projectConfigPath, JSON.stringify(projectConfig, null, 2));
+    } else if (fs.existsSync(projectConfigPath)) {
+      try {
+        projectConfig = JSON.parse(fs.readFileSync(projectConfigPath, 'utf8'));
+      } catch (e) {}
+    } else if (projectsConfig && projectsConfig.projects) {
+      const match = Object.values(projectsConfig.projects).find(
+        p => p.id === (metaData.id || item.id) || p.slug === (metaData.slug || item.slug)
+      );
+      if (match) {
+        projectConfig = match;
+        fs.writeFileSync(projectConfigPath, JSON.stringify(projectConfig, null, 2));
+      }
     }
 
     // Inspect files in projectDir
@@ -209,7 +239,8 @@ export function enrichProjects() {
       qaStatus: metaData.qaStatus || item.qaStatus || '14/14 PASS',
       qaFrameFiles,
       beats: enrichedBeats,
-      wordCount: scriptData.word_count || (enrichedBeats.reduce((acc, b) => acc + (b.narration ? b.narration.split(/\s+/).length : 0), 0))
+      wordCount: scriptData.word_count || (enrichedBeats.reduce((acc, b) => acc + (b.narration ? b.narration.split(/\s+/).length : 0), 0)),
+      projectConfig: projectConfig || metaData.projectConfig || null
     };
 
     // Write updated meta.json
@@ -1138,6 +1169,8 @@ export function generateDiscoveryHub(projects) {
         <div class="pill-info">60 FPS Pristine</div>
         <div class="pill-info">Dual-Aspect (9:16 &amp; 16:9)</div>
         <div class="pill-info">${projects.length} Total Productions</div>
+        <a href="projects_config.json" target="_blank" class="pill-info" style="text-decoration:none; color: #38bdf8; border-color: rgba(56, 189, 248, 0.4); display: inline-flex; align-items: center; gap: 0.35rem;"><span>📋</span> projects_config.json ↗</a>
+        <a href="manifest.json" target="_blank" class="pill-info" style="text-decoration:none; color: #a78bfa; border-color: rgba(167, 139, 250, 0.4); display: inline-flex; align-items: center; gap: 0.35rem;"><span>📊</span> manifest.json ↗</a>
       </div>
     </header>
 
@@ -1346,8 +1379,9 @@ export function generateDiscoveryHub(projects) {
       <div class="footer-left">
         AI-nimate Studio • Autonomous Video Architecture • 2026
       </div>
-      <div>
-        Kinetic Visual Essay Generator • Pristine Dual-Aspect 60 FPS
+      <div style="display: flex; gap: 1rem; align-items: center;">
+        <a href="projects_config.json" target="_blank" style="color: #38bdf8; text-decoration: none; font-family: var(--font-mono); font-size: 0.78rem;">projects_config.json ↗</a>
+        <a href="manifest.json" target="_blank" style="color: var(--accent); text-decoration: none; font-family: var(--font-mono); font-size: 0.78rem;">manifest.json ↗</a>
       </div>
     </footer>
   </div>
@@ -2604,6 +2638,7 @@ export function generateWalkthrough(project, allProjects) {
             ${project.files['video_16x9.mp4'] ? `<a href="video_16x9.mp4" download class="dl-pill">16:9 Video (${formatFileSize(project.files['video_16x9.mp4'])})</a>` : ''}
             ${project.files['video_whatsapp.mp4'] ? `<a href="video_whatsapp.mp4" download class="dl-pill">WhatsApp Video (${formatFileSize(project.files['video_whatsapp.mp4'])})</a>` : ''}
             ${project.files['narration.wav'] ? `<a href="narration.wav" download class="dl-pill">Narration Audio (${formatFileSize(project.files['narration.wav'])})</a>` : ''}
+            ${project.files['project_config.json'] ? `<a href="project_config.json" download class="dl-pill">project_config.json</a>` : ''}
             ${project.files['script.json'] ? `<a href="script.json" download class="dl-pill">script.json</a>` : ''}
             ${project.files['timings.json'] ? `<a href="timings.json" download class="dl-pill">timings.json</a>` : ''}
             ${project.files['meta.json'] ? `<a href="meta.json" download class="dl-pill">meta.json</a>` : ''}
@@ -2772,11 +2807,170 @@ export function generateWalkthrough(project, allProjects) {
             </table>
           </div>
 
+          <!-- Voice, Style, Palette & Prompts Configuration Card -->
+          ${project.projectConfig ? `
+          <div class="specs-card">
+            <div class="specs-card-title">
+              <span>🎙️ Voice, Style, Palette &amp; Prompts Configuration</span>
+            </div>
+            
+            <!-- Voice & TTS Settings -->
+            <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.25rem;">
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); font-weight: 700; text-transform: uppercase;">
+                Voice &amp; Audio Synthesis (Gemini TTS)
+              </div>
+              <table class="specs-table">
+                <tr>
+                  <td class="specs-label">Provider &amp; Model</td>
+                  <td class="specs-val">${escapeHtml(project.projectConfig.voice?.provider || 'gemini-tts')} / ${escapeHtml(project.projectConfig.voice?.model || 'gemini-2.5-pro-preview-tts')}</td>
+                </tr>
+                <tr>
+                  <td class="specs-label">Prebuilt Voice</td>
+                  <td class="specs-val">${escapeHtml(project.projectConfig.voice?.voiceName || 'Charon')} (${escapeHtml(project.projectConfig.voice?.language || project.language)} @ ${project.projectConfig.voice?.sampleRateHz || 24000} Hz)</td>
+                </tr>
+                <tr>
+                  <td class="specs-label">Acoustic Lead Offset</td>
+                  <td class="specs-val">${project.projectConfig.voice?.leadOffsetSec != null ? project.projectConfig.voice.leadOffsetSec : 0.22}s (compensates Whisper alignment delay)</td>
+                </tr>
+                ${project.projectConfig.voice?.ttsStylePrompt ? `
+                <tr>
+                  <td class="specs-label">TTS Style Prompt</td>
+                  <td class="specs-val" style="font-family: var(--font-sans); font-size: 0.85rem; color: #e2e8f0; line-height: 1.4; background: rgba(0,0,0,0.25); padding: 0.5rem; border-radius: 6px;">
+                    &ldquo;${escapeHtml(project.projectConfig.voice.ttsStylePrompt)}&rdquo;
+                  </td>
+                </tr>
+                ` : ''}
+                ${project.projectConfig.voice?.pronunciationMap && Object.keys(project.projectConfig.voice.pronunciationMap).length > 0 ? `
+                <tr>
+                  <td class="specs-label">Pronunciation Map</td>
+                  <td class="specs-val">
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.35rem;">
+                      ${Object.entries(project.projectConfig.voice.pronunciationMap).map(([k, v]) => `
+                        <span style="font-size: 0.72rem; background: rgba(255,255,255,0.06); padding: 0.2rem 0.45rem; border-radius: 4px; border: 1px solid var(--card-border);">
+                          <strong>${escapeHtml(k)}</strong> &rarr; <em>${escapeHtml(v)}</em>
+                        </span>
+                      `).join('')}
+                    </div>
+                  </td>
+                </tr>
+                ` : ''}
+              </table>
+            </div>
+
+            <!-- Visual Style, Fonts & Palette -->
+            <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.75rem;">
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #38bdf8; font-weight: 700; text-transform: uppercase;">
+                Visual Style, Palette &amp; Typography
+              </div>
+              <table class="specs-table">
+                <tr>
+                  <td class="specs-label">Theme &amp; Top Brow</td>
+                  <td class="specs-val">${escapeHtml(project.projectConfig.style?.theme || 'swiss-editorial-light')} (${escapeHtml(project.projectConfig.style?.topBrowFormat || '')})</td>
+                </tr>
+                <tr>
+                  <td class="specs-label">Fonts</td>
+                  <td class="specs-val" style="font-size: 0.78rem;">
+                    Heading: <code>${escapeHtml(project.projectConfig.style?.headingFont || '')}</code> (${project.projectConfig.style?.headingWeight || 800})<br>
+                    Body: <code>${escapeHtml(project.projectConfig.style?.bodyFont || '')}</code><br>
+                    Data/Mono: <code>${escapeHtml(project.projectConfig.style?.monoFont || '')}</code>
+                  </td>
+                </tr>
+                ${project.projectConfig.style?.palette ? `
+                <tr>
+                  <td class="specs-label">Color Palette</td>
+                  <td class="specs-val">
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;">
+                      ${Object.entries(project.projectConfig.style.palette).map(([name, hex]) => `
+                        <div style="display: inline-flex; align-items: center; gap: 0.35rem; background: rgba(255,255,255,0.05); padding: 0.2rem 0.5rem; border-radius: 6px; font-size: 0.72rem;">
+                          <span style="display: inline-block; width: 14px; height: 14px; border-radius: 3px; background: ${hex}; border: 1px solid rgba(255,255,255,0.2);"></span>
+                          <span style="color: var(--text-muted);">${escapeHtml(name)}:</span>
+                          <code style="color: #fff;">${hex}</code>
+                        </div>
+                      `).join('')}
+                    </div>
+                  </td>
+                </tr>
+                ` : ''}
+              </table>
+            </div>
+
+            <!-- Beat Archetypes -->
+            ${project.projectConfig.style?.beatArchetypes && project.projectConfig.style.beatArchetypes.length > 0 ? `
+            <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.75rem;">
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #a78bfa; font-weight: 700; text-transform: uppercase;">
+                Scene &amp; Diagram Archetypes
+              </div>
+              <table class="specs-table">
+                <thead>
+                  <tr>
+                    <th>Beat</th>
+                    <th>Chapter</th>
+                    <th>Diagram Archetype</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${project.projectConfig.style.beatArchetypes.map(a => `
+                    <tr>
+                      <td class="specs-val">B${escapeHtml(a.beat)}</td>
+                      <td style="color: #fff;">${escapeHtml(a.chapterTitle)}</td>
+                      <td class="specs-val" style="color: #38bdf8;">${escapeHtml(a.archetype)}</td>
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+            </div>
+            ` : ''}
+
+            <!-- Editorial Prompts -->
+            ${project.projectConfig.prompts ? `
+            <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.75rem;">
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #34d399; font-weight: 700; text-transform: uppercase;">
+                Editorial System Prompts &amp; Rules
+              </div>
+              <table class="specs-table">
+                ${project.projectConfig.prompts.scriptPromptSummary ? `
+                <tr>
+                  <td class="specs-label">Script Framework</td>
+                  <td class="specs-val" style="font-family: var(--font-sans); font-size: 0.85rem; color: #cbd5e1;">
+                    ${escapeHtml(project.projectConfig.prompts.scriptPromptSummary)}
+                  </td>
+                </tr>
+                ` : ''}
+                ${project.projectConfig.prompts.iconGenerationPrompt ? `
+                <tr>
+                  <td class="specs-label">Icon Vector Prompt</td>
+                  <td class="specs-val" style="font-family: var(--font-sans); font-size: 0.85rem; color: #cbd5e1;">
+                    <code>${escapeHtml(project.projectConfig.prompts.iconGenerationPrompt)}</code>
+                  </td>
+                </tr>
+                ` : ''}
+                ${project.projectConfig.prompts.visualCueRules ? `
+                <tr>
+                  <td class="specs-label">Visual Cue Rules</td>
+                  <td class="specs-val" style="font-family: var(--font-sans); font-size: 0.85rem; color: #cbd5e1;">
+                    ${escapeHtml(project.projectConfig.prompts.visualCueRules)}
+                  </td>
+                </tr>
+                ` : ''}
+              </table>
+            </div>
+            ` : ''}
+
+            <!-- Download Button -->
+            <div style="margin-top: 0.5rem; display: flex; gap: 0.5rem;">
+              <a href="project_config.json" target="_blank" class="dl-pill" style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.4);">
+                <span>📋</span> View Full project_config.json ↗
+              </a>
+            </div>
+          </div>
+          ` : ''}
+
           <div class="specs-card">
             <div class="specs-card-title">
               <span>📁 Raw JSON Manifest Files</span>
             </div>
             <div class="dl-grid">
+              <a href="project_config.json" target="_blank" class="dl-pill">View project_config.json ↗</a>
               <a href="meta.json" target="_blank" class="dl-pill">View meta.json ↗</a>
               <a href="timings.json" target="_blank" class="dl-pill">View timings.json ↗</a>
               <a href="script.json" target="_blank" class="dl-pill">View script.json ↗</a>

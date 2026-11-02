@@ -11,8 +11,9 @@
    - All legacy frameworks (`remotion/`, `styknimate/`, `manim/`), abandoned drafts (`vid_20261031_001_long`), duplicate `public/` trees, and `motion-canvas/output/` intermediate caches have been wiped (+2.0 GB recovered).
    - `/home/agent/orca/AI-nimate/projects/` is the single canonical output directory containing ONLY:
      - `index.html` (Discovery Hub UI)
+     - `projects_config.json` (Authoritative master configuration & series/channel/project registry)
      - `manifest.json` (Enriched project & beat metadata)
-     - `<channel_name>_<date>_<project_name>/` directories (zero loose symlinks):
+     - `<channel_name>_<date>_<project_name>/` directories (each with standalone `project_config.json`, zero loose symlinks):
        - `kausalmedia_20261015_anatomi-saham-gorengan-di-bei/`
        - `kausalmedia_20261021_humane-ai-pin-hardware-collapse/`
        - `kausalmedia_20261024_offshore-investing-tax-traps-indonesia/`
@@ -20,7 +21,14 @@
        - `kausalmedia_20261031_knp-bursa-kita-terancam-diboikot-dunia/`
        - `kausalmedia_20261031_knp-saham-teknologi-runtuh/`
 
-3. **Portal Discovery Hub & Interactive 5-Beat Walkthrough (`build_portal.mjs`)**:
+3. **Master Configuration Registry (`projects/projects_config.json`) & Per-Project Configs**:
+   - Authoritative registry defining:
+     - Series presets: `Knp?` (layman tone, Gemini TTS `Kore`/`Charon`, `leadOffsetSec: 0.22`, brand replacements) and `Forensic Deep-Dive` (10-K unit-economics tone, `Instrument Serif` / `Plus Jakarta Sans`, high-contrast Swiss palette).
+     - Channels: `kausalmedia` and `linkedin`.
+     - 6 Canonical project configurations containing full voice parameters, visual style palettes, prompt summaries, and beat archetypes.
+   - `build_portal.mjs` and `render.mjs` automatically write `projects/<dirName>/project_config.json` and display the **Voice, Style, Palette & Prompts Configuration** inside the "Production Spec & JSON" tab of each project's walkthrough portal.
+
+4. **Portal Discovery Hub & Interactive 5-Beat Walkthrough (`build_portal.mjs`)**:
    - [`motion-canvas/scripts/build_portal.mjs`](file:///home/agent/orca/AI-nimate/motion-canvas/scripts/build_portal.mjs) automatically builds [`projects/index.html`](file:///home/agent/orca/AI-nimate/projects/index.html) (featured hero, transcript search with `/`, filter pills, 5-beat hover keyframe scrubber) and each project's `index.html` & `embed.html` (adaptive `9:16`/`16:9` cinema stage, "Loop Beat" toggle, segmented 5-beat timeline bar, live-synced beat transcript cards, and QA keyframe lightbox).
 
 4. **Nginx Proxy & HTTP Basic Auth Admin Gate (`cuang.dev`)**:
@@ -34,8 +42,9 @@
 
 When the user asks for a new video on a topic, follow these 6 steps without touching any existing project:
 
-### Step 1: Allocate a Fresh Project ID & Scaffold Directories
-Choose the next available `vid_YYYYMMDD_NNN` ID (using today's date `YYYYMMDD` and sequence `001`, `002`, ...) and canonical folder name `<channel_name>_<YYYYMMDD>_<project_slug>`:
+### Step 1: Inspect Registry, Allocate Fresh ID & Scaffold Directories
+Inspect [`projects/projects_config.json`](file:///home/agent/orca/AI-nimate/projects/projects_config.json) for series presets (`Knp?`, `Forensic Deep-Dive`), channel rules, and voice configs. Choose the next available `vid_YYYYMMDD_NNN` ID (using today's date `YYYYMMDD` and sequence `001`, `002`, ...) and canonical folder name `<channel_name>_<YYYYMMDD>_<project_slug>`:
+- Register the new project definition under `projects.<channel>_<YYYYMMDD>_<slug>` in [`projects/projects_config.json`](file:///home/agent/orca/AI-nimate/projects/projects_config.json).
 - `motion-canvas/production/vid_YYYYMMDD_NNN/` (`script.json`, `timings.json`, `synthesize_vid_YYYYMMDD_NNN.py`)
 - `motion-canvas/public/assets/vid_YYYYMMDD_NNN/` (transparent `256x256` graphic icons, zero baked text)
 - `motion-canvas/public/audio/vid_YYYYMMDD_NNN_narration.wav`
