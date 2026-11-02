@@ -1,63 +1,59 @@
 # Active Agent Handoff Pointer (`AI-nimate`)
 
-> **Workspace Consolidation Notice (October 30, 2026)**:
-> - The previous `AI-Animation-Workflows` repository has been promoted to become the main **[`/home/agent/orca/AI-nimate`](file:///home/agent/orca/AI-nimate)** workspace (with a symlink at `/home/agent/orca/AI-Animation-Workflows -> /home/agent/orca/AI-nimate` for backward compatibility).
-> - The older legacy repository is archived at **[`/home/agent/orca/AI-nimate-legacy`](file:///home/agent/orca/AI-nimate-legacy)**.
+> **CRITICAL RULE — PROJECT TOPIC ISOLATION (MANDATORY DEFAULT)**:
+> - **Unless explicitly specified by the user, treat every project/video request as a completely separate, independent topic that does NOT affect any other project.**
+> - Never overwrite, rename, or mutate existing episodes (`motion-canvas/production/vid_*`, `motion-canvas/src/scenes/vid_*`, `motion-canvas/src/projects/vid_*`, `motion-canvas/public/assets/vid_*`, or `projects/<channel_name>_<date>_<project_name>/`).
+> - Every new project allocates a fresh `vid_YYYYMMDD_NNN` ID and writes its outputs exclusively to its own canonical directory: `/home/agent/orca/AI-nimate/projects/<channel_name>_<YYYYMMDD>_<project_slug>/`.
 
 ---
 
 ## Current Operational Handoffs & Guides
 
-1. **[`HANDOFF_2026-10-30_diagram_storytelling_and_skills_workflow.md`](file:///home/agent/orca/AI-nimate/docs/handoffs/HANDOFF_2026-10-30_diagram_storytelling_and_skills_workflow.md)** — **PRIMARY MASTER HANDOFF**:
-   Complete production reference covering:
-   - **`/flash-orchestrator` Skill & Subagent Pool**: Token-shielding frontier orchestrator ([`.agents/skills/flash-orchestrator/SKILL.md`](file:///home/agent/orca/AI-nimate/.agents/skills/flash-orchestrator/SKILL.md), [`WORKER-TEMPLATES.md`](file:///home/agent/orca/AI-nimate/.agents/skills/flash-orchestrator/WORKER-TEMPLATES.md)) powering [`deep-researcher`](file:///home/agent/orca/AI-nimate/.agents/agents/deep-researcher/agent.md), [`thinking-scriptwriter`](file:///home/agent/orca/AI-nimate/.agents/agents/thinking-scriptwriter/agent.md), and [`flash-coder`](file:///home/agent/orca/AI-nimate/.agents/agents/flash-coder/agent.md) on `Model: "flash"`.
-   - **Rule 1B Root Cause & Permanent Fix**: Top-left quadrant slicing bug at `t = 85.0s` caused by bare `<Camera>` internal `this.scene = new Node({})` losing `View2D`'s center-origin matrix; mandatory invariant is wrapping diagrams in `<Node ref={camera}>` directly under `view` (or `<Camera.Stage>`).
-   - **Rule 6 Physical Screen Calibration & Shared Scale Module**: Established [`src/shared/screenCalibration.ts`](file:///home/agent/orca/AI-nimate/motion-canvas/src/shared/screenCalibration.ts) exporting `getTypo(wide)` and `getAssets(wide)` to calibrate 9:16 mobile viewports (~390px CSS width, `0.36x` scale factor) vs 16:9 desktop displays, enforcing Phone Font Floor (`>= 20px` in 9:16, `>= 18px` in 16:9) verified via `scripts/qa_verify.mjs`.
-   - **Sample-Accurate Acoustic-to-Visual Word Sync (`±0.3s`)**: Spoken word alignment in `timings.json`, `≤2.5s` visual micro-cadence, single active element `focalScale` breathing, and visual cue lookup tables (`print_visual_cue_lookup_table`).
-   - **Render Pipeline Speedup & Automated QA Gate**: Single Chromium browser reuse per aspect pass, DOM `#render` readiness wait, 300ms file stability polling, and [`scripts/qa_verify.mjs`](file:///home/agent/orca/AI-nimate/motion-canvas/scripts/qa_verify.mjs) automated test gate.
-   - **Web Portal Showcase**: Interactive dual-aspect (`16:9 + 9:16`) video player and gallery featuring all 4 Kausal Media releases.
+1. **[`HANDOFF_2026-11-02_clean_projects_workflow_and_portal_v2.md`](file:///home/agent/orca/AI-nimate/docs/handoffs/HANDOFF_2026-11-02_clean_projects_workflow_and_portal_v2.md)** — **PRIMARY MASTER HANDOFF (Nov 2, 2026)**:
+   - **Project Topic Isolation Rule**: Strict episode independence by default; zero cross-project mutation.
+   - **Purified Repo & Canonical `projects/<channel>_<date>_<project_name>/` Output Layout**: Wiped unused frameworks (`remotion/`, `styknimate/`, `manim/`) and intermediate caches (+2.0 GB freed); consolidated all 6 published episodes into `projects/<channel_name>_<date>_<project_name>/` with zero loose symlinks.
+   - **6-Step Production Pipeline**: From isolated `vid_YYYYMMDD_NNN` scaffolding -> layman scriptwriting (`Knp?`) -> TTS & Whisper `timings.json` -> Scene Engineering (Rules 1–12) -> Direct rendering (`render.mjs`) & 15-check QA (`qa_verify.mjs`) -> Portal build (`build_portal.mjs`) & deployment (`deploy_portal.sh` / `npm run deploy`).
+   - **Portal v2 & Nginx Admin Gate (`cuang.dev`)**: Upgraded Discovery Hub (`projects/index.html`) + 5-Beat Interactive Walkthrough (`projects/<dir>/index.html`), gated across `https://cuang.dev/projects/ainimate/` and all sub-URLs via Nginx HTTP Basic Auth (credentials in [`.env`](file:///home/agent/orca/AI-nimate/.env)).
 
-2. **[`Guide.md`](file:///home/agent/orca/AI-nimate/Guide.md)** — Master Production & Orchestrator Guide:
-   - Rules 1–6: `focalScale` stillness by default, Rule 1B camera cacheBBox invariant, authentic Wikimedia vector marks, 5 distinct diagram archetypes, sample-accurate `±0.3s` triggers, symmetrical subtitle pill margins, and Rule 6 shared screen calibration module (`src/shared/screenCalibration.ts`) with Phone Font Floor.
-   - Section 6: Web Portal, canonical `projects/<channel>_<date>_<project_name>/` layout, `deploy_portal.sh`, and Nginx HTTP Basic Auth Admin Gate on `cuang.dev`.
+2. **[`HANDOFF_2026-10-30_diagram_storytelling_and_skills_workflow.md`](file:///home/agent/orca/AI-nimate/docs/handoffs/HANDOFF_2026-10-30_diagram_storytelling_and_skills_workflow.md)** — **HISTORICAL ARCHITECTURE HANDOFF**:
+   - Covers `/flash-orchestrator` subagent contracts, Rule 1B `<Camera>` bbox fix, Rule 6 physical screen calibration (`src/shared/screenCalibration.ts`), and sample-accurate acoustic-to-visual word sync (`±0.3s`).
 
-3. **[`AGENTS.md`](file:///home/agent/orca/AI-nimate/AGENTS.md)** — Antigravity Agent Guidelines:
-   - Strict `≤76` character terminal width budget, raw Mermaid CLI block ban, and 2025–2026 temporal anchoring.
+3. **[`Guide.md`](file:///home/agent/orca/AI-nimate/Guide.md)** — **Master Production & Orchestrator Guide**:
+   - Section 0A: Project Topic Isolation Rule.
+   - Section 0B: `/flash-orchestrator` Subagent Architecture (`Model: "flash"`).
+   - Section 1: Visual Hierarchy & Typography Rules 1–12 (`Plus Jakarta Sans` 800 headings, `<= 18` `<Txt>` density cap, L-to-R / T-to-B reveal order, single `Knp? | <Chapter Name>` top brow, mandatory X/Y chart axes + gridlines).
+   - Sections 2–6: Research CoT, Scriptwriting CoT, TTS/Whisper alignment, `render.mjs` + `qa_verify.mjs`, and `build_portal.mjs` + `deploy_portal.sh`.
 
----
-
-## Web Portal & Automated Deployment Pipeline (Step 4 Complete)
-
-- **Standard Project Output Directory Structure**:
-  All render outputs are normalized under `/home/agent/orca/AI-nimate/projects/<channel>_<date>_<project_name>/`:
-  - `kausalmedia_20261021_anatomi-saham-gorengan-di-bei/`
-  - `kausalmedia_20261024_the-ai-bubble-explained/`
-  - `kausalmedia_20261029_offshore-investing-tax-traps-indonesia/`
-  - `kausalmedia_20261031_knp-bursa-kita-terancam-diboikot-dunia/`
-  - `kausalmedia_20261031_knp-saham-teknologi-runtuh/`
-  Backward-compatible relative symlinks are preserved (e.g. `projects/<video_id> -> <canonical_project_dir>`). All symlinks inside `projects/` strictly use relative paths within `projects/` to prevent escaping the mount root.
-
-- **Automated Portal Builder (`motion-canvas/scripts/build_portal.mjs`)**:
-  - Automatically enriches and generates `manifest.json`, discovery hub `projects/index.html`, channel hub `projects/kausalmedia/index.html`, and interactive dual-aspect players (`index.html`, `embed.html`) for every project.
-
-- **Deployment Script (`motion-canvas/scripts/deploy_portal.sh` & `npm run deploy`)**:
-  - Executes `build_portal.mjs`.
-  - Syncs `projects/` to `docker-host:/home/agent/orca/AI-nimate/projects/` and `docker-host:/home/agent/orca/AI-nimate/public/projects/ainimate/` via `rsync -az --delete`.
-  - Fixes permissions for Nginx container worker process.
-
-- **Production Nginx HTTP Basic Auth Gate (`cuang.dev`)**:
-  - Live at `https://cuang.dev/projects/ainimate/`
-  - Root URL and all sub-URLs are gated by Nginx Basic Auth (`auth_basic "AI-nimate Admin"; auth_basic_user_file /etc/nginx/.htpasswd;`).
-  - Byte-range requests (`Accept-Ranges: bytes`) and MP4 streaming are verified across all video files.
-  - Credentials stored in `.env` (`AINIMATE_ADMIN_USER`, `AINIMATE_ADMIN_PASS`, `AINIMATE_PORTAL_URL`).
+4. **[`AGENTS.md`](file:///home/agent/orca/AI-nimate/AGENTS.md)** — **Antigravity Agent Rules (Auto-Loaded)**:
+   - Terminal width budget (`<= 76` chars), raw Mermaid CLI ban, 2025–2026 temporal anchoring, **Section 5: Project Topic Isolation Rule**, and **Section 6: Canonical AI-nimate Production Workflow**.
 
 ---
 
-## Verification & Quick Start
+## Canonical Published Projects (`/home/agent/orca/AI-nimate/projects/`)
+
+| Canonical Directory (`projects/<channel>_<date>_<project_name>/`) | ID | Series | Aspects |
+| :--- | :--- | :--- | :---: |
+| `kausalmedia_20261031_knp-saham-teknologi-runtuh/` | `vid_20261031_002` | `Knp?` | `9:16` |
+| `kausalmedia_20261031_knp-bursa-kita-terancam-diboikot-dunia/` | `vid_20261031_001` | `Knp?` | `9:16,16:9` |
+| `kausalmedia_20261029_the-ai-bubble-explained/` | `vid_20261029_002` | `Forensic` | `16:9` |
+| `kausalmedia_20261024_offshore-investing-tax-traps-indonesia/` | `vid_20261024_001` | `Forensic` | `16:9` |
+| `kausalmedia_20261021_humane-ai-pin-hardware-collapse/` | `vid_20261021_001` | `Forensic` | `9:16` |
+| `kausalmedia_20261015_anatomi-saham-gorengan-di-bei/` | `vid_20261015_001` | `Forensic` | `16:9` |
+
+---
+
+## Quick Reference Commands
+
 ```bash
-# Verify subtitle invariants, camera architecture, and video streams
-node /home/agent/orca/AI-nimate/motion-canvas/scripts/qa_verify.mjs vid_20261029_002
+# 1. Typecheck scenes
+cd /home/agent/orca/AI-nimate/motion-canvas && npx tsc --noEmit
 
-# Check handoff modifications
-git diff --stat HANDOFF.md docs/handoffs/
+# 2. Render a project directly into ../projects/<channel>_<date>_<slug>/
+node render.mjs --project=vid_YYYYMMDD_NNN --channel=kausalmedia --slug=<slug> --aspects=9x16
+
+# 3. Run 15-check automated QA verifier
+node scripts/qa_verify.mjs vid_YYYYMMDD_NNN
+
+# 4. Rebuild portal UI & deploy to https://cuang.dev/projects/ainimate/
+cd /home/agent/orca/AI-nimate && npm run deploy
 ```

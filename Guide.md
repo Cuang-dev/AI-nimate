@@ -1,10 +1,23 @@
-# AI-Animation-Workflows — Master Production & Orchestrator Guide
+# AI-nimate — Master Production & Orchestrator Guide
 
 This document defines the unified production standards, subagent contracts, visual hierarchy rules, audio/subtitle alignment pipelines, and rendering workflows for generating high-retention vertical (`1080x1920 @ 60fps`) and widescreen (`1920x1080`) explainer videos in Motion Canvas.
 
 ---
 
-## 0. Multi-Agent Reasoning Architecture & Chain-of-Thought Protocol (Mandatory)
+## 0A. Project Topic Isolation Rule (Mandatory Default)
+
+Unless explicitly instructed otherwise by the user, **every project/episode MUST be treated as a completely separate, independent topic that does not affect any other project**:
+
+1. **Strict Topic & Episode Independence**:
+   - Never assume a new video request is a continuation, replacement, or modification of a prior project unless the user explicitly references that episode.
+   - Each topic owns an isolated narrative, script, audio file, scene folder, asset directory, and output folder.
+2. **Zero Cross-Project Contamination**:
+   - Never overwrite, rename, or mutate existing episodes inside `motion-canvas/production/vid_*`, `motion-canvas/src/scenes/vid_*`, `motion-canvas/src/projects/vid_*`, `motion-canvas/public/assets/vid_*`, `motion-canvas/public/audio/vid_*`, or `projects/<channel_name>_<date>_<project_name>/`.
+   - Every new project MUST allocate a fresh `vid_YYYYMMDD_NNN` ID and output exclusively to its own canonical directory: `/home/agent/orca/AI-nimate/projects/<channel_name>_<YYYYMMDD>_<project_slug>/`.
+
+---
+
+## 0B. Multi-Agent Reasoning Architecture & Chain-of-Thought Protocol (Mandatory)
 
 The production pipeline operates under the master token-shielding orchestration protocol defined in [`.agents/skills/flash-orchestrator/SKILL.md`](file:///home/agent/orca/AI-nimate/.agents/skills/flash-orchestrator/SKILL.md). A high-reasoning Frontier Architect oversees seam definition, decomposition, and review, while all exploration, forensic research, scriptwriting, and code implementation are strictly delegated to specialized workers operating on **`Model: "flash"`** (or `"flash_lite"`).
 
@@ -301,56 +314,52 @@ For production-grade bilingual (Indonesian + English) voice synthesis:
 
 ---
 
-## 5. Sequential Rendering & Deployment Pipeline
+## 5. Sequential Rendering & Automated QA Pipeline (`render.mjs` + `qa_verify.mjs`)
 
-Never launch multiple concurrent headless browsers during rendering. Always execute sequential renders:
+Never launch multiple concurrent headless browsers during rendering. Always execute sequential renders via [`motion-canvas/render.mjs`](file:///home/agent/orca/AI-nimate/motion-canvas/render.mjs), which stages per-beat intermediates in `.cache/render/<project_id>`, concatenates & muxes final deliverables directly into `/home/agent/orca/AI-nimate/projects/<channel>_<date>_<slug>/`, deletes temporary beat clips, and triggers [`build_portal.mjs`](file:///home/agent/orca/AI-nimate/motion-canvas/scripts/build_portal.mjs):
 
 ```bash
 # 1. Typecheck all scenes
 cd /home/agent/orca/AI-nimate/motion-canvas && npx tsc --noEmit
 
-# 2. Clear previous beat outputs to force a fresh render
-rm -f output/vid_20261024_001/vid_20261024_001_beat*.mp4 \
-      output/vid_20261024_001/vid_20261024_001*.mp4 \
-      output/vid_20261024_001/video_web.mp4
+# 2. Render directly into ../projects/<channel>_<date>_<slug>/
+node render.mjs --project=vid_YYYYMMDD_NNN --channel=kausalmedia --slug=<project-slug> --aspects=9x16
 
-# 3. Run sequential render, lossless concat, audio mux, HEVC encode, web faststart transcode, and docker-host rsync
-node render_sequential.mjs
+# 3. Run the 15-check automated QA verifier (timings, hold times, Rules 1-12, keyframes)
+node scripts/qa_verify.mjs vid_YYYYMMDD_NNN
 
-# 4. Run automated QA verification for timing sync, hold times, and visual rules
-node scripts/qa_verify.mjs vid_20261024_001
+# 4. Build portal UI & deploy to https://cuang.dev/projects/ainimate/
+cd /home/agent/orca/AI-nimate && npm run deploy
 ```
 
 ---
 
 ## 6. Web Portal & Cloud Deployment Architecture
 
-### 1. Canonical Project Output Layout
-All animated documentary video releases are stored under:
-`/home/agent/orca/AI-nimate/projects/<channel>_<date>_<project_name>/`
+### 1. Canonical Project Output Layout (`projects/<channel_name>_<date>_<project_name>/`)
+All animated video releases are stored exclusively in `/home/agent/orca/AI-nimate/projects/<channel_name>_<date>_<project_name>/` (with zero loose symlinks or intermediate beat caches):
+- `index.html`: Two-column Cinema + Interactive 5-Beat Walkthrough UI (adaptive `9:16` / `16:9` viewport, "Loop Beat" toggle, segmented 5-beat progress bar, live-synced beat transcript cards, QA keyframe lightbox, and asset downloads).
+- `embed.html`: Responsive iframe embed player.
+- `meta.json`: Standardized project metadata, beat timings, transcripts, and QA status (`15/15 PASS`).
+- `script.json` & `timings.json`: Full narrative script and Whisper word-level alignment data.
+- `narration.wav`: Master vocal narration audio.
+- `video_9x16.mp4`, `video_16x9.mp4` (when dual-aspect), `video_whatsapp.mp4`, `video.mp4`.
+- `thumb.jpg`, `thumb_9x16.jpg`, `thumb_16x9.jpg`, and `qa_frames/beat1..5*.jpg`.
 
-Contents per project directory:
-- `index.html`: Interactive dual-aspect responsive showcase player with beat jumper navigation, script annotations, and direct download buttons.
-- `embed.html`: Clean iframe embed player for Discord embeds and external web pages.
-- `video_9x16.mp4`: Vertical 1080x1920 @ 60fps render.
-- `video.mp4` / `video_16x9.mp4`: Horizontal 1920x1080 @ 60fps render.
-- `video_whatsapp.mp4`: Compressed preview (<16MB).
-- `narration.wav`: Studio vocal narration.
-- `thumb.jpg` / `thumb_9x16.jpg`: Social card & poster previews.
-
-### 2. Portal Build & Deployment Commands
-- **Rebuild HTML portals & manifests**:
+### 2. Portal Discovery Hub (`projects/index.html` & `build_portal.mjs`)
+- **Rebuild Discovery Hub, Walkthroughs, and `projects/manifest.json`**:
   ```bash
-  node motion-canvas/scripts/build_portal.mjs
+  node /home/agent/orca/AI-nimate/motion-canvas/scripts/build_portal.mjs
   ```
-- **Deploy to cuang.dev**:
+- **Deploy to `cuang.dev`**:
   ```bash
   npm run deploy
-  # Or directly: bash motion-canvas/scripts/deploy_portal.sh
+  # Or directly: bash /home/agent/orca/AI-nimate/motion-canvas/scripts/deploy_portal.sh
   ```
 
-### 3. Nginx Gateway & HTTP Basic Auth Admin Gate
+### 3. Nginx Gateway & HTTP Basic Auth Admin Gate (`cuang.dev`)
 - **Public URL**: `https://cuang.dev/projects/ainimate/`
-- **Reverse Proxy Path**: Cloudflare -> Express `portfolio-web` -> `projects-cuang-nginx:80`
-- **Authentication**: HTTP Basic Auth (`auth_basic "AI-nimate Admin"; auth_basic_user_file /etc/nginx/.htpasswd;`) protecting `/projects/ainimate/` and all sub-paths.
+- **Reverse Proxy Path**: Cloudflare Tunnel -> `docker-host` (`projects-cuang-nginx`, `0.0.0.0:8095->80/tcp`)
+- **Authentication**: HTTP Basic Auth (`auth_basic "AI-nimate Admin"; auth_basic_user_file /etc/nginx/.htpasswd;`) protecting `/projects/ainimate/` and every sub-URL (`/projects/ainimate/<channel>_<date>_<project_name>/...`). Credentials (`AINIMATE_ADMIN_USER` / `AINIMATE_ADMIN_PASS`) are stored in `/home/agent/orca/AI-nimate/.env`.
+- **Legacy URL Redirects**: Handled cleanly via `301` rewrite rules inside `/etc/nginx/conf.d/default.conf` on `docker-host` (keeping `projects/` 100% free of legacy symlinks).
 - **Byte Ranges**: Supports streaming video scrubbing via `Accept-Ranges: bytes` (HTTP 206 Partial Content).
