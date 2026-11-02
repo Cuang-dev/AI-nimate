@@ -1,0 +1,7 @@
+import { makeProject } from '@motion-canvas/core';
+import beat03 from '../../scenes/vid_20261031_001_long/beat_03?scene';
+
+export default makeProject({
+  name: 'vid_20261031_001_long_beat3',
+  scenes: [beat03],
+});
