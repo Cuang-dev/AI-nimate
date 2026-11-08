@@ -489,6 +489,48 @@ function getStockAssetPools() {
 }
 
 /**
+ * Extracts inline visual cues from text (e.g. [VISUAL CUE: action | target | phrase])
+ */
+function parseVisualCuesFromText(text) {
+  if (!text || typeof text !== 'string') return { cleanText: text || '', cues: [] };
+  const cues = [];
+  const cueRegex = /\[(?:VISUAL CUE|CUE):\s*([^\]]+)\]/gi;
+  let match;
+  while ((match = cueRegex.exec(text)) !== null) {
+    const raw = match[1].trim();
+    const parts = raw.split('|').map(p => p.trim());
+    if (parts.length >= 3) {
+      cues.push({ action: parts[0], target: parts[1], phrase: parts[2] });
+    } else if (parts.length === 2) {
+      const prog = parseFloat(parts[0]);
+      if (!isNaN(prog)) {
+        cues.push({ progress: prog, description: parts[1] });
+      } else {
+        cues.push({ action: parts[0], label: parts[1] });
+      }
+    } else {
+      cues.push({ description: raw });
+    }
+  }
+  const cleanText = text.replace(/\[(?:VISUAL CUE|CUE):\s*[^\]]+\]/gi, '').replace(/\s+/g, ' ').trim();
+  return { cleanText, cues };
+}
+
+/**
+ * Generates default progressive intra-beat reveal micro-cues (eliminates >3.5s visual stagnation)
+ */
+function generateDefaultSubCues(dur, snippet = '') {
+  const cues = [{ progress: 0.0, description: 'Primary Exhibit Arrival' }];
+  if (dur >= 4.5) {
+    cues.push({ progress: 0.33, description: 'Secondary Detail / Data Highlight' });
+    cues.push({ progress: 0.66, description: 'Focal Shift / Warning Stamp' });
+  } else if (dur >= 3.0) {
+    cues.push({ progress: 0.50, description: 'Detail Focus / Badge Flip' });
+  }
+  return cues;
+}
+
+/**
  * Slice script into fast-paced visual scene beats
  * Enforces hard ceiling <= 6.5s in both word-aligned and fallback slicing paths,
  * subdividing longer segments into balanced 3.5s–5.5s beats.
@@ -518,7 +560,7 @@ function sliceScriptIntoBeats({ timings, scriptText, durationSec, format = '16:9
       const isSignificantPause = pauseGap >= 0.35; // 350ms acoustic silence gap
 
       const shouldCutSentence = isSentenceEnd && (elapsed >= minBeatDuration || !next);
-      const shouldCutClause = isClauseEnd && (elapsed >= (isShort ? 3.0 : 3.8));
+      const shouldCutClause = isClauseEnd && (elapsed >= (isShort ? 2.8 : 3.2));
       const shouldCutPause = isSignificantPause && (elapsed >= minBeatDuration);
       const forceCutMax = elapsed >= maxBeatDuration;
 
@@ -635,6 +677,28 @@ function sliceScriptIntoBeats({ timings, scriptText, durationSec, format = '16:9
     }
   }
 
+  // Preserve & populate intra-beat sub-cues to guarantee zero visual dead air
+  for (const nb of normalizedBeats) {
+    const dur = Math.round((nb.endTime - nb.startTime) * 10) / 10;
+    const { cleanText, cues } = parseVisualCuesFromText(nb.scriptExcerpt);
+    nb.scriptExcerpt = cleanText || nb.scriptExcerpt;
+    if (cues.length > 0) {
+      cues.forEach((c, idx) => {
+        if (c.progress === undefined) {
+          c.progress = cues.length > 1 ? Number((idx / (cues.length - 1)).toFixed(2)) : 0.0;
+        }
+      });
+      nb.sub_cues = cues;
+      nb.visual_cues = cues;
+    } else if (nb.sub_cues && nb.sub_cues.length > 0) {
+      nb.visual_cues = nb.sub_cues;
+    } else {
+      const defaultCues = generateDefaultSubCues(dur, nb.scriptExcerpt);
+      nb.sub_cues = defaultCues;
+      nb.visual_cues = defaultCues;
+    }
+  }
+
   return normalizedBeats;
 }
 
@@ -713,7 +777,7 @@ RESEARCH DOSSIER CONTEXT:
 - Primary Evidence: ${(dossier.forensicEvidence || []).map(e => e.title + ': ' + e.finding).join('; ')}
 
 CRITICAL ARTIST DIRECTIVES:
-1. RAPID VISUAL CUT PACING: These scenes cut every ~3 to 4 seconds to maximize retention. Each beat must present a distinct physical subject, camera perspective, or document to prevent visual stagnation.
+1. RAPID VISUAL CUT PACING (ZERO DEAD AIR): Scenes cut every ~2.5s to 3.5s (or 6–10 spoken words; 6–8 micro-events in 18–25s beats) to eliminate visual stagnation (>3.5s without new visual arrivals). Each beat must present distinct physical subjects, camera perspectives, or progressive sub-cues.
 2. TWO CORE LAYOUT VARIATIONS: Intelligently choreograph each beat using one of two distinct layout variations:
    - "fullscreen": Full-bleed widescreen environmental scene, panoramic establishing shot, factory hall, trading floor, aerial cityscape, or dramatic story event. The image overlays on top of the background, with subtitles cleanly displayed above it.
    - "hero": Smaller transparent PNG placed in the middle hero section of the scene (characters, small props, coins, contracts, regulatory seals, ledgers, specific spot illustrations), surrounded by the clean archival canvas background, with subtitles below it.
@@ -727,7 +791,11 @@ CRITICAL ARTIST DIRECTIVES:
     "layout": "fullscreen" or "hero",
     "assetType": "environment" | "character" | "prop" | "spot_illustration",
     "visualConcept": "Concise 1-sentence description of the visual scene",
-    "prompt": "Vivid, exhaustive, image-generator-ready visual prompt describing subject, composition, background, lighting, and textures"
+    "prompt": "Vivid, exhaustive, image-generator-ready visual prompt describing subject, composition, background, lighting, and textures",
+    "sub_cues": [
+      { "progress": 0.0, "description": "Primary exhibit arrival" },
+      { "progress": 0.33, "description": "Secondary detail / badge reveal" }
+    ]
   }, ...
 ]
 OUTPUT ONLY THE JSON ARRAY. No explanations, no markdown fences.`;
@@ -760,7 +828,8 @@ OUTPUT ONLY THE JSON ARRAY. No explanations, no markdown fences.`;
               layout: item.layout || null,
               assetType: item.assetType || null,
               concept: item.visualConcept || item.concept || 'Visual scene exhibit',
-              prompt: item.prompt || item.artistPrompt || item.visualConcept
+              prompt: item.prompt || item.artistPrompt || item.visualConcept,
+              sub_cues: item.sub_cues || item.visual_cues || item.cues || []
             };
           });
           console.log(`[${new Date().toLocaleTimeString()}] [4/8] ✅ Sequence ${bIdx + 1}/${numBatches}: Generated ${parsed.length} custom scene prompts.`);
@@ -848,6 +917,8 @@ OUTPUT ONLY THE JSON ARRAY. No explanations, no markdown fences.`;
         artistPrompt: artistInfo.prompt,
         src: null
       },
+      sub_cues: (artistInfo.sub_cues && artistInfo.sub_cues.length > 0) ? artistInfo.sub_cues : (b.sub_cues || b.visual_cues || []),
+      visual_cues: (artistInfo.sub_cues && artistInfo.sub_cues.length > 0) ? artistInfo.sub_cues : (b.visual_cues || b.sub_cues || []),
       labels: null,
       annotation: annotation,
       data: data,

@@ -1,0 +1,120 @@
+{
+  "version": "2026.1",
+  "updated_at": "2026-10-29T12:12:00Z",
+  "policy": {
+    "voice_clone_isolation": "STRICT: User personal voice clones (personal_clone_en_id) are strictly bound to personal channels (linkedin) and prohibited from automated faceless channels (kausalmedia)."
+  },
+  "channels": {
+    "kausalmedia": {
+      "id": "kausalmedia",
+      "alias": "kausal_media",
+      "name": "Kausal Media",
+      "active": true,
+      "channel_type": "faceless_investigative",
+      "platform": [
+        "YouTube Shorts",
+        "Instagram Reels",
+        "TikTok"
+      ],
+      "project_dir": "projects/kausalmedia",
+      "workspace_root": "/home/agent/orca/AI-Animation-Workflows/projects/kausalmedia",
+      "description": "Faceless investigative business, corporate forensics, and financial documentary channel.",
+      "voice_profile": {
+        "voice_id": "kausal_narrator_default",
+        "voice_type": "third_person_documentary_studio",
+        "personal_voice_clone_allowed": false,
+        "personal_voice_clone_enforced": false,
+        "engine": "edge-tts",
+        "model": "id-ID-ArdiNeural",
+        "sample_rate_hz": 24000,
+        "description": "Standard third-person documentary studio narrator. NEVER the user's personal voice clone."
+      },
+      "script_profile": {
+        "perspective": "third_person_documentary",
+        "tone": "Forensic, empirical, analytical, objective balance-sheet dissection",
+        "banned_phrases": [
+          "Di era modern ini",
+          "Pernahkah Anda berpikir"
+        ]
+      },
+      "aspect_ratios": [
+        "16:9",
+        "9:16"
+      ],
+      "deployment": {
+        "endpoint_prefix": "https://cuang.dev/projects/ainimate/kausalmedia/",
+        "url_template": "https://cuang.dev/projects/ainimate/kausalmedia/<slug>/"
+      }
+    },
+    "linkedin": {
+      "id": "linkedin",
+      "alias": "personal_linkedin",
+      "name": "Personal LinkedIn",
+      "active": true,
+      "channel_type": "founder_executive_authority",
+      "platform": [
+        "LinkedIn"
+      ],
+      "project_dir": "projects/linkedin",
+      "workspace_root": "/home/agent/orca/AI-Animation-Workflows/projects/linkedin",
+      "description": "Personal founder, executive authority, and technical strategy video series for LinkedIn professional network.",
+      "voice_profile": {
+        "voice_id": "personal_clone_en_id",
+        "voice_type": "personal_bilingual_voice_clone",
+        "personal_voice_clone_allowed": true,
+        "personal_voice_clone_enforced": true,
+        "engines": {
+          "primary": {
+            "name": "VoxCPM2",
+            "version": "OpenBMB/VoxCPM2-June2026",
+            "sample_rate_hz": 48000,
+            "architecture": "48kHz native bilingual EN/ID zero-shot foundation model"
+          },
+          "fallback": {
+            "name": "ElevenLabs",
+            "version": "Eleven v4 PVC",
+            "sample_rate_hz": 44100
+          }
+        },
+        "reference_samples_dir": "/home/agent/orca/AI-Animation-Workflows/projects/linkedin/voice_samples/",
+        "description": "Exclusively uses the User's Personal Bilingual Voice Clone. Bound solely to Personal LinkedIn."
+      },
+      "script_profile": {
+        "perspective": "first_person_executive",
+        "pronouns": [
+          "I",
+          "we"
+        ],
+        "tone": "High-trust B2B clarity, technical architecture authority, founder strategy, empirical insights",
+        "anti_slop": "Direct strategic lessons, transparent engineering metrics, zero generic corporate buzzwords"
+      },
+      "aspect_ratios": {
+        "4:5": {
+          "resolution": [
+            1080,
+            1350
+          ],
+          "label": "LinkedIn Portrait Feed (Standard)"
+        },
+        "1:1": {
+          "resolution": [
+            1080,
+            1080
+          ],
+          "label": "LinkedIn Square"
+        },
+        "9:16": {
+          "resolution": [
+            1080,
+            1920
+          ],
+          "label": "LinkedIn Full Vertical Mobile"
+        }
+      },
+      "deployment": {
+        "endpoint_prefix": "https://cuang.dev/projects/ainimate/linkedin/",
+        "url_template": "https://cuang.dev/projects/ainimate/linkedin/<slug>/"
+      }
+    }
+  }
+}

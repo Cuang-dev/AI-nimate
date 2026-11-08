@@ -195,21 +195,21 @@ function buildDeterministicVectorFallback(sceneBeat = {}, channelProfile = {}, s
         </marker>
       </defs>
       <!-- Connecting Flow Paths -->
-      <path class="vec-draw-path" d="M 410 120 L 410 210" stroke="var(--brand-accent)" stroke-width="4" stroke-dasharray="6 6" fill="none" marker-end="url(#arrowhead-vert)" />
-      <path class="vec-draw-path" d="M 410 310 L 410 400" stroke="var(--brand-accent)" stroke-width="4" stroke-dasharray="6 6" fill="none" marker-end="url(#arrowhead-vert)" />
+      <path class="vec-draw-path" data-subcue-progress="0.25" d="M 410 120 L 410 210" stroke="var(--brand-accent)" stroke-width="4" stroke-dasharray="6 6" fill="none" marker-end="url(#arrowhead-vert)" />
+      <path class="vec-draw-path" data-subcue-progress="0.60" d="M 410 310 L 410 400" stroke="var(--brand-accent)" stroke-width="4" stroke-dasharray="6 6" fill="none" marker-end="url(#arrowhead-vert)" />
       
       <!-- Node 1 -->
-      <g transform="translate(160, 40)">
+      <g transform="translate(160, 40)" data-subcue-progress="0.0">
         <rect width="500" height="80" rx="12" fill="var(--bg-surface)" stroke="var(--border-muted, rgba(26,24,21,0.2))" stroke-width="2" />
         <text x="30" y="48" font-family="var(--font-mono, monospace)" font-size="20" font-weight="700" fill="var(--text-primary)">01. ${node1Label}</text>
       </g>
       <!-- Node 2 -->
-      <g transform="translate(160, 230)">
+      <g transform="translate(160, 230)" data-subcue-progress="0.33">
         <rect width="500" height="80" rx="12" fill="var(--bg-surface)" stroke="var(--brand-primary)" stroke-width="2.5" />
         <text x="30" y="48" font-family="var(--font-mono, monospace)" font-size="20" font-weight="700" fill="var(--brand-primary)">02. ${node2Label}</text>
       </g>
       <!-- Node 3 -->
-      <g transform="translate(160, 420)">
+      <g transform="translate(160, 420)" data-subcue-progress="0.66">
         <rect width="500" height="80" rx="12" fill="var(--bg-surface)" stroke="var(--border-muted, rgba(26,24,21,0.2))" stroke-width="2" />
         <text x="30" y="48" font-family="var(--font-mono, monospace)" font-size="20" font-weight="700" fill="var(--text-primary)">03. ${node3Label}</text>
       </g>
@@ -278,13 +278,13 @@ function buildDeterministicVectorFallback(sceneBeat = {}, channelProfile = {}, s
       </defs>
 
       <!-- Connecting Causal Line 1 -> 2 -->
-      <path class="vec-draw-path vec-flow-arrow" d="M 460 180 L 460 270" stroke="var(--brand-accent)" stroke-width="4" stroke-dasharray="6 6" fill="none" marker-end="url(#arrowhead-wide)" />
+      <path class="vec-draw-path vec-flow-arrow" data-subcue-progress="0.25" d="M 460 180 L 460 270" stroke="var(--brand-accent)" stroke-width="4" stroke-dasharray="6 6" fill="none" marker-end="url(#arrowhead-wide)" />
       
       <!-- Connecting Causal Line 2 -> 3 -->
-      <path class="vec-draw-path vec-flow-arrow" d="M 460 410 L 460 500" stroke="var(--brand-accent)" stroke-width="4" stroke-dasharray="6 6" fill="none" marker-end="url(#arrowhead-wide)" />
+      <path class="vec-draw-path vec-flow-arrow" data-subcue-progress="0.60" d="M 460 410 L 460 500" stroke="var(--brand-accent)" stroke-width="4" stroke-dasharray="6 6" fill="none" marker-end="url(#arrowhead-wide)" />
 
       <!-- Node 1: Origin -->
-      <g transform="translate(60, 60)" filter="url(#node-shadow)">
+      <g transform="translate(60, 60)" filter="url(#node-shadow)" data-subcue-progress="0.0">
         <rect width="800" height="120" rx="16" fill="var(--bg-surface)" stroke="var(--border-muted, rgba(26,24,21,0.2))" stroke-width="2" />
         <rect x="0" y="0" width="14" height="120" rx="7" fill="var(--brand-accent)" />
         <text x="36" y="50" font-family="var(--font-mono, monospace)" font-size="16" font-weight="700" fill="var(--brand-accent)">STAGE 01 // CASH FLOW ORIGIN</text>
@@ -292,7 +292,7 @@ function buildDeterministicVectorFallback(sceneBeat = {}, channelProfile = {}, s
       </g>
 
       <!-- Node 2: Mechanism / Choke Point -->
-      <g transform="translate(60, 290)" filter="url(#node-shadow)">
+      <g transform="translate(60, 290)" filter="url(#node-shadow)" data-subcue-progress="0.33">
         <rect width="800" height="120" rx="16" fill="var(--bg-surface)" stroke="var(--brand-primary)" stroke-width="2.5" />
         <rect x="0" y="0" width="14" height="120" rx="7" fill="var(--brand-primary)" />
         <text x="36" y="50" font-family="var(--font-mono, monospace)" font-size="16" font-weight="700" fill="var(--brand-primary)">STAGE 02 // STRUCTURAL CHOKE POINT</text>
@@ -300,7 +300,7 @@ function buildDeterministicVectorFallback(sceneBeat = {}, channelProfile = {}, s
       </g>
 
       <!-- Node 3: Fallout -->
-      <g transform="translate(60, 520)" filter="url(#node-shadow)">
+      <g transform="translate(60, 520)" filter="url(#node-shadow)" data-subcue-progress="0.66">
         <rect width="800" height="120" rx="16" fill="var(--bg-surface)" stroke="var(--border-muted, rgba(26,24,21,0.2))" stroke-width="2" />
         <rect x="0" y="0" width="14" height="120" rx="7" fill="var(--text-secondary)" />
         <text x="36" y="50" font-family="var(--font-mono, monospace)" font-size="16" font-weight="700" fill="var(--text-secondary)">STAGE 03 // NET BALANCE IMPACT</text>

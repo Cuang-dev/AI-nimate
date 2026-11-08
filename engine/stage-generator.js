@@ -304,6 +304,23 @@ function renderSceneMarkup(scene, channelTag) {
   ${scene.financialMetric.note ? `<div class="metric-subnote">${escapeHtml(scene.financialMetric.note)}</div>` : ''}
 </div>`;
   }
+  const cues = (Array.isArray(scene.sub_cues) && scene.sub_cues.length > 0)
+    ? scene.sub_cues
+    : ((Array.isArray(scene.visual_cues) && scene.visual_cues.length > 0) ? scene.visual_cues : []);
+  if (cues.length > 0) {
+    badgesHtml += '<div class="subcue-container" style="position: absolute; bottom: 28px; right: 28px; z-index: 38; display: flex; flex-direction: column; gap: 8px; pointer-events: none;">' +
+      cues.map((cue, idx) => {
+        const prog = typeof cue === 'object' && cue.progress !== undefined
+          ? cue.progress
+          : (cues.length > 1 ? Number((idx / (cues.length - 1)).toFixed(2)) : 0.0);
+        const label = typeof cue === 'object'
+          ? (cue.label || cue.description || cue.action || cue.phrase || cue.concept || 'Micro Exhibit')
+          : String(cue);
+        const isHidden = prog > 0;
+        return `<div class="subcue-badge ${isHidden ? 'subcue-pending' : 'subcue-active'}" data-subcue-progress="${prog}" style="background: var(--bg-surface); border: 1px solid var(--border-muted); border-left: 3px solid var(--brand-accent); padding: 5px 12px; border-radius: 6px; font-family: var(--font-mono); font-size: 11px; font-weight: 600; color: var(--text-primary); box-shadow: 0 4px 12px rgba(0,0,0,0.1); backdrop-filter: blur(8px);"><span style="color: var(--brand-accent); margin-right: 6px;">[${Math.round(prog * 100)}%]</span>${escapeHtml(label)}</div>`;
+      }).join('') +
+    '</div>';
+  }
 
   if (scene.layout === 'split') {
     const leftSrc = scene.assetUrl || '';
@@ -473,6 +490,8 @@ function generateStageHtml(arg1, arg2, arg3, arg4) {
       systemTag,
       citation,
       financialMetric,
+      sub_cues: sc.sub_cues || sc.visual_cues || [],
+      visual_cues: sc.visual_cues || sc.sub_cues || [],
       data: sc.data !== undefined ? sc.data : null,
       annotation: sc.annotation !== undefined ? sc.annotation : null
     };
@@ -929,6 +948,19 @@ function generateStageHtml(arg1, arg2, arg3, arg4) {
       transform: scale(calc(1.0 + 0.05 * var(--scene-progress, 0)))
                  translateY(calc(-8px * var(--scene-progress, 0)));
     }
+
+    /* Intra-Beat Progressive Sub-Cue Micro-Events */
+    [data-subcue-progress] {
+      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .subcue-pending {
+      opacity: 0 !important;
+      visibility: hidden !important;
+    }
+    .subcue-active {
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
   </style>
 </head>
 <body>
@@ -1034,6 +1066,23 @@ function generateStageHtml(arg1, arg2, arg3, arg4) {
           (sc.financialMetric.note ? '<div class="metric-subnote">' + escapeHtmlClient(sc.financialMetric.note) + '</div>' : '') +
         '</div>';
       }
+      const cues = (Array.isArray(sc.sub_cues) && sc.sub_cues.length > 0)
+        ? sc.sub_cues
+        : ((Array.isArray(sc.visual_cues) && sc.visual_cues.length > 0) ? sc.visual_cues : []);
+      if (cues.length > 0) {
+        badgesHtml += '<div class="subcue-container" style="position: absolute; bottom: 28px; right: 28px; z-index: 38; display: flex; flex-direction: column; gap: 8px; pointer-events: none;">' +
+          cues.map((cue, idx) => {
+            const prog = typeof cue === 'object' && cue.progress !== undefined
+              ? cue.progress
+              : (cues.length > 1 ? Number((idx / (cues.length - 1)).toFixed(2)) : 0.0);
+            const label = typeof cue === 'object'
+              ? (cue.label || cue.description || cue.action || cue.phrase || cue.concept || 'Micro Exhibit')
+              : String(cue);
+            const isHidden = prog > 0;
+            return '<div class="subcue-badge ' + (isHidden ? 'subcue-pending' : 'subcue-active') + '" data-subcue-progress="' + prog + '" style="background: var(--bg-surface); border: 1px solid var(--border-muted); border-left: 3px solid var(--brand-accent); padding: 5px 12px; border-radius: 6px; font-family: var(--font-mono); font-size: 11px; font-weight: 600; color: var(--text-primary); box-shadow: 0 4px 12px rgba(0,0,0,0.1); backdrop-filter: blur(8px);"><span style="color: var(--brand-accent); margin-right: 6px;">[' + Math.round(prog * 100) + '%]</span>' + escapeHtmlClient(label) + '</div>';
+          }).join('') +
+        '</div>';
+      }
 
       if (sc.layout === 'split') {
         const leftSrc = sc.assetUrl || '';
@@ -1075,7 +1124,36 @@ function generateStageHtml(arg1, arg2, arg3, arg4) {
 
       sandbox.innerHTML = renderClientSceneHtml(scene);
       window.__mountedSceneId = scene.id;
+      updateSubcues(0);
     };
+
+    function updateSubcues(progress) {
+      const sandbox = document.getElementById('layer-3-sandbox');
+      if (!sandbox) return;
+      const subcueElements = sandbox.querySelectorAll('[data-subcue-progress]');
+      if (!subcueElements || subcueElements.length === 0) return;
+
+      subcueElements.forEach(el => {
+        const trigger = parseFloat(el.getAttribute('data-subcue-progress') || '0');
+        if (progress >= trigger) {
+          el.classList.add('subcue-active');
+          el.classList.remove('subcue-pending');
+          el.style.opacity = '1';
+          el.style.visibility = 'visible';
+          if (!el.tagName.toLowerCase().match(/^(g|path|rect|text|svg|circle|polygon)$/)) {
+            el.style.transform = 'none';
+          }
+        } else {
+          el.classList.add('subcue-pending');
+          el.classList.remove('subcue-active');
+          el.style.opacity = '0';
+          el.style.visibility = 'hidden';
+          if (!el.tagName.toLowerCase().match(/^(g|path|rect|text|svg|circle|polygon)$/)) {
+            el.style.transform = 'translateY(8px) scale(0.96)';
+          }
+        }
+      });
+    }
 
     function updateSceneMotion(sc, progress) {
       const sandbox = document.getElementById('layer-3-sandbox');
@@ -1247,6 +1325,7 @@ function generateStageHtml(arg1, arg2, arg3, arg4) {
         }
         updateSceneMotion(activeScene, progress);
         updateOdometer(progress);
+        updateSubcues(progress);
       }
       if (window.__SUBTITLES_ENABLED__) {
         window.__updateSubtitles(timeMs);
@@ -1291,6 +1370,7 @@ function generateStageHtml(arg1, arg2, arg3, arg4) {
         }
         updateSceneMotion(activeScene, progress);
         updateOdometer(progress);
+        updateSubcues(progress);
       }
       if (window.__SUBTITLES_ENABLED__) {
         window.__updateSubtitles(timeMs);

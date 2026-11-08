@@ -6,10 +6,17 @@ services:
     image: cuangbot-discord:latest
     container_name: cuangbot
     restart: unless-stopped
+    ports:
+      - "8989:8989"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /usr/bin/docker:/usr/bin/docker:ro
       - /home/agent/orca:/home/agent/orca
+      - /home/agent/orca/AI-nimate/data:/app/data
+      - /home/agent/orca/AI-nimate/projects:/app/projects
+      - /home/agent/orca/AI-nimate/scripts:/app/scripts:ro
+      - /home/agent/orca/AI-nimate/.env:/app/.env:ro
+      - /root/.ssh/azure_key:/root/.ssh/azure_key:ro
       - /home/agent/.local:/home/agent/.local:ro
       - /home/agent/.local:/root/.local:ro
       - /home/agent/.gemini:/home/agent/.gemini
@@ -17,6 +24,10 @@ services:
     environment:
       - AGY_BIN=/home/agent/.local/bin/agy
       - PATH=/home/agent/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - AZURE_SSH_KEY=/root/.ssh/azure_key
+    networks:
+      - default
     deploy:
       resources:
         limits:
@@ -30,3 +41,8 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
+
+networks:
+  default:
+    name: ai-nimate_default
+    external: true

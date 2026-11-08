@@ -110,6 +110,18 @@ const { getUnusedChannelIdeas, markIdeaUsed } = require('../channels/channel-ide
 const { generateDailyTrendingIdeas } = require('./generate-trending-ideas');
 const { listStyles } = require('../styles/style-manager');
 const {
+  UPTIME_CHANNEL_ID,
+  uptimeSlashCommand,
+  startUptimeScheduler,
+  handleUptimeInteraction
+} = require('./uptime-monitor');
+const {
+  GOOD_DEALS_CHANNEL_ID,
+  dealsSlashCommand,
+  startDealsScheduler,
+  handleDealsInteraction
+} = require('./deals-watcher');
+const {
   MANDARIN_CHANNEL_ID,
   PACE_CONFIG,
   TRACK_CONFIG,
@@ -290,12 +302,27 @@ const containerStatsCache = {};
 
 function dockerRequest(method, reqPath, body = null, timeoutMs = 5000) {
   return new Promise((resolve) => {
-    const opts = {
-      socketPath: '/var/run/docker.sock',
-      path: reqPath,
-      method,
-      timeout: timeoutMs
-    };
+    const dockerHost = env.DOCKER_HOST || process.env.DOCKER_HOST || 'http://10.20.20.11:2375';
+    let opts;
+    if (dockerHost.startsWith('unix://') || (dockerHost.startsWith('/') && !dockerHost.includes('://'))) {
+      const socketPath = dockerHost.replace(/^unix:\/\//, '');
+      opts = {
+        socketPath,
+        path: reqPath,
+        method,
+        timeout: timeoutMs
+      };
+    } else {
+      const cleanUrl = dockerHost.replace(/^tcp:\/\//, 'http://');
+      const u = new URL(reqPath, cleanUrl);
+      opts = {
+        hostname: u.hostname,
+        port: u.port || 2375,
+        path: u.pathname + u.search,
+        method,
+        timeout: timeoutMs
+      };
+    }
     if (body) {
       const payload = typeof body === 'string' ? body : JSON.stringify(body);
       opts.headers = {
@@ -1504,7 +1531,10 @@ async function loginAccount(email, password, options = {}) {
 
 function getBotCredentials(botKey) {
   const cleanKey = (botKey || '').trim().toLowerCase().replace(/[^a-z0-9_-]/g, '');
-  const p = path.join('/home/agent/orca/learnings', `reefblast-docker-${cleanKey}`, 'credentials.txt');
+  let p = path.join('/home/agent/orca/learnings', `reefblast-docker-${cleanKey}`, 'credentials.txt');
+  if (!fs.existsSync(p) && cleanKey === 'cuang') {
+    p = path.join('/home/agent/orca/learnings', 'reefblast-docker', 'credentials.txt');
+  }
   if (!fs.existsSync(p)) return null;
   const content = fs.readFileSync(p, 'utf-8');
   const result = {};
@@ -3578,6 +3608,8 @@ function buildServerStatusEmbed(stats = null) {
 
 // --- Slash Command Definitions ---
 const commands = [
+  dealsSlashCommand,
+  uptimeSlashCommand,
   new SlashCommandBuilder()
     .setName('reefblast')
     .setDescription('Commands for autonomous Reefblast naval progression daemons')
@@ -4068,8 +4100,12 @@ client.once('clientReady', () => {
   console.log(`[Discord Bot] Logged in as ${client.user.tag} (${client.user.id})`);
   console.log(`[Discord Bot] Primary AI-Nimate Channel bound: #${AINIMATE_CHANNEL_ID}`);
   console.log(`[Discord Bot] Mandarin Learning Channel bound: #${MANDARIN_CHANNEL_ID}`);
-  client.user.setActivity('Reefblast, AI-Nimate & Mandarin AIOps', { type: 3 }); // Watching
+  console.log(`[Discord Bot] Infrastructure Uptime Channel bound: #${UPTIME_CHANNEL_ID}`);
+  console.log(`[Discord Bot] Good Deals Sentinel Channel bound: #${GOOD_DEALS_CHANNEL_ID}`);
+  client.user.setActivity('Reefblast, AI-Nimate, Mandarin & Deals Sentinel', { type: 3 }); // Watching
   startMandarinDailyScheduler(client);
+  startUptimeScheduler(client);
+  startDealsScheduler(client);
 });
 
 // --- Incoming Messages in #ai-nimate & #mandarin-learning ---
@@ -4237,6 +4273,9 @@ client.on('messageCreate', handleAinimateMessage);
 // --- Interaction Router ---
 client.on('interactionCreate', async interaction => {
   try {
+    if (await handleDealsInteraction(interaction)) return;
+    if (await handleUptimeInteraction(interaction)) return;
+
     // 0. Modal Submissions
     if (interaction.isModalSubmit()) {
       if (interaction.customId === 'rb:modal:manual' || interaction.customId === 'rb:modal:add_bot') {
@@ -6108,8 +6147,9 @@ function startAudioUploadServer() {
     }
 
     const reqUrl = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
+    const pathname = reqUrl.pathname.replace(/^\/projects\/ainimate/, '');
 
-    if (req.method === 'POST' && reqUrl.pathname === '/api/upload-audio') {
+    if (req.method === 'POST' && pathname === '/api/upload-audio') {
       try {
         const chunks = [];
         for await (const chunk of req) {
@@ -6181,7 +6221,7 @@ function startAudioUploadServer() {
       return;
     }
 
-    if (reqUrl.pathname === '/api/health') {
+    if (pathname === '/api/health') {
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ status: 'ok', service: 'ai-nimate-upload-gateway' }));
       return;

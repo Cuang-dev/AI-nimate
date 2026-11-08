@@ -1,0 +1,40 @@
+{
+  "sources": [
+    {
+      "id": "the_lazy_titip",
+      "name": "The Lazy Titip",
+      "handle": "@thelazytitip",
+      "prefix": "tlt",
+      "enabled": true,
+      "sheetUrl": "https://docs.google.com/spreadsheets/d/1ghk3Dlip1Aubejb1Fcgj5DZsiX7gg6S8CSGi2oZI31g/export?format=csv",
+      "whatsapp": "62859106996282",
+      "line": "https://line.me/R/ti/p/@680ofqpr",
+      "instagram": "https://www.instagram.com/thelazytitip/",
+      "notes": "The Lazy Monday official consignment sheet & live Instagram"
+    },
+    {
+      "id": "gudang_vga",
+      "name": "Gudang VGA",
+      "handle": "@gudangvga",
+      "prefix": "gvga",
+      "enabled": true,
+      "sheetUrl": "",
+      "whatsapp": "6287811103050",
+      "line": "https://line.me/R/ti/p/@645chdgz",
+      "instagram": "https://www.instagram.com/gudangvga/",
+      "notes": "Verified active GPU & PC Parts Consignment"
+    },
+    {
+      "id": "game_consign",
+      "name": "Game Consign",
+      "handle": "@gameconsign",
+      "prefix": "gc",
+      "enabled": true,
+      "sheetUrl": "",
+      "whatsapp": "6287811103050",
+      "line": "",
+      "instagram": "https://www.instagram.com/gameconsign/",
+      "notes": "Verified active Gaming & Gadget Consignment Marketplace"
+    }
+  ]
+}

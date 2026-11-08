@@ -1,5 +1,113 @@
 [
   {
+    "id": "wf-1792306410440",
+    "project": "msci-standalone-market-crash",
+    "topic": "MSCI Standalone Market Crash: Anatomi Likuiditas dan Ilusi Free Float IHSG",
+    "style": "kausalmedia",
+    "format": "16:9",
+    "channel": "kausalmedia",
+    "status": "completed",
+    "stage": "Production Complete",
+    "progress": 100,
+    "startedAt": "2026-10-18T06:53:30.447Z",
+    "completedAt": "2026-10-18T07:07:23.067Z",
+    "videoPath": "/home/agent/orca/AI-nimate/projects/msci-standalone-market-crash/render/msci-standalone-market-crash.mp4",
+    "error": "Pipeline worker terminated or killed.",
+    "pid": null,
+    "channelId": "kausalmedia",
+    "variant": "forensic-autopsy",
+    "videoVariant": "forensic-autopsy",
+    "styleId": "kausalmedia",
+    "aspectRatio": "16:9",
+    "visualEngine": "vector-html",
+    "subtitles": {
+      "enabled": true,
+      "mode": "kinetic-pill",
+      "position": "bottom"
+    },
+    "config": {
+      "jobId": "job-1792306410439",
+      "topic": "MSCI Standalone Market Crash: Anatomi Likuiditas dan Ilusi Free Float IHSG",
+      "channelId": "kausalmedia",
+      "videoVariant": "forensic-autopsy",
+      "styleId": "kausalmedia",
+      "aspectRatio": "16:9",
+      "visualEngine": "vector-html",
+      "subtitles": {
+        "enabled": true,
+        "mode": "kinetic-pill",
+        "position": "bottom"
+      },
+      "audio": {
+        "source": "edge-tts",
+        "voice": "id-ID-ArdiNeural",
+        "rate": "+5%",
+        "duckingDb": -22
+      },
+      "render": {
+        "fps": 24,
+        "jpegQuality": 85,
+        "ffmpegThreads": 2,
+        "chromiumMaxHeapMb": 512
+      }
+    },
+    "agent": "agy"
+  },
+  {
+    "id": "wf-1792305922872",
+    "project": "msci-standalone-market-crash",
+    "topic": "MSCI Standalone Market Crash: Anatomi Likuiditas dan Ilusi Free Float IHSG",
+    "style": "kausalmedia",
+    "format": "16:9",
+    "channel": "kausalmedia",
+    "status": "qa",
+    "stage": "Multimodal Visual QA Auditing",
+    "progress": 80,
+    "startedAt": "2026-10-18T06:45:22.874Z",
+    "completedAt": null,
+    "videoPath": null,
+    "error": null,
+    "pid": null,
+    "channelId": "kausalmedia",
+    "variant": "forensic-autopsy",
+    "videoVariant": "forensic-autopsy",
+    "styleId": "kausalmedia",
+    "aspectRatio": "16:9",
+    "visualEngine": "vector-html",
+    "subtitles": {
+      "enabled": true,
+      "mode": "kinetic-pill",
+      "position": "bottom"
+    },
+    "config": {
+      "jobId": "job-1792305922871",
+      "topic": "MSCI Standalone Market Crash: Anatomi Likuiditas dan Ilusi Free Float IHSG",
+      "channelId": "kausalmedia",
+      "videoVariant": "forensic-autopsy",
+      "styleId": "kausalmedia",
+      "aspectRatio": "16:9",
+      "visualEngine": "vector-html",
+      "subtitles": {
+        "enabled": true,
+        "mode": "kinetic-pill",
+        "position": "bottom"
+      },
+      "audio": {
+        "source": "edge-tts",
+        "voice": "id-ID-ArdiNeural",
+        "rate": "+5%",
+        "duckingDb": -22
+      },
+      "render": {
+        "fps": 24,
+        "jpegQuality": 85,
+        "ffmpegThreads": 2,
+        "chromiumMaxHeapMb": 512
+      }
+    },
+    "agent": "agy"
+  },
+  {
     "id": "wf-1791994376172",
     "project": "anatomi-saham-gorengan-di-bei-re",
     "topic": "Anatomi Saham Gorengan di BEI: Rekayasa Likuiditas Bandar",
