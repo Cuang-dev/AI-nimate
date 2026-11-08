@@ -1,0 +1,133 @@
+# ch01 | Teka-teki | tense
+Sewa satu meja mahjong di Jakarta Barat bisa cuma [Rp45 ribu|empat puluh lima ribu rupiah] sejam.
+Dibagi empat orang, [sekitar Rp11 ribu|sekitar sebelas ribu rupiah] per kepala.
+Lebih murah dari segelas kopi.
+Tapi buat buka tempat kayak gini di ruko, modalnya bisa [sekitar Rp500 juta|sekitar lima ratus juta rupiah].
+Sewanya receh. Modalnya setengah miliar. | 0.5
+Terus, uangnya dari mana? | 0.9
+Hampir semua orang bakal jawab: dari makanan.
+Main berjam-jam, pasti lapar, pasti jajan.
+Masuk akal, kan?
+Tapi begitu angkanya kita hitung satu-satu, jawabannya beda.
+Dan jawaban itu yang nentuin lo balik modal dalam [sekitar 16 bulan|sekitar enam belas bulan], atau [13 tahun lebih|tiga belas tahun lebih]. | 0.8
+Satu hal dulu: hitungan bisnis di video ini simulasi kami sendiri, pakai harga yang beneran ada di pasaran.
+Bukan laporan keuangan tempat tertentu.
+
+# ch02 | Kenapa rame sekarang | light
+Pertama, ini beneran lagi rame, atau cuma rame di media sosial?
+Satu toko meja di Surabaya ngaku penjualannya naik [50 persen|lima puluh persen] sampai [60 persen|enam puluh persen].
+Dalam empat bulan, katanya laku [3.000 unit|tiga ribu unit] sampai [5.000 unit|lima ribu unit].
+Ingat, itu klaim penjualnya sendiri, bukan data pasar.
+Tapi tandanya ada di mana-mana.
+Di Jakarta, panduan tempat mahjong terbaru udah bisa daftar sebelas nama, dan akhir pekan disaranin booking dulu.
+Di Tiongkok, satu merek ruang mahjong ngaku punya [14.000 toko|empat belas ribu toko].
+Di Amerika, pencarian klub mahjong di Yelp naik [lebih dari 4.400 persen|lebih dari empat ribu empat ratus persen].
+Permainan orang tua ini lagi pindah tangan ke anak muda. | 0.6
+
+# ch03 | Meja yang kerja sendiri | light
+Salah satu alasannya ada di mejanya.
+Meja otomatis kelas toko ritel harganya [Rp15,9 juta|lima belas koma sembilan juta rupiah], beratnya [hampir 100 kilo|hampir seratus kilo].
+Isinya [dua set ubin|dua set ubin] beda warna.
+Satu set lagi dipakai main, satu set lagi diaduk di dalam mesin.
+Habis satu ronde, ubin disapu masuk ke ruang di bawah panel tengah.
+Di situ, ruangnya berputar, dan lengan penyapu mencampur ubinnya.
+Sabuk bawa ubin ke empat jalur, satu buat tiap pemain, sambil magnet ngebalik ubin biar menghadap yang benar.
+Sensor ngitung jumlahnya, lalu dinding ubin nunggu di posisi siap.
+Tombol dipencet, dinding naik ke permukaan, ronde baru langsung jalan.
+Nggak ada lagi waktu terbuang buat ngocok dan nyusun.
+Buat pemilik tempat, artinya sederhana: pemain betah, dan satu meja bisa dipakai sampai berjam-jam. | 0.6
+
+# ch04 | Setengah miliar buat apa | tense
+Sekarang kita buka bisnisnya: delapan meja, di ruko [PIK|pik].
+Modal awalnya kita hitung [Rp507,4 juta|lima ratus tujuh koma empat juta rupiah].
+Pos terbesar, jelas, delapan meja: [Rp127,2 juta|seratus dua puluh tujuh koma dua juta rupiah].
+Tapi nomor dua bukan barang, melainkan uang cadangan tiga bulan: [Rp120 juta|seratus dua puluh juta rupiah].
+Lalu peredam suara, [Rp90 juta|sembilan puluh juta rupiah], karena ubin mahjong itu berisik, dan tetangga ruko lo nggak bakal diam.
+Interior [Rp60 juta|enam puluh juta rupiah], dapur [Rp40 juta|empat puluh juta rupiah], dan [AC|a-se] [Rp36 juta|tiga puluh enam juta rupiah].
+Kursi dan izin usaha nutup sisanya.
+Itu belum termasuk kalau pemilik ruko minta bayar setahun di muka, padahal sewa setahun di [PIK|pik] bisa [Rp150 juta|seratus lima puluh juta rupiah] sampai [Rp250 juta|dua ratus lima puluh juta rupiah].
+Setelah buka, tiap bulan lo kena biaya tetap [Rp40 juta|empat puluh juta rupiah].
+Ada sewa ruko, gaji empat orang, internet, dan promosi.
+Ada pelanggan atau nggak, angka ini jalan terus. | 0.8
+
+# ch05 | Satu bulan di kasir | warm
+Sekarang kita isi tempatnya.
+Tarif meja kita pasang [Rp70 ribu|tujuh puluh ribu rupiah] sejam di hari kerja, dan [Rp100 ribu|seratus ribu rupiah] di akhir pekan.
+Tempat nyata di Jakarta ada yang lebih murah, ada yang lebih mahal.
+Satu sesi kita anggap [4 jam|empat jam].
+Hari kerja agak sepi: rata-rata tiap meja cuma setengah sesi sehari.
+Akhir pekan, satu setengah sesi.
+Total [44 sesi|empat puluh empat sesi] seminggu, atau [sekitar 191 sesi|sekitar seratus sembilan puluh satu sesi] sebulan.
+Dari sewa meja, masuk [Rp65,9 juta|enam puluh lima koma sembilan juta rupiah].
+Lalu makanannya.
+Tiap orang kita anggap jajan tiga puluh lima ribu, jadi [Rp140 ribu|seratus empat puluh ribu rupiah] per meja.
+Sebulan, itu [Rp26,7 juta|dua puluh enam koma tujuh juta rupiah].
+Total pendapatan, [Rp92,6 juta|sembilan puluh dua koma enam juta rupiah]. | 0.7
+
+# ch06 | Ternyata bukan makanannya | tense
+Nah, ini bagian yang bikin teori tadi goyang.
+Pendapatan beda sama untung.
+Mie, kopi, dan dimsum itu ada bahan bakunya: sebulan sekitar [Rp9,3 juta|sembilan koma tiga juta rupiah].
+Jadi untung kotor makanan [Rp17,4 juta|tujuh belas koma empat juta rupiah].
+Sekarang mejanya.
+Meja yang udah kebeli hampir nggak makan biaya tiap jam.
+Listriknya [sekitar Rp1.230|sekitar seribu dua ratus tiga puluh rupiah] sejam, ditambah bersih-bersih, sebulan cuma [Rp2,1 juta|dua koma satu juta rupiah].
+Untung kotornya [Rp63,8 juta|enam puluh tiga koma delapan juta rupiah]. | 0.9
+Artinya, [79 persen|tujuh puluh sembilan persen] untung kotor datang dari meja, dan makanan cuma [21 persen|dua puluh satu persen].
+Hapus dapurnya sama sekali, dan tempat ini masih untung [Rp17,2 juta|tujuh belas koma dua juta rupiah] sebulan.
+Makanan itu bonus yang enak, tapi bukan mesin uangnya.
+Dan ini bukan cuma teori: merek besar di Tiongkok tadi jualan ruang saja, tanpa dapur.
+Porsinya bisa geser kalau tarif lo murah atau jajannya lebih laris, jadi coba pakai angka lo sendiri. | 0.7
+
+# ch07 | Musuh aslinya kursi kosong | tense
+Kalau uangnya dari meja, musuh lo bukan dapur yang sepi.
+Musuh lo adalah meja kosong.
+Dengan biaya tetap segitu, lo butuh [sekitar 106 sesi|sekitar seratus enam sesi] sebulan cuma buat impas.
+Itu baru sekitar [17 persen|tujuh belas persen] dari jam buka.
+Di simulasi tadi, meja terisi [31 persen|tiga puluh satu persen], untung bersih [Rp31,9 juta|tiga puluh satu koma sembilan juta rupiah] sebulan.
+Balik modalnya [sekitar 16 bulan|sekitar enam belas bulan].
+Kelihatannya aman. | 0.5
+Tapi kalau pelanggannya turun [40 persen|empat puluh persen] jadi [114 sesi|seratus empat belas sesi], untungnya sisa [Rp3,1 juta|tiga koma satu juta rupiah].
+Balik modalnya jadi [162 bulan|seratus enam puluh dua bulan]. | 0.9
+Lebih dari tiga belas tahun.
+Sebaliknya, kalau naik [50 persen|lima puluh persen] jadi [286 sesi|dua ratus delapan puluh enam sesi], untungnya [Rp67,8 juta|enam puluh tujuh koma delapan juta rupiah], balik modal [sekitar 7,5 bulan|sekitar tujuh setengah bulan].
+Sedikit bedanya di pelanggan, jauh bedanya di kantong lo.
+Jadi kerjaan utama pemilik tempat ini bukan masak.
+Kerjaannya ngisi meja di hari Selasa siang. | 0.7
+
+# ch08 | Jalan yang lebih murah | light
+Kalau setengah miliar kegedean, ada model kedua: sewain meja harian dari garasi.
+Modalnya [Rp90 juta|sembilan puluh juta rupiah], dengan lima meja portabel, [Rp10 juta|sepuluh juta rupiah] per meja.
+Satu penyedia di Jakarta nawarin [Rp500 ribu|lima ratus ribu rupiah] sehari, atau paket akhir pekan [Rp1,2 juta|satu koma dua juta rupiah].
+Kita pakai tarif [Rp300 ribu|tiga ratus ribu rupiah] di hari kerja dan [Rp400 ribu|empat ratus ribu rupiah] di akhir pekan.
+Pendapatannya [Rp16,9 juta|enam belas koma sembilan juta rupiah] sebulan.
+Untung bersihnya cuma [Rp4,9 juta|empat koma sembilan juta rupiah].
+Balik modal [sekitar 18 bulan|sekitar delapan belas bulan], mirip sama ruko.
+Bedanya di risiko.
+Salah langkah di ruko bisa bikin lo kehilangan setengah miliar.
+Di garasi, kerugiannya jauh lebih kecil, tapi hasilnya lebih mirip sampingan daripada bisnis utama.
+Meja lo juga dibawa ke rumah orang, dan yang rusak, lo yang nanggung. | 0.7
+
+# ch09 | Satu risiko yang nggak ada di kalkulator | tense
+Ada satu risiko lagi yang nggak bisa dihitung di kalkulator: hukum.
+Banyak orang masih nyebut Pasal [303,|tiga ratus tiga,] padahal sejak Januari [2026,|dua ribu dua puluh enam,] KUHP baru berlaku.
+Perjudian sekarang diatur di Pasal [426|empat ratus dua puluh enam] dan [427.|empat ratus dua puluh tujuh.]
+Penyelenggara tanpa izin bisa kena [9 tahun|sembilan tahun] penjara atau denda [Rp2 miliar|dua miliar rupiah].
+Pemainnya sendiri bisa kena [3 tahun|tiga tahun] atau [Rp50 juta|lima puluh juta rupiah].
+Mahjong-nya sendiri bukan masalah.
+Masalahnya kalau ada taruhan di meja lo.
+Kami nggak nemu aturan yang secara tegas ngatur mahjong berbayar, dan kami juga nggak nemu aturan yang mewajibkan hal seperti partisi kaca.
+Jadi tempat-tempat yang serius biasanya nulis jelas: tanpa taruhan.
+Ini bukan nasihat hukum.
+Sebelum tanda tangan kontrak ruko, ngobrol dulu sama pengacara. | 0.7
+
+# ch10 | Jawabannya | warm
+Jadi, uangnya dari mana?
+Bukan dari makanan.
+Dari meja yang terisi, jam demi jam.
+Kalau lo mau coba, jangan mulai dari desain interior.
+Mulai dari satu pertanyaan: siapa yang bakal main di hari Selasa siang?
+Kalau lo punya jawabannya, hitungannya bisa jalan.
+Kalau belum, modal setengah miliar itu taruhan paling mahal di tempat lo sendiri. | 0.6
+Oh iya, data tarif di luar Jakarta masih susah dicari.
+Kalau di kota lo ada tempat mahjong, tulis tarifnya di komentar.

@@ -1,445 +1,693 @@
 import { Img, Line, makeScene2D, Node, Rect, Txt } from '@motion-canvas/2d';
-import { all, createRef, createSignal, easeInOutCubic, easeOutBack, easeOutExpo, useThread } from '@motion-canvas/core';
-import { createEditorialStage, COLORS, PALETTE, FONTS, HEADING_FONT } from './layout';
-import { finishSceneAt, focalRotation, focalScale, SCENE_TIMINGS, waitUntilSceneTime } from './timings';
+import {
+  all,
+  createRef,
+  createSignal,
+  easeOutBack,
+  easeOutCubic,
+  easeOutExpo,
+} from '@motion-canvas/core';
+import {
+  COLORS,
+  FONTS,
+  HEADING_FONT,
+  PALETTE,
+  setupBaseStage,
+} from './layout';
+import {
+  finishSceneAt,
+  SCENE_TIMINGS,
+  waitUntilSceneTime,
+} from './timings';
 
 export default makeScene2D(function* (view) {
-  const time = useThread().time;
-  const t0 = time();
-  const sceneStart = SCENE_TIMINGS[3]?.start ?? 158.893;
-  const sceneDur = SCENE_TIMINGS[3]?.duration ?? 55.791;
+  // Swiss Base Stage with Subtitles and Chapter Brow
+  setupBaseStage(view, 'beat_04');
 
-  // Mount responsive Swiss stage
-  createEditorialStage(view, 3);
+  // Animation signals
+  const stageOpacity = createSignal(0);
 
-  // Scene state signals
-  const focalId = createSignal(1);
-  const leftCardOpacity = createSignal(0);
-  const leftCardScale = createSignal(0.92);
-  const totalHighlight = createSignal(0);
-  const capexCounter = createSignal(0);
+  // Left card signals
+  const capexPillOpacity = createSignal(0);
+  const capexPillScale = createSignal(0.85);
 
-  const rightCardOpacity = createSignal(0);
-  const rightCardScale = createSignal(0.94);
-  const axesOpacity = createSignal(0);
+  // Right card item breakdown signals
+  const item1Opacity = createSignal(0);
+  const item2Opacity = createSignal(0);
+  const item3Opacity = createSignal(0);
+  const item4Opacity = createSignal(0);
+  const item5Opacity = createSignal(0);
+  const item6Opacity = createSignal(0);
 
-  const bar1Progress = createSignal(0);
-  const bar1Opacity = createSignal(0);
-  const bar2Progress = createSignal(0);
-  const bar2Opacity = createSignal(0);
-  const bar3Progress = createSignal(0);
-  const bar3Opacity = createSignal(0);
-  const bar4Progress = createSignal(0);
-  const bar4Opacity = createSignal(0);
-
-  // Layout metrics (Widescreen 1920x1080)
-  const leftX = -480;
-  const rightX = 340;
-  const cardY = -30;
-  const cardHeight = 640;
-  const leftWidth = 680;
-  const rightWidth = 940;
-
-  // Right card chart coordinates
-  const chartX0 = rightX - 420;
-  const chartX1 = rightX + 410;
-  const chartY0 = cardY - 190;
-  const chartY1 = cardY + 230;
+  // Imlek surge chart signals
+  const chartOpacity = createSignal(0);
+  const surgeBarHeight = createSignal(0);
+  const surgeOpacity = createSignal(0);
+  const stampOpacity = createSignal(0);
+  const stampScale = createSignal(1.3);
 
   const stage = createRef<Node>();
-  const leftRef = createRef<Node>();
-  const rightRef = createRef<Node>();
 
   view.add(
-    <Node ref={stage}>
-      {/* ===== LEFT CARD: CAPEX OVERVIEW & IMAGE ===== */}
-      <Node
-        ref={leftRef}
-        x={leftX}
-        y={cardY}
-        opacity={leftCardOpacity}
-        scale={() => focalScale(focalId, 1, leftCardScale, time)}
-        rotation={() => focalRotation(focalId, 1, time)}
+    <Node ref={stage} opacity={stageOpacity}>
+      {/* ===== LEFT CARD: Comic Frame & Key Metric Pills ===== */}
+      <Rect
+        x={-560}
+        y={-30}
+        width={500}
+        height={675}
+        radius={20}
+        fill={'#FFFFFF'}
+        stroke={COLORS.ink}
+        lineWidth={3.5}
+        padding={22}
+        layout
+        direction="column"
+        alignItems="center"
+        justifyContent="space-between"
       >
+        {/* Top Header Pill */}
         <Rect
-          width={leftWidth}
-          height={cardHeight}
-          fill={COLORS.surface}
-          stroke={COLORS.gridLine}
+          layout
+          direction="row"
+          alignItems="center"
+          padding={[8, 18]}
+          radius={999}
+          fill={PALETTE.crimsonBg}
+          stroke={PALETTE.crimson}
           lineWidth={2}
-          radius={16}
-        />
+        >
+          <Txt
+            text="MODEL B: RENTAL GARASI"
+            fontFamily={HEADING_FONT}
+            fontSize={20}
+            fontWeight={800}
+            fill={PALETTE.crimson}
+          />
+        </Rect>
 
-        {/* Card Header */}
-        <Txt
-          x={0}
-          y={-280}
-          text="ESTIMASI BELANJA MODAL"
-          fontFamily={FONTS.heading}
-          fontSize={18}
-          fontWeight={800}
-          fill={PALETTE.crimson}
-          letterSpacing={1.2}
-        />
-        <Txt
-          x={0}
-          y={-248}
-          text="Kapasitas 8 Meja Otomatis"
-          fontFamily={FONTS.body}
-          fontSize={20}
-          fontWeight={600}
-          fill={COLORS.secondaryInk}
-        />
-
-        {/* Hero Illustration */}
+        {/* 1:1 Square Comic Illustration */}
         <Img
-          src="/assets/vid_20261102_001/beat04_ruko_capex.png"
-          width={340}
-          height={340}
-          y={-20}
-          radius={12}
-        />
-
-        {/* Total Modal Banner */}
-        <Rect
-          y={210}
-          width={leftWidth - 60}
-          height={110}
-          fill={() => (totalHighlight() > 0 ? '#FEE4E2' : PALETTE.crimsonBg)}
-          stroke={() => (totalHighlight() > 0 ? PALETTE.crimson : '#FDA29B')}
-          lineWidth={() => (totalHighlight() > 0 ? 3 : 2)}
-          radius={14}
-        />
-        <Txt
-          x={0}
-          y={182}
-          text="TOTAL ANGGARAN CAPEX"
-          fontFamily={FONTS.heading}
-          fontSize={18}
-          fontWeight={800}
-          fill={PALETTE.crimson}
-          letterSpacing={1.5}
-        />
-        <Txt
-          x={0}
-          y={226}
-          text={() => `Rp ${capexCounter().toFixed(0)} JUTA`}
-          fontFamily={FONTS.data}
-          fontSize={32}
-          fontWeight={800}
-          fill={COLORS.ink}
-        />
-      </Node>
-
-      {/* ===== RIGHT CARD: ENCLOSED CAPEX BAR CHART ===== */}
-      <Node
-        ref={rightRef}
-        x={rightX}
-        y={cardY}
-        opacity={rightCardOpacity}
-        scale={() => focalScale(focalId, 2, rightCardScale, time)}
-        rotation={() => focalRotation(focalId, 2, time)}
-      >
-        <Rect
-          width={rightWidth}
-          height={cardHeight}
-          fill={COLORS.surface}
-          stroke={COLORS.gridLine}
-          lineWidth={2}
+          src="/assets/vid_20261102_001/ch04_sq1.png"
+          width={380}
+          height={380}
           radius={16}
         />
-      </Node>
 
-      {/* Chart Content in Stage Coordinates */}
-      <Node opacity={axesOpacity}>
-        {/* Chart Card Header */}
-        <Txt
-          x={rightX}
-          y={cardY - 265}
-          text="ALOKASI ANGGARAN 8 MEJA"
-          fontFamily={FONTS.heading}
-          fontSize={22}
-          fontWeight={800}
-          fill={COLORS.ink}
-          letterSpacing={1}
-        />
+        {/* Summary Pill 1: Capex Highlights */}
+        <Rect
+          layout
+          direction="row"
+          alignItems="center"
+          justifyContent="center"
+          width={450}
+          padding={[10, 16]}
+          radius={12}
+          fill={PALETTE.emeraldBg}
+          stroke={PALETTE.emerald}
+          lineWidth={2}
+          opacity={capexPillOpacity}
+          scale={capexPillScale}
+        >
+          <Txt
+            text="CAPEX: RP60.000.000 (HEMAT 83%)"
+            fontFamily={HEADING_FONT}
+            fontSize={19}
+            fontWeight={800}
+            fill={PALETTE.emerald}
+          />
+        </Rect>
 
-        {/* Y-Axis Line */}
-        <Line
-          points={[
-            [chartX0, chartY1],
-            [chartX0, chartY0 - 20],
-          ]}
+        {/* Summary Pill 2: Operational Advantage */}
+        <Rect
+          layout
+          direction="row"
+          alignItems="center"
+          justifyContent="center"
+          width={450}
+          padding={[10, 16]}
+          radius={12}
+          fill={PALETTE.mutedBg}
           stroke={COLORS.ink}
-          lineWidth={3}
-          endArrow
-          arrowSize={12}
-        />
+          lineWidth={2}
+        >
+          <Txt
+            text="BIAYA SEWA RUKO: RP0 (GARASI SENDIRI)"
+            fontFamily={HEADING_FONT}
+            fontSize={18}
+            fontWeight={800}
+            fill={COLORS.ink}
+          />
+        </Rect>
+      </Rect>
 
-        {/* X-Axis Line */}
-        <Line
-          points={[
-            [chartX0, chartY1],
-            [chartX1 + 25, chartY1],
-          ]}
-          stroke={COLORS.ink}
-          lineWidth={3}
-          endArrow
-          arrowSize={12}
-        />
+      {/* ===== RIGHT CARD: Unit Economics & Imlek Surge Chart ===== */}
+      <Rect
+        x={260}
+        y={-30}
+        width={1060}
+        height={675}
+        radius={20}
+        fill={'#FFFFFF'}
+        stroke={COLORS.ink}
+        lineWidth={3.5}
+      >
+        {/* Card Header Bar */}
+        <Rect
+          y={-288}
+          layout
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+          width={1008}
+        >
+          <Txt
+            text="RINCIAN UNIT ECONOMICS & LONJAKAN IMLEK"
+            fontFamily={HEADING_FONT}
+            fontSize={24}
+            fontWeight={800}
+            fill={COLORS.ink}
+          />
+          <Rect
+            layout
+            direction="row"
+            padding={[6, 14]}
+            radius={8}
+            fill={PALETTE.emeraldBg}
+            stroke={PALETTE.emerald}
+            lineWidth={2}
+          >
+            <Txt
+              text="MODAL: RP60 JUTA"
+              fontFamily={FONTS.data}
+              fontSize={18}
+              fontWeight={700}
+              fill={PALETTE.emerald}
+            />
+          </Rect>
+        </Rect>
 
-        {/* Dashed Gridlines & Ticks */}
-        <Line
-          points={[
-            [chartX0 + (chartX1 - chartX0) * 0.5, chartY0],
-            [chartX0 + (chartX1 - chartX0) * 0.5, chartY1],
-          ]}
+        {/* Breakdown Row 1 */}
+        <Rect
+          y={-188}
+          layout
+          direction="row"
+          gap={16}
+          width={1008}
+        >
+          {/* Item 1: 5 Meja Lipat */}
+          <Rect
+            width={325}
+            height={98}
+            radius={12}
+            fill={PALETTE.mutedBg}
+            stroke={COLORS.ink}
+            lineWidth={2}
+            padding={[10, 14]}
+            layout
+            direction="column"
+            justifyContent="center"
+            opacity={item1Opacity}
+          >
+            <Txt
+              text="5 MEJA LIPAT BERODA"
+              fontFamily={HEADING_FONT}
+              fontSize={18}
+              fontWeight={800}
+              fill={COLORS.secondaryInk}
+            />
+            <Txt
+              text="Rp52.500.000"
+              fontFamily={FONTS.data}
+              fontSize={24}
+              fontWeight={800}
+              fill={COLORS.ink}
+            />
+            <Txt
+              text="@ Rp10,5 Jt / Unit Beroda"
+              fontFamily={FONTS.body}
+              fontSize={18}
+              fontWeight={600}
+              fill={PALETTE.emerald}
+            />
+          </Rect>
+
+          {/* Item 2: Flight Case + Troli */}
+          <Rect
+            width={325}
+            height={98}
+            radius={12}
+            fill={PALETTE.mutedBg}
+            stroke={COLORS.ink}
+            lineWidth={2}
+            padding={[10, 14]}
+            layout
+            direction="column"
+            justifyContent="center"
+            opacity={item2Opacity}
+          >
+            <Txt
+              text="FLIGHT CASE + TROLI"
+              fontFamily={HEADING_FONT}
+              fontSize={18}
+              fontWeight={800}
+              fill={COLORS.secondaryInk}
+            />
+            <Txt
+              text="Rp7.500.000"
+              fontFamily={FONTS.data}
+              fontSize={24}
+              fontWeight={800}
+              fill={COLORS.ink}
+            />
+            <Txt
+              text="Kotak Busa & Troli Lipat"
+              fontFamily={FONTS.body}
+              fontSize={18}
+              fontWeight={600}
+              fill={COLORS.secondaryInk}
+            />
+          </Rect>
+
+          {/* Item 3: Sewa Ruko Rp0 */}
+          <Rect
+            width={325}
+            height={98}
+            radius={12}
+            fill={PALETTE.emeraldBg}
+            stroke={PALETTE.emerald}
+            lineWidth={2}
+            padding={[10, 14]}
+            layout
+            direction="column"
+            justifyContent="center"
+            opacity={item3Opacity}
+          >
+            <Txt
+              text="BIAYA SEWA RUKO"
+              fontFamily={HEADING_FONT}
+              fontSize={18}
+              fontWeight={800}
+              fill={PALETTE.emerald}
+            />
+            <Txt
+              text="Rp0 (GRATIS)"
+              fontFamily={FONTS.data}
+              fontSize={24}
+              fontWeight={800}
+              fill={PALETTE.emerald}
+            />
+            <Txt
+              text="Garasi Rumah Sendiri"
+              fontFamily={FONTS.body}
+              fontSize={18}
+              fontWeight={700}
+              fill={PALETTE.emerald}
+            />
+          </Rect>
+        </Rect>
+
+        {/* Breakdown Row 2 */}
+        <Rect
+          y={-70}
+          layout
+          direction="row"
+          gap={16}
+          width={1008}
+        >
+          {/* Item 4: Delivery Blind Van */}
+          <Rect
+            width={325}
+            height={98}
+            radius={12}
+            fill={PALETTE.cyanBg}
+            stroke={PALETTE.cyan}
+            lineWidth={2}
+            padding={[10, 14]}
+            layout
+            direction="column"
+            justifyContent="center"
+            opacity={item4Opacity}
+          >
+            <Txt
+              text="LOGISTIK ANTAR"
+              fontFamily={HEADING_FONT}
+              fontSize={18}
+              fontWeight={800}
+              fill={PALETTE.cyan}
+            />
+            <Txt
+              text="Blind Van Sewaan"
+              fontFamily={FONTS.data}
+              fontSize={22}
+              fontWeight={800}
+              fill={COLORS.ink}
+            />
+            <Txt
+              text="Langsung Antar ke Customer"
+              fontFamily={FONTS.body}
+              fontSize={18}
+              fontWeight={600}
+              fill={COLORS.secondaryInk}
+            />
+          </Rect>
+
+          {/* Item 5: Tarif Sewa Harian */}
+          <Rect
+            width={325}
+            height={98}
+            radius={12}
+            fill={PALETTE.mutedBg}
+            stroke={COLORS.ink}
+            lineWidth={2}
+            padding={[10, 14]}
+            layout
+            direction="column"
+            justifyContent="center"
+            opacity={item5Opacity}
+          >
+            <Txt
+              text="TARIF HARIAN"
+              fontFamily={HEADING_FONT}
+              fontSize={18}
+              fontWeight={800}
+              fill={COLORS.secondaryInk}
+            />
+            <Txt
+              text="Rp400rb–Rp500rb"
+              fontFamily={FONTS.data}
+              fontSize={24}
+              fontWeight={800}
+              fill={COLORS.ink}
+            />
+            <Txt
+              text="Per 24 Jam (+ Ongkir)"
+              fontFamily={FONTS.body}
+              fontSize={18}
+              fontWeight={600}
+              fill={COLORS.secondaryInk}
+            />
+          </Rect>
+
+          {/* Item 6: OpEx Bulanan & Margin */}
+          <Rect
+            width={325}
+            height={98}
+            radius={12}
+            fill={PALETTE.amberBg}
+            stroke={PALETTE.amber}
+            lineWidth={2}
+            padding={[10, 14]}
+            layout
+            direction="column"
+            justifyContent="center"
+            opacity={item6Opacity}
+          >
+            <Txt
+              text="OPEX BULANAN"
+              fontFamily={HEADING_FONT}
+              fontSize={18}
+              fontWeight={800}
+              fill={PALETTE.amber}
+            />
+            <Txt
+              text="Cuma Rp5 Juta"
+              fontFamily={FONTS.data}
+              fontSize={24}
+              fontWeight={800}
+              fill={COLORS.ink}
+            />
+            <Txt
+              text="Margin Bersih > 65%"
+              fontFamily={FONTS.body}
+              fontSize={18}
+              fontWeight={700}
+              fill={PALETTE.emerald}
+            />
+          </Rect>
+        </Rect>
+
+        {/* ===== Mini Chart: Lonjakan Permintaan & Tarif Imlek (+300%) ===== */}
+        <Rect
+          y={162}
+          width={1008}
+          height={280}
+          radius={14}
+          fill={COLORS.bg}
           stroke={COLORS.gridLine}
           lineWidth={2}
-          lineDash={[6, 6]}
-        />
-        <Txt
-          x={chartX0}
-          y={chartY1 + 22}
-          text="0%"
-          fontFamily={FONTS.data}
-          fontSize={18}
-          fontWeight={700}
-          fill={COLORS.secondaryInk}
-        />
-        <Txt
-          x={chartX0 + (chartX1 - chartX0) * 0.5}
-          y={chartY1 + 22}
-          text="50% Total Capex"
-          fontFamily={FONTS.data}
-          fontSize={18}
-          fontWeight={700}
-          fill={COLORS.secondaryInk}
-        />
+          clip
+          opacity={chartOpacity}
+        >
+          {/* Chart Title */}
+          <Txt
+            x={30}
+            y={-114}
+            text="LONJAKAN PERMINTAAN & TARIF MUSIM LIBURAN IMLEK"
+            fontFamily={HEADING_FONT}
+            fontSize={19}
+            fontWeight={800}
+            fill={COLORS.ink}
+          />
 
-        {/* Bar 1: Sewa Ruko 1 Tahun */}
-        <Txt
-          x={chartX0 + 10}
-          y={cardY - 175}
-          offset={[-1, 0]}
-          text="1. Sewa Ruko 2 Lantai (1 Thn)"
-          fontFamily={FONTS.body}
-          fontSize={18}
-          fontWeight={700}
-          fill={COLORS.secondaryInk}
-        />
-        <Rect
-          x={chartX0}
-          y={cardY - 145}
-          offset={[-1, 0]}
-          width={(chartX1 - chartX0) * 0.94}
-          height={32}
-          fill={COLORS.bg}
-          radius={6}
-        />
-        <Rect
-          x={chartX0}
-          y={cardY - 145}
-          offset={[-1, 0]}
-          width={() => (chartX1 - chartX0) * 0.43 * bar1Progress()}
-          height={32}
-          fill={PALETTE.crimson}
-          radius={6}
-        />
-        <Txt
-          x={() => chartX0 + (chartX1 - chartX0) * 0.43 * bar1Progress() + 14}
-          y={cardY - 145}
-          offset={[-1, 0]}
-          text="Rp150 Jt (43%)"
-          fontFamily={FONTS.data}
-          fontSize={18}
-          fontWeight={800}
-          fill={COLORS.ink}
-          opacity={bar1Opacity}
-        />
+          {/* Mandatory Axis Line 1: X-Axis Arrow */}
+          <Line
+            points={[[-380, 80], [380, 80]]}
+            stroke={COLORS.ink}
+            lineWidth={3}
+            endArrow
+            arrowSize={12}
+          />
 
-        {/* Bar 2: 8 Meja Mahjong Otomatis */}
-        <Txt
-          x={chartX0 + 10}
-          y={cardY - 80}
-          offset={[-1, 0]}
-          text="2. 8 Meja Otomatis Foshan"
-          fontFamily={FONTS.body}
-          fontSize={18}
-          fontWeight={700}
-          fill={COLORS.secondaryInk}
-        />
-        <Rect
-          x={chartX0}
-          y={cardY - 50}
-          offset={[-1, 0]}
-          width={(chartX1 - chartX0) * 0.94}
-          height={32}
-          fill={COLORS.bg}
-          radius={6}
-        />
-        <Rect
-          x={chartX0}
-          y={cardY - 50}
-          offset={[-1, 0]}
-          width={() => (chartX1 - chartX0) * 0.27 * bar2Progress()}
-          height={32}
-          fill={COLORS.goldAccent}
-          radius={6}
-        />
-        <Txt
-          x={() => chartX0 + (chartX1 - chartX0) * 0.27 * bar2Progress() + 14}
-          y={cardY - 50}
-          offset={[-1, 0]}
-          text="Rp96 Jt (27%)"
-          fontFamily={FONTS.data}
-          fontSize={18}
-          fontWeight={800}
-          fill={COLORS.ink}
-          opacity={bar2Opacity}
-        />
+          {/* Mandatory Axis Line 2: Y-Axis Arrow */}
+          <Line
+            points={[[-380, 80], [-380, -88]]}
+            stroke={COLORS.ink}
+            lineWidth={3}
+            endArrow
+            arrowSize={12}
+          />
 
-        {/* Bar 3: Sekatan VIP & AC */}
-        <Txt
-          x={chartX0 + 10}
-          y={cardY + 15}
-          offset={[-1, 0]}
-          text="3. Sekatan Akustik & AC"
-          fontFamily={FONTS.body}
-          fontSize={18}
-          fontWeight={700}
-          fill={COLORS.secondaryInk}
-        />
-        <Rect
-          x={chartX0}
-          y={cardY + 45}
-          offset={[-1, 0]}
-          width={(chartX1 - chartX0) * 0.94}
-          height={32}
-          fill={COLORS.bg}
-          radius={6}
-        />
-        <Rect
-          x={chartX0}
-          y={cardY + 45}
-          offset={[-1, 0]}
-          width={() => (chartX1 - chartX0) * 0.21 * bar3Progress()}
-          height={32}
-          fill={COLORS.compliantGreen}
-          radius={6}
-        />
-        <Txt
-          x={() => chartX0 + (chartX1 - chartX0) * 0.21 * bar3Progress() + 14}
-          y={cardY + 45}
-          offset={[-1, 0]}
-          text="Rp75 Jt (21%)"
-          fontFamily={FONTS.data}
-          fontSize={18}
-          fontWeight={800}
-          fill={COLORS.ink}
-          opacity={bar3Opacity}
-        />
+          {/* X & Y Axis Labels */}
+          <Txt
+            x={-20}
+            y={104}
+            text="PERIODE OPERASIONAL (HARI BIASA vs MUSIM IMLEK)"
+            fontFamily={FONTS.body}
+            fontSize={18}
+            fontWeight={700}
+            fill={COLORS.secondaryInk}
+          />
+          <Txt
+            x={-380}
+            y={-112}
+            text="TARIF / HARI"
+            fontFamily={FONTS.data}
+            fontSize={18}
+            fontWeight={700}
+            fill={COLORS.secondaryInk}
+          />
 
-        {/* Bar 4: CCTV, Listrik & Izin */}
-        <Txt
-          x={chartX0 + 10}
-          y={cardY + 110}
-          offset={[-1, 0]}
-          text="4. CCTV, POS & Izin Legal"
-          fontFamily={FONTS.body}
-          fontSize={18}
-          fontWeight={700}
-          fill={COLORS.secondaryInk}
-        />
-        <Rect
-          x={chartX0}
-          y={cardY + 140}
-          offset={[-1, 0]}
-          width={(chartX1 - chartX0) * 0.94}
-          height={32}
-          fill={COLORS.bg}
-          radius={6}
-        />
-        <Rect
-          x={chartX0}
-          y={cardY + 140}
-          offset={[-1, 0]}
-          width={() => (chartX1 - chartX0) * 0.09 * bar4Progress()}
-          height={32}
-          fill={COLORS.accent}
-          radius={6}
-        />
-        <Txt
-          x={() => chartX0 + (chartX1 - chartX0) * 0.09 * bar4Progress() + 14}
-          y={cardY + 140}
-          offset={[-1, 0]}
-          text="Rp29 Jt (9%)"
-          fontFamily={FONTS.data}
-          fontSize={18}
-          fontWeight={800}
-          fill={COLORS.ink}
-          opacity={bar4Opacity}
-        />
-      </Node>
+          {/* Y-Axis Ticks & Gridlines */}
+          <Line
+            points={[[-380, 10], [360, 10]]}
+            stroke={COLORS.gridLine}
+            lineWidth={1.5}
+            lineDash={[6, 6]}
+          />
+          <Line
+            points={[[-380, -60], [360, -60]]}
+            stroke={COLORS.gridLine}
+            lineWidth={1.5}
+            lineDash={[6, 6]}
+          />
+          <Txt
+            x={-420}
+            y={80}
+            text="Rp0"
+            fontFamily={FONTS.data}
+            fontSize={18}
+            fill={COLORS.secondaryInk}
+          />
+          <Txt
+            x={-425}
+            y={10}
+            text="Rp500rb"
+            fontFamily={FONTS.data}
+            fontSize={18}
+            fill={COLORS.secondaryInk}
+          />
+          <Txt
+            x={-425}
+            y={-60}
+            text="Rp1,5 Jt"
+            fontFamily={FONTS.data}
+            fontSize={18}
+            fontWeight={700}
+            fill={PALETTE.crimson}
+          />
+
+          {/* Bar 1: Normal Season (Rp500.000 / Hari) */}
+          <Rect
+            x={-150}
+            y={45}
+            width={110}
+            height={70}
+            radius={[8, 8, 0, 0]}
+            fill={'#94A3B8'}
+            stroke={COLORS.ink}
+            lineWidth={2}
+          />
+          <Txt
+            x={-150}
+            y={-2}
+            text="Rp500.000"
+            fontFamily={FONTS.data}
+            fontSize={18}
+            fontWeight={700}
+            fill={COLORS.ink}
+          />
+          <Txt
+            x={-150}
+            y={55}
+            text="Normal"
+            fontFamily={FONTS.body}
+            fontSize={18}
+            fontWeight={700}
+            fill={'#FFFFFF'}
+          />
+
+          {/* Bar 2: Imlek Surge (+300%, Rp1.500.000 / Hari) */}
+          <Rect
+            x={50}
+            y={() => 80 - surgeBarHeight() / 2}
+            width={130}
+            height={surgeBarHeight}
+            radius={[8, 8, 0, 0]}
+            fill={PALETTE.crimson}
+            stroke={COLORS.ink}
+            lineWidth={2}
+            opacity={surgeOpacity}
+          />
+          <Txt
+            x={50}
+            y={-85}
+            text="Rp1.500.000"
+            fontFamily={FONTS.data}
+            fontSize={20}
+            fontWeight={800}
+            fill={PALETTE.crimson}
+            opacity={surgeOpacity}
+          />
+          <Txt
+            x={50}
+            y={20}
+            text="IMLEK SURGE"
+            fontFamily={FONTS.body}
+            fontSize={18}
+            fontWeight={800}
+            fill={'#FFFFFF'}
+            opacity={surgeOpacity}
+          />
+
+          {/* Surge Connecting Arrow / Trend */}
+          <Line
+            points={[[-150, 10], [50, -60]]}
+            stroke={PALETTE.amber}
+            lineWidth={4}
+            lineDash={[8, 6]}
+            opacity={surgeOpacity}
+          />
+
+          {/* Gold Stamp Callout */}
+          <Rect
+            x={300}
+            y={-25}
+            padding={[8, 16]}
+            radius={10}
+            fill={PALETTE.amberBg}
+            stroke={PALETTE.amber}
+            lineWidth={2.5}
+            opacity={stampOpacity}
+            scale={stampScale}
+            layout
+            direction="column"
+            alignItems="center"
+          >
+            <Txt
+              text="LONJAKAN +300%!"
+              fontFamily={HEADING_FONT}
+              fontSize={19}
+              fontWeight={800}
+              fill={PALETTE.amber}
+            />
+            <Txt
+              text="Paket: Rp3,5 Jt / 3 Hari"
+              fontFamily={FONTS.data}
+              fontSize={18}
+              fontWeight={700}
+              fill={COLORS.ink}
+            />
+          </Rect>
+        </Rect>
+      </Rect>
     </Node>
   );
 
-  // ===== CHOREOGRAPHY TIMED TO AUDIO =====
-  // 0.0s - 1.5s: Initial reveal of left card
+  // =========================================================================
+  // Synchronized Scene Choreography (10 Beats from beat_cue_schedule.json)
+  // =========================================================================
+
+  // Cue 1: 0.2s - Intro stage card appears
+  yield* waitUntilSceneTime(0.2);
+  yield* stageOpacity(1, 0.45, easeOutCubic);
+
+  // Cue 2: 3.84s - Capex Rp60 Juta highlight pops
+  yield* waitUntilSceneTime(3.84);
   yield* all(
-    leftCardOpacity(1, 0.8, easeOutExpo),
-    leftCardScale(1, 0.8, easeOutBack)
+    capexPillOpacity(1, 0.35, easeOutCubic),
+    capexPillScale(1.0, 0.35, easeOutBack),
   );
 
-  // 9.16s: "anggaran" -> Right card & axes reveal, counter begins
-  yield* waitUntilSceneTime(9.16, t0);
-  focalId(2);
+  // Cue 3: 8.62s - 5 Meja Lipat Rp52,5 Juta reveals
+  yield* waitUntilSceneTime(8.62);
+  yield* item1Opacity(1, 0.35, easeOutCubic);
+
+  // Cue 4: 13.28s - Flight Case + Troli Rp7,5 Juta reveals
+  yield* waitUntilSceneTime(13.28);
+  yield* item2Opacity(1, 0.35, easeOutCubic);
+
+  // Cue 5: 16.07s - Biaya Sewa Ruko Rp0 reveals
+  yield* waitUntilSceneTime(16.07);
+  yield* item3Opacity(1, 0.35, easeOutCubic);
+
+  // Cue 6: 22.46s - Delivery Blind Van reveals
+  yield* waitUntilSceneTime(22.46);
+  yield* item4Opacity(1, 0.35, easeOutCubic);
+
+  // Cue 7: 26.0s - Tarif Harian Rp400rb-500rb reveals
+  yield* waitUntilSceneTime(26.0);
+  yield* item5Opacity(1, 0.35, easeOutCubic);
+
+  // Cue 8: 31.42s - OpEx Bulanan < Rp5 Jt reveals
+  yield* waitUntilSceneTime(31.42);
+  yield* item6Opacity(1, 0.35, easeOutCubic);
+
+  // Cue 9: 35.9s - Imlek chart activates, surge bar rises +300%
+  yield* waitUntilSceneTime(35.9);
   yield* all(
-    rightCardOpacity(1, 0.8, easeOutExpo),
-    rightCardScale(1, 0.8, easeOutBack),
-    axesOpacity(1, 0.7, easeOutExpo),
-    capexCounter(150, 1.2, easeInOutCubic)
+    chartOpacity(1, 0.35, easeOutCubic),
+    surgeOpacity(1, 0.35, easeOutCubic),
+    surgeBarHeight(140, 0.6, easeOutExpo),
   );
 
-  // 12.80s: "Pertama, sewa ruko" -> Bar 1 expands
-  yield* waitUntilSceneTime(12.80, t0);
+  // Cue 10: 40.58s - Imlek gold surge stamp slams down
+  yield* waitUntilSceneTime(40.58);
   yield* all(
-    bar1Progress(1, 1.0, easeOutExpo),
-    bar1Opacity(1, 0.8, easeOutExpo)
+    stampOpacity(1, 0.25, easeOutCubic),
+    stampScale(1.0, 0.35, easeOutBack),
   );
 
-  // 20.44s: "Kedua, pembelian delapan unit meja" -> Bar 2 expands, counter updates
-  yield* waitUntilSceneTime(20.44, t0);
-  yield* all(
-    bar2Progress(1, 1.0, easeOutExpo),
-    bar2Opacity(1, 0.8, easeOutExpo),
-    capexCounter(246, 1.0, easeInOutCubic)
-  );
-
-  // 29.08s: "Ketiga, renovasi partisi dinding" -> Bar 3 expands, counter updates
-  yield* waitUntilSceneTime(29.08, t0);
-  yield* all(
-    bar3Progress(1, 1.0, easeOutExpo),
-    bar3Opacity(1, 0.8, easeOutExpo),
-    capexCounter(321, 1.0, easeInOutCubic)
-  );
-
-  // 44.32s: "Terakhir, instalasi kamera pengawas" -> Bar 4 expands, counter updates
-  yield* waitUntilSceneTime(44.32, t0);
-  yield* all(
-    bar4Progress(1, 1.0, easeOutExpo),
-    bar4Opacity(1, 0.8, easeOutExpo),
-    capexCounter(350, 0.8, easeInOutCubic)
-  );
-
-  // 51.88s: "Total modal awal mencapai tiga ratus lima puluh juta" -> Hero highlight
-  yield* waitUntilSceneTime(51.88, t0);
-  focalId(1);
-  yield* all(
-    totalHighlight(1, 0.4, easeOutBack),
-    leftCardScale(1.02, 0.4, easeOutBack)
-  );
-
-  // Hold cleanly until beat completion (target >= 2.7s before end)
-  yield* finishSceneAt(sceneDur, t0);
+  // Hold safely until scene completion
+  yield* finishSceneAt(SCENE_TIMINGS[3].duration);
 });

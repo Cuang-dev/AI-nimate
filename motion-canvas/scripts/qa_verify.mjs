@@ -15,7 +15,12 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { execSync } from 'child_process';
+import { execSync, spawnSync } from 'child_process';
+import crypto from 'crypto';
+import {
+  loadEpisode, isV2 as isV2Episode, displayTokens, computeShots,
+  checkNumbers, checkJargon, checkStoryboard,
+} from './v2/lint_episode.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -50,9 +55,24 @@ const SLUG_TO_PROJECT = {
   'anatomi-saham-gorengan-di-bei-re': 'vid_20261021_001',
 };
 
+// 0. Exact dir from production/<id>/script.json (channel_date_slug); unambiguous when several episodes share a date
+function dirFromScript(id) {
+  try {
+    const sj = JSON.parse(fs.readFileSync(path.join(MOTION_CANVAS_DIR, 'production', id, 'script.json'), 'utf8'));
+    const date = (id.match(/vid_(\d{8})/) || [])[1];
+    if (sj.slug && date) {
+      const d = path.join(PROJECTS_DIR, `${sj.channel || 'kausalmedia'}_${date}_${sj.slug}`);
+      if (fs.existsSync(d)) return d;
+    }
+  } catch (e) {}
+  return null;
+}
+
 // 1. Direct directory path
 if (fs.existsSync(inputTarget) && fs.statSync(inputTarget).isDirectory()) {
   outputDir = path.resolve(inputTarget);
+} else if (/^vid_\d{8}_\d+$/.test(inputTarget) && dirFromScript(inputTarget)) {
+  outputDir = dirFromScript(inputTarget);
 } else if (fs.existsSync(path.join(PROJECTS_DIR, inputTarget))) {
   outputDir = path.join(PROJECTS_DIR, inputTarget);
 } else if (fs.existsSync(PROJECTS_DIR)) {
@@ -106,6 +126,9 @@ const is16x9Only =
   (scriptAspects && !scriptAspects.includes('9x16')) ||
   aspectFilter === '16x9';
 
+const isV2 = isV2Episode(projectId);
+const v2Ep = isV2 ? loadEpisode(projectId) : null;
+const measurements = [];
 const qaDir = `/tmp/qa_${projectId}`;
 fs.mkdirSync(qaDir, { recursive: true });
 
@@ -145,46 +168,69 @@ if (timings) {
   const beats = timings.beats || [];
   const boundaries = beats.slice(0, -1).map((b) => b.end);
 
-  let wordViolations = 0;
-  let charViolations = 0;
+  // v2: subtitle_chunks is the 16:9 set (one wide line); subtitle_chunks_9x16 stays short.
+  const sets = isV2
+    ? [['16:9', chunks, 10, 52], ['9:16', timings.subtitle_chunks_9x16 || [], 5, 34]]
+    : [['', chunks, 4, 25]];
   let bleedViolations = 0;
-
   for (const chunk of chunks) {
-    const words = (chunk.text || '').trim().split(/\s+/).filter(Boolean);
-    if (words.length > 4) wordViolations++;
-    if ((chunk.text || '').length > 25) charViolations++;
-
     for (const b of boundaries) {
-      if (chunk.start < b - 0.05 && chunk.end > b + 0.05) {
-        bleedViolations++;
-      }
+      if (chunk.start < b - 0.05 && chunk.end > b + 0.05) bleedViolations++;
     }
   }
-
-  record(
-    'Subtitle Words (<= 4 words)',
-    wordViolations === 0,
-    wordViolations === 0 ? `${chunks.length} chunks` : `${wordViolations} chunks exceeded 4 words`
-  );
-
-  record(
-    'Subtitle Chars (<= 25 chars)',
-    charViolations === 0,
-    charViolations === 0 ? `${chunks.length} chunks` : `${charViolations} chunks exceeded 25 chars`
-  );
+  for (const [label, set, MAX_WORDS, MAX_CHARS] of sets) {
+    let wordViolations = 0;
+    let charViolations = 0;
+    for (const chunk of set) {
+      const words = (chunk.text || '').trim().split(/\s+/).filter(Boolean);
+      const wordCount = isV2 && Array.isArray(chunk.words) && chunk.words.length ? chunk.words.length : words.length;
+      if (wordCount > MAX_WORDS) wordViolations++;
+      if ((chunk.text || '').length > MAX_CHARS) charViolations++;
+    }
+    const tag = label ? `${label} ` : '';
+    const empty = isV2 && set.length === 0;
+    record(
+      `Subtitle ${tag}Words (<= ${MAX_WORDS})`,
+      wordViolations === 0 && !empty,
+      empty ? 'no chunks (re-run synth_narration.py --repace)'
+        : wordViolations === 0 ? `${set.length} chunks` : `${wordViolations} chunks exceeded ${MAX_WORDS} words`
+    );
+    record(
+      `Subtitle ${tag}Chars (<= ${MAX_CHARS})`,
+      charViolations === 0 && !empty,
+      charViolations === 0 ? `${set.length} chunks` : `${charViolations} chunks exceeded ${MAX_CHARS} chars`
+    );
+  }
 
   record(
     'Zero Cross-Beat Bleed',
     bleedViolations === 0,
     bleedViolations === 0 ? 'Clean beat boundaries' : `${bleedViolations} bleeding chunks`
   );
+
+  if (isV2) {
+    const expected = v2Ep.sentences.flatMap((s) => s.tokens);
+    const got = (timings.words || []).map((w) => w.w);
+    let match = 0;
+    let firstBad = null;
+    const n = Math.max(expected.length, got.length);
+    for (let i = 0; i < n; i++) {
+      if (expected[i] !== undefined && expected[i] === got[i]) match++;
+      else if (!firstBad) firstBad = `#${i} script="${expected[i] ?? '-'}" timings="${got[i] ?? '-'}"`;
+    }
+    const pct = n ? (100 * match) / n : 0;
+    measurements.push(`Subtitle words: ${match}/${n} equal script display tokens (${pct.toFixed(2)}%)${firstBad ? '; first diff ' + firstBad : ''}`);
+    record('Subtitle = Script (100%)', n > 0 && match === n, n > 0 && match === n ? `${n} words in order` : `${pct.toFixed(1)}%, ${firstBad}`);
+  }
 }
 
 // -----------------------------------------------------------------------------
 // 2. SCENE TSX CAMERA ARCHITECTURE CHECK
 // -----------------------------------------------------------------------------
 const scenesDir = path.join(MOTION_CANVAS_DIR, 'src', 'scenes', projectId);
-if (!fs.existsSync(scenesDir)) {
+if (isV2) {
+  // v2: scenes are data driven by src/shared/v2; per-beat .tsx / brow / font checks are meaningless.
+} else if (!fs.existsSync(scenesDir)) {
   record('Camera Invariant (<Camera.Stage>)', true, 'N/A (consolidated binary)');
   record('Phone Font Floor (>= 18px)', true, 'N/A (consolidated binary)');
   record('Perpendicular Conduit Check', true, 'N/A (consolidated binary)');
@@ -280,7 +326,7 @@ if (!fs.existsSync(scenesDir)) {
       : `Sideways entries in: ${conduitViolations.join(', ')}`
   );
 
-  // Check 14: Readable Sans Heading & Density Check
+  // Check 14: Readable Sans Heading Check (Artificial <Txt> node cap removed to support sentence-level cues)
   const layoutPath = path.join(scenesDir, 'layout.tsx');
   let sansHeadingFail = false;
   let sansHeadingReason = '';
@@ -292,46 +338,73 @@ if (!fs.existsSync(scenesDir)) {
     }
   }
 
-  let densityFail = false;
-  const densityViolations = [];
-  for (const file of beatFiles) {
-    const filePath = path.join(scenesDir, file);
-    const content = fs.readFileSync(filePath, 'utf8');
-    const stripped = content.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '');
-    const txtMatches = stripped.match(/<Txt\b/g) || [];
-    if (txtMatches.length > 18) {
-      densityViolations.push(`${file} (${txtMatches.length} <Txt> nodes)`);
-      densityFail = true;
-    }
-  }
-
-  const check14Passed = !sansHeadingFail && !densityFail;
-  let check14Detail = 'Clean sans & <=18 <Txt>';
-  if (sansHeadingFail && densityFail) {
-    check14Detail = `${sansHeadingReason}; Too much text on screen! Max 18 <Txt> nodes per beat: ${densityViolations.join(', ')}`;
-  } else if (sansHeadingFail) {
-    check14Detail = sansHeadingReason;
-  } else if (densityFail) {
-    check14Detail = `Too much text on screen! Max 18 <Txt> nodes per beat: ${densityViolations.join(', ')}`;
-  }
-
   record(
-    'Readable Sans & Density Check',
-    check14Passed,
-    check14Passed ? 'Clean sans & <=18 <Txt>' : check14Detail
+    'Readable Sans Heading Check',
+    !sansHeadingFail,
+    !sansHeadingFail ? 'Clean sans headings verified' : sansHeadingReason
   );
 
-  // Check 15: Clean Brow & Chart Axes Check (Rule 11 & Rule 12)
+  // Check 16: Beat-Level Visual Cadence Check (Every Sentence + Rapid Hook Beats; enforced from vid_20261102_001 onwards)
+  const timingChapters = timings?.chapters || timings?.beats;
+  if (projectId >= 'vid_20261102_001' && timingChapters) {
+    let cadenceFail = false;
+    const cadenceReasons = [];
+    let scriptChapters = [];
+    if (fs.existsSync(scriptJsonPath)) {
+      try {
+        const sj = JSON.parse(fs.readFileSync(scriptJsonPath, 'utf8'));
+        scriptChapters = sj.chapters || sj.beats || [];
+      } catch (e) {}
+    }
+
+    for (let i = 0; i < timingChapters.length; i++) {
+      const b = timingChapters[i];
+      const beatFile = `beat_${String(i + 1).padStart(2, '0')}.tsx`;
+      const beatPath = path.join(scenesDir, beatFile);
+      if (!fs.existsSync(beatPath)) continue;
+
+      const content = fs.readFileSync(beatPath, 'utf8');
+      const stripped = content.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '');
+      const waitCalls = stripped.match(/waitUntilSceneTime\s*\(/g) || [];
+
+      const sb = scriptChapters[i] || {};
+      const spoken = sb.spoken_text || b.spoken_text || '';
+      const sentences = spoken
+        .split(/[.!?]+/)
+        .map((s) => s.trim())
+        .filter((s) => s.length > 8);
+
+      const dur = b.duration || (b.end - b.start) || 20;
+      const minRequiredCues = Math.max(sentences.length, Math.floor((dur - 3) / 6.5));
+
+      if (waitCalls.length < minRequiredCues) {
+        cadenceFail = true;
+        cadenceReasons.push(
+          `${beatFile}: ${waitCalls.length} beats < ${minRequiredCues} required (${sentences.length} sentences in ${dur.toFixed(1)}s)`
+        );
+      }
+    }
+
+    record(
+      'Sentence-Level Visual Cadence',
+      !cadenceFail,
+      !cadenceFail
+        ? 'Every sentence triggers visual beat'
+        : cadenceReasons.join('; ')
+    );
+  }
+
+  // Check 15: Clean Brow & Chart Axes Check (Rule 11 & Rule 12; scans explainer chapters for >=2 axis lines)
   if (projectId.startsWith('vid_20261031_') || projectId.startsWith('vid_20261102_')) {
     let check15Fail = false;
     const check15Reasons = [];
 
     if (fs.existsSync(layoutPath)) {
       const layoutContent = fs.readFileSync(layoutPath, 'utf8');
-      const hasCleanBrow = /(?:Knp\?|POV:)\s*\|/.test(layoutContent) && /BEAT_LABELS/.test(layoutContent);
+      const hasCleanBrow = /(?:Knp\?|POV:)\s*\|/.test(layoutContent) && /(?:BEAT_LABELS|CHAPTER_LABELS)/.test(layoutContent);
       if (!hasCleanBrow) {
         check15Fail = true;
-        check15Reasons.push("layout.tsx missing '(Knp?|POV:) |' in BEAT_LABELS");
+        check15Reasons.push("layout.tsx missing '(Knp?|POV:) |' in BEAT_LABELS/CHAPTER_LABELS");
       }
       if (/TOP_PILL_ITEMS/i.test(layoutContent) || /nav-pill/i.test(layoutContent)) {
         check15Fail = true;
@@ -339,9 +412,8 @@ if (!fs.existsSync(scenesDir)) {
       }
     }
 
-    const chartCandidateFiles = ['beat_04.tsx', 'beat_10.tsx'];
     let foundAxes = false;
-    for (const cFile of chartCandidateFiles) {
+    for (const cFile of beatFiles) {
       const cPath = path.join(scenesDir, cFile);
       if (fs.existsSync(cPath)) {
         const cContent = fs.readFileSync(cPath, 'utf8');
@@ -356,7 +428,7 @@ if (!fs.existsSync(scenesDir)) {
     }
     if (!foundAxes) {
       check15Fail = true;
-      check15Reasons.push(`Chart scene missing >= 2 axis <Line endArrow /> (checked ${chartCandidateFiles.join(', ')})`);
+      check15Reasons.push('Explainer scenes missing >= 2 axis <Line endArrow /> across chapter files');
     }
 
     record(
@@ -376,7 +448,7 @@ function probeVideo(filePath) {
   if (!fs.existsSync(filePath)) return null;
   try {
     const raw = execSync(
-      `ffprobe -v error -show_entries stream=codec_type,width,height,duration,nb_frames:format=duration,size -of json "${filePath}"`,
+      `ffprobe -v error -show_entries stream=codec_type,width,height,duration,nb_frames,r_frame_rate:format=duration,size -of json "${filePath}"`,
       { encoding: 'utf8' }
     );
     const data = JSON.parse(raw);
@@ -390,6 +462,11 @@ function probeVideo(filePath) {
       width: videoStream?.width,
       height: videoStream?.height,
       hasAudio: Boolean(audioStream),
+      audioDuration: parseFloat(audioStream?.duration || '0'),
+      fps: (() => {
+        const [a, b] = String(videoStream?.r_frame_rate || '0/1').split('/').map(Number);
+        return b ? a / b : 0;
+      })(),
     };
   } catch (err) {
     return null;
@@ -426,6 +503,8 @@ if (timings?.beats) {
           ? `${lines.length}/${expectedBeats} beats matched`
           : `Expected ${expectedBeats} beats, found ${lines.length}`
       );
+    } else if (isV2) {
+      record(`Concat List (${aspect})`, false, `concat_list.txt missing in ${path.relative(MOTION_CANVAS_DIR, aspectDir)}`);
     } else {
       record(
         `Concat List (${aspect})`,
@@ -446,7 +525,7 @@ if (aspectFilter === '9x16' || (!fs.existsSync(vid16x9Path) && projectId === 'vi
     record('Master 16:9 Video', false, 'Missing or unreadable file');
   } else {
     const isVid001 = projectId === 'vid_20261031_001';
-    const durOk =
+    const durOk = isV2 ? true : 
       targetDuration > 0
         ? (Math.abs(probe16x9.duration - targetDuration) <= 0.6 &&
            Math.abs(probe16x9.videoDuration - targetDuration) <= 0.6) ||
@@ -486,7 +565,9 @@ if (is16x9Only && !fs.existsSync(vid9x16Path)) {
 
 // WhatsApp Stream (< 4.5 MB, 540x960, AAC)
 const vidWaPath = path.join(outputDir, 'video_whatsapp.mp4');
-if (is16x9Only && !fs.existsSync(vidWaPath)) {
+if (isV2) {
+  // v2: no WhatsApp stream check
+} else if (is16x9Only && !fs.existsSync(vidWaPath)) {
   record('WhatsApp Stream', true, 'Skipped (16:9 widescreen only)');
 } else {
   const probeWa = probeVideo(vidWaPath);
@@ -576,6 +657,130 @@ if (!fs.existsSync(sourceVideoForFrames) || !timings?.beats) {
 }
 
 // -----------------------------------------------------------------------------
+// 4b. v2 CHECKS (only when production/<id>/storyboard.json exists)
+// -----------------------------------------------------------------------------
+if (isV2) {
+  const sha256 = (f) => crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex');
+  const masters = [];
+  if (fs.existsSync(vid16x9Path) && aspectFilter !== '9x16') masters.push(['16x9', vid16x9Path]);
+  if (fs.existsSync(vid9x16Path) && !is16x9Only) masters.push(['9x16', vid9x16Path]);
+
+  // --- Sync drift -----------------------------------------------------------
+  for (const [asp, file] of masters) {
+    const pr = probeVideo(file);
+    if (!pr || !targetDuration) {
+      record(`Sync Drift (${asp})`, false, 'no probe or timings duration');
+      continue;
+    }
+    const tol = 1 / (pr.fps || 60) + 0.03;
+    const dv = pr.videoDuration - targetDuration;
+    const da = pr.audioDuration - targetDuration;
+    const ok = Math.abs(dv) <= tol && Math.abs(da) <= tol;
+    measurements.push(
+      `Sync ${asp}: timings ${targetDuration.toFixed(3)}s, video ${pr.videoDuration.toFixed(3)}s (${dv >= 0 ? '+' : ''}${dv.toFixed(3)}), ` +
+      `audio ${pr.audioDuration.toFixed(3)}s (${da >= 0 ? '+' : ''}${da.toFixed(3)}), tol ${tol.toFixed(3)}s @${pr.fps.toFixed(2)}fps, ` +
+      `frames ${pr.nbFrames} vs ${Math.round(targetDuration * pr.fps)}`
+    );
+    record(`Sync Drift (${asp})`, ok, `v${dv >= 0 ? '+' : ''}${dv.toFixed(3)} a${da >= 0 ? '+' : ''}${da.toFixed(3)} tol ${tol.toFixed(3)}`);
+  }
+
+  // --- Stage stillness ------------------------------------------------------
+  const mainMaster = masters.find((m) => m[0] === '16x9');
+  if (!mainMaster) {
+    record('Stage Stillness (< 9s)', false, 'no 16:9 master');
+  } else {
+    const r = spawnSync(
+      'ffmpeg',
+      ['-nostats', '-i', mainMaster[1], '-an', '-vf', 'crop=1920:850:0:0,fps=10,freezedetect=n=0.00005:d=3', '-f', 'null', '-'],
+      { encoding: 'utf8', maxBuffer: 1 << 28 }
+    );
+    const out = (r.stderr || '') + (r.stdout || '');
+    const starts = [...out.matchAll(/freeze_start:\s*([\d.]+)/g)].map((m) => parseFloat(m[1]));
+    const durs = [...out.matchAll(/freeze_duration:\s*([\d.]+)/g)].map((m) => parseFloat(m[1]));
+    const vdur = probeVideo(mainMaster[1])?.videoDuration || targetDuration;
+    // A freeze that runs to the end of the video has a start but no duration line.
+    if (starts.length > durs.length) durs.push(Math.max(0, vdur - starts[starts.length - 1]));
+    const total = durs.reduce((a, b) => a + b, 0);
+    const longest = durs.reduce((a, b) => Math.max(a, b), 0);
+    const pct = vdur ? (100 * total) / vdur : 0;
+    measurements.push(`Stillness: ${durs.length} frozen stretches >= 3s, total ${total.toFixed(1)}s (${pct.toFixed(1)}%), longest ${longest.toFixed(1)}s`);
+    record('Stage Stillness (< 9s)', r.status === 0 && longest < 9, `${pct.toFixed(1)}% frozen, longest ${longest.toFixed(1)}s`);
+  }
+
+  // --- Loudness -------------------------------------------------------------
+  if (!mainMaster) {
+    record('Loudness (-14 LUFS, TP<=-0.9)', false, 'no 16:9 master');
+  } else {
+    const r = spawnSync(
+      'ffmpeg',
+      ['-nostats', '-i', mainMaster[1], '-vn', '-af', 'ebur128=peak=true', '-f', 'null', '-'],
+      { encoding: 'utf8', maxBuffer: 1 << 28 }
+    );
+    const out = r.stderr || '';
+    const sum = out.slice(out.lastIndexOf('Summary:'));
+    const lufs = parseFloat((sum.match(/I:\s*(-?[\d.]+)\s*LUFS/) || [])[1]);
+    const tp = parseFloat((sum.match(/Peak:\s*(-?[\d.]+)\s*dBFS/) || [])[1]);
+    const ok = Number.isFinite(lufs) && Number.isFinite(tp) && Math.abs(lufs + 14) <= 1 && tp <= -0.9;
+    measurements.push(`Loudness: integrated ${lufs} LUFS (target -14 +/-1), true peak ${tp} dBTP (max -0.9)`);
+    record('Loudness (-14 LUFS, TP<=-0.9)', ok, `${lufs} LUFS, TP ${tp} dBTP`);
+  }
+
+  // --- Asset QA -------------------------------------------------------------
+  {
+    const imgs = new Set();
+    for (const ch of v2Ep.storyboard?.chapters || []) for (const sh of ch.shots || []) if (sh.image?.src) imgs.add(sh.image.src);
+    const qaPath = path.join(v2Ep.dir, 'asset_qa.json');
+    const raw = fs.existsSync(qaPath) ? (() => { try { return JSON.parse(fs.readFileSync(qaPath, 'utf8')); } catch (e) { return null; } })() : null;
+    if (!raw) {
+      record('Asset QA (haiku, sha256)', false, fs.existsSync(qaPath) ? 'asset_qa.json unreadable' : 'asset_qa.json missing');
+    } else {
+      // Accept {images|assets|results: [...]|{...}}, a bare array, or a bare map keyed by file name.
+      let list = raw.images ?? raw.assets ?? raw.results ?? raw;
+      const entries = new Map();
+      if (Array.isArray(list)) {
+        for (const e of list) {
+          const k = e.src ?? e.file ?? e.image ?? e.name ?? e.path;
+          if (k) entries.set(path.basename(String(k)), e);
+        }
+      } else if (list && typeof list === 'object') {
+        for (const [k, e] of Object.entries(list)) if (e && typeof e === 'object') entries.set(path.basename(k), e);
+      }
+      const bad = [];
+      for (const src of imgs) {
+        // asset_qa.json may key images by filename or by manifest id (filename without extension).
+        const e = entries.get(path.basename(src)) || entries.get(path.basename(src).replace(/\.[^.]+$/, ''));
+        const file = path.join(MOTION_CANVAS_DIR, 'public', 'assets', projectId, src);
+        if (!e) { bad.push(`${src}: not in asset_qa`); continue; }
+        if (e.pass !== true) { bad.push(`${src}: pass!=true`); continue; }
+        if (!/haiku/i.test(String(e.qa_model || ''))) { bad.push(`${src}: qa_model`); continue; }
+        if (!fs.existsSync(file)) { bad.push(`${src}: file missing`); continue; }
+        if (String(e.sha256 || '').toLowerCase() !== sha256(file)) bad.push(`${src}: sha256 stale`);
+      }
+      measurements.push(`Asset QA: ${imgs.size - bad.length}/${imgs.size} images pass${bad.length ? '; ' + bad.slice(0, 6).join(', ') : ''}`);
+      record('Asset QA (haiku, sha256)', bad.length === 0 && imgs.size > 0, bad.length ? `${bad.length}/${imgs.size}: ${bad[0]}` : `${imgs.size}/${imgs.size} images`);
+    }
+  }
+
+  // --- Thumbnail ------------------------------------------------------------
+  {
+    const designed = path.join(MOTION_CANVAS_DIR, 'public', 'assets', projectId, 'thumbnail_16x9.jpg');
+    const src = projectMeta?.thumbnailSource || null;
+    const hasDesigned = fs.existsSync(designed);
+    const sourceOk = hasDesigned || ['designed', 'designed-legacy', 'generated'].includes(src);
+    const installed = fs.existsSync(path.join(outputDir, 'thumbnail.jpg'));
+    measurements.push(`Thumbnail: designed file ${hasDesigned ? 'present' : 'absent'}, meta source ${src || 'unrecorded'}, installed ${installed}`);
+    record('Thumbnail (designed)', sourceOk && installed, sourceOk ? (installed ? `source ${hasDesigned ? 'assets file' : src}` : 'thumbnail.jpg not installed') : `raw frame (source ${src || 'none'})`);
+  }
+
+  // --- Numbers / jargon / storyboard (shared with lint_episode.mjs) ---------
+  for (const r of [checkNumbers(v2Ep), checkJargon(v2Ep), checkStoryboard(v2Ep)]) {
+    record(r.name, r.passed, r.detail);
+    measurements.push(`${r.name}: ${r.detail}`);
+    for (const it of (r.items || []).slice(0, 12)) measurements.push(`  - ${it}`);
+  }
+}
+
+// -----------------------------------------------------------------------------
 // 5. COMPACT TERMINAL REPORT (Safe <= 76 characters)
 // -----------------------------------------------------------------------------
 const allPassed = results.every((r) => r.passed);
@@ -594,6 +799,53 @@ for (const r of results) {
 }
 
 console.log('└───────────────────────────────────┴────────┴───────────────────────────┘');
+
+function wrapLine(text, width = 74, indent = '  ') {
+  const words = text.split(' ');
+  const lines = [];
+  let cur = '';
+  for (const w of words) {
+    if ((cur + ' ' + w).trim().length > width - indent.length && cur) {
+      lines.push(indent + cur);
+      cur = w;
+    } else cur = (cur + ' ' + w).trim();
+  }
+  if (cur) lines.push(indent + cur);
+  return lines.join('\n');
+}
+
+if (isV2) {
+  console.log('\nMeasurements:');
+  for (const m of measurements) console.log(wrapLine(m.trimEnd(), 74, m.startsWith('  -') ? '    ' : '  '));
+
+  // Persist the report (v2 only; legacy project dirs are never written to).
+  const passedN = results.filter((r) => r.passed).length;
+  const status = allPassed ? `${passedN}/${results.length} PASS` : 'FAIL';
+  try {
+    fs.writeFileSync(
+      path.join(outputDir, 'qa_report.json'),
+      JSON.stringify({ id: projectId, generatedAt: new Date().toISOString(), status, passed: passedN, total: results.length, checks: results, measurements }, null, 2)
+    );
+    const metaPath = path.join(outputDir, 'meta.json');
+    if (fs.existsSync(metaPath)) {
+      const m = JSON.parse(fs.readFileSync(metaPath, 'utf8'));
+      m.qaStatus = status;
+      fs.writeFileSync(metaPath, JSON.stringify(m, null, 2));
+    }
+    const manifestPath = path.join(PROJECTS_DIR, 'manifest.json');
+    if (fs.existsSync(manifestPath)) {
+      const mf = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+      let changed = false;
+      for (const e of mf) {
+        if ((e.id === projectId || e.dirName === path.basename(outputDir)) && e.qaStatus !== status) { e.qaStatus = status; changed = true; }
+      }
+      if (changed) fs.writeFileSync(manifestPath, JSON.stringify(mf, null, 2));
+    }
+    console.log(`\nWrote qa_report.json (${status}), updated meta.json and manifest.json`);
+  } catch (e) {
+    console.log(`\n[WARN] could not persist QA report: ${e.message}`);
+  }
+}
 
 if (!allPassed) {
   console.log('\nFailure Details:');

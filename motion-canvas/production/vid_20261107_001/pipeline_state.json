@@ -1,0 +1,69 @@
+{
+  "stages": {
+    "script": {
+      "status": "ok",
+      "hash": "195535862e3e0d24",
+      "at": "2026-11-08T06:59:24.056Z"
+    },
+    "lint": {
+      "status": "ok",
+      "hash": null,
+      "at": "2026-11-08T07:15:44.909Z"
+    },
+    "narration": {
+      "status": "adopted",
+      "hash": "d19b217c16322577",
+      "at": "2026-11-08T06:59:24.089Z"
+    },
+    "music": {
+      "status": "adopted",
+      "hash": "fac7fb7b6e6e4633",
+      "at": "2026-11-08T06:59:24.090Z"
+    },
+    "storyboard": {
+      "status": "ok",
+      "hash": null,
+      "at": "2026-11-08T07:15:44.925Z"
+    },
+    "assets": {
+      "status": "ok",
+      "hash": null,
+      "at": "2026-11-08T07:15:53.714Z"
+    },
+    "thumbnail": {
+      "status": "adopted",
+      "hash": "9dcf0d5aa92e87dd",
+      "at": "2026-11-08T06:59:25.404Z"
+    },
+    "crops": {
+      "status": "ok",
+      "hash": null,
+      "at": "2026-11-08T07:15:55.732Z"
+    },
+    "mix": {
+      "status": "ok",
+      "hash": "80bd6ee90a548f4b",
+      "at": "2026-11-08T07:22:48.292Z"
+    },
+    "scaffold": {
+      "status": "ok",
+      "hash": null,
+      "at": "2026-11-08T07:22:48.368Z"
+    },
+    "render": {
+      "status": "ok",
+      "hash": "1286775c47c83332",
+      "at": "2026-11-08T09:39:31.629Z"
+    },
+    "qa": {
+      "status": "ok",
+      "hash": null,
+      "at": "2026-11-08T09:40:55.743Z"
+    },
+    "review": {
+      "status": "ok",
+      "hash": "7c0abf2fedc210d3",
+      "at": "2026-11-08T09:42:13.006Z"
+    }
+  }
+}

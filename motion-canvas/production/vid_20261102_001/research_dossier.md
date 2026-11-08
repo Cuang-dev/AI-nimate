@@ -1,7 +1,7 @@
 # Forensic Business Dossier: Bisnis Sewa Meja Mahjong Otomatis di Indonesia (2025–2026)
 **Dokumen Investigasi & Analisis Unit Economics untuk Kausal Media**  
 **Project ID:** `vid_20261102_001` | **Slug:** `pov-buka-sewa-meja-mahjong`  
-**Target Output:** 16:9 Long-Form Documentary Visual Essay (10 Beats, ~9 Menit)
+**Target Output:** 16:9 Long-Form Documentary Visual Essay (Dynamic Chapter Count, ~8–10 Menit)
 
 ---
 
@@ -36,8 +36,6 @@ Berdasarkan agregasi marketplace (Tokopedia, Shopee, importir Foshan/Guangdong l
 | **Kelas Komersial Standar (Workhorse)** | Kaki pedastal kokoh, peredam suara (*silent mat* <50 dB), 4 port USB charger, asbak & cupholder tanam, 2 set batu magnetik 42mm/44mm. | **Rp11.500.000 – Rp14.000.000** | Informa T60/T200, Normico, Prospace, Lucky Pong |
 | **Kelas VIP / Luxury Dining** | Motor brushless ultra-silent (<40 dB), pelat tembaga tebal, roller coaster pop-up, penutup kayu solid (beralih fungsi jadi meja makan mewah). | **Rp16.000.000 – Rp25.000.000+** | Treyo S-Series / C360, AZKO Luxury Edition |
 
-*Catatan Logistik:* Satu unit meja mahjong berbobot antara **70 kg hingga 105 kg**. Biaya kargo laut LCL dari Foshan ke Pelabuhan Tanjung Priok berkisar Rp1.500.000 – Rp2.500.000 per meter kubik, sehingga distributor lokal umumnya mengambil margin kotor 30–40% di harga ritel Tokopedia.
-
 ---
 
 ## 3. Komparasi Dua Model Bisnis: Lounge Ruko vs Rental Antar-Rumah
@@ -50,7 +48,6 @@ Berdasarkan agregasi marketplace (Tokopedia, Shopee, importir Foshan/Guangdong l
 1. **Sewa Ruko 2 Lantai (1 Tahun + Deposit):** Rp150.000.000  
 2. **Pengadaan 8 Unit Meja Otomatis Komersial (@ Rp12.000.000):** Rp96.000.000  
 3. **Renovasi Partisi Gipsum Kedap Suara & 8 Unit AC Inverter:** Rp75.000.000  
-   *(Catatan: Mahjong menghasilkan suara benturan batu yang intens; tanpa peredaman akustik, ruang bermain akan berdengung dan mengganggu ruko sebelah).*
 4. **Sistem Keamanan & POS (8 CCTV Audio 4K, POS Tablet, Smart Door Lock):** Rp14.000.000  
 5. **Perizinan Usaha, Legalitas KBLI (Kafe/Permainan Ketangkasan), & Modal Kerja Kasir:** Rp15.000.000  
 **TOTAL CAPEX:** **Rp350.000.000**
@@ -85,17 +82,9 @@ Berdasarkan agregasi marketplace (Tokopedia, Shopee, importir Foshan/Guangdong l
 Banyak pengusaha pemula salah mengira bahwa pemilik lounge mahjong kaya dari uang sewa meja. **Ini adalah kekeliruan fatal.**
 
 ### 4.1. Umpan Sewa Meja (*Loss Leader*)
-Tarif sewa meja Rp60.000 per jam untuk 4 pemain berarti masing-masing orang hanya membayar **Rp15.000 per jam**—jauh lebih murah daripada tiket bioskop IMAX atau sewa lapangan padel (Rp350.000/jam).  
-Pendapatan sewa meja murni ini sebenarnya **hanya cukup untuk menutup beban sewa ruko, penyusutan aset, dan tagihan listrik AC**.
+Tarif sewa meja Rp60.000 per jam untuk 4 pemain berarti masing-masing orang hanya membayar **Rp15.000 per jam**. Pendapatan sewa meja murni ini sebenarnya **hanya cukup untuk menutup beban sewa ruko, penyusutan aset, dan tagihan listrik AC**.
 
-### 4.2. Psikologi Konsumsi 5 Jam Non-Stop
-Ketika 4 orang duduk bermain mahjong selama 5 jam:
-- Otak mereka bekerja keras menghitung kombinasi (*pung*, *chow*, *kong*, probabilitas kartu buangan).
-- Mereka dilarang keras meninggalkan meja karena permainan tidak bisa berlangsung jika 1 pemain pergi.
-- Tenggorokan menjadi haus dan perut lapar.
-- Meja mahjong melarang makanan berkuah di atas meja kain beludru, sehingga lounge menyediakan meja samping (*side cart*) dan menu khusus makanan praktis: Dimsum (Siomay, Hakau), Mie Goreng Instan Telur Kornet, Tahu Crispy, Kentang Goreng, Es Liang Teh Herbal, Kopi Susu Aren, dan Minuman Kaleng Dingin.
-
-### 4.3. Simulasi Struk Satu Sesi Meja VIP (Durasi 5 Jam)
+### 4.2. Simulasi Struk Satu Sesi Meja VIP (Durasi 5 Jam)
 
 | Komponen Struk | Rincian Item | Nilai Tagihan (IDR) | HPP Bahan / Modal | Gross Margin (%) | Laba Kotor (IDR) |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -111,48 +100,17 @@ Ketika 4 orang duduk bermain mahjong selama 5 jam:
 
 ## 5. Tiga Jebakan Operasional Fatal (*Forensic Traps*)
 
-### Jebakan 1: "Kutukan Hari Kerja" (Dead Weekday Hours)
-- **Ilusi Pemula:** Menghitung proyeksi pendapatan 8 meja x 12 jam buka x Rp60.000 = Rp5.760.000 per hari (Rp172 juta/bulan). Ini perhitungan fiktif di atas kertas.
-- **Realitas Lapangan:** 
-  - **Senin sampai Kamis siang (10.00 – 17.00):** Okupansi meja anjlok hingga **di bawah 15%**. Meja-meja kosong melompong, sementara AC dan staf kasir tetap harus digaji.
-  - **Jumat malam, Sabtu, dan Minggu:** Okupansi meledak **100%**, terjadi antrean hingga 10 kelompok yang terpaksa ditolak karena meja penuh.
-  - **Bottleneck Kapasitas:** Berbeda dengan toko retail yang bisa melayani 100 orang sekaligus, lounge mahjong 8 meja memiliki batas mutlak maksimal 32 pemain pada satu waktu.
-  - **Jam Emas Efektif:** Praktis sebuah lounge hanya memiliki **~30 hingga 35 jam emas per minggu** untuk mengumpulkan margin yang harus menambal biaya 168 jam operasional ruko!
-
-### Jebakan 2: Kerapuhan Mekanikal & "Batu Hilang Bikin Runtuh"
-- **Tumpahan Minuman Manis:** Pemain yang tegang sering menyenggol gelas es teh atau boba. Tumpahan cairan manis masuk ke sela-sela elevator drum pengocok. Gula mengering dan mengkristal, membuat sensor optik inframerah tertutup debu lengket, dan gir motor pengocok macet total (*jammed*).
-- **Sindrom Batu Hilang:** Setiap set mahjong otomatis memiliki kalibrasi ketebalan dan polaritas magnetik yang sangat presisi (akurasi sub-milimeter). Jika satu batu saja hilang terselip atau retak karena terbanting, **pemilik tidak bisa menggantinya dengan sembarang batu manual**. Satu set 144 batu otomatis langsung menjadi tidak berguna (*bricked*) sampai suku cadang nomor seri yang sama tiba dari distributor.
-- **Biaya Depresiasi Nyata:** Pergantian kain beludru meja (*green felt*) akibat rokok/kotoran (Rp350.000 per meja tiap 3 bulan) dan penggantian motor roller/sensor (Rp800.000 per servis).
-
-### Jebakan 3: Garis Tipis Hukum (Pasal 303 KUHP vs Olahraga Rekreasi)
-Di Indonesia, perjudian adalah tindak pidana tanpa toleransi ambang batas (UU No. 7 Tahun 1974 dan Pasal 303/303bis KUHP).
-- **Risiko Penggerebekan Polisi:** Jika ada pengunjung yang bertaruh menggunakan uang tunai di atas meja atau menggunakan chip kasino, pengelola ruko dapat dijerat Pasal 303 ayat (1) dengan ancaman pidana hingga 10 tahun penjara atas tuduhan "menyediakan kesempatan bermain judi".
-- **SOP Bertahan Hidup Lounge Legal (The Shield):**
-  1. **Strict No-Cash on Table:** Spanduk dan stiker peringatan keras: *"Dilarang meletakkan uang tunai atau chip taruhan di atas meja"*. Pelanggar langsung ditegur atau dikeluarkan.
-  2. **Aplikasi Skor Digital / Lembar Kertas:** Pemain diarahkan mencatat poin menggunakan aplikasi mobile pencatat skor mahjong (*Mahjong Tracker*) atau lembar skor olahraga.
-  3. **Pintu Kaca Transparan & Open Space:** Menghindari pintu tertutup rapat tanpa kaca. Sebagian besar lounge menggunakan partisi kaca transparan sehingga aktivitas pemain terlihat jelas dari meja resepsionis kasir.
-  4. **Kamera CCTV 24 Jam dengan Cloud Storage:** Setiap sudut meja diawasi kamera CCTV beresolusi tinggi sebagai bukti otentik jika sewaktu-waktu dilakukan razia atau pemeriksaan oleh pihak berwenang.
+1. **Jebakan 1: "Kutukan Hari Kerja" (Dead Weekday Hours)**
+   - Senin–Kamis siang (10.00–17.00): okupansi anjlok `<15%`. Jumat malam–Minggu: okupansi `100%` (waiting list). Praktis hanya ada **~35 jam emas per minggu** untuk menutup biaya 168 jam sewa ruko!
+2. **Jebakan 2: Kerapuhan Mekanikal & "Batu Hilang Bikin Runtuh"**
+   - Tumpahan minuman manis (boba/kopi susu) ke dalam celah elevator membuat sensor optik lengket dan gir motor macet (biaya servis Rp800.000).
+   - Satu batu magnetik hilang/retak membuat 1 set 144 batu langsung *bricked* karena kalibrasi magnet sub-milimeter.
+3. **Jebakan 3: Garis Tipis Hukum (Pasal 303 KUHP vs Olahraga Rekreasi)**
+   - Wajib menerapkan 4 perisai hukum: (1) *Strict No-Cash/No-Chip on Table*, (2) Aplikasi skor digital di HP, (3) Partisi kaca transparan, dan (4) CCTV 24 jam.
 
 ---
 
 ## 6. Head-to-Head Perbandingan Finansial: Lounge Ruko vs Rental Antar-Rumah
 
-| Indikator Finansial | Model A: Lounge Ruko (8 Meja) | Model B: Rental Antar-Rumah (5 Meja) |
-| :--- | :--- | :--- |
-| **Total Investasi Awal (CAPEX)** | **Rp350.000.000** | **Rp60.000.000** |
-| **Beban Operasional Bulanan (OPEX)** | **Rp32.000.000 – Rp42.000.000**<br>(Sewa ruko Rp12,5jt, Listrik AC Rp8jt, 2 Staf Rp8jt, Wi-Fi & Maintenance Rp4jt) | **Rp4.500.000 – Rp7.000.000**<br>(Gudang garasi Rp0, Bensin/kurir kargo Rp3,5jt, Ads Rp2jt) |
-| **Rata-Rata Omzet Bulanan** | Rp50.000.000 – Rp65.000.000<br>(Sewa Meja Rp25jt + F&B Rp35jt) | Rp14.000.000 – Rp22.000.000<br>(Hari biasa 12 sesi/bln + Weekend 16 sesi/bln) |
-| **Surge Season (Musim Imlek / Long Weekend)** | Kenaikan omzet +25% (karena terbentur batas fisik 8 meja) | **Kenaikan omzet +200% sampai +300%**<br>(Tarif melonjak ke Rp1,5jt/hari; 5 meja disewa nonstop selama 1-2 minggu = omzet tembus Rp45-60jt di bulan Imlek!) |
-| **Laba Bersih Bulanan Rata-Rata** | **Rp18.000.000 – Rp23.000.000** | **Rp9.500.000 – Rp15.000.000** |
-| **Payback Period (Balik Modal)** | **18 – 22 Bulan** | **6 – 8 Bulan** |
-| **Tingkat Stres Operasional** | **Sangat Tinggi** (Kelola staf, kebersihan makanan, komplain suara, risiko Pasal 303, sewa ruko mengikat) | **Rendah – Sedang** (Logistik angkat meja berat 80kg, perawatan spare part meja, koordinasi kurir) |
-
----
-
-## 7. Kesimpulan & Rekomendasi Sudut Pandang Naskah Visual
-
-Dari temuan forensic unit economics di atas, naskah video (`script.json`) akan membongkar realitas ini secara objektif:
-1. **Bongkar Ilusi:** Menunjukkan bahwa bisnis sewa meja mahjong bukan sekadar menyewakan furnitur, melainkan menjual **waktu interaksi sosial intensif 5 jam** dan mengonversinya menjadi **penjualan makanan-minuman ber-margin tinggi**.
-2. **Soroti Matematika:** Membedah struk kasir nyata Rp750.000 dan menunjukkan bagaimana F&B mensubsidi biaya listrik pendingin ruangan.
-3. **Peringatkan Risiko:** Membahas bahaya tumpahan minuman ke motor Foshan, risiko satu batu hilang yang melumpuhkan meja, serta pagar hukum Pasal 303 KUHP yang mewajibkan transparansi penuh.
-4. **Kesimpulan Actionable:** Menghadapkan penonton pada pilihan rasional: jika memiliki modal kecil dan ingin balik modal cepat (<8 bulan), bisnis rental panggilan harian portabel jauh lebih tangguh terhadap risiko sewa ruko.
+- **Model A (Lounge Ruko 8 Meja)**: Modal Rp350 Juta, OPEX Rp35 Juta/bln, Laba Bersih Rp18–23 Juta/bln, **Balik Modal 18–22 Bulan**.
+- **Model B (Rental Garasi 5 Meja Lipat)**: Modal Rp60 Juta, OPEX Rp5 Juta/bln, Laba Bersih Rp10–15 Juta/bln (meledak +300% saat Imlek), **Balik Modal 6–8 Bulan**.

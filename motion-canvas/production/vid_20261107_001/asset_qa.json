@@ -1,0 +1,1113 @@
+{
+  "images": {
+    "ch01_empty_ruko": {
+      "file": "ch01_empty_ruko.png",
+      "pass": true,
+      "qa_model": "claude-haiku-5-5",
+      "sha256": "73d9509157c603ae49cef4cdf1ce63f95a99fa47183ce02a37d7e37818385294",
+      "attempts": 1,
+      "model": "models/gemini-3.1-flash-image",
+      "final_prompt": "SCENE: Raka stands in the middle of an empty, unfinished two-storey shophouse interior with bare concrete walls, holding a rolled-up floor plan and looking around, slightly daunted. Large roller door open behind him with daylight. Medium shot.\n\nCONSISTENCY: the attached reference image(s) show the recurring character(s) owner. Draw the same person in this scene with the same face, hair, skin tone and clothes.\n\nSTYLE: Flat 2D Indonesian webtoon illustration. Confident, uniform-weight dark ink outlines on every shape. Two-tone cel shading only (one base tone and one shadow tone per surface), no gradients, no soft airbrush, no texture noise. Warm palette: cream, amber, terracotta, warm brown skin tones, emerald green and slate, with one accent colour. Authentic Indonesian everyday settings and details (batik patterns, ruko and warung interiors, tropical plants, plastic stools, wooden furniture, motorbikes) as the story calls for. Expressive but simple faces: two symmetrical eyes, a small nose, a clear mouth. Wide 16:9 frame. Episode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.\n\nCOMPOSITION RULES: 1) At most 4 people with visible faces. No crowds: a busy place is suggested with empty chairs, empty tables, a few faceless silhouettes, or objects, never with many people. 2) One main subject, large in the frame, simple background with few props. 3) Faces large enough to read clearly (each face at least 8 percent of the image height). 4) Hands are simplified, or tucked out of frame, behind objects, under the table or in pockets whenever possible; if a hand shows, it is large, clearly drawn with five fingers. 5) Mahjong tiles, when needed, are few (a short neat row of at most 6), large, blank-faced ivory blocks with a visible gap between each; never piles, heaps or scattered handfuls. 6) No mechanical cutaways, machine interiors, gears, pipes or technical diagrams. 7) Keep the lowest 20 percent of the picture low in detail: plain table surface, floor or wall, with no faces and no key objects there. 8) Full-bleed picture that runs to every edge.\n\nAVOID (must not appear): melted, smeared or asymmetric faces, mismatched eyes, extra or fused fingers, extra limbs, merged or touching objects, blobs, any text, letters, numbers, signs with writing, logos, watermarks, symbols that look like writing, marks or glyphs on tiles, scratches shaped like letters, panel borders, frames, gutters, black edge lines, cream bands, vignettes, 3D render, photorealism, isometric view, gradients, lens blur, crowds.",
+      "defects": [],
+      "spec_hash": "e9e04528a4c209e1",
+      "seconds": 494,
+      "history": [
+        {
+          "attempt": 1,
+          "model": "models/gemini-3.1-flash-image",
+          "scene_prompt": "Raka stands in the middle of an empty, unfinished two-storey shophouse interior with bare concrete walls, holding a rolled-up floor plan and looking around, slightly daunted. Large roller door open behind him with daylight. Medium shot.",
+          "full_prompt": "SCENE: Raka stands in the middle of an empty, unfinished two-storey shophouse interior with bare concrete walls, holding a rolled-up floor plan and looking around, slightly daunted. Large roller door open behind him with daylight. Medium shot.\n\nCONSISTENCY: the attached reference image(s) show the recurring character(s) owner. Draw the same person in this scene with the same face, hair, skin tone and clothes.\n\nSTYLE: Flat 2D Indonesian webtoon illustration. Confident, uniform-weight dark ink outlines on every shape. Two-tone cel shading only (one base tone and one shadow tone per surface), no gradients, no soft airbrush, no texture noise. Warm palette: cream, amber, terracotta, warm brown skin tones, emerald green and slate, with one accent colour. Authentic Indonesian everyday settings and details (batik patterns, ruko and warung interiors, tropical plants, plastic stools, wooden furniture, motorbikes) as the story calls for. Expressive but simple faces: two symmetrical eyes, a small nose, a clear mouth. Wide 16:9 frame. Episode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.\n\nCOMPOSITION RULES: 1) At most 4 people with visible faces. No crowds: a busy place is suggested with empty chairs, empty tables, a few faceless silhouettes, or objects, never with many people. 2) One main subject, large in the frame, simple background with few props. 3) Faces large enough to read clearly (each face at least 8 percent of the image height). 4) Hands are simplified, or tucked out of frame, behind objects, under the table or in pockets whenever possible; if a hand shows, it is large, clearly drawn with five fingers. 5) Mahjong tiles, when needed, are few (a short neat row of at most 6), large, blank-faced ivory blocks with a visible gap between each; never piles, heaps or scattered handfuls. 6) No mechanical cutaways, machine interiors, gears, pipes or technical diagrams. 7) Keep the lowest 20 percent of the picture low in detail: plain table surface, floor or wall, with no faces and no key objects there. 8) Full-bleed picture that runs to every edge.\n\nAVOID (must not appear): melted, smeared or asymmetric faces, mismatched eyes, extra or fused fingers, extra limbs, merged or touching objects, blobs, any text, letters, numbers, signs with writing, logos, watermarks, symbols that look like writing, marks or glyphs on tiles, scratches shaped like letters, panel borders, frames, gutters, black edge lines, cream bands, vignettes, 3D render, photorealism, isometric view, gradients, lens blur, crowds.",
+          "gen_seconds": 21.2,
+          "qa_seconds": 455.5,
+          "pass": true,
+          "defects": [],
+          "qa_reason": null,
+          "faces_checked": 2,
+          "hands_checked": 2,
+          "sha256": "73d9509157c603ae49cef4cdf1ce63f95a99fa47183ce02a37d7e37818385294",
+          "size": [
+            2752,
+            1536
+          ]
+        }
+      ],
+      "best_attempt": 1,
+      "focus": {
+        "x": 0.542,
+        "x0": 0.333,
+        "x1": 0.667,
+        "subject": "Raka, a lone man in a mustard jacket and white shirt holding a rolled plan, standing centre in an empty unfinished shophouse (face and upper body)",
+        "runs": [
+          0.542,
+          0.542,
+          0.542
+        ],
+        "model": "claude-haiku-5-5",
+        "sha256": "73d9509157c603ae49cef4cdf1ce63f95a99fa47183ce02a37d7e37818385294"
+      }
+    },
+    "ch01_friends_table": {
+      "file": "ch01_friends_table.png",
+      "pass": true,
+      "qa_model": "claude-haiku-5-5",
+      "sha256": "d1f6e1c27be8510d34df02696a4ca5b02164e51ca3d95717361e3af04747631c",
+      "attempts": 1,
+      "model": "models/gemini-3.1-flash-image",
+      "final_prompt": "SCENE: Four Indonesian friends in their twenties seated around a square emerald felt mahjong table in a warm shophouse lounge at night, relaxed and laughing, seen from a medium distance. Hands resting on the table edge. A few large blank ivory tiles in a neat line on the felt.\n\nSTYLE: Flat 2D Indonesian webtoon illustration. Confident, uniform-weight dark ink outlines on every shape. Two-tone cel shading only (one base tone and one shadow tone per surface), no gradients, no soft airbrush, no texture noise. Warm palette: cream, amber, terracotta, warm brown skin tones, emerald green and slate, with one accent colour. Authentic Indonesian everyday settings and details (batik patterns, ruko and warung interiors, tropical plants, plastic stools, wooden furniture, motorbikes) as the story calls for. Expressive but simple faces: two symmetrical eyes, a small nose, a clear mouth. Wide 16:9 frame. Episode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.\n\nCOMPOSITION RULES: 1) At most 4 people with visible faces. No crowds: a busy place is suggested with empty chairs, empty tables, a few faceless silhouettes, or objects, never with many people. 2) One main subject, large in the frame, simple background with few props. 3) Faces large enough to read clearly (each face at least 8 percent of the image height). 4) Hands are simplified, or tucked out of frame, behind objects, under the table or in pockets whenever possible; if a hand shows, it is large, clearly drawn with five fingers. 5) Mahjong tiles, when needed, are few (a short neat row of at most 6), large, blank-faced ivory blocks with a visible gap between each; never piles, heaps or scattered handfuls. 6) No mechanical cutaways, machine interiors, gears, pipes or technical diagrams. 7) Keep the lowest 20 percent of the picture low in detail: plain table surface, floor or wall, with no faces and no key objects there. 8) Full-bleed picture that runs to every edge.\n\nAVOID (must not appear): melted, smeared or asymmetric faces, mismatched eyes, extra or fused fingers, extra limbs, merged or touching objects, blobs, any text, letters, numbers, signs with writing, logos, watermarks, symbols that look like writing, marks or glyphs on tiles, scratches shaped like letters, panel borders, frames, gutters, black edge lines, cream bands, vignettes, 3D render, photorealism, isometric view, gradients, lens blur, crowds.",
+      "defects": [],
+      "spec_hash": "1b277f8036b624c9",
+      "seconds": 513,
+      "history": [
+        {
+          "attempt": 1,
+          "model": "models/gemini-3.1-flash-image",
+          "scene_prompt": "Four Indonesian friends in their twenties seated around a square emerald felt mahjong table in a warm shophouse lounge at night, relaxed and laughing, seen from a medium distance. Hands resting on the table edge. A few large blank ivory tiles in a neat line on the felt.",
+          "full_prompt": "SCENE: Four Indonesian friends in their twenties seated around a square emerald felt mahjong table in a warm shophouse lounge at night, relaxed and laughing, seen from a medium distance. Hands resting on the table edge. A few large blank ivory tiles in a neat line on the felt.\n\nSTYLE: Flat 2D Indonesian webtoon illustration. Confident, uniform-weight dark ink outlines on every shape. Two-tone cel shading only (one base tone and one shadow tone per surface), no gradients, no soft airbrush, no texture noise. Warm palette: cream, amber, terracotta, warm brown skin tones, emerald green and slate, with one accent colour. Authentic Indonesian everyday settings and details (batik patterns, ruko and warung interiors, tropical plants, plastic stools, wooden furniture, motorbikes) as the story calls for. Expressive but simple faces: two symmetrical eyes, a small nose, a clear mouth. Wide 16:9 frame. Episode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.\n\nCOMPOSITION RULES: 1) At most 4 people with visible faces. No crowds: a busy place is suggested with empty chairs, empty tables, a few faceless silhouettes, or objects, never with many people. 2) One main subject, large in the frame, simple background with few props. 3) Faces large enough to read clearly (each face at least 8 percent of the image height). 4) Hands are simplified, or tucked out of frame, behind objects, under the table or in pockets whenever possible; if a hand shows, it is large, clearly drawn with five fingers. 5) Mahjong tiles, when needed, are few (a short neat row of at most 6), large, blank-faced ivory blocks with a visible gap between each; never piles, heaps or scattered handfuls. 6) No mechanical cutaways, machine interiors, gears, pipes or technical diagrams. 7) Keep the lowest 20 percent of the picture low in detail: plain table surface, floor or wall, with no faces and no key objects there. 8) Full-bleed picture that runs to every edge.\n\nAVOID (must not appear): melted, smeared or asymmetric faces, mismatched eyes, extra or fused fingers, extra limbs, merged or touching objects, blobs, any text, letters, numbers, signs with writing, logos, watermarks, symbols that look like writing, marks or glyphs on tiles, scratches shaped like letters, panel borders, frames, gutters, black edge lines, cream bands, vignettes, 3D render, photorealism, isometric view, gradients, lens blur, crowds.",
+          "gen_seconds": 18.9,
+          "qa_seconds": 475.1,
+          "pass": true,
+          "defects": [],
+          "qa_reason": null,
+          "faces_checked": 5,
+          "hands_checked": 9,
+          "sha256": "d1f6e1c27be8510d34df02696a4ca5b02164e51ca3d95717361e3af04747631c",
+          "size": [
+            2752,
+            1536
+          ]
+        }
+      ],
+      "best_attempt": 1,
+      "focus": {
+        "x": 0.542,
+        "x0": 0.333,
+        "x1": 0.667,
+        "subject": "Four friends seated at a green-felt table with tiles in the centre: a smiling man in batik shirt, a laughing woman in yellow, a man in plaid shirt, and a woman in green",
+        "runs": [
+          0.542,
+          0.542,
+          0.542
+        ],
+        "model": "claude-haiku-5-5",
+        "sha256": "d1f6e1c27be8510d34df02696a4ca5b02164e51ca3d95717361e3af04747631c"
+      }
+    },
+    "ch01_coffee": {
+      "file": "ch01_coffee.png",
+      "pass": true,
+      "qa_model": "claude-haiku-5-5",
+      "sha256": "187face627dc27e17c94619f2e3e95544234dd5e61406728486e167a549a9a38",
+      "attempts": 2,
+      "model": "models/gemini-3.1-flash-image",
+      "final_prompt": "SCENE: Close view of a plain wooden cafe table with one tall glass of iced milk coffee in the centre and one large blank ivory mahjong tile standing beside it. Behind the table is a softly blurred warm wall with a single glowing round lamp and an empty wooden chair. The lower fifth of the picture is a plain wooden tabletop.\n\nSTYLE: Flat 2D Indonesian webtoon illustration. Confident, uniform-weight dark ink outlines on every shape. Two-tone cel shading only (one base tone and one shadow tone per surface), no gradients, no soft airbrush, no texture noise. Warm palette: cream, amber, terracotta, warm brown skin tones, emerald green and slate, with one accent colour. Authentic Indonesian everyday settings and details (batik patterns, ruko and warung interiors, tropical plants, plastic stools, wooden furniture, motorbikes) as the story calls for. Expressive but simple faces: two symmetrical eyes, a small nose, a clear mouth. Wide 16:9 frame. Episode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.\n\nCOMPOSITION RULES: 1) At most 4 people with visible faces. No crowds: a busy place is suggested with empty chairs, empty tables, a few faceless silhouettes, or objects, never with many people. 2) One main subject, large in the frame, simple background with few props. 3) Faces large enough to read clearly (each face at least 8 percent of the image height). 4) Hands are simplified, or tucked out of frame, behind objects, under the table or in pockets whenever possible; if a hand shows, it is large, clearly drawn with five fingers. 5) Mahjong tiles, when needed, are few (a short neat row of at most 6), large, blank-faced ivory blocks with a visible gap between each; never piles, heaps or scattered handfuls. 6) No mechanical cutaways, machine interiors, gears, pipes or technical diagrams. 7) Keep the lowest 20 percent of the picture low in detail: plain table surface, floor or wall, with no faces and no key objects there. 8) Full-bleed picture that runs to every edge.\n\nAVOID (must not appear): melted, smeared or asymmetric faces, mismatched eyes, extra or fused fingers, extra limbs, merged or touching objects, blobs, any text, letters, numbers, signs with writing, logos, watermarks, symbols that look like writing, marks or glyphs on tiles, scratches shaped like letters, panel borders, frames, gutters, black edge lines, cream bands, vignettes, 3D render, photorealism, isometric view, gradients, lens blur, crowds.",
+      "defects": [],
+      "spec_hash": "b633e80c1aad02b0",
+      "seconds": 534,
+      "history": [
+        {
+          "attempt": 1,
+          "model": "models/gemini-3.1-flash-image",
+          "scene_prompt": "A single tall glass of iced milk coffee on a wooden cafe table, large in the centre of the frame, beside one single large blank ivory mahjong tile. Warm blurred lamp-lit background. No people.",
+          "full_prompt": "SCENE: A single tall glass of iced milk coffee on a wooden cafe table, large in the centre of the frame, beside one single large blank ivory mahjong tile. Warm blurred lamp-lit background. No people.\n\nSTYLE: Flat 2D Indonesian webtoon illustration. Confident, uniform-weight dark ink outlines on every shape. Two-tone cel shading only (one base tone and one shadow tone per surface), no gradients, no soft airbrush, no texture noise. Warm palette: cream, amber, terracotta, warm brown skin tones, emerald green and slate, with one accent colour. Authentic Indonesian everyday settings and details (batik patterns, ruko and warung interiors, tropical plants, plastic stools, wooden furniture, motorbikes) as the story calls for. Expressive but simple faces: two symmetrical eyes, a small nose, a clear mouth. Wide 16:9 frame. Episode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.\n\nCOMPOSITION RULES: 1) At most 4 people with visible faces. No crowds: a busy place is suggested with empty chairs, empty tables, a few faceless silhouettes, or objects, never with many people. 2) One main subject, large in the frame, simple background with few props. 3) Faces large enough to read clearly (each face at least 8 percent of the image height). 4) Hands are simplified, or tucked out of frame, behind objects, under the table or in pockets whenever possible; if a hand shows, it is large, clearly drawn with five fingers. 5) Mahjong tiles, when needed, are few (a short neat row of at most 6), large, blank-faced ivory blocks with a visible gap between each; never piles, heaps or scattered handfuls. 6) No mechanical cutaways, machine interiors, gears, pipes or technical diagrams. 7) Keep the lowest 20 percent of the picture low in detail: plain table surface, floor or wall, with no faces and no key objects there. 8) Full-bleed picture that runs to every edge.\n\nAVOID (must not appear): melted, smeared or asymmetric faces, mismatched eyes, extra or fused fingers, extra limbs, merged or touching objects, blobs, any text, letters, numbers, signs with writing, logos, watermarks, symbols that look like writing, marks or glyphs on tiles, scratches shaped like letters, panel borders, frames, gutters, black edge lines, cream bands, vignettes, 3D render, photorealism, isometric view, gradients, lens blur, crowds.",
+          "gen_seconds": 19.7,
+          "qa_seconds": 443.0,
+          "pass": false,
+          "defects": [
+            {
+              "crop": "full",
+              "location": "centre-right background, behind the glass (about x 900-1040, y 180-275) and far left (about x 60-160, y 120-340)",
+              "type": "brief_mismatch",
+              "severity": "major",
+              "description": "The brief asks for no people, but there are four or so human-shaped silhouettes in the background (standing figure at far left, two behind the glass, one more at the right edge). They have no faces, but they are visibly people.",
+              "confirmed": true,
+              "verifier_reason": "Dark, faceless human silhouettes with heads and shoulders are visible in the background: a standing figure at the far left (about x 60-160, y 120-340) and two behind the glass (about x 900-1040, y 180-275), which conflicts with a no-people brief."
+            }
+          ],
+          "qa_reason": "1 confirmed defect(s)",
+          "faces_checked": 5,
+          "hands_checked": 0,
+          "sha256": "3c13907cc6f1056028b401fa4a4b9e9377c6913c7c135273f583c171841d71f1",
+          "size": [
+            2752,
+            1536
+          ],
+          "director_changes": "Replaced the busy lamp-lit cafe background with a simple wall, one lamp and one empty chair so nothing can be read as a person, and moved to a closer framing with a plain tabletop at the bottom."
+        },
+        {
+          "attempt": 2,
+          "model": "models/gemini-3.1-flash-image",
+          "scene_prompt": "Close view of a plain wooden cafe table with one tall glass of iced milk coffee in the centre and one large blank ivory mahjong tile standing beside it. Behind the table is a softly blurred warm wall with a single glowing round lamp and an empty wooden chair. The lower fifth of the picture is a plain wooden tabletop.",
+          "full_prompt": "SCENE: Close view of a plain wooden cafe table with one tall glass of iced milk coffee in the centre and one large blank ivory mahjong tile standing beside it. Behind the table is a softly blurred warm wall with a single glowing round lamp and an empty wooden chair. The lower fifth of the picture is a plain wooden tabletop.\n\nSTYLE: Flat 2D Indonesian webtoon illustration. Confident, uniform-weight dark ink outlines on every shape. Two-tone cel shading only (one base tone and one shadow tone per surface), no gradients, no soft airbrush, no texture noise. Warm palette: cream, amber, terracotta, warm brown skin tones, emerald green and slate, with one accent colour. Authentic Indonesian everyday settings and details (batik patterns, ruko and warung interiors, tropical plants, plastic stools, wooden furniture, motorbikes) as the story calls for. Expressive but simple faces: two symmetrical eyes, a small nose, a clear mouth. Wide 16:9 frame. Episode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.\n\nCOMPOSITION RULES: 1) At most 4 people with visible faces. No crowds: a busy place is suggested with empty chairs, empty tables, a few faceless silhouettes, or objects, never with many people. 2) One main subject, large in the frame, simple background with few props. 3) Faces large enough to read clearly (each face at least 8 percent of the image height). 4) Hands are simplified, or tucked out of frame, behind objects, under the table or in pockets whenever possible; if a hand shows, it is large, clearly drawn with five fingers. 5) Mahjong tiles, when needed, are few (a short neat row of at most 6), large, blank-faced ivory blocks with a visible gap between each; never piles, heaps or scattered handfuls. 6) No mechanical cutaways, machine interiors, gears, pipes or technical diagrams. 7) Keep the lowest 20 percent of the picture low in detail: plain table surface, floor or wall, with no faces and no key objects there. 8) Full-bleed picture that runs to every edge.\n\nAVOID (must not appear): melted, smeared or asymmetric faces, mismatched eyes, extra or fused fingers, extra limbs, merged or touching objects, blobs, any text, letters, numbers, signs with writing, logos, watermarks, symbols that look like writing, marks or glyphs on tiles, scratches shaped like letters, panel borders, frames, gutters, black edge lines, cream bands, vignettes, 3D render, photorealism, isometric view, gradients, lens blur, crowds.",
+          "gen_seconds": 16.1,
+          "qa_seconds": 30.2,
+          "pass": true,
+          "defects": [],
+          "qa_reason": null,
+          "faces_checked": 0,
+          "hands_checked": 0,
+          "sha256": "187face627dc27e17c94619f2e3e95544234dd5e61406728486e167a549a9a38",
+          "size": [
+            2752,
+            1536
+          ]
+        }
+      ],
+      "best_attempt": 2,
+      "focus": {
+        "x": 0.375,
+        "x0": 0.167,
+        "x1": 0.583,
+        "subject": "iced coffee glass with straw beside one blank cream mahjong tile, on a table; no people",
+        "runs": [
+          0.375,
+          0.375,
+          0.375
+        ],
+        "model": "claude-haiku-5-5",
+        "sha256": "187face627dc27e17c94619f2e3e95544234dd5e61406728486e167a549a9a38"
+      }
+    },
+    "ch01_food": {
+      "file": "ch01_food.png",
+      "pass": true,
+      "qa_model": "claude-haiku-5-5",
+      "sha256": "d66f350063bf15816fcb042c82f2d94f6299d841b021cc5a2ccad7438998577b",
+      "attempts": 1,
+      "model": "models/gemini-3.1-flash-image",
+      "final_prompt": "SCENE: Top-down view of a corner of an emerald felt table with a bowl of fried instant noodles topped with a fried egg, a bamboo steamer of dimsum, and two iced drinks. No people, no hands, no tiles.\n\nSTYLE: Flat 2D Indonesian webtoon illustration. Confident, uniform-weight dark ink outlines on every shape. Two-tone cel shading only (one base tone and one shadow tone per surface), no gradients, no soft airbrush, no texture noise. Warm palette: cream, amber, terracotta, warm brown skin tones, emerald green and slate, with one accent colour. Authentic Indonesian everyday settings and details (batik patterns, ruko and warung interiors, tropical plants, plastic stools, wooden furniture, motorbikes) as the story calls for. Expressive but simple faces: two symmetrical eyes, a small nose, a clear mouth. Wide 16:9 frame. Episode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.\n\nCOMPOSITION RULES: 1) At most 4 people with visible faces. No crowds: a busy place is suggested with empty chairs, empty tables, a few faceless silhouettes, or objects, never with many people. 2) One main subject, large in the frame, simple background with few props. 3) Faces large enough to read clearly (each face at least 8 percent of the image height). 4) Hands are simplified, or tucked out of frame, behind objects, under the table or in pockets whenever possible; if a hand shows, it is large, clearly drawn with five fingers. 5) Mahjong tiles, when needed, are few (a short neat row of at most 6), large, blank-faced ivory blocks with a visible gap between each; never piles, heaps or scattered handfuls. 6) No mechanical cutaways, machine interiors, gears, pipes or technical diagrams. 7) Keep the lowest 20 percent of the picture low in detail: plain table surface, floor or wall, with no faces and no key objects there. 8) Full-bleed picture that runs to every edge.\n\nPORTRAIT-CROP SAFETY: the main subject and every face sit within the central 45 percent of the frame width, because the image will later be cropped to a tall portrait strip. Left and right thirds hold only simple background.\n\nAVOID (must not appear): melted, smeared or asymmetric faces, mismatched eyes, extra or fused fingers, extra limbs, merged or touching objects, blobs, any text, letters, numbers, signs with writing, logos, watermarks, symbols that look like writing, marks or glyphs on tiles, scratches shaped like letters, panel borders, frames, gutters, black edge lines, cream bands, vignettes, 3D render, photorealism, isometric view, gradients, lens blur, crowds.",
+      "defects": [],
+      "spec_hash": "3f21a0254c8244e3",
+      "seconds": 81,
+      "history": [
+        {
+          "attempt": 1,
+          "model": "models/gemini-3.1-flash-image",
+          "scene_prompt": "Top-down view of a corner of an emerald felt table with a bowl of fried instant noodles topped with a fried egg, a bamboo steamer of dimsum, and two iced drinks. No people, no hands, no tiles.",
+          "full_prompt": "SCENE: Top-down view of a corner of an emerald felt table with a bowl of fried instant noodles topped with a fried egg, a bamboo steamer of dimsum, and two iced drinks. No people, no hands, no tiles.\n\nSTYLE: Flat 2D Indonesian webtoon illustration. Confident, uniform-weight dark ink outlines on every shape. Two-tone cel shading only (one base tone and one shadow tone per surface), no gradients, no soft airbrush, no texture noise. Warm palette: cream, amber, terracotta, warm brown skin tones, emerald green and slate, with one accent colour. Authentic Indonesian everyday settings and details (batik patterns, ruko and warung interiors, tropical plants, plastic stools, wooden furniture, motorbikes) as the story calls for. Expressive but simple faces: two symmetrical eyes, a small nose, a clear mouth. Wide 16:9 frame. Episode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.\n\nCOMPOSITION RULES: 1) At most 4 people with visible faces. No crowds: a busy place is suggested with empty chairs, empty tables, a few faceless silhouettes, or objects, never with many people. 2) One main subject, large in the frame, simple background with few props. 3) Faces large enough to read clearly (each face at least 8 percent of the image height). 4) Hands are simplified, or tucked out of frame, behind objects, under the table or in pockets whenever possible; if a hand shows, it is large, clearly drawn with five fingers. 5) Mahjong tiles, when needed, are few (a short neat row of at most 6), large, blank-faced ivory blocks with a visible gap between each; never piles, heaps or scattered handfuls. 6) No mechanical cutaways, machine interiors, gears, pipes or technical diagrams. 7) Keep the lowest 20 percent of the picture low in detail: plain table surface, floor or wall, with no faces and no key objects there. 8) Full-bleed picture that runs to every edge.\n\nPORTRAIT-CROP SAFETY: the main subject and every face sit within the central 45 percent of the frame width, because the image will later be cropped to a tall portrait strip. Left and right thirds hold only simple background.\n\nAVOID (must not appear): melted, smeared or asymmetric faces, mismatched eyes, extra or fused fingers, extra limbs, merged or touching objects, blobs, any text, letters, numbers, signs with writing, logos, watermarks, symbols that look like writing, marks or glyphs on tiles, scratches shaped like letters, panel borders, frames, gutters, black edge lines, cream bands, vignettes, 3D render, photorealism, isometric view, gradients, lens blur, crowds.",
+          "gen_seconds": 19.8,
+          "qa_seconds": 54.5,
+          "pass": true,
+          "defects": [],
+          "qa_reason": null,
+          "faces_checked": 0,
+          "hands_checked": 0,
+          "sha256": "d66f350063bf15816fcb042c82f2d94f6299d841b021cc5a2ccad7438998577b",
+          "size": [
+            2752,
+            1536
+          ]
+        }
+      ],
+      "best_attempt": 1,
+      "focus": {
+        "x": 0.625,
+        "x0": 0.25,
+        "x1": 0.917,
+        "subject": "Noodles with fried egg, dim sum in a bamboo steamer, and two iced drinks on green felt",
+        "runs": [
+          0.625,
+          0.625,
+          0.625
+        ],
+        "model": "claude-haiku-5-5",
+        "sha256": "d66f350063bf15816fcb042c82f2d94f6299d841b021cc5a2ccad7438998577b"
+      }
+    },
+    "ch01_raka_doubt": {
+      "file": "ch01_raka_doubt.png",
+      "pass": true,
+      "qa_model": "claude-haiku-5-5",
+      "sha256": "78d909132472ffb63186ca43c920c751445e116314c896bfe9f5868cdc5618b7",
+      "attempts": 1,
+      "model": "models/gemini-3.1-flash-image",
+      "final_prompt": "SCENE: Raka seated alone at a wooden desk at night, large in frame from the chest up, one hand on his chin, frowning thoughtfully at a blank sheet of paper in front of him. A plain calculator on the desk. Warm desk lamp.\n\nCONSISTENCY: the attached reference image(s) show the recurring character(s) owner. Draw the same person in this scene with the same face, hair, skin tone and clothes.\n\nSTYLE: Flat 2D Indonesian webtoon illustration. Confident, uniform-weight dark ink outlines on every shape. Two-tone cel shading only (one base tone and one shadow tone per surface), no gradients, no soft airbrush, no texture noise. Warm palette: cream, amber, terracotta, warm brown skin tones, emerald green and slate, with one accent colour. Authentic Indonesian everyday settings and details (batik patterns, ruko and warung interiors, tropical plants, plastic stools, wooden furniture, motorbikes) as the story calls for. Expressive but simple faces: two symmetrical eyes, a small nose, a clear mouth. Wide 16:9 frame. Episode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.\n\nCOMPOSITION RULES: 1) At most 4 people with visible faces. No crowds: a busy place is suggested with empty chairs, empty tables, a few faceless silhouettes, or objects, never with many people. 2) One main subject, large in the frame, simple background with few props. 3) Faces large enough to read clearly (each face at least 8 percent of the image height). 4) Hands are simplified, or tucked out of frame, behind objects, under the table or in pockets whenever possible; if a hand shows, it is large, clearly drawn with five fingers. 5) Mahjong tiles, when needed, are few (a short neat row of at most 6), large, blank-faced ivory blocks with a visible gap between each; never piles, heaps or scattered handfuls. 6) No mechanical cutaways, machine interiors, gears, pipes or technical diagrams. 7) Keep the lowest 20 percent of the picture low in detail: plain table surface, floor or wall, with no faces and no key objects there. 8) Full-bleed picture that runs to every edge.\n\nPORTRAIT-CROP SAFETY: the main subject and every face sit within the central 45 percent of the frame width, because the image will later be cropped to a tall portrait strip. Left and right thirds hold only simple background.\n\nAVOID (must not appear): melted, smeared or asymmetric faces, mismatched eyes, extra or fused fingers, extra limbs, merged or touching objects, blobs, any text, letters, numbers, signs with writing, logos, watermarks, symbols that look like writing, marks or glyphs on tiles, scratches shaped like letters, panel borders, frames, gutters, black edge lines, cream bands, vignettes, 3D render, photorealism, isometric view, gradients, lens blur, crowds.",
+      "defects": [],
+      "spec_hash": "1beb0de578708331",
+      "seconds": 93,
+      "history": [
+        {
+          "attempt": 1,
+          "model": "models/gemini-3.1-flash-image",
+          "scene_prompt": "Raka seated alone at a wooden desk at night, large in frame from the chest up, one hand on his chin, frowning thoughtfully at a blank sheet of paper in front of him. A plain calculator on the desk. Warm desk lamp.",
+          "full_prompt": "SCENE: Raka seated alone at a wooden desk at night, large in frame from the chest up, one hand on his chin, frowning thoughtfully at a blank sheet of paper in front of him. A plain calculator on the desk. Warm desk lamp.\n\nCONSISTENCY: the attached reference image(s) show the recurring character(s) owner. Draw the same person in this scene with the same face, hair, skin tone and clothes.\n\nSTYLE: Flat 2D Indonesian webtoon illustration. Confident, uniform-weight dark ink outlines on every shape. Two-tone cel shading only (one base tone and one shadow tone per surface), no gradients, no soft airbrush, no texture noise. Warm palette: cream, amber, terracotta, warm brown skin tones, emerald green and slate, with one accent colour. Authentic Indonesian everyday settings and details (batik patterns, ruko and warung interiors, tropical plants, plastic stools, wooden furniture, motorbikes) as the story calls for. Expressive but simple faces: two symmetrical eyes, a small nose, a clear mouth. Wide 16:9 frame. Episode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.\n\nCOMPOSITION RULES: 1) At most 4 people with visible faces. No crowds: a busy place is suggested with empty chairs, empty tables, a few faceless silhouettes, or objects, never with many people. 2) One main subject, large in the frame, simple background with few props. 3) Faces large enough to read clearly (each face at least 8 percent of the image height). 4) Hands are simplified, or tucked out of frame, behind objects, under the table or in pockets whenever possible; if a hand shows, it is large, clearly drawn with five fingers. 5) Mahjong tiles, when needed, are few (a short neat row of at most 6), large, blank-faced ivory blocks with a visible gap between each; never piles, heaps or scattered handfuls. 6) No mechanical cutaways, machine interiors, gears, pipes or technical diagrams. 7) Keep the lowest 20 percent of the picture low in detail: plain table surface, floor or wall, with no faces and no key objects there. 8) Full-bleed picture that runs to every edge.\n\nPORTRAIT-CROP SAFETY: the main subject and every face sit within the central 45 percent of the frame width, because the image will later be cropped to a tall portrait strip. Left and right thirds hold only simple background.\n\nAVOID (must not appear): melted, smeared or asymmetric faces, mismatched eyes, extra or fused fingers, extra limbs, merged or touching objects, blobs, any text, letters, numbers, signs with writing, logos, watermarks, symbols that look like writing, marks or glyphs on tiles, scratches shaped like letters, panel borders, frames, gutters, black edge lines, cream bands, vignettes, 3D render, photorealism, isometric view, gradients, lens blur, crowds.",
+          "gen_seconds": 20.3,
+          "qa_seconds": 68.8,
+          "pass": true,
+          "defects": [],
+          "qa_reason": null,
+          "faces_checked": 2,
+          "hands_checked": 2,
+          "sha256": "78d909132472ffb63186ca43c920c751445e116314c896bfe9f5868cdc5618b7",
+          "size": [
+            2752,
+            1536
+          ]
+        }
+      ],
+      "best_attempt": 1,
+      "focus": {
+        "x": 0.542,
+        "x0": 0.333,
+        "x1": 0.75,
+        "subject": "Raka alone at a desk, face and upper body, thinking with hand on chin, calculator on desk",
+        "runs": [
+          0.542,
+          0.542,
+          0.542
+        ],
+        "model": "claude-haiku-5-5",
+        "sha256": "78d909132472ffb63186ca43c920c751445e116314c896bfe9f5868cdc5618b7"
+      }
+    },
+    "ch02_young_players": {
+      "file": "ch02_young_players.png",
+      "pass": true,
+      "qa_model": "claude-haiku-5-5",
+      "sha256": "abb56e4dfa8dd3ee04ff086a7bf83e0315bcf265f159e7dc4cddb8f3ffd2e129",
+      "attempts": 1,
+      "model": "models/gemini-3.1-flash-image",
+      "final_prompt": "SCENE: Two young Indonesian women and one young man, in casual modern streetwear, sitting at an emerald mahjong table in a stylish cafe with plants and warm light. Close medium shot from table height, big clear smiling faces, one of them holding a phone showing a blank screen.\n\nSTYLE: Flat 2D Indonesian webtoon illustration. Confident, uniform-weight dark ink outlines on every shape. Two-tone cel shading only (one base tone and one shadow tone per surface), no gradients, no soft airbrush, no texture noise. Warm palette: cream, amber, terracotta, warm brown skin tones, emerald green and slate, with one accent colour. Authentic Indonesian everyday settings and details (batik patterns, ruko and warung interiors, tropical plants, plastic stools, wooden furniture, motorbikes) as the story calls for. Expressive but simple faces: two symmetrical eyes, a small nose, a clear mouth. Wide 16:9 frame. Episode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.\n\nCOMPOSITION RULES: 1) At most 4 people with visible faces. No crowds: a busy place is suggested with empty chairs, empty tables, a few faceless silhouettes, or objects, never with many people. 2) One main subject, large in the frame, simple background with few props. 3) Faces large enough to read clearly (each face at least 8 percent of the image height). 4) Hands are simplified, or tucked out of frame, behind objects, under the table or in pockets whenever possible; if a hand shows, it is large, clearly drawn with five fingers. 5) Mahjong tiles, when needed, are few (a short neat row of at most 6), large, blank-faced ivory blocks with a visible gap between each; never piles, heaps or scattered handfuls. 6) No mechanical cutaways, machine interiors, gears, pipes or technical diagrams. 7) Keep the lowest 20 percent of the picture low in detail: plain table surface, floor or wall, with no faces and no key objects there. 8) Full-bleed picture that runs to every edge.\n\nAVOID (must not appear): melted, smeared or asymmetric faces, mismatched eyes, extra or fused fingers, extra limbs, merged or touching objects, blobs, any text, letters, numbers, signs with writing, logos, watermarks, symbols that look like writing, marks or glyphs on tiles, scratches shaped like letters, panel borders, frames, gutters, black edge lines, cream bands, vignettes, 3D render, photorealism, isometric view, gradients, lens blur, crowds.",
+      "defects": [],
+      "spec_hash": "0062e935447b9c95",
+      "seconds": 102,
+      "history": [
+        {
+          "attempt": 1,
+          "model": "models/gemini-3.1-flash-image",
+          "scene_prompt": "Two young Indonesian women and one young man, in casual modern streetwear, sitting at an emerald mahjong table in a stylish cafe with plants and warm light. Close medium shot from table height, big clear smiling faces, one of them holding a phone showing a blank screen.",
+          "full_prompt": "SCENE: Two young Indonesian women and one young man, in casual modern streetwear, sitting at an emerald mahjong table in a stylish cafe with plants and warm light. Close medium shot from table height, big clear smiling faces, one of them holding a phone showing a blank screen.\n\nSTYLE: Flat 2D Indonesian webtoon illustration. Confident, uniform-weight dark ink outlines on every shape. Two-tone cel shading only (one base tone and one shadow tone per surface), no gradients, no soft airbrush, no texture noise. Warm palette: cream, amber, terracotta, warm brown skin tones, emerald green and slate, with one accent colour. Authentic Indonesian everyday settings and details (batik patterns, ruko and warung interiors, tropical plants, plastic stools, wooden furniture, motorbikes) as the story calls for. Expressive but simple faces: two symmetrical eyes, a small nose, a clear mouth. Wide 16:9 frame. Episode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.\n\nCOMPOSITION RULES: 1) At most 4 people with visible faces. No crowds: a busy place is suggested with empty chairs, empty tables, a few faceless silhouettes, or objects, never with many people. 2) One main subject, large in the frame, simple background with few props. 3) Faces large enough to read clearly (each face at least 8 percent of the image height). 4) Hands are simplified, or tucked out of frame, behind objects, under the table or in pockets whenever possible; if a hand shows, it is large, clearly drawn with five fingers. 5) Mahjong tiles, when needed, are few (a short neat row of at most 6), large, blank-faced ivory blocks with a visible gap between each; never piles, heaps or scattered handfuls. 6) No mechanical cutaways, machine interiors, gears, pipes or technical diagrams. 7) Keep the lowest 20 percent of the picture low in detail: plain table surface, floor or wall, with no faces and no key objects there. 8) Full-bleed picture that runs to every edge.\n\nAVOID (must not appear): melted, smeared or asymmetric faces, mismatched eyes, extra or fused fingers, extra limbs, merged or touching objects, blobs, any text, letters, numbers, signs with writing, logos, watermarks, symbols that look like writing, marks or glyphs on tiles, scratches shaped like letters, panel borders, frames, gutters, black edge lines, cream bands, vignettes, 3D render, photorealism, isometric view, gradients, lens blur, crowds.",
+          "gen_seconds": 16.9,
+          "qa_seconds": 80.8,
+          "pass": true,
+          "defects": [],
+          "qa_reason": null,
+          "faces_checked": 8,
+          "hands_checked": 8,
+          "sha256": "abb56e4dfa8dd3ee04ff086a7bf83e0315bcf265f159e7dc4cddb8f3ffd2e129",
+          "size": [
+            2752,
+            1536
+          ]
+        }
+      ],
+      "best_attempt": 1,
+      "focus": {
+        "x": 0.542,
+        "x0": 0.083,
+        "x1": 0.917,
+        "subject": "Group of three young people playing mahjong at a table in a modern cafe; group centre",
+        "runs": [
+          0.542,
+          0.542,
+          0.542
+        ],
+        "model": "claude-haiku-5-5",
+        "sha256": "abb56e4dfa8dd3ee04ff086a7bf83e0315bcf265f159e7dc4cddb8f3ffd2e129"
+      }
+    },
+    "ch04_soundproofing": {
+      "file": "ch04_soundproofing.png",
+      "pass": true,
+      "qa_model": "claude-haiku-5-5",
+      "sha256": "557e14b5d0657a5da9202bf07f3ee7bca3941d27b3ae7c904e11f5b9e91aaf3d",
+      "attempts": 1,
+      "model": "models/gemini-3.1-flash-image",
+      "final_prompt": "SCENE: Raka in a shophouse under renovation, standing beside a worker fitting thick grey acoustic panels onto a wall. Raka holds a clipboard. Stacks of panels nearby. Two people only, medium shot.\n\nCONSISTENCY: the attached reference image(s) show the recurring character(s) owner. Draw the same person in this scene with the same face, hair, skin tone and clothes.\n\nSTYLE: Flat 2D Indonesian webtoon illustration. Confident, uniform-weight dark ink outlines on every shape. Two-tone cel shading only (one base tone and one shadow tone per surface), no gradients, no soft airbrush, no texture noise. Warm palette: cream, amber, terracotta, warm brown skin tones, emerald green and slate, with one accent colour. Authentic Indonesian everyday settings and details (batik patterns, ruko and warung interiors, tropical plants, plastic stools, wooden furniture, motorbikes) as the story calls for. Expressive but simple faces: two symmetrical eyes, a small nose, a clear mouth. Wide 16:9 frame. Episode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.\n\nCOMPOSITION RULES: 1) At most 4 people with visible faces. No crowds: a busy place is suggested with empty chairs, empty tables, a few faceless silhouettes, or objects, never with many people. 2) One main subject, large in the frame, simple background with few props. 3) Faces large enough to read clearly (each face at least 8 percent of the image height). 4) Hands are simplified, or tucked out of frame, behind objects, under the table or in pockets whenever possible; if a hand shows, it is large, clearly drawn with five fingers. 5) Mahjong tiles, when needed, are few (a short neat row of at most 6), large, blank-faced ivory blocks with a visible gap between each; never piles, heaps or scattered handfuls. 6) No mechanical cutaways, machine interiors, gears, pipes or technical diagrams. 7) Keep the lowest 20 percent of the picture low in detail: plain table surface, floor or wall, with no faces and no key objects there. 8) Full-bleed picture that runs to every edge.\n\nPORTRAIT-CROP SAFETY: the main subject and every face sit within the central 45 percent of the frame width, because the image will later be cropped to a tall portrait strip. Left and right thirds hold only simple background.\n\nAVOID (must not appear): melted, smeared or asymmetric faces, mismatched eyes, extra or fused fingers, extra limbs, merged or touching objects, blobs, any text, letters, numbers, signs with writing, logos, watermarks, symbols that look like writing, marks or glyphs on tiles, scratches shaped like letters, panel borders, frames, gutters, black edge lines, cream bands, vignettes, 3D render, photorealism, isometric view, gradients, lens blur, crowds.",
+      "defects": [],
+      "spec_hash": "da9534ef63127476",
+      "seconds": 74,
+      "history": [
+        {
+          "attempt": 1,
+          "model": "models/gemini-3.1-flash-image",
+          "scene_prompt": "Raka in a shophouse under renovation, standing beside a worker fitting thick grey acoustic panels onto a wall. Raka holds a clipboard. Stacks of panels nearby. Two people only, medium shot.",
+          "full_prompt": "SCENE: Raka in a shophouse under renovation, standing beside a worker fitting thick grey acoustic panels onto a wall. Raka holds a clipboard. Stacks of panels nearby. Two people only, medium shot.\n\nCONSISTENCY: the attached reference image(s) show the recurring character(s) owner. Draw the same person in this scene with the same face, hair, skin tone and clothes.\n\nSTYLE: Flat 2D Indonesian webtoon illustration. Confident, uniform-weight dark ink outlines on every shape. Two-tone cel shading only (one base tone and one shadow tone per surface), no gradients, no soft airbrush, no texture noise. Warm palette: cream, amber, terracotta, warm brown skin tones, emerald green and slate, with one accent colour. Authentic Indonesian everyday settings and details (batik patterns, ruko and warung interiors, tropical plants, plastic stools, wooden furniture, motorbikes) as the story calls for. Expressive but simple faces: two symmetrical eyes, a small nose, a clear mouth. Wide 16:9 frame. Episode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.\n\nCOMPOSITION RULES: 1) At most 4 people with visible faces. No crowds: a busy place is suggested with empty chairs, empty tables, a few faceless silhouettes, or objects, never with many people. 2) One main subject, large in the frame, simple background with few props. 3) Faces large enough to read clearly (each face at least 8 percent of the image height). 4) Hands are simplified, or tucked out of frame, behind objects, under the table or in pockets whenever possible; if a hand shows, it is large, clearly drawn with five fingers. 5) Mahjong tiles, when needed, are few (a short neat row of at most 6), large, blank-faced ivory blocks with a visible gap between each; never piles, heaps or scattered handfuls. 6) No mechanical cutaways, machine interiors, gears, pipes or technical diagrams. 7) Keep the lowest 20 percent of the picture low in detail: plain table surface, floor or wall, with no faces and no key objects there. 8) Full-bleed picture that runs to every edge.\n\nPORTRAIT-CROP SAFETY: the main subject and every face sit within the central 45 percent of the frame width, because the image will later be cropped to a tall portrait strip. Left and right thirds hold only simple background.\n\nAVOID (must not appear): melted, smeared or asymmetric faces, mismatched eyes, extra or fused fingers, extra limbs, merged or touching objects, blobs, any text, letters, numbers, signs with writing, logos, watermarks, symbols that look like writing, marks or glyphs on tiles, scratches shaped like letters, panel borders, frames, gutters, black edge lines, cream bands, vignettes, 3D render, photorealism, isometric view, gradients, lens blur, crowds.",
+          "gen_seconds": 20.0,
+          "qa_seconds": 48.9,
+          "pass": true,
+          "defects": [],
+          "qa_reason": null,
+          "faces_checked": 4,
+          "hands_checked": 4,
+          "sha256": "557e14b5d0657a5da9202bf07f3ee7bca3941d27b3ae7c904e11f5b9e91aaf3d",
+          "size": [
+            2752,
+            1536
+          ]
+        }
+      ],
+      "best_attempt": 1,
+      "focus": {
+        "x": 0.542,
+        "x0": 0.333,
+        "x1": 0.833,
+        "subject": "Two men (Raka with clipboard and a worker mounting an acoustic panel on the brick wall), group centre",
+        "runs": [
+          0.542,
+          0.542,
+          0.542
+        ],
+        "model": "claude-haiku-5-5",
+        "sha256": "557e14b5d0657a5da9202bf07f3ee7bca3941d27b3ae7c904e11f5b9e91aaf3d"
+      }
+    },
+    "ch05_busy_table": {
+      "file": "ch05_busy_table.png",
+      "pass": true,
+      "qa_model": "claude-haiku-5-5",
+      "sha256": "5dcc854cc8fa756727d1b4de64686eb7a8cd0e2605394222fbbfe0c1e0910cd0",
+      "attempts": 1,
+      "model": "models/gemini-3.1-flash-image",
+      "final_prompt": "SCENE: Raka behind a small lounge cashier counter, smiling, handing a plate of dimsum to one customer. Warm lights. An emerald table visible softly in the background with no people at it. Two people only.\n\nCONSISTENCY: the attached reference image(s) show the recurring character(s) owner. Draw the same person in this scene with the same face, hair, skin tone and clothes.\n\nSTYLE: Flat 2D Indonesian webtoon illustration. Confident, uniform-weight dark ink outlines on every shape. Two-tone cel shading only (one base tone and one shadow tone per surface), no gradients, no soft airbrush, no texture noise. Warm palette: cream, amber, terracotta, warm brown skin tones, emerald green and slate, with one accent colour. Authentic Indonesian everyday settings and details (batik patterns, ruko and warung interiors, tropical plants, plastic stools, wooden furniture, motorbikes) as the story calls for. Expressive but simple faces: two symmetrical eyes, a small nose, a clear mouth. Wide 16:9 frame. Episode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.\n\nCOMPOSITION RULES: 1) At most 4 people with visible faces. No crowds: a busy place is suggested with empty chairs, empty tables, a few faceless silhouettes, or objects, never with many people. 2) One main subject, large in the frame, simple background with few props. 3) Faces large enough to read clearly (each face at least 8 percent of the image height). 4) Hands are simplified, or tucked out of frame, behind objects, under the table or in pockets whenever possible; if a hand shows, it is large, clearly drawn with five fingers. 5) Mahjong tiles, when needed, are few (a short neat row of at most 6), large, blank-faced ivory blocks with a visible gap between each; never piles, heaps or scattered handfuls. 6) No mechanical cutaways, machine interiors, gears, pipes or technical diagrams. 7) Keep the lowest 20 percent of the picture low in detail: plain table surface, floor or wall, with no faces and no key objects there. 8) Full-bleed picture that runs to every edge.\n\nPORTRAIT-CROP SAFETY: the main subject and every face sit within the central 45 percent of the frame width, because the image will later be cropped to a tall portrait strip. Left and right thirds hold only simple background.\n\nAVOID (must not appear): melted, smeared or asymmetric faces, mismatched eyes, extra or fused fingers, extra limbs, merged or touching objects, blobs, any text, letters, numbers, signs with writing, logos, watermarks, symbols that look like writing, marks or glyphs on tiles, scratches shaped like letters, panel borders, frames, gutters, black edge lines, cream bands, vignettes, 3D render, photorealism, isometric view, gradients, lens blur, crowds.",
+      "defects": [],
+      "spec_hash": "eafab200459f8058",
+      "seconds": 220,
+      "history": [
+        {
+          "attempt": 1,
+          "model": "models/gemini-3.1-flash-image",
+          "scene_prompt": "Raka behind a small lounge cashier counter, smiling, handing a plate of dimsum to one customer. Warm lights. An emerald table visible softly in the background with no people at it. Two people only.",
+          "full_prompt": "SCENE: Raka behind a small lounge cashier counter, smiling, handing a plate of dimsum to one customer. Warm lights. An emerald table visible softly in the background with no people at it. Two people only.\n\nCONSISTENCY: the attached reference image(s) show the recurring character(s) owner. Draw the same person in this scene with the same face, hair, skin tone and clothes.\n\nSTYLE: Flat 2D Indonesian webtoon illustration. Confident, uniform-weight dark ink outlines on every shape. Two-tone cel shading only (one base tone and one shadow tone per surface), no gradients, no soft airbrush, no texture noise. Warm palette: cream, amber, terracotta, warm brown skin tones, emerald green and slate, with one accent colour. Authentic Indonesian everyday settings and details (batik patterns, ruko and warung interiors, tropical plants, plastic stools, wooden furniture, motorbikes) as the story calls for. Expressive but simple faces: two symmetrical eyes, a small nose, a clear mouth. Wide 16:9 frame. Episode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.\n\nCOMPOSITION RULES: 1) At most 4 people with visible faces. No crowds: a busy place is suggested with empty chairs, empty tables, a few faceless silhouettes, or objects, never with many people. 2) One main subject, large in the frame, simple background with few props. 3) Faces large enough to read clearly (each face at least 8 percent of the image height). 4) Hands are simplified, or tucked out of frame, behind objects, under the table or in pockets whenever possible; if a hand shows, it is large, clearly drawn with five fingers. 5) Mahjong tiles, when needed, are few (a short neat row of at most 6), large, blank-faced ivory blocks with a visible gap between each; never piles, heaps or scattered handfuls. 6) No mechanical cutaways, machine interiors, gears, pipes or technical diagrams. 7) Keep the lowest 20 percent of the picture low in detail: plain table surface, floor or wall, with no faces and no key objects there. 8) Full-bleed picture that runs to every edge.\n\nPORTRAIT-CROP SAFETY: the main subject and every face sit within the central 45 percent of the frame width, because the image will later be cropped to a tall portrait strip. Left and right thirds hold only simple background.\n\nAVOID (must not appear): melted, smeared or asymmetric faces, mismatched eyes, extra or fused fingers, extra limbs, merged or touching objects, blobs, any text, letters, numbers, signs with writing, logos, watermarks, symbols that look like writing, marks or glyphs on tiles, scratches shaped like letters, panel borders, frames, gutters, black edge lines, cream bands, vignettes, 3D render, photorealism, isometric view, gradients, lens blur, crowds.",
+          "gen_seconds": 19.9,
+          "qa_seconds": 194.6,
+          "pass": true,
+          "defects": [],
+          "qa_reason": null,
+          "faces_checked": 4,
+          "hands_checked": 4,
+          "sha256": "5dcc854cc8fa756727d1b4de64686eb7a8cd0e2605394222fbbfe0c1e0910cd0",
+          "size": [
+            2752,
+            1536
+          ]
+        }
+      ],
+      "best_attempt": 1,
+      "focus": {
+        "x": 0.375,
+        "x0": 0.25,
+        "x1": 0.5,
+        "subject": "Raka, the server in the yellow jacket, face and upper body, serving the customer at the counter",
+        "runs": [
+          0.375,
+          0.375,
+          0.375
+        ],
+        "model": "claude-haiku-5-5",
+        "sha256": "5dcc854cc8fa756727d1b4de64686eb7a8cd0e2605394222fbbfe0c1e0910cd0"
+      }
+    },
+    "ch06_raka_surprised": {
+      "file": "ch06_raka_surprised.png",
+      "pass": true,
+      "qa_model": "claude-haiku-5-5",
+      "sha256": "5f3b7e330d798b70f1f4d2240339724b9299aae6002eb3928c53e7ae4fc233dc",
+      "attempts": 1,
+      "model": "models/gemini-3.1-flash-image",
+      "final_prompt": "SCENE: Close medium shot of Raka at a desk with eyebrows raised and mouth slightly open, genuinely surprised, staring at a blank sheet of paper he holds up in both hands; the paper's back faces the viewer. Warm lamp light. Plain background.\n\nCONSISTENCY: the attached reference image(s) show the recurring character(s) owner. Draw the same person in this scene with the same face, hair, skin tone and clothes.\n\nSTYLE: Flat 2D Indonesian webtoon illustration. Confident, uniform-weight dark ink outlines on every shape. Two-tone cel shading only (one base tone and one shadow tone per surface), no gradients, no soft airbrush, no texture noise. Warm palette: cream, amber, terracotta, warm brown skin tones, emerald green and slate, with one accent colour. Authentic Indonesian everyday settings and details (batik patterns, ruko and warung interiors, tropical plants, plastic stools, wooden furniture, motorbikes) as the story calls for. Expressive but simple faces: two symmetrical eyes, a small nose, a clear mouth. Wide 16:9 frame. Episode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.\n\nCOMPOSITION RULES: 1) At most 4 people with visible faces. No crowds: a busy place is suggested with empty chairs, empty tables, a few faceless silhouettes, or objects, never with many people. 2) One main subject, large in the frame, simple background with few props. 3) Faces large enough to read clearly (each face at least 8 percent of the image height). 4) Hands are simplified, or tucked out of frame, behind objects, under the table or in pockets whenever possible; if a hand shows, it is large, clearly drawn with five fingers. 5) Mahjong tiles, when needed, are few (a short neat row of at most 6), large, blank-faced ivory blocks with a visible gap between each; never piles, heaps or scattered handfuls. 6) No mechanical cutaways, machine interiors, gears, pipes or technical diagrams. 7) Keep the lowest 20 percent of the picture low in detail: plain table surface, floor or wall, with no faces and no key objects there. 8) Full-bleed picture that runs to every edge.\n\nAVOID (must not appear): melted, smeared or asymmetric faces, mismatched eyes, extra or fused fingers, extra limbs, merged or touching objects, blobs, any text, letters, numbers, signs with writing, logos, watermarks, symbols that look like writing, marks or glyphs on tiles, scratches shaped like letters, panel borders, frames, gutters, black edge lines, cream bands, vignettes, 3D render, photorealism, isometric view, gradients, lens blur, crowds.",
+      "defects": [],
+      "spec_hash": "9210bc332d637d03",
+      "seconds": 201,
+      "history": [
+        {
+          "attempt": 1,
+          "model": "models/gemini-3.1-flash-image",
+          "scene_prompt": "Close medium shot of Raka at a desk with eyebrows raised and mouth slightly open, genuinely surprised, staring at a blank sheet of paper he holds up in both hands; the paper's back faces the viewer. Warm lamp light. Plain background.",
+          "full_prompt": "SCENE: Close medium shot of Raka at a desk with eyebrows raised and mouth slightly open, genuinely surprised, staring at a blank sheet of paper he holds up in both hands; the paper's back faces the viewer. Warm lamp light. Plain background.\n\nCONSISTENCY: the attached reference image(s) show the recurring character(s) owner. Draw the same person in this scene with the same face, hair, skin tone and clothes.\n\nSTYLE: Flat 2D Indonesian webtoon illustration. Confident, uniform-weight dark ink outlines on every shape. Two-tone cel shading only (one base tone and one shadow tone per surface), no gradients, no soft airbrush, no texture noise. Warm palette: cream, amber, terracotta, warm brown skin tones, emerald green and slate, with one accent colour. Authentic Indonesian everyday settings and details (batik patterns, ruko and warung interiors, tropical plants, plastic stools, wooden furniture, motorbikes) as the story calls for. Expressive but simple faces: two symmetrical eyes, a small nose, a clear mouth. Wide 16:9 frame. Episode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.\n\nCOMPOSITION RULES: 1) At most 4 people with visible faces. No crowds: a busy place is suggested with empty chairs, empty tables, a few faceless silhouettes, or objects, never with many people. 2) One main subject, large in the frame, simple background with few props. 3) Faces large enough to read clearly (each face at least 8 percent of the image height). 4) Hands are simplified, or tucked out of frame, behind objects, under the table or in pockets whenever possible; if a hand shows, it is large, clearly drawn with five fingers. 5) Mahjong tiles, when needed, are few (a short neat row of at most 6), large, blank-faced ivory blocks with a visible gap between each; never piles, heaps or scattered handfuls. 6) No mechanical cutaways, machine interiors, gears, pipes or technical diagrams. 7) Keep the lowest 20 percent of the picture low in detail: plain table surface, floor or wall, with no faces and no key objects there. 8) Full-bleed picture that runs to every edge.\n\nAVOID (must not appear): melted, smeared or asymmetric faces, mismatched eyes, extra or fused fingers, extra limbs, merged or touching objects, blobs, any text, letters, numbers, signs with writing, logos, watermarks, symbols that look like writing, marks or glyphs on tiles, scratches shaped like letters, panel borders, frames, gutters, black edge lines, cream bands, vignettes, 3D render, photorealism, isometric view, gradients, lens blur, crowds.",
+          "gen_seconds": 22.1,
+          "qa_seconds": 174.7,
+          "pass": true,
+          "defects": [],
+          "qa_reason": null,
+          "faces_checked": 4,
+          "hands_checked": 2,
+          "sha256": "5f3b7e330d798b70f1f4d2240339724b9299aae6002eb3928c53e7ae4fc233dc",
+          "size": [
+            2752,
+            1536
+          ]
+        }
+      ],
+      "best_attempt": 1,
+      "focus": {
+        "x": 0.625,
+        "x0": 0.5,
+        "x1": 0.833,
+        "subject": "Raka, a man in a yellow shirt looking surprised while holding a blank sheet of paper (face and upper body)",
+        "runs": [
+          0.625,
+          0.625,
+          0.708
+        ],
+        "model": "claude-haiku-5-5",
+        "sha256": "5f3b7e330d798b70f1f4d2240339724b9299aae6002eb3928c53e7ae4fc233dc"
+      }
+    },
+    "ch03_auto_table": {
+      "file": "ch03_auto_table.png",
+      "pass": true,
+      "qa_model": "claude-haiku-5-5",
+      "sha256": "087aba5269e546aac943578420153cf1f8ff8874f9ca301bf36ebfb0162b5cdd",
+      "attempts": 3,
+      "model": "models/gemini-3.1-flash-image",
+      "final_prompt": "SCENE: A close view of a square automatic mahjong table seen from slightly above, centred in the picture, with a smooth emerald green top and four short neat walls of five large blank ivory tiles, one wall on each side of the green top. The table has a thick cream-colored cabinet body with four sturdy rounded legs standing firmly on a plain pale beige floor, and the legs touch the floor with only a faint soft shade beneath. The whole scene sits on one evenly coloured warm cream background that continues to every edge, and the lower fifth of the picture is the same plain beige floor.\n\nSTYLE: Flat 2D Indonesian webtoon illustration. Confident, uniform-weight dark ink outlines on every shape. Two-tone cel shading only (one base tone and one shadow tone per surface), no gradients, no soft airbrush, no texture noise. Warm palette: cream, amber, terracotta, warm brown skin tones, emerald green and slate, with one accent colour. Authentic Indonesian everyday settings and details (batik patterns, ruko and warung interiors, tropical plants, plastic stools, wooden furniture, motorbikes) as the story calls for. Expressive but simple faces: two symmetrical eyes, a small nose, a clear mouth. Wide 16:9 frame. Episode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.\n\nCOMPOSITION RULES: 1) At most 4 people with visible faces. No crowds: a busy place is suggested with empty chairs, empty tables, a few faceless silhouettes, or objects, never with many people. 2) One main subject, large in the frame, simple background with few props. 3) Faces large enough to read clearly (each face at least 8 percent of the image height). 4) Hands are simplified, or tucked out of frame, behind objects, under the table or in pockets whenever possible; if a hand shows, it is large, clearly drawn with five fingers. 5) Mahjong tiles, when needed, are few (a short neat row of at most 6), large, blank-faced ivory blocks with a visible gap between each; never piles, heaps or scattered handfuls. 6) No mechanical cutaways, machine interiors, gears, pipes or technical diagrams. 7) Keep the lowest 20 percent of the picture low in detail: plain table surface, floor or wall, with no faces and no key objects there. 8) Full-bleed picture that runs to every edge.\n\nPORTRAIT-CROP SAFETY: the main subject and every face sit within the central 45 percent of the frame width, because the image will later be cropped to a tall portrait strip. Left and right thirds hold only simple background.\n\nAVOID (must not appear): melted, smeared or asymmetric faces, mismatched eyes, extra or fused fingers, extra limbs, merged or touching objects, blobs, any text, letters, numbers, signs with writing, logos, watermarks, symbols that look like writing, marks or glyphs on tiles, scratches shaped like letters, panel borders, frames, gutters, black edge lines, cream bands, vignettes, 3D render, photorealism, isometric view, gradients, lens blur, crowds.",
+      "defects": [],
+      "spec_hash": "e1851d8f34f5999b",
+      "seconds": 381,
+      "history": [
+        {
+          "attempt": 1,
+          "model": "models/gemini-3.1-flash-image",
+          "scene_prompt": "An automatic mahjong table seen from a three-quarter angle: a sleek square table with an emerald felt top, a small round plain control panel in the middle, four neat straight walls of large blank ivory tiles with clear gaps. Plain warm cream background. No people. Exterior only, no internal machinery.",
+          "full_prompt": "SCENE: An automatic mahjong table seen from a three-quarter angle: a sleek square table with an emerald felt top, a small round plain control panel in the middle, four neat straight walls of large blank ivory tiles with clear gaps. Plain warm cream background. No people. Exterior only, no internal machinery.\n\nSTYLE: Flat 2D Indonesian webtoon illustration. Confident, uniform-weight dark ink outlines on every shape. Two-tone cel shading only (one base tone and one shadow tone per surface), no gradients, no soft airbrush, no texture noise. Warm palette: cream, amber, terracotta, warm brown skin tones, emerald green and slate, with one accent colour. Authentic Indonesian everyday settings and details (batik patterns, ruko and warung interiors, tropical plants, plastic stools, wooden furniture, motorbikes) as the story calls for. Expressive but simple faces: two symmetrical eyes, a small nose, a clear mouth. Wide 16:9 frame. Episode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.\n\nCOMPOSITION RULES: 1) At most 4 people with visible faces. No crowds: a busy place is suggested with empty chairs, empty tables, a few faceless silhouettes, or objects, never with many people. 2) One main subject, large in the frame, simple background with few props. 3) Faces large enough to read clearly (each face at least 8 percent of the image height). 4) Hands are simplified, or tucked out of frame, behind objects, under the table or in pockets whenever possible; if a hand shows, it is large, clearly drawn with five fingers. 5) Mahjong tiles, when needed, are few (a short neat row of at most 6), large, blank-faced ivory blocks with a visible gap between each; never piles, heaps or scattered handfuls. 6) No mechanical cutaways, machine interiors, gears, pipes or technical diagrams. 7) Keep the lowest 20 percent of the picture low in detail: plain table surface, floor or wall, with no faces and no key objects there. 8) Full-bleed picture that runs to every edge.\n\nPORTRAIT-CROP SAFETY: the main subject and every face sit within the central 45 percent of the frame width, because the image will later be cropped to a tall portrait strip. Left and right thirds hold only simple background.\n\nAVOID (must not appear): melted, smeared or asymmetric faces, mismatched eyes, extra or fused fingers, extra limbs, merged or touching objects, blobs, any text, letters, numbers, signs with writing, logos, watermarks, symbols that look like writing, marks or glyphs on tiles, scratches shaped like letters, panel borders, frames, gutters, black edge lines, cream bands, vignettes, 3D render, photorealism, isometric view, gradients, lens blur, crowds.",
+          "gen_seconds": 18.8,
+          "qa_seconds": 44.7,
+          "pass": false,
+          "defects": [
+            {
+              "crop": "full",
+              "location": "bottom edge of the full frame, roughly the lowest 16% of the image",
+              "type": "border_or_gutter",
+              "severity": "major",
+              "description": "A hard black horizontal rule runs across the full width at the bottom of the illustration, and below it sits a flat blank cream band. It reads as a panel border or caption gutter that cuts the picture off.",
+              "confirmed": true,
+              "verifier_reason": "A hard black horizontal line runs across the full width near y≈735, and below it sits a flat, blank cream band occupying the lowest ~16% of the frame, cutting off the illustration like a gutter."
+            }
+          ],
+          "qa_reason": "pass 2: 1 confirmed defect(s)",
+          "faces_checked": 0,
+          "hands_checked": 0,
+          "sha256": "35cd66b3c67dae4c6f455cb1f3a05ca681698d9fdc0cae15d6ede3a32e88d5a9",
+          "size": [
+            2752,
+            1536
+          ],
+          "director_changes": "Enlarged and centred the table with fewer, chunkier tiles, and made the cream background and floor extend seamlessly to all edges so no border line or blank band appears at the bottom."
+        },
+        {
+          "attempt": 2,
+          "model": "models/gemini-3.1-flash-image",
+          "scene_prompt": "A close view of a square automatic mahjong table seen from slightly above and centred in the picture, with a smooth emerald green felt top and a small round plain button in the middle. Four neat straight walls of large blank ivory tiles frame the felt, each wall a short row of about six chunky tiles. The table fills most of the frame and sits on a soft warm cream background that continues evenly to every edge, with a plain softly shaded floor in the lower fifth.",
+          "full_prompt": "SCENE: A close view of a square automatic mahjong table seen from slightly above and centred in the picture, with a smooth emerald green felt top and a small round plain button in the middle. Four neat straight walls of large blank ivory tiles frame the felt, each wall a short row of about six chunky tiles. The table fills most of the frame and sits on a soft warm cream background that continues evenly to every edge, with a plain softly shaded floor in the lower fifth.\n\nSTYLE: Flat 2D Indonesian webtoon illustration. Confident, uniform-weight dark ink outlines on every shape. Two-tone cel shading only (one base tone and one shadow tone per surface), no gradients, no soft airbrush, no texture noise. Warm palette: cream, amber, terracotta, warm brown skin tones, emerald green and slate, with one accent colour. Authentic Indonesian everyday settings and details (batik patterns, ruko and warung interiors, tropical plants, plastic stools, wooden furniture, motorbikes) as the story calls for. Expressive but simple faces: two symmetrical eyes, a small nose, a clear mouth. Wide 16:9 frame. Episode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.\n\nCOMPOSITION RULES: 1) At most 4 people with visible faces. No crowds: a busy place is suggested with empty chairs, empty tables, a few faceless silhouettes, or objects, never with many people. 2) One main subject, large in the frame, simple background with few props. 3) Faces large enough to read clearly (each face at least 8 percent of the image height). 4) Hands are simplified, or tucked out of frame, behind objects, under the table or in pockets whenever possible; if a hand shows, it is large, clearly drawn with five fingers. 5) Mahjong tiles, when needed, are few (a short neat row of at most 6), large, blank-faced ivory blocks with a visible gap between each; never piles, heaps or scattered handfuls. 6) No mechanical cutaways, machine interiors, gears, pipes or technical diagrams. 7) Keep the lowest 20 percent of the picture low in detail: plain table surface, floor or wall, with no faces and no key objects there. 8) Full-bleed picture that runs to every edge.\n\nPORTRAIT-CROP SAFETY: the main subject and every face sit within the central 45 percent of the frame width, because the image will later be cropped to a tall portrait strip. Left and right thirds hold only simple background.\n\nAVOID (must not appear): melted, smeared or asymmetric faces, mismatched eyes, extra or fused fingers, extra limbs, merged or touching objects, blobs, any text, letters, numbers, signs with writing, logos, watermarks, symbols that look like writing, marks or glyphs on tiles, scratches shaped like letters, panel borders, frames, gutters, black edge lines, cream bands, vignettes, 3D render, photorealism, isometric view, gradients, lens blur, crowds.",
+          "gen_seconds": 19.2,
+          "qa_seconds": 154.9,
+          "pass": false,
+          "defects": [
+            {
+              "crop": "full",
+              "location": "",
+              "type": "nonsense_object",
+              "severity": "major",
+              "description": "The table slab has no visible legs or support and floats above a large brown cast shadow. Otherwise the objects are plausible.",
+              "confirmed": true,
+              "verifier_reason": "The mahjong-style table is a flat slab with no legs or any visible support, and it sits above a large offset brown cast shadow, so it reads as floating in mid-air, which is a physically nonsensical object rather than normal stylisation."
+            }
+          ],
+          "qa_reason": "1 confirmed defect(s)",
+          "faces_checked": 0,
+          "hands_checked": 0,
+          "sha256": "888ac00cf5dc571ff26924d8d1b1e2b861aa94b09bb83e84e5fe2b2afc81230e",
+          "size": [
+            2752,
+            1536
+          ],
+          "director_changes": "Gave the table a solid cabinet body with four sturdy legs resting on the floor, reduced tiles to five per wall, removed the central button and heavy shadow, and made the background and floor one conti"
+        },
+        {
+          "attempt": 3,
+          "model": "models/gemini-3.1-flash-image",
+          "scene_prompt": "A close view of a square automatic mahjong table seen from slightly above, centred in the picture, with a smooth emerald green top and four short neat walls of five large blank ivory tiles, one wall on each side of the green top. The table has a thick cream-colored cabinet body with four sturdy rounded legs standing firmly on a plain pale beige floor, and the legs touch the floor with only a faint soft shade beneath. The whole scene sits on one evenly coloured warm cream background that continues to every edge, and the lower fifth of the picture is the same plain beige floor.",
+          "full_prompt": "SCENE: A close view of a square automatic mahjong table seen from slightly above, centred in the picture, with a smooth emerald green top and four short neat walls of five large blank ivory tiles, one wall on each side of the green top. The table has a thick cream-colored cabinet body with four sturdy rounded legs standing firmly on a plain pale beige floor, and the legs touch the floor with only a faint soft shade beneath. The whole scene sits on one evenly coloured warm cream background that continues to every edge, and the lower fifth of the picture is the same plain beige floor.\n\nSTYLE: Flat 2D Indonesian webtoon illustration. Confident, uniform-weight dark ink outlines on every shape. Two-tone cel shading only (one base tone and one shadow tone per surface), no gradients, no soft airbrush, no texture noise. Warm palette: cream, amber, terracotta, warm brown skin tones, emerald green and slate, with one accent colour. Authentic Indonesian everyday settings and details (batik patterns, ruko and warung interiors, tropical plants, plastic stools, wooden furniture, motorbikes) as the story calls for. Expressive but simple faces: two symmetrical eyes, a small nose, a clear mouth. Wide 16:9 frame. Episode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.\n\nCOMPOSITION RULES: 1) At most 4 people with visible faces. No crowds: a busy place is suggested with empty chairs, empty tables, a few faceless silhouettes, or objects, never with many people. 2) One main subject, large in the frame, simple background with few props. 3) Faces large enough to read clearly (each face at least 8 percent of the image height). 4) Hands are simplified, or tucked out of frame, behind objects, under the table or in pockets whenever possible; if a hand shows, it is large, clearly drawn with five fingers. 5) Mahjong tiles, when needed, are few (a short neat row of at most 6), large, blank-faced ivory blocks with a visible gap between each; never piles, heaps or scattered handfuls. 6) No mechanical cutaways, machine interiors, gears, pipes or technical diagrams. 7) Keep the lowest 20 percent of the picture low in detail: plain table surface, floor or wall, with no faces and no key objects there. 8) Full-bleed picture that runs to every edge.\n\nPORTRAIT-CROP SAFETY: the main subject and every face sit within the central 45 percent of the frame width, because the image will later be cropped to a tall portrait strip. Left and right thirds hold only simple background.\n\nAVOID (must not appear): melted, smeared or asymmetric faces, mismatched eyes, extra or fused fingers, extra limbs, merged or touching objects, blobs, any text, letters, numbers, signs with writing, logos, watermarks, symbols that look like writing, marks or glyphs on tiles, scratches shaped like letters, panel borders, frames, gutters, black edge lines, cream bands, vignettes, 3D render, photorealism, isometric view, gradients, lens blur, crowds.",
+          "gen_seconds": 21.9,
+          "qa_seconds": 64.7,
+          "pass": true,
+          "defects": [],
+          "qa_reason": null,
+          "faces_checked": 0,
+          "hands_checked": 0,
+          "sha256": "087aba5269e546aac943578420153cf1f8ff8874f9ca301bf36ebfb0162b5cdd",
+          "size": [
+            2752,
+            1536
+          ]
+        }
+      ],
+      "best_attempt": 3,
+      "focus": {
+        "x": 0.542,
+        "x0": 0.167,
+        "x1": 0.833,
+        "subject": "Automatic mahjong table with four neat tile walls (object)",
+        "runs": [
+          0.542,
+          0.542,
+          0.542
+        ],
+        "model": "claude-haiku-5-5",
+        "sha256": "087aba5269e546aac943578420153cf1f8ff8874f9ca301bf36ebfb0162b5cdd"
+      }
+    },
+    "ch07_empty_tuesday": {
+      "file": "ch07_empty_tuesday.png",
+      "pass": true,
+      "qa_model": "claude-haiku-5-5",
+      "sha256": "c4fe318445f72e5e5e3160e112761ebc619b2e02d4f8bed5f7df6a07d8018d06",
+      "attempts": 1,
+      "model": "models/gemini-3.1-flash-image",
+      "final_prompt": "SCENE: Wide view of a daytime shophouse mahjong lounge with several empty emerald tables and empty chairs, cool quiet daylight from the windows. Raka alone at the far counter, elbow on the counter, chin on hand, bored. Tiles covered. Nobody else.\n\nCONSISTENCY: the attached reference image(s) show the recurring character(s) owner. Draw the same person in this scene with the same face, hair, skin tone and clothes.\n\nSTYLE: Flat 2D Indonesian webtoon illustration. Confident, uniform-weight dark ink outlines on every shape. Two-tone cel shading only (one base tone and one shadow tone per surface), no gradients, no soft airbrush, no texture noise. Warm palette: cream, amber, terracotta, warm brown skin tones, emerald green and slate, with one accent colour. Authentic Indonesian everyday settings and details (batik patterns, ruko and warung interiors, tropical plants, plastic stools, wooden furniture, motorbikes) as the story calls for. Expressive but simple faces: two symmetrical eyes, a small nose, a clear mouth. Wide 16:9 frame. Episode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.\n\nCOMPOSITION RULES: 1) At most 4 people with visible faces. No crowds: a busy place is suggested with empty chairs, empty tables, a few faceless silhouettes, or objects, never with many people. 2) One main subject, large in the frame, simple background with few props. 3) Faces large enough to read clearly (each face at least 8 percent of the image height). 4) Hands are simplified, or tucked out of frame, behind objects, under the table or in pockets whenever possible; if a hand shows, it is large, clearly drawn with five fingers. 5) Mahjong tiles, when needed, are few (a short neat row of at most 6), large, blank-faced ivory blocks with a visible gap between each; never piles, heaps or scattered handfuls. 6) No mechanical cutaways, machine interiors, gears, pipes or technical diagrams. 7) Keep the lowest 20 percent of the picture low in detail: plain table surface, floor or wall, with no faces and no key objects there. 8) Full-bleed picture that runs to every edge.\n\nAVOID (must not appear): melted, smeared or asymmetric faces, mismatched eyes, extra or fused fingers, extra limbs, merged or touching objects, blobs, any text, letters, numbers, signs with writing, logos, watermarks, symbols that look like writing, marks or glyphs on tiles, scratches shaped like letters, panel borders, frames, gutters, black edge lines, cream bands, vignettes, 3D render, photorealism, isometric view, gradients, lens blur, crowds.",
+      "defects": [],
+      "spec_hash": "449642579b23a1af",
+      "seconds": 105,
+      "history": [
+        {
+          "attempt": 1,
+          "model": "models/gemini-3.1-flash-image",
+          "scene_prompt": "Wide view of a daytime shophouse mahjong lounge with several empty emerald tables and empty chairs, cool quiet daylight from the windows. Raka alone at the far counter, elbow on the counter, chin on hand, bored. Tiles covered. Nobody else.",
+          "full_prompt": "SCENE: Wide view of a daytime shophouse mahjong lounge with several empty emerald tables and empty chairs, cool quiet daylight from the windows. Raka alone at the far counter, elbow on the counter, chin on hand, bored. Tiles covered. Nobody else.\n\nCONSISTENCY: the attached reference image(s) show the recurring character(s) owner. Draw the same person in this scene with the same face, hair, skin tone and clothes.\n\nSTYLE: Flat 2D Indonesian webtoon illustration. Confident, uniform-weight dark ink outlines on every shape. Two-tone cel shading only (one base tone and one shadow tone per surface), no gradients, no soft airbrush, no texture noise. Warm palette: cream, amber, terracotta, warm brown skin tones, emerald green and slate, with one accent colour. Authentic Indonesian everyday settings and details (batik patterns, ruko and warung interiors, tropical plants, plastic stools, wooden furniture, motorbikes) as the story calls for. Expressive but simple faces: two symmetrical eyes, a small nose, a clear mouth. Wide 16:9 frame. Episode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.\n\nCOMPOSITION RULES: 1) At most 4 people with visible faces. No crowds: a busy place is suggested with empty chairs, empty tables, a few faceless silhouettes, or objects, never with many people. 2) One main subject, large in the frame, simple background with few props. 3) Faces large enough to read clearly (each face at least 8 percent of the image height). 4) Hands are simplified, or tucked out of frame, behind objects, under the table or in pockets whenever possible; if a hand shows, it is large, clearly drawn with five fingers. 5) Mahjong tiles, when needed, are few (a short neat row of at most 6), large, blank-faced ivory blocks with a visible gap between each; never piles, heaps or scattered handfuls. 6) No mechanical cutaways, machine interiors, gears, pipes or technical diagrams. 7) Keep the lowest 20 percent of the picture low in detail: plain table surface, floor or wall, with no faces and no key objects there. 8) Full-bleed picture that runs to every edge.\n\nAVOID (must not appear): melted, smeared or asymmetric faces, mismatched eyes, extra or fused fingers, extra limbs, merged or touching objects, blobs, any text, letters, numbers, signs with writing, logos, watermarks, symbols that look like writing, marks or glyphs on tiles, scratches shaped like letters, panel borders, frames, gutters, black edge lines, cream bands, vignettes, 3D render, photorealism, isometric view, gradients, lens blur, crowds.",
+          "gen_seconds": 27.8,
+          "qa_seconds": 71.0,
+          "pass": true,
+          "defects": [],
+          "qa_reason": null,
+          "faces_checked": 3,
+          "hands_checked": 2,
+          "sha256": "c4fe318445f72e5e5e3160e112761ebc619b2e02d4f8bed5f7df6a07d8018d06",
+          "size": [
+            2752,
+            1536
+          ]
+        }
+      ],
+      "best_attempt": 1,
+      "focus": {
+        "x": 0.792,
+        "x0": 0.583,
+        "x1": 0.917,
+        "subject": "Raka, seated alone at the bar, face and upper body, leaning on one hand",
+        "runs": [
+          0.792,
+          0.792,
+          0.792
+        ],
+        "model": "claude-haiku-5-5",
+        "sha256": "c4fe318445f72e5e5e3160e112761ebc619b2e02d4f8bed5f7df6a07d8018d06"
+      }
+    },
+    "ch07_full_saturday": {
+      "file": "ch07_full_saturday.png",
+      "pass": true,
+      "qa_model": "claude-haiku-5-5",
+      "sha256": "ac37517ac79500432e032ce8b437eed5f078cb2bd983924b9ccf474589860e53",
+      "attempts": 1,
+      "model": "models/gemini-3.1-flash-image",
+      "final_prompt": "SCENE: Warm night scene: a single emerald table in the foreground with four cheerful friends playing, big clear faces, warm amber light, and softly blurred out-of-focus table shapes behind them with no visible faces.\n\nSTYLE: Flat 2D Indonesian webtoon illustration. Confident, uniform-weight dark ink outlines on every shape. Two-tone cel shading only (one base tone and one shadow tone per surface), no gradients, no soft airbrush, no texture noise. Warm palette: cream, amber, terracotta, warm brown skin tones, emerald green and slate, with one accent colour. Authentic Indonesian everyday settings and details (batik patterns, ruko and warung interiors, tropical plants, plastic stools, wooden furniture, motorbikes) as the story calls for. Expressive but simple faces: two symmetrical eyes, a small nose, a clear mouth. Wide 16:9 frame. Episode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.\n\nCOMPOSITION RULES: 1) At most 4 people with visible faces. No crowds: a busy place is suggested with empty chairs, empty tables, a few faceless silhouettes, or objects, never with many people. 2) One main subject, large in the frame, simple background with few props. 3) Faces large enough to read clearly (each face at least 8 percent of the image height). 4) Hands are simplified, or tucked out of frame, behind objects, under the table or in pockets whenever possible; if a hand shows, it is large, clearly drawn with five fingers. 5) Mahjong tiles, when needed, are few (a short neat row of at most 6), large, blank-faced ivory blocks with a visible gap between each; never piles, heaps or scattered handfuls. 6) No mechanical cutaways, machine interiors, gears, pipes or technical diagrams. 7) Keep the lowest 20 percent of the picture low in detail: plain table surface, floor or wall, with no faces and no key objects there. 8) Full-bleed picture that runs to every edge.\n\nPORTRAIT-CROP SAFETY: the main subject and every face sit within the central 45 percent of the frame width, because the image will later be cropped to a tall portrait strip. Left and right thirds hold only simple background.\n\nAVOID (must not appear): melted, smeared or asymmetric faces, mismatched eyes, extra or fused fingers, extra limbs, merged or touching objects, blobs, any text, letters, numbers, signs with writing, logos, watermarks, symbols that look like writing, marks or glyphs on tiles, scratches shaped like letters, panel borders, frames, gutters, black edge lines, cream bands, vignettes, 3D render, photorealism, isometric view, gradients, lens blur, crowds.",
+      "defects": [],
+      "spec_hash": "2c8bace142e7c0d2",
+      "seconds": 79,
+      "history": [
+        {
+          "attempt": 1,
+          "model": "models/gemini-3.1-flash-image",
+          "scene_prompt": "Warm night scene: a single emerald table in the foreground with four cheerful friends playing, big clear faces, warm amber light, and softly blurred out-of-focus table shapes behind them with no visible faces.",
+          "full_prompt": "SCENE: Warm night scene: a single emerald table in the foreground with four cheerful friends playing, big clear faces, warm amber light, and softly blurred out-of-focus table shapes behind them with no visible faces.\n\nSTYLE: Flat 2D Indonesian webtoon illustration. Confident, uniform-weight dark ink outlines on every shape. Two-tone cel shading only (one base tone and one shadow tone per surface), no gradients, no soft airbrush, no texture noise. Warm palette: cream, amber, terracotta, warm brown skin tones, emerald green and slate, with one accent colour. Authentic Indonesian everyday settings and details (batik patterns, ruko and warung interiors, tropical plants, plastic stools, wooden furniture, motorbikes) as the story calls for. Expressive but simple faces: two symmetrical eyes, a small nose, a clear mouth. Wide 16:9 frame. Episode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.\n\nCOMPOSITION RULES: 1) At most 4 people with visible faces. No crowds: a busy place is suggested with empty chairs, empty tables, a few faceless silhouettes, or objects, never with many people. 2) One main subject, large in the frame, simple background with few props. 3) Faces large enough to read clearly (each face at least 8 percent of the image height). 4) Hands are simplified, or tucked out of frame, behind objects, under the table or in pockets whenever possible; if a hand shows, it is large, clearly drawn with five fingers. 5) Mahjong tiles, when needed, are few (a short neat row of at most 6), large, blank-faced ivory blocks with a visible gap between each; never piles, heaps or scattered handfuls. 6) No mechanical cutaways, machine interiors, gears, pipes or technical diagrams. 7) Keep the lowest 20 percent of the picture low in detail: plain table surface, floor or wall, with no faces and no key objects there. 8) Full-bleed picture that runs to every edge.\n\nPORTRAIT-CROP SAFETY: the main subject and every face sit within the central 45 percent of the frame width, because the image will later be cropped to a tall portrait strip. Left and right thirds hold only simple background.\n\nAVOID (must not appear): melted, smeared or asymmetric faces, mismatched eyes, extra or fused fingers, extra limbs, merged or touching objects, blobs, any text, letters, numbers, signs with writing, logos, watermarks, symbols that look like writing, marks or glyphs on tiles, scratches shaped like letters, panel borders, frames, gutters, black edge lines, cream bands, vignettes, 3D render, photorealism, isometric view, gradients, lens blur, crowds.",
+          "gen_seconds": 20.1,
+          "qa_seconds": 50.6,
+          "pass": true,
+          "defects": [],
+          "qa_reason": null,
+          "faces_checked": 10,
+          "hands_checked": 6,
+          "sha256": "ac37517ac79500432e032ce8b437eed5f078cb2bd983924b9ccf474589860e53",
+          "size": [
+            2752,
+            1536
+          ]
+        }
+      ],
+      "best_attempt": 1,
+      "focus": {
+        "x": 0.542,
+        "x0": 0.083,
+        "x1": 0.917,
+        "subject": "Group of four people laughing and playing at a busy night table, centred on the group",
+        "runs": [
+          0.542,
+          0.542,
+          0.542
+        ],
+        "model": "claude-haiku-5-5",
+        "sha256": "ac37517ac79500432e032ce8b437eed5f078cb2bd983924b9ccf474589860e53"
+      }
+    },
+    "ch09_lawyer": {
+      "file": "ch09_lawyer.png",
+      "pass": true,
+      "qa_model": "claude-haiku-5-5",
+      "sha256": "440f89e9e4093175d969a89c5616782268d6fe72678953f81371ec93085c15e9",
+      "attempts": 1,
+      "model": "models/gemini-3.1-flash-image",
+      "final_prompt": "SCENE: Raka sitting across a desk from a middle-aged Indonesian woman lawyer in a blazer, both clearly visible, serious and calm, in a modest office with blank folders on a shelf. A blank contract lies on the desk. Two people only.\n\nCONSISTENCY: the attached reference image(s) show the recurring character(s) owner. Draw the same person in this scene with the same face, hair, skin tone and clothes.\n\nSTYLE: Flat 2D Indonesian webtoon illustration. Confident, uniform-weight dark ink outlines on every shape. Two-tone cel shading only (one base tone and one shadow tone per surface), no gradients, no soft airbrush, no texture noise. Warm palette: cream, amber, terracotta, warm brown skin tones, emerald green and slate, with one accent colour. Authentic Indonesian everyday settings and details (batik patterns, ruko and warung interiors, tropical plants, plastic stools, wooden furniture, motorbikes) as the story calls for. Expressive but simple faces: two symmetrical eyes, a small nose, a clear mouth. Wide 16:9 frame. Episode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.\n\nCOMPOSITION RULES: 1) At most 4 people with visible faces. No crowds: a busy place is suggested with empty chairs, empty tables, a few faceless silhouettes, or objects, never with many people. 2) One main subject, large in the frame, simple background with few props. 3) Faces large enough to read clearly (each face at least 8 percent of the image height). 4) Hands are simplified, or tucked out of frame, behind objects, under the table or in pockets whenever possible; if a hand shows, it is large, clearly drawn with five fingers. 5) Mahjong tiles, when needed, are few (a short neat row of at most 6), large, blank-faced ivory blocks with a visible gap between each; never piles, heaps or scattered handfuls. 6) No mechanical cutaways, machine interiors, gears, pipes or technical diagrams. 7) Keep the lowest 20 percent of the picture low in detail: plain table surface, floor or wall, with no faces and no key objects there. 8) Full-bleed picture that runs to every edge.\n\nPORTRAIT-CROP SAFETY: the main subject and every face sit within the central 45 percent of the frame width, because the image will later be cropped to a tall portrait strip. Left and right thirds hold only simple background.\n\nAVOID (must not appear): melted, smeared or asymmetric faces, mismatched eyes, extra or fused fingers, extra limbs, merged or touching objects, blobs, any text, letters, numbers, signs with writing, logos, watermarks, symbols that look like writing, marks or glyphs on tiles, scratches shaped like letters, panel borders, frames, gutters, black edge lines, cream bands, vignettes, 3D render, photorealism, isometric view, gradients, lens blur, crowds.",
+      "defects": [],
+      "spec_hash": "4264e3a961fb5ed8",
+      "seconds": 63,
+      "history": [
+        {
+          "attempt": 1,
+          "model": "models/gemini-3.1-flash-image",
+          "scene_prompt": "Raka sitting across a desk from a middle-aged Indonesian woman lawyer in a blazer, both clearly visible, serious and calm, in a modest office with blank folders on a shelf. A blank contract lies on the desk. Two people only.",
+          "full_prompt": "SCENE: Raka sitting across a desk from a middle-aged Indonesian woman lawyer in a blazer, both clearly visible, serious and calm, in a modest office with blank folders on a shelf. A blank contract lies on the desk. Two people only.\n\nCONSISTENCY: the attached reference image(s) show the recurring character(s) owner. Draw the same person in this scene with the same face, hair, skin tone and clothes.\n\nSTYLE: Flat 2D Indonesian webtoon illustration. Confident, uniform-weight dark ink outlines on every shape. Two-tone cel shading only (one base tone and one shadow tone per surface), no gradients, no soft airbrush, no texture noise. Warm palette: cream, amber, terracotta, warm brown skin tones, emerald green and slate, with one accent colour. Authentic Indonesian everyday settings and details (batik patterns, ruko and warung interiors, tropical plants, plastic stools, wooden furniture, motorbikes) as the story calls for. Expressive but simple faces: two symmetrical eyes, a small nose, a clear mouth. Wide 16:9 frame. Episode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.\n\nCOMPOSITION RULES: 1) At most 4 people with visible faces. No crowds: a busy place is suggested with empty chairs, empty tables, a few faceless silhouettes, or objects, never with many people. 2) One main subject, large in the frame, simple background with few props. 3) Faces large enough to read clearly (each face at least 8 percent of the image height). 4) Hands are simplified, or tucked out of frame, behind objects, under the table or in pockets whenever possible; if a hand shows, it is large, clearly drawn with five fingers. 5) Mahjong tiles, when needed, are few (a short neat row of at most 6), large, blank-faced ivory blocks with a visible gap between each; never piles, heaps or scattered handfuls. 6) No mechanical cutaways, machine interiors, gears, pipes or technical diagrams. 7) Keep the lowest 20 percent of the picture low in detail: plain table surface, floor or wall, with no faces and no key objects there. 8) Full-bleed picture that runs to every edge.\n\nPORTRAIT-CROP SAFETY: the main subject and every face sit within the central 45 percent of the frame width, because the image will later be cropped to a tall portrait strip. Left and right thirds hold only simple background.\n\nAVOID (must not appear): melted, smeared or asymmetric faces, mismatched eyes, extra or fused fingers, extra limbs, merged or touching objects, blobs, any text, letters, numbers, signs with writing, logos, watermarks, symbols that look like writing, marks or glyphs on tiles, scratches shaped like letters, panel borders, frames, gutters, black edge lines, cream bands, vignettes, 3D render, photorealism, isometric view, gradients, lens blur, crowds.",
+          "gen_seconds": 18.7,
+          "qa_seconds": 39.9,
+          "pass": true,
+          "defects": [],
+          "qa_reason": null,
+          "faces_checked": 4,
+          "hands_checked": 4,
+          "sha256": "440f89e9e4093175d969a89c5616782268d6fe72678953f81371ec93085c15e9",
+          "size": [
+            2752,
+            1536
+          ]
+        }
+      ],
+      "best_attempt": 1,
+      "focus": {
+        "x": 0.542,
+        "x0": 0.083,
+        "x1": 0.917,
+        "subject": "Two people seated across a desk: Raka (left, man in mustard jacket) and the woman lawyer (right, in grey blazer), with the desk and open document between them",
+        "runs": [
+          0.542,
+          0.542,
+          0.542
+        ],
+        "model": "claude-haiku-5-5",
+        "sha256": "440f89e9e4093175d969a89c5616782268d6fe72678953f81371ec93085c15e9"
+      }
+    },
+    "ch08_garage_van": {
+      "file": "ch08_garage_van.png",
+      "pass": true,
+      "qa_model": "claude-haiku-5-5",
+      "sha256": "cb1419998fab08a26230aded93f010d5552667c5b1b1b6fde0763c4112b7b36e",
+      "attempts": 1,
+      "model": "models/gemini-3.1-flash-image",
+      "final_prompt": "SCENE: Raka at a home garage in an Indonesian residential street, wheeling one folded portable table on a trolley toward a small white delivery van with its rear door open. Daylight. Medium shot. He alone is visible.\n\nCONSISTENCY: the attached reference image(s) show the recurring character(s) owner. Draw the same person in this scene with the same face, hair, skin tone and clothes.\n\nSTYLE: Flat 2D Indonesian webtoon illustration. Confident, uniform-weight dark ink outlines on every shape. Two-tone cel shading only (one base tone and one shadow tone per surface), no gradients, no soft airbrush, no texture noise. Warm palette: cream, amber, terracotta, warm brown skin tones, emerald green and slate, with one accent colour. Authentic Indonesian everyday settings and details (batik patterns, ruko and warung interiors, tropical plants, plastic stools, wooden furniture, motorbikes) as the story calls for. Expressive but simple faces: two symmetrical eyes, a small nose, a clear mouth. Wide 16:9 frame. Episode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.\n\nCOMPOSITION RULES: 1) At most 4 people with visible faces. No crowds: a busy place is suggested with empty chairs, empty tables, a few faceless silhouettes, or objects, never with many people. 2) One main subject, large in the frame, simple background with few props. 3) Faces large enough to read clearly (each face at least 8 percent of the image height). 4) Hands are simplified, or tucked out of frame, behind objects, under the table or in pockets whenever possible; if a hand shows, it is large, clearly drawn with five fingers. 5) Mahjong tiles, when needed, are few (a short neat row of at most 6), large, blank-faced ivory blocks with a visible gap between each; never piles, heaps or scattered handfuls. 6) No mechanical cutaways, machine interiors, gears, pipes or technical diagrams. 7) Keep the lowest 20 percent of the picture low in detail: plain table surface, floor or wall, with no faces and no key objects there. 8) Full-bleed picture that runs to every edge.\n\nAVOID (must not appear): melted, smeared or asymmetric faces, mismatched eyes, extra or fused fingers, extra limbs, merged or touching objects, blobs, any text, letters, numbers, signs with writing, logos, watermarks, symbols that look like writing, marks or glyphs on tiles, scratches shaped like letters, panel borders, frames, gutters, black edge lines, cream bands, vignettes, 3D render, photorealism, isometric view, gradients, lens blur, crowds.",
+      "defects": [],
+      "spec_hash": "3201dfecc0c76b2c",
+      "seconds": 69,
+      "history": [
+        {
+          "attempt": 1,
+          "model": "models/gemini-3.1-flash-image",
+          "scene_prompt": "Raka at a home garage in an Indonesian residential street, wheeling one folded portable table on a trolley toward a small white delivery van with its rear door open. Daylight. Medium shot. He alone is visible.",
+          "full_prompt": "SCENE: Raka at a home garage in an Indonesian residential street, wheeling one folded portable table on a trolley toward a small white delivery van with its rear door open. Daylight. Medium shot. He alone is visible.\n\nCONSISTENCY: the attached reference image(s) show the recurring character(s) owner. Draw the same person in this scene with the same face, hair, skin tone and clothes.\n\nSTYLE: Flat 2D Indonesian webtoon illustration. Confident, uniform-weight dark ink outlines on every shape. Two-tone cel shading only (one base tone and one shadow tone per surface), no gradients, no soft airbrush, no texture noise. Warm palette: cream, amber, terracotta, warm brown skin tones, emerald green and slate, with one accent colour. Authentic Indonesian everyday settings and details (batik patterns, ruko and warung interiors, tropical plants, plastic stools, wooden furniture, motorbikes) as the story calls for. Expressive but simple faces: two symmetrical eyes, a small nose, a clear mouth. Wide 16:9 frame. Episode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.\n\nCOMPOSITION RULES: 1) At most 4 people with visible faces. No crowds: a busy place is suggested with empty chairs, empty tables, a few faceless silhouettes, or objects, never with many people. 2) One main subject, large in the frame, simple background with few props. 3) Faces large enough to read clearly (each face at least 8 percent of the image height). 4) Hands are simplified, or tucked out of frame, behind objects, under the table or in pockets whenever possible; if a hand shows, it is large, clearly drawn with five fingers. 5) Mahjong tiles, when needed, are few (a short neat row of at most 6), large, blank-faced ivory blocks with a visible gap between each; never piles, heaps or scattered handfuls. 6) No mechanical cutaways, machine interiors, gears, pipes or technical diagrams. 7) Keep the lowest 20 percent of the picture low in detail: plain table surface, floor or wall, with no faces and no key objects there. 8) Full-bleed picture that runs to every edge.\n\nAVOID (must not appear): melted, smeared or asymmetric faces, mismatched eyes, extra or fused fingers, extra limbs, merged or touching objects, blobs, any text, letters, numbers, signs with writing, logos, watermarks, symbols that look like writing, marks or glyphs on tiles, scratches shaped like letters, panel borders, frames, gutters, black edge lines, cream bands, vignettes, 3D render, photorealism, isometric view, gradients, lens blur, crowds.",
+          "gen_seconds": 22.3,
+          "qa_seconds": 42.0,
+          "pass": true,
+          "defects": [],
+          "qa_reason": null,
+          "faces_checked": 3,
+          "hands_checked": 3,
+          "sha256": "cb1419998fab08a26230aded93f010d5552667c5b1b1b6fde0763c4112b7b36e",
+          "size": [
+            2752,
+            1536
+          ]
+        }
+      ],
+      "best_attempt": 1,
+      "focus": {
+        "x": 0.292,
+        "x0": 0.167,
+        "x1": 0.417,
+        "subject": "Raka, a man in a mustard-yellow jacket, alone, pushing a hand trolley with a folded table toward the van (face and upper body)",
+        "runs": [
+          0.292,
+          0.292,
+          0.292
+        ],
+        "model": "claude-haiku-5-5",
+        "sha256": "cb1419998fab08a26230aded93f010d5552667c5b1b1b6fde0763c4112b7b36e"
+      }
+    },
+    "ch10_raka_lounge": {
+      "file": "ch10_raka_lounge.png",
+      "pass": true,
+      "qa_model": "claude-haiku-5-5",
+      "sha256": "6307b228ef3d529b0ab919f01de580265bd27b205e76e191151ba80f9fa343f3",
+      "attempts": 1,
+      "model": "models/gemini-3.1-flash-image",
+      "final_prompt": "SCENE: Raka standing at the entrance of his finished warm-lit lounge at dusk, arms relaxed, looking calmly inward with a small confident smile. A few empty emerald tables inside, warm lights. Medium shot, only him visible.\n\nCONSISTENCY: the attached reference image(s) show the recurring character(s) owner. Draw the same person in this scene with the same face, hair, skin tone and clothes.\n\nSTYLE: Flat 2D Indonesian webtoon illustration. Confident, uniform-weight dark ink outlines on every shape. Two-tone cel shading only (one base tone and one shadow tone per surface), no gradients, no soft airbrush, no texture noise. Warm palette: cream, amber, terracotta, warm brown skin tones, emerald green and slate, with one accent colour. Authentic Indonesian everyday settings and details (batik patterns, ruko and warung interiors, tropical plants, plastic stools, wooden furniture, motorbikes) as the story calls for. Expressive but simple faces: two symmetrical eyes, a small nose, a clear mouth. Wide 16:9 frame. Episode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.\n\nCOMPOSITION RULES: 1) At most 4 people with visible faces. No crowds: a busy place is suggested with empty chairs, empty tables, a few faceless silhouettes, or objects, never with many people. 2) One main subject, large in the frame, simple background with few props. 3) Faces large enough to read clearly (each face at least 8 percent of the image height). 4) Hands are simplified, or tucked out of frame, behind objects, under the table or in pockets whenever possible; if a hand shows, it is large, clearly drawn with five fingers. 5) Mahjong tiles, when needed, are few (a short neat row of at most 6), large, blank-faced ivory blocks with a visible gap between each; never piles, heaps or scattered handfuls. 6) No mechanical cutaways, machine interiors, gears, pipes or technical diagrams. 7) Keep the lowest 20 percent of the picture low in detail: plain table surface, floor or wall, with no faces and no key objects there. 8) Full-bleed picture that runs to every edge.\n\nAVOID (must not appear): melted, smeared or asymmetric faces, mismatched eyes, extra or fused fingers, extra limbs, merged or touching objects, blobs, any text, letters, numbers, signs with writing, logos, watermarks, symbols that look like writing, marks or glyphs on tiles, scratches shaped like letters, panel borders, frames, gutters, black edge lines, cream bands, vignettes, 3D render, photorealism, isometric view, gradients, lens blur, crowds.",
+      "defects": [],
+      "spec_hash": "35741ba8a54b7621",
+      "seconds": 78,
+      "history": [
+        {
+          "attempt": 1,
+          "model": "models/gemini-3.1-flash-image",
+          "scene_prompt": "Raka standing at the entrance of his finished warm-lit lounge at dusk, arms relaxed, looking calmly inward with a small confident smile. A few empty emerald tables inside, warm lights. Medium shot, only him visible.",
+          "full_prompt": "SCENE: Raka standing at the entrance of his finished warm-lit lounge at dusk, arms relaxed, looking calmly inward with a small confident smile. A few empty emerald tables inside, warm lights. Medium shot, only him visible.\n\nCONSISTENCY: the attached reference image(s) show the recurring character(s) owner. Draw the same person in this scene with the same face, hair, skin tone and clothes.\n\nSTYLE: Flat 2D Indonesian webtoon illustration. Confident, uniform-weight dark ink outlines on every shape. Two-tone cel shading only (one base tone and one shadow tone per surface), no gradients, no soft airbrush, no texture noise. Warm palette: cream, amber, terracotta, warm brown skin tones, emerald green and slate, with one accent colour. Authentic Indonesian everyday settings and details (batik patterns, ruko and warung interiors, tropical plants, plastic stools, wooden furniture, motorbikes) as the story calls for. Expressive but simple faces: two symmetrical eyes, a small nose, a clear mouth. Wide 16:9 frame. Episode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.\n\nCOMPOSITION RULES: 1) At most 4 people with visible faces. No crowds: a busy place is suggested with empty chairs, empty tables, a few faceless silhouettes, or objects, never with many people. 2) One main subject, large in the frame, simple background with few props. 3) Faces large enough to read clearly (each face at least 8 percent of the image height). 4) Hands are simplified, or tucked out of frame, behind objects, under the table or in pockets whenever possible; if a hand shows, it is large, clearly drawn with five fingers. 5) Mahjong tiles, when needed, are few (a short neat row of at most 6), large, blank-faced ivory blocks with a visible gap between each; never piles, heaps or scattered handfuls. 6) No mechanical cutaways, machine interiors, gears, pipes or technical diagrams. 7) Keep the lowest 20 percent of the picture low in detail: plain table surface, floor or wall, with no faces and no key objects there. 8) Full-bleed picture that runs to every edge.\n\nAVOID (must not appear): melted, smeared or asymmetric faces, mismatched eyes, extra or fused fingers, extra limbs, merged or touching objects, blobs, any text, letters, numbers, signs with writing, logos, watermarks, symbols that look like writing, marks or glyphs on tiles, scratches shaped like letters, panel borders, frames, gutters, black edge lines, cream bands, vignettes, 3D render, photorealism, isometric view, gradients, lens blur, crowds.",
+          "gen_seconds": 21.0,
+          "qa_seconds": 52.3,
+          "pass": true,
+          "defects": [],
+          "qa_reason": null,
+          "faces_checked": 1,
+          "hands_checked": 2,
+          "sha256": "6307b228ef3d529b0ab919f01de580265bd27b205e76e191151ba80f9fa343f3",
+          "size": [
+            2752,
+            1536
+          ]
+        }
+      ],
+      "best_attempt": 1,
+      "focus": {
+        "x": 0.292,
+        "x0": 0.167,
+        "x1": 0.417,
+        "subject": "Raka, a man in a mustard-yellow open jacket over a white t-shirt, standing calm and facing the viewer at the entrance of the lounge (face and upper body)",
+        "runs": [
+          0.292,
+          0.292,
+          0.292
+        ],
+        "model": "claude-haiku-5-5",
+        "sha256": "6307b228ef3d529b0ab919f01de580265bd27b205e76e191151ba80f9fa343f3"
+      }
+    }
+  },
+  "characters": {
+    "owner": {
+      "file": "char_owner.png",
+      "pass": true,
+      "qa_model": "claude-haiku-5-5",
+      "sha256": "e9a42e1c796af82c33797fb4ed6ae31f48f67c124f2e624775d0568e68269f71",
+      "attempts": 3,
+      "model": "models/gemini-3.1-flash-image",
+      "final_prompt": "Character reference sheet on a plain warm cream background: the SAME single character drawn twice, side by side. Left: full-body standing front view. Right: large head-and-shoulders close-up, friendly neutral expression. Exactly one person, shown twice. No labels, no swatches, no turnaround grid, no props held in the hands, hands relaxed by the sides or simply drawn. CHARACTER: One single portrait of Raka, an Indonesian man of about 28, framed from the waist up and facing the viewer directly, centered in the frame with his head and torso filling most of the picture. He has short neat black hair, warm brown skin, a clean-shaven face, and a friendly, thoughtful expression with a gentle smile. He wears a mustard-yellow overshirt with softly sloped, natural shoulders, open over a plain white t-shirt that is clearly outlined against the overshirt. His arms hang naturally at his sides, cropped by the frame edges. The background is one flat, plain cream color, and the bottom fifth of the picture is empty cream space.\n\nSTYLE: Flat 2D Indonesian webtoon illustration. Confident, uniform-weight dark ink outlines on every shape. Two-tone cel shading only (one base tone and one shadow tone per surface), no gradients, no soft airbrush, no texture noise. Warm palette: cream, amber, terracotta, warm brown skin tones, emerald green and slate, with one accent colour. Authentic Indonesian everyday settings and details (batik patterns, ruko and warung interiors, tropical plants, plastic stools, wooden furniture, motorbikes) as the story calls for. Expressive but simple faces: two symmetrical eyes, a small nose, a clear mouth. Wide 16:9 frame. Episode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.\n\nAVOID (must not appear): melted, smeared or asymmetric faces, mismatched eyes, extra or fused fingers, extra limbs, merged or touching objects, blobs, any text, letters, numbers, signs with writing, logos, watermarks, symbols that look like writing, marks or glyphs on tiles, scratches shaped like letters, panel borders, frames, gutters, black edge lines, cream bands, vignettes, 3D render, photorealism, isometric view, gradients, lens blur, crowds.",
+      "defects": [],
+      "spec_hash": "8195c5a40b430280",
+      "seconds": 293,
+      "history": [
+        {
+          "attempt": 1,
+          "model": "models/gemini-3.1-flash-image",
+          "scene_prompt": "Raka, an Indonesian man aged about 28, short neat black hair, warm brown skin, clean-shaven, mustard-yellow overshirt over a plain white t-shirt, dark trousers. Friendly, thoughtful face. Character reference sheet: one front-facing portrait, waist-up, plain cream background.",
+          "full_prompt": "Character reference sheet on a plain warm cream background: the SAME single character drawn twice, side by side. Left: full-body standing front view. Right: large head-and-shoulders close-up, friendly neutral expression. Exactly one person, shown twice. No labels, no swatches, no turnaround grid, no props held in the hands, hands relaxed by the sides or simply drawn. CHARACTER: Raka, an Indonesian man aged about 28, short neat black hair, warm brown skin, clean-shaven, mustard-yellow overshirt over a plain white t-shirt, dark trousers. Friendly, thoughtful face. Character reference sheet: one front-facing portrait, waist-up, plain cream background.\n\nSTYLE: Flat 2D Indonesian webtoon illustration. Confident, uniform-weight dark ink outlines on every shape. Two-tone cel shading only (one base tone and one shadow tone per surface), no gradients, no soft airbrush, no texture noise. Warm palette: cream, amber, terracotta, warm brown skin tones, emerald green and slate, with one accent colour. Authentic Indonesian everyday settings and details (batik patterns, ruko and warung interiors, tropical plants, plastic stools, wooden furniture, motorbikes) as the story calls for. Expressive but simple faces: two symmetrical eyes, a small nose, a clear mouth. Wide 16:9 frame. Episode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.\n\nAVOID (must not appear): melted, smeared or asymmetric faces, mismatched eyes, extra or fused fingers, extra limbs, merged or touching objects, blobs, any text, letters, numbers, signs with writing, logos, watermarks, symbols that look like writing, marks or glyphs on tiles, scratches shaped like letters, panel borders, frames, gutters, black edge lines, cream bands, vignettes, 3D render, photorealism, isometric view, gradients, lens blur, crowds.",
+          "gen_seconds": 15.8,
+          "qa_seconds": 58.8,
+          "pass": false,
+          "defects": [
+            {
+              "crop": "full",
+              "location": "whole frame",
+              "type": "brief_mismatch",
+              "severity": "major",
+              "description": "Brief asks for one waist-up front portrait, but the frame shows a full-length figure down to the trousers and feet cut at the bottom edge, plus a large head-and-shoulders close-up. The waist-up framing is not what was requested.",
+              "confirmed": true,
+              "verifier_reason": "The frame shows a full-length standing figure whose trousers run to the bottom edge with the feet cut off, beside a large head-and-shoulders close-up, rather than a single waist-up portrait as the reported brief requires."
+            }
+          ],
+          "qa_reason": "pass 2: 1 confirmed defect(s)",
+          "faces_checked": 4,
+          "hands_checked": 2,
+          "sha256": "91757a46dfe217b5c70cb4c35f455305b92cef2f08742917f6a8b89e2ff2e944",
+          "size": [
+            2752,
+            1536
+          ],
+          "director_changes": "Specified a single centered belt-up portrait with arms relaxed at his sides, dropped the trousers so the figure is not drawn full-length, and left the lower fifth as empty cream space."
+        },
+        {
+          "attempt": 2,
+          "model": "models/gemini-3.1-flash-image",
+          "scene_prompt": "A single portrait of Raka, an Indonesian man of about 28, shown from the belt up and facing the viewer directly, centered in the frame with his arms resting relaxed at his sides. He has short neat black hair, warm brown skin, a clean-shaven face, and a friendly, thoughtful expression with a gentle smile. He wears a mustard-yellow overshirt open over a plain white t-shirt. The background is a plain, flat cream color, and the lower fifth of the picture is empty cream space.",
+          "full_prompt": "Character reference sheet on a plain warm cream background: the SAME single character drawn twice, side by side. Left: full-body standing front view. Right: large head-and-shoulders close-up, friendly neutral expression. Exactly one person, shown twice. No labels, no swatches, no turnaround grid, no props held in the hands, hands relaxed by the sides or simply drawn. CHARACTER: A single portrait of Raka, an Indonesian man of about 28, shown from the belt up and facing the viewer directly, centered in the frame with his arms resting relaxed at his sides. He has short neat black hair, warm brown skin, a clean-shaven face, and a friendly, thoughtful expression with a gentle smile. He wears a mustard-yellow overshirt open over a plain white t-shirt. The background is a plain, flat cream color, and the lower fifth of the picture is empty cream space.\n\nSTYLE: Flat 2D Indonesian webtoon illustration. Confident, uniform-weight dark ink outlines on every shape. Two-tone cel shading only (one base tone and one shadow tone per surface), no gradients, no soft airbrush, no texture noise. Warm palette: cream, amber, terracotta, warm brown skin tones, emerald green and slate, with one accent colour. Authentic Indonesian everyday settings and details (batik patterns, ruko and warung interiors, tropical plants, plastic stools, wooden furniture, motorbikes) as the story calls for. Expressive but simple faces: two symmetrical eyes, a small nose, a clear mouth. Wide 16:9 frame. Episode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.\n\nAVOID (must not appear): melted, smeared or asymmetric faces, mismatched eyes, extra or fused fingers, extra limbs, merged or touching objects, blobs, any text, letters, numbers, signs with writing, logos, watermarks, symbols that look like writing, marks or glyphs on tiles, scratches shaped like letters, panel borders, frames, gutters, black edge lines, cream bands, vignettes, 3D render, photorealism, isometric view, gradients, lens blur, crowds.",
+          "gen_seconds": 17.0,
+          "qa_seconds": 87.9,
+          "pass": false,
+          "defects": [
+            {
+              "crop": "full",
+              "location": "",
+              "type": "nonsense_object",
+              "severity": "major",
+              "description": "bust shoulders flare into sharp wing-like points beyond the shoulder line, and the white tee blends into the white floor band with no clear lower edge",
+              "confirmed": true,
+              "verifier_reason": "In the right-hand bust, the mustard jacket's shoulders extend outward into sharp, wing-like points well beyond the shoulder line (around x≈780 and x≈1410, y≈690), and the white tee runs into the white floor band at the bottom with no clear lower edge."
+            }
+          ],
+          "qa_reason": "pass 2: 1 confirmed defect(s)",
+          "faces_checked": 7,
+          "hands_checked": 4,
+          "sha256": "1fd5c75de3d5c1012515803db6779a6b428485527a4361ad9b7b95f67ec772b5",
+          "size": [
+            2752,
+            1536
+          ],
+          "director_changes": "Specified a single waist-up crop with a larger figure, natural sloped shoulders, a clearly outlined white tee against the mustard overshirt, and a uniform cream background with no floor band."
+        },
+        {
+          "attempt": 3,
+          "model": "models/gemini-3.1-flash-image",
+          "scene_prompt": "One single portrait of Raka, an Indonesian man of about 28, framed from the waist up and facing the viewer directly, centered in the frame with his head and torso filling most of the picture. He has short neat black hair, warm brown skin, a clean-shaven face, and a friendly, thoughtful expression with a gentle smile. He wears a mustard-yellow overshirt with softly sloped, natural shoulders, open over a plain white t-shirt that is clearly outlined against the overshirt. His arms hang naturally at his sides, cropped by the frame edges. The background is one flat, plain cream color, and the bottom fifth of the picture is empty cream space.",
+          "full_prompt": "Character reference sheet on a plain warm cream background: the SAME single character drawn twice, side by side. Left: full-body standing front view. Right: large head-and-shoulders close-up, friendly neutral expression. Exactly one person, shown twice. No labels, no swatches, no turnaround grid, no props held in the hands, hands relaxed by the sides or simply drawn. CHARACTER: One single portrait of Raka, an Indonesian man of about 28, framed from the waist up and facing the viewer directly, centered in the frame with his head and torso filling most of the picture. He has short neat black hair, warm brown skin, a clean-shaven face, and a friendly, thoughtful expression with a gentle smile. He wears a mustard-yellow overshirt with softly sloped, natural shoulders, open over a plain white t-shirt that is clearly outlined against the overshirt. His arms hang naturally at his sides, cropped by the frame edges. The background is one flat, plain cream color, and the bottom fifth of the picture is empty cream space.\n\nSTYLE: Flat 2D Indonesian webtoon illustration. Confident, uniform-weight dark ink outlines on every shape. Two-tone cel shading only (one base tone and one shadow tone per surface), no gradients, no soft airbrush, no texture noise. Warm palette: cream, amber, terracotta, warm brown skin tones, emerald green and slate, with one accent colour. Authentic Indonesian everyday settings and details (batik patterns, ruko and warung interiors, tropical plants, plastic stools, wooden furniture, motorbikes) as the story calls for. Expressive but simple faces: two symmetrical eyes, a small nose, a clear mouth. Wide 16:9 frame. Episode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.\n\nAVOID (must not appear): melted, smeared or asymmetric faces, mismatched eyes, extra or fused fingers, extra limbs, merged or touching objects, blobs, any text, letters, numbers, signs with writing, logos, watermarks, symbols that look like writing, marks or glyphs on tiles, scratches shaped like letters, panel borders, frames, gutters, black edge lines, cream bands, vignettes, 3D render, photorealism, isometric view, gradients, lens blur, crowds.",
+          "gen_seconds": 18.2,
+          "qa_seconds": 63.2,
+          "pass": true,
+          "defects": [],
+          "qa_reason": null,
+          "faces_checked": 6,
+          "hands_checked": 3,
+          "sha256": "e9a42e1c796af82c33797fb4ed6ae31f48f67c124f2e624775d0568e68269f71",
+          "size": [
+            2752,
+            1536
+          ]
+        }
+      ],
+      "best_attempt": 3
+    }
+  },
+  "thumbnail": {
+    "pass": true,
+    "file": "thumbnail_16x9.jpg",
+    "text": "BUKAN DARI MAKANAN",
+    "scene": "The recurring young owner, shocked and pointing at a large green mahjong table beside a pushed-away bowl of noodles, strong expression, large in frame, plain warm background on the left for text",
+    "seconds": 79,
+    "rounds": [
+      {
+        "round": 1,
+        "scene": "The recurring young owner, shocked and pointing at a large green mahjong table beside a pushed-away bowl of noodles, strong expression, large in frame, plain warm background on the left for text",
+        "candidates": [
+          {
+            "variant": "a_face_shock",
+            "model": "models/gemini-3.1-flash-lite-image",
+            "prompt": "SCENE: The recurring young owner, shocked and pointing at a large green mahjong table beside a pushed-away bowl of noodles, strong expression, large in frame, plain warm background on the left for text Emphasis for this variant: an extreme close-up of the face, eyes wide open, mouth open in shock, eyebrows raised high.\n\nCONSISTENCY: the attached reference image is the recurring character. Draw exactly that person: same face shape, hair, skin tone and clothes. Add no accessories that are not in the reference (no glasses, hat, beard or jewellery unless the reference has them).\n\nCHARACTER: Raka, an Indonesian man aged about 28, short neat black hair, warm brown skin, clean-shaven, mustard-yellow overshirt over a plain white t-shirt, dark trousers. Friendly, thoughtful face. Character reference sheet: one front-facing portrait, waist-up, plain cream background.\n\nFlat 2D Indonesian webtoon illustration for a YouTube thumbnail. Confident thick dark ink outlines, two-tone cel shading, no gradients. Extremely high impact and simple: ONE huge expressive face or ONE striking object fills about 60 percent of the frame height. Strong separation: a bright thin rim of light colour around the subject against a flat, solid, saturated background. Use at most 3 strong colours in total (for example deep navy background, warm yellow, and one red or emerald accent). The face has two symmetrical eyes, clear brows, a clear mouth, a bold clear emotion that reads from far away. Hands out of frame.\n\nCOMPOSITION: wide 16:9. The subject is placed on the right side, within about 45 percent of the frame width. The whole left half of the picture is one plain, flat, solid, saturated colour with nothing in it: no props, no furniture, no pattern, no shapes, no cards, no signs, left empty on purpose. The bottom-right corner is also plain background. At most one person with a visible face. Any money is drawn as a plain green paper bundle with no printed marks, portraits or numbers.\n\nAVOID (must not appear): any text, letters, numbers, labels, captions, cards, banners, logos, watermarks, speech bubbles, signs, banknote printing, symbols that look like writing, borders, frames, 3D render, photorealism, gradients, melted or asymmetric faces, extra or fused fingers, merged objects, busy backgrounds, more than one person.\nEpisode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.",
+            "art_qa": {
+              "pass": true,
+              "defects": [],
+              "reason": null
+            },
+            "rating_full": {
+              "text_legible": true,
+              "text_read": "BUKAN DARI MAKANAN",
+              "emotion_clear": true,
+              "clutter": false,
+              "bottom_right_clear": false,
+              "same_character": true,
+              "score": 7,
+              "notes": "The bottom-right corner is crowded by the pointing hand and the noodle bowl, and the green table with cash in the background adds clutter that competes with the headline and face."
+            },
+            "rating_168": {
+              "text_legible": true,
+              "text_read": "BUKAN DARI MAKANAN",
+              "emotion_clear": true,
+              "clutter": true,
+              "bottom_right_clear": true,
+              "same_character": true,
+              "score": 6,
+              "notes": "The headline is small for a 168px feed, so it competes with the face and pointing hand instead of dominating the frame."
+            },
+            "score": 6.4,
+            "pass": true
+          },
+          {
+            "variant": "b_face_object",
+            "model": "models/gemini-3.1-flash-lite-image",
+            "prompt": "SCENE: The recurring young owner with a worried, wide-eyed look staring down at one large calculator in front of them, character large in frame, plain warm background on the left for text. Emphasis for this variant: a large face with a worried, doubtful expression, next to ONE big striking object that tells the story (large and simple, nothing else).\n\nCONSISTENCY: the attached reference image is the recurring character. Draw exactly that person: same face shape, hair, skin tone and clothes. Add no accessories that are not in the reference (no glasses, hat, beard or jewellery unless the reference has them).\n\nCHARACTER: Raka, an Indonesian man aged about 28, short neat black hair, warm brown skin, clean-shaven, mustard-yellow overshirt over a plain white t-shirt, dark trousers. Friendly, thoughtful face. Character reference sheet: one front-facing portrait, waist-up, plain cream background.\n\nFlat 2D Indonesian webtoon illustration for a YouTube thumbnail. Confident thick dark ink outlines, two-tone cel shading, no gradients. Extremely high impact and simple: ONE huge expressive face or ONE striking object fills about 60 percent of the frame height. Strong separation: a bright thin rim of light colour around the subject against a flat, solid, saturated background. Use at most 3 strong colours in total (for example deep navy background, warm yellow, and one red or emerald accent). The face has two symmetrical eyes, clear brows, a clear mouth, a bold clear emotion that reads from far away. Hands out of frame.\n\nCOMPOSITION: wide 16:9. The subject is placed on the left side, within about 45 percent of the frame width. The whole right half of the picture is one plain, flat, solid, saturated colour with nothing in it: no props, no furniture, no pattern, no shapes, no cards, no signs, left empty on purpose. The bottom-right corner is also plain background. At most one person with a visible face. Any money is drawn as a plain green paper bundle with no printed marks, portraits or numbers.\n\nAVOID (must not appear): any text, letters, numbers, labels, captions, cards, banners, logos, watermarks, speech bubbles, signs, banknote printing, symbols that look like writing, borders, frames, 3D render, photorealism, gradients, melted or asymmetric faces, extra or fused fingers, merged objects, busy backgrounds, more than one person.\nEpisode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.",
+            "art_qa": {
+              "pass": true,
+              "defects": [],
+              "reason": null
+            },
+            "rating_full": {
+              "text_legible": true,
+              "text_read": "MODAL SETENGAH MILIAR",
+              "emotion_clear": true,
+              "clutter": true,
+              "bottom_right_clear": true,
+              "same_character": true,
+              "score": 7,
+              "notes": "The calculator is cropped at the bottom edge and its display is unreadable, so the money hook depends entirely on the headline rather than a striking object."
+            },
+            "rating_168": {
+              "text_legible": true,
+              "text_read": "MODAL SETENGAH MILIAR",
+              "emotion_clear": true,
+              "clutter": false,
+              "bottom_right_clear": false,
+              "same_character": true,
+              "score": 6,
+              "notes": "The headline's last word \"MILIAR\" sits in the bottom-right area, and the green book and background add some clutter that competes with the character."
+            },
+            "score": 6.4,
+            "pass": true
+          },
+          {
+            "variant": "c_face_smirk",
+            "model": "models/gemini-3.1-flash-lite-image",
+            "prompt": "SCENE: The recurring young owner with a serious, knowing look holding up one small wooden gavel, character large in frame, plain warm background on the left for text. Emphasis for this variant: a large head and shoulders portrait with a knowing smirk and one raised eyebrow, looking straight at the viewer.\n\nCONSISTENCY: the attached reference image is the recurring character. Draw exactly that person: same face shape, hair, skin tone and clothes. Add no accessories that are not in the reference (no glasses, hat, beard or jewellery unless the reference has them).\n\nCHARACTER: Raka, an Indonesian man aged about 28, short neat black hair, warm brown skin, clean-shaven, mustard-yellow overshirt over a plain white t-shirt, dark trousers. Friendly, thoughtful face. Character reference sheet: one front-facing portrait, waist-up, plain cream background.\n\nFlat 2D Indonesian webtoon illustration for a YouTube thumbnail. Confident thick dark ink outlines, two-tone cel shading, no gradients. Extremely high impact and simple: ONE huge expressive face or ONE striking object fills about 60 percent of the frame height. Strong separation: a bright thin rim of light colour around the subject against a flat, solid, saturated background. Use at most 3 strong colours in total (for example deep navy background, warm yellow, and one red or emerald accent). The face has two symmetrical eyes, clear brows, a clear mouth, a bold clear emotion that reads from far away. Hands out of frame.\n\nCOMPOSITION: wide 16:9. The subject is placed on the right side, within about 45 percent of the frame width. The whole left half of the picture is one plain, flat, solid, saturated colour with nothing in it: no props, no furniture, no pattern, no shapes, no cards, no signs, left empty on purpose. The bottom-right corner is also plain background. At most one person with a visible face. Any money is drawn as a plain green paper bundle with no printed marks, portraits or numbers.\n\nAVOID (must not appear): any text, letters, numbers, labels, captions, cards, banners, logos, watermarks, speech bubbles, signs, banknote printing, symbols that look like writing, borders, frames, 3D render, photorealism, gradients, melted or asymmetric faces, extra or fused fingers, merged objects, busy backgrounds, more than one person.\nEpisode theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.",
+            "art_qa": {
+              "pass": true,
+              "defects": [],
+              "reason": null
+            },
+            "rating_full": {
+              "text_legible": true,
+              "text_read": "CEK HUKUMNYA DULU",
+              "emotion_clear": true,
+              "clutter": true,
+              "bottom_right_clear": true,
+              "same_character": true,
+              "score": 7,
+              "notes": "The smirk is subtle at thumbnail size and the small gavel in the lower-left competes with the face, so the expression does not hit as hard as the bold headline does."
+            },
+            "rating_168": {
+              "text_legible": true,
+              "text_read": "CEK HUKUMNYA DULU",
+              "emotion_clear": false,
+              "clutter": false,
+              "bottom_right_clear": true,
+              "same_character": true,
+              "score": 6,
+              "notes": "The face is small and its smirk is subtle at 168px, so the emotion doesn't grab attention, and the headline and figure compete for space."
+            },
+            "score": 6.4,
+            "pass": true
+          }
+        ]
+      }
+    ],
+    "choice": "a_face_shock",
+    "score": 6.4,
+    "rating_full": {
+      "text_legible": true,
+      "text_read": "BUKAN DARI MAKANAN",
+      "emotion_clear": true,
+      "clutter": false,
+      "bottom_right_clear": false,
+      "same_character": true,
+      "score": 7,
+      "notes": "The bottom-right corner is crowded by the pointing hand and the noodle bowl, and the green table with cash in the background adds clutter that competes with the headline and face."
+    },
+    "rating_168": {
+      "text_legible": true,
+      "text_read": "BUKAN DARI MAKANAN",
+      "emotion_clear": true,
+      "clutter": true,
+      "bottom_right_clear": true,
+      "same_character": true,
+      "score": 6,
+      "notes": "The headline is small for a 168px feed, so it competes with the face and pointing hand instead of dominating the frame."
+    },
+    "bytes": 182693,
+    "art_sha256": "b4e85b512abdc90442dd4c6123be75b47df06314e28e2e5cfed273dcd31b57a3",
+    "sha256": "63be78528a60d777b5daa5aa77a2f34dd675822c81a02ec86a5bea516af438d1",
+    "options": [
+      {
+        "n": 1,
+        "variant": "a_face_shock",
+        "hook": "BUKAN DARI MAKANAN",
+        "scene": "The recurring young owner, shocked and pointing at a large green mahjong table beside a pushed-away bowl of noodles, strong expression, large in frame, plain warm background on the left for text",
+        "file": "thumbnail_option_1.jpg",
+        "pass": true,
+        "score": 6.4,
+        "sha256": "63be78528a60d777b5daa5aa77a2f34dd675822c81a02ec86a5bea516af438d1"
+      },
+      {
+        "n": 2,
+        "variant": "b_face_object",
+        "hook": "MODAL SETENGAH MILIAR",
+        "scene": "The recurring young owner with a worried, wide-eyed look staring down at one large calculator in front of them, character large in frame, plain warm background on the left for text.",
+        "file": "thumbnail_option_2.jpg",
+        "pass": true,
+        "score": 6.4,
+        "sha256": "2554f461b66848b888b6f956f3676141ada6273b08960bf9b84e14b45bc25f2c"
+      },
+      {
+        "n": 3,
+        "variant": "c_face_smirk",
+        "hook": "CEK HUKUMNYA DULU",
+        "scene": "The recurring young owner with a serious, knowing look holding up one small wooden gavel, character large in frame, plain warm background on the left for text.",
+        "file": "thumbnail_option_3.jpg",
+        "pass": true,
+        "score": 6.4,
+        "sha256": "bb245dd3e9bfffdd6734d70d04596dc68738f72b459ef7eec2ed686453fa2dee"
+      }
+    ]
+  },
+  "icon_sets": {
+    "ch03_table_steps": {
+      "pass": true,
+      "qa_model": "claude-haiku-5-5",
+      "attempts": 1,
+      "history": [
+        {
+          "attempt": 1,
+          "model": "models/gemini-3.1-flash-image",
+          "gen_seconds": 18.0,
+          "icons": [
+            {
+              "pass": true,
+              "reason": "Four blank ivory tiles slide into a square opening with curved motion arrows; flat outlined style, no text."
+            },
+            {
+              "pass": true,
+              "reason": "Round chamber with tumbling blank tiles and two circular arrows; flat, no text."
+            },
+            {
+              "pass": true,
+              "reason": "Horseshoe magnet above a conveyor carrying blank tiles; flat, no text."
+            },
+            {
+              "pass": true,
+              "reason": "Round sensor eye with light beams over a row of blank tiles; flat, no text."
+            },
+            {
+              "pass": true,
+              "reason": "Row of blank tiles on green felt with an upward arrow; flat, no text. The tiles sit on a diagonal ramp rather than a clearly vertical wall, so the rising read is a bit loose but still recognizable."
+            }
+          ],
+          "prompt": "A sheet of 5 separate icons on a pure white background, arranged in an invisible grid of 2 row(s) and 3 column(s), reading left to right, top to bottom. Each icon is centred in its own cell, fills about 55 percent of the cell, and has wide empty white space on every side; icons never touch or overlap each other, and every part of one icon (including its arrows) stays close together. No grid lines, no borders, no labels, no captions.\n\nCell 1 (row 1, column 1): four blank ivory tiles sliding down into a square opening, with a curved motion arrow\nCell 2 (row 1, column 2): a round chamber with blank ivory tiles tumbling inside and two circular arrows\nCell 3 (row 1, column 3): a horseshoe magnet above a short conveyor belt carrying blank ivory tiles\nCell 4 (row 2, column 1): a small round sensor eye with light beams scanning a neat row of blank ivory tiles\nCell 5 (row 2, column 2): a neat wall of blank ivory tiles rising out of green felt, with an upward arrow\n\nSTYLE: Flat vector-style icons for an explainer video: bold simple shapes, thick uniform dark outlines, two or three flat colours from this palette: emerald green, amber, slate blue, warm cream. No gradients, no shadows, no 3D, no text, letters, numbers or symbols that look like writing. All icons share the same style, line weight and palette. Theme: Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous."
+        }
+      ],
+      "icons": {
+        "tiles_swept": {
+          "file": "icons/tiles_swept.png",
+          "sha256": "600e9d4bb23f48eb09d12956b3494b190b0cd27a2e35dae14b373223265c940f",
+          "pass": true,
+          "reason": "Four blank ivory tiles slide into a square opening with curved motion arrows; flat outlined style, no text."
+        },
+        "tiles_mixed": {
+          "file": "icons/tiles_mixed.png",
+          "sha256": "f1d19c151df5e2c8ddf1b4d1fddc8de5757f3daf76ce17749f4c9ab629637483",
+          "pass": true,
+          "reason": "Round chamber with tumbling blank tiles and two circular arrows; flat, no text."
+        },
+        "belt_magnet": {
+          "file": "icons/belt_magnet.png",
+          "sha256": "6618d6161ff8b63182f3b0f4017807a6f0de716426c11a6cb67ed64965936da1",
+          "pass": true,
+          "reason": "Horseshoe magnet above a conveyor carrying blank tiles; flat, no text."
+        },
+        "sensor_count": {
+          "file": "icons/sensor_count.png",
+          "sha256": "c896be70fb05089c15e1137ddfdd79abdda2457fe4da254e81aaf2583c3f63b6",
+          "pass": true,
+          "reason": "Round sensor eye with light beams over a row of blank tiles; flat, no text."
+        },
+        "wall_rises": {
+          "file": "icons/wall_rises.png",
+          "sha256": "3eb26a56e4ea07cbbc1ad0f7dbf12b274263e1390da6051f7138c6bca7d9a57a",
+          "pass": true,
+          "reason": "Row of blank tiles on green felt with an upward arrow; flat, no text. The tiles sit on a diagonal ramp rather than a clearly vertical wall, so the rising read is a bit loose but still recognizable."
+        }
+      },
+      "best_attempt": 1,
+      "spec_hash": "8891a00d41de9fc8"
+    }
+  }
+}

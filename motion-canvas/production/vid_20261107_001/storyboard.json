@@ -1,0 +1,1074 @@
+{
+  "video_id": "vid_20261107_001",
+  "chapters": [
+    {
+      "id": "ch01",
+      "shots": [
+        {
+          "at": "s01_01",
+          "transition": "crossfade",
+          "image": {
+            "src": "ch01_friends_table.png",
+            "mode": "full",
+            "motion": "pushIn"
+          }
+        },
+        {
+          "at": "s01_01@Rp45",
+          "transition": "collapse",
+          "image": {
+            "src": "ch01_friends_table.png",
+            "mode": "side",
+            "focus": "hold"
+          },
+          "explainer": {
+            "type": "stat",
+            "title": "Sewa meja mahjong",
+            "items": [
+              {
+                "at": "s01_01@Rp45",
+                "value": "Rp45 ribu",
+                "numeric": 45,
+                "label": "per meja, sejam"
+              },
+              {
+                "at": "s01_02@sekitar",
+                "value": "Rp11 ribu",
+                "numeric": 11,
+                "label": "per orang, sejam"
+              }
+            ]
+          }
+        },
+        {
+          "at": "s01_03",
+          "transition": "cut",
+          "image": {
+            "src": "ch01_coffee.png",
+            "mode": "full",
+            "motion": "pushIn"
+          }
+        },
+        {
+          "at": "s01_04",
+          "transition": "cut",
+          "image": {
+            "src": "ch01_empty_ruko.png",
+            "mode": "full",
+            "motion": "pushIn"
+          }
+        },
+        {
+          "at": "s01_04@sekitar",
+          "transition": "collapse",
+          "image": {
+            "src": "ch01_empty_ruko.png",
+            "mode": "side",
+            "focus": "hold"
+          },
+          "explainer": {
+            "type": "stack",
+            "title": "Bisnis yang aneh",
+            "items": [
+              {
+                "at": "s01_04@sekitar",
+                "label": "Modal buka tempat",
+                "value": "sekitar Rp500 juta",
+                "tone": "bad"
+              },
+              {
+                "at": "s01_05",
+                "label": "Sewa per orang",
+                "value": "Rp11 ribu sejam"
+              }
+            ]
+          }
+        },
+        {
+          "at": "s01_06",
+          "transition": "crossfade",
+          "image": {
+            "src": "ch01_raka_doubt.png",
+            "mode": "full",
+            "motion": "pushIn"
+          }
+        },
+        {
+          "at": "s01_07",
+          "transition": "cut",
+          "image": {
+            "src": "ch01_food.png",
+            "mode": "full",
+            "motion": "panRight"
+          }
+        },
+        {
+          "at": "s01_10",
+          "transition": "crossfade",
+          "explainer": {
+            "type": "stat",
+            "title": "Balik modal",
+            "items": [
+              {
+                "at": "s01_11@sekitar",
+                "value": "16 bulan",
+                "numeric": 16,
+                "label": "kalau mejanya terisi",
+                "tone": "good"
+              },
+              {
+                "at": "s01_11@13",
+                "value": "13 tahun lebih",
+                "numeric": 13,
+                "label": "kalau mejanya sepi",
+                "tone": "bad"
+              }
+            ]
+          }
+        },
+        {
+          "at": "s01_12",
+          "transition": "cut",
+          "explainer": {
+            "type": "stack",
+            "title": "Sebelum mulai",
+            "items": [
+              {
+                "at": "s01_12",
+                "label": "Hitungan bisnis",
+                "value": "simulasi",
+                "note": "pakai harga pasar sungguhan"
+              },
+              {
+                "at": "s01_13",
+                "label": "Bukan",
+                "value": "laporan keuangan tempat tertentu",
+                "tone": "warn"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "ch02",
+      "shots": [
+        {
+          "at": "s02_01",
+          "transition": "crossfade",
+          "image": {
+            "src": "ch02_young_players.png",
+            "mode": "full",
+            "motion": "pushIn"
+          }
+        },
+        {
+          "at": "s02_02",
+          "transition": "collapse",
+          "image": {
+            "src": "ch02_young_players.png",
+            "mode": "side",
+            "focus": "dim"
+          },
+          "explainer": {
+            "type": "stack",
+            "title": "Klaim satu toko meja di Surabaya",
+            "items": [
+              {
+                "at": "s02_02@50",
+                "label": "Penjualan naik",
+                "value": "50 sampai 60 persen"
+              },
+              {
+                "at": "s02_03@3.000",
+                "label": "Dalam empat bulan",
+                "value": "3.000 sampai 5.000 unit"
+              },
+              {
+                "at": "s02_04",
+                "label": "Sumber",
+                "value": "klaim penjualnya sendiri",
+                "tone": "warn"
+              }
+            ]
+          }
+        },
+        {
+          "at": "s02_05",
+          "transition": "cut",
+          "explainer": {
+            "type": "stat",
+            "title": "Tandanya ada di mana-mana",
+            "items": [
+              {
+                "at": "s02_06",
+                "value": "sebelas tempat",
+                "label": "di satu panduan mahjong Jakarta"
+              },
+              {
+                "at": "s02_07@14.000",
+                "value": "14.000 toko",
+                "numeric": 14000,
+                "label": "satu merek ruang mahjong di Tiongkok"
+              },
+              {
+                "at": "s02_08@lebih",
+                "value": "4.400 persen",
+                "numeric": 4400,
+                "label": "naiknya pencarian klub mahjong di Yelp, Amerika"
+              }
+            ]
+          }
+        },
+        {
+          "at": "s02_09",
+          "transition": "crossfade",
+          "image": {
+            "src": "ch02_young_players.png",
+            "mode": "full",
+            "motion": "pushOut"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ch03",
+      "shots": [
+        {
+          "at": "s03_01",
+          "transition": "crossfade",
+          "image": {
+            "src": "ch03_auto_table.png",
+            "mode": "full",
+            "motion": "pushIn"
+          }
+        },
+        {
+          "at": "s03_02",
+          "transition": "collapse",
+          "image": {
+            "src": "ch03_auto_table.png",
+            "mode": "side",
+            "focus": "hold"
+          },
+          "explainer": {
+            "type": "stack",
+            "title": "Meja otomatis kelas toko",
+            "items": [
+              {
+                "at": "s03_02@Rp15,9",
+                "label": "Harga",
+                "value": "Rp15,9 juta"
+              },
+              {
+                "at": "s03_02@hampir",
+                "label": "Berat",
+                "value": "hampir 100 kilo"
+              },
+              {
+                "at": "s03_03",
+                "label": "Isi",
+                "value": "dua set ubin"
+              },
+              {
+                "at": "s03_04",
+                "label": "Cara kerja",
+                "value": "satu dimainkan, satu diaduk"
+              }
+            ]
+          }
+        },
+        {
+          "at": "s03_05",
+          "transition": "cut",
+          "explainer": {
+            "type": "flow",
+            "title": "Di dalam meja",
+            "items": [
+              {
+                "at": "s03_05",
+                "label": "Ubin disapu masuk",
+                "icon": "tiles_swept"
+              },
+              {
+                "at": "s03_06",
+                "label": "Ruang berputar mengaduk",
+                "icon": "tiles_mixed"
+              },
+              {
+                "at": "s03_07",
+                "label": "Sabuk dan magnet menata",
+                "icon": "belt_magnet"
+              },
+              {
+                "at": "s03_08",
+                "label": "Sensor menghitung",
+                "icon": "sensor_count"
+              },
+              {
+                "at": "s03_09",
+                "label": "Dinding naik ke meja",
+                "tone": "good",
+                "icon": "wall_rises"
+              }
+            ]
+          }
+        },
+        {
+          "at": "s03_10",
+          "transition": "crossfade",
+          "image": {
+            "src": "ch01_friends_table.png",
+            "mode": "full",
+            "motion": "pushOut"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ch04",
+      "shots": [
+        {
+          "at": "s04_01",
+          "transition": "crossfade",
+          "image": {
+            "src": "ch04_soundproofing.png",
+            "mode": "full",
+            "motion": "pushIn"
+          }
+        },
+        {
+          "at": "s04_02",
+          "transition": "collapse",
+          "image": {
+            "src": "ch04_soundproofing.png",
+            "mode": "side",
+            "focus": "dim"
+          },
+          "explainer": {
+            "type": "bars",
+            "title": "Modal awal: Rp507,4 juta",
+            "xLabel": "juta rupiah",
+            "items": [
+              {
+                "at": "s04_03@Rp127,2",
+                "label": "Delapan meja",
+                "value": "Rp127,2 juta",
+                "numeric": 127.2
+              },
+              {
+                "at": "s04_04@Rp120",
+                "label": "Cadangan tiga bulan",
+                "value": "Rp120 juta",
+                "numeric": 120,
+                "note": "uang, bukan barang",
+                "tone": "warn"
+              },
+              {
+                "at": "s04_05@Rp90",
+                "label": "Peredam suara",
+                "value": "Rp90 juta",
+                "numeric": 90,
+                "note": "ubin mahjong itu berisik"
+              },
+              {
+                "at": "s04_06@Rp60",
+                "label": "Interior",
+                "value": "Rp60 juta",
+                "numeric": 60
+              },
+              {
+                "at": "s04_06@Rp40",
+                "label": "Dapur",
+                "value": "Rp40 juta",
+                "numeric": 40
+              },
+              {
+                "at": "s04_06@Rp36",
+                "label": "AC",
+                "value": "Rp36 juta",
+                "numeric": 36
+              }
+            ]
+          }
+        },
+        {
+          "at": "s04_08",
+          "transition": "cut",
+          "explainer": {
+            "type": "stat",
+            "title": "Belum termasuk sewa ruko setahun",
+            "items": [
+              {
+                "at": "s04_08@Rp150",
+                "value": "Rp150 juta",
+                "numeric": 150,
+                "label": "sewa ruko PIK setahun, yang murah"
+              },
+              {
+                "at": "s04_08@Rp250",
+                "value": "Rp250 juta",
+                "numeric": 250,
+                "label": "yang lebih mahal",
+                "tone": "bad"
+              }
+            ]
+          }
+        },
+        {
+          "at": "s04_09",
+          "transition": "cut",
+          "explainer": {
+            "type": "stack",
+            "title": "Biaya tetap tiap bulan",
+            "items": [
+              {
+                "at": "s04_09@Rp40",
+                "label": "Total",
+                "value": "Rp40 juta",
+                "tone": "bad"
+              },
+              {
+                "at": "s04_10@sewa",
+                "label": "Sewa ruko",
+                "value": "Rp15 juta"
+              },
+              {
+                "at": "s04_10@gaji",
+                "label": "Gaji empat orang",
+                "value": "Rp20 juta"
+              },
+              {
+                "at": "s04_10@internet",
+                "label": "Internet, air, kasir",
+                "value": "Rp3 juta"
+              },
+              {
+                "at": "s04_10@promosi",
+                "label": "Promosi",
+                "value": "Rp2 juta"
+              },
+              {
+                "at": "s04_11",
+                "label": "Ada pelanggan atau tidak",
+                "value": "tetap dibayar",
+                "tone": "warn"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "ch05",
+      "shots": [
+        {
+          "at": "s05_01",
+          "transition": "crossfade",
+          "image": {
+            "src": "ch05_busy_table.png",
+            "mode": "full",
+            "motion": "pushIn"
+          }
+        },
+        {
+          "at": "s05_02",
+          "transition": "collapse",
+          "image": {
+            "src": "ch05_busy_table.png",
+            "mode": "side",
+            "focus": "dim"
+          },
+          "explainer": {
+            "type": "stack",
+            "title": "Asumsi simulasi",
+            "items": [
+              {
+                "at": "s05_02@Rp70",
+                "label": "Tarif hari kerja",
+                "value": "Rp70 ribu sejam"
+              },
+              {
+                "at": "s05_02@Rp100",
+                "label": "Tarif akhir pekan",
+                "value": "Rp100 ribu sejam"
+              },
+              {
+                "at": "s05_04",
+                "label": "Satu sesi",
+                "value": "4 jam"
+              },
+              {
+                "at": "s05_05",
+                "label": "Hari kerja",
+                "value": "setengah sesi per meja"
+              },
+              {
+                "at": "s05_06",
+                "label": "Akhir pekan",
+                "value": "satu setengah sesi per meja"
+              },
+              {
+                "at": "s05_07@44",
+                "label": "Sebulan",
+                "value": "sekitar 191 sesi",
+                "tone": "good"
+              }
+            ]
+          }
+        },
+        {
+          "at": "s05_08",
+          "transition": "cut",
+          "explainer": {
+            "type": "receipt",
+            "title": "Satu bulan di kasir",
+            "items": [
+              {
+                "at": "s05_08@Rp65,9",
+                "label": "Sewa meja",
+                "value": "Rp65,9 juta"
+              },
+              {
+                "at": "s05_10@Rp140",
+                "label": "Jajan per meja per sesi",
+                "value": "Rp140 ribu"
+              },
+              {
+                "at": "s05_11@Rp26,7",
+                "label": "Makan-minum sebulan",
+                "value": "Rp26,7 juta"
+              },
+              {
+                "at": "s05_12@Rp92,6",
+                "label": "Total pendapatan",
+                "value": "Rp92,6 juta",
+                "tone": "warn"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "ch06",
+      "shots": [
+        {
+          "at": "s06_01",
+          "transition": "crossfade",
+          "image": {
+            "src": "ch06_raka_surprised.png",
+            "mode": "full",
+            "motion": "pushIn"
+          }
+        },
+        {
+          "at": "s06_02",
+          "transition": "cut",
+          "explainer": {
+            "type": "stack",
+            "title": "Makan-minum sebulan",
+            "items": [
+              {
+                "at": "s06_02",
+                "label": "Pendapatan",
+                "value": "Rp26,7 juta"
+              },
+              {
+                "at": "s06_03@Rp9,3",
+                "label": "Bahan baku",
+                "value": "− Rp9,3 juta",
+                "tone": "bad"
+              },
+              {
+                "at": "s06_04@Rp17,4",
+                "label": "Untung kotor",
+                "value": "Rp17,4 juta",
+                "tone": "good"
+              }
+            ]
+          }
+        },
+        {
+          "at": "s06_05",
+          "transition": "cut",
+          "explainer": {
+            "type": "stack",
+            "title": "Sewa meja sebulan",
+            "items": [
+              {
+                "at": "s06_05",
+                "label": "Pendapatan",
+                "value": "Rp65,9 juta"
+              },
+              {
+                "at": "s06_07@sekitar",
+                "label": "Listrik per meja",
+                "value": "sekitar Rp1.230 sejam"
+              },
+              {
+                "at": "s06_07@Rp2,1",
+                "label": "Biaya sebulan",
+                "value": "− Rp2,1 juta",
+                "tone": "bad"
+              },
+              {
+                "at": "s06_08@Rp63,8",
+                "label": "Untung kotor",
+                "value": "Rp63,8 juta",
+                "tone": "good"
+              }
+            ]
+          }
+        },
+        {
+          "at": "s06_09",
+          "transition": "cut",
+          "explainer": {
+            "type": "bars",
+            "title": "Dari mana untung kotornya?",
+            "xLabel": "persen",
+            "items": [
+              {
+                "at": "s06_09@79",
+                "label": "Sewa meja",
+                "value": "79 persen",
+                "numeric": 79,
+                "tone": "good"
+              },
+              {
+                "at": "s06_09@21",
+                "label": "Makan-minum",
+                "value": "21 persen",
+                "numeric": 21
+              }
+            ]
+          }
+        },
+        {
+          "at": "s06_10",
+          "transition": "cut",
+          "explainer": {
+            "type": "stat",
+            "title": "Hapus dapurnya",
+            "items": [
+              {
+                "at": "s06_10@Rp17,2",
+                "value": "Rp17,2 juta",
+                "numeric": 17.2,
+                "label": "masih untung tiap bulan",
+                "tone": "good"
+              }
+            ]
+          }
+        },
+        {
+          "at": "s06_11",
+          "transition": "crossfade",
+          "image": {
+            "src": "ch01_food.png",
+            "mode": "full",
+            "motion": "pushOut"
+          }
+        },
+        {
+          "at": "s06_13",
+          "transition": "crossfade",
+          "image": {
+            "src": "ch01_raka_doubt.png",
+            "mode": "full",
+            "motion": "pushIn"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ch07",
+      "shots": [
+        {
+          "at": "s07_01",
+          "transition": "crossfade",
+          "image": {
+            "src": "ch07_empty_tuesday.png",
+            "mode": "full",
+            "motion": "pushIn"
+          }
+        },
+        {
+          "at": "s07_03",
+          "transition": "collapse",
+          "image": {
+            "src": "ch07_empty_tuesday.png",
+            "mode": "side",
+            "focus": "hold"
+          },
+          "explainer": {
+            "type": "stack",
+            "title": "Supaya impas",
+            "items": [
+              {
+                "at": "s07_03@sekitar",
+                "label": "Sesi sebulan",
+                "value": "sekitar 106 sesi"
+              },
+              {
+                "at": "s07_04@17",
+                "label": "Meja terisi",
+                "value": "17 persen dari jam buka"
+              }
+            ]
+          }
+        },
+        {
+          "at": "s07_05",
+          "transition": "cut",
+          "explainer": {
+            "type": "bars",
+            "title": "Untung bersih sebulan",
+            "xLabel": "juta rupiah",
+            "items": [
+              {
+                "at": "s07_05@Rp31,9",
+                "label": "Simulasi: 191 sesi",
+                "value": "Rp31,9 juta",
+                "numeric": 31.9,
+                "note": "balik modal sekitar 16 bulan",
+                "tone": "good"
+              },
+              {
+                "at": "s07_08@Rp3,1",
+                "label": "Sepi: 114 sesi",
+                "value": "Rp3,1 juta",
+                "numeric": 3.1,
+                "tone": "bad"
+              }
+            ]
+          }
+        },
+        {
+          "at": "s07_09",
+          "transition": "cut",
+          "explainer": {
+            "type": "stat",
+            "title": "Balik modal kalau sepi",
+            "items": [
+              {
+                "at": "s07_09@162",
+                "value": "162 bulan",
+                "numeric": 162,
+                "tone": "bad"
+              },
+              {
+                "at": "s07_10",
+                "value": "13 tahun lebih",
+                "numeric": 13,
+                "label": "lebih lama dari banyak kontrak ruko",
+                "tone": "bad"
+              }
+            ]
+          }
+        },
+        {
+          "at": "s07_11",
+          "transition": "cut",
+          "explainer": {
+            "type": "compare",
+            "title": "Sedikit beda pelanggan, jauh beda hasil",
+            "columns": [
+              "Sepi",
+              "Ramai"
+            ],
+            "items": [
+              {
+                "at": "s07_11@286",
+                "label": "Sesi sebulan",
+                "a": "114 sesi",
+                "b": "286 sesi",
+                "win": "b"
+              },
+              {
+                "at": "s07_11@Rp67,8",
+                "label": "Untung bersih",
+                "a": "Rp3,1 juta",
+                "b": "Rp67,8 juta",
+                "win": "b"
+              },
+              {
+                "at": "s07_11@sekitar",
+                "label": "Balik modal",
+                "a": "162 bulan",
+                "b": "sekitar 7,5 bulan",
+                "win": "b"
+              }
+            ]
+          }
+        },
+        {
+          "at": "s07_12",
+          "transition": "crossfade",
+          "image": {
+            "src": "ch07_full_saturday.png",
+            "mode": "full",
+            "motion": "pushIn"
+          }
+        },
+        {
+          "at": "s07_14",
+          "transition": "crossfade",
+          "image": {
+            "src": "ch07_empty_tuesday.png",
+            "mode": "full",
+            "motion": "pushOut"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ch08",
+      "shots": [
+        {
+          "at": "s08_01",
+          "transition": "crossfade",
+          "image": {
+            "src": "ch08_garage_van.png",
+            "mode": "full",
+            "motion": "pushIn"
+          }
+        },
+        {
+          "at": "s08_02",
+          "transition": "collapse",
+          "image": {
+            "src": "ch08_garage_van.png",
+            "mode": "side",
+            "focus": "dim"
+          },
+          "explainer": {
+            "type": "stack",
+            "title": "Model garasi: lima meja portabel",
+            "items": [
+              {
+                "at": "s08_02@Rp90",
+                "label": "Modal",
+                "value": "Rp90 juta"
+              },
+              {
+                "at": "s08_02@Rp10",
+                "label": "Per meja",
+                "value": "Rp10 juta"
+              },
+              {
+                "at": "s08_03@Rp500",
+                "label": "Tarif penyedia di Jakarta",
+                "value": "Rp500 ribu sehari"
+              },
+              {
+                "at": "s08_04@Rp300",
+                "label": "Simulasi hari kerja",
+                "value": "Rp300 ribu sehari"
+              },
+              {
+                "at": "s08_04@Rp400",
+                "label": "Simulasi akhir pekan",
+                "value": "Rp400 ribu sehari"
+              }
+            ]
+          }
+        },
+        {
+          "at": "s08_05",
+          "transition": "cut",
+          "explainer": {
+            "type": "compare",
+            "title": "Ruko atau garasi?",
+            "columns": [
+              "Ruko, 8 meja",
+              "Garasi, 5 meja"
+            ],
+            "items": [
+              {
+                "at": "s08_05@Rp16,9",
+                "label": "Pendapatan sebulan",
+                "a": "Rp92,6 juta",
+                "b": "Rp16,9 juta",
+                "win": "a"
+              },
+              {
+                "at": "s08_06@Rp4,9",
+                "label": "Untung bersih",
+                "a": "Rp31,9 juta",
+                "b": "Rp4,9 juta",
+                "win": "a"
+              },
+              {
+                "at": "s08_07@sekitar",
+                "label": "Balik modal",
+                "a": "sekitar 16 bulan",
+                "b": "sekitar 18 bulan",
+                "win": "a"
+              },
+              {
+                "at": "s08_09",
+                "label": "Kalau gagal, hilang",
+                "a": "sekitar Rp500 juta",
+                "b": "Rp90 juta",
+                "win": "b"
+              }
+            ]
+          }
+        },
+        {
+          "at": "s08_10",
+          "transition": "crossfade",
+          "image": {
+            "src": "ch08_garage_van.png",
+            "mode": "full",
+            "motion": "pushOut"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ch09",
+      "shots": [
+        {
+          "at": "s09_01",
+          "transition": "crossfade",
+          "explainer": {
+            "type": "stack",
+            "title": "KUHP baru, berlaku Januari 2026",
+            "items": [
+              {
+                "at": "s09_02@Pasal",
+                "label": "Dulu",
+                "value": "Pasal 303"
+              },
+              {
+                "at": "s09_03@426",
+                "label": "Sekarang",
+                "value": "Pasal 426 dan 427"
+              },
+              {
+                "at": "s09_04@9",
+                "label": "Penyelenggara tanpa izin",
+                "value": "9 tahun atau Rp2 miliar",
+                "tone": "bad"
+              },
+              {
+                "at": "s09_05@3",
+                "label": "Pemain",
+                "value": "3 tahun atau Rp50 juta",
+                "tone": "bad"
+              }
+            ]
+          }
+        },
+        {
+          "at": "s09_06",
+          "transition": "crossfade",
+          "image": {
+            "src": "ch01_friends_table.png",
+            "mode": "full",
+            "motion": "pushIn"
+          }
+        },
+        {
+          "at": "s09_08",
+          "transition": "cut",
+          "explainer": {
+            "type": "stack",
+            "title": "Yang kami temukan",
+            "items": [
+              {
+                "at": "s09_08",
+                "label": "Aturan khusus mahjong berbayar",
+                "value": "tidak ditemukan"
+              },
+              {
+                "at": "s09_08@partisi",
+                "label": "Wajib partisi kaca",
+                "value": "tidak ditemukan"
+              },
+              {
+                "at": "s09_09",
+                "label": "Tempat yang serius",
+                "value": "tanpa taruhan",
+                "tone": "good"
+              }
+            ]
+          }
+        },
+        {
+          "at": "s09_10",
+          "transition": "crossfade",
+          "image": {
+            "src": "ch09_lawyer.png",
+            "mode": "full",
+            "motion": "pushIn"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ch10",
+      "shots": [
+        {
+          "at": "s10_01",
+          "transition": "crossfade",
+          "explainer": {
+            "type": "stat",
+            "title": "Uangnya dari mana?",
+            "items": [
+              {
+                "at": "s10_02",
+                "value": "Bukan makanan",
+                "tone": "bad"
+              },
+              {
+                "at": "s10_03",
+                "value": "Meja yang terisi",
+                "label": "jam demi jam",
+                "tone": "good"
+              }
+            ]
+          }
+        },
+        {
+          "at": "s10_04",
+          "transition": "crossfade",
+          "image": {
+            "src": "ch10_raka_lounge.png",
+            "mode": "full",
+            "motion": "pushIn"
+          }
+        },
+        {
+          "at": "s10_08",
+          "transition": "collapse",
+          "image": {
+            "src": "ch10_raka_lounge.png",
+            "mode": "side",
+            "focus": "hold"
+          },
+          "explainer": {
+            "type": "stack",
+            "title": "Bantu kami lengkapi datanya",
+            "items": [
+              {
+                "at": "s10_08",
+                "label": "Tarif di luar Jakarta",
+                "value": "masih susah dicari"
+              },
+              {
+                "at": "s10_09",
+                "label": "Tulis di komentar",
+                "value": "kota dan tarifnya",
+                "tone": "good"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -2,6 +2,29 @@
 
 This document defines the unified production standards, subagent contracts, visual hierarchy rules, audio/subtitle alignment pipelines, and rendering workflows for generating high-retention vertical (`1080x1920 @ 60fps`) and widescreen (`1920x1080`) explainer videos in Motion Canvas.
 
+## 0. Production Workflow: Pipeline v2 (default for new episodes)
+
+Pipeline v2 applies from `vid_20261107_001` onward. An episode is data only; one shared engine ([`src/shared/v2/types.ts`](file:///home/agent/orca/AI-nimate/motion-canvas/src/shared/v2/types.ts)) renders it. Contract: [`docs/pipeline_v2_contract.md`](file:///home/agent/orca/AI-nimate/docs/pipeline_v2_contract.md). Reference episode: `motion-canvas/production/vid_20261107_001/`. Scripts live in `motion-canvas/scripts/v2/`. Follow Section 0A (isolation, fresh `vid_YYYYMMDD_NNN`, registry entry) first.
+
+1. **Research**: dossier with source URLs, plus `production/<id>/numbers.json`. Every figure is sourced (URL) or labelled `estimate`.
+2. **Script**: `production/<id>/script.json` with `chapters[].sentences[]`, `[display|spoken]` tokens for numerals and acronyms, optional `pause_after`. Plain Indonesian for laypeople; the banned-jargon list is in the contract. Gate: `node motion-canvas/scripts/v2/lint_episode.mjs <id>`.
+3. **Narration**: `.venv/bin/python motion-canvas/scripts/v2/synth_narration.py <id>`. One voice (`gemini-3.8-flash-tts`, `Charon`), single take, no model fallback, free Audio keys only (3 RPM / 10K TPM / 10 RPD per key per model). Whisper medium gives timestamps only; subtitles always come from the script. Then `generate_music.py <id>` (beds from the royalty-free `music_library/`, no API) and, after the storyboard, `mix_audio.py <id>` (-14 LUFS, ducked music, SFX from storyboard).
+4. **Storyboard**: `production/<id>/storyboard.json`; shots with `image` (`full`/`side`), `collapse`/`expand` transitions, 7 explainer types (`stack bars stat compare line flow receipt`). Staging rules: no brows or title pills, focus dimming, no ghost text, notes after chart marks, min 30px. Then `node motion-canvas/scripts/v2/scaffold_project.mjs <id>`.
+5. **Images** (`asset-director` agent, [`agent.md`](file:///home/agent/orca/AI-nimate/.agents/agents/asset-director/agent.md)): writes `assets_manifest.json`, runs `.venv/bin/python motion-canvas/scripts/v2/generate_assets.py --id <id>`.
+   - Single images on Nano Banana 2 Lite (`gemini-3.1-flash-lite-image`), up to 4 attempts, no Pro escalation; recurring character reference sheet. Paid `GEMINI_IMAGE_KEY` only.
+   - Composition: max 4 faces, no crowds, large blank tiles, no mechanical cutaways (diagrams are vector).
+   - QA: Claude Haiku on zoomed crops plus a verifier pass (`qa_image.py`; calibrate with `--calibrate`). On failure the director rewrites the prompt.
+   - Thumbnail: `generate_thumbnail.py <id>`; `render.mjs` calls it if missing and never fails for lack of one.
+6. **Render and QA**:
+   - `cd motion-canvas && node render.mjs --project=<id> --channel=kausalmedia --slug=<slug> --aspects=16x9` (hash-based cache; never delete cache by hand).
+   - `node scripts/qa_verify.mjs <id> --aspects=16x9`. v2 checks: Timings Manifest, Subtitle = Script, Numbers vs numbers.json, Banned Jargon, Storyboard Structure, Master 16:9 Video, Visual Keyframes, Stage Stillness, Loudness, Asset QA, Thumbnail.
+   - Then look at `qa_frames/shots/` (human or Claude).
+   - Deploy (`npm run deploy`) only when the user asks.
+
+### Legacy (v1, episodes before vid_20261107_001)
+
+Only for maintaining old episodes: hand-written `beat_NN.tsx` scenes, `Puck` voice, Rules 1-12 in `Guide.md`, `Chapters`/`Beats` with `full_comic_16x9`/`explainer_2x2` stage modes, and `render.mjs --beats=...` with manual `.cache` deletion. The 2x2 grid batching (`nano_banana_batch_grid.py`) is legacy: each panel got only ~688x384 pixels, causing blobby faces and tiles.
+
 ---
 
 ## 0A. Project Topic Isolation Rule (Mandatory Default)
@@ -37,11 +60,14 @@ The production pipeline operates under the master token-shielding orchestration 
    - Executes a mandatory 4-Stage CoT Forensic Investigation (Deconstruct Narrative -> 2025–2026 Primary Sources & Unit Economics -> Steelman Counter-Thesis -> Spatial Diagram Archetype Synthesis).
    - Output Contract: Writes `production/<video_id>/research_dossier.md` mapping findings to the **5 Distinct Spatial Diagram Archetypes**.
 3. **`thinking-scriptwriter` (`SubAgent_Writer`)**:
-   - Reads `research_dossier.md` and executes a mandatory 5-Stage CoT Scriptwriting Protocol (Hook Selection -> Causal Spine -> Semantic Diagram & Visual Micro-Choreography Mapping -> Anti-Slop Audit -> Phonetic & Acronym Engineering).
-   - Output Contract: Writes `production/<video_id>/script_cot.md` and structured `production/<video_id>/script.json` with sample-accurate `visual_cues[]`.
-4. **`flash-worker` / `flash-coder` (Implementation & Verification Worker)**:
-   - Implements TypeScript scene files (`.tsx`), layout wrappers, and asset manifests across file-disjoint work packets.
-   - Follows the Ponytail Decision Ladder ("Lazy Senior Dev") and returns Compact Receipts (<150 words).
+   - Reads `research_dossier.md` and executes a mandatory 5-Stage CoT Scriptwriting Protocol (Profitability Paradox Hook Selection -> Causal Spine -> Dual Stage Mode (`full_comic_16x9` vs `explainer_2x2`) & Sentence-Beat Mapping -> Anti-Slop Audit -> Natural Jakarta Indonesian Prosody & Phonetic Engineering).
+   - Output Contract: Writes `production/<video_id>/script_cot.md`, `production/<video_id>/script.json` (with `chapters[]` and sentence/clause `beats[]`), and `production/<video_id>/assets_manifest.json`.
+4. **`nano-banana-asset-generator` (`SubAgent_Assets`)**:
+   - Runs [`motion-canvas/scripts/nano_banana_batch_grid.py`](file:///home/agent/orca/AI-nimate/motion-canvas/scripts/nano_banana_batch_grid.py) using `NANO_BANANA_API_KEY` and `models/gemini-3.1-flash-image-preview` via `:batchGenerateContent`.
+   - Generates **Flat 2D Indonesian Comic Illustrations** in **2x2 grids grouped by aspect ratio** (`"16:9"` $\rightarrow$ 4x `1280x720` widescreen panels per grid for `Option 1: full_comic_16x9`; `"1:1"` $\rightarrow$ 4x `512x512` square panels per grid for `Option 2: explainer_2x2`), runs automated + vision QA on each panel, and re-batches any failures into a new 2x2 grid until `all_passed: true`.
+5. **`flash-worker` / `flash-coder` (Implementation & Verification Worker)**:
+   - Implements TypeScript scene files (`beat_01.tsx`–`beat_NN.tsx`, one per macro Chapter), layout wrappers, and project entry files across file-disjoint work packets.
+   - Enforces the Motion Canvas **Outer Card `<Rect>` Non-Flex Rule** and returns Compact Receipts (<150 words).
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
@@ -81,7 +107,9 @@ The production pipeline operates under the master token-shielding orchestration 
 
 ---
 
-## 1. Visual Hierarchy & Animation Standards (Mandatory)
+## 1. Visual Hierarchy & Animation Standards (legacy v1, episodes before vid_20261107_001)
+
+> v2 episodes use the staging rules in `docs/pipeline_v2_contract.md` instead; Rules 1-12 and Sections 2-4 below apply only to v1 maintenance.
 
 To prevent split attention between moving graphics, on-screen text, and subtitles, every scene **must** obey these core visual rules:
 
@@ -97,38 +125,41 @@ To prevent split attention between moving graphics, on-screen text, and subtitle
 - **The Bug**: In `@motion-canvas/2d`, `<Camera>` creates a detached internal `this.scene = new Node({})` (`parent === null`), which loses `View2D`'s center-origin transform (`translate(width/2, height/2)`). Whenever any child has `opacity < 1` (during fades, transitions, or dimming), `Node.requiresCache()` intersects the child's bounding box against `[0..width, 0..height]` instead of `[-width/2..width/2, -height/2..height/2]`, slicing off the entire left half (`x < 0`) and top half (`y < 0`) of the canvas!
 - **Mandatory Fix**: Always wrap scene diagrams in `<Node ref={stage}>` directly under `view` (or `<Camera.Stage width={width} height={height}>`), NEVER a bare `<Camera>`.
 
-### Rule 2: Strict Icon-Only Logo & Authentic Vector Source Rule
-- **Authentic Wikimedia Commons / Official Vector Logo Rule**: NEVER draw synthetic geometric stand-in logos with Python/PIL/Canvas or hallucinate brand marks with AI image generators when referencing real companies, stock exchanges, financial products, or government agencies (e.g., IDX, BCA, Interactive Brokers, IRS, EU/Ireland UCITS, Kemenkeu/DJP, OECD). Always fetch the authentic SVG/PNG from **Wikimedia Commons API (`commons.wikimedia.org/w/api.php`)**, **SimpleIcons**, or official brand repositories, and crop/extract the clean **logomark or official seal** (stripping only tiny multi-word taglines/wordmarks so the graphic mark sits cleanly beside the Motion Canvas `<Txt>` title).
-- **Text-Free Transparent Graphics**: Any generated or imported PNG logo/emblem (`<Img>`) **MUST be a 100% text-free, square (`256x256`) graphic mark on a transparent background**.
-- **Forbidden Baked Text**: NEVER bake small text, ticker labels (`IDX: BBCA`, `VOO`), subtitles, percentage numbers, or rectangular card borders inside a PNG asset.
-- **Crisp Vector Typography**: All text titles, ticker labels, and figures must be rendered as crisp Motion Canvas `<Txt>` nodes beside the `<Img>` icon node.
+### Rule 2: Flat 2D Indonesian Comic Art Style, Dual Aspect-Ratio 2x2 Grid Batching & Authentic Vector Logos
+- **Flat 2D Indonesian Comic Illustration Style (`nano-banana-asset-generator`)**:
+  - All AI-generated narrative/scene illustrations use **Flat 2D Indonesian Comic Style** via `gemini-3.1-flash-image-preview` `:batchGenerateContent` (`motion-canvas/scripts/nano_banana_batch_grid.py`):
+    - Bold `3px–4px` dark charcoal-black comic ink outlines (`#0F172A`), flat cel-shaded warm editorial fills (`#FAF6EE`, `#E11D48`, `#059669`, `#D97706`, `#0284C7`), expressive 2D Indonesian characters, and authentic local Indonesian context (ruko shophouses, QRIS, Indomie, dimsum, blind vans).
+    - **Strictly Banned**: 3D renders, isometric glossy corporate tech icons, photorealism, gradients/drop-shadows, and any baked-in text/letters/numbers/watermarks inside PNG assets.
+  - **Dual Aspect-Ratio 2x2 Grid Batching**:
+    - **`"aspect_ratio": "16:9"` (`Option 1: full_comic_16x9`)**: 4 widescreen `16:9` comic scenes per grid (`2752x1536`), sliced into `1280x720` (`16:9`) PNG panels.
+    - **`"aspect_ratio": "1:1"` (`Option 2: explainer_2x2`)**: 4 square `1:1` comic scenes per grid (`2048x2048`), sliced into `512x512` (`1:1`) PNG panels.
+- **Authentic Wikimedia Commons / Official Vector Logo Rule**: NEVER draw synthetic geometric stand-in logos with Python/PIL/Canvas or hallucinate brand marks with AI image generators when referencing real companies, stock exchanges, financial products, or government agencies (e.g., IDX, BCA, Interactive Brokers, IRS, EU/Ireland UCITS, Kemenkeu/DJP, OECD). Always fetch the authentic SVG/PNG from **Wikimedia Commons API (`commons.wikimedia.org/w/api.php`)**, **SimpleIcons**, or official brand repositories.
+- **Forbidden Baked Text & Crisp Vector Typography**: NEVER bake text, ticker labels, subtitles, or percentage numbers inside a PNG asset. All titles, ticker labels, and figures must be rendered as crisp Motion Canvas `<Txt>` nodes.
 
-### Rule 3: Visual Density Cap & 5 Distinct Spatial Diagram Archetypes (Ban Generic 2-Box Repeats)
-- **5 Distinct Spatial Diagram Archetypes**: Every beat must choose a diagram archetype that physically acts out the mechanism of the sentence rather than repeating generic 2-box dashboard cards across consecutive beats:
-  1. **Scale Chasm / Bar + Caliper**: Dynamic comparative sizing, caliper measurement brackets, and ratio multiplier markers.
-  2. **Closed-Loop Orthogonal Conduit**: Cyclical mechanics, directional cashflow/token loops, and animated pulse flows.
-  3. **Dual-Axis Parallel Timeline + Wall**: Race trajectories, divergent velocity paths, and deadline/collision walls.
-  4. **Quantitative Slope / Decay Curve**: Threshold inflection points, exponential vs linear decay curves, and margin dropoffs.
-  5. **3-Tier Architectural Layer Stack**: Vertical abstraction layers, infrastructure plumbing, and off-balance-sheet waterfalls.
-- **Max Visual Density**:
-  - Max 1 primary diagram system per beat with `<= 3` key hubs, bars, or tiers visible simultaneously.
-  - Max 3 lines of text per node: Title (2–3 words), Hero Number / Stat Pill (`<= 12` chars), Tag / Metric Badge (`<= 16` chars).
-  - Minimum `36px` font size for any text node on a 1080p canvas.
-  - Orthogonal connectors (`<Line radius={20} end={0..1} endArrow />`) must use opaque label masks (`<Rect fill={COLORS.bg} stroke={COLORS.ink} padding={[8, 16]} layout>`) so lines never bleed through text.
-- **Division of Labor**: Subtitles carry spoken sentences; graphic elements carry only numbers, tickers, and icons. Forbidden: multi-word explanatory footers, bullet-point paragraphs, or full legal citations inside diagram nodes.
+### Rule 3: Dual Stage Modes (`Option 1: full_comic_16x9` vs `Option 2: explainer_2x2`) & 5 Spatial Diagram Archetypes
+- **Dual Stage Modes (Per-Chapter Selection in `script.json`)**:
+  - **Option 1 (`stage_mode: "full_comic_16x9"`) — Full-Screen 2D Comic Storytelling Stage**:
+    - Used when a Chapter is primarily narrative, experiential, or psychological and does not require a heavy quantitative explainer chart.
+    - Displays widescreen `16:9` (`1280x720`) 2D Indonesian comic panels (`chXX_p1.png`, `chXX_p2.png`, ...) inside a crisp comic frame alongside floating comic-caption callout pills and stat stamps that swap/animate on every sentence **Beat**.
+  - **Option 2 (`stage_mode: "explainer_2x2"`) — Quantitative Explainer + Square 2D Comic Stage**:
+    - Used when a Chapter breaks down CapEx, OpEx, margin math, occupancy curves, or head-to-head payback matrices.
+    - Pairs square `1:1` (`512x512`) 2D Indonesian comic panels (`chXX_sq1.png`, `chXX_sq2.png`) with one of the **5 Distinct Spatial Diagram Archetypes** (`Scale Chasm / Bar + Caliper`, `Closed-Loop Orthogonal Conduit`, `Dual-Axis Parallel Timeline + Wall`, `Quantitative Slope / Decay Curve`, `3-Tier Architectural Layer Stack`).
+- **Max Visual Density & Division of Labor**:
+  - Minimum `18px` font size on `16:9` (`>= 20px` on `9:16`) for any text node.
+  - Subtitles carry spoken sentences; graphic elements carry concise numbers, labels, and comic panels with zero overlapping elements.
 
-### Rule 4: Sample-Accurate Acoustic-to-Visual Sync & Progressive Diagram Staging (`timings.json` Word Trigger Rule)
-- **Sample-Accurate Word Trigger Rule (`±0.3s`)**: Every major visual reveal (bar growth, counter tick, conduit draw, wall drop, badge flip) MUST be triggered within `±0.3s` of the exact spoken word timestamp in `timings.json` (never 7–9 seconds premature!).
-- **Intervening Micro-Cue Cadence (2.0s–2.8s intervals)**: Intermediate micro-cues (axis draw, baseline entry, station pop-in, sub-badge overshoot) MUST fill the intervening `2.0s–2.8s` intervals so there is never a static stretch `> 3.0s` across any beat.
-- **Strict Hold-Time Guard (`>= 2.7s` Before Beat End)**: The final visual element and animation in every beat MUST finish at least **`>= 2.7s` before `beat.end`** to ensure viewers can comprehend the complete diagram before the scene boundary.
-- **Fast 1.0s–1.8s Counters**: Ban 10–12 second continuous money tickers. Number counters (`tween`) must execute in **1.0s to 1.8s** at the exact timestamp the narrator speaks the figure.
-- **Progressive Staging Sequence (No Canvas Clutter at `t = 0`)**:
-  - `t = 0.0s`: Baseline/axis/frame enters (`opacity: 0 -> 1`, `scale: 0.95 -> 1.0`). Hubs/bars initialize hidden (`opacity: 0`).
-  - `t = 2.0s–2.8s`: Primary station/entity pops in (`scale: 0 -> 1.15 -> 1.0`) as subject is introduced.
-  - `t = spoken word (±0.3s)`: Major mechanism activates (conduit line draws, bar tweens in `1.0s–1.8s`, or collision wall drops).
-  - `t = subsequent word (±0.3s)`: Secondary entity, metric badge flip, or bracket step-up reveals.
-  - `t <= beat.end - 2.7s`: Final forensic stamp, caliper bracket, or verdict highlight completes.
-- **Post-Render Verification**: Always run `node scripts/qa_verify.mjs <video_id>` after every render to verify visual cue timestamps, hold times, and absence of static stretches `> 3.0s`.
+### Rule 4: Canonical `Chapters` vs `Beats` Terminology & Attention-Driven Sentence Sync (`timings.json`)
+- **Canonical Terminology (`Chapters` vs `Beats`)**:
+  - **`Chapters` (`chapters[]` in `script.json`, mapped to `beat_01.tsx`–`beat_NN.tsx` in Motion Canvas)**: Macro sub-chapters where one main stage remains on screen while sentence-level beats animate inside it; starting a new Chapter wipes the canvas for a new sub-chapter.
+  - **`Beats` (`beats[]` inside each chapter)**: Individual sentence-level (and clause-level in the hook) visual cues (`yield* waitUntilSceneTime(...)`) synced to `timings.json`.
+- **Visual Beats Follow Sentences & Attention Hooks**:
+  - Every sentence in `spoken_text` MUST trigger at least one distinct visual Beat (`Check 9: Sentence-Level Visual Cadence`), and **Chapter 1 (The Hook)** MUST use rapid clause-level Beats (`10–14` visual cues across the opening `35s–45s`, every `2.0s–3.5s`) to lock in viewer retention immediately.
+  - Comic panel crossfades (`chXX_p1.png` $\rightarrow$ `chXX_p2.png` or `chXX_sq1.png` $\rightarrow$ `chXX_sq2.png`) happen at the exact sentence Beat where the spoken imagery pivots.
+- **Chapter Pacing Guideline (Scriptwriter Discretion, Never Hardcoded)**:
+  - **Too many chapters**: Wiping the whole screen every 5–10 seconds (1–2 sentences) causes visual whiplash. Keep related sentences together in the same Chapter.
+  - **Recommended organic range**: Typically **~12s–20s (3–5 sentences)** per Chapter for `9:16` Shorts (roughly 4–6 chapters for a 60–90s Short), and **~35s–65s (5–9 sentences)** per Chapter for `16:9` long-form essays (roughly 7–14 chapters for an 8–10 min video).
+- **Sample-Accurate Word Trigger Rule (`±0.3s`) & Hold-Time Guard (`>= 2.7s` Before Chapter End)**:
+  - Every major visual Beat triggers within `±0.3s` of the exact spoken word timestamp in `timings.json` (`beat_cue_schedule.json`), with zero static stretches `> 5.0s`, and the final animation finishes `>= 2.7s` before the Chapter ends.
 
 ### Rule 5: Stationary Subtitles & Uncontested Lower-Third
 - **Acoustic Lead Compensation (`LEAD_OFFSET = 0.22`)**: Advance subtitle word highlighting by `+220ms` (`t = useScene().playback.time() + 0.22`) to compensate for Whisper acoustic latency, ensuring highlight fires exactly on consonant onset.
@@ -172,19 +203,21 @@ To prevent split attention between moving graphics, on-screen text, and subtitle
     - Exit vertically (`90°`) from the top edge (`hubAY - cardHalfH`) up to an overhead rail (`hubAY - 245`), cross horizontally, and drop vertically (`90°`) into the top edge of Station 2 (`hubBY - cardHalfH`); mirror on the bottom for the return conduit.
 - **Automated QA Verification**: The Perpendicular Conduit Check in `node scripts/qa_verify.mjs <project_id>` scans all `beat_*.tsx` files for any 4-point `<Line` `points` array sharing identical `y` expressions at the start or end, rejecting sideways border-flush entries.
 
-### Rule 8: Readable Modern Sans-Serif Headings & Strict Screen Text Density Cap (Max 18 `<Txt>` Nodes)
+### Rule 8: Readable Modern Sans-Serif Headings & Dynamic Signal State Changes (No Artificial `<Txt>` Node Cap)
 - **Modern Readable Sans Typography**: NEVER use thin high-contrast decorative serifs like `'Instrument Serif'` for headings on mobile explainer videos. On 6" smartphone screens, thin serif hairlines vanish and cause extreme visual fatigue. Always use bold, clean, modern sans-serifs (`HEADING_FONT = "'Plus Jakarta Sans', 'Inter', sans-serif"`, `fontWeight={800}`).
-- **Strict Text Node Density Cap (`<= 18` `<Txt>` nodes per beat)**:
-  - Every beat scene MUST contain **no more than 18 `<Txt>` nodes** in total (allowing 4–5 short X/Y axis tick labels in chart beats while strictly preventing visual clutter).
-  - Eliminate redundant eyebrow badges, card-internal category tags, and bottom summary footers that duplicate information or crowd the subtitle zone.
-  - Inside entity/station cards, restrict text to **at most 2 text elements**: one bold Title (`fontWeight={800}`, `fontSize={32-36}`) and one high-contrast Stat Pill (`fontSize={20-24}`).
-- **Automated QA Verification**: Check 14 (`Readable Sans & Density Check`) in `qa_verify.mjs` automatically inspects `layout.tsx` to reject `'Instrument Serif'` in heading fonts and enforces the `<= 18` `<Txt>` nodes density cap per beat file.
+- **Dynamic Signal State Changes (No Artificial `<Txt>` Cap)**:
+  - The old hard limit of `<= 18 <Txt> nodes` per beat has been **removed** so long beats (`45s–60s` with 7–10 sentences) are never starved of sentence-level visual cues.
+  - Keep layouts clean and uncluttered (zero overlapping elements) by combining progressive sub-card reveals, 2x2 Nano Banana illustration swaps, and dynamic signal state updates (`badgeText('NEW STATE')`, `statusColor(PALETTE.emerald)`, `activeStep(3)`).
+- **Automated QA Verification**: Check 14 (`Readable Sans Heading Check`) and Check 16 (`Sentence-Level Visual Cadence`) in `qa_verify.mjs` verify clean sans-serif headings and ensure `waitUntilSceneTime` cues match or exceed the number of spoken sentences in every beat.
 
-### Rule 9: Contained Chart Coordinate Safe-Zones & Zero Line-Cutting Invariant
+### Rule 9: Contained Chart Coordinate Safe-Zones, Outer Card `<Rect>` Non-Flex Rule & Zero Line-Cutting Invariant
+- **Outer Card `<Rect>` Non-Flex Rule (Critical `@motion-canvas/2d` Invariant)**:
+  - In `@motion-canvas/2d`, once ANY ancestor `<Rect>` has `layout={true}`, Yoga Flexbox cascades down through `<Node>` to **all** descendant `Layout` nodes (`Rect`, `Img`, `Txt`, `Line`), causing stacked cross-fading `<Img>` panels to push each other out of `clip` frames and collapsing coordinate-positioned chart `<Line>`/`<Txt>` elements into a horizontal flex line!
+  - **Mandatory Rule**: NEVER put `layout` on an outer card `<Rect>` container that holds stacked cross-fading `<Img>` panels or coordinate-positioned `<Line>`/`<Txt>` charts. Keep outer card `<Rect>` containers non-flex (position direct sections via explicit `x`/`y`) and apply `layout` only to leaf badges, pills, and table rows.
 - **Contained Frame Enclosure**: All quantitative chart lines, plunge curves, benchmark indicators, and milestone callouts must be strictly enclosed inside a dedicated background card frame (e.g., vertical `9:16`: `width = 900`, `x: [-450, +450]`, `height = 680`). Placing chart axes directly on the uncontained canvas causes axis labels and milestone tags to clip off the screen edges (`x = ±540`).
 - **Zero Line-Cutting Invariant**:
   - Trajectory curves, crash lines, and reference vectors must NEVER slice through milestone labels or callout text boxes.
-  - Place milestone pills cleanly offset above or below line vertices (e.g., `y = -155` above point `[-340, -120]`, or `y = -15` above point `[-60, +20]`), using opaque card fills (`fill={'#FFFFFF'}`) and distinct borders so the data line never intersects text.
+  - Place milestone pills cleanly offset above or below line vertices, using opaque card fills (`fill={'#FFFFFF'}`) and distinct borders so the data line never intersects text.
   - Hero summary metrics (`-85% NILAI HILANG`) must sit in an unobstructed dedicated hero slot below the chart plunge.
 
 ### Rule 10: Natural Top-to-Bottom Mobile Stack Order & Arrowless Clean Separation
@@ -217,7 +250,7 @@ To prevent split attention between moving graphics, on-screen text, and subtitle
 
 ---
 
-## 2. Research Agent Standards (`deep-researcher` / `SubAgent_Scout`)
+## 2. Research Agent Standards (legacy v1) (`deep-researcher` / `SubAgent_Scout`)
 
 > **Model Specification**: Operates on **`Model: "flash"`**. Analytical and forensic depth is strictly derived from the mandatory **4-Stage Research Chain-of-Thought (`research_dossier.md`)** protocol!
 
@@ -243,7 +276,7 @@ The `deep-researcher` subagent conducts deep empirical investigations and output
 
 ---
 
-## 3. Scriptwriting & Cadence Standards (`thinking-scriptwriter` / `SubAgent_Writer`)
+## 3. Scriptwriting & Cadence Standards (legacy v1) (`thinking-scriptwriter` / `SubAgent_Writer`)
 
 > **Model Specification**: Operates on **`Model: "flash"`**. Narrative and psychological retention depth is strictly derived from the mandatory **5-Stage Scriptwriting Chain-of-Thought (`script_cot.md`)** protocol!
 
@@ -290,7 +323,7 @@ Annotate intermediate sub-cues within each beat linking spoken trigger phrases t
 
 ---
 
-## 4. Voice / TTS & Alignment Stack (`SubAgent_TTS`)
+## 4. Voice / TTS & Alignment Stack (legacy v1) (`SubAgent_TTS`)
 
 ### 2026 Bilingual Voice Cloning & TTS Stack
 For production-grade bilingual (Indonesian + English) voice synthesis:
@@ -321,7 +354,9 @@ For production-grade bilingual (Indonesian + English) voice synthesis:
 
 ---
 
-## 5. Sequential Rendering & Automated QA Pipeline (`render.mjs` + `qa_verify.mjs`)
+## 5. Sequential Rendering & QA (`render.mjs` + `qa_verify.mjs`)
+
+v2 render/QA commands are in Section 0. The block below is legacy v1.
 
 Never launch multiple concurrent headless browsers during rendering. Always execute sequential renders via [`motion-canvas/render.mjs`](file:///home/agent/orca/AI-nimate/motion-canvas/render.mjs), which stages per-beat intermediates in `.cache/render/<project_id>`, concatenates & muxes final deliverables directly into `/home/agent/orca/AI-nimate/projects/<channel>_<date>_<slug>/`, deletes temporary beat clips, and triggers [`build_portal.mjs`](file:///home/agent/orca/AI-nimate/motion-canvas/scripts/build_portal.mjs):
 
@@ -332,7 +367,7 @@ cd /home/agent/orca/AI-nimate/motion-canvas && npx tsc --noEmit
 # 2. Render directly into ../projects/<channel>_<date>_<slug>/
 node render.mjs --project=vid_YYYYMMDD_NNN --channel=kausalmedia --slug=<project-slug> --aspects=9x16
 
-# 3. Run the 15-check automated QA verifier (timings, hold times, Rules 1-12, keyframes)
+# 3. Run the automated QA verifier (v1) (timings, hold times, Rules 1-12, keyframes)
 node scripts/qa_verify.mjs vid_YYYYMMDD_NNN
 
 # 4. Build portal UI & deploy to https://cuang.dev/projects/ainimate/

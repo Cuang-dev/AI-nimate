@@ -1,0 +1,1189 @@
+[
+  {
+    "beat_id": "beat_01",
+    "chapter_id": "chapter_01",
+    "brow_label": "POV: | SEWA MEJA RP15 RIBU",
+    "stage_mode": "full_comic_16x9",
+    "duration_sec": 50.551,
+    "safe_hold_end_sec": 47.65,
+    "comic_assets": [
+      {
+        "id": "ch01_p1",
+        "filename": "ch01_p1.png",
+        "aspect_ratio": "16:9",
+        "stage_mode": "full_comic_16x9",
+        "prompt": "Flat 2D Indonesian comic panel. Inside a sleek modern mahjong social lounge in Jakarta, a friendly young Indonesian female cashier with a ponytail behind a minimalist wooden counter hands a lime-green RFID access card to a stylish young Indonesian male customer in a denim jacket. Warm interior lighting, glowing neon accents in background, cream paper background (#FAF6EE), bold black comic ink outlines (#0F172A), flat warm cel-shading, strictly no text or speech bubbles."
+      },
+      {
+        "id": "ch01_p2",
+        "filename": "ch01_p2.png",
+        "aspect_ratio": "16:9",
+        "stage_mode": "full_comic_16x9",
+        "prompt": "Flat 2D Indonesian comic panel. A young Indonesian male entrepreneur in casual button shirt scratching his head in comic disbelief, staring down at an electronic desk calculator with comic question marks floating above his head. On the desk are architectural blueprints of a 2-story Jakarta shophouse and catalogs. Bold black ink linework (#0F172A), flat vibrant cel-shaded colors on warm cream paper (#FAF6EE), expressive comic expression, strictly no text or numbers."
+      },
+      {
+        "id": "ch01_p3",
+        "filename": "ch01_p3.png",
+        "aspect_ratio": "16:9",
+        "stage_mode": "full_comic_16x9",
+        "prompt": "Flat 2D Indonesian comic panel. Overhead three-quarter view of a sleek square automatic mahjong table with vibrant emerald green felt surface. On the table drink holders and sideboards are steaming bamboo dimsum baskets with siomay, delicious bowls of Indomie goreng with sunny-side-up fried eggs, and tall plastic cups of iced milk tea with black boba pearls and straws. Bold black comic outlines (#0F172A), mouth-watering flat cel-shaded illustration, strictly no text or logos."
+      },
+      {
+        "id": "ch01_p4",
+        "filename": "ch01_p4.png",
+        "aspect_ratio": "16:9",
+        "stage_mode": "full_comic_16x9",
+        "prompt": "Flat 2D Indonesian comic panel. Wide angle vibrant night scene inside a buzzing mahjong social lounge in Pantai Indah Kapuk (PIK). Multiple square green tables occupied by groups of four trendy Indonesian friends laughing and placing tiles. In the foreground, people waiting on comfy gray lounge sofas sipping drinks. Clean modern glass shophouse interior, bold black ink lines (#0F172A), warm amber and emerald ambient colors on cream paper (#FAF6EE), strictly no text or speech bubbles."
+      }
+    ],
+    "cues": [
+      {
+        "cue_index": 1,
+        "cue_id": "v_01_01",
+        "rel_time_sec": 0.2,
+        "trigger_word": "Sewa",
+        "spoken_sentence": "Sewa meja mahjong ini cuma Rp15 ribu per orang sejam—",
+        "visual_action": "Slam Panel 1 (ch01_p1.png): Kasir ramah lounge mahjong menyerahkan kartu meja, stempel badge hijau 'SEWA: RP15.000/ORANG/JAM'.",
+        "asset_ref": "ch01_p1.png"
+      },
+      {
+        "cue_index": 2,
+        "cue_id": "v_01_02",
+        "rel_time_sec": 4.06,
+        "trigger_word": "padahal",
+        "spoken_sentence": "padahal modal rukonya tembus Rp350 juta.",
+        "visual_action": "Zoom & pop badge merah 'CAPEX RUKO: RP350.000.000' di atas ruko 2 lantai modern PIK.",
+        "asset_ref": "ch01_p1.png"
+      },
+      {
+        "cue_index": 3,
+        "cue_id": "v_01_03",
+        "rel_time_sec": 8.6,
+        "trigger_word": "Terus",
+        "spoken_sentence": "Terus gimana caranya bisnis recehan ini balik modal,",
+        "visual_action": "Swap Panel 2 (ch01_p2.png): Pengusaha muda menatap kalkulator bingung dengan tanda tanya besar.",
+        "asset_ref": "ch01_p2.png"
+      },
+      {
+        "cue_index": 4,
+        "cue_id": "v_01_04",
+        "rel_time_sec": 11.5,
+        "trigger_word": "bahkan",
+        "spoken_sentence": "bahkan cetak omzet Rp180 juta sebulan?",
+        "visual_action": "Flash counter kilat hijau 'OMZET: RP180.000.000/BULAN' melesat naik di layar.",
+        "asset_ref": "ch01_p2.png"
+      },
+      {
+        "cue_index": 5,
+        "cue_id": "v_01_05",
+        "rel_time_sec": 15.1,
+        "trigger_word": "Ternyata",
+        "spoken_sentence": "Ternyata uang aslinya bukan dari sewa meja—",
+        "visual_action": "Cross-fade Panel 3 (ch01_p3.png): Meja otomatis hijau Foshan dikelilingi mangkok mie, dimsum, kopi susu. Badge silang merah 'SEWA MEJA = HANYA UMPAN'.",
+        "asset_ref": "ch01_p3.png"
+      },
+      {
+        "cue_index": 6,
+        "cue_id": "v_01_06",
+        "rel_time_sec": 18.16,
+        "trigger_word": "tapi",
+        "spoken_sentence": "tapi dari jebakan 5 jam beli makanan margin 70%!",
+        "visual_action": "Stamp badge emas gembok waktu 'JEBAKAN 5 JAM NON-STOP' & 'MARGIN F&B: 70% KOTOR'.",
+        "asset_ref": "ch01_p3.png"
+      },
+      {
+        "cue_index": 7,
+        "cue_id": "v_01_07",
+        "rel_time_sec": 22.28,
+        "trigger_word": "Inilah",
+        "spoken_sentence": "Inilah fenomena lounge mahjong otomatis yang lagi meledak di ruko kota besar.",
+        "visual_action": "Swap Panel 4 (ch01_p4.png): Pemandangan ramai lounge malam hari di Pantai Indah Kapuk, muda-mudi antre di sofa.",
+        "asset_ref": "ch01_p4.png"
+      },
+      {
+        "cue_index": 8,
+        "cue_id": "v_01_08",
+        "rel_time_sec": 26.18,
+        "trigger_word": "Dari",
+        "spoken_sentence": "Dari kawasan P-I-K sampai Surabaya, tempat seperti ini selalu antre panjang.",
+        "visual_action": "Pill pins lokasi 'PIK • SERPONG • SURABAYA' muncul di peta urban.",
+        "asset_ref": "ch01_p4.png"
+      },
+      {
+        "cue_index": 9,
+        "cue_id": "v_01_09",
+        "rel_time_sec": 31.48,
+        "trigger_word": "Pemilik",
+        "spoken_sentence": "Pemilik ruko rela keluar ratusan juta demi meja otomatis impor Tiongkok.",
+        "visual_action": "Highlight meja impor otomatis Foshan dengan garis kontur emas berkilau.",
+        "asset_ref": "ch01_p4.png"
+      },
+      {
+        "cue_index": 10,
+        "cue_id": "v_01_10",
+        "rel_time_sec": 33.28,
+        "trigger_word": "Pemain",
+        "spoken_sentence": "Pemain datang berempat, duduk santai di sofa empuk ber-A-C dingin.",
+        "visual_action": "Zoom halus ke 4 pemain yang duduk mengelilingi meja ber-AC dingin.",
+        "asset_ref": "ch01_p4.png"
+      },
+      {
+        "cue_index": 11,
+        "cue_id": "v_01_11",
+        "rel_time_sec": 39.6,
+        "trigger_word": "Mereka",
+        "spoken_sentence": "Mereka kira cuma keluar puluhan ribu buat main santai semalaman.",
+        "visual_action": "Badge koin receh melayang 'CUMA RP15.000/JAM' di atas kepala pemain.",
+        "asset_ref": "ch01_p4.png"
+      },
+      {
+        "cue_index": 12,
+        "cue_id": "v_01_12",
+        "rel_time_sec": 42.92,
+        "trigger_word": "Tapi",
+        "spoken_sentence": "Tapi begitu struk kasir keluar, total tagihannya tembus sejuta rupiah!",
+        "visual_action": "Pop mockup struk kasir tebal Rp750.000 dengan rincian makanan & minuman melimpah.",
+        "asset_ref": "ch01_p4.png"
+      },
+      {
+        "cue_index": 13,
+        "cue_id": "v_01_13",
+        "rel_time_sec": 47.18,
+        "trigger_word": "Mari",
+        "spoken_sentence": "Mari kita bedah tuntas seluruh mesin uang bisnis viral ini.",
+        "visual_action": "Camera zoom dramatis ke pintu masuk lounge, transisi bersih ke Chapter 2.",
+        "asset_ref": "ch01_p4.png"
+      }
+    ]
+  },
+  {
+    "beat_id": "beat_02",
+    "chapter_id": "chapter_02",
+    "brow_label": "POV: | MESIN OTOMATIS FOSHAN",
+    "stage_mode": "full_comic_16x9",
+    "duration_sec": 43.711,
+    "safe_hold_end_sec": 40.81,
+    "comic_assets": [
+      {
+        "id": "ch02_p1",
+        "filename": "ch02_p1.png",
+        "aspect_ratio": "16:9",
+        "stage_mode": "full_comic_16x9",
+        "prompt": "Flat 2D Indonesian comic panel. Four Indonesian players sitting around an old wooden table looking exhausted and sweaty, their hands frantically scrambling and shuffling a messy pile of 144 white-and-green mahjong tiles in the center. Comic sweat drops on foreheads, dynamic motion lines showing the clumsy noisy clatter. Bold black ink linework (#0F172A), expressive cartoon frustration, flat cel-shading on cream paper (#FAF6EE), strictly no text or speech bubbles."
+      },
+      {
+        "id": "ch02_p2",
+        "filename": "ch02_p2.png",
+        "aspect_ratio": "16:9",
+        "stage_mode": "full_comic_16x9",
+        "prompt": "Flat 2D Indonesian comic panel. Detailed mechanical cutaway illustration of a modern automatic mahjong machine table. Shows the central circular dice elevator descending, internal magnetic drum rotating to attract ferrite tiles, mini conveyor tracks smoothly carrying neat rows of tiles, and twin elevator platforms lifting a fresh set of tiles to the surface. Bold crisp technical comic ink outlines (#0F172A), emerald green felt, slate gray and bronze internal mechanical gears on warm cream background (#FAF6EE), strictly no text or letters."
+      }
+    ],
+    "cues": [
+      {
+        "cue_index": 1,
+        "cue_id": "v_02_01",
+        "rel_time_sec": 0.2,
+        "trigger_word": "Kenapa",
+        "spoken_sentence": "Kenapa bisnis ini baru meledak sekarang? Jawabannya ada pada teknologi mejanya.",
+        "visual_action": "Slam Panel 1 (ch02_p1.png): Empat pemain lelah mengocok batu manual dengan suara gaduh.",
+        "asset_ref": "ch02_p1.png"
+      },
+      {
+        "cue_index": 2,
+        "cue_id": "v_02_02",
+        "rel_time_sec": 5.52,
+        "trigger_word": "Dulu",
+        "spoken_sentence": "Dulu, main mahjong tradisional melelahkan karena harus mengocok batu secara manual.",
+        "visual_action": "Stempel label merah 'KOCOK MANUAL: 3-5 MENIT TERBUANG'.",
+        "asset_ref": "ch02_p1.png"
+      },
+      {
+        "cue_index": 3,
+        "cue_id": "v_02_03",
+        "rel_time_sec": 10.92,
+        "trigger_word": "Menyusun",
+        "spoken_sentence": "Menyusun seratus empat puluh empat batu dengan tangan butuh lima menit.",
+        "visual_action": "Animasi jam pasir merah berputar lambat di samping tumpukan batu berantakan.",
+        "asset_ref": "ch02_p1.png"
+      },
+      {
+        "cue_index": 4,
+        "cue_id": "v_02_04",
+        "rel_time_sec": 14.3,
+        "trigger_word": "Tapi",
+        "spoken_sentence": "Tapi meja otomatis buatan Foshan ini mengubah segalanya dalam 30 detik.",
+        "visual_action": "Swap Panel 2 (ch02_p2.png): Cutaway mekanikal meja otomatis Foshan yang canggih dengan elevator tengah.",
+        "asset_ref": "ch02_p2.png"
+      },
+      {
+        "cue_index": 5,
+        "cue_id": "v_02_05",
+        "rel_time_sec": 19.1,
+        "trigger_word": "Begitu",
+        "spoken_sentence": "Begitu putaran selesai, pemain tinggal menekan tombol di tengah meja.",
+        "visual_action": "Pulsing tombol dadu elektrik tengah meja dengan lingkaran gelombang hijau.",
+        "asset_ref": "ch02_p2.png"
+      },
+      {
+        "cue_index": 6,
+        "cue_id": "v_02_06",
+        "rel_time_sec": 23.1,
+        "trigger_word": "Kompartemen",
+        "spoken_sentence": "Kompartemen terbuka, lalu seluruh batu bekas tersedot ke drum putar.",
+        "visual_action": "Animasi panah melingkar menunjukkan batu bekas turun ke drum pemutar magnetik.",
+        "asset_ref": "ch02_p2.png"
+      },
+      {
+        "cue_index": 7,
+        "cue_id": "v_02_07",
+        "rel_time_sec": 27.16,
+        "trigger_word": "Di",
+        "spoken_sentence": "Di bawah meja, magnet memilah batu dan konveyor mini menyusunnya kembali.",
+        "visual_action": "Highlight 4 jalur konveyor mini dan motor elevator pengangkat batu.",
+        "asset_ref": "ch02_p2.png"
+      },
+      {
+        "cue_index": 8,
+        "cue_id": "v_02_08",
+        "rel_time_sec": 28.96,
+        "trigger_word": "Meja",
+        "spoken_sentence": "Meja memakai dua set batu berbeda warna yang naik turun bergantian.",
+        "visual_action": "Pop badge dual set 'SET BIRU (AKTIF) VS SET HIJAU (STANDBY 30 DETIK)'.",
+        "asset_ref": "ch02_p2.png"
+      },
+      {
+        "cue_index": 9,
+        "cue_id": "v_02_09",
+        "rel_time_sec": 35.24,
+        "trigger_word": "Harga",
+        "spoken_sentence": "Harga meja komersial ini berkisar antara delapan sampai dua puluh juta.",
+        "visual_action": "Card perbandingan harga 'PORTABLE: RP8JT-10JT | KOMERSIAL: RP12JT-14JT | LUXURY: RP20JT+'.",
+        "asset_ref": "ch02_p2.png"
+      },
+      {
+        "cue_index": 10,
+        "cue_id": "v_02_10",
+        "rel_time_sec": 39.34,
+        "trigger_word": "Tanpa",
+        "spoken_sentence": "Tanpa jeda mengocok batu, ritme permainan jadi kilat dan bikin nagih!",
+        "visual_action": "Speedometer grafis naik ke level MAX dengan badge 'PUTARAN NON-STOP 30 DETIK'.",
+        "asset_ref": "ch02_p2.png"
+      }
+    ]
+  },
+  {
+    "beat_id": "beat_03",
+    "chapter_id": "chapter_03",
+    "brow_label": "POV: | MODAL RUKO RP350 JUTA",
+    "stage_mode": "explainer_2x2",
+    "duration_sec": 48.671,
+    "safe_hold_end_sec": 45.77,
+    "comic_assets": [
+      {
+        "id": "ch03_sq1",
+        "filename": "ch03_sq1.png",
+        "aspect_ratio": "1:1",
+        "stage_mode": "explainer_2x2",
+        "prompt": "Flat 2D Indonesian comic illustration (1:1 square). A neat stack of red Indonesian Rupiah banknote bundles sitting on top of architectural renovation blueprints. In the background, construction tools, gypsum soundproofing panels, and an air conditioner unit being mounted. Bold black comic ink contours (#0F172A), flat crimson red (#E11D48) and warm gold accents on cream paper (#FAF6EE), clean editorial composition, strictly no text or numbers."
+      }
+    ],
+    "cues": [
+      {
+        "cue_index": 1,
+        "cue_id": "v_03_01",
+        "rel_time_sec": 0.2,
+        "trigger_word": "Sekarang",
+        "spoken_sentence": "Sekarang mari kita hitung modal riil membuka lounge mahjong ruko.",
+        "visual_action": "Render stage explainer: Card komik ch03_sq1 di kiri, Waterfall bar chart di kanan.",
+        "asset_ref": "ch03_sq1.png"
+      },
+      {
+        "cue_index": 2,
+        "cue_id": "v_03_02",
+        "rel_time_sec": 4.14,
+        "trigger_word": "Untuk",
+        "spoken_sentence": "Untuk kapasitas delapan meja, modal awal atau Ka-peks mencapai Rp350 juta.",
+        "visual_action": "Header banner merah 'TOTAL CAPEX LOUNGE 8 MEJA: RP350.000.000' mengunci di atas layar.",
+        "asset_ref": "ch03_sq1.png"
+      },
+      {
+        "cue_index": 3,
+        "cue_id": "v_03_03",
+        "rel_time_sec": 10.38,
+        "trigger_word": "Sewa",
+        "spoken_sentence": "Sewa ruko dua lantai setahun plus deposit menyerap Rp150 juta.",
+        "visual_action": "Bar 1 naik: 'SEWA RUKO 2 LANTAI (1 THN + DEPOSIT): RP150.000.000 (42,8%)'.",
+        "asset_ref": "ch03_sq1.png"
+      },
+      {
+        "cue_index": 4,
+        "cue_id": "v_03_04",
+        "rel_time_sec": 13.25,
+        "trigger_word": "Pengadaan",
+        "spoken_sentence": "Pengadaan delapan unit meja komersial menelan biaya Rp96 juta.",
+        "visual_action": "Bar 2 bertumpuk: '8 MEJA OTOMATIS @ RP12JT: RP96.000.000 (27,4%)'.",
+        "asset_ref": "ch03_sq1.png"
+      },
+      {
+        "cue_index": 5,
+        "cue_id": "v_03_05",
+        "rel_time_sec": 19.9,
+        "trigger_word": "Suara",
+        "spoken_sentence": "Suara gesekan batu mahjong itu berisik dan memicu komplain tetangga.",
+        "visual_action": "Icon sound wave merah berkedip dengan indikator kebisingan '>75 dB'.",
+        "asset_ref": "ch03_sq1.png"
+      },
+      {
+        "cue_index": 6,
+        "cue_id": "v_03_06",
+        "rel_time_sec": 24.0,
+        "trigger_word": "Karena",
+        "spoken_sentence": "Karena itu, lo wajib pasang partisi kedap suara dan A-C Rp75 juta.",
+        "visual_action": "Bar 3 bertumpuk: 'PARTISI GIPSUM KEDAP SUARA + 8 AC INVERTER: RP75.000.000 (21,4%)'.",
+        "asset_ref": "ch03_sq1.png"
+      },
+      {
+        "cue_index": 7,
+        "cue_id": "v_03_07",
+        "rel_time_sec": 29.38,
+        "trigger_word": "Sisa",
+        "spoken_sentence": "Sisa Rp29 juta untuk C-C-T-V empat K, kasir, dan izin usaha.",
+        "visual_action": "Bar 4 bertumpuk: 'CCTV 4K, POS KASIR, LEGALITAS KBLI: RP29.000.000 (8,4%)'.",
+        "asset_ref": "ch03_sq1.png"
+      },
+      {
+        "cue_index": 8,
+        "cue_id": "v_03_08",
+        "rel_time_sec": 35.26,
+        "trigger_word": "Dengan",
+        "spoken_sentence": "Dengan modal sebesar ini, lo nggak bisa cuma andalkan sewa meja.",
+        "visual_action": "Card peringatan kuning berkedip 'TARIF SEWA RP60.000/MEJA/JAM TIDAK CUKUP'.",
+        "asset_ref": "ch03_sq1.png"
+      },
+      {
+        "cue_index": 9,
+        "cue_id": "v_03_09",
+        "rel_time_sec": 39.12,
+        "trigger_word": "Kalau",
+        "spoken_sentence": "Kalau cuma mengandalkan meja kosong, bisnis lo dijamin cepat gulung tikar.",
+        "visual_action": "Grafik proyeksi rugi operasional merah menukik tajam ke bawah.",
+        "asset_ref": "ch03_sq1.png"
+      },
+      {
+        "cue_index": 10,
+        "cue_id": "v_03_10",
+        "rel_time_sec": 43.72,
+        "trigger_word": "Lalu",
+        "spoken_sentence": "Lalu dari mana uang penutup operasional Rp35 juta sebulan itu datang?",
+        "visual_action": "Stamp tanda tanya besar emas di atas beban 'OPEX BULANAN: RP35.000.000/BULAN'.",
+        "asset_ref": "ch03_sq1.png"
+      }
+    ]
+  },
+  {
+    "beat_id": "beat_04",
+    "chapter_id": "chapter_04",
+    "brow_label": "POV: | RENTAL GARASI RP60 JUTA",
+    "stage_mode": "explainer_2x2",
+    "duration_sec": 44.671,
+    "safe_hold_end_sec": 41.77,
+    "comic_assets": [
+      {
+        "id": "ch04_sq1",
+        "filename": "ch04_sq1.png",
+        "aspect_ratio": "1:1",
+        "stage_mode": "explainer_2x2",
+        "prompt": "Flat 2D Indonesian comic illustration (1:1 square). Inside a tidy Indonesian residential house garage, five foldable automatic mahjong tables on wheels stand lined up with protective foam flight cases. Through the open roll-up garage door, a white commercial delivery blind van is parked outside in the sunlight. Bold black ink outlines (#0F172A), clean flat colors on warm cream paper (#FAF6EE), strictly no text or brand logos."
+      }
+    ],
+    "cues": [
+      {
+        "cue_index": 1,
+        "cue_id": "v_04_01",
+        "rel_time_sec": 0.2,
+        "trigger_word": "Tapi",
+        "spoken_sentence": "Tapi ada model bisnis alternatif dengan modal yang jauh lebih hemat.",
+        "visual_action": "Render stage explainer: Card komik ch04_sq1 di kiri, Unit Economics Card di kanan.",
+        "asset_ref": "ch04_sq1.png"
+      },
+      {
+        "cue_index": 2,
+        "cue_id": "v_04_02",
+        "rel_time_sec": 3.84,
+        "trigger_word": "Lo",
+        "spoken_sentence": "Lo bisa buka rental meja harian dari garasi rumah bermodal Rp60 juta.",
+        "visual_action": "Stamp badge hijau cerah 'CAPEX RENTAL GARASI: CUMA RP60.000.000 (HEMAT 83%)'.",
+        "asset_ref": "ch04_sq1.png"
+      },
+      {
+        "cue_index": 3,
+        "cue_id": "v_04_03",
+        "rel_time_sec": 8.62,
+        "trigger_word": "cukup",
+        "spoken_sentence": "Lo cukup beli lima unit meja lipat beroda seharga Rp52,5 juta.",
+        "visual_action": "Card item 1: '5 MEJA LIPAT BERODA @ RP10,5JT = RP52.500.000'.",
+        "asset_ref": "ch04_sq1.png"
+      },
+      {
+        "cue_index": 4,
+        "cue_id": "v_04_04",
+        "rel_time_sec": 13.28,
+        "trigger_word": "Sisanya",
+        "spoken_sentence": "Sisanya untuk membeli kotak busa pelindung dan troli lipat Rp7,5 juta.",
+        "visual_action": "Card item 2: '5 FLIGHT CASE BUSA + TROLI LIPAT = RP7.500.000'.",
+        "asset_ref": "ch04_sq1.png"
+      },
+      {
+        "cue_index": 5,
+        "cue_id": "v_04_05",
+        "rel_time_sec": 16.07,
+        "trigger_word": "Keunggulannya",
+        "spoken_sentence": "Keunggulannya jelas: lo punya nol rupiah biaya sewa ruko bulanan.",
+        "visual_action": "Badge pilar hijau 'BIAYA SEWA RUKO: RP0 (DARI GARASI SENDIRI)'.",
+        "asset_ref": "ch04_sq1.png"
+      },
+      {
+        "cue_index": 6,
+        "cue_id": "v_04_06",
+        "rel_time_sec": 22.46,
+        "trigger_word": "Meja",
+        "spoken_sentence": "Meja diantar pakai mobil blind van sewaan langsung ke rumah pelanggan.",
+        "visual_action": "Diagram jalur pengiriman mobil van dari garasi ke rumah cluster & villa.",
+        "asset_ref": "ch04_sq1.png"
+      },
+      {
+        "cue_index": 7,
+        "cue_id": "v_04_07",
+        "rel_time_sec": 26.0,
+        "trigger_word": "Tarif",
+        "spoken_sentence": "Tarif sewanya Rp350 ribu sampai Rp500 ribu per hari di luar ongkir.",
+        "visual_action": "Pill badge tarif 'TARIF: RP350RB - RP500RB / 24 JAM + ONGKIR RP150RB'.",
+        "asset_ref": "ch04_sq1.png"
+      },
+      {
+        "cue_index": 8,
+        "cue_id": "v_04_08",
+        "rel_time_sec": 31.42,
+        "trigger_word": "Margin",
+        "spoken_sentence": "Margin bersihnya tebal karena operasional bulanan lo di bawah lima juta.",
+        "visual_action": "Card laba hijau 'OPEX BULANAN < RP5JT | MARGIN BERSIH > 65%'.",
+        "asset_ref": "ch04_sq1.png"
+      },
+      {
+        "cue_index": 9,
+        "cue_id": "v_04_09",
+        "rel_time_sec": 35.9,
+        "trigger_word": "Saat",
+        "spoken_sentence": "Saat musim liburan Imlek tiba, permintaan sewa meja ini meledak 300%!",
+        "visual_action": "Lonjakan grafik merah-emas 'SURGE MUSIM IMLEK: PERMINTAAN MELEDAK +300%'.",
+        "asset_ref": "ch04_sq1.png"
+      },
+      {
+        "cue_index": 10,
+        "cue_id": "v_04_10",
+        "rel_time_sec": 40.58,
+        "trigger_word": "Bahkan",
+        "spoken_sentence": "Bahkan satu meja laku disewa sampai satu setengah juta per hari.",
+        "visual_action": "Stamp emas 'PAKET IMLEK: RP1.500.000/HARI ATAU RP3.500.000/3 HARI'.",
+        "asset_ref": "ch04_sq1.png"
+      }
+    ]
+  },
+  {
+    "beat_id": "beat_05",
+    "chapter_id": "chapter_05",
+    "brow_label": "POV: | KUNCI 5 JAM NON-STOP",
+    "stage_mode": "full_comic_16x9",
+    "duration_sec": 47.391,
+    "safe_hold_end_sec": 44.49,
+    "comic_assets": [
+      {
+        "id": "ch05_p1",
+        "filename": "ch05_p1.png",
+        "aspect_ratio": "16:9",
+        "stage_mode": "full_comic_16x9",
+        "prompt": "Flat 2D Indonesian comic panel. Four focused Indonesian adult friends (two men, two women) sitting closely around a square green mahjong table in an air-conditioned private lounge room, completely absorbed in evaluating their tile hands. In the background on the wall, an analog clock face shows five hours have elapsed unnoticed. Cozy focus, subtle dramatic lighting, bold black ink lines (#0F172A), warm cel-shaded colors on cream background (#FAF6EE), strictly no text or numbers."
+      },
+      {
+        "id": "ch05_p2",
+        "filename": "ch05_p2.png",
+        "aspect_ratio": "16:9",
+        "stage_mode": "full_comic_16x9",
+        "prompt": "Flat 2D Indonesian comic panel. Close-up over-the-shoulder view of an Indonesian player holding a sleek green mahjong tile, their hand simultaneously reaching blindly toward a bowl of potato snacks on the side table without looking away from the game. Across the table, the other three players watch intently with competitive grins, showing total psychological engagement. Bold expressive comic art (#0F172A outlines), warm paper tone (#FAF6EE), strictly no text or speech bubbles."
+      }
+    ],
+    "cues": [
+      {
+        "cue_index": 1,
+        "cue_id": "v_05_01",
+        "rel_time_sec": 0.2,
+        "trigger_word": "Sekarang",
+        "spoken_sentence": "Sekarang kita bedah psikologi terpenting bisnis ini: efek kunci 5 jam.",
+        "visual_action": "Slam Panel 1 (ch05_p1.png): Empat teman fokus bermain di meja hijau dengan jam dinding menunjukkan 5 jam berlalu.",
+        "asset_ref": "ch05_p1.png"
+      },
+      {
+        "cue_index": 2,
+        "cue_id": "v_05_02",
+        "rel_time_sec": 6.06,
+        "trigger_word": "Di",
+        "spoken_sentence": "Di kafe biasa, orang beli kopi Rp35 ribu lalu duduk tiga jam.",
+        "visual_action": "Badge komparasi 1: 'KAFE KOPI: 1 KOPI RP35RB = DUDUK 3 JAM (REVENUE LEAKAGE)'.",
+        "asset_ref": "ch05_p1.png"
+      },
+      {
+        "cue_index": 3,
+        "cue_id": "v_05_03",
+        "rel_time_sec": 11.4,
+        "trigger_word": "meja",
+        "spoken_sentence": "Di meja biliar, permainan seringkali selesai dalam waktu kurang satu jam.",
+        "visual_action": "Badge komparasi 2: 'BILIAR: 1 SESI CUMA 45-60 MENIT (HIGH CHURN)'.",
+        "asset_ref": "ch05_p1.png"
+      },
+      {
+        "cue_index": 4,
+        "cue_id": "v_05_04",
+        "rel_time_sec": 15.62,
+        "trigger_word": "Tapi",
+        "spoken_sentence": "Tapi mahjong standar mengharuskan empat pemain menyelesaikan 16 ronde penuh.",
+        "visual_action": "Diagram 4 putaran angin: 'TIMUR • SELATAN • BARAT • UTARA = 16 RONDE LENGKAP'.",
+        "asset_ref": "ch05_p1.png"
+      },
+      {
+        "cue_index": 5,
+        "cue_id": "v_05_05",
+        "rel_time_sec": 20.72,
+        "trigger_word": "Setiap",
+        "spoken_sentence": "Setiap ronde butuh fokus penuh dan pemain tidak bisa berdiri seenaknya.",
+        "visual_action": "Animasi gembok emas mengunci keempat sudut meja mahjong.",
+        "asset_ref": "ch05_p1.png"
+      },
+      {
+        "cue_index": 6,
+        "cue_id": "v_05_06",
+        "rel_time_sec": 25.3,
+        "trigger_word": "Kalau",
+        "spoken_sentence": "Kalau satu orang pergi, permainan tiga orang lainnya langsung bubar rusak.",
+        "visual_action": "Swap Panel 2 (ch05_p2.png): Tangan pemain mengambil camilan tanpa memalingkan pandangan dari batu.",
+        "asset_ref": "ch05_p2.png"
+      },
+      {
+        "cue_index": 7,
+        "cue_id": "v_05_07",
+        "rel_time_sec": 29.96,
+        "trigger_word": "Tekanan",
+        "spoken_sentence": "Tekanan sosial ini mengunci empat orang dewasa selama empat sampai enam jam.",
+        "visual_action": "Stamp banner 'THE 5-HOUR SOCIAL LOCK-IN EFFECT (4-6 JAM NON-STOP)'.",
+        "asset_ref": "ch05_p2.png"
+      },
+      {
+        "cue_index": 8,
+        "cue_id": "v_05_08",
+        "rel_time_sec": 34.74,
+        "trigger_word": "Mereka",
+        "spoken_sentence": "Mereka tidak sadar waktu berjalan di ruangan ber-A-C tanpa jendela.",
+        "visual_action": "Visual efek waktu melompat: jam berputar cepat dari pukul 19:00 ke 00:00 tengah malam.",
+        "asset_ref": "ch05_p2.png"
+      },
+      {
+        "cue_index": 9,
+        "cue_id": "v_05_09",
+        "rel_time_sec": 38.56,
+        "trigger_word": "Selama",
+        "spoken_sentence": "Selama lima jam terkunci itulah, perut mulai lapar dan tenggorokan haus.",
+        "visual_action": "Ikon perut lapar dan gelas kosong berkedip di atas masing-masing pemain.",
+        "asset_ref": "ch05_p2.png"
+      },
+      {
+        "cue_index": 10,
+        "cue_id": "v_05_10",
+        "rel_time_sec": 43.06,
+        "trigger_word": "Di",
+        "spoken_sentence": "Di sinilah pintu masuk mesin uang sebenarnya terbuka lebar!",
+        "visual_action": "Slam neon badge hijau 'MESIN PENCETAK UANG AKTIF: THE F&B CASH COW'.",
+        "asset_ref": "ch05_p2.png"
+      }
+    ]
+  },
+  {
+    "beat_id": "beat_06",
+    "chapter_id": "chapter_06",
+    "brow_label": "POV: | STRUK RP750 RIBU & MARGIN 70%",
+    "stage_mode": "explainer_2x2",
+    "duration_sec": 51.471,
+    "safe_hold_end_sec": 48.57,
+    "comic_assets": [
+      {
+        "id": "ch06_sq1",
+        "filename": "ch06_sq1.png",
+        "aspect_ratio": "1:1",
+        "stage_mode": "explainer_2x2",
+        "prompt": "Flat 2D Indonesian comic illustration (1:1 square). An iconic stylized thermal paper cash register receipt emerging from a modern sleek POS terminal, with symbolic food, drink, and gaming table icons printed along its length. Next to the receipt are gold coins and a green digital tablet. Bold black ink lines (#0F172A), warm amber and emerald green highlights on cream background (#FAF6EE), strictly no legible text, letters, or real numbers."
+      },
+      {
+        "id": "ch06_sq2",
+        "filename": "ch06_sq2.png",
+        "aspect_ratio": "1:1",
+        "stage_mode": "explainer_2x2",
+        "prompt": "Flat 2D Indonesian comic illustration (1:1 square). A mouth-watering top-down arrangement of high-margin cafe food: three round bamboo steamers overflowing with fresh steamed dimsum siomay and hakau, a savory plate of Indonesian fried noodles with chili sauce and sunny-side egg, and two condensation-dripping glasses of iced milk tea. Bold comic ink contours (#0F172A), warm appetizing cel-shading on cream paper (#FAF6EE), strictly no text or logos."
+      }
+    ],
+    "cues": [
+      {
+        "cue_index": 1,
+        "cue_id": "v_06_01",
+        "rel_time_sec": 0.2,
+        "trigger_word": "Mari",
+        "spoken_sentence": "Mari kita bedah struk asli satu sesi meja V-I-P selama lima jam.",
+        "visual_action": "Render stage explainer: Card komik struk ch06_sq1 di kiri, Waterfall struk kasir di kanan.",
+        "asset_ref": "ch06_sq1.png"
+      },
+      {
+        "cue_index": 2,
+        "cue_id": "v_06_02",
+        "rel_time_sec": 4.64,
+        "trigger_word": "Total",
+        "spoken_sentence": "Total tagihannya mencapai Rp750 ribu—dan angka ini bikin kaget banyak orang.",
+        "visual_action": "Stamp banner hitam elegan 'TOTAL STRUK 1 MEJA (5 JAM): RP750.000'.",
+        "asset_ref": "ch06_sq1.png"
+      },
+      {
+        "cue_index": 3,
+        "cue_id": "v_06_03",
+        "rel_time_sec": 10.68,
+        "trigger_word": "Biaya",
+        "spoken_sentence": "Biaya sewa meja lima jam cuma Rp300 ribu, alias enam puluh ribu sejam.",
+        "visual_action": "Item baris 1 struk muncul: 'SEWA MEJA VIP (5 JAM @ RP60RB): RP300.000 (40%)'.",
+        "asset_ref": "ch06_sq1.png"
+      },
+      {
+        "cue_index": 4,
+        "cue_id": "v_06_04",
+        "rel_time_sec": 16.54,
+        "trigger_word": "Uang",
+        "spoken_sentence": "Uang sewa meja ini cuma umpan murah penutup listrik dan sewa ruko.",
+        "visual_action": "Tag abu-abu penjelas 'LOSS LEADER: CUMA MENUTUP LISTRIK AC & SEWA GEDUNG'.",
+        "asset_ref": "ch06_sq1.png"
+      },
+      {
+        "cue_index": 5,
+        "cue_id": "v_06_05",
+        "rel_time_sec": 20.54,
+        "trigger_word": "Mesin",
+        "spoken_sentence": "Mesin uang aslinya dari pesanan makanan minuman Rp450 ribu, 60% omzet!",
+        "visual_action": "Swap panel komik ke ch06_sq2 (makanan lezat), highlight emas 'PESANAN F&B: RP450.000 (60% TOTAL TAGIHAN)'.",
+        "asset_ref": "ch06_sq2.png"
+      },
+      {
+        "cue_index": 6,
+        "cue_id": "v_06_06",
+        "rel_time_sec": 23.49,
+        "trigger_word": "Empat",
+        "spoken_sentence": "Empat orang memesan delapan gelas kopi susu dan liang teh dingin.",
+        "visual_action": "Item baris 2 struk: '8x MINUMAN DINGIN (KOPI SUSU & LIANG TEH): RP160.000 (HPP RP32RB)'.",
+        "asset_ref": "ch06_sq2.png"
+      },
+      {
+        "cue_index": 7,
+        "cue_id": "v_06_07",
+        "rel_time_sec": 30.52,
+        "trigger_word": "Mereka",
+        "spoken_sentence": "Mereka juga memesan empat mie instan dan tiga porsi dimsum hangat.",
+        "visual_action": "Item baris 3 & 4 struk: '4x MIE SPESIAL: RP180.000 | 3x DIMSUM SIOMAY: RP110.000'.",
+        "asset_ref": "ch06_sq2.png"
+      },
+      {
+        "cue_index": 8,
+        "cue_id": "v_06_08",
+        "rel_time_sec": 34.36,
+        "trigger_word": "Margin",
+        "spoken_sentence": "Margin kotor minuman tembus 80%, sedangkan makanan berat di atas 70%.",
+        "visual_action": "Dua caliper margin hijau menyala: 'MARGIN MINUMAN: 80% | MARGIN MAKANAN: 73%'.",
+        "asset_ref": "ch06_sq2.png"
+      },
+      {
+        "cue_index": 9,
+        "cue_id": "v_06_09",
+        "rel_time_sec": 40.02,
+        "trigger_word": "Dari",
+        "spoken_sentence": "Dari satu struk Rp750 ribu, pemilik lounge mengantongi laba kotor Rp595 ribu.",
+        "visual_action": "Slam ringkasan laba: 'TOTAL HPP: RP155.000 -> LABA KOTOR: RP595.000 (79,3%)'.",
+        "asset_ref": "ch06_sq2.png"
+      },
+      {
+        "cue_index": 10,
+        "cue_id": "v_06_10",
+        "rel_time_sec": 46.62,
+        "trigger_word": "Artinya",
+        "spoken_sentence": "Artinya, lounge mahjong sejatinya adalah restoran F and B berkedok meja sewa!",
+        "visual_action": "Stamp vonis merah-emas 'THE HIDDEN TRUTH: RESTORAN F&B BERKEDOK MEJA MAHJONG'.",
+        "asset_ref": "ch06_sq2.png"
+      }
+    ]
+  },
+  {
+    "beat_id": "beat_07",
+    "chapter_id": "chapter_07",
+    "brow_label": "POV: | KUTUKAN HARI KERJA",
+    "stage_mode": "explainer_2x2",
+    "duration_sec": 42.871,
+    "safe_hold_end_sec": 39.97,
+    "comic_assets": [
+      {
+        "id": "ch07_sq1",
+        "filename": "ch07_sq1.png",
+        "aspect_ratio": "1:1",
+        "stage_mode": "explainer_2x2",
+        "prompt": "Flat 2D Indonesian comic illustration (1:1 square). A quiet, empty mahjong lounge on a Tuesday afternoon. Rows of empty square green tables with neatly stacked stools. A lone Indonesian staff member leans boredly on the counter wiping a cloth, looking at an empty doorway. Melancholy quiet mood, soft daylight, bold black ink lines (#0F172A), cool slate and cream tones (#FAF6EE), strictly no text or speech bubbles."
+      },
+      {
+        "id": "ch07_sq2",
+        "filename": "ch07_sq2.png",
+        "aspect_ratio": "1:1",
+        "stage_mode": "explainer_2x2",
+        "prompt": "Flat 2D Indonesian comic illustration (1:1 square). An exhilarating packed Friday night rush inside the lounge. Every single table is filled with laughing, animated groups of young players. Near the entrance, a staff member warmly manages a bustling queue of excited customers waiting for their turn. Warm amber festive lighting, bold dynamic comic lines (#0F172A), vibrant energy on cream paper (#FAF6EE), strictly no text or letters."
+      }
+    ],
+    "cues": [
+      {
+        "cue_index": 1,
+        "cue_id": "v_07_01",
+        "rel_time_sec": 0.2,
+        "trigger_word": "Tapi",
+        "spoken_sentence": "Tapi jangan buru-buru tergiur, karena ada jebakan mematikan bernama kutukan hari kerja.",
+        "visual_action": "Render stage explainer: Card komik lounge sepi ch07_sq1 di kiri, Heatmap mingguan di kanan.",
+        "asset_ref": "ch07_sq1.png"
+      },
+      {
+        "cue_index": 2,
+        "cue_id": "v_07_02",
+        "rel_time_sec": 5.6,
+        "trigger_word": "Dari",
+        "spoken_sentence": "Dari Senin sampai Kamis siang, lounge biasanya kosong melompong seperti kuburan.",
+        "visual_action": "Heatmap blok Senin-Kamis siang menyala abu-abu dingin dengan okupansi '<15%'.",
+        "asset_ref": "ch07_sq1.png"
+      },
+      {
+        "cue_index": 3,
+        "cue_id": "v_07_03",
+        "rel_time_sec": 7.67,
+        "trigger_word": "Okupansi",
+        "spoken_sentence": "Okupansi meja di jam kerja seringkali anjlok di bawah 15%.",
+        "visual_action": "Gauge meter okupansi anjlok ke zona merah 'DEAD WEEKDAY HOURS'.",
+        "asset_ref": "ch07_sq1.png"
+      },
+      {
+        "cue_index": 4,
+        "cue_id": "v_07_04",
+        "rel_time_sec": 11.51,
+        "trigger_word": "Karyawan",
+        "spoken_sentence": "Karyawan tetap digaji, lampu A-C menyala, dan sewa ruko jalan terus.",
+        "visual_action": "Animasi ticker biaya operasional berdetik: 'BIAYA TETAP: RP1.160.000 PER HARI'.",
+        "asset_ref": "ch07_sq1.png"
+      },
+      {
+        "cue_index": 5,
+        "cue_id": "v_07_05",
+        "rel_time_sec": 18.06,
+        "trigger_word": "Lonjakan",
+        "spoken_sentence": "Lonjakan pengunjung baru terjadi Jumat malam sampai Minggu hingga antre panjang.",
+        "visual_action": "Swap panel komik ke ch07_sq2 (ramai antre), Heatmap blok Jumat malam - Minggu menyala hijau terang 100%.",
+        "asset_ref": "ch07_sq2.png"
+      },
+      {
+        "cue_index": 6,
+        "cue_id": "v_07_06",
+        "rel_time_sec": 22.52,
+        "trigger_word": "Praktis",
+        "spoken_sentence": "Praktis lo cuma punya 35 jam emas seminggu untuk mencetak laba.",
+        "visual_action": "Highlight caliper jam: 'CUMA ADA ~35 JAM EMAS PER MINGGU'.",
+        "asset_ref": "ch07_sq2.png"
+      },
+      {
+        "cue_index": 7,
+        "cue_id": "v_07_07",
+        "rel_time_sec": 24.32,
+        "trigger_word": "Tiga",
+        "spoken_sentence": "Tiga puluh lima jam emas ini harus menutup 168 jam sewa ruko.",
+        "visual_action": "Perbandingan rasio waktu kontras: '35 JAM LABA VS 168 JAM BIAYA SEWA (HANYA 20,8% EFEKTIF)'.",
+        "asset_ref": "ch07_sq2.png"
+      },
+      {
+        "cue_index": 8,
+        "cue_id": "v_07_08",
+        "rel_time_sec": 30.9,
+        "trigger_word": "Banyak",
+        "spoken_sentence": "Banyak pemula kehabisan nafas di bulan keempat karena nombok operasional.",
+        "visual_action": "Garis kurva runway kas menipis menuju titik kritis di 'BULAN KE-4'.",
+        "asset_ref": "ch07_sq2.png"
+      },
+      {
+        "cue_index": 9,
+        "cue_id": "v_07_09",
+        "rel_time_sec": 34.48,
+        "trigger_word": "Tanpa",
+        "spoken_sentence": "Tanpa strategi promo siang hari, bisnis lo bisa boncos sebelum balik modal.",
+        "visual_action": "Checklist strategi mitigasi: 'PROMO SIANG 50% • KOMUNITAS KANTOR • MEMBER BULANAN'.",
+        "asset_ref": "ch07_sq2.png"
+      },
+      {
+        "cue_index": 10,
+        "cue_id": "v_07_10",
+        "rel_time_sec": 38.76,
+        "trigger_word": "Arus",
+        "spoken_sentence": "Arus kas fluktuatif ini adalah ujian mental terberat membuka lounge ruko.",
+        "visual_action": "Stamp grafik gelombang tajam 'ROLLERCOASTER CASHFLOW: TANTANGAN TERBESAR'.",
+        "asset_ref": "ch07_sq2.png"
+      }
+    ]
+  },
+  {
+    "beat_id": "beat_08",
+    "chapter_id": "chapter_08",
+    "brow_label": "POV: | BOBA TUMPAH & BATU HILANG",
+    "stage_mode": "full_comic_16x9",
+    "duration_sec": 45.271,
+    "safe_hold_end_sec": 42.37,
+    "comic_assets": [
+      {
+        "id": "ch08_p1",
+        "filename": "ch08_p1.png",
+        "aspect_ratio": "16:9",
+        "stage_mode": "full_comic_16x9",
+        "prompt": "Flat 2D Indonesian comic panel. Slow-motion comic catastrophe: an elbow knocks over a plastic cup of brown sugar boba milk tea, sending thick milky brown liquid and shiny black tapioca pearls splashing directly into the delicate open circular elevator gap of the automatic mahjong table. Players recoil in comic shock with wide eyes and open mouths. Bold comic ink outlines (#0F172A), expressive dynamic slapstick on cream paper (#FAF6EE), strictly no text or sound effects."
+      },
+      {
+        "id": "ch08_p2",
+        "filename": "ch08_p2.png",
+        "aspect_ratio": "16:9",
+        "stage_mode": "full_comic_16x9",
+        "prompt": "Flat 2D Indonesian comic panel. A distressed Indonesian lounge owner in an apron on hands and knees crawling on the carpet floor, shining a yellow flashlight beam under a heavy sofa looking for a missing tile. On the floor beside him sits an open tile sorting tray showing exactly one empty slot in an otherwise complete set of mahjong tiles. Comic frustration, dramatic lighting, bold black ink outlines (#0F172A) on cream paper (#FAF6EE), strictly no text or numbers."
+      }
+    ],
+    "cues": [
+      {
+        "cue_index": 1,
+        "cue_id": "v_08_01",
+        "rel_time_sec": 0.2,
+        "trigger_word": "Masalah",
+        "spoken_sentence": "Masalah kedua yang menghantui setiap hari adalah kerapuhan teknis mesin impor ini.",
+        "visual_action": "Slam Panel 1 (ch08_p1.png): Insiden tumpahan boba cokelat pekat tersenggol masuk ke celah elevator meja.",
+        "asset_ref": "ch08_p1.png"
+      },
+      {
+        "cue_index": 2,
+        "cue_id": "v_08_02",
+        "rel_time_sec": 5.02,
+        "trigger_word": "Ketika",
+        "spoken_sentence": "Ketika asyik bermain sambil minum boba manis, kecelakaan sering tak terhindarkan.",
+        "visual_action": "Garis aksi dramatis komik memperbesar cangkir boba yang melayang jatuh.",
+        "asset_ref": "ch08_p1.png"
+      },
+      {
+        "cue_index": 3,
+        "cue_id": "v_08_03",
+        "rel_time_sec": 9.64,
+        "trigger_word": "Satu",
+        "spoken_sentence": "Satu senggolan bisa membuat cairan gula pekat tumpah ke celah elevator.",
+        "visual_action": "Zoom in ke lubang elevator meja yang kemasukan cairan manis lengket.",
+        "asset_ref": "ch08_p1.png"
+      },
+      {
+        "cue_index": 4,
+        "cue_id": "v_08_04",
+        "rel_time_sec": 11.44,
+        "trigger_word": "Air",
+        "spoken_sentence": "Air gula mengering melumuri sensor optik dan bikin gir motor macet total.",
+        "visual_action": "Pop badge peringatan merah 'SENSOR OPTIK ERROR & GEAR MOTOR MACET'.",
+        "asset_ref": "ch08_p1.png"
+      },
+      {
+        "cue_index": 5,
+        "cue_id": "v_08_05",
+        "rel_time_sec": 16.31,
+        "trigger_word": "Biaya",
+        "spoken_sentence": "Biaya memanggil teknisi bongkar mesin mencapai delapan ratus ribu sekali datang.",
+        "visual_action": "Stempel tag biaya perbaikan 'BIAYA SERVIS TEKNISI KHUSUS: RP800.000 / KUNJUNGAN'.",
+        "asset_ref": "ch08_p1.png"
+      },
+      {
+        "cue_index": 6,
+        "cue_id": "v_08_06",
+        "rel_time_sec": 22.54,
+        "trigger_word": "Belum",
+        "spoken_sentence": "Belum lagi risiko sepele tapi fatal: satu batu magnetik hilang terselip.",
+        "visual_action": "Swap Panel 2 (ch08_p2.png): Pemilik lounge merayap dengan senter mencari 1 batu hilang di bawah sofa.",
+        "asset_ref": "ch08_p2.png"
+      },
+      {
+        "cue_index": 7,
+        "cue_id": "v_08_07",
+        "rel_time_sec": 26.5,
+        "trigger_word": "Ingat",
+        "spoken_sentence": "Ingat, setiap set berisi 144 batu dengan kalibrasi magnet sub-milimeter presisi.",
+        "visual_action": "Card skema batu: '1 SET = 144 BATU MAGNETIK PRESIFIKASI KHUSUS'.",
+        "asset_ref": "ch08_p2.png"
+      },
+      {
+        "cue_index": 8,
+        "cue_id": "v_08_08",
+        "rel_time_sec": 32.54,
+        "trigger_word": "Kehilangan",
+        "spoken_sentence": "Kehilangan satu batu artinya satu set lengkap itu langsung lumpuh total.",
+        "visual_action": "Slam peringatan '1 BATU HILANG = 143 BATU LAINNYA LUMPUH TOTAL (BRICKED)'.",
+        "asset_ref": "ch08_p2.png"
+      },
+      {
+        "cue_index": 9,
+        "cue_id": "v_08_09",
+        "rel_time_sec": 36.64,
+        "trigger_word": "Lo",
+        "spoken_sentence": "Lo tidak bisa beli batu eceran karena bobot dan kutub magnetnya beda.",
+        "visual_action": "Tanda silang merah besar di atas ilustrasi pembelian batu eceran.",
+        "asset_ref": "ch08_p2.png"
+      },
+      {
+        "cue_index": 10,
+        "cue_id": "v_08_10",
+        "rel_time_sec": 40.44,
+        "trigger_word": "Akibatnya",
+        "spoken_sentence": "Akibatnya, lo terpaksa beli satu set batu baru seharga satu setengah juta.",
+        "visual_action": "Tag pengeluaran tak terduga 'BELI 1 SET BARU: RP1.500.000 (KERUGIAN OPERASIONAL)'.",
+        "asset_ref": "ch08_p2.png"
+      }
+    ]
+  },
+  {
+    "beat_id": "beat_09",
+    "chapter_id": "chapter_09",
+    "brow_label": "POV: | PASAL 303 & TAMENG LEGAL",
+    "stage_mode": "full_comic_16x9",
+    "duration_sec": 47.471,
+    "safe_hold_end_sec": 44.57,
+    "comic_assets": [
+      {
+        "id": "ch09_p1",
+        "filename": "ch09_p1.png",
+        "aspect_ratio": "16:9",
+        "stage_mode": "full_comic_16x9",
+        "prompt": "Flat 2D Indonesian comic panel. Contrast scene depicting an illegal underground gambling den atmosphere: dimly lit table shrouded in cigarette smoke, scattered piles of Indonesian 100k red banknotes and round poker chips on dark felt, tense secretive body language of gamblers, red alert danger mood. Bold moody black comic shadows (#0F172A), stark crimson accents on cream paper background (#FAF6EE), strictly no text or numbers."
+      },
+      {
+        "id": "ch09_p2",
+        "filename": "ch09_p2.png",
+        "aspect_ratio": "16:9",
+        "stage_mode": "full_comic_16x9",
+        "prompt": "Flat 2D Indonesian comic panel. The exact opposite lawful environment: a brightly lit, clean, transparent modern lounge with large clear glass partitions visible from the street. Players happily tap digital scorecards on their smartphones with completely clean tables (zero cash, zero chips). On the ceiling, a sleek modern black 360-degree CCTV security dome camera is prominently visible. Emerald green and cream tones, bold black outlines (#0F172A), reassuring professional atmosphere, strictly no text or letters."
+      }
+    ],
+    "cues": [
+      {
+        "cue_index": 1,
+        "cue_id": "v_09_01",
+        "rel_time_sec": 0.2,
+        "trigger_word": "Selain",
+        "spoken_sentence": "Selain masalah teknis, ada risiko hukum besar mengintai di balik pintu.",
+        "visual_action": "Slam Panel 1 (ch09_p1.png): Suasana remang judi ilegal dengan tumpukan uang tunai dan cip di meja.",
+        "asset_ref": "ch09_p1.png"
+      },
+      {
+        "cue_index": 2,
+        "cue_id": "v_09_02",
+        "rel_time_sec": 3.3,
+        "trigger_word": "Di",
+        "spoken_sentence": "Di Indonesia, batas antara permainan rekreasi dan judi Pasal 303 K-U-H-P sangat tipis.",
+        "visual_action": "Buku hukum merah bertuliskan 'PASAL 303 KUHP' dengan garis batas kuning peringatan.",
+        "asset_ref": "ch09_p1.png"
+      },
+      {
+        "cue_index": 3,
+        "cue_id": "v_09_03",
+        "rel_time_sec": 11.42,
+        "trigger_word": "Jika",
+        "spoken_sentence": "Jika ada uang tunai atau cip taruhan di meja, lounge digerebek polisi.",
+        "visual_action": "Sirene polisi merah-biru berkedip dengan stempel 'RISIKO PENGGEREBEKAN & PENYITAAN'.",
+        "asset_ref": "ch09_p1.png"
+      },
+      {
+        "cue_index": 4,
+        "cue_id": "v_09_04",
+        "rel_time_sec": 15.72,
+        "trigger_word": "Untuk",
+        "spoken_sentence": "Untuk melindungi bisnis, pemilik wajib pasang empat perisai legal yang ketat.",
+        "visual_action": "Swap Panel 2 (ch09_p2.png): Lounge terang benderang dengan partisi kaca transparan dan pemain memakai aplikasi HP.",
+        "asset_ref": "ch09_p2.png"
+      },
+      {
+        "cue_index": 5,
+        "cue_id": "v_09_05",
+        "rel_time_sec": 20.12,
+        "trigger_word": "Pertama",
+        "spoken_sentence": "Pertama, aturan besi tanpa uang tunai dan tanpa cip fisik di meja.",
+        "visual_action": "Perisai 1 mengunci: 'TAMENG 1: STRICT NO-CASH / NO-CHIP ON TABLE'.",
+        "asset_ref": "ch09_p2.png"
+      },
+      {
+        "cue_index": 6,
+        "cue_id": "v_09_06",
+        "rel_time_sec": 24.7,
+        "trigger_word": "Kedua",
+        "spoken_sentence": "Kedua, pencatatan skor wajib memakai aplikasi digital di ponsel masing-masing.",
+        "visual_action": "Perisai 2 mengunci: 'TAMENG 2: APLIKASI SKOR DIGITAL DI PONSEL'.",
+        "asset_ref": "ch09_p2.png"
+      },
+      {
+        "cue_index": 7,
+        "cue_id": "v_09_07",
+        "rel_time_sec": 28.54,
+        "trigger_word": "Ketiga",
+        "spoken_sentence": "Ketiga, sekat ruangan wajib partisi kaca transparan yang terlihat dari luar.",
+        "visual_action": "Perisai 3 mengunci: 'TAMENG 3: PARTISI KACA TRANSPARAN (ZERO PRIVATE ENCLOSURE)'.",
+        "asset_ref": "ch09_p2.png"
+      },
+      {
+        "cue_index": 8,
+        "cue_id": "v_09_08",
+        "rel_time_sec": 30.34,
+        "trigger_word": "Keempat",
+        "spoken_sentence": "Keempat, kamera C-C-T-V 24 jam merekam setiap meja tanpa titik buta.",
+        "visual_action": "Perisai 4 mengunci: 'TAMENG 4: CCTV 24 JAM TANPA BLIND SPOT'.",
+        "asset_ref": "ch09_p2.png"
+      },
+      {
+        "cue_index": 9,
+        "cue_id": "v_09_09",
+        "rel_time_sec": 38.64,
+        "trigger_word": "Dengan",
+        "spoken_sentence": "Dengan empat tameng ini, bisnis lo resmi beroperasi sebagai rekreasi legal.",
+        "visual_action": "Badge hijau terverifikasi 'STATUS LEGAL: HIBURAN OLAHRAGA KETANGKASAN REKREASI'.",
+        "asset_ref": "ch09_p2.png"
+      },
+      {
+        "cue_index": 10,
+        "cue_id": "v_09_10",
+        "rel_time_sec": 42.94,
+        "trigger_word": "Tanpa",
+        "spoken_sentence": "Tanpa kepatuhan ketat, seluruh modal investasi lo bisa lenyap sekejap mata.",
+        "visual_action": "Warning box merah 'COMPLIANCE IS NON-NEGOTIABLE' mengunci di layar.",
+        "asset_ref": "ch09_p2.png"
+      }
+    ]
+  },
+  {
+    "beat_id": "beat_10",
+    "chapter_id": "chapter_10",
+    "brow_label": "POV: | VONIS AKHIR & BALIK MODAL",
+    "stage_mode": "explainer_2x2",
+    "duration_sec": 51.811,
+    "safe_hold_end_sec": 48.91,
+    "comic_assets": [
+      {
+        "id": "ch10_sq1",
+        "filename": "ch10_sq1.png",
+        "aspect_ratio": "1:1",
+        "stage_mode": "explainer_2x2",
+        "prompt": "Flat 2D Indonesian comic illustration (1:1 square). A classic brass weighing balance scale. On the left scale sits a heavy miniature 2-story glass commercial shophouse. On the right scale sits a lightweight white delivery blind van carrying a folded mahjong table. Symbolic representation of business trade-offs: high CapEx prestige vs low CapEx agility. Bold black ink lines (#0F172A), vibrant cel-shading on cream paper (#FAF6EE), strictly no text or letters."
+      },
+      {
+        "id": "ch10_sq2",
+        "filename": "ch10_sq2.png",
+        "aspect_ratio": "1:1",
+        "stage_mode": "explainer_2x2",
+        "prompt": "Flat 2D Indonesian comic illustration (1:1 square). A confident, smart young Indonesian entrepreneur smiling with arms crossed, standing proudly beside an automatic mahjong table. In the background, a clean bold upward-trending green financial line graphic rises steadily. Warm optimistic lighting, bold comic ink outlines (#0F172A), emerald green and golden amber accents on warm cream paper (#FAF6EE), strictly no text or numbers."
+      }
+    ],
+    "cues": [
+      {
+        "cue_index": 1,
+        "cue_id": "v_10_01",
+        "rel_time_sec": 0.2,
+        "trigger_word": "Jadi",
+        "spoken_sentence": "Jadi setelah membedah angkanya, model mana yang paling layak lo jalankan?",
+        "visual_action": "Render stage explainer: Card komik timbangan ch10_sq1 di kiri, Tabel komparasi Head-to-Head di kanan.",
+        "asset_ref": "ch10_sq1.png"
+      },
+      {
+        "cue_index": 2,
+        "cue_id": "v_10_02",
+        "rel_time_sec": 5.18,
+        "trigger_word": "Mari",
+        "spoken_sentence": "Mari kita adu Lounge Ruko delapan meja melawan Rental Garasi lima meja.",
+        "visual_action": "Dua kolom komparasi terbelah: 'KOLOM KIRI: LOUNGE RUKO 8 MEJA' vs 'KOLOM KANAN: RENTAL GARASI 5 MEJA'.",
+        "asset_ref": "ch10_sq1.png"
+      },
+      {
+        "cue_index": 3,
+        "cue_id": "v_10_03",
+        "rel_time_sec": 9.46,
+        "trigger_word": "Lounge",
+        "spoken_sentence": "Lounge ruko butuh modal Rp350 juta dengan operasional Rp35 juta sebulan.",
+        "visual_action": "Baris 1 terisi: CapEx Rp350jt vs Rp60jt | OpEx Rp35jt/bln vs <Rp5jt/bln.",
+        "asset_ref": "ch10_sq1.png"
+      },
+      {
+        "cue_index": 4,
+        "cue_id": "v_10_04",
+        "rel_time_sec": 17.16,
+        "trigger_word": "Laba",
+        "spoken_sentence": "Laba bersihnya Rp18 juta sampai Rp23 juta, dengan balik modal 18 bulan.",
+        "visual_action": "Lounge BEP badge: 'LABA BERSIH: RP18-23JT/BLN | BEP: 18-22 BULAN'.",
+        "asset_ref": "ch10_sq1.png"
+      },
+      {
+        "cue_index": 5,
+        "cue_id": "v_10_05",
+        "rel_time_sec": 22.84,
+        "trigger_word": "Sebaliknya",
+        "spoken_sentence": "Sebaliknya, rental garasi cuma butuh modal Rp60 juta dengan operasional minim.",
+        "visual_action": "Rental Garasi highlight: 'MODAL RP60JT | OPEX < RP5JT/BLN'.",
+        "asset_ref": "ch10_sq1.png"
+      },
+      {
+        "cue_index": 6,
+        "cue_id": "v_10_06",
+        "rel_time_sec": 27.96,
+        "trigger_word": "Laba",
+        "spoken_sentence": "Laba bersihnya Rp10 juta sampai Rp15 juta, balik modal dalam enam bulan!",
+        "visual_action": "Swap panel komik ke ch10_sq2 (entrepreneur optimis), badge hijau berkilau 'BEP CEPAT: 6-8 BULAN!'.",
+        "asset_ref": "ch10_sq2.png"
+      },
+      {
+        "cue_index": 7,
+        "cue_id": "v_10_07",
+        "rel_time_sec": 33.66,
+        "trigger_word": "Jika",
+        "spoken_sentence": "Jika lo punya modal besar dan siap drama ruko, pilihlah lounge V-I-P.",
+        "visual_action": "Kartu profil pengusaha A: 'PROFIL LOUNGE: MODAL BESAR • PASSION RESTORAN & ENTERTAINMENT'.",
+        "asset_ref": "ch10_sq2.png"
+      },
+      {
+        "cue_index": 8,
+        "cue_id": "v_10_08",
+        "rel_time_sec": 38.14,
+        "trigger_word": "Tapi",
+        "spoken_sentence": "Tapi jika lo mau risiko rendah dan arus kas cepat, rental garasi pemenangnya.",
+        "visual_action": "Kartu profil pengusaha B: 'PROFIL GARASI: RISIKO MINIM • ARUS KAS KILAT • BEP CEPAT (WINNER)'.",
+        "asset_ref": "ch10_sq2.png"
+      },
+      {
+        "cue_index": 9,
+        "cue_id": "v_10_09",
+        "rel_time_sec": 39.94,
+        "trigger_word": "Bisnis",
+        "spoken_sentence": "Bisnis mahjong sejatinya adalah kecerdikan menangkap durasi nongkrong masyarakat urban.",
+        "visual_action": "Slam golden quote banner 'THE ESSENCE: CAPTURING THE 5-HOUR URBAN ATTENTION SPAN'.",
+        "asset_ref": "ch10_sq2.png"
+      },
+      {
+        "cue_index": 10,
+        "cue_id": "v_10_10",
+        "rel_time_sec": 47.64,
+        "trigger_word": "Sekarang",
+        "spoken_sentence": "Sekarang pilihan di tangan lo: sewa ruko mewah atau mulai dari garasi?",
+        "visual_action": "Call-to-action cards ganda menyala dengan glow hangat, diagram menahan tampilan sempurna sampai video selesai.",
+        "asset_ref": "ch10_sq2.png"
+      }
+    ]
+  }
+]

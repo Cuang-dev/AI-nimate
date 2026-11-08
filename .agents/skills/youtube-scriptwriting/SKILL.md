@@ -13,21 +13,26 @@ Unlike TikTok which relies on ephemeral trend sounds and hyper-staccato shouting
 
 Before generating `script.json`, the `thinking-scriptwriter` subagent must read `production/<video_id>/research_dossier.md` and write `production/<video_id>/script_cot.md` executing these 5 explicit CoT reasoning stages:
 
-1. **`[CoT Step 1: Pattern-Interrupt Hook Selection]`**:
+1. **`[CoT Step 1: The Profitability Paradox Hook (`<3.5s` Anomaly + Rapid Hook Beats)]`**:
    - Draft **3 distinct candidate hooks** challenging a viewer assumption in under `<3.5s`.
-   - Evaluate against psychological pattern interrupt and select the sharpest opening line with zero throat-clearing.
-2. **`[CoT Step 2: 'Therefore / However' Causal Spine]`**:
-   - Connect every narrative beat via explicit causal tension questions (*"Therefore"*, *"However"*, *"Because of this"*).
+   - **Business/Storefront Teardown Hook Rule**: For any business or unit-economics breakdown, never open with a slow lifestyle intro or a trivial consumer price comparison (e.g., comparing rent to parking fees). Open immediately with the **Profitability Paradox (Topline vs. Bottomline / CapEx Optical Illusion)**:
+     1. **Clause 1 (`0s–3.0s`) — Low Customer Ticket vs. Massive CapEx**: *"Sewa meja ini cuma Rp15 ribu per orang sejam—padahal modal rukonya Rp350 juta."*
+     2. **Clause 2 (`3.0s–6.5s`) — The Profitability Question**: *"Terus gimana caranya bisnis recehan gini bisa balik modal, bahkan nyetak omzet Rp180 juta sebulan?"*
+     3. **Clause 3 (`6.5s–12.0s`) — The Hidden Engine Tease**: *"Ternyata uang aslinya bukan dari sewa meja—tapi dari jebakan 5 jam yang ngunci 4 pemain buat beli makanan margin 70%!"*
+   - **Rapid Hook Visual Beats**: Chapter 1 (`The Hook`) must fire visual **Beats every `2.0s–3.5s` (on every clause)** to lock in early viewer retention.
+2. **`[CoT Step 2: 'Therefore / However' Chapter Spine]`**:
+   - Connect every macro **Chapter (`chapters[]`)** via explicit causal tension questions (*"Therefore"*, *"However"*, *"Because of this"*).
    - Strictly ban chronological "and then" listicles; maintain an unbroken forensic causal chain.
-3. **`[CoT Step 3: Semantic Diagram Archetype & Sample-Accurate Visual Cadence Mapping]`**:
-   - Assign each beat to one of the **5 Distinct Spatial Diagram Archetypes** (`Scale Chasm / Bar + Caliper`, `Closed-Loop Orthogonal Conduit`, `Dual-Axis Parallel Timeline + Wall`, `Quantitative Slope / Decay Curve`, `3-Tier Architectural Layer Stack`) matching the mechanism of the explanation. Ban generic 2-box repeats.
+3. **`[CoT Step 3: Stage Mode Selection (`full_comic_16x9` vs. `explainer_2x2`) & Beat-Synced Visual Cadence]`**:
+   - Assign each **Chapter** either:
+     - **Option 1 (`stage_mode: "full_comic_16x9"`)**: 4 full-screen `16:9` (`1280x720`) flat 2D Indonesian comic panels generated in a single `16:9` `2x2` grid (`"aspect_ratio": "16:9"`) for narrative/storytelling Chapters that don't need a complex chart.
+     - **Option 2 (`stage_mode: "explainer_2x2"`)**: Square `1:1` (`512x512`) flat 2D Indonesian comic panels generated in a `1:1` `2x2` grid (`"aspect_ratio": "1:1"`) paired with one of the **5 Distinct Spatial Diagram Archetypes** (`Scale Chasm / Bar + Caliper`, `Closed-Loop Orthogonal Conduit`, `Dual-Axis Parallel Timeline + Wall`, `Quantitative Slope / Decay Curve`, `3-Tier Architectural Layer Stack`) for unit-economics/data Chapters.
    - Enforce Sample-Accurate Acoustic-to-Visual Sync (`timings.json` Word Trigger Rule):
-     - Every major visual reveal (bar growth, counter tick, conduit draw, wall drop, badge flip) MUST be triggered within `±0.3s` of the exact spoken word timestamp in `timings.json` (never 7–9 seconds premature!).
-     - Intermediate micro-cues (axis draw, baseline entry, station pop-in, sub-badge overshoot) MUST fill intervening `2.0s–2.8s` intervals so there is never a static stretch `> 3.0s`.
-     - Final visual element finishes at least `>= 2.7s` before `beat.end`.
-4. **`[CoT Step 4: Anti-Slop & Oral Cadence Audit]`**:
-   - Strip AI cliches (`"Di era modern ini"`, `"Pernahkah Anda berpikir"`, unearned moralizing).
-   - Enforce natural breath punctuation (commas, em-dashes `—`, periods) every 4–8 words so Whisper word-level timestamps segment cleanly into `≤4`-word chunks.
+     - Every sentence **Beat (`beats[]`)** (and every clause in Chapter 1's Hook) MUST trigger a visual reveal or comic panel swap within `±0.3s` of the exact spoken word timestamp in `timings.json`.
+     - Final Beat finishes at least `>= 2.7s` before the Chapter ends.
+4. **`[CoT Step 4: Natural Conversational Indonesian Oral Cadence & Anti-Slop Audit]`**:
+   - Strip AI cliches (`"Di era modern ini"`, `"Pernahkah Anda berpikir"`, stiff bookish translations) and **ban starting chapters with `"P-O-V,"`** in `spoken_text` (which TTS pronounces as `"Poof!"`).
+   - Write in natural spoken Jakarta Indonesian (`"Coba hitung..."`, `"Masalahnya simpel..."`, `"Gila nggak?"`) with short 6–12 word sentences and explicit `tts_style_prompt` voice director instructions.
 5. **`[CoT Step 5: Phonetic & Acronym Engineering]`**:
    - Verify explicit phonetic spelling brackets for all tickers, acronyms, and bilingual terms:
      `[S&P|Es-en-Pi]`, `[W-8BEN|W-delapan-B-E-N]`, `[PMK 18|P-M-K delapan belas]`, `[UU HPP|U-U H-P-P]`, `[Pluang|Plu-ang]`, `[BBCA|B-B-C-A]`, `[VOO|V-O-O]`, `[CSPX|C-S-P-X]`.

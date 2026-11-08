@@ -111,7 +111,7 @@
     "ttsStylePrompt": "Immersive, conversational Indonesian business breakdown (Lo/Gue, kita), energetic storytelling, punchy dramatic pauses, crisp numbers and clear operational metrics.",
     "scriptPromptSummary": "10-beat immersive business documentary breaking down the unit economics, CAPEX, hidden F&B margins, and operational nightmares of running an automatic mahjong table lounge.",
     "iconGenerationPrompt": "256x256 transparent background flat Swiss vector icon, bold #0F172A outlines, high-contrast fills, zero baked text.",
-    "visualCueRules": "Widescreen 16:9 layout, single top brow badge 'POV: | <Chapter Name>', clean geometric Plus Jakarta Sans, high-contrast secondary labels, full X/Y axes on charts, strictly <= 18 Txt nodes per beat."
+    "visualCueRules": "Widescreen 16:9 layout, single top brow badge 'POV: | <Chapter Name>', clean geometric Plus Jakarta Sans, high-contrast secondary labels, full X/Y axes on charts, and mandatory sentence-level visual cues (every sentence triggers a visual change/reveal/illustration swap)."
   },
   "paths": {
     "productionDir": "motion-canvas/production/vid_20261102_001",

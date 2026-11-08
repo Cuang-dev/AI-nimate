@@ -1,0 +1,161 @@
+{
+  "style_notes": "Warm evening Jakarta shophouse mahjong lounge. Emerald felt tables, warm amber lamps, wooden accents. A story about a young first-time business owner doing the maths. Grounded, slightly wry, never glamorous.",
+  "characters": [
+    {
+      "id": "owner",
+      "prompt": "Raka, an Indonesian man aged about 28, short neat black hair, warm brown skin, clean-shaven, mustard-yellow overshirt over a plain white t-shirt, dark trousers. Friendly, thoughtful face. Character reference sheet: one front-facing portrait, waist-up, plain cream background."
+    }
+  ],
+  "images": [
+    {
+      "id": "ch01_friends_table",
+      "mode": "full",
+      "uses": [],
+      "prompt": "Four Indonesian friends in their twenties seated around a square emerald felt mahjong table in a warm shophouse lounge at night, relaxed and laughing, seen from a medium distance. Hands resting on the table edge. A few large blank ivory tiles in a neat line on the felt.",
+      "brief": "Exactly four friends at one mahjong table, all faces clear, tiles distinct"
+    },
+    {
+      "id": "ch01_coffee",
+      "mode": "full",
+      "uses": [],
+      "prompt": "A single tall glass of iced milk coffee on a wooden cafe table, large in the centre of the frame, beside one single large blank ivory mahjong tile. Warm blurred lamp-lit background. No people.",
+      "brief": "One iced coffee glass and one blank mahjong tile, no people"
+    },
+    {
+      "id": "ch01_empty_ruko",
+      "mode": "full",
+      "uses": [
+        "owner"
+      ],
+      "prompt": "Raka stands in the middle of an empty, unfinished two-storey shophouse interior with bare concrete walls, holding a rolled-up floor plan and looking around, slightly daunted. Large roller door open behind him with daylight. Medium shot.",
+      "brief": "Raka alone in an empty unfinished shophouse"
+    },
+    {
+      "id": "ch01_food",
+      "mode": "side",
+      "uses": [],
+      "prompt": "Top-down view of a corner of an emerald felt table with a bowl of fried instant noodles topped with a fried egg, a bamboo steamer of dimsum, and two iced drinks. No people, no hands, no tiles.",
+      "brief": "Noodles, dimsum and drinks on green felt, nothing else"
+    },
+    {
+      "id": "ch01_raka_doubt",
+      "mode": "side",
+      "uses": [
+        "owner"
+      ],
+      "prompt": "Raka seated alone at a wooden desk at night, large in frame from the chest up, one hand on his chin, frowning thoughtfully at a blank sheet of paper in front of him. A plain calculator on the desk. Warm desk lamp.",
+      "brief": "Raka alone thinking at a desk with a calculator"
+    },
+    {
+      "id": "ch02_young_players",
+      "mode": "full",
+      "uses": [],
+      "prompt": "Two young Indonesian women and one young man, in casual modern streetwear, sitting at an emerald mahjong table in a stylish cafe with plants and warm light. Close medium shot from table height, big clear smiling faces, one of them holding a phone showing a blank screen.",
+      "brief": "Three young people enjoying mahjong in a modern cafe, faces clear"
+    },
+    {
+      "id": "ch03_auto_table",
+      "mode": "side",
+      "uses": [],
+      "prompt": "An automatic mahjong table seen from a three-quarter angle: a sleek square table with an emerald felt top, a small round plain control panel in the middle, four neat straight walls of large blank ivory tiles with clear gaps. Plain warm cream background. No people. Exterior only, no internal machinery.",
+      "brief": "Clean exterior of an automatic mahjong table with four neat walls of tiles"
+    },
+    {
+      "id": "ch04_soundproofing",
+      "mode": "side",
+      "uses": [
+        "owner"
+      ],
+      "prompt": "Raka in a shophouse under renovation, standing beside a worker fitting thick grey acoustic panels onto a wall. Raka holds a clipboard. Stacks of panels nearby. Two people only, medium shot.",
+      "brief": "Raka and one worker installing wall acoustic panels"
+    },
+    {
+      "id": "ch05_busy_table",
+      "mode": "side",
+      "uses": [
+        "owner"
+      ],
+      "prompt": "Raka behind a small lounge cashier counter, smiling, handing a plate of dimsum to one customer. Warm lights. An emerald table visible softly in the background with no people at it. Two people only.",
+      "brief": "Raka serving one customer at a counter"
+    },
+    {
+      "id": "ch06_raka_surprised",
+      "mode": "full",
+      "uses": [
+        "owner"
+      ],
+      "prompt": "Close medium shot of Raka at a desk with eyebrows raised and mouth slightly open, genuinely surprised, staring at a blank sheet of paper he holds up in both hands; the paper's back faces the viewer. Warm lamp light. Plain background.",
+      "brief": "Raka looking surprised holding a blank paper"
+    },
+    {
+      "id": "ch07_empty_tuesday",
+      "mode": "full",
+      "uses": [
+        "owner"
+      ],
+      "prompt": "Wide view of a daytime shophouse mahjong lounge with several empty emerald tables and empty chairs, cool quiet daylight from the windows. Raka alone at the far counter, elbow on the counter, chin on hand, bored. Tiles covered. Nobody else.",
+      "brief": "An empty lounge in daylight, Raka alone and bored"
+    },
+    {
+      "id": "ch07_full_saturday",
+      "mode": "side",
+      "uses": [],
+      "prompt": "Warm night scene: a single emerald table in the foreground with four cheerful friends playing, big clear faces, warm amber light, and softly blurred out-of-focus table shapes behind them with no visible faces.",
+      "brief": "One busy table at night with four clear faces"
+    },
+    {
+      "id": "ch08_garage_van",
+      "mode": "full",
+      "uses": [
+        "owner"
+      ],
+      "prompt": "Raka at a home garage in an Indonesian residential street, wheeling one folded portable table on a trolley toward a small white delivery van with its rear door open. Daylight. Medium shot. He alone is visible.",
+      "brief": "Raka alone wheeling a folded table on a trolley to a van"
+    },
+    {
+      "id": "ch09_lawyer",
+      "mode": "side",
+      "uses": [
+        "owner"
+      ],
+      "prompt": "Raka sitting across a desk from a middle-aged Indonesian woman lawyer in a blazer, both clearly visible, serious and calm, in a modest office with blank folders on a shelf. A blank contract lies on the desk. Two people only.",
+      "brief": "Raka consulting a woman lawyer across a desk"
+    },
+    {
+      "id": "ch10_raka_lounge",
+      "mode": "full",
+      "uses": [
+        "owner"
+      ],
+      "prompt": "Raka standing at the entrance of his finished warm-lit lounge at dusk, arms relaxed, looking calmly inward with a small confident smile. A few empty emerald tables inside, warm lights. Medium shot, only him visible.",
+      "brief": "Raka calm and confident at the door of his finished lounge"
+    }
+  ],
+  "icon_sets": [
+    {
+      "id": "ch03_table_steps",
+      "icons": [
+        {
+          "id": "tiles_swept",
+          "prompt": "four blank ivory tiles sliding down into a square opening, with a curved motion arrow"
+        },
+        {
+          "id": "tiles_mixed",
+          "prompt": "a round chamber with blank ivory tiles tumbling inside and two circular arrows"
+        },
+        {
+          "id": "belt_magnet",
+          "prompt": "a horseshoe magnet above a short conveyor belt carrying blank ivory tiles"
+        },
+        {
+          "id": "sensor_count",
+          "prompt": "a small round sensor eye with light beams scanning a neat row of blank ivory tiles"
+        },
+        {
+          "id": "wall_rises",
+          "prompt": "a neat wall of blank ivory tiles rising out of green felt, with an upward arrow"
+        }
+      ]
+    }
+  ]
+}

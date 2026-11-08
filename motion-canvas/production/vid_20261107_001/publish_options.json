@@ -1,0 +1,48 @@
+{
+  "video_id": "vid_20261107_001",
+  "source": "61495d349741fb50",
+  "writer": "claude-sonnet-5-5",
+  "skill": ".agents/skills/youtube-packaging/SKILL.md",
+  "promise": {
+    "viewer": "Orang yang kepikiran buka usaha kecil seperti tempat sewa meja mahjong, tapi belum tahu uangnya datang dari mana.",
+    "question": "Sewa meja mahjong cuma Rp45 ribu sejam, kok bisa jadi bisnis? Uangnya dari makanan atau dari meja?",
+    "verdict": "Uangnya bukan dari makanan. Uang datang dari meja yang terisi, jadi musuh utamanya kursi kosong, bukan dapur sepi.",
+    "proof": "Rp45 ribu sejam per meja, dihitung lewat simulasi delapan meja di ruko PIK.",
+    "stakes": "Salah baca sumber uangnya berarti salah fokus modal, dan ada risiko hukum yang tidak muncul di kalkulator."
+  },
+  "titles": [
+    "POV: Lo Buka Bisnis Sewa Meja Mahjong. Ternyata Uangnya Bukan dari Makanan",
+    "Hitungan Meja Mahjong Rp45 Ribu Sejam: Beneran Balik Modal?",
+    "Mau Buka Tempat Mahjong? Satu Risiko Ini Nggak Ada di Kalkulator"
+  ],
+  "hooks": [
+    "BUKAN DARI MAKANAN",
+    "MODAL SETENGAH MILIAR",
+    "CEK HUKUMNYA DULU"
+  ],
+  "scenes": [
+    "The recurring young owner, shocked and pointing at a large green mahjong table beside a pushed-away bowl of noodles, strong expression, large in frame, plain warm background on the left for text",
+    "The recurring young owner with a worried, wide-eyed look staring down at one large calculator in front of them, character large in frame, plain warm background on the left for text.",
+    "The recurring young owner with a serious, knowing look holding up one small wooden gavel, character large in frame, plain warm background on the left for text."
+  ],
+  "lanes": [
+    "verdict",
+    "proof",
+    "utility"
+  ],
+  "scores": [
+    7.6,
+    7.7,
+    7.0
+  ],
+  "why": [
+    "the script's own package",
+    "Satu angka keras yang sama dengan pembuka video (Rp45 ribu), hook menambah ide kedua soal besarnya modal.",
+    "Jawab pertanyaan 'apa yang harus gue hindari' lewat bab risiko hukum, tapi pembuka video belum menyentuhnya, jadi perlu satu kalimat teaser di chapter 1."
+  ],
+  "recommend": 2,
+  "chosen": {
+    "title": null,
+    "thumbnail": null
+  }
+}

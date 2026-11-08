@@ -1,5 +1,5 @@
 import { Line, Node, Rect, Txt, View2D } from '@motion-canvas/2d';
-import { createRef, useThread } from '@motion-canvas/core';
+import { useThread } from '@motion-canvas/core';
 import { SCENE_TIMINGS, SUBTITLE_CHUNKS, SubtitleChunk } from './timings';
 import {
   getTypo,
@@ -12,35 +12,31 @@ export { getTypo, getAssets };
 export type { ScreenTypoScale, ScreenAssetScale };
 
 export const COLORS = {
-  bg: '#F8FAFC',
+  bg: '#FAF6EE',
   surface: '#FFFFFF',
   ink: '#0F172A',
-  secondaryInk: '#475569',
-  gridLine: '#E2E8F0',
-  accent: '#059669',
+  secondaryInk: '#334155',
+  gridLine: '#E5DEC9',
+  accent: '#E11D48',
   compliantGreen: '#059669',
   goldAccent: '#D97706',
-  alertRed: '#EF4444',
 };
 
 export const HEADING_FONT = "'Plus Jakarta Sans', 'Inter', sans-serif";
 
 export const PALETTE = {
-  crimson: '#D92D20',
-  crimsonBg: '#FEE2E2',
+  crimson: '#E11D48',
+  crimsonBg: '#FFE4E6',
   emerald: '#059669',
   emeraldBg: '#D1FAE5',
-  feltGreen: '#059669',
-  feltGreenBg: '#D1FAE5',
-  muted: '#475569',
+  muted: '#334155',
   mutedBg: '#F1F5F9',
   amber: '#D97706',
   amberBg: '#FEF3C7',
   cyan: '#0284C7',
   cyanBg: '#E0F2FE',
-  surface: '#FFFFFF',
-  ink: '#0F172A',
-  cardBorder: '#CBD5E1',
+  surface: COLORS.surface,
+  ink: COLORS.ink,
 };
 
 export const FONTS = {
@@ -50,71 +46,69 @@ export const FONTS = {
 };
 
 export const BEAT_LABELS = [
-  'POV: | Fenomena Meja Hijau',
-  'POV: | Mesin Otomatis Rp12 Juta',
-  'POV: | Kunci Waktu 5 Jam',
-  'POV: | Modal Ruko Rp350 Juta',
-  'POV: | Rahasia Cuan Dimsum & Teh',
-  'POV: | Bedah Struk VIP Margin 70%',
-  'POV: | Kutukan Hari Kerja Kosong',
-  'POV: | Mesin Macet & Batu Hilang',
-  'POV: | Garis Tipis Pasal 303 KUHP',
-  'POV: | Ruko vs Sewa Harian',
+  'POV: | SEWA MEJA RP15 RIBU',
+  'POV: | MESIN OTOMATIS FOSHAN',
+  'POV: | MODAL RUKO RP350 JUTA',
+  'POV: | RENTAL GARASI RP60 JUTA',
+  'POV: | KUNCI 5 JAM NON-STOP',
+  'POV: | STRUK RP750 RIBU & MARGIN 70%',
+  'POV: | KUTUKAN HARI KERJA',
+  'POV: | BOBA TUMPAH & BATU HILANG',
+  'POV: | PASAL 303 & TAMENG LEGAL',
+  'POV: | VONIS AKHIR & BALIK MODAL',
 ];
 
-/**
- * Detects whether the current view is in widescreen mode (16:9, 1920x1080)
- * or vertical portrait mode (9:16, 1080x1920).
- */
+export const CHAPTER_LABELS = BEAT_LABELS;
+
 export function isWidescreen(view: View2D): boolean {
   return view.width() > view.height();
 }
 
-/**
- * Responsive horizontal positioning for stage cards:
- * - single: 0
- * - widescreen 16:9 (1920x1080): slot 0 -> -440, slot 1 -> 440 (side-by-side)
- * - vertical 9:16 (1080x1920): 0 (vertically stacked)
- */
 export function getCardX(view: View2D, slot: 0 | 1, single = false): number {
   if (single) return 0;
   if (isWidescreen(view)) {
-    return slot === 0 ? -440 : 440;
+    return slot === 0 ? -460 : 460;
   }
   return 0;
 }
 
-/**
- * Responsive vertical positioning for stage cards:
- * - widescreen 16:9 (1920x1080): -30
- * - vertical 9:16 (1080x1920): single ? -60 : (slot === 0 ? -210 : 230)
- */
 export function getCardY(view: View2D, slot: 0 | 1, single = false): number {
   if (isWidescreen(view)) {
-    return -30;
+    return -35;
   }
   return single ? -60 : slot === 0 ? -210 : 230;
 }
 
-/**
- * Responsive card width:
- * - widescreen 16:9: 840px
- * - vertical 9:16: 940px
- */
 export function getCardWidth(view: View2D): number {
-  return isWidescreen(view) ? 840 : 940;
+  return isWidescreen(view) ? 860 : 940;
 }
 
-/**
- * Sets up the base responsive stage:
- * - Full-canvas background Rect and grid lines
- * - Single Top brow pill at x=0, y=-475 (widescreen)
- * - Subtitle pill bar positioned bottom center with acoustic lead
- */
-export function setupBaseStage(
-  view: View2D,
-  sectionLabel?: string | number | { section: number }
-) {
+function resolveSceneIndex(sectionLabel?: string | number): number {
+  if (typeof sectionLabel === 'number') {
+    return Math.max(0, Math.min(BEAT_LABELS.length - 1, sectionLabel));
+  }
+  if (typeof sectionLabel === 'string') {
+    const exactIdx = BEAT_LABELS.indexOf(sectionLabel);
+    if (exactIdx >= 0) return exactIdx;
+    const numMatch = sectionLabel.match(/(?:beat_|chapter_)?0?(\d+)/i);
+    if (numMatch) {
+      const parsed = parseInt(numMatch[1], 10);
+      if (parsed >= 1 && parsed <= BEAT_LABELS.length) {
+        return parsed - 1;
+      }
+    }
+    const upper = sectionLabel.toUpperCase();
+    for (let i = 0; i < BEAT_LABELS.length; i++) {
+      const rhs = (BEAT_LABELS[i].split('|')[1] || '').trim().toUpperCase();
+      if (rhs && upper.includes(rhs.slice(0, 8))) {
+        return i;
+      }
+    }
+  }
+  return 0;
+}
+
+export function setupBaseStage(view: View2D, sectionLabel?: string | number) {
   const wide = isWidescreen(view);
   const typo = getTypo(wide);
   const assets = getAssets(wide);
@@ -131,53 +125,16 @@ export function setupBaseStage(
 
   const time = useThread().time;
   const t0 = time();
-
-  let sceneIdx = 0;
-  if (
-    typeof sectionLabel === 'object' &&
-    sectionLabel !== null &&
-    'section' in sectionLabel
-  ) {
-    sceneIdx = Math.max(0, Math.min(9, sectionLabel.section));
-  } else if (typeof sectionLabel === 'number') {
-    sceneIdx = Math.max(0, Math.min(9, sectionLabel));
-  } else if (typeof sectionLabel === 'string') {
-    const idx = BEAT_LABELS.indexOf(sectionLabel);
-    if (idx >= 0) {
-      sceneIdx = idx;
-    } else {
-      const match = sectionLabel.match(/^0?(\d+)/);
-      if (match) {
-        sceneIdx = Math.max(0, Math.min(9, parseInt(match[1], 10) - 1));
-      } else {
-        const found = BEAT_LABELS.findIndex((bl) =>
-          bl.toLowerCase().includes(sectionLabel.toLowerCase())
-        );
-        if (found >= 0) sceneIdx = found;
-      }
-    }
-  }
-
-  const rawLabel =
-    typeof sectionLabel === 'string'
-      ? sectionLabel
-      : BEAT_LABELS[sceneIdx] ?? '';
-
-  let chapterName = '';
-  if (rawLabel.includes('|')) {
-    chapterName = (rawLabel.split('|')[1] ?? '').trim();
-  } else {
-    chapterName =
-      (BEAT_LABELS[sceneIdx] ?? '').split('|')[1]?.trim() || rawLabel;
-  }
+  const sceneIdx = resolveSceneIndex(sectionLabel);
+  const fullLabel = BEAT_LABELS[sceneIdx] ?? BEAT_LABELS[0];
+  const chapterName = (fullLabel.split('|')[1] ?? '').trim() || fullLabel;
 
   const sceneStart = SCENE_TIMINGS[sceneIdx]?.start ?? 0;
   const sceneEnd = SCENE_TIMINGS[sceneIdx]?.end ?? 9999;
   const LEAD_OFFSET = 0.22;
 
   const sceneChunks = (SUBTITLE_CHUNKS || []).filter(
-    (c: SubtitleChunk) =>
-      c.start >= sceneStart - 0.05 && c.end <= sceneEnd + 0.05
+    (c: SubtitleChunk) => c.start >= sceneStart - 0.05 && c.end <= sceneEnd + 0.05
   );
 
   const getGlobalTime = () => sceneStart + (time() - t0) + LEAD_OFFSET;
@@ -214,12 +171,9 @@ export function setupBaseStage(
     return gt >= chunk.words[slotIdx].start;
   };
 
-  const baseNode = (
-    <Node>
-      {/* Background canvas fill */}
+  const bgNode = (
+    <Node zIndex={-10}>
       <Rect width={width} height={height} fill={COLORS.bg} />
-
-      {/* Structural Swiss Grid Lines */}
       {vGridX.map((x) => (
         <Line
           key={`vgrid-${x}`}
@@ -229,10 +183,9 @@ export function setupBaseStage(
           ]}
           stroke={COLORS.gridLine}
           lineWidth={2}
-          opacity={0.8}
+          opacity={0.75}
         />
       ))}
-
       {hGridY.map((y) => (
         <Line
           key={`hgrid-${y}`}
@@ -242,11 +195,15 @@ export function setupBaseStage(
           ]}
           stroke={COLORS.gridLine}
           lineWidth={2}
-          opacity={0.8}
+          opacity={0.75}
         />
       ))}
+    </Node>
+  );
 
-      {/* Single Top Brow Badge (Clean Rule 11) */}
+  const hudOverlayNode = (
+    <Node zIndex={100}>
+      {/* Single Top Brow Badge */}
       <Rect
         x={0}
         y={wide ? -475 : -820}
@@ -257,7 +214,7 @@ export function setupBaseStage(
         radius={999}
         fill={'#FFFFFF'}
         stroke={PALETTE.ink}
-        lineWidth={2.5}
+        lineWidth={3}
         gap={14}
       >
         <Txt
@@ -286,7 +243,7 @@ export function setupBaseStage(
       {/* Editorial Pill Highlight Subtitle Bar */}
       <Rect
         x={0}
-        y={wide ? 415 : 670}
+        y={wide ? 420 : 670}
         layout
         direction={'row'}
         alignItems={'center'}
@@ -334,7 +291,7 @@ export function setupBaseStage(
                 const chunk = getActiveChunk();
                 return chunk && slotIdx < chunk.words.length
                   ? typo.subtitle
-                  : 28;
+                  : 0;
               }}
               fontWeight={700}
               fill={() =>
@@ -356,19 +313,7 @@ export function setupBaseStage(
     </Node>
   );
 
-  view.add(baseNode);
-  return baseNode;
-}
-
-/**
- * Editorial stage wrapper that initializes Swiss grid, top brow, and subtitles,
- * and returns a Ref to wrap all scene-specific animations.
- */
-export function createEditorialStage(
-  view: View2D,
-  sectionLabel?: string | number | { section: number }
-) {
-  setupBaseStage(view, sectionLabel);
-  const stage = createRef<Node>();
-  return stage;
+  view.add(bgNode);
+  view.add(hudOverlayNode);
+  return hudOverlayNode;
 }

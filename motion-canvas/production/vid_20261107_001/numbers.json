@@ -1,0 +1,1184 @@
+{
+  "video_id": "vid_20261107_001",
+  "generated": "2026-11-08",
+  "note": "basis=sourced berarti URL benar-benar dibuka (kecuali yang ditandai kelas bukti lebih lemah); basis=estimate berarti asumsi atau hasil hitung, bukan struk atau data nyata.",
+  "figures": {
+    "meja_otomatis_c360": {
+      "value": 15899000,
+      "display": "Rp15,9 juta",
+      "basis": "sourced",
+      "source": "https://www.ruparupa.com/informastore/informa-meja-bermain-mahjong-c360-silver.html (harga diskon, harga coret Rp17.999.000)",
+      "aliases": [
+        "Rp15.899.000",
+        "15,9 juta",
+        "sekitar Rp16 juta"
+      ]
+    },
+    "meja_otomatis_toko_low": {
+      "value": 13500000,
+      "display": "Rp13,5 juta",
+      "basis": "sourced",
+      "source": "https://momsmoney.kontan.co.id/news/mahjong-kian-populer-permintaan-meja-di-toko-mahjong-melonjak",
+      "aliases": [
+        "Rp13.500.000",
+        "13,5 juta"
+      ]
+    },
+    "meja_otomatis_toko_high": {
+      "value": 23200000,
+      "display": "Rp23,2 juta",
+      "basis": "sourced",
+      "source": "https://momsmoney.kontan.co.id/news/mahjong-kian-populer-permintaan-meja-di-toko-mahjong-melonjak",
+      "aliases": [
+        "Rp23.200.000",
+        "23,2 juta"
+      ]
+    },
+    "meja_premium_low": {
+      "value": 29000000,
+      "display": "Rp29 juta",
+      "basis": "sourced",
+      "source": "https://momsmoney.kontan.co.id/news/mahjong-kian-populer-permintaan-meja-di-toko-mahjong-melonjak",
+      "aliases": [
+        "Rp29.000.000"
+      ]
+    },
+    "meja_premium_high": {
+      "value": 65000000,
+      "display": "Rp65 juta",
+      "basis": "sourced",
+      "source": "https://momsmoney.kontan.co.id/news/mahjong-kian-populer-permintaan-meja-di-toko-mahjong-melonjak",
+      "aliases": [
+        "Rp65.000.000"
+      ]
+    },
+    "meja_portabel_berwyn_list": {
+      "value": 9999000,
+      "display": "Rp10 juta",
+      "basis": "sourced",
+      "source": "https://www.ruparupa.com/berwyn-set-mahjong-portabel-hitam.html (harga coret; harga diskon Rp7.599.000)",
+      "aliases": [
+        "Rp9.999.000",
+        "hampir Rp10 juta"
+      ]
+    },
+    "meja_alibaba_usd_low": {
+      "value": 388,
+      "display": "388 dolar",
+      "basis": "sourced",
+      "source": "https://www.alibaba.com/product-introduction/Mahjong-Table-Folding-Automatic-Mahjong-Machine_1601031718808.html (per set, minimal 20 set; belum termasuk ongkir, bea, kurs)",
+      "aliases": [
+        "US$388",
+        "$388"
+      ]
+    },
+    "meja_alibaba_usd_high": {
+      "value": 450,
+      "display": "450 dolar",
+      "basis": "sourced",
+      "source": "https://www.alibaba.com/product-introduction/Mahjong-Table-Folding-Automatic-Mahjong-Machine_1601031718808.html (per set, 2 sampai 5 set)",
+      "aliases": [
+        "US$450",
+        "$450"
+      ]
+    },
+    "meja_berat_kg": {
+      "value": 99.5,
+      "display": "99,5 kilogram",
+      "basis": "sourced",
+      "source": "https://www.ruparupa.com/informastore/informa-meja-bermain-mahjong-c360-silver.html",
+      "aliases": [
+        "sekitar 100 kilogram",
+        "hampir 100 kilo"
+      ]
+    },
+    "meja_daya_watt": {
+      "value": 200,
+      "display": "200 watt",
+      "basis": "sourced",
+      "source": "https://www.ruparupa.com/informastore/informa-meja-bermain-mahjong-c360-silver.html",
+      "aliases": [
+        "200 W"
+      ]
+    },
+    "meja_jumlah_set_ubin": {
+      "value": 2,
+      "display": "dua set ubin",
+      "basis": "sourced",
+      "source": "https://www.ruparupa.com/informastore/informa-meja-bermain-mahjong-c360-silver.html ; https://themenscave.sg/blog/how-does-an-automatic-mahjong-table-works",
+      "aliases": [
+        "2 set ubin"
+      ]
+    },
+    "penjualan_naik_persen_low": {
+      "value": 50,
+      "display": "50 persen",
+      "basis": "sourced",
+      "source": "https://momsmoney.kontan.co.id/news/mahjong-kian-populer-permintaan-meja-di-toko-mahjong-melonjak (penjual Toko Mahjong, 4 bulan terakhir, artikel 19 Okt 2026, klaim penjual bukan data pasar)",
+      "aliases": [
+        "50%"
+      ]
+    },
+    "penjualan_naik_persen_high": {
+      "value": 60,
+      "display": "60 persen",
+      "basis": "sourced",
+      "source": "https://momsmoney.kontan.co.id/news/mahjong-kian-populer-permintaan-meja-di-toko-mahjong-melonjak",
+      "aliases": [
+        "60%"
+      ]
+    },
+    "penjualan_unit_4bulan_low": {
+      "value": 3000,
+      "display": "3.000 unit",
+      "basis": "sourced",
+      "source": "https://momsmoney.kontan.co.id/news/mahjong-kian-populer-permintaan-meja-di-toko-mahjong-melonjak",
+      "aliases": [
+        "tiga ribu unit"
+      ]
+    },
+    "penjualan_unit_4bulan_high": {
+      "value": 5000,
+      "display": "5.000 unit",
+      "basis": "sourced",
+      "source": "https://momsmoney.kontan.co.id/news/mahjong-kian-populer-permintaan-meja-di-toko-mahjong-melonjak",
+      "aliases": [
+        "lima ribu unit"
+      ]
+    },
+    "tarif_tjong_weekday_low": {
+      "value": 85000,
+      "display": "Rp85 ribu",
+      "basis": "sourced",
+      "source": "https://www.nibble.id/tempat-main-mahjong-di-jakarta/ (per jam, Kelapa Gading, 27 Sep 2026)",
+      "aliases": [
+        "Rp85.000",
+        "85 ribu"
+      ]
+    },
+    "tarif_tjong_weekday_high": {
+      "value": 100000,
+      "display": "Rp100 ribu",
+      "basis": "sourced",
+      "source": "https://www.nibble.id/tempat-main-mahjong-di-jakarta/",
+      "aliases": [
+        "Rp100.000"
+      ]
+    },
+    "tarif_tjong_weekend_low": {
+      "value": 110000,
+      "display": "Rp110 ribu",
+      "basis": "sourced",
+      "source": "https://www.nibble.id/tempat-main-mahjong-di-jakarta/",
+      "aliases": [
+        "Rp110.000"
+      ]
+    },
+    "tarif_tjong_weekend_high": {
+      "value": 120000,
+      "display": "Rp120 ribu",
+      "basis": "sourced",
+      "source": "https://www.nibble.id/tempat-main-mahjong-di-jakarta/",
+      "aliases": [
+        "Rp120.000"
+      ]
+    },
+    "tarif_chiyo_otomatis": {
+      "value": 50000,
+      "display": "Rp50 ribu",
+      "basis": "sourced",
+      "source": "https://www.nibble.id/tempat-main-mahjong-di-jakarta/ (per jam, meja otomatis, Sunter; meja manual Rp35 ribu)",
+      "aliases": [
+        "Rp50.000"
+      ]
+    },
+    "tarif_ying_weekday_low": {
+      "value": 60000,
+      "display": "Rp60 ribu",
+      "basis": "sourced",
+      "source": "https://www.nibble.id/tempat-main-mahjong-di-jakarta/ (per jam, Kalideres)",
+      "aliases": [
+        "Rp60.000"
+      ]
+    },
+    "tarif_ying_weekend_high": {
+      "value": 90000,
+      "display": "Rp90 ribu",
+      "basis": "sourced",
+      "source": "https://www.nibble.id/tempat-main-mahjong-di-jakarta/",
+      "aliases": [
+        "Rp90.000"
+      ]
+    },
+    "tarif_pong_hub_meja_jam": {
+      "value": 45000,
+      "display": "Rp45 ribu",
+      "basis": "sourced",
+      "source": "https://www.nibble.id/tempat-main-mahjong-di-jakarta/ (per meja per jam, promo soft opening; Rp11.250 per orang)",
+      "aliases": [
+        "Rp45.000"
+      ]
+    },
+    "tarif_pong_hub_orang_jam": {
+      "value": 11250,
+      "display": "Rp11.250",
+      "basis": "sourced",
+      "source": "https://www.nibble.id/tempat-main-mahjong-di-jakarta/",
+      "aliases": [
+        "sekitar Rp11 ribu",
+        "Rp11 ribu"
+      ]
+    },
+    "tarif_pong_pik_low": {
+      "value": 125000,
+      "display": "Rp125 ribu",
+      "basis": "sourced",
+      "source": "https://www.nibble.id/tempat-main-mahjong-di-jakarta/ (satuan tidak disebut artikel; 10 meja otomatis)",
+      "aliases": [
+        "Rp125.000"
+      ]
+    },
+    "tarif_pong_pik_high": {
+      "value": 175000,
+      "display": "Rp175 ribu",
+      "basis": "sourced",
+      "source": "https://www.nibble.id/tempat-main-mahjong-di-jakarta/",
+      "aliases": [
+        "Rp175.000"
+      ]
+    },
+    "tarif_hobbyhub_vip_3jam": {
+      "value": 150000,
+      "display": "Rp150 ribu",
+      "basis": "sourced",
+      "source": "https://www.nibble.id/tempat-main-mahjong-di-jakarta/ (ruang VIP 4 orang, per 3 jam, Kelapa Gading)",
+      "aliases": [
+        "Rp150.000"
+      ]
+    },
+    "tarif_per_orang_termurah": {
+      "value": 9000,
+      "display": "Rp9 ribu",
+      "basis": "sourced",
+      "source": "https://www.nibble.id/tempat-main-mahjong-di-jakarta/ (Hobby Hub, ruang privat, per orang)",
+      "aliases": [
+        "Rp9.000"
+      ]
+    },
+    "sewa_harian_lapak_1hari": {
+      "value": 500000,
+      "display": "Rp500 ribu",
+      "basis": "sourced",
+      "source": "https://lapakmahjong.id/ (promo; harga coret Rp1.000.000; satu hari, meja otomatis portabel)",
+      "aliases": [
+        "Rp500.000",
+        "setengah juta"
+      ]
+    },
+    "sewa_harian_lapak_3hari": {
+      "value": 1200000,
+      "display": "Rp1,2 juta",
+      "basis": "sourced",
+      "source": "https://lapakmahjong.id/ (paket akhir pekan 3 hari)",
+      "aliases": [
+        "Rp1.200.000",
+        "1,2 juta"
+      ]
+    },
+    "sewa_harian_lapak_4hari": {
+      "value": 1200000,
+      "display": "Rp1,2 juta",
+      "basis": "sourced",
+      "source": "https://lapakmahjong.id/ (paket Senin sampai Kamis, hanya mulai Senin)",
+      "aliases": [
+        "Rp1.200.000"
+      ]
+    },
+    "ruko_pik_3lantai_low": {
+      "value": 150000000,
+      "display": "Rp150 juta",
+      "basis": "sourced",
+      "source": "https://www.rumah123.com/sewa/jakarta-utara/tahunan/ruko/ (Ruko Osaka 4,5x15 PIK 2, per tahun, harga iklan)",
+      "aliases": [
+        "Rp150.000.000",
+        "150 juta per tahun"
+      ]
+    },
+    "ruko_pik_3lantai_high": {
+      "value": 250000000,
+      "display": "Rp250 juta",
+      "basis": "sourced",
+      "source": "https://www.rumah123.com/sewa/jakarta-utara/tahunan/ruko/ (Ruko PIK Boulevard 4,5x15, per tahun, harga iklan)",
+      "aliases": [
+        "Rp250.000.000",
+        "250 juta per tahun"
+      ]
+    },
+    "ruko_pik_8x18": {
+      "value": 400000000,
+      "display": "Rp400 juta",
+      "basis": "sourced",
+      "source": "https://www.rumah123.com/sewa/jakarta-utara/tahunan/ruko/ (Soho 8x18, 3 lantai, per tahun)",
+      "aliases": [
+        "Rp400.000.000"
+      ]
+    },
+    "ruko_kg_low": {
+      "value": 125000000,
+      "display": "Rp125 juta",
+      "basis": "estimate",
+      "source": "hasil pencarian listing rumah123 untuk Kelapa Gading (Sedayu City/Inkopal/Nias Raya, per tahun); halaman listing tidak dibuka satu per satu",
+      "aliases": [
+        "Rp125.000.000"
+      ],
+      "note": "kelas bukti lebih lemah: dari ringkasan pencarian"
+    },
+    "ruko_kg_high": {
+      "value": 175000000,
+      "display": "Rp175 juta",
+      "basis": "estimate",
+      "source": "idem, Ruko Boulevard Raya Kelapa Gading 4,5x17, 3 lantai",
+      "aliases": [
+        "Rp175.000.000"
+      ],
+      "note": "kelas bukti lebih lemah"
+    },
+    "ruko_surabaya_kertajaya_low": {
+      "value": 150000000,
+      "display": "Rp150 juta",
+      "basis": "estimate",
+      "source": "hasil pencarian rumah123 Kertajaya (ruko baru 3 lantai per tahun); halaman tidak dibuka",
+      "aliases": [
+        "Rp150.000.000"
+      ],
+      "note": "kelas bukti lebih lemah"
+    },
+    "ruko_surabaya_kertajaya_high": {
+      "value": 300000000,
+      "display": "Rp300 juta",
+      "basis": "estimate",
+      "source": "idem, pinggir jalan raya Kertajaya",
+      "aliases": [
+        "Rp300.000.000"
+      ],
+      "note": "kelas bukti lebih lemah"
+    },
+    "peredam_per_m2_low": {
+      "value": 600000,
+      "display": "Rp600 ribu",
+      "basis": "sourced",
+      "source": "https://gnetindonesia.com/blogs/harga-pasang-rockwool (satu lapis rockwool, sudah termasuk pasang dan gipsum, per meter persegi; blog penyedia jasa)",
+      "aliases": [
+        "Rp600.000"
+      ]
+    },
+    "peredam_per_m2_high": {
+      "value": 1200000,
+      "display": "Rp1,2 juta",
+      "basis": "sourced",
+      "source": "https://gnetindonesia.com/blogs/harga-pasang-rockwool",
+      "aliases": [
+        "Rp1.200.000"
+      ]
+    },
+    "peredam_dua_lapis_low": {
+      "value": 1500000,
+      "display": "Rp1,5 juta",
+      "basis": "sourced",
+      "source": "https://gnetindonesia.com/blogs/harga-pasang-rockwool",
+      "aliases": [
+        "Rp1.500.000"
+      ]
+    },
+    "peredam_dua_lapis_high": {
+      "value": 2500000,
+      "display": "Rp2,5 juta",
+      "basis": "sourced",
+      "source": "https://gnetindonesia.com/blogs/harga-pasang-rockwool",
+      "aliases": [
+        "Rp2.500.000"
+      ]
+    },
+    "tarif_listrik_kwh": {
+      "value": 1444.7,
+      "display": "Rp1.444,70",
+      "basis": "sourced",
+      "source": "https://www.kompas.tv/info-publik/683270/tarif-listrik-pln-per-kwh-1-7-agustus-2026-cek-untuk-semua-golongan-subsidi-dan-non-subsidi (B-2 6.600 VA sampai 200 kVA, 1 sampai 7 Agustus 2026, tarif Triwulan III; Triwulan IV dilaporkan tidak berubah)",
+      "aliases": [
+        "Rp1.444",
+        "sekitar Rp1.445"
+      ]
+    },
+    "kopi_susu_hpp_gelas": {
+      "value": 6500,
+      "display": "Rp6.500",
+      "basis": "sourced",
+      "source": "https://ukmindonesia.id/baca-deskripsi-posts/rincian-modal-usaha-kopi-kekinian-dan-analisa-keuntungannya (contoh hitungan artikel 20 Juni 2025, bukan survei)",
+      "aliases": [
+        "Rp6.500"
+      ]
+    },
+    "kopi_susu_harga_jual": {
+      "value": 20000,
+      "display": "Rp20 ribu",
+      "basis": "sourced",
+      "source": "https://ukmindonesia.id/baca-deskripsi-posts/rincian-modal-usaha-kopi-kekinian-dan-analisa-keuntungannya",
+      "aliases": [
+        "Rp20.000"
+      ]
+    },
+    "kopi_susu_bahan_persen": {
+      "value": 32.5,
+      "display": "32,5 persen",
+      "basis": "estimate",
+      "source": "6.500 / 20.000 x 100 dari contoh di https://ukmindonesia.id/baca-deskripsi-posts/rincian-modal-usaha-kopi-kekinian-dan-analisa-keuntungannya",
+      "aliases": [
+        "32,5%",
+        "sepertiga"
+      ]
+    },
+    "kopi_susu_laba_kotor_persen": {
+      "value": 67.5,
+      "display": "67,5 persen",
+      "basis": "estimate",
+      "source": "(20.000 - 6.500) / 20.000 x 100, contoh artikel; minuman kopi, bukan makanan berat",
+      "aliases": [
+        "67,5%"
+      ]
+    },
+    "china_ruang_mahjong_24jam_toko": {
+      "value": 14000,
+      "display": "14.000 toko",
+      "basis": "sourced",
+      "source": "https://www.36kr.com/p/3760861928239877 (klaim merek Si Ge Peng You, artikel 10 Apr 2026)",
+      "aliases": [
+        "empat belas ribu toko"
+      ]
+    },
+    "china_ruang_tarif_4jam_yuan": {
+      "value": 60,
+      "display": "60 yuan",
+      "basis": "sourced",
+      "source": "https://www.36kr.com/p/3760861928239877 (ruang paling mahal hari kerja di Hangzhou, 4 jam; akhir pekan 68 yuan)",
+      "aliases": [
+        "60 RMB"
+      ]
+    },
+    "china_pasar_2025_yuan_miliar": {
+      "value": 100,
+      "display": "100 miliar yuan",
+      "basis": "sourced",
+      "source": "https://www.36kr.com/p/3760861928239877 (\"lebih dari seratus miliar yuan\", angka tanpa rincian)",
+      "aliases": [
+        "seratus miliar yuan"
+      ]
+    },
+    "yelp_naik_persen": {
+      "value": 4400,
+      "display": "4.400 persen",
+      "basis": "sourced",
+      "source": "https://6abc.com/post/mahjong-clubs-see-surge-popularity-among-younger-adults/19636787/ (pencarian klub mahjong di AS menurut Yelp, tahun ke tahun, artikel 6 Agu 2026)",
+      "aliases": [
+        "4.400%",
+        "lebih dari 4.400 persen"
+      ]
+    },
+    "pasal_426_penjara_tahun": {
+      "value": 9,
+      "display": "sembilan tahun",
+      "basis": "sourced",
+      "source": "https://www.hukumonline.com/klinik/a/jerat-hukum-selebgram-iendorse-i-judi-ionline-i-lt5a66e8c34b535/ (laporan sekunder; teks resmi UU 1/2023 tidak berhasil dibuka)",
+      "aliases": [
+        "9 tahun"
+      ]
+    },
+    "pasal_426_denda": {
+      "value": 2000000000,
+      "display": "Rp2 miliar",
+      "basis": "sourced",
+      "source": "https://www.hukumonline.com/klinik/a/jerat-hukum-selebgram-iendorse-i-judi-ionline-i-lt5a66e8c34b535/ (denda kategori VI)",
+      "aliases": [
+        "Rp2.000.000.000",
+        "2 miliar"
+      ]
+    },
+    "pasal_427_penjara_tahun": {
+      "value": 3,
+      "display": "tiga tahun",
+      "basis": "sourced",
+      "source": "https://www.hukumonline.com/klinik/a/jerat-hukum-selebgram-iendorse-i-judi-ionline-i-lt5a66e8c34b535/",
+      "aliases": [
+        "3 tahun"
+      ]
+    },
+    "pasal_427_denda": {
+      "value": 50000000,
+      "display": "Rp50 juta",
+      "basis": "sourced",
+      "source": "https://www.hukumonline.com/klinik/a/jerat-hukum-selebgram-iendorse-i-judi-ionline-i-lt5a66e8c34b535/ (denda kategori III)",
+      "aliases": [
+        "Rp50.000.000"
+      ]
+    },
+    "pasal_303_penjara_lama": {
+      "value": 10,
+      "display": "sepuluh tahun",
+      "basis": "sourced",
+      "source": "https://www.hukumonline.com/klinik/a/jerat-hukum-selebgram-iendorse-i-judi-ionline-i-lt5a66e8c34b535/ (KUHP lama, penyelenggara)",
+      "aliases": [
+        "10 tahun"
+      ]
+    },
+    "pasal_303_denda_lama": {
+      "value": 25000000,
+      "display": "Rp25 juta",
+      "basis": "sourced",
+      "source": "https://www.hukumonline.com/klinik/a/jerat-hukum-selebgram-iendorse-i-judi-ionline-i-lt5a66e8c34b535/",
+      "aliases": [
+        "Rp25.000.000"
+      ]
+    },
+    "sesi_taiwan_per_que_jam": {
+      "value": 1.5,
+      "display": "satu setengah jam",
+      "basis": "estimate",
+      "source": "satu \"que\" (4 putaran angin) sekitar 20 hand dan sekitar 1,5 jam menurut satu posting forum PTT 2008 (cuplikan pencarian, halaman gagal dibuka 403); pengalaman pribadi, bukan data",
+      "aliases": [
+        "1,5 jam",
+        "90 menit"
+      ],
+      "note": "lemah"
+    },
+    "A_meja": {
+      "value": 8,
+      "display": "delapan meja",
+      "basis": "estimate",
+      "source": "asumsi",
+      "aliases": [
+        "8 meja"
+      ]
+    },
+    "A_jam_sesi": {
+      "value": 4,
+      "display": "empat jam",
+      "basis": "estimate",
+      "source": "asumsi: 4 jam per sesi (paket 4 jam adalah standar ruang swalayan Tiongkok, https://www.36kr.com/p/3760861928239877)",
+      "aliases": [
+        "4 jam"
+      ]
+    },
+    "A_tarif_weekday": {
+      "value": 70000,
+      "display": "Rp70 ribu",
+      "basis": "estimate",
+      "source": "asumsi: di antara Rp50-80 ribu (Chiyo, YING) dan Rp85-100 ribu (Tjong) per meja per jam",
+      "aliases": [
+        "Rp70.000"
+      ]
+    },
+    "A_tarif_weekend": {
+      "value": 100000,
+      "display": "Rp100 ribu",
+      "basis": "estimate",
+      "source": "asumsi: di antara Rp80-90 ribu (YING) dan Rp110-120 ribu (Tjong) per meja per jam",
+      "aliases": [
+        "Rp100.000"
+      ]
+    },
+    "A_sesi_per_meja_hari_kerja": {
+      "value": 0.5,
+      "display": "setengah sesi",
+      "basis": "estimate",
+      "source": "asumsi: 0,5 sesi per meja per hari, Senin-Jumat",
+      "aliases": [
+        "0,5 sesi"
+      ]
+    },
+    "A_sesi_per_meja_akhir_pekan": {
+      "value": 1.5,
+      "display": "satu setengah sesi",
+      "basis": "estimate",
+      "source": "asumsi: 1,5 sesi per meja per hari, Sabtu-Minggu",
+      "aliases": [
+        "1,5 sesi"
+      ]
+    },
+    "A_sesi_minggu_hari_kerja": {
+      "value": 20.0,
+      "display": "20 sesi",
+      "basis": "estimate",
+      "source": "8 meja x 5 hari x 0,5"
+    },
+    "A_sesi_minggu_akhir_pekan": {
+      "value": 24.0,
+      "display": "24 sesi",
+      "basis": "estimate",
+      "source": "8 meja x 2 hari x 1,5"
+    },
+    "A_sesi_minggu": {
+      "value": 44.0,
+      "display": "44 sesi",
+      "basis": "estimate",
+      "source": "20 + 24"
+    },
+    "A_sesi_bulan": {
+      "value": 190.7,
+      "display": "sekitar 191 sesi",
+      "basis": "estimate",
+      "source": "44 x 52/12 = 190,67",
+      "aliases": [
+        "191 sesi"
+      ]
+    },
+    "A_okupansi_persen": {
+      "value": 31.4,
+      "display": "31 persen",
+      "basis": "estimate",
+      "source": "44 sesi x 4 jam / (8 meja x 7 hari x 10 jam buka) = 176/560 = 31,4%",
+      "aliases": [
+        "31%",
+        "sepertiga"
+      ]
+    },
+    "A_pendapatan_sewa_minggu": {
+      "value": 15200000,
+      "display": "Rp15,2 juta",
+      "basis": "estimate",
+      "source": "20 x 4 x 70.000 + 24 x 4 x 100.000 = 5.600.000 + 9.600.000"
+    },
+    "A_pendapatan_sewa_bulan": {
+      "value": 65866667,
+      "display": "Rp65,9 juta",
+      "basis": "estimate",
+      "source": "15.200.000 x 52/12",
+      "aliases": [
+        "Rp65.866.667"
+      ]
+    },
+    "A_bill_makan_minum_sesi": {
+      "value": 140000,
+      "display": "Rp140 ribu",
+      "basis": "estimate",
+      "source": "asumsi: 4 orang x Rp35 ribu (minuman dan camilan)",
+      "aliases": [
+        "Rp140.000"
+      ]
+    },
+    "A_pendapatan_makan_minum_bulan": {
+      "value": 26693333,
+      "display": "Rp26,7 juta",
+      "basis": "estimate",
+      "source": "190,67 sesi x 140.000"
+    },
+    "A_pendapatan_total_bulan": {
+      "value": 92560000,
+      "display": "Rp92,6 juta",
+      "basis": "estimate",
+      "source": "65.866.667 + 26.693.333 = 92.560.000",
+      "aliases": [
+        "Rp92.560.000"
+      ]
+    },
+    "A_bill_rata_sesi": {
+      "value": 485455,
+      "display": "sekitar Rp485 ribu",
+      "basis": "estimate",
+      "source": "92.560.000 / 190,67 sesi = Rp485.455 per meja per sesi",
+      "aliases": [
+        "Rp485.000"
+      ]
+    },
+    "A_sewa_meja_rata_sesi": {
+      "value": 345455,
+      "display": "sekitar Rp345 ribu",
+      "basis": "estimate",
+      "source": "65.866.667 / 190,67"
+    },
+    "A_bahan_makan_minum_persen": {
+      "value": 35,
+      "display": "35 persen",
+      "basis": "estimate",
+      "source": "asumsi; contoh kopi susu 32,5 persen (https://ukmindonesia.id/baca-deskripsi-posts/rincian-modal-usaha-kopi-kekinian-dan-analisa-keuntungannya), makanan lebih tinggi",
+      "aliases": [
+        "35%"
+      ]
+    },
+    "A_modal_bahan_makan_minum": {
+      "value": 9342667,
+      "display": "Rp9,3 juta",
+      "basis": "estimate",
+      "source": "26.693.333 x 35%"
+    },
+    "A_untung_kotor_makan_minum": {
+      "value": 17350667,
+      "display": "Rp17,4 juta",
+      "basis": "estimate",
+      "source": "26.693.333 - 9.342.667 = 17.350.667"
+    },
+    "A_listrik_per_meja_jam": {
+      "value": 1228,
+      "display": "sekitar Rp1.230",
+      "basis": "estimate",
+      "source": "(0,2 kW meja + 0,6 kW AC + 0,05 kW lampu) = 0,85 kWh x Rp1.444,70; AC dan lampu adalah asumsi",
+      "aliases": [
+        "Rp1.228",
+        "sekitar seribu dua ratus rupiah",
+        "Rp1.230"
+      ]
+    },
+    "A_variabel_per_meja_jam": {
+      "value": 2728,
+      "display": "sekitar Rp2.730",
+      "basis": "estimate",
+      "source": "listrik 1.228 + perawatan/pembersihan 1.500 (asumsi)"
+    },
+    "A_biaya_variabel_sewa_bulan": {
+      "value": 2080551,
+      "display": "Rp2,1 juta",
+      "basis": "estimate",
+      "source": "190,67 sesi x 4 jam x 2.728"
+    },
+    "A_untung_kotor_sewa": {
+      "value": 63786116,
+      "display": "Rp63,8 juta",
+      "basis": "estimate",
+      "source": "65.866.667 - 2.080.551 = 63.786.116"
+    },
+    "A_untung_sewa_persen": {
+      "value": 96.8,
+      "display": "97 persen",
+      "basis": "estimate",
+      "source": "63.786.116 / 65.866.667 = 96,8%",
+      "aliases": [
+        "97%"
+      ]
+    },
+    "A_untung_makan_minum_persen": {
+      "value": 65,
+      "display": "65 persen",
+      "basis": "estimate",
+      "source": "100% - 35%",
+      "aliases": [
+        "65%"
+      ]
+    },
+    "A_porsi_untung_sewa_persen": {
+      "value": 78.6,
+      "display": "79 persen",
+      "basis": "estimate",
+      "source": "63.786.116 / (63.786.116 + 17.350.667) = 78,6%",
+      "aliases": [
+        "79%",
+        "sekitar delapan dari sepuluh"
+      ]
+    },
+    "A_porsi_untung_makan_minum_persen": {
+      "value": 21.4,
+      "display": "21 persen",
+      "basis": "estimate",
+      "source": "100 - 78,6",
+      "aliases": [
+        "21%"
+      ]
+    },
+    "A_pajak_daerah_persen": {
+      "value": 10,
+      "display": "10 persen",
+      "basis": "estimate",
+      "source": "asumsi belum diverifikasi (tarif pajak hiburan/restoran daerah)",
+      "aliases": [
+        "10%"
+      ]
+    },
+    "A_pajak_daerah_bulan": {
+      "value": 9256000,
+      "display": "Rp9,3 juta",
+      "basis": "estimate",
+      "source": "10% x 92.560.000"
+    },
+    "A_tetap_sewa_ruko_per_bulan": {
+      "value": 15000000,
+      "display": "Rp15 juta",
+      "basis": "estimate",
+      "source": "180.000.000 / 12 (rentang sumber Rp150-250 juta per tahun)"
+    },
+    "A_tetap_gaji_4_orang": {
+      "value": 20000000,
+      "display": "Rp20 juta",
+      "basis": "estimate",
+      "source": "asumsi"
+    },
+    "A_tetap_internet_air_pos": {
+      "value": 3000000,
+      "display": "Rp3 juta",
+      "basis": "estimate",
+      "source": "asumsi"
+    },
+    "A_tetap_pemasaran": {
+      "value": 2000000,
+      "display": "Rp2 juta",
+      "basis": "estimate",
+      "source": "asumsi"
+    },
+    "A_biaya_tetap_bulan": {
+      "value": 40000000,
+      "display": "Rp40 juta",
+      "basis": "estimate",
+      "source": "15.000.000 + 20.000.000 + 3.000.000 + 2.000.000",
+      "aliases": [
+        "Rp40.000.000"
+      ]
+    },
+    "A_untung_bersih_bulan": {
+      "value": 31880782,
+      "display": "Rp31,9 juta",
+      "basis": "estimate",
+      "source": "92.560.000 - 9.256.000 - 2.080.551 - 9.342.667 - 40.000.000 = 31.880.782",
+      "aliases": [
+        "Rp31.880.782"
+      ]
+    },
+    "A_untung_bersih_tanpa_makan_minum": {
+      "value": 17199449,
+      "display": "Rp17,2 juta",
+      "basis": "estimate",
+      "source": "65.866.667 x 0,9 - 2.080.551 - 40.000.000 = 17.199.449"
+    },
+    "A_modal_meja_8x15.9jt": {
+      "value": 127200000,
+      "display": "Rp127,2 juta",
+      "basis": "estimate",
+      "source": "asumsi (meja: Rp15,9 juta sumber; peredam: 100 m2 x Rp900 ribu, tengah rentang sumber)"
+    },
+    "A_modal_peredam_suara_100m2x900rb": {
+      "value": 90000000,
+      "display": "Rp90 juta",
+      "basis": "estimate",
+      "source": "asumsi (meja: Rp15,9 juta sumber; peredam: 100 m2 x Rp900 ribu, tengah rentang sumber)"
+    },
+    "A_modal_kursi_32x600rb": {
+      "value": 19200000,
+      "display": "Rp19,2 juta",
+      "basis": "estimate",
+      "source": "asumsi"
+    },
+    "A_modal_ac_6x6jt": {
+      "value": 36000000,
+      "display": "Rp36 juta",
+      "basis": "estimate",
+      "source": "asumsi"
+    },
+    "A_modal_interior_dekor": {
+      "value": 60000000,
+      "display": "Rp60 juta",
+      "basis": "estimate",
+      "source": "asumsi"
+    },
+    "A_modal_dapur_bar": {
+      "value": 40000000,
+      "display": "Rp40 juta",
+      "basis": "estimate",
+      "source": "asumsi"
+    },
+    "A_modal_izin_notaris": {
+      "value": 15000000,
+      "display": "Rp15 juta",
+      "basis": "estimate",
+      "source": "asumsi"
+    },
+    "A_modal_cadangan_modal_3bln": {
+      "value": 120000000,
+      "display": "Rp120 juta",
+      "basis": "estimate",
+      "source": "asumsi"
+    },
+    "A_modal_awal_total": {
+      "value": 507400000,
+      "display": "Rp507,4 juta",
+      "basis": "estimate",
+      "source": "127,2 + 90 + 19,2 + 36 + 60 + 40 + 15 + 120 = 507,4 juta",
+      "aliases": [
+        "Rp507.400.000",
+        "sekitar Rp500 juta",
+        "setengah miliar",
+        "Rp500 juta"
+      ]
+    },
+    "A_balik_modal_bulan": {
+      "value": 15.9,
+      "display": "sekitar 16 bulan",
+      "basis": "estimate",
+      "source": "507.400.000 / 31.880.782 = 15,9 (tanpa masa awal sepi)",
+      "aliases": [
+        "16 bulan",
+        "15,9 bulan"
+      ]
+    },
+    "A_sesi_impas_bulan": {
+      "value": 106.1,
+      "display": "sekitar 106 sesi",
+      "basis": "estimate",
+      "source": "40.000.000 / kontribusi Rp376.997 per sesi",
+      "aliases": [
+        "106 sesi"
+      ]
+    },
+    "A_okupansi_impas_persen": {
+      "value": 17.5,
+      "display": "17 persen",
+      "basis": "estimate",
+      "source": "106,1 sesi / 190,67 x 31,4%",
+      "aliases": [
+        "17%",
+        "sekitar 17,5 persen"
+      ]
+    },
+    "A_skenario_sepi_untung": {
+      "value": 3128469,
+      "display": "Rp3,1 juta",
+      "basis": "estimate",
+      "source": "0,6 x sesi dasar (114 sesi)"
+    },
+    "A_skenario_sepi_balik_modal_bulan": {
+      "value": 162,
+      "display": "sekitar 162 bulan",
+      "basis": "estimate",
+      "source": "507,4 juta / 3,13 juta",
+      "aliases": [
+        "13 tahun lebih",
+        "162 bulan"
+      ]
+    },
+    "A_skenario_ramai_untung": {
+      "value": 67821174,
+      "display": "Rp67,8 juta",
+      "basis": "estimate",
+      "source": "1,5 x sesi dasar (286 sesi)"
+    },
+    "A_skenario_ramai_balik_modal_bulan": {
+      "value": 7.5,
+      "display": "sekitar 7,5 bulan",
+      "basis": "estimate",
+      "source": "507,4 juta / 67,8 juta",
+      "aliases": [
+        "7,5 bulan"
+      ]
+    },
+    "B_meja": {
+      "value": 5,
+      "display": "lima meja",
+      "basis": "estimate",
+      "source": "asumsi",
+      "aliases": [
+        "5 meja"
+      ]
+    },
+    "B_tarif_hari_kerja": {
+      "value": 300000,
+      "display": "Rp300 ribu",
+      "basis": "estimate",
+      "source": "Rp1.200.000 / 4 hari paket Senin-Kamis (https://lapakmahjong.id/)",
+      "aliases": [
+        "Rp300.000"
+      ]
+    },
+    "B_tarif_akhir_pekan": {
+      "value": 400000,
+      "display": "Rp400 ribu",
+      "basis": "estimate",
+      "source": "Rp1.200.000 / 3 hari paket akhir pekan (https://lapakmahjong.id/)",
+      "aliases": [
+        "Rp400.000"
+      ]
+    },
+    "B_pemakaian_hari_kerja_persen": {
+      "value": 20,
+      "display": "20 persen",
+      "basis": "estimate",
+      "source": "asumsi: 20% meja tersewa per hari Senin-Jumat",
+      "aliases": [
+        "20%"
+      ]
+    },
+    "B_pemakaian_akhir_pekan_persen": {
+      "value": 60,
+      "display": "60 persen",
+      "basis": "estimate",
+      "source": "asumsi: 60% meja tersewa per hari Sabtu-Minggu",
+      "aliases": [
+        "60%"
+      ]
+    },
+    "B_meja_hari_minggu": {
+      "value": 11.0,
+      "display": "11 meja-hari",
+      "basis": "estimate",
+      "source": "5x5x0,2 + 5x2x0,6 = 5 + 6"
+    },
+    "B_pendapatan_minggu": {
+      "value": 3900000,
+      "display": "Rp3,9 juta",
+      "basis": "estimate",
+      "source": "5 x 300.000 + 6 x 400.000 = 1.500.000 + 2.400.000",
+      "aliases": [
+        "Rp3.900.000"
+      ]
+    },
+    "B_pendapatan_bulan": {
+      "value": 16900000,
+      "display": "Rp16,9 juta",
+      "basis": "estimate",
+      "source": "3.900.000 x 52/12 = 16.900.000",
+      "aliases": [
+        "Rp16.900.000"
+      ]
+    },
+    "B_pesanan_bulan": {
+      "value": 31.8,
+      "display": "sekitar 32 pesanan",
+      "basis": "estimate",
+      "source": "(11 meja-hari / 1,5 meja per pesanan) x 52/12"
+    },
+    "B_ongkir_per_pesanan": {
+      "value": 150000,
+      "display": "Rp150 ribu",
+      "basis": "estimate",
+      "source": "asumsi: antar-jemput mobil bak, meja berbobot 7,5 sampai 99,5 kg (belum ada sumber tarif)",
+      "aliases": [
+        "Rp150.000"
+      ]
+    },
+    "B_ongkir_bulan": {
+      "value": 4766667,
+      "display": "Rp4,8 juta",
+      "basis": "estimate",
+      "source": "31,78 pesanan x 150.000"
+    },
+    "B_pajak_bulan": {
+      "value": 1690000,
+      "display": "Rp1,7 juta",
+      "basis": "estimate",
+      "source": "10% x 16.900.000"
+    },
+    "B_tetap_sewa_garasi_notional": {
+      "value": 1500000,
+      "display": "Rp1,5 juta",
+      "basis": "estimate",
+      "source": "asumsi"
+    },
+    "B_tetap_admin_paruh_waktu": {
+      "value": 2500000,
+      "display": "Rp2,5 juta",
+      "basis": "estimate",
+      "source": "asumsi"
+    },
+    "B_tetap_iklan": {
+      "value": 1000000,
+      "display": "Rp1 juta",
+      "basis": "estimate",
+      "source": "asumsi"
+    },
+    "B_tetap_cadangan_servis_1persen_x5": {
+      "value": 500000,
+      "display": "Rp0,5 juta",
+      "basis": "estimate",
+      "source": "asumsi"
+    },
+    "B_biaya_tetap_bulan": {
+      "value": 5500000,
+      "display": "Rp5,5 juta",
+      "basis": "estimate",
+      "source": "1,5 + 2,5 + 1,0 + 0,5 juta"
+    },
+    "B_untung_bersih_bulan": {
+      "value": 4943333,
+      "display": "Rp4,9 juta",
+      "basis": "estimate",
+      "source": "16.900.000 - 1.690.000 - 4.766.667 - 5.500.000 = 4.943.333"
+    },
+    "B_modal_meja_portabel_5x10jt": {
+      "value": 50000000,
+      "display": "Rp50 juta",
+      "basis": "estimate",
+      "source": "asumsi (meja: Rp9.999.000 daftar Berwyn portabel, https://www.ruparupa.com/berwyn-set-mahjong-portabel-hitam.html)"
+    },
+    "B_modal_tas_troli_5x500rb": {
+      "value": 2500000,
+      "display": "Rp2,5 juta",
+      "basis": "estimate",
+      "source": "asumsi"
+    },
+    "B_modal_tile_set_cadangan": {
+      "value": 5000000,
+      "display": "Rp5 juta",
+      "basis": "estimate",
+      "source": "asumsi"
+    },
+    "B_modal_rak_garasi": {
+      "value": 3000000,
+      "display": "Rp3 juta",
+      "basis": "estimate",
+      "source": "asumsi"
+    },
+    "B_modal_kontrak_web_foto": {
+      "value": 3000000,
+      "display": "Rp3 juta",
+      "basis": "estimate",
+      "source": "asumsi"
+    },
+    "B_modal_dana_jaminan_kerusakan": {
+      "value": 10000000,
+      "display": "Rp10 juta",
+      "basis": "estimate",
+      "source": "asumsi"
+    },
+    "B_modal_cadangan_modal_3bln": {
+      "value": 16500000,
+      "display": "Rp16,5 juta",
+      "basis": "estimate",
+      "source": "asumsi"
+    },
+    "B_modal_awal_total": {
+      "value": 90000000,
+      "display": "Rp90 juta",
+      "basis": "estimate",
+      "source": "50 + 2,5 + 5 + 3 + 3 + 10 + 16,5 = 90 juta",
+      "aliases": [
+        "Rp90.000.000"
+      ]
+    },
+    "B_balik_modal_bulan": {
+      "value": 18.2,
+      "display": "sekitar 18 bulan",
+      "basis": "estimate",
+      "source": "90.000.000 / 4.943.333 = 18,2",
+      "aliases": [
+        "18 bulan"
+      ]
+    },
+    "B_minggu_imlek_model": {
+      "value": 11500000,
+      "display": "Rp11,5 juta",
+      "basis": "estimate",
+      "source": "skenario: semua meja tersewa 7 hari = 5 x (5 x 300.000 + 2 x 400.000); bukan data. Kelipatan terhadap minggu biasa = 2,95 hanya akibat asumsi pemakaian 100% vs 31%"
+    },
+    "A_skenario_sepi_sesi": {
+      "value": 114,
+      "display": "114 sesi",
+      "basis": "estimate",
+      "source": "191 sesi x 0,6"
+    },
+    "A_skenario_ramai_sesi": {
+      "value": 286,
+      "display": "286 sesi",
+      "basis": "estimate",
+      "source": "191 sesi x 1,5"
+    },
+    "A_skenario_sepi_turun": {
+      "value": 40,
+      "display": "40 persen",
+      "basis": "estimate",
+      "source": "skenario turun dari 191 ke 114 sesi"
+    }
+  }
+}

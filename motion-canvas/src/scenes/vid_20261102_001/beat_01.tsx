@@ -1,23 +1,25 @@
-import { Img, Line, makeScene2D, Node, Rect, Txt } from '@motion-canvas/2d';
+import { Img, makeScene2D, Node, Rect, Txt } from '@motion-canvas/2d';
 import {
   all,
+  createRef,
   createSignal,
+  easeOutBack,
   easeOutCubic,
   easeOutExpo,
   useThread,
 } from '@motion-canvas/core';
 import {
   BEAT_LABELS,
+  COLORS,
   FONTS,
   HEADING_FONT,
   PALETTE,
-  createEditorialStage,
+  isWidescreen,
+  setupBaseStage,
 } from './layout';
 import {
-  finishSceneAt,
-  focalRotation,
-  focalScale,
   SCENE_TIMINGS,
+  finishSceneAt,
   waitUntilSceneTime,
 } from './timings';
 
@@ -25,371 +27,571 @@ export default makeScene2D(function* (view) {
   const time = useThread().time;
   const t0 = time();
 
-  // Setup Swiss Base Stage (Brow badge, subtitles, grid)
-  const stage = createEditorialStage(view, BEAT_LABELS[0]);
+  // Setup Swiss Base Stage (Grid lines, single top brow badge, subtitle bar)
+  setupBaseStage(view, 'beat_01');
 
-  // Animation signals
-  const focalId = createSignal(0);
-  const leftCardOpacity = createSignal(0);
-  const leftCardScale = createSignal(0.92);
-  const leftBadgeScale = createSignal(0);
-  const waitlistPulse = createSignal(0);
+  const wide = isWidescreen(view);
+  const stage = createRef<Node>();
 
-  const rightCardOpacity = createSignal(0);
-  const rightCardScale = createSignal(0.92);
-  const perceptionOpacity = createSignal(0);
+  // Comic Panel Opacity and Scale signals
+  const p1Opacity = createSignal(1);
+  const p1Scale = createSignal(1.0);
+  const p2Opacity = createSignal(0);
+  const p2Scale = createSignal(1.04);
+  const p3Opacity = createSignal(0);
+  const p3Scale = createSignal(1.04);
+  const p4Opacity = createSignal(0);
+  const p4Scale = createSignal(1.04);
 
-  const cashflowOpacity = createSignal(0);
-  const axesProgress = createSignal(0);
-  const bar1Width = createSignal(0);
-  const bar2Width = createSignal(0);
-  const omzetVal = createSignal(0);
-  const highlightGlow = createSignal(0);
+  // Overlay Badge Signals inside Comic Frame
+  const tagText = createSignal('PANEL 1 // LOUNGE KASIR');
+  const stampText = createSignal('SEWA: RP15.000/JAM');
+  const stampBg = createSignal(PALETTE.emerald);
+  const stampScale = createSignal(1.0);
+
+  const centerBadgeOpacity = createSignal(0);
+  const centerBadgeScale = createSignal(0.85);
+  const centerBadgeText = createSignal('CAPEX RUKO: RP350 JUTA');
+  const centerBadgeSub = createSignal('Investasi Awal Ruko 2 Lantai');
+  const centerBadgeColor = createSignal(PALETTE.crimson);
+  const centerBadgeStroke = createSignal(PALETTE.crimson);
+
+  // Right Column Paradox Cards Signals
+  const activeCard = createSignal(1);
+  const card1Opacity = createSignal(1);
+  const card1Scale = createSignal(1.0);
+  const card2Opacity = createSignal(0.4);
+  const card2Scale = createSignal(1.0);
+  const card3Opacity = createSignal(0.4);
+  const card3Scale = createSignal(1.0);
+  const card4Opacity = createSignal(0.4);
+  const card4Scale = createSignal(1.0);
+  const card5Opacity = createSignal(0.4);
+  const card5Scale = createSignal(1.0);
+  const card6Opacity = createSignal(0.4);
+  const card6Scale = createSignal(1.0);
 
   view.add(
-    <Node ref={stage}>
-      {/* ===== LEFT CARD: LOUNGE ATMOSPHERE & VIP CROWD ===== */}
+    <Node ref={stage} scale={wide ? 1 : 0.54} y={wide ? 0 : -20}>
+      {/* ================= LEFT MAIN STAGE: 16:9 COMIC FRAME ================= */}
       <Rect
-        x={-440}
+        x={-210}
         y={-30}
-        width={760}
-        height={640}
-        fill={PALETTE.surface}
-        stroke={focalId() === 1 ? PALETTE.emerald : PALETTE.cardBorder}
-        lineWidth={3}
-        radius={18}
-        opacity={leftCardOpacity}
-        scale={() => focalScale(focalId, 1, leftCardScale, time)}
-        rotation={() => focalRotation(focalId, 1, time)}
+        width={1200}
+        height={675}
+        radius={20}
+        clip
+        fill={'#FFFFFF'}
+        stroke={COLORS.ink}
+        lineWidth={4}
       >
-        {/* Top Floating Badge */}
+        {/* Panel 1: Kasir ramah & RFID Card */}
+        <Img
+          src={'/assets/vid_20261102_001/ch01_p1.png'}
+          width={1200}
+          height={675}
+          opacity={p1Opacity}
+          scale={p1Scale}
+        />
+
+        {/* Panel 2: Entrepreneur & kalkulator bingung */}
+        <Img
+          src={'/assets/vid_20261102_001/ch01_p2.png'}
+          width={1200}
+          height={675}
+          opacity={p2Opacity}
+          scale={p2Scale}
+        />
+
+        {/* Panel 3: Meja Foshan, Indomie, Dimsum, Boba */}
+        <Img
+          src={'/assets/vid_20261102_001/ch01_p3.png'}
+          width={1200}
+          height={675}
+          opacity={p3Opacity}
+          scale={p3Scale}
+        />
+
+        {/* Panel 4: Night scene PIK lounge ramai */}
+        <Img
+          src={'/assets/vid_20261102_001/ch01_p4.png'}
+          width={1200}
+          height={675}
+          opacity={p4Opacity}
+          scale={p4Scale}
+        />
+
+        {/* Comic Tag Pill (Top-Left) */}
         <Rect
-          x={0}
-          y={-270}
-          layout={true}
-          padding={[8, 20]}
-          radius={8}
-          fill={PALETTE.emeraldBg}
-          stroke={PALETTE.emerald}
-          lineWidth={2}
-          scale={leftBadgeScale}
+          x={-420}
+          y={-290}
+          layout
+          direction="row"
+          alignItems="center"
+          gap={10}
+          padding={[10, 20]}
+          radius={10}
+          fill={COLORS.ink}
         >
           <Txt
-            text="ANTREAN VIP PIK & SERPONG"
+            text={tagText}
             fontFamily={HEADING_FONT}
             fontSize={20}
             fontWeight={800}
-            fill={PALETTE.emerald}
+            fill={'#FFFFFF'}
           />
         </Rect>
 
-        {/* AI-Illustrated Crowd Asset */}
-        <Img
-          src={'/assets/vid_20261102_001/beat01_lounge_crowd.png'}
-          x={0}
-          y={-20}
-          width={440}
-          height={440}
-          radius={14}
-          scale={() => 1 + Math.sin(time() * 0.8) * 0.012}
-        />
-
-        {/* Bottom Status Labels */}
+        {/* Comic Price / Highlight Stamp (Bottom-Right) */}
         <Rect
-          x={0}
-          y={240}
-          layout={true}
-          direction={'column'}
-          alignItems={'center'}
-          gap={6}
+          x={380}
+          y={285}
+          layout
+          direction="row"
+          alignItems="center"
+          gap={10}
+          padding={[10, 22]}
+          radius={10}
+          fill={stampBg}
+          scale={stampScale}
         >
           <Txt
-            text="4 PEMAIN // 1 MEJA OTOMATIS"
+            text={stampText}
             fontFamily={HEADING_FONT}
-            fontSize={24}
+            fontSize={20}
             fontWeight={800}
-            fill={PALETTE.ink}
+            fill={'#FFFFFF'}
+          />
+        </Rect>
+
+        {/* Floating Center Badge */}
+        <Rect
+          x={0}
+          y={170}
+          layout
+          direction="column"
+          alignItems="center"
+          gap={6}
+          padding={[14, 28]}
+          radius={16}
+          fill={'#FFFFFF'}
+          stroke={centerBadgeStroke}
+          lineWidth={3.5}
+          opacity={centerBadgeOpacity}
+          scale={centerBadgeScale}
+        >
+          <Txt
+            text={centerBadgeText}
+            fontFamily={HEADING_FONT}
+            fontSize={26}
+            fontWeight={800}
+            fill={centerBadgeColor}
           />
           <Txt
-            text="Reservasi Penuh Berminggu-minggu"
+            text={centerBadgeSub}
             fontFamily={FONTS.body}
             fontSize={18}
-            fontWeight={600}
-            fill={waitlistPulse() > 0 ? PALETTE.crimson : PALETTE.muted}
-            scale={() => 1 + waitlistPulse() * 0.06}
+            fontWeight={700}
+            fill={COLORS.secondaryInk}
           />
         </Rect>
       </Rect>
 
-      {/* ===== RIGHT CARD: SCALE CHASM COMPARISON ===== */}
+      {/* ================= RIGHT CALLOUT COLUMN ================= */}
       <Rect
-        x={420}
+        x={630}
         y={-30}
-        width={820}
-        height={640}
-        fill={PALETTE.surface}
-        stroke={focalId() === 2 ? PALETTE.amber : PALETTE.cardBorder}
-        lineWidth={3}
-        radius={18}
-        opacity={rightCardOpacity}
-        scale={() => focalScale(focalId, 2, rightCardScale, time)}
-        rotation={() => focalRotation(focalId, 2, time)}
+        width={410}
+        height={675}
+        layout
+        direction="column"
+        gap={10}
+        padding={18}
+        radius={20}
+        fill={'#FFFFFF'}
+        stroke={COLORS.ink}
+        lineWidth={3.5}
       >
-        {/* Card Header */}
+        {/* Header */}
         <Rect
-          x={0}
-          y={-260}
-          layout={true}
-          direction={'column'}
-          alignItems={'center'}
+          layout
+          direction="column"
           gap={4}
-        >
-          <Txt
-            text="SCALE CHASM // ILUSI TARIF MURAH"
-            fontFamily={HEADING_FONT}
-            fontSize={26}
-            fontWeight={800}
-            fill={PALETTE.ink}
-          />
-          <Txt
-            text="Tarif Sewa Recehan vs Realitas Cashflow"
-            fontFamily={FONTS.body}
-            fontSize={18}
-            fontWeight={600}
-            fill={PALETTE.muted}
-          />
-        </Rect>
-
-        {/* Sub-Card 1: Outsider Perception (Tarif Recehan) */}
-        <Rect
-          x={0}
-          y={-140}
-          width={740}
-          height={140}
-          fill={'#F8FAFC'}
-          stroke={'#CBD5E1'}
+          padding={[8, 14]}
+          radius={10}
+          fill={PALETTE.mutedBg}
+          stroke={PALETTE.muted}
           lineWidth={2}
-          radius={12}
-          opacity={perceptionOpacity}
         >
-          <Rect
-            x={-180}
-            y={0}
-            layout={true}
-            direction={'column'}
-            alignItems={'start'}
-            gap={6}
-          >
-            <Txt
-              text="PERSEPSI AWAM (TARIF RECEHAN)"
-              fontFamily={HEADING_FONT}
-              fontSize={18}
-              fontWeight={800}
-              fill={PALETTE.muted}
-            />
-            <Txt
-              text="Rp60.000 / Meja / Jam"
-              fontFamily={HEADING_FONT}
-              fontSize={32}
-              fontWeight={800}
-              fill={PALETTE.crimson}
-            />
-          </Rect>
-
-          <Rect
-            x={200}
-            y={0}
-            layout={true}
-            padding={[10, 20]}
-            radius={8}
-            fill={PALETTE.crimsonBg}
-            stroke={PALETTE.crimson}
-            lineWidth={1.5}
-          >
-            <Txt
-              text="Rp15.000 / Orang / Jam"
-              fontFamily={FONTS.data}
-              fontSize={20}
-              fontWeight={700}
-              fill={PALETTE.crimson}
-            />
-          </Rect>
-        </Rect>
-
-        {/* Sub-Card 2: Realitas Cashflow 8 Meja (Quantitative Comparison) */}
-        <Rect
-          x={0}
-          y={110}
-          width={740}
-          height={300}
-          fill={PALETTE.emeraldBg}
-          stroke={PALETTE.emerald}
-          lineWidth={2}
-          radius={14}
-          opacity={cashflowOpacity}
-        >
-          {/* Header */}
-          <Rect
-            x={-140}
-            y={-110}
-            layout={true}
-            direction={'column'}
-            alignItems={'start'}
-            gap={4}
-          >
-            <Txt
-              text="REALITAS CASHFLOW (8 MEJA)"
-              fontFamily={HEADING_FONT}
-              fontSize={20}
-              fontWeight={800}
-              fill={PALETTE.emerald}
-            />
-            <Txt
-              text="12 Jam/Hari x 30 Hari + F&B Margin 70%"
-              fontFamily={FONTS.body}
-              fontSize={18}
-              fontWeight={600}
-              fill={PALETTE.muted}
-            />
-          </Rect>
-
-          {/* Quantitative Comparison Chart Axes */}
-          <Line
-            points={[
-              [-320, 60],
-              [330, 60],
-            ]}
-            stroke={'#64748B'}
-            lineWidth={2}
-            end={axesProgress}
-            endArrow={true}
-            arrowSize={8}
-          />
-          <Line
-            points={[
-              [-320, 60],
-              [-320, -50],
-            ]}
-            stroke={'#64748B'}
-            lineWidth={2}
-            end={axesProgress}
-            endArrow={true}
-            arrowSize={8}
-          />
-
-          {/* Bar 1: Base Rental Only */}
-          <Rect
-            x={() => -318 + bar1Width() / 2}
-            y={36}
-            width={bar1Width}
-            height={22}
-            fill={'#94A3B8'}
-            radius={[0, 6, 6, 0]}
-          />
-
-          {/* Bar 2: Full Omzet with F&B */}
-          <Rect
-            x={() => -318 + bar2Width() / 2}
-            y={0}
-            width={bar2Width}
-            height={32}
-            fill={PALETTE.emerald}
-            radius={[0, 8, 8, 0]}
-          />
-
-          {/* Big Cashflow Stat Counter - Placed cleanly above the green bar */}
           <Txt
-            x={-120}
-            y={-36}
-            text={() =>
-              `OMZET 8 MEJA: Rp${Math.round(omzetVal()).toLocaleString('id-ID')} JT/BLN`
-            }
+            text="PARADOKS BISNIS"
             fontFamily={HEADING_FONT}
             fontSize={20}
             fontWeight={800}
-            fill={PALETTE.emerald}
+            fill={PALETTE.crimson}
           />
-
           <Txt
-            x={80}
-            y={36}
-            text="Laba Bersih Operasional: Rp55 Jt+"
+            text="Lounge Mahjong 8 Meja di Ruko"
             fontFamily={FONTS.body}
             fontSize={18}
-            fontWeight={700}
-            fill={PALETTE.ink}
+            fontWeight={600}
+            fill={COLORS.secondaryInk}
           />
+        </Rect>
 
-          {/* Bottom Highlight Callout Badge */}
-          <Rect
-            x={0}
-            y={95}
-            layout={true}
-            padding={[6, 18]}
-            radius={8}
-            fill={'#FFFFFF'}
-            stroke={highlightGlow() > 0 ? PALETTE.emerald : '#CBD5E1'}
-            lineWidth={2}
-          >
-            <Txt
-              text="MARGIN TINGGI DARI WAKTU 5 JAM"
-              fontFamily={HEADING_FONT}
-              fontSize={18}
-              fontWeight={800}
-              fill={highlightGlow() > 0 ? PALETTE.emerald : PALETTE.muted}
-            />
-          </Rect>
+        {/* Card 1: SEWA: Rp15.000/Jam */}
+        <Rect
+          layout
+          direction="column"
+          gap={4}
+          padding={[10, 14]}
+          radius={12}
+          fill={() => (activeCard() === 1 ? PALETTE.emeraldBg : '#FFFFFF')}
+          stroke={() => (activeCard() === 1 ? PALETTE.emerald : COLORS.ink)}
+          lineWidth={2.5}
+          opacity={card1Opacity}
+          scale={card1Scale}
+        >
+          <Txt
+            text="SEWA: Rp15.000/Jam"
+            fontFamily={HEADING_FONT}
+            fontSize={20}
+            fontWeight={800}
+            fill={() => (activeCard() === 1 ? PALETTE.emerald : COLORS.ink)}
+          />
+          <Txt
+            text="Tarif Receh Per Orang Sejam"
+            fontFamily={FONTS.body}
+            fontSize={18}
+            fontWeight={600}
+            fill={COLORS.secondaryInk}
+          />
+        </Rect>
+
+        {/* Card 2: MODAL RUKO: Rp350 Juta */}
+        <Rect
+          layout
+          direction="column"
+          gap={4}
+          padding={[10, 14]}
+          radius={12}
+          fill={() => (activeCard() === 2 ? PALETTE.crimsonBg : '#FFFFFF')}
+          stroke={() => (activeCard() === 2 ? PALETTE.crimson : COLORS.ink)}
+          lineWidth={2.5}
+          opacity={card2Opacity}
+          scale={card2Scale}
+        >
+          <Txt
+            text="MODAL RUKO: Rp350 Juta"
+            fontFamily={HEADING_FONT}
+            fontSize={20}
+            fontWeight={800}
+            fill={() => (activeCard() === 2 ? PALETTE.crimson : COLORS.ink)}
+          />
+          <Txt
+            text="CapEx Sewa Ruko & 8 Meja"
+            fontFamily={FONTS.body}
+            fontSize={18}
+            fontWeight={600}
+            fill={COLORS.secondaryInk}
+          />
+        </Rect>
+
+        {/* Card 3: TARGET OMZET: Rp180 Juta/Bln */}
+        <Rect
+          layout
+          direction="column"
+          gap={4}
+          padding={[10, 14]}
+          radius={12}
+          fill={() => (activeCard() === 3 ? PALETTE.amberBg : '#FFFFFF')}
+          stroke={() => (activeCard() === 3 ? PALETTE.amber : COLORS.ink)}
+          lineWidth={2.5}
+          opacity={card3Opacity}
+          scale={card3Scale}
+        >
+          <Txt
+            text="TARGET OMZET: Rp180 Juta/Bln"
+            fontFamily={HEADING_FONT}
+            fontSize={20}
+            fontWeight={800}
+            fill={() => (activeCard() === 3 ? PALETTE.amber : COLORS.ink)}
+          />
+          <Txt
+            text="Target Omzet Bulanan Ruko"
+            fontFamily={FONTS.body}
+            fontSize={18}
+            fontWeight={600}
+            fill={COLORS.secondaryInk}
+          />
+        </Rect>
+
+        {/* Card 4: UMPAN: Sewa Meja */}
+        <Rect
+          layout
+          direction="column"
+          gap={4}
+          padding={[10, 14]}
+          radius={12}
+          fill={() => (activeCard() === 4 ? PALETTE.cyanBg : '#FFFFFF')}
+          stroke={() => (activeCard() === 4 ? PALETTE.cyan : COLORS.ink)}
+          lineWidth={2.5}
+          opacity={card4Opacity}
+          scale={card4Scale}
+        >
+          <Txt
+            text="UMPAN: Sewa Meja"
+            fontFamily={HEADING_FONT}
+            fontSize={20}
+            fontWeight={800}
+            fill={() => (activeCard() === 4 ? PALETTE.cyan : COLORS.ink)}
+          />
+          <Txt
+            text="Hanya Penutup Listrik & Sewa"
+            fontFamily={FONTS.body}
+            fontSize={18}
+            fontWeight={600}
+            fill={COLORS.secondaryInk}
+          />
+        </Rect>
+
+        {/* Card 5: MESIN CUAN: F&B Margin 70% */}
+        <Rect
+          layout
+          direction="column"
+          gap={4}
+          padding={[10, 14]}
+          radius={12}
+          fill={() => (activeCard() === 5 ? PALETTE.emeraldBg : '#FFFFFF')}
+          stroke={() => (activeCard() === 5 ? PALETTE.emerald : COLORS.ink)}
+          lineWidth={2.5}
+          opacity={card5Opacity}
+          scale={card5Scale}
+        >
+          <Txt
+            text="MESIN CUAN: F&B Margin 70%"
+            fontFamily={HEADING_FONT}
+            fontSize={20}
+            fontWeight={800}
+            fill={() => (activeCard() === 5 ? PALETTE.emerald : COLORS.ink)}
+          />
+          <Txt
+            text="Jebakan Makanan & Minuman 5 Jam"
+            fontFamily={FONTS.body}
+            fontSize={18}
+            fontWeight={600}
+            fill={COLORS.secondaryInk}
+          />
+        </Rect>
+
+        {/* Card 6: STRUK KASIR: Tembus Rp1 Juta! */}
+        <Rect
+          layout
+          direction="column"
+          gap={4}
+          padding={[10, 14]}
+          radius={12}
+          fill={() => (activeCard() === 6 ? PALETTE.crimsonBg : '#FFFFFF')}
+          stroke={() => (activeCard() === 6 ? PALETTE.crimson : COLORS.ink)}
+          lineWidth={2.5}
+          opacity={card6Opacity}
+          scale={card6Scale}
+        >
+          <Txt
+            text="STRUK KASIR: Tembus Rp1 Juta!"
+            fontFamily={HEADING_FONT}
+            fontSize={20}
+            fontWeight={800}
+            fill={() => (activeCard() === 6 ? PALETTE.crimson : COLORS.ink)}
+          />
+          <Txt
+            text="Total Tagihan Meja 1 Sesi Penuh"
+            fontFamily={FONTS.body}
+            fontSize={18}
+            fontWeight={600}
+            fill={COLORS.secondaryInk}
+          />
         </Rect>
       </Rect>
     </Node>
   );
 
-  // --- Choreography Sequence (Scene 01 Total duration: 53.99s) ---
-  const sceneDuration = SCENE_TIMINGS[0].duration;
+  // ================= 13 CUE CHOREOGRAPHY =================
 
-  // t = 0.3s: Left Card enters with crowd scene
-  yield* waitUntilSceneTime(0.3, t0);
-  focalId(1);
+  // Beat 1 (0.2s): "Sewa meja mahjong ini cuma Rp15 ribu per orang sejam—"
+  yield* waitUntilSceneTime(0.2, t0);
+  activeCard(1);
+  tagText('PANEL 1 // LOUNGE KASIR');
+  stampText('SEWA: RP15.000/JAM');
+  stampBg(PALETTE.emerald);
   yield* all(
-    leftCardOpacity(1, 0.6, easeOutExpo),
-    leftCardScale(1, 0.6, easeOutExpo),
+    p1Opacity(1, 0.4, easeOutExpo),
+    card1Opacity(1, 0.35, easeOutExpo),
+    card1Scale(1.03, 0.2, easeOutBack).to(1.0, 0.2),
   );
 
-  // t = 3.5s: "Pantai Indah Kapuk atau Gading Serpong"
-  yield* waitUntilSceneTime(3.5, t0);
-  yield* leftBadgeScale(1, 0.5, easeOutExpo);
-
-  // t = 16.5s: "Di papan depan kasir, tertulis tarif sewa..."
-  yield* waitUntilSceneTime(16.5, t0);
-  focalId(2);
+  // Beat 2 (4.06s): "padahal modal rukonya tembus Rp350 juta."
+  yield* waitUntilSceneTime(4.06, t0);
+  activeCard(2);
+  centerBadgeText('CAPEX RUKO: RP350 JUTA');
+  centerBadgeSub('Modal Renovasi & Meja Foshan');
+  centerBadgeColor(PALETTE.crimson);
+  centerBadgeStroke(PALETTE.crimson);
   yield* all(
-    rightCardOpacity(1, 0.6, easeOutExpo),
-    rightCardScale(1, 0.6, easeOutExpo),
-    perceptionOpacity(1, 0.5, easeOutExpo),
+    card2Opacity(1, 0.35, easeOutExpo),
+    card2Scale(1.03, 0.2, easeOutBack).to(1.0, 0.2),
+    centerBadgeOpacity(1, 0.3, easeOutExpo),
+    centerBadgeScale(1.0, 0.35, easeOutBack),
   );
 
-  // t = 28.5s: "daftar antrean tamu di aplikasi reservasi mengular..."
-  yield* waitUntilSceneTime(28.5, t0);
-  focalId(1);
-  yield* waitlistPulse(1, 0.4, easeOutCubic).to(0, 0.4, easeOutCubic);
-
-  // t = 41.5s: "diam-diam mencetak omzet puluhan hingga ratusan juta..."
-  yield* waitUntilSceneTime(41.5, t0);
-  focalId(2);
+  // Beat 3 (8.6s): "Terus gimana caranya bisnis recehan ini balik modal,"
+  yield* waitUntilSceneTime(8.6, t0);
+  tagText('PANEL 2 // HITUNGAN BISNIS');
+  stampText('BAGAIMANA BALIK MODAL?');
+  stampBg(PALETTE.amber);
   yield* all(
-    cashflowOpacity(1, 0.5, easeOutExpo),
-    axesProgress(1, 0.6, easeOutExpo),
-  );
-  yield* all(
-    bar1Width(160, 0.8, easeOutExpo),
-    bar2Width(380, 0.9, easeOutExpo),
-    omzetVal(180, 0.9, easeOutExpo),
+    centerBadgeOpacity(0, 0.25, easeOutExpo),
+    p1Opacity(0, 0.45, easeOutCubic),
+    p2Opacity(1, 0.45, easeOutCubic),
+    p2Scale(1.0, 0.5, easeOutExpo),
   );
 
-  // t = 48.0s: "menghasilkan margin fantastis?"
-  yield* waitUntilSceneTime(48.0, t0);
-  yield* highlightGlow(1, 0.4, easeOutExpo);
+  // Beat 4 (11.5s): "bahkan cetak omzet Rp180 juta sebulan?"
+  yield* waitUntilSceneTime(11.5, t0);
+  activeCard(3);
+  centerBadgeText('OMZET: RP180 JUTA/BULAN');
+  centerBadgeSub('Target Omzet 8 Meja Mahjong');
+  centerBadgeColor(PALETTE.emerald);
+  centerBadgeStroke(PALETTE.emerald);
+  yield* all(
+    card3Opacity(1, 0.35, easeOutExpo),
+    card3Scale(1.03, 0.2, easeOutBack).to(1.0, 0.2),
+    centerBadgeOpacity(1, 0.3, easeOutExpo),
+    centerBadgeScale(1.0, 0.35, easeOutBack),
+  );
 
-  // Strict Hold-Time: Diagram remains fully visible until 53.99s (>= 2.7s hold)
-  yield* finishSceneAt(sceneDuration, t0);
+  // Beat 5 (15.1s): "Ternyata uang aslinya bukan dari sewa meja—"
+  yield* waitUntilSceneTime(15.1, t0);
+  activeCard(4);
+  tagText('PANEL 3 // MEJA & KULINER');
+  stampText('SEWA MEJA = HANYA UMPAN');
+  stampBg(PALETTE.crimson);
+  yield* all(
+    centerBadgeOpacity(0, 0.25, easeOutExpo),
+    p2Opacity(0, 0.45, easeOutCubic),
+    p3Opacity(1, 0.45, easeOutCubic),
+    p3Scale(1.0, 0.5, easeOutExpo),
+    card4Opacity(1, 0.35, easeOutExpo),
+    card4Scale(1.03, 0.2, easeOutBack).to(1.0, 0.2),
+  );
+
+  // Beat 6 (18.16s): "tapi dari jebakan 5 jam beli makanan margin 70%!"
+  yield* waitUntilSceneTime(18.16, t0);
+  activeCard(5);
+  stampText('MARGIN F&B: 70% KOTOR');
+  stampBg(PALETTE.emerald);
+  centerBadgeText('JEBAKAN 5 JAM NON-STOP');
+  centerBadgeSub('Mie Instan, Dimsum & Kopi Susu');
+  centerBadgeColor(PALETTE.amber);
+  centerBadgeStroke(PALETTE.amber);
+  yield* all(
+    card5Opacity(1, 0.35, easeOutExpo),
+    card5Scale(1.03, 0.2, easeOutBack).to(1.0, 0.2),
+    centerBadgeOpacity(1, 0.3, easeOutExpo),
+    centerBadgeScale(1.0, 0.35, easeOutBack),
+  );
+
+  // Beat 7 (22.28s): "Inilah fenomena lounge mahjong otomatis yang lagi meledak di ruko kota besar."
+  yield* waitUntilSceneTime(22.28, t0);
+  tagText('PANEL 4 // LOUNGE MALAM PIK');
+  stampText('VIRAL DI KOTA BESAR');
+  stampBg(PALETTE.ink);
+  yield* all(
+    centerBadgeOpacity(0, 0.25, easeOutExpo),
+    p3Opacity(0, 0.45, easeOutCubic),
+    p4Opacity(1, 0.45, easeOutCubic),
+    p4Scale(1.0, 0.5, easeOutExpo),
+  );
+
+  // Beat 8 (26.18s): "Dari kawasan P-I-K sampai Surabaya, tempat seperti ini selalu antre panjang."
+  yield* waitUntilSceneTime(26.18, t0);
+  stampText('PIK • SERPONG • SURABAYA');
+  stampBg(PALETTE.emerald);
+  centerBadgeText('ANTRE PANJANG TIAP MALAM');
+  centerBadgeSub('Tren Hiburan Baru Anak Muda Urban');
+  centerBadgeColor(PALETTE.emerald);
+  centerBadgeStroke(PALETTE.emerald);
+  yield* all(
+    centerBadgeOpacity(1, 0.3, easeOutExpo),
+    centerBadgeScale(1.0, 0.35, easeOutBack),
+  );
+
+  // Beat 9 (31.48s): "Pemilik ruko rela keluar ratusan juta demi meja otomatis impor Tiongkok."
+  yield* waitUntilSceneTime(31.48, t0);
+  stampText('MEJA OTOMATIS FOSHAN');
+  stampBg(PALETTE.cyan);
+  centerBadgeText('IMPOR OTOMATIS TIONGKOK');
+  centerBadgeSub('Teknologi Shuffle Cepat Tanpa Sentuh');
+  centerBadgeColor(PALETTE.cyan);
+  centerBadgeStroke(PALETTE.cyan);
+  yield* all(
+    stampScale(1.08, 0.2, easeOutBack).to(1.0, 0.2),
+  );
+
+  // Beat 10 (33.28s): "Pemain datang berempat, duduk santai di sofa empuk ber-A-C dingin."
+  yield* waitUntilSceneTime(33.28, t0);
+  stampText('4 PEMAIN • PRIVATE ROOM');
+  stampBg(PALETTE.amber);
+  centerBadgeText('SOFA EMPUK & RUANG AC');
+  centerBadgeSub('Kenyamanan Maksimal Berjam-jam');
+  centerBadgeColor(PALETTE.amber);
+  centerBadgeStroke(PALETTE.amber);
+  yield* all(
+    stampScale(1.08, 0.2, easeOutBack).to(1.0, 0.2),
+  );
+
+  // Beat 11 (39.6s): "Mereka kira cuma keluar puluhan ribu buat main santai semalaman."
+  yield* waitUntilSceneTime(39.6, t0);
+  stampText('KIRA CUMA RP15.000/JAM');
+  stampBg(PALETTE.muted);
+  centerBadgeText('ILUSI HIBURAN MURAH');
+  centerBadgeSub('Persepsi Biaya Receh di Awal');
+  centerBadgeColor(PALETTE.muted);
+  centerBadgeStroke(PALETTE.muted);
+  yield* all(
+    stampScale(1.08, 0.2, easeOutBack).to(1.0, 0.2),
+  );
+
+  // Beat 12 (42.92s): "Tapi begitu struk kasir keluar, total tagihannya tembus sejuta rupiah!"
+  yield* waitUntilSceneTime(42.92, t0);
+  activeCard(6);
+  stampText('STRUK TEMBUS RP1 JUTA!');
+  stampBg(PALETTE.crimson);
+  centerBadgeText('STRUK KASIR: RP1 JUTA+');
+  centerBadgeSub('F&B 60% + Sewa Meja 40%');
+  centerBadgeColor(PALETTE.crimson);
+  centerBadgeStroke(PALETTE.crimson);
+  yield* all(
+    card6Opacity(1, 0.35, easeOutExpo),
+    card6Scale(1.03, 0.2, easeOutBack).to(1.0, 0.2),
+    centerBadgeOpacity(1, 0.3, easeOutExpo),
+    centerBadgeScale(1.05, 0.35, easeOutBack),
+  );
+
+  // Beat 13 (47.18s): "Mari kita bedah tuntas seluruh mesin uang bisnis viral ini."
+  yield* waitUntilSceneTime(47.18, t0);
+  tagText('BEDAH TUNTAS BISNIS');
+  stampText('MENUJU TEKNOLOGI MEJA');
+  stampBg(COLORS.ink);
+  centerBadgeText('BEDAH ANATOMI BISNIS');
+  centerBadgeSub('Lanjut ke Bab 2: Mesin Foshan');
+  centerBadgeColor(COLORS.ink);
+  centerBadgeStroke(COLORS.ink);
+  yield* all(
+    stampScale(1.05, 0.3, easeOutExpo),
+    centerBadgeScale(1.0, 0.3, easeOutExpo),
+  );
+
+  // Hold end of scene until exact duration
+  yield* finishSceneAt(SCENE_TIMINGS[0].duration, t0);
 });

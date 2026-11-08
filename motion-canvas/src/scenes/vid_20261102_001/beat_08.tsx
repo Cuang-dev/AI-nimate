@@ -3,21 +3,21 @@ import {
   all,
   createRef,
   createSignal,
+  easeInOutCubic,
   easeOutBack,
+  easeOutCubic,
   easeOutExpo,
   useThread,
 } from '@motion-canvas/core';
 import {
   COLORS,
-  createEditorialStage,
   FONTS,
   HEADING_FONT,
   PALETTE,
+  setupBaseStage,
 } from './layout';
 import {
   finishSceneAt,
-  focalRotation,
-  focalScale,
   SCENE_TIMINGS,
   waitUntilSceneTime,
 } from './timings';
@@ -25,195 +25,187 @@ import {
 export default makeScene2D(function* (view) {
   const time = useThread().time;
   const t0 = time();
-  const sceneDur = SCENE_TIMINGS[7]?.duration ?? 53.42;
+  const sceneIdx = 7;
+  const sceneDuration = SCENE_TIMINGS[sceneIdx]?.duration ?? 45.271;
 
-  // Mount editorial stage with beat index 7
-  createEditorialStage(view, { section: 7 } as any);
+  // 1. Mount base stage
+  setupBaseStage(view, 'beat_08');
 
   // Animation signals
-  const focalId = createSignal(1);
+  const stageOpacity = createSignal(0);
+  const leftPanelScale = createSignal(0.96);
+  const rightColScale = createSignal(0.96);
+  const imageSwap = createSignal(0); // 0 = ch08_p1, 1 = ch08_p2
 
-  // Left card signals
-  const leftCardOpacity = createSignal(0);
-  const leftCardScale = createSignal(0.92);
+  // 6 Structured Comic Callout Rows
+  const row1Opacity = createSignal(0);
+  const row1Scale = createSignal(0.92);
 
-  // Right card tier signals
-  const rightCardOpacity = createSignal(0);
-  const tier1Opacity = createSignal(0);
-  const tier1Y = createSignal(-140);
-  const tier2Opacity = createSignal(0);
-  const tier2Y = createSignal(-10);
-  const tier3Opacity = createSignal(0);
-  const tier3Y = createSignal(120);
-  const bannerOpacity = createSignal(0);
+  const row2Opacity = createSignal(0);
+  const row2Scale = createSignal(0.92);
+
+  const row3Opacity = createSignal(0);
+  const row3Scale = createSignal(0.92);
+
+  const row4Opacity = createSignal(0);
+  const row4Scale = createSignal(0.92);
+
+  const row5Opacity = createSignal(0);
+  const row5Scale = createSignal(0.92);
+
+  const row6Opacity = createSignal(0);
+  const row6Scale = createSignal(0.92);
+
+  // Status badges & stamps
+  const currentBadgeText = createSignal('KERAPUHAN TEKNIS MESIN FOSHAN');
+  const currentBadgeColor = createSignal(PALETTE.crimson);
+  const currentStampText = createSignal('STATUS: RISIKO F&B AKTIF');
+  const currentStampBg = createSignal(PALETTE.crimsonBg);
 
   const stage = createRef<Node>();
 
   view.add(
-    <Node ref={stage}>
-      {/* LEFT CARD: Hardware Failure Visual */}
+    <Node ref={stage} opacity={stageOpacity}>
+      {/* ================================================================= */}
+      {/* LEFT/MAIN STAGE: 16:9 COMIC FRAME (x = -210, y = -30)             */}
+      {/* ================================================================= */}
       <Rect
-        x={-450}
-        y={-25}
-        width={760}
-        height={650}
-        radius={16}
-        fill={COLORS.surface}
-        stroke={PALETTE.cardBorder}
-        lineWidth={2}
-        opacity={leftCardOpacity}
-        scale={() => focalScale(focalId, 1, () => leftCardScale(), time)}
-        rotation={() => focalRotation(focalId, 1, time)}
+        x={-210}
+        y={-30}
+        width={1200}
+        height={675}
+        scale={leftPanelScale}
+        radius={20}
+        clip
+        fill={'#FFFFFF'}
+        stroke={COLORS.ink}
+        lineWidth={4}
       >
-        {/* Top Brow Category Badge */}
+        {/* Panel 1: Spilled boba catastrophe */}
+        <Img
+          src={'/assets/vid_20261102_001/ch08_p1.png'}
+          width={1200}
+          height={675}
+          opacity={() => 1 - imageSwap()}
+        />
+
+        {/* Panel 2: Distressed owner searching under sofa */}
+        <Img
+          src={'/assets/vid_20261102_001/ch08_p2.png'}
+          width={1200}
+          height={675}
+          opacity={imageSwap}
+        />
+
+        {/* Single Top-Left Comic Badge */}
         <Rect
-          y={-275}
-          layout={true}
-          padding={[8, 24]}
-          alignItems={'center'}
-          justifyContent={'center'}
-          radius={8}
-          fill={PALETTE.crimsonBg}
-          stroke={PALETTE.crimson}
-          lineWidth={1.5}
+          x={-360}
+          y={-285}
+          layout
+          direction="row"
+          alignItems="center"
+          padding={[10, 22]}
+          radius={999}
+          fill={'#FFFFFF'}
+          stroke={COLORS.ink}
+          lineWidth={2.5}
         >
           <Txt
-            text="RISIKO TEKNIS MEJA OTOMATIS"
+            text={currentBadgeText}
             fontFamily={HEADING_FONT}
-            fontSize={18}
+            fontSize={20}
             fontWeight={800}
-            fill={PALETTE.crimson}
+            fill={currentBadgeColor}
           />
         </Rect>
 
-        {/* Hero Image */}
-        <Img
-          src="/assets/vid_20261102_001/beat08_spilled_boba_gear_jam.png"
-          y={-40}
-          width={680}
-          height={370}
-          radius={12}
-        />
-
-        {/* Bottom Callout Box */}
+        {/* Single Bottom-Right Status Stamp */}
         <Rect
-          y={205}
-          width={680}
-          height={92}
-          radius={12}
-          fill={PALETTE.mutedBg}
-          stroke={PALETTE.cardBorder}
-          lineWidth={1.5}
+          x={360}
+          y={285}
+          layout
+          direction="row"
+          alignItems="center"
+          padding={[10, 22]}
+          radius={999}
+          fill={currentStampBg}
+          stroke={COLORS.ink}
+          lineWidth={2.5}
         >
           <Txt
-            y={-15}
-            text="KERAPUHAN PERANGKAT KERAS"
-            fontFamily={HEADING_FONT}
-            fontSize={22}
+            text={currentStampText}
+            fontFamily={FONTS.data}
+            fontSize={18}
             fontWeight={800}
             fill={COLORS.ink}
-          />
-          <Txt
-            y={17}
-            text="Sensor optik & motor pengocok macet total"
-            fontFamily={FONTS.body}
-            fontSize={18}
-            fontWeight={600}
-            fill={COLORS.secondaryInk}
           />
         </Rect>
       </Rect>
 
-      {/* RIGHT CARD: 3-Tier Failure Stack */}
+      {/* ================================================================= */}
+      {/* RIGHT COMIC STORYBOARD / CALLOUT COLUMN (x = 630, y = -30, w = 410)*/}
+      {/* ================================================================= */}
       <Rect
-        x={420}
-        y={-25}
-        width={840}
-        height={650}
-        radius={16}
-        fill={COLORS.surface}
-        stroke={PALETTE.cardBorder}
-        lineWidth={2}
-        opacity={rightCardOpacity}
+        x={630}
+        y={-30}
+        width={410}
+        height={675}
+        scale={rightColScale}
+        layout
+        direction="column"
+        gap={10}
+        padding={18}
+        radius={20}
+        fill={'#FFFFFF'}
+        stroke={COLORS.ink}
+        lineWidth={3.5}
       >
-        {/* Header Brow */}
+        {/* Column Title Header */}
         <Rect
-          y={-275}
-          layout={true}
-          padding={[8, 24]}
-          alignItems={'center'}
-          justifyContent={'center'}
-          radius={8}
-          fill={PALETTE.feltGreenBg}
-          stroke={PALETTE.feltGreen}
-          lineWidth={1.5}
+          layout
+          direction="row"
+          width={374}
+          height={46}
+          alignItems="center"
+          justifyContent="center"
+          radius={10}
+          fill={PALETTE.mutedBg}
+          stroke={COLORS.ink}
+          lineWidth={2}
         >
           <Txt
-            text="3 TITIK KEGAGALAN HARDWARE"
+            text="6 KERAPUHAN OPERASIONAL"
             fontFamily={HEADING_FONT}
             fontSize={19}
             fontWeight={800}
-            fill={PALETTE.feltGreen}
+            fill={COLORS.ink}
           />
         </Rect>
 
-        {/* TIER 1: Boba & Sweet Drinks */}
+        {/* Row 1: Tumpahan Boba Manis */}
         <Rect
-          y={tier1Y}
-          width={760}
-          height={104}
+          layout
+          direction="column"
+          width={374}
+          height={86}
+          padding={[8, 14]}
+          gap={4}
           radius={12}
-          fill={'#FFFFFF'}
-          stroke={PALETTE.cardBorder}
+          fill={PALETTE.amberBg}
+          stroke={COLORS.ink}
           lineWidth={2}
-          opacity={tier1Opacity}
+          opacity={row1Opacity}
+          scale={row1Scale}
         >
-          <Rect x={-372} width={8} height={104} fill={PALETTE.crimson} radius={[12, 0, 0, 12]} />
           <Txt
-            x={-16}
-            y={-17}
-            text="#1 TUMPAHAN BOBA & ES TEH"
+            text="1. Tumpahan Boba Manis"
             fontFamily={HEADING_FONT}
-            fontSize={21}
+            fontSize={19}
             fontWeight={800}
-            fill={COLORS.ink}
-          />
-          <Txt
-            x={-16}
-            y={16}
-            text="Sensor Optik & Sabuk Magnetik Lengket (Servis Rp1,5 Jt)"
-            fontFamily={FONTS.body}
-            fontSize={18}
-            fontWeight={600}
             fill={PALETTE.crimson}
           />
-        </Rect>
-
-        {/* TIER 2: Missing Tile */}
-        <Rect
-          y={tier2Y}
-          width={760}
-          height={104}
-          radius={12}
-          fill={'#FFFFFF'}
-          stroke={PALETTE.cardBorder}
-          lineWidth={2}
-          opacity={tier2Opacity}
-        >
-          <Rect x={-372} width={8} height={104} fill={PALETTE.amber} radius={[12, 0, 0, 12]} />
           <Txt
-            x={-16}
-            y={-17}
-            text="#2 1 BATU MAGNET HILANG = CACAT"
-            fontFamily={HEADING_FONT}
-            fontSize={21}
-            fontWeight={800}
-            fill={COLORS.ink}
-          />
-          <Txt
-            x={-16}
-            y={16}
-            text="Kalibrasi 144 Batu Terkunci (Ganti 1 Set Rp2,5 Jt)"
+            text="Cairan gula masuk celah elevator"
             fontFamily={FONTS.body}
             fontSize={18}
             fontWeight={600}
@@ -221,94 +213,257 @@ export default makeScene2D(function* (view) {
           />
         </Rect>
 
-        {/* TIER 3: Weekend Breakdown */}
+        {/* Row 2: Sensor Optik Lengket & Macet */}
         <Rect
-          y={tier3Y}
-          width={760}
-          height={104}
+          layout
+          direction="column"
+          width={374}
+          height={86}
+          padding={[8, 14]}
+          gap={4}
           radius={12}
-          fill={'#FFFFFF'}
-          stroke={PALETTE.cardBorder}
-          lineWidth={2}
-          opacity={tier3Opacity}
+          fill={PALETTE.crimsonBg}
+          stroke={PALETTE.crimson}
+          lineWidth={2.5}
+          opacity={row2Opacity}
+          scale={row2Scale}
         >
-          <Rect x={-372} width={8} height={104} fill={PALETTE.crimson} radius={[12, 0, 0, 12]} />
           <Txt
-            x={-16}
-            y={-17}
-            text="#3 MEJA MATI SAAT MALAM MINGGU"
+            text="2. Sensor Optik Macet"
             fontFamily={HEADING_FONT}
-            fontSize={21}
+            fontSize={19}
+            fontWeight={800}
+            fill={PALETTE.crimson}
+          />
+          <Txt
+            text="Air gula kering, gir motor macet"
+            fontFamily={FONTS.body}
+            fontSize={18}
+            fontWeight={600}
+            fill={COLORS.secondaryInk}
+          />
+        </Rect>
+
+        {/* Row 3: Biaya Servis Motor: Rp800 Ribu */}
+        <Rect
+          layout
+          direction="column"
+          width={374}
+          height={86}
+          padding={[8, 14]}
+          gap={4}
+          radius={12}
+          fill={PALETTE.surface}
+          stroke={COLORS.ink}
+          lineWidth={2}
+          opacity={row3Opacity}
+          scale={row3Scale}
+        >
+          <Txt
+            text="3. Servis Motor: Rp800 Ribu"
+            fontFamily={HEADING_FONT}
+            fontSize={19}
+            fontWeight={800}
+            fill={PALETTE.ink}
+          />
+          <Txt
+            text="Ongkos teknisi bongkar mesin"
+            fontFamily={FONTS.body}
+            fontSize={18}
+            fontWeight={600}
+            fill={COLORS.secondaryInk}
+          />
+        </Rect>
+
+        {/* Row 4: Kalibrasi Magnet Presisi */}
+        <Rect
+          layout
+          direction="column"
+          width={374}
+          height={86}
+          padding={[8, 14]}
+          gap={4}
+          radius={12}
+          fill={PALETTE.mutedBg}
+          stroke={COLORS.ink}
+          lineWidth={2}
+          opacity={row4Opacity}
+          scale={row4Scale}
+        >
+          <Txt
+            text="4. Kalibrasi Magnet Presisi"
+            fontFamily={HEADING_FONT}
+            fontSize={19}
+            fontWeight={800}
+            fill={PALETTE.ink}
+          />
+          <Txt
+            text="144 batu presisi sub-milimeter"
+            fontFamily={FONTS.body}
+            fontSize={18}
+            fontWeight={600}
+            fill={COLORS.secondaryInk}
+          />
+        </Rect>
+
+        {/* Row 5: 1 Batu Hilang = 144 Batu Lumpuh! */}
+        <Rect
+          layout
+          direction="column"
+          width={374}
+          height={86}
+          padding={[8, 14]}
+          gap={4}
+          radius={12}
+          fill={PALETTE.crimsonBg}
+          stroke={PALETTE.crimson}
+          lineWidth={2.5}
+          opacity={row5Opacity}
+          scale={row5Scale}
+        >
+          <Txt
+            text="5. 1 Hilang = 144 Lumpuh!"
+            fontFamily={HEADING_FONT}
+            fontSize={19}
+            fontWeight={800}
+            fill={PALETTE.crimson}
+          />
+          <Txt
+            text="1 batu hilang = 1 set lumpuh total"
+            fontFamily={FONTS.body}
+            fontSize={18}
+            fontWeight={600}
+            fill={COLORS.secondaryInk}
+          />
+        </Rect>
+
+        {/* Row 6: Ganti Set Baru: Rp1,5 Juta */}
+        <Rect
+          layout
+          direction="column"
+          width={374}
+          height={86}
+          padding={[8, 14]}
+          gap={4}
+          radius={12}
+          fill={PALETTE.amberBg}
+          stroke={PALETTE.amber}
+          lineWidth={2.5}
+          opacity={row6Opacity}
+          scale={row6Scale}
+        >
+          <Txt
+            text="6. Ganti Set Baru: Rp1,5 Jt"
+            fontFamily={HEADING_FONT}
+            fontSize={19}
             fontWeight={800}
             fill={COLORS.ink}
           />
           <Txt
-            x={-16}
-            y={16}
-            text="Kehilangan Omzet VIP Rp750.000 / Malam Saat Peak Hour"
+            text="Haram eceran (kutub magnet beda)"
             fontFamily={FONTS.body}
             fontSize={18}
             fontWeight={600}
-            fill={PALETTE.crimson}
-          />
-        </Rect>
-
-        {/* Bottom Alert Banner */}
-        <Rect
-          y={215}
-          width={760}
-          height={68}
-          radius={10}
-          fill={PALETTE.crimsonBg}
-          stroke={PALETTE.crimson}
-          lineWidth={1.5}
-          opacity={bannerOpacity}
-        >
-          <Txt
-            text="144 BATU LUMPUH TOTAL SAMPAI SUKU CADANG TIBA"
-            fontFamily={HEADING_FONT}
-            fontSize={18}
-            fontWeight={800}
-            fill={PALETTE.crimson}
+            fill={COLORS.secondaryInk}
           />
         </Rect>
       </Rect>
     </Node>
   );
 
-  // Reveal Choreography (Synced strictly LTR and TTB to audio speech)
-  yield* waitUntilSceneTime(0.8, t0);
+  // =========================================================================
+  // 10 SENTENCE BEAT TIMING ORCHESTRATION
+  // [0.2, 5.02, 9.64, 11.44, 16.31, 22.54, 26.5, 32.54, 36.64, 40.44]
+  // =========================================================================
+
+  // Beat 1: 0.2s - "Masalah kedua yang menghantui setiap hari adalah kerapuhan teknis mesin impor ini."
+  yield* waitUntilSceneTime(0.2);
   yield* all(
-    leftCardOpacity(1, 0.7, easeOutExpo),
-    leftCardScale(1, 0.7, easeOutBack),
-    rightCardOpacity(1, 0.5, easeOutExpo)
+    stageOpacity(1, 0.45, easeOutCubic),
+    leftPanelScale(1, 0.5, easeOutBack),
+    rightColScale(1, 0.5, easeOutBack),
+    row1Opacity(1, 0.4),
+    row1Scale(1, 0.4, easeOutBack)
   );
 
-  // Tier 1 reveal at ~12.5s ("menyenggol gelas es teh manis atau boba...")
-  yield* waitUntilSceneTime(12.5, t0);
-  focalId(2);
+  // Beat 2: 5.02s - "Ketika asyik bermain sambil minum boba manis, kecelakaan sering tak terhindarkan."
+  yield* waitUntilSceneTime(5.02);
+  currentStampText('KECELAKAAN MINUMAN MANIS');
+  currentStampBg(PALETTE.amberBg);
+  yield* leftPanelScale(1.02, 0.2, easeOutCubic);
+  yield* leftPanelScale(1.0, 0.2, easeOutCubic);
+
+  // Beat 3: 9.64s - "Satu senggolan bisa membuat cairan gula pekat tumpah ke celah elevator."
+  yield* waitUntilSceneTime(9.64);
+  currentStampText('CAIRAN MASUK ELEVATOR MEJA');
+  currentStampBg(PALETTE.crimsonBg);
+  yield* leftPanelScale(1.02, 0.2, easeOutCubic);
+  yield* leftPanelScale(1.0, 0.2, easeOutCubic);
+
+  // Beat 4: 11.44s - "Air gula mengering melumuri sensor optik dan bikin gir motor macet total."
+  yield* waitUntilSceneTime(11.44);
+  currentBadgeText('SENSOR OPTIK ERROR & GEAR MACET');
+  currentBadgeColor(PALETTE.crimson);
   yield* all(
-    tier1Opacity(1, 0.6, easeOutExpo),
-    tier1Y(-165, 0.6, easeOutBack)
+    row2Opacity(1, 0.4, easeOutBack),
+    row2Scale(1, 0.4, easeOutBack)
   );
 
-  // Tier 2 reveal at ~28.0s ("sindrom satu batu hilang...")
-  yield* waitUntilSceneTime(28.0, t0);
-  focalId(3);
+  // Beat 5: 16.31s - "Biaya memanggil teknisi bongkar mesin mencapai delapan ratus ribu sekali datang."
+  yield* waitUntilSceneTime(16.31);
+  currentStampText('BIAYA SERVIS: RP800.000 / VISIT');
+  currentStampBg(PALETTE.amberBg);
   yield* all(
-    tier2Opacity(1, 0.6, easeOutExpo),
-    tier2Y(-35, 0.6, easeOutBack)
+    row3Opacity(1, 0.4, easeOutBack),
+    row3Scale(1, 0.4, easeOutBack)
   );
 
-  // Tier 3 reveal at ~41.5s ("lo tidak bisa menggantinya...")
-  yield* waitUntilSceneTime(41.5, t0);
-  focalId(4);
+  // Beat 6: 22.54s - "Belum lagi risiko sepele tapi fatal: satu batu magnetik hilang terselip."
+  yield* waitUntilSceneTime(22.54);
+  currentBadgeText('FATAL: 1 BATU HILANG TERSELIP');
+  currentBadgeColor(PALETTE.crimson);
+  currentStampText('MENCARI BATU DI BAWAH SOFA');
   yield* all(
-    tier3Opacity(1, 0.6, easeOutExpo),
-    tier3Y(95, 0.6, easeOutBack),
-    bannerOpacity(1, 0.5, easeOutExpo)
+    imageSwap(1, 0.5, easeInOutCubic),
+    leftPanelScale(1.02, 0.25, easeOutCubic)
+  );
+  yield* leftPanelScale(1.0, 0.25, easeOutCubic);
+
+  // Beat 7: 26.5s - "Ingat, setiap set berisi 144 batu dengan kalibrasi magnet sub-milimeter presisi."
+  yield* waitUntilSceneTime(26.5);
+  currentStampText('144 BATU KALIBRASI SUB-MM');
+  currentStampBg(PALETTE.mutedBg);
+  yield* all(
+    row4Opacity(1, 0.4, easeOutBack),
+    row4Scale(1, 0.4, easeOutBack)
   );
 
-  // Finish scene at 53.42s
-  yield* finishSceneAt(sceneDur, t0);
+  // Beat 8: 32.54s - "Kehilangan satu batu artinya satu set lengkap itu langsung lumpuh total."
+  yield* waitUntilSceneTime(32.54);
+  currentStampText('1 SET LUMPUH TOTAL (BRICKED)');
+  currentStampBg(PALETTE.crimsonBg);
+  yield* all(
+    row5Opacity(1, 0.4, easeOutBack),
+    row5Scale(1, 0.4, easeOutBack)
+  );
+
+  // Beat 9: 36.64s - "Lo tidak bisa beli batu eceran karena bobot dan kutub magnetnya beda."
+  yield* waitUntilSceneTime(36.64);
+  currentBadgeText('HARAM BELI BATU ECERAN!');
+  currentStampText('KUTUB & BOBOT MAGNETIK BEDA');
+  yield* leftPanelScale(1.02, 0.2, easeOutCubic);
+  yield* leftPanelScale(1.0, 0.2, easeOutCubic);
+
+  // Beat 10: 40.44s - "Akibatnya, lo terpaksa beli satu set batu baru seharga satu setengah juta."
+  yield* waitUntilSceneTime(40.44);
+  currentBadgeText('GANTI SET BARU: RP1.500.000');
+  currentStampText('KERUGIAN OPERASIONAL TAK TERDUGA');
+  currentStampBg(PALETTE.amberBg);
+  yield* all(
+    row6Opacity(1, 0.4, easeOutBack),
+    row6Scale(1, 0.4, easeOutBack)
+  );
+
+  // Hold cleanly till scene end
+  yield* finishSceneAt(sceneDuration);
 });

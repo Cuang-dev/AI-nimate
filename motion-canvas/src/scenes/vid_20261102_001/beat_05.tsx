@@ -1,372 +1,458 @@
-import { Img, Line, makeScene2D, Node, Rect, Txt } from '@motion-canvas/2d';
-import { all, createRef, createSignal, easeInOutCubic, easeOutBack, easeOutExpo, useThread } from '@motion-canvas/core';
-import { createEditorialStage, COLORS, PALETTE, FONTS, HEADING_FONT } from './layout';
-import { finishSceneAt, focalRotation, focalScale, SCENE_TIMINGS, waitUntilSceneTime } from './timings';
+import { Img, makeScene2D, Node, Rect, Txt } from '@motion-canvas/2d';
+import {
+  all,
+  createRef,
+  createSignal,
+  easeOutBack,
+  easeOutCubic,
+} from '@motion-canvas/core';
+import {
+  COLORS,
+  FONTS,
+  HEADING_FONT,
+  PALETTE,
+  setupBaseStage,
+} from './layout';
+import {
+  finishSceneAt,
+  SCENE_TIMINGS,
+  waitUntilSceneTime,
+} from './timings';
 
 export default makeScene2D(function* (view) {
-  const time = useThread().time;
-  const t0 = time();
-  const sceneStart = SCENE_TIMINGS[4]?.start ?? 214.684;
-  const sceneDur = SCENE_TIMINGS[4]?.duration ?? 56.631;
+  // Swiss Base Stage with Subtitles and Chapter Brow
+  setupBaseStage(view, 'beat_05');
 
-  // Mount responsive Swiss stage
-  createEditorialStage(view, 4);
+  // Animation signals
+  const stageOpacity = createSignal(0);
 
-  // Scene state signals
-  const focalId = createSignal(1);
-  const leftCardOpacity = createSignal(0);
-  const leftCardScale = createSignal(0.92);
+  // Comic panel swap signals (ch05_p1 -> ch05_p2)
+  const panel1Opacity = createSignal(1);
+  const panel2Opacity = createSignal(0);
 
-  const rightCardOpacity = createSignal(0);
-  const rightCardScale = createSignal(0.94);
-  const axesOpacity = createSignal(0);
+  // Timer badge signals
+  const timerText = createSignal('⏱ 5 JAM TERKUNCI');
+  const timerBg = createSignal(PALETTE.crimson);
 
-  const col1Progress = createSignal(0);
-  const col1Opacity = createSignal(0);
-  const col2Progress = createSignal(0);
-  const col2Opacity = createSignal(0);
-  const heroBadgeScale = createSignal(0.85);
+  // Right column cards signals
+  const card1Opacity = createSignal(0);
+  const card1Scale = createSignal(0.9);
 
-  // Layout metrics (Widescreen 1920x1080)
-  const leftX = -460;
-  const rightX = 360;
-  const cardY = -30;
-  const cardHeight = 640;
-  const leftWidth = 720;
-  const rightWidth = 900;
+  const card2Opacity = createSignal(0);
+  const card2Scale = createSignal(0.9);
 
-  // Right card chart coordinates
-  const chartX0 = rightX - 380;
-  const chartX1 = rightX + 380;
-  const chartY0 = cardY - 190;
-  const chartY1 = cardY + 220;
+  const card3Opacity = createSignal(0);
+  const card3Scale = createSignal(0.9);
 
-  const col1CenterX = chartX0 + 200;
-  const col2CenterX = chartX0 + 520;
-  const col1MaxH = 95;
-  const col2MaxH = 340;
+  const card4Opacity = createSignal(0);
+  const card4Scale = createSignal(0.9);
+  const card4Border = createSignal(COLORS.ink);
+
+  const card5Opacity = createSignal(0);
+  const card5Scale = createSignal(0.9);
+
+  const card6Opacity = createSignal(0);
+  const card6Scale = createSignal(0.9);
+  const card6Bg = createSignal(PALETTE.mutedBg);
+  const card6Border = createSignal(COLORS.ink);
 
   const stage = createRef<Node>();
-  const leftRef = createRef<Node>();
-  const rightRef = createRef<Node>();
 
   view.add(
-    <Node ref={stage}>
-      {/* ===== LEFT CARD: MONETIZATION ARCHITECTURE ===== */}
-      <Node
-        ref={leftRef}
-        x={leftX}
-        y={cardY}
-        opacity={leftCardOpacity}
-        scale={() => focalScale(focalId, 1, leftCardScale, time)}
-        rotation={() => focalRotation(focalId, 1, time)}
+    <Node ref={stage} opacity={stageOpacity}>
+      {/* ===== LEFT/MAIN STAGE: Bold Widescreen 16:9 Comic Panel Frame ===== */}
+      <Rect
+        x={-210}
+        y={-30}
+        width={1200}
+        height={675}
+        radius={20}
+        clip
+        fill={'#FFFFFF'}
+        stroke={COLORS.ink}
+        lineWidth={4}
       >
-        <Rect
-          width={leftWidth}
-          height={cardHeight}
-          fill={COLORS.surface}
-          stroke={COLORS.gridLine}
-          lineWidth={2}
-          radius={16}
-        />
-
-        {/* Card Header */}
-        <Txt
-          x={0}
-          y={-280}
-          text="STRUKTUR MONETISASI"
-          fontFamily={FONTS.heading}
-          fontSize={18}
-          fontWeight={800}
-          fill={COLORS.accent}
-          letterSpacing={1.2}
-        />
-        <Txt
-          x={0}
-          y={-248}
-          text="Lounge Mahjong Komersial"
-          fontFamily={FONTS.body}
-          fontSize={20}
-          fontWeight={600}
-          fill={COLORS.secondaryInk}
-        />
-
-        {/* Hero Illustration */}
+        {/* Panel 1: Focused Players at Table with 5hr Clock */}
         <Img
-          src="/assets/vid_20261102_001/beat05_fnb_dimsum_tea.png"
-          width={330}
-          height={330}
-          y={-20}
-          radius={12}
+          src="/assets/vid_20261102_001/ch05_p1.png"
+          width={1200}
+          height={675}
+          opacity={panel1Opacity}
         />
 
-        {/* Dual Comparison Pill */}
+        {/* Panel 2: Player Blindly Grabbing Snack */}
+        <Img
+          src="/assets/vid_20261102_001/ch05_p2.png"
+          width={1200}
+          height={675}
+          opacity={panel2Opacity}
+        />
+
+        {/* Single Top-Left Comic Badge */}
         <Rect
-          y={210}
-          width={leftWidth - 50}
-          height={110}
-          fill={COLORS.bg}
-          stroke={COLORS.gridLine}
-          lineWidth={2}
-          radius={14}
-        />
-        {/* Left Sub-box: Sewa Meja */}
-        <Txt
-          x={-160}
-          y={190}
-          text="SEWA MEJA (PRODUK UMPAN)"
-          fontFamily={FONTS.heading}
-          fontSize={18}
-          fontWeight={700}
-          fill={COLORS.secondaryInk}
-        />
-        <Txt
-          x={-160}
-          y={225}
-          text="Rp15.000 / Org / Jam"
-          fontFamily={FONTS.data}
-          fontSize={20}
-          fontWeight={800}
+          x={-420}
+          y={-285}
+          padding={[10, 20]}
+          radius={10}
           fill={COLORS.ink}
-        />
+          stroke={'#FFFFFF'}
+          lineWidth={2}
+          layout
+          direction="row"
+          alignItems="center"
+        >
+          <Txt
+            text="PSIKOLOGI SOSIAL MAHJONG"
+            fontFamily={HEADING_FONT}
+            fontSize={20}
+            fontWeight={800}
+            fill={'#FFFFFF'}
+          />
+        </Rect>
 
-        {/* Right Sub-box: F&B Cash Cow */}
-        <Txt
-          x={160}
-          y={190}
-          text="F&B CASH COW (MESIN PROFIT)"
-          fontFamily={FONTS.heading}
-          fontSize={18}
-          fontWeight={700}
-          fill={COLORS.compliantGreen}
-        />
-        <Txt
-          x={160}
-          y={225}
-          text="Margin Kotor Tebal 70%"
-          fontFamily={FONTS.data}
-          fontSize={20}
-          fontWeight={800}
-          fill={COLORS.compliantGreen}
-        />
-      </Node>
+        {/* Bottom-Right Lock-In Timer Badge */}
+        <Rect
+          x={410}
+          y={280}
+          padding={[10, 22]}
+          radius={10}
+          fill={timerBg}
+          stroke={COLORS.ink}
+          lineWidth={2.5}
+          layout
+          direction="row"
+          alignItems="center"
+          gap={8}
+        >
+          <Txt
+            text={timerText}
+            fontFamily={FONTS.data}
+            fontSize={20}
+            fontWeight={800}
+            fill={'#FFFFFF'}
+          />
+        </Rect>
+      </Rect>
 
-      {/* ===== RIGHT CARD: CHASM SCALE BAR CHART ===== */}
-      <Node
-        ref={rightRef}
-        x={rightX}
-        y={cardY}
-        opacity={rightCardOpacity}
-        scale={() => focalScale(focalId, 2, rightCardScale, time)}
-        rotation={() => focalRotation(focalId, 2, time)}
+      {/* ===== RIGHT COMIC STORYBOARD / CALLOUT COLUMN ===== */}
+      <Rect
+        x={630}
+        y={-30}
+        width={410}
+        height={675}
+        radius={20}
+        fill={'#FFFFFF'}
+        stroke={COLORS.ink}
+        lineWidth={3.5}
+        padding={16}
+        layout
+        direction="column"
+        gap={10}
+        justifyContent="space-between"
       >
+        {/* Card 1: Kafe Kopi (Cue 2: 6.06s) */}
         <Rect
-          width={rightWidth}
-          height={cardHeight}
-          fill={COLORS.surface}
-          stroke={COLORS.gridLine}
-          lineWidth={2}
-          radius={16}
-        />
-      </Node>
-
-      {/* Chart Content in Stage Coordinates */}
-      <Node opacity={axesOpacity}>
-        {/* Chart Header */}
-        <Txt
-          x={rightX}
-          y={cardY - 265}
-          text="LOSS-LEADER VS PROFIT ENGINE"
-          fontFamily={FONTS.heading}
-          fontSize={22}
-          fontWeight={800}
-          fill={COLORS.ink}
-          letterSpacing={1}
-        />
-
-        {/* Y-Axis Line */}
-        <Line
-          points={[
-            [chartX0, chartY1],
-            [chartX0, chartY0 - 20],
-          ]}
+          width={376}
+          height={94}
+          radius={12}
+          fill={PALETTE.mutedBg}
           stroke={COLORS.ink}
-          lineWidth={3}
-          endArrow
-          arrowSize={12}
-        />
+          lineWidth={2}
+          padding={[10, 14]}
+          layout
+          direction="column"
+          justifyContent="center"
+          opacity={card1Opacity}
+          scale={card1Scale}
+        >
+          <Txt
+            text="01. KAFE KOPI BIASA"
+            fontFamily={HEADING_FONT}
+            fontSize={18}
+            fontWeight={800}
+            fill={COLORS.secondaryInk}
+          />
+          <Txt
+            text="Rp35rb Nongkrong 3 Jam"
+            fontFamily={FONTS.body}
+            fontSize={18}
+            fontWeight={700}
+            fill={COLORS.ink}
+          />
+          <Txt
+            text="Revenue Leakage Tinggi"
+            fontFamily={FONTS.data}
+            fontSize={18}
+            fontWeight={700}
+            fill={PALETTE.crimson}
+          />
+        </Rect>
 
-        {/* X-Axis Line */}
-        <Line
-          points={[
-            [chartX0, chartY1],
-            [chartX1 + 25, chartY1],
-          ]}
+        {/* Card 2: Meja Biliar (Cue 3: 11.4s) */}
+        <Rect
+          width={376}
+          height={94}
+          radius={12}
+          fill={PALETTE.mutedBg}
           stroke={COLORS.ink}
-          lineWidth={3}
-          endArrow
-          arrowSize={12}
-        />
-
-        {/* Dashed Gridlines */}
-        <Line
-          points={[
-            [chartX0, chartY0 + 35],
-            [chartX1, chartY0 + 35],
-          ]}
-          stroke={COLORS.gridLine}
           lineWidth={2}
-          lineDash={[6, 6]}
-        />
-        <Txt
-          x={chartX1 - 10}
-          y={chartY0 + 15}
-          offset={[1, 0]}
-          text="70% Margin Laba F&B"
-          fontFamily={FONTS.data}
-          fontSize={18}
-          fontWeight={700}
-          fill={COLORS.compliantGreen}
-        />
+          padding={[10, 14]}
+          layout
+          direction="column"
+          justifyContent="center"
+          opacity={card2Opacity}
+          scale={card2Scale}
+        >
+          <Txt
+            text="02. MEJA BILIAR"
+            fontFamily={HEADING_FONT}
+            fontSize={18}
+            fontWeight={800}
+            fill={COLORS.secondaryInk}
+          />
+          <Txt
+            text="1 Jam Langsung Bubar"
+            fontFamily={FONTS.body}
+            fontSize={18}
+            fontWeight={700}
+            fill={COLORS.ink}
+          />
+          <Txt
+            text="High Churn • Sesi Singkat"
+            fontFamily={FONTS.data}
+            fontSize={18}
+            fontWeight={700}
+            fill={PALETTE.crimson}
+          />
+        </Rect>
 
-        <Line
-          points={[
-            [chartX0, chartY1 - col1MaxH],
-            [chartX1, chartY1 - col1MaxH],
-          ]}
-          stroke={COLORS.gridLine}
-          lineWidth={2}
-          lineDash={[6, 6]}
-        />
-        <Txt
-          x={col1CenterX}
-          y={chartY1 - col1MaxH - 20}
-          text="0% Break-Even Sewa"
-          fontFamily={FONTS.data}
-          fontSize={18}
-          fontWeight={700}
-          fill={COLORS.secondaryInk}
-        />
-
-        {/* Column 1: Sewa Meja (Umpan) */}
+        {/* Card 3: Standar Mahjong 16 Ronde (Cue 4: 15.62s) */}
         <Rect
-          x={col1CenterX}
-          y={() => chartY1 - (col1MaxH * col1Progress()) / 2}
-          width={240}
-          height={() => Math.max(4, col1MaxH * col1Progress())}
-          fill="#CBD5E1"
-          stroke={COLORS.secondaryInk}
-          lineWidth={1.5}
-          radius={[8, 8, 0, 0]}
-        />
-        <Txt
-          x={col1CenterX}
-          y={chartY1 + 25}
-          text="SEWA MEJA (UMPAN)"
-          fontFamily={FONTS.heading}
-          fontSize={18}
-          fontWeight={700}
-          fill={COLORS.secondaryInk}
-          opacity={col1Opacity}
-        />
-        <Txt
-          x={col1CenterX}
-          y={chartY1 - col1MaxH - 45}
-          text="Margin Tipis: Cuma Tutup Listrik"
-          fontFamily={FONTS.body}
-          fontSize={18}
-          fontWeight={600}
-          fill={COLORS.secondaryInk}
-          opacity={col1Opacity}
-        />
-
-        {/* Column 2: F&B Cash Cow Engine */}
-        <Rect
-          x={col2CenterX}
-          y={() => chartY1 - (col2MaxH * col2Progress()) / 2}
-          width={240}
-          height={() => Math.max(4, col2MaxH * col2Progress())}
-          fill={COLORS.compliantGreen}
-          stroke="#0D5A38"
+          width={376}
+          height={94}
+          radius={12}
+          fill={PALETTE.amberBg}
+          stroke={PALETTE.amber}
           lineWidth={2}
-          radius={[8, 8, 0, 0]}
-        />
-        <Txt
-          x={col2CenterX}
-          y={chartY1 + 25}
-          text="MESIN F&B (PROFIT)"
-          fontFamily={FONTS.heading}
-          fontSize={18}
-          fontWeight={800}
-          fill={COLORS.compliantGreen}
-          opacity={col2Opacity}
-        />
-        <Txt
-          x={col2CenterX}
-          y={() => chartY1 - (col2MaxH * col2Progress()) / 2 + 15}
-          text="Dimsum, Liang Teh & Kopi"
-          fontFamily={FONTS.body}
-          fontSize={18}
-          fontWeight={600}
-          fill={COLORS.surface}
-          opacity={col2Opacity}
-        />
-        <Txt
-          x={col2CenterX}
-          y={() => chartY1 - (col2MaxH * col2Progress()) / 2 - 25}
-          text="MARGIN KOTOR 70%"
-          fontFamily={FONTS.heading}
-          fontSize={22}
-          fontWeight={800}
-          fill={COLORS.surface}
-          opacity={col2Opacity}
-          scale={heroBadgeScale}
-        />
-      </Node>
+          padding={[10, 14]}
+          layout
+          direction="column"
+          justifyContent="center"
+          opacity={card3Opacity}
+          scale={card3Scale}
+        >
+          <Txt
+            text="03. STANDAR MAHJONG"
+            fontFamily={HEADING_FONT}
+            fontSize={18}
+            fontWeight={800}
+            fill={PALETTE.amber}
+          />
+          <Txt
+            text="4 Angin = 16 Ronde Penuh"
+            fontFamily={FONTS.body}
+            fontSize={18}
+            fontWeight={700}
+            fill={COLORS.ink}
+          />
+          <Txt
+            text="Timur • Selatan • Barat • Utara"
+            fontFamily={FONTS.data}
+            fontSize={18}
+            fontWeight={700}
+            fill={COLORS.secondaryInk}
+          />
+        </Rect>
+
+        {/* Card 4: Aturan Ketat Sosial (Cue 5 & 6: 20.72s & 25.3s) */}
+        <Rect
+          width={376}
+          height={94}
+          radius={12}
+          fill={PALETTE.crimsonBg}
+          stroke={card4Border}
+          lineWidth={2.5}
+          padding={[10, 14]}
+          layout
+          direction="column"
+          justifyContent="center"
+          opacity={card4Opacity}
+          scale={card4Scale}
+        >
+          <Txt
+            text="04. ATURAN KETAT SOSIAL"
+            fontFamily={HEADING_FONT}
+            fontSize={18}
+            fontWeight={800}
+            fill={PALETTE.crimson}
+          />
+          <Txt
+            text="1 Pergi = Permainan Batal!"
+            fontFamily={FONTS.body}
+            fontSize={18}
+            fontWeight={800}
+            fill={PALETTE.crimson}
+          />
+          <Txt
+            text="Wajib Berempat Selesai Bareng"
+            fontFamily={FONTS.data}
+            fontSize={18}
+            fontWeight={700}
+            fill={COLORS.ink}
+          />
+        </Rect>
+
+        {/* Card 5: Durasi Kunci (Cue 7 & 8: 29.96s & 34.74s) */}
+        <Rect
+          width={376}
+          height={94}
+          radius={12}
+          fill={PALETTE.cyanBg}
+          stroke={PALETTE.cyan}
+          lineWidth={2}
+          padding={[10, 14]}
+          layout
+          direction="column"
+          justifyContent="center"
+          opacity={card5Opacity}
+          scale={card5Scale}
+        >
+          <Txt
+            text="05. DURASI KUNCI NON-STOP"
+            fontFamily={HEADING_FONT}
+            fontSize={18}
+            fontWeight={800}
+            fill={PALETTE.cyan}
+          />
+          <Txt
+            text="4–6 Jam Terkunci di Ruangan"
+            fontFamily={FONTS.body}
+            fontSize={18}
+            fontWeight={700}
+            fill={COLORS.ink}
+          />
+          <Txt
+            text="AC Dingin • Tanpa Jendela"
+            fontFamily={FONTS.data}
+            fontSize={18}
+            fontWeight={700}
+            fill={COLORS.secondaryInk}
+          />
+        </Rect>
+
+        {/* Card 6: Efek Lapar & Haus -> Cash Cow (Cue 9 & 10: 38.56s & 43.06s) */}
+        <Rect
+          width={376}
+          height={94}
+          radius={12}
+          fill={card6Bg}
+          stroke={card6Border}
+          lineWidth={2.5}
+          padding={[10, 14]}
+          layout
+          direction="column"
+          justifyContent="center"
+          opacity={card6Opacity}
+          scale={card6Scale}
+        >
+          <Txt
+            text="06. CASH COW TERBUKA"
+            fontFamily={HEADING_FONT}
+            fontSize={18}
+            fontWeight={800}
+            fill={PALETTE.emerald}
+          />
+          <Txt
+            text="Lapar & Haus -> Order F&B!"
+            fontFamily={FONTS.body}
+            fontSize={18}
+            fontWeight={800}
+            fill={COLORS.ink}
+          />
+          <Txt
+            text="Pesanan Makanan Margin 70%"
+            fontFamily={FONTS.data}
+            fontSize={18}
+            fontWeight={700}
+            fill={PALETTE.emerald}
+          />
+        </Rect>
+      </Rect>
     </Node>
   );
 
-  // ===== CHOREOGRAPHY TIMED TO AUDIO =====
-  // 0.0s - 1.5s: Reveal left card
+  // =========================================================================
+  // Synchronized Scene Choreography (10 Beats from beat_cue_schedule.json)
+  // =========================================================================
+
+  // Cue 1: 0.2s - Slam Panel 1 (Four friends focused at table)
+  yield* waitUntilSceneTime(0.2);
+  yield* stageOpacity(1, 0.45, easeOutCubic);
+
+  // Cue 2: 6.06s - Card 1: Kafe Kopi Rp35rb duduk 3 jam
+  yield* waitUntilSceneTime(6.06);
   yield* all(
-    leftCardOpacity(1, 0.8, easeOutExpo),
-    leftCardScale(1, 0.8, easeOutBack)
+    card1Opacity(1, 0.35, easeOutCubic),
+    card1Scale(1.0, 0.35, easeOutBack),
   );
 
-  // 17.96s: "hanyalah umpan pancingan" -> Right card & axes reveal
-  yield* waitUntilSceneTime(17.96, t0);
-  focalId(2);
+  // Cue 3: 11.4s - Card 2: Meja Biliar 1 jam bubar
+  yield* waitUntilSceneTime(11.4);
   yield* all(
-    rightCardOpacity(1, 0.8, easeOutExpo),
-    rightCardScale(1, 0.8, easeOutBack),
-    axesOpacity(1, 0.7, easeOutExpo)
+    card2Opacity(1, 0.35, easeOutCubic),
+    card2Scale(1.0, 0.35, easeOutBack),
   );
 
-  // 22.46s: "uang sewa meja murni bahkan hampir tidak cukup bayar listrik" -> Col 1 expands
-  yield* waitUntilSceneTime(22.46, t0);
+  // Cue 4: 15.62s - Card 3: Mahjong standar 16 ronde
+  yield* waitUntilSceneTime(15.62);
   yield* all(
-    col1Progress(1, 1.0, easeOutExpo),
-    col1Opacity(1, 0.8, easeOutExpo)
+    card3Opacity(1, 0.35, easeOutCubic),
+    card3Scale(1.0, 0.35, easeOutBack),
   );
 
-  // 28.74s: "Mesin uang aslinya ada pada makanan dan minuman" -> Col 2 begins rising
-  yield* waitUntilSceneTime(28.74, t0);
+  // Cue 5: 20.72s - Card 4: Fokus penuh, tidak bisa berdiri seenaknya
+  yield* waitUntilSceneTime(20.72);
   yield* all(
-    col2Progress(0.5, 1.2, easeInOutCubic),
-    col2Opacity(1, 0.8, easeOutExpo)
+    card4Opacity(1, 0.35, easeOutCubic),
+    card4Scale(1.0, 0.35, easeOutBack),
   );
 
-  // 41.78s: "es liang teh manis, kopi susu, mi goreng, dimsum" -> Col 2 continues rise
-  yield* waitUntilSceneTime(41.78, t0);
-  yield* col2Progress(0.85, 1.2, easeInOutCubic);
-
-  // 51.64s: "margin laba kotor luar biasa tebal, mencapai 70%" -> Peak surge!
-  yield* waitUntilSceneTime(51.64, t0);
+  // Cue 6: 25.3s - Swap to Panel 2 (Reaching for snacks), highlight Card 4
+  yield* waitUntilSceneTime(25.3);
   yield* all(
-    col2Progress(1.0, 0.8, easeOutExpo),
-    heroBadgeScale(1.08, 0.4, easeOutBack)
+    panel1Opacity(0, 0.3, easeOutCubic),
+    panel2Opacity(1, 0.3, easeOutCubic),
+    card4Border(PALETTE.crimson, 0.3),
   );
 
-  // Hold cleanly until beat completion (target >= 2.7s before end)
-  yield* finishSceneAt(sceneDur, t0);
+  // Cue 7: 29.96s - Card 5: The 5-Hour Social Lock-in Effect
+  yield* waitUntilSceneTime(29.96);
+  yield* all(
+    card5Opacity(1, 0.35, easeOutCubic),
+    card5Scale(1.0, 0.35, easeOutBack),
+  );
+
+  // Cue 8: 34.74s - Waktu melompat, timer badge updates
+  yield* waitUntilSceneTime(34.74);
+  timerText('⏱ WAKTU: 19:00 -> 00:00');
+  timerBg(PALETTE.amber);
+
+  // Cue 9: 38.56s - Card 6: Efek lapar & haus
+  yield* waitUntilSceneTime(38.56);
+  yield* all(
+    card6Opacity(1, 0.35, easeOutCubic),
+    card6Scale(1.0, 0.35, easeOutBack),
+  );
+
+  // Cue 10: 43.06s - Mesin uang aktif: The F&B Cash Cow
+  yield* waitUntilSceneTime(43.06);
+  timerText('💰 CASH COW AKTIF!');
+  timerBg(PALETTE.emerald);
+  yield* all(
+    card6Bg(PALETTE.emeraldBg, 0.35),
+    card6Border(PALETTE.emerald, 0.35),
+  );
+
+  // Hold safely until scene completion
+  yield* finishSceneAt(SCENE_TIMINGS[4].duration);
 });

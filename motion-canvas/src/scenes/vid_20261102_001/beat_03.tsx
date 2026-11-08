@@ -1,23 +1,25 @@
 import { Img, Line, makeScene2D, Node, Rect, Txt } from '@motion-canvas/2d';
 import {
   all,
+  createRef,
   createSignal,
+  easeOutBack,
   easeOutCubic,
   easeOutExpo,
   useThread,
 } from '@motion-canvas/core';
 import {
   BEAT_LABELS,
+  COLORS,
   FONTS,
   HEADING_FONT,
   PALETTE,
-  createEditorialStage,
+  isWidescreen,
+  setupBaseStage,
 } from './layout';
 import {
-  finishSceneAt,
-  focalRotation,
-  focalScale,
   SCENE_TIMINGS,
+  finishSceneAt,
   waitUntilSceneTime,
 } from './timings';
 
@@ -25,385 +27,525 @@ export default makeScene2D(function* (view) {
   const time = useThread().time;
   const t0 = time();
 
-  // Setup Swiss Base Stage (Brow badge, subtitles, grid)
-  const stage = createEditorialStage(view, BEAT_LABELS[2]);
+  // Setup Swiss Base Stage (Grid lines, single top brow badge, subtitle bar)
+  setupBaseStage(view, 'beat_03');
 
-  // Animation signals
-  const focalId = createSignal(0);
-  const leftCardOpacity = createSignal(0);
-  const leftCardScale = createSignal(0.92);
-  const leftBadgeScale = createSignal(0);
-  const rulePulse = createSignal(0);
+  const wide = isWidescreen(view);
+  const stage = createRef<Node>();
 
-  const rightCardOpacity = createSignal(0);
-  const rightCardScale = createSignal(0.92);
-  const chartAxesProgress = createSignal(0);
+  // Left Card Metric Signals
+  const activePill = createSignal(1);
+  const pill1Scale = createSignal(1.0);
+  const pill2Scale = createSignal(1.0);
 
-  const barCoffeeW = createSignal(0);
-  const rowCoffeeOpacity = createSignal(0);
+  // Right Explainer Waterfall Bar Signals
+  const bar1Width = createSignal(0);
+  const bar2Width = createSignal(0);
+  const bar3Width = createSignal(0);
+  const bar4Width = createSignal(0);
 
-  const barBiliarW = createSignal(0);
-  const rowBiliarOpacity = createSignal(0);
+  const bar1Opacity = createSignal(0.3);
+  const bar2Opacity = createSignal(0.3);
+  const bar3Opacity = createSignal(0.3);
+  const bar4Opacity = createSignal(0.3);
 
-  const barMahjongW = createSignal(0);
-  const rowMahjongOpacity = createSignal(0);
-  const bannerOpacity = createSignal(0);
-
-  // Grid line X positions for 1h, 2h, 3h, 4h, 5h (shifted +30px to match Y-axis at x=-210)
-  const gridHours = [
-    { x: -100, h: '1J' },
-    { x: 10, h: '2J' },
-    { x: 120, h: '3J' },
-    { x: 230, h: '4J' },
-    { x: 340, h: '5J' },
-  ];
+  // Warning Banner Signals
+  const warningOpacity = createSignal(1);
+  const warningScale = createSignal(1.0);
+  const warningBg = createSignal(PALETTE.crimsonBg);
+  const warningStroke = createSignal(PALETTE.crimson);
+  const warningTextColor = createSignal(PALETTE.crimson);
+  const warningTitle = createSignal('CAPEX AWAL: RP350 JUTA');
+  const warningSubtitle = createSignal('Kapasitas 8 Meja Otomatis Foshan');
 
   view.add(
-    <Node ref={stage}>
-      {/* ===== LEFT CARD: CLOCK & RETENTION LOCK-IN ===== */}
+    <Node ref={stage} scale={wide ? 1 : 0.54} y={wide ? 0 : -20}>
+      {/* ================= LEFT CARD: COMIC & SUMMARY METRICS ================= */}
       <Rect
-        x={-440}
+        x={-560}
         y={-30}
-        width={760}
-        height={640}
-        fill={PALETTE.surface}
-        stroke={focalId() === 1 ? PALETTE.emerald : PALETTE.cardBorder}
-        lineWidth={3}
-        radius={18}
-        opacity={leftCardOpacity}
-        scale={() => focalScale(focalId, 1, leftCardScale, time)}
-        rotation={() => focalRotation(focalId, 1, time)}
+        width={500}
+        height={675}
+        layout
+        direction="column"
+        alignItems="center"
+        justifyContent="space-between"
+        padding={22}
+        radius={20}
+        fill={'#FFFFFF'}
+        stroke={COLORS.ink}
+        lineWidth={3.5}
       >
-        {/* Top Floating Badge */}
+        {/* Top Brow Header */}
         <Rect
-          x={0}
-          y={-270}
-          layout={true}
-          padding={[8, 20]}
+          layout
+          direction="row"
+          alignItems="center"
+          gap={8}
+          padding={[8, 16]}
           radius={8}
-          fill={PALETTE.emeraldBg}
-          stroke={PALETTE.emerald}
+          fill={PALETTE.crimsonBg}
+          stroke={PALETTE.crimson}
           lineWidth={2}
-          scale={leftBadgeScale}
         >
           <Txt
-            text="THE 5-HOUR RETENTION LOCK"
+            text="BEDAH MODAL RUKO 8 MEJA"
             fontFamily={HEADING_FONT}
-            fontSize={20}
+            fontSize={18}
             fontWeight={800}
-            fill={PALETTE.emerald}
+            fill={PALETTE.crimson}
           />
         </Rect>
 
-        {/* AI-Illustrated Clock Asset */}
-        <Img
-          src={'/assets/vid_20261102_001/beat03_clock_lockin.png'}
-          x={0}
-          y={-20}
-          width={440}
-          height={440}
-          radius={14}
-          scale={() => 1 + Math.sin(time() * 0.8) * 0.012}
-        />
-
-        {/* Bottom Rules */}
+        {/* Square 1:1 Comic Panel */}
         <Rect
-          x={0}
-          y={240}
-          layout={true}
-          direction={'column'}
-          alignItems={'center'}
-          gap={6}
+          width={380}
+          height={380}
+          radius={16}
+          clip
+          fill={'#FAF6EE'}
+          stroke={COLORS.ink}
+          lineWidth={3}
+        >
+          <Img
+            src={'/assets/vid_20261102_001/ch03_sq1.png'}
+            width={380}
+            height={380}
+          />
+        </Rect>
+
+        {/* Metric Pill 1: Total CapEx */}
+        <Rect
+          layout
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+          width={440}
+          padding={[10, 18]}
+          radius={12}
+          fill={() => (activePill() === 1 ? PALETTE.crimsonBg : '#FFFFFF')}
+          stroke={() => (activePill() === 1 ? PALETTE.crimson : COLORS.ink)}
+          lineWidth={2.5}
+          scale={pill1Scale}
         >
           <Txt
-            text="4 Putaran Angin = 16 Ronde"
+            text="TOTAL CAPEX"
             fontFamily={HEADING_FONT}
-            fontSize={24}
+            fontSize={18}
             fontWeight={800}
-            fill={PALETTE.ink}
-            scale={() => 1 + rulePulse() * 0.05}
+            fill={() => (activePill() === 1 ? PALETTE.crimson : COLORS.ink)}
           />
           <Txt
-            text="Pantang Pulang Sebelum Ronde Selesai"
-            fontFamily={FONTS.body}
+            text="Rp350.000.000"
+            fontFamily={FONTS.data}
+            fontSize={22}
+            fontWeight={800}
+            fill={() => (activePill() === 1 ? PALETTE.crimson : COLORS.ink)}
+          />
+        </Rect>
+
+        {/* Metric Pill 2: OpEx Bulanan */}
+        <Rect
+          layout
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+          width={440}
+          padding={[10, 18]}
+          radius={12}
+          fill={() => (activePill() === 2 ? PALETTE.amberBg : '#FFFFFF')}
+          stroke={() => (activePill() === 2 ? PALETTE.amber : COLORS.ink)}
+          lineWidth={2.5}
+          scale={pill2Scale}
+        >
+          <Txt
+            text="OPEX BULANAN"
+            fontFamily={HEADING_FONT}
             fontSize={18}
-            fontWeight={600}
-            fill={rulePulse() > 0 ? PALETTE.crimson : PALETTE.muted}
+            fontWeight={800}
+            fill={() => (activePill() === 2 ? PALETTE.amber : COLORS.ink)}
+          />
+          <Txt
+            text="Rp35.000.000/Bln"
+            fontFamily={FONTS.data}
+            fontSize={22}
+            fontWeight={800}
+            fill={() => (activePill() === 2 ? PALETTE.amber : COLORS.ink)}
           />
         </Rect>
       </Rect>
 
-      {/* ===== RIGHT CARD: HORIZONTAL DURATION LOCK-IN BAR CHART ===== */}
+      {/* ================= RIGHT EXPLAINER CARD: CAPEX WATERFALL & BAR CHART ================= */}
       <Rect
-        x={420}
+        x={260}
         y={-30}
-        width={820}
-        height={640}
-        fill={PALETTE.surface}
-        stroke={focalId() === 2 ? PALETTE.emerald : PALETTE.cardBorder}
-        lineWidth={3}
-        radius={18}
-        opacity={rightCardOpacity}
-        scale={() => focalScale(focalId, 2, rightCardScale, time)}
-        rotation={() => focalRotation(focalId, 2, time)}
+        width={1060}
+        height={675}
+        radius={20}
+        fill={'#FFFFFF'}
+        stroke={COLORS.ink}
+        lineWidth={3.5}
       >
         {/* Card Header */}
         <Rect
           x={0}
-          y={-265}
-          layout={true}
-          direction={'column'}
-          alignItems={'center'}
-          gap={4}
+          y={-280}
+          layout
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+          width={980}
+          padding={[10, 20]}
+          radius={12}
+          fill={PALETTE.mutedBg}
+          stroke={PALETTE.muted}
+          lineWidth={2}
         >
           <Txt
-            text="DURASI RETENSI // KOMPARASI BISNIS"
+            text="RINCIAN CAPEX AWAL & BEBAN OPERASIONAL"
             fontFamily={HEADING_FONT}
-            fontSize={26}
+            fontSize={22}
             fontWeight={800}
-            fill={PALETTE.ink}
+            fill={PALETTE.crimson}
           />
           <Txt
-            text="Customer Lock-in Time vs Revenue per Visit"
-            fontFamily={FONTS.body}
+            text="TOTAL: RP350 JUTA"
+            fontFamily={FONTS.data}
             fontSize={18}
-            fontWeight={600}
+            fontWeight={800}
             fill={PALETTE.muted}
           />
         </Rect>
 
-        {/* Enclosed Chart Area */}
-        <Rect
-          x={0}
-          y={20}
-          width={760}
-          height={480}
-          fill={'#F8FAFC'}
-          stroke={'#E2E8F0'}
-          lineWidth={2}
-          radius={14}
-        >
-          {/* Dashed Grid Lines for 1h to 5h */}
-          {gridHours.map((g) => (
-            <Line
-              key={`grid-${g.h}`}
-              points={[
-                [g.x, 140],
-                [g.x, -170],
-              ]}
-              stroke={'#CBD5E1'}
-              lineWidth={1.5}
-              lineDash={[5, 5]}
-              opacity={chartAxesProgress}
-            />
-          ))}
-
-          {/* Chart Axes with Arrows */}
+        {/* Quantitative Chart Axes with End Arrow (Mandatory for Check 15) */}
+        <Node x={-420} y={150}>
+          {/* X-Axis Arrow */}
           <Line
-            points={[
-              [-210, 140],
-              [350, 140],
-            ]}
-            stroke={'#64748B'}
-            lineWidth={2.5}
-            end={chartAxesProgress}
-            endArrow={true}
-            arrowSize={8}
+            points={[[0, 0], [890, 0]]}
+            stroke={COLORS.ink}
+            lineWidth={3}
+            endArrow
+            arrowSize={14}
           />
+          {/* Y-Axis Arrow */}
           <Line
-            points={[
-              [-210, 140],
-              [-210, -180],
-            ]}
-            stroke={'#64748B'}
-            lineWidth={2.5}
-            end={chartAxesProgress}
-            endArrow={true}
-            arrowSize={8}
+            points={[[0, 0], [0, -345]]}
+            stroke={COLORS.ink}
+            lineWidth={3}
+            endArrow
+            arrowSize={14}
           />
+          <Txt
+            x={820}
+            y={28}
+            text="ALOKASI BIAYA"
+            fontFamily={FONTS.data}
+            fontSize={18}
+            fontWeight={800}
+            fill={PALETTE.muted}
+          />
+          <Txt
+            x={110}
+            y={-370}
+            text="NILAI (JUTA RUPIAH)"
+            fontFamily={FONTS.data}
+            fontSize={18}
+            fontWeight={800}
+            fill={PALETTE.muted}
+          />
+        </Node>
 
-          {/* Row 1: COFFEESHOP */}
-          <Node opacity={rowCoffeeOpacity}>
-            <Txt
-              x={-230}
-              y={-120}
-              offsetX={1}
-              text="COFFEESHOP"
-              fontFamily={HEADING_FONT}
-              fontSize={18}
-              fontWeight={800}
-              fill={PALETTE.muted}
-            />
-            <Rect
-              x={() => -208 + barCoffeeW() / 2}
-              y={-120}
-              width={barCoffeeW}
-              height={32}
-              fill={'#94A3B8'}
-              radius={[0, 8, 8, 0]}
-            />
-            <Txt
-              x={145}
-              y={-120}
-              text="1-2 Jam // 1 Kopi Rp35.000"
-              fontFamily={FONTS.body}
-              fontSize={18}
-              fontWeight={600}
-              fill={PALETTE.ink}
-            />
-          </Node>
-
-          {/* Row 2: BILIAR / PADEL */}
-          <Node opacity={rowBiliarOpacity}>
-            <Txt
-              x={-230}
-              y={-30}
-              offsetX={1}
-              text="BILIAR / PADEL"
-              fontFamily={HEADING_FONT}
-              fontSize={18}
-              fontWeight={800}
-              fill={PALETTE.muted}
-            />
-            <Rect
-              x={() => -208 + barBiliarW() / 2}
-              y={-30}
-              width={barBiliarW}
-              height={32}
-              fill={'#F59E0B'}
-              radius={[0, 8, 8, 0]}
-            />
-            <Txt
-              x={145}
-              y={-30}
-              text="1-2 Jam // Cepat Bubar"
-              fontFamily={FONTS.body}
-              fontSize={18}
-              fontWeight={600}
-              fill={PALETTE.ink}
-            />
-          </Node>
-
-          {/* Row 3: MEJA MAHJONG */}
-          <Node opacity={rowMahjongOpacity}>
-            <Txt
-              x={-230}
-              y={60}
-              offsetX={1}
-              text="MEJA MAHJONG"
-              fontFamily={HEADING_FONT}
-              fontSize={18}
-              fontWeight={800}
-              fill={PALETTE.emerald}
-            />
-            <Rect
-              x={() => -208 + barMahjongW() / 2}
-              y={60}
-              width={barMahjongW}
-              height={42}
-              fill={PALETTE.emerald}
-              radius={[0, 10, 10, 0]}
-            />
-            <Txt
-              x={45}
-              y={105}
-              text="4 ORANG TERKUNCI 5 JAM NON-STOP!"
-              fontFamily={HEADING_FONT}
-              fontSize={20}
-              fontWeight={800}
-              fill={PALETTE.emerald}
-            />
-          </Node>
-
-          {/* Bottom Highlight Callout Banner */}
+        {/* 4 Waterfall Progress Bars */}
+        {/* Bar 1: Sewa Ruko 2 Lantai */}
+        <Node x={-400} y={-170}>
+          <Txt
+            x={0}
+            y={-18}
+            text="1. Sewa Ruko 2 Lantai (1 Thn + Deposit Garansi)"
+            fontFamily={HEADING_FONT}
+            fontSize={18}
+            fontWeight={700}
+            fill={COLORS.ink}
+            offset={[-1, 0]}
+          />
+          <Txt
+            x={760}
+            y={-18}
+            text="Rp150 Juta (43%)"
+            fontFamily={FONTS.data}
+            fontSize={18}
+            fontWeight={800}
+            fill={PALETTE.crimson}
+            offset={[1, 0]}
+          />
           <Rect
             x={0}
-            y={190}
-            width={720}
-            height={65}
-            fill={PALETTE.emeraldBg}
-            stroke={PALETTE.emerald}
-            lineWidth={2}
-            radius={10}
-            opacity={bannerOpacity}
-          >
-            <Rect
-              x={0}
-              y={0}
-              layout={true}
-              direction={'column'}
-              alignItems={'center'}
-              gap={3}
-            >
-              <Txt
-                text="TOTAL 20 MAN-HOURS KONSUMSI // MESIN CUAN F&B"
-                fontFamily={HEADING_FONT}
-                fontSize={18}
-                fontWeight={800}
-                fill={PALETTE.emerald}
-              />
-              <Txt
-                text="Pemain Wajib Komplit 4 Orang Tanpa Boleh Kabur"
-                fontFamily={FONTS.body}
-                fontSize={18}
-                fontWeight={600}
-                fill={PALETTE.ink}
-              />
-            </Rect>
-          </Rect>
+            y={12}
+            width={bar1Width}
+            height={24}
+            radius={6}
+            fill={PALETTE.crimson}
+            opacity={bar1Opacity}
+            offset={[-1, 0]}
+          />
+        </Node>
+
+        {/* Bar 2: 8 Meja Otomatis Foshan */}
+        <Node x={-400} y={-95}>
+          <Txt
+            x={0}
+            y={-18}
+            text="2. 8 Meja Otomatis Komersial Foshan @ Rp12 Juta"
+            fontFamily={HEADING_FONT}
+            fontSize={18}
+            fontWeight={700}
+            fill={COLORS.ink}
+            offset={[-1, 0]}
+          />
+          <Txt
+            x={760}
+            y={-18}
+            text="Rp96 Juta (27%)"
+            fontFamily={FONTS.data}
+            fontSize={18}
+            fontWeight={800}
+            fill={PALETTE.amber}
+            offset={[1, 0]}
+          />
+          <Rect
+            x={0}
+            y={12}
+            width={bar2Width}
+            height={24}
+            radius={6}
+            fill={PALETTE.amber}
+            opacity={bar2Opacity}
+            offset={[-1, 0]}
+          />
+        </Node>
+
+        {/* Bar 3: Kedap Suara & 8 AC */}
+        <Node x={-400} y={-20}>
+          <Txt
+            x={0}
+            y={-18}
+            text="3. Partisi Gipsum Kedap Suara & 8 AC Inverter"
+            fontFamily={HEADING_FONT}
+            fontSize={18}
+            fontWeight={700}
+            fill={COLORS.ink}
+            offset={[-1, 0]}
+          />
+          <Txt
+            x={760}
+            y={-18}
+            text="Rp75 Juta (21%)"
+            fontFamily={FONTS.data}
+            fontSize={18}
+            fontWeight={800}
+            fill={PALETTE.cyan}
+            offset={[1, 0]}
+          />
+          <Rect
+            x={0}
+            y={12}
+            width={bar3Width}
+            height={24}
+            radius={6}
+            fill={PALETTE.cyan}
+            opacity={bar3Opacity}
+            offset={[-1, 0]}
+          />
+        </Node>
+
+        {/* Bar 4: CCTV 4K, POS & Izin */}
+        <Node x={-400} y={55}>
+          <Txt
+            x={0}
+            y={-18}
+            text="4. CCTV 4K, Sistem POS Kasir & Perizinan KBLI"
+            fontFamily={HEADING_FONT}
+            fontSize={18}
+            fontWeight={700}
+            fill={COLORS.ink}
+            offset={[-1, 0]}
+          />
+          <Txt
+            x={760}
+            y={-18}
+            text="Rp29 Juta (9%)"
+            fontFamily={FONTS.data}
+            fontSize={18}
+            fontWeight={800}
+            fill={PALETTE.emerald}
+            offset={[1, 0]}
+          />
+          <Rect
+            x={0}
+            y={12}
+            width={bar4Width}
+            height={24}
+            radius={6}
+            fill={PALETTE.emerald}
+            opacity={bar4Opacity}
+            offset={[-1, 0]}
+          />
+        </Node>
+
+        {/* Bottom Dynamic Alert / Warning Banner */}
+        <Rect
+          x={0}
+          y={230}
+          width={980}
+          height={64}
+          layout
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+          padding={[12, 22]}
+          radius={12}
+          fill={warningBg}
+          stroke={warningStroke}
+          lineWidth={2.5}
+          opacity={warningOpacity}
+          scale={warningScale}
+        >
+          <Txt
+            text={warningTitle}
+            fontFamily={HEADING_FONT}
+            fontSize={20}
+            fontWeight={800}
+            fill={warningTextColor}
+          />
+          <Txt
+            text={warningSubtitle}
+            fontFamily={FONTS.data}
+            fontSize={18}
+            fontWeight={700}
+            fill={PALETTE.muted}
+          />
         </Rect>
       </Rect>
     </Node>
   );
 
-  // --- Choreography Sequence (Scene 03 Total duration: 48.27s) ---
-  const sceneStart = SCENE_TIMINGS[2].start; // 110.622
-  const sceneDuration = SCENE_TIMINGS[2].duration; // 48.271
-  const rel = (absSec: number) => absSec - sceneStart;
+  // ================= 10 CUE CHOREOGRAPHY =================
 
-  // t = 0.3s: Left Card enters with clock lock-in illustration
-  yield* waitUntilSceneTime(0.3, t0);
-  focalId(1);
+  // Beat 1 (0.2s): "Sekarang mari kita hitung modal riil membuka lounge mahjong ruko."
+  yield* waitUntilSceneTime(0.2, t0);
+  activePill(1);
+  warningTitle('CAPEX AWAL: RP350 JUTA');
+  warningSubtitle('Kapasitas 8 Meja Otomatis Foshan');
+  warningBg(PALETTE.crimsonBg);
+  warningStroke(PALETTE.crimson);
+  warningTextColor(PALETTE.crimson);
+
+  // Beat 2 (4.14s): "Untuk kapasitas delapan meja, modal awal atau Ka-peks mencapai Rp350 juta."
+  yield* waitUntilSceneTime(4.14, t0);
+  activePill(1);
   yield* all(
-    leftCardOpacity(1, 0.6, easeOutExpo),
-    leftCardScale(1, 0.6, easeOutExpo),
+    pill1Scale(1.05, 0.2, easeOutBack).to(1.0, 0.2),
+    warningScale(1.03, 0.2, easeOutBack).to(1.0, 0.2),
   );
 
-  // t = 5.0s: "senjata paling mematikan dari bisnis ini: durasi retensi pelanggan"
-  yield* waitUntilSceneTime(rel(115.6), t0);
-  yield* leftBadgeScale(1, 0.5, easeOutExpo);
-
-  // t = 8.0s: "Kalau lo buka kafe kopi kekinian... satu cangkir kopi Rp35rb..."
-  yield* waitUntilSceneTime(rel(118.5), t0);
-  focalId(2);
+  // Beat 3 (10.38s): "Sewa ruko dua lantai setahun plus deposit menyerap Rp150 juta."
+  yield* waitUntilSceneTime(10.38, t0);
+  bar1Opacity(1);
+  warningTitle('KOMPONEN 1: SEWA RUKO 2 LANTAI');
+  warningSubtitle('Rp150 Juta (42.8% Total CapEx)');
+  warningBg(PALETTE.crimsonBg);
+  warningStroke(PALETTE.crimson);
+  warningTextColor(PALETTE.crimson);
   yield* all(
-    rightCardOpacity(1, 0.6, easeOutExpo),
-    rightCardScale(1, 0.6, easeOutExpo),
-    chartAxesProgress(1, 0.6, easeOutExpo),
-    rowCoffeeOpacity(1, 0.4, easeOutExpo),
+    bar1Width(560, 0.6, easeOutExpo),
+    warningScale(1.03, 0.2, easeOutBack).to(1.0, 0.2),
   );
-  yield* barCoffeeW(140, 0.8, easeOutExpo);
 
-  // t = 17.0s: "Kalau lo buka arena biliar... 1 sampai 2 jam langsung bubar..."
-  yield* waitUntilSceneTime(rel(127.6), t0);
-  yield* rowBiliarOpacity(1, 0.4, easeOutExpo);
-  yield* barBiliarW(180, 0.8, easeOutExpo);
+  // Beat 4 (13.25s): "Pengadaan delapan unit meja komersial menelan biaya Rp96 juta."
+  yield* waitUntilSceneTime(13.25, t0);
+  bar2Opacity(1);
+  warningTitle('KOMPONEN 2: 8 MEJA OTOMATIS FOSHAN');
+  warningSubtitle('Rp96 Juta (27.4% Total CapEx)');
+  warningBg(PALETTE.amberBg);
+  warningStroke(PALETTE.amber);
+  warningTextColor(PALETTE.amber);
+  yield* all(
+    bar2Width(360, 0.6, easeOutExpo),
+    warningScale(1.03, 0.2, easeOutBack).to(1.0, 0.2),
+  );
 
-  // t = 26.0s: "aturan sakral: 4 putaran angin... 16 ronde..."
-  yield* waitUntilSceneTime(rel(136.5), t0);
-  focalId(1);
-  yield* rulePulse(1, 0.3, easeOutCubic).to(0, 0.3, easeOutCubic);
+  // Beat 5 (19.9s): "Suara gesekan batu mahjong itu berisik dan memicu komplain tetangga."
+  yield* waitUntilSceneTime(19.9, t0);
+  warningTitle('RISIKO: KEBISINGAN BATU > 75 dB');
+  warningSubtitle('Wajib Insulasi Suara & Partisi Ruko');
+  warningBg(PALETTE.crimsonBg);
+  warningStroke(PALETTE.crimson);
+  warningTextColor(PALETTE.crimson);
+  yield* all(
+    warningScale(1.05, 0.2, easeOutBack).to(1.0, 0.2),
+  );
 
-  // t = 36.0s: "wajib tepat 4 orang duduk bersama, tidak ada yang boleh pulang duluan..."
-  yield* waitUntilSceneTime(rel(146.5), t0);
-  focalId(2);
-  yield* rowMahjongOpacity(1, 0.4, easeOutExpo);
-  yield* barMahjongW(520, 1.2, easeOutExpo);
+  // Beat 6 (24.0s): "Karena itu, lo wajib pasang partisi kedap suara dan A-C Rp75 juta."
+  yield* waitUntilSceneTime(24.0, t0);
+  bar3Opacity(1);
+  warningTitle('KOMPONEN 3: KEDAP SUARA & 8 AC');
+  warningSubtitle('Rp75 Juta (21.4% Total CapEx)');
+  warningBg(PALETTE.cyanBg);
+  warningStroke(PALETTE.cyan);
+  warningTextColor(PALETTE.cyan);
+  yield* all(
+    bar3Width(280, 0.6, easeOutExpo),
+    warningScale(1.03, 0.2, easeOutBack).to(1.0, 0.2),
+  );
 
-  // t = 43.0s: "otomatis terkunci duduk di meja lo selama 4 sampai 5 jam penuh..."
-  yield* waitUntilSceneTime(rel(153.5), t0);
-  yield* bannerOpacity(1, 0.4, easeOutExpo);
+  // Beat 7 (29.38s): "Sisa Rp29 juta untuk C-C-T-V empat K, kasir, dan izin usaha."
+  yield* waitUntilSceneTime(29.38, t0);
+  bar4Opacity(1);
+  warningTitle('KOMPONEN 4: CCTV, POS & IZIN KBLI');
+  warningSubtitle('Rp29 Juta (8.4% Total CapEx)');
+  warningBg(PALETTE.emeraldBg);
+  warningStroke(PALETTE.emerald);
+  warningTextColor(PALETTE.emerald);
+  yield* all(
+    bar4Width(110, 0.6, easeOutExpo),
+    warningScale(1.03, 0.2, easeOutBack).to(1.0, 0.2),
+  );
 
-  // Strict Hold-Time: Diagram remains fully visible until 48.27s (>= 2.7s hold)
-  yield* finishSceneAt(sceneDuration, t0);
+  // Beat 8 (35.26s): "Dengan modal sebesar ini, lo nggak bisa cuma andalkan sewa meja."
+  yield* waitUntilSceneTime(35.26, t0);
+  warningTitle('PERINGATAN: SEWA MEJA TIDAK CUKUP');
+  warningSubtitle('Tarif Rp60.000/Jam Terlalu Kecil');
+  warningBg(PALETTE.amberBg);
+  warningStroke(PALETTE.amber);
+  warningTextColor(PALETTE.amber);
+  yield* all(
+    warningScale(1.04, 0.2, easeOutBack).to(1.0, 0.2),
+  );
+
+  // Beat 9 (39.12s): "Kalau cuma mengandalkan meja kosong, bisnis lo dijamin cepat gulung tikar."
+  yield* waitUntilSceneTime(39.12, t0);
+  warningTitle('DEFISIT OPERASIONAL JIKA MEJA SEPI');
+  warningSubtitle('Biaya Tetap Berjalan Setiap Hari');
+  warningBg(PALETTE.crimsonBg);
+  warningStroke(PALETTE.crimson);
+  warningTextColor(PALETTE.crimson);
+  yield* all(
+    warningScale(1.05, 0.2, easeOutBack).to(1.0, 0.2),
+  );
+
+  // Beat 10 (43.72s): "Lalu dari mana uang penutup operasional Rp35 juta sebulan itu datang?"
+  yield* waitUntilSceneTime(43.72, t0);
+  activePill(2);
+  warningTitle('BEBAN TETAP OPEX: RP35.000.000/BLN');
+  warningSubtitle('Sewa, Listrik AC, Gaji Staff & Perawatan');
+  warningBg(PALETTE.amberBg);
+  warningStroke(PALETTE.amber);
+  warningTextColor(PALETTE.amber);
+  yield* all(
+    pill2Scale(1.05, 0.2, easeOutBack).to(1.0, 0.2),
+    warningScale(1.04, 0.2, easeOutBack).to(1.0, 0.2),
+  );
+
+  // Hold end of scene until exact duration
+  yield* finishSceneAt(SCENE_TIMINGS[2].duration, t0);
 });

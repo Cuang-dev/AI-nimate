@@ -3,7 +3,9 @@ import { chromium } from 'playwright';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
-import { execSync } from 'child_process';
+import { execSync, spawnSync } from 'child_process';
+import crypto from 'crypto';
+import { loadEpisode, computeShots } from './scripts/v2/lint_episode.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -149,6 +151,124 @@ function parseArgs() {
   return { projectId, channel, dateCompact, slug, force, beatsToRender, allBeats, port, aspects };
 }
 
+// ---------------------------------------------------------------------------
+// v2 helpers: detection, cache hashing, QA status, captions
+// ---------------------------------------------------------------------------
+function isV2Episode(projectId) {
+  return fs.existsSync(path.join(__dirname, 'production', projectId, 'storyboard.json'));
+}
+
+function readJsonSafe(p) {
+  try { return JSON.parse(fs.readFileSync(p, 'utf8')); } catch (e) { return null; }
+}
+
+function listFilesRecursive(dir) {
+  if (!fs.existsSync(dir)) return [];
+  const out = [];
+  for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, e.name);
+    if (e.isDirectory()) out.push(...listFilesRecursive(full));
+    else out.push(full);
+  }
+  return out.sort();
+}
+
+function hashParts(parts) {
+  const h = crypto.createHash('sha256');
+  for (const p of parts) {
+    if (typeof p === 'string' && p.startsWith('\0file:')) {
+      const f = p.slice(6);
+      h.update(`file:${path.relative(__dirname, f)}\n`);
+      if (fs.existsSync(f)) h.update(fs.readFileSync(f));
+      else h.update('MISSING');
+    } else {
+      h.update(typeof p === 'string' ? p : JSON.stringify(p));
+    }
+    h.update('\n--\n');
+  }
+  return h.digest('hex');
+}
+
+/** Content hash of everything that determines one chapter clip. */
+function computeClipHash(projectId, beatName, aspectDir) {
+  const idx = (parseInt(beatName.replace(/\D/g, ''), 10) || 1) - 1;
+  const parts = [`aspect:${aspectDir}`];
+  const beatTs = path.join(__dirname, 'src', 'projects', projectId, `${projectId}_${beatName}.ts`);
+  parts.push('\0file:' + beatTs);
+  if (isV2Episode(projectId)) {
+    const prod = path.join(__dirname, 'production', projectId);
+    for (const f of listFilesRecursive(path.join(__dirname, 'src', 'shared', 'v2'))) parts.push('\0file:' + f);
+    const timings = readJsonSafe(path.join(prod, 'timings.json')) || {};
+    const storyboard = readJsonSafe(path.join(prod, 'storyboard.json')) || {};
+    const tChaps = timings.chapters || timings.beats || [];
+    const tCh = tChaps[idx] || null;
+    const chId = tCh?.chapter_id || tCh?.id || `ch${String(idx + 1).padStart(2, '0')}`;
+    const sbCh = (storyboard.chapters || []).find((c) => c.id === chId) || (storyboard.chapters || [])[idx] || null;
+    parts.push({ storyboardChapter: sbCh });
+    parts.push('\0file:' + path.join(prod, 'image_focus.json'));
+    parts.push({
+      timingsChapter: tCh,
+      sentences: (timings.sentences || []).filter((x) => x.chapter_id === chId),
+      words: (timings.words || []).filter((x) => x.beat_id === tCh?.beat_id || x.chapter_id === chId),
+      chunks: (timings.subtitle_chunks || []).filter((x) => x.beat_id === tCh?.beat_id),
+    });
+    const srcs = new Set();
+    for (const shot of sbCh?.shots || []) if (shot.image?.src) srcs.add(shot.image.src);
+    for (const shot of sbCh?.shots || []) for (const it of shot.explainer?.items || []) if (it.icon) srcs.add(`icons/${it.icon}.png`);
+    for (const src of [...srcs].sort()) parts.push('\0file:' + path.join(__dirname, 'public', 'assets', projectId, src));
+  } else {
+    const sceneDir = path.join(__dirname, 'src', 'scenes', projectId);
+    parts.push('\0file:' + path.join(sceneDir, `beat_${String(idx + 1).padStart(2, '0')}.tsx`));
+    parts.push('\0file:' + path.join(sceneDir, 'layout.tsx'));
+  }
+  return hashParts(parts);
+}
+
+function readQaStatus(projectOutputDir) {
+  const p = path.join(projectOutputDir, 'qa_report.json');
+  if (!fs.existsSync(p)) return 'NOT RUN';
+  const rep = readJsonSafe(p);
+  if (!rep) return 'NOT RUN';
+  // A report older than the master video describes a previous render.
+  try {
+    const v = path.join(projectOutputDir, 'video_16x9.mp4');
+    if (fs.existsSync(v) && fs.statSync(v).mtimeMs > fs.statSync(p).mtimeMs + 1000) return 'NOT RUN';
+  } catch (e) {}
+  if (rep.status) return rep.status;
+  return rep.passed === rep.total ? `${rep.total}/${rep.total} PASS` : 'FAIL';
+}
+
+function srtTime(sec) {
+  const ms = Math.round(sec * 1000);
+  const p = (n, w = 2) => String(n).padStart(w, '0');
+  return `${p(Math.floor(ms / 3600000))}:${p(Math.floor(ms / 60000) % 60)}:${p(Math.floor(ms / 1000) % 60)},${p(ms % 1000, 3)}`;
+}
+
+function ytTime(sec) {
+  const t = Math.max(0, Math.floor(sec));
+  const h = Math.floor(t / 3600);
+  const m = Math.floor(t / 60) % 60;
+  const s = t % 60;
+  return h > 0 ? `${h}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}` : `${m}:${String(s).padStart(2, '0')}`;
+}
+
+function writeCaptionsAndChapters(projectOutputDir, projectId) {
+  const timings = readJsonSafe(path.join(__dirname, 'production', projectId, 'timings.json'));
+  if (!timings) {
+    console.warn('[Pipeline] WARNING: no timings.json, skipping captions.srt / youtube_chapters.txt');
+    return;
+  }
+  const chunks = timings.subtitle_chunks || [];
+  const srt = chunks
+    .map((c, i) => `${i + 1}\n${srtTime(c.start)} --> ${srtTime(c.end)}\n${c.text}\n`)
+    .join('\n');
+  fs.writeFileSync(path.join(projectOutputDir, 'captions.srt'), srt);
+  const beats = timings.beats || timings.chapters || [];
+  const lines = beats.map((b, i) => `${ytTime(i === 0 ? 0 : b.start)} ${b.title || `Bagian ${i + 1}`}`);
+  fs.writeFileSync(path.join(projectOutputDir, 'youtube_chapters.txt'), lines.join('\n') + '\n');
+  console.log(`[Pipeline] Wrote captions.srt (${chunks.length} cues) and youtube_chapters.txt (${lines.length} chapters)`);
+}
+
 function isValidVideo(filePath, minDuration = 5) {
   if (!fs.existsSync(filePath)) return false;
   const stat = fs.statSync(filePath);
@@ -200,10 +320,24 @@ async function renderBeat(serverPort, beatName, aspectDir, projectId, force, get
   fs.mkdirSync(cacheAspectDir, { recursive: true });
 
   const finalBeatPath = path.join(cacheAspectDir, `${fullProjectName}.mp4`);
+  const hashPath = `${finalBeatPath}.hash`;
+  const wantHash = computeClipHash(projectId, beatName, aspectDir);
   if (!force && isValidVideo(finalBeatPath, 5)) {
-    console.log(`[Sequential Render] ${aspectDir}/${fullProjectName} already exists in cache and is valid. Skipping.`);
-    return;
+    const haveHash = fs.existsSync(hashPath) ? fs.readFileSync(hashPath, 'utf8').trim() : null;
+    if (haveHash === wantHash) {
+      console.log(`[Sequential Render] ${aspectDir}/${fullProjectName} cached and hash-fresh. Skipping.`);
+      return;
+    }
+    if (haveHash === null && !isV2Episode(projectId)) {
+      // Legacy clip rendered before hashing existed: adopt it once rather than re-rendering whole episodes.
+      fs.writeFileSync(hashPath, wantHash);
+      console.log(`[Sequential Render] ${aspectDir}/${fullProjectName} legacy clip without hash; adopted current hash. Skipping.`);
+      return;
+    }
+    console.log(`[Sequential Render] ${aspectDir}/${fullProjectName} cache STALE (${haveHash ? 'source changed' : 'no hash'}). Re-rendering.`);
+    try { fs.unlinkSync(finalBeatPath); } catch (e) {}
   }
+  try { fs.unlinkSync(hashPath); } catch (e) {}
 
   console.log(`\n========================================`);
   console.log(`[Sequential Render] Starting ${aspectDir}/${fullProjectName}...`);
@@ -256,7 +390,8 @@ async function renderBeat(serverPort, beatName, aspectDir, projectId, force, get
     await page.click('#render');
 
     let renderingStarted = false;
-    const maxWaitSeconds = 600;
+    const maxWaitSeconds = 3600;
+    let renderCompleted = false;
     let lastLogTime = Date.now();
 
     for (let sec = 0; sec < maxWaitSeconds; sec++) {
@@ -277,8 +412,13 @@ async function renderBeat(serverPort, beatName, aspectDir, projectId, force, get
         }
       } else if (renderingStarted && state.includes('RENDER')) {
         console.log(`[Sequential Render] ${aspectDir}/${fullProjectName} completed in ${sec}s!`);
+        renderCompleted = true;
         break;
       }
+    }
+    if (!renderCompleted) {
+      // Never move a half-written file into the cache.
+      throw new Error(`Render of ${aspectDir}/${fullProjectName} did not finish within ${maxWaitSeconds}s`);
     }
 
     // Fast File Flush: Poll rawOutputPath size stability every 300ms
@@ -314,6 +454,7 @@ async function renderBeat(serverPort, beatName, aspectDir, projectId, force, get
     if (!isValidVideo(finalBeatPath, 5)) {
       throw new Error(`Rendered video ${finalBeatPath} is invalid or too short!`);
     }
+    fs.writeFileSync(hashPath, wantHash);
   } finally {
     if (page) {
       await page.close().catch(() => {});
@@ -394,7 +535,12 @@ async function renderAspectPass(serverPort, aspectName, width, height, projectId
     { stdio: 'inherit' }
   );
 
+  const finalMixPath = path.join(__dirname, 'production', projectId, 'final_mix.wav');
   let masterAudio = path.join(__dirname, 'public', 'audio', projectId, 'narration.wav');
+  if (fs.existsSync(finalMixPath)) {
+    masterAudio = finalMixPath;
+    console.log(`[Pipeline] Using final_mix.wav (music + narration mix) for audio.`);
+  }
   if (!fs.existsSync(masterAudio)) {
     masterAudio = path.join(projectOutputDir, 'narration.wav');
   }
@@ -407,29 +553,22 @@ async function renderAspectPass(serverPort, aspectName, width, height, projectId
 
   const finalMaster = path.join(projectOutputDir, `video_${aspectName}.mp4`);
 
-  console.log(`[Pipeline] Muxing narration audio into master: ${finalMaster}...`);
+  // The Motion Canvas exporter converts RGBA to yuv420p with swscale defaults (BT.601 matrix,
+  // limited range) and writes no colour tags. Tag the stream (bitstream filter, no re-encode)
+  // so players decode with the matrix that was actually used: matrix_coefficients=6 (SMPTE 170M = BT.601).
+  const COLOUR_BSF = '-bsf:v h264_metadata=colour_primaries=1:transfer_characteristics=1:matrix_coefficients=6:video_full_range_flag=0';
+  console.log(`[Pipeline] Muxing ${path.basename(masterAudio)} into master: ${finalMaster}...`);
   execSync(
-    `ffmpeg -y -i "${concatenatedVideo}" -i "${masterAudio}" -c:v copy -c:a aac -profile:a aac_low -ar 48000 -ac 2 -b:a 192k -movflags +faststart "${finalMaster}"`,
+    `ffmpeg -y -i "${concatenatedVideo}" -i "${masterAudio}" -c:v copy ${COLOUR_BSF} -c:a aac -profile:a aac_low -ar 48000 -ac 2 -b:a 192k -movflags +faststart "${finalMaster}"`,
     { stdio: 'inherit' }
   );
 
   if (fs.existsSync(concatenatedVideo)) {
     fs.unlinkSync(concatenatedVideo);
   }
-  if (fs.existsSync(concatListPath)) {
-    try { fs.unlinkSync(concatListPath); } catch (e) {}
-  }
 
-  // Remove temporary beat clips once concatenation succeeds
-  console.log(`[Pipeline] Cleaning up temporary beat clips in ${cacheAspectDir}...`);
-  for (const beat of allBeats) {
-    const beatFile = path.join(cacheAspectDir, `${projectId}_${beat}.mp4`);
-    if (fs.existsSync(beatFile)) {
-      try {
-        fs.unlinkSync(beatFile);
-      } catch (e) {}
-    }
-  }
+  // Keep cached beat clips and concat_list.txt in cacheAspectDir so partial --beats=... re-renders can stitch immediately!
+  console.log(`[Pipeline] Preserving cached beat clips in ${cacheAspectDir} for incremental beat re-renders.`);
 
   // Clean legacy motion-canvas/output if created
   const mcOutput = path.join(__dirname, 'output');
@@ -441,6 +580,32 @@ async function renderAspectPass(serverPort, aspectName, width, height, projectId
 
   console.log(`[Pipeline] ${aspectName} master complete: ${finalMaster} (${fs.statSync(finalMaster).size} bytes)`);
   return finalMaster;
+}
+
+function extractShotFrames(qaFramesDir, projectId, master16x9, master9x16) {
+  const src = master16x9 && fs.existsSync(master16x9) ? master16x9 : master9x16;
+  if (!src || !fs.existsSync(src)) return;
+  const ep = loadEpisode(projectId);
+  const shotsDir = path.join(qaFramesDir, 'shots');
+  fs.rmSync(shotsDir, { recursive: true, force: true });
+  fs.mkdirSync(shotsDir, { recursive: true });
+  let n = 0;
+  for (const s of computeShots(ep)) {
+    if (s.start == null) {
+      console.warn(`[Pipeline] WARNING: shot ${s.chapter}#${s.n} has an unresolved 'at'; no QA frame.`);
+      continue;
+    }
+    let t = s.start + 0.6;
+    if (s.end != null && t > s.end - 0.05) t = Math.max(s.start, s.end - 0.05);
+    const out = path.join(shotsDir, `${s.chapter}_${s.n}.jpg`);
+    try {
+      execSync(`ffmpeg -y -v error -ss ${t.toFixed(3)} -i "${src}" -frames:v 1 -q:v 2 "${out}"`, { stdio: 'inherit' });
+      n++;
+    } catch (e) {
+      console.warn(`[Pipeline] WARNING: failed shot frame ${s.chapter}_${s.n}`);
+    }
+  }
+  console.log(`[Pipeline] Extracted ${n} per-shot QA frames to ${shotsDir}`);
 }
 
 export function extractQaFrames(projectOutputDir, projectId, allBeats, aspects, master16x9, master9x16) {
@@ -486,13 +651,21 @@ export function extractQaFrames(projectOutputDir, projectId, allBeats, aspects, 
     }
     const defaultBeat = path.join(qaFramesDir, `${bt.beatName}.jpg`);
     const sourceVideo = (aspects.includes('9x16') && master9x16) ? master9x16 : master16x9;
-    if (sourceVideo && fs.existsSync(sourceVideo) && !fs.existsSync(defaultBeat)) {
+    if (sourceVideo && fs.existsSync(sourceVideo)) {
       execSync(`ffmpeg -y -ss ${bt.time} -i "${sourceVideo}" -frames:v 1 -q:v 2 "${defaultBeat}"`, { stdio: 'inherit' });
+    }
+  }
+
+  if (isV2Episode(projectId)) {
+    try {
+      extractShotFrames(qaFramesDir, projectId, master16x9, master9x16);
+    } catch (e) {
+      console.warn(`[Pipeline] WARNING: per-shot QA frame extraction failed: ${e.message}`);
     }
   }
 }
 
-function updateMetaAndManifest(projectOutputDir, projectDirName, channel, dateCompact, slug, projectId, aspects) {
+function updateMetaAndManifest(projectOutputDir, projectDirName, channel, dateCompact, slug, projectId, aspects, thumbnailSource = null) {
   console.log(`[Pipeline] Generating standardized meta.json and updating manifest.json...`);
   const dateFormatted = `${dateCompact.slice(0, 4)}-${dateCompact.slice(4, 6)}-${dateCompact.slice(6, 8)}`;
 
@@ -572,7 +745,8 @@ function updateMetaAndManifest(projectOutputDir, projectDirName, channel, dateCo
     aspects: aspects.map((a) => a.replace('x', ':')),
     primaryVideo,
     files,
-    qaStatus: '14/14 PASS',
+    qaStatus: readQaStatus(projectOutputDir),
+    thumbnailSource,
     beats,
     projectConfig: projectConfig || null,
   };
@@ -635,6 +809,11 @@ async function main() {
     }
   }
 
+  const finalMixSrc = path.join(prodDir, 'final_mix.wav');
+  if (fs.existsSync(finalMixSrc)) {
+    fs.copyFileSync(finalMixSrc, path.join(projectOutputDir, 'final_mix.wav'));
+  }
+
   console.log(`[Pipeline] Launching Vite dev server on port ${port}...`);
   const server = await createServer({
     root: __dirname,
@@ -651,7 +830,7 @@ async function main() {
 
     if (aspects.includes('9x16')) {
       master9x16 = await renderAspectPass(port, '9x16', 1080, 1920, projectId, beatsToRender, allBeats, force, projectOutputDir);
-      fs.copyFileSync(master9x16, path.join(projectOutputDir, 'video.mp4'));
+      if (master9x16) fs.copyFileSync(master9x16, path.join(projectOutputDir, 'video.mp4'));
     } else {
       const existing = path.join(projectOutputDir, 'video_9x16.mp4');
       if (fs.existsSync(existing)) master9x16 = existing;
@@ -715,20 +894,69 @@ async function main() {
     const thumbnailSquarePath = path.join(projectOutputDir, 'thumbnail_square.jpg');
 
     console.log(`[Pipeline] Generating base thumbnails...`);
-    const kongloThumb = path.join(__dirname, 'public', 'assets', projectId, 'thumbnail_konglo_16x9.jpg');
-    if (fs.existsSync(kongloThumb)) {
-      console.log(`[Pipeline] Installing Konglo-style thumbnail from ${kongloThumb}...`);
-      fs.copyFileSync(kongloThumb, thumb16x9Path);
-      fs.copyFileSync(kongloThumb, thumbPath);
-      fs.copyFileSync(kongloThumb, thumbnailPath);
-      fs.copyFileSync(kongloThumb, thumbnailOgPath);
+    const v2 = isV2Episode(projectId);
+    const assetsDir = path.join(__dirname, 'public', 'assets', projectId);
+    const designedV2 = path.join(assetsDir, 'thumbnail_16x9.jpg');
+    const kongloThumb = path.join(assetsDir, 'thumbnail_konglo_16x9.jpg');
+    let designedThumb = null;
+    let thumbnailSource = null;
+    const pickDesigned = () => {
+      if (fs.existsSync(designedV2)) return [designedV2, 'designed'];
+      if (fs.existsSync(kongloThumb)) return [kongloThumb, 'designed-legacy'];
+      return [null, null];
+    };
+    [designedThumb, thumbnailSource] = pickDesigned();
+
+    if (!designedThumb && v2) {
+      const py = '/home/agent/orca/AI-nimate/.venv/bin/python';
+      const gen = path.join(__dirname, 'scripts', 'v2', 'generate_thumbnail.py');
+      if (!fs.existsSync(gen)) {
+        console.warn(`[Pipeline] WARNING: no designed thumbnail and ${gen} is missing; falling back to a video frame.`);
+      } else {
+        console.log(`[Pipeline] No designed thumbnail; running generate_thumbnail.py ${projectId}...`);
+        const r = spawnSync(py, [gen, projectId], { cwd: path.resolve(__dirname, '..'), stdio: 'inherit', timeout: 300000 });
+        if (r.status !== 0) {
+          console.warn(`[Pipeline] WARNING: generate_thumbnail.py failed (status ${r.status}${r.error ? ', ' + r.error.message : ''}); falling back to a video frame.`);
+        }
+        [designedThumb, thumbnailSource] = pickDesigned();
+        if (designedThumb) thumbnailSource = 'generated';
+      }
+    }
+
+    if (designedThumb) {
+      console.log(`[Pipeline] Installing designed thumbnail from ${designedThumb} (${thumbnailSource})...`);
+      fs.copyFileSync(designedThumb, thumb16x9Path);
+      fs.copyFileSync(designedThumb, thumbPath);
+      fs.copyFileSync(designedThumb, thumbnailPath);
+      // OG / WhatsApp preview: cover-resize to 1200x630, keep under ~150 KB
+      let ogOk = false;
+      for (const q of [3, 6, 10]) {
+        try {
+          execSync(
+            `ffmpeg -y -v error -i "${designedThumb}" -vf "scale=1200:630:force_original_aspect_ratio=increase,crop=1200:630" -frames:v 1 -q:v ${q} "${thumbnailOgPath}"`,
+            { stdio: 'inherit' }
+          );
+          ogOk = true;
+          if (fs.statSync(thumbnailOgPath).size <= 150 * 1024) break;
+        } catch (e) { ogOk = false; break; }
+      }
+      if (!ogOk) {
+        console.warn('[Pipeline] WARNING: OG resize failed; copying designed thumbnail as thumbnail_og.jpg.');
+        fs.copyFileSync(designedThumb, thumbnailOgPath);
+      }
     } else {
-      if (aspects.includes('16x9') && master16x9 && fs.existsSync(master16x9)) {
-        execSync(`ffmpeg -y -ss 00:00:20.000 -i "${master16x9}" -frames:v 1 -q:v 2 "${thumb16x9Path}"`, { stdio: 'inherit' });
-      }
-      if (aspects.includes('9x16') && master9x16 && fs.existsSync(master9x16)) {
-        execSync(`ffmpeg -y -ss 00:00:20.000 -i "${master9x16}" -frames:v 1 -q:v 2 "${thumb9x16Path}"`, { stdio: 'inherit' });
-      }
+      thumbnailSource = 'frame';
+      const dur = (readJsonSafe(path.join(__dirname, 'production', projectId, 'timings.json')) || {}).duration_seconds || 40;
+      const frameT = (v2 ? dur / 2 : Math.min(20, dur / 2)).toFixed(3);
+      const frameOf = (video, out, vf = '') => {
+        try {
+          execSync(`ffmpeg -y -v error -ss ${frameT} -i "${video}" ${vf} -frames:v 1 -q:v 2 "${out}"`, { stdio: 'inherit' });
+        } catch (e) {
+          console.warn(`[Pipeline] WARNING: frame thumbnail failed for ${path.basename(out)}`);
+        }
+      };
+      if (aspects.includes('16x9') && master16x9 && fs.existsSync(master16x9)) frameOf(master16x9, thumb16x9Path);
+      if (aspects.includes('9x16') && master9x16 && fs.existsSync(master9x16)) frameOf(master9x16, thumb9x16Path);
 
       if (fs.existsSync(thumb16x9Path)) {
         fs.copyFileSync(thumb16x9Path, thumbPath);
@@ -737,25 +965,27 @@ async function main() {
         fs.copyFileSync(thumb9x16Path, thumbPath);
         fs.copyFileSync(thumb9x16Path, thumbnailPath);
       }
-    }
 
-    // WhatsApp Landscape Thumbnail (1200x630, < 150 KB)
-    if (!fs.existsSync(kongloThumb) && master16x9 && fs.existsSync(master16x9) && aspects.includes('16x9')) {
-      console.log(`[Pipeline] Generating WhatsApp landscape preview thumbnail at ${thumbnailOgPath}...`);
-      execSync(
-        `ffmpeg -y -ss 00:00:20.000 -i "${master16x9}" -i "${playBadgePngPath}" ` +
-        '-filter_complex "[0:v]scale=1200:675,crop=1200:630[base]; [base][1:v]overlay=(W-w)/2:(H-h)/2" ' +
-        `-frames:v 1 -q:v 3 "${thumbnailOgPath}"`,
-        { stdio: 'inherit' }
-      );
-    } else if (!fs.existsSync(kongloThumb) && master9x16 && fs.existsSync(master9x16) && (!fs.existsSync(thumbnailOgPath) || aspects.includes('9x16'))) {
-      console.log(`[Pipeline] Generating WhatsApp landscape preview thumbnail from 9:16 at ${thumbnailOgPath}...`);
-      execSync(
-        `ffmpeg -y -ss 00:00:20.000 -i "${master9x16}" -i "${playBadgePngPath}" ` +
-        '-filter_complex "[0:v]scale=1200:2133,crop=1200:630:0:750[base]; [base][1:v]overlay=(W-w)/2:(H-h)/2" ' +
-        `-frames:v 1 -q:v 3 "${thumbnailOgPath}"`,
-        { stdio: 'inherit' }
-      );
+      // WhatsApp landscape preview (1200x630, with play badge)
+      try {
+        if (aspects.includes('16x9') && master16x9 && fs.existsSync(master16x9)) {
+          execSync(
+            `ffmpeg -y -v error -ss ${frameT} -i "${master16x9}" -i "${playBadgePngPath}" ` +
+            '-filter_complex "[0:v]scale=1200:675,crop=1200:630[base]; [base][1:v]overlay=(W-w)/2:(H-h)/2" ' +
+            `-frames:v 1 -q:v 3 "${thumbnailOgPath}"`,
+            { stdio: 'inherit' }
+          );
+        } else if (master9x16 && fs.existsSync(master9x16) && (!fs.existsSync(thumbnailOgPath) || aspects.includes('9x16'))) {
+          execSync(
+            `ffmpeg -y -v error -ss ${frameT} -i "${master9x16}" -i "${playBadgePngPath}" ` +
+            '-filter_complex "[0:v]scale=1200:2133,crop=1200:630:0:750[base]; [base][1:v]overlay=(W-w)/2:(H-h)/2" ' +
+            `-frames:v 1 -q:v 3 "${thumbnailOgPath}"`,
+            { stdio: 'inherit' }
+          );
+        }
+      } catch (e) {
+        console.warn('[Pipeline] WARNING: OG thumbnail from frame failed.');
+      }
     }
 
     // WhatsApp Square Thumbnail (1080x1080, < 150 KB)
@@ -773,7 +1003,10 @@ async function main() {
     extractQaFrames(projectOutputDir, projectId, allBeats, aspects, master16x9, master9x16);
 
     // Update meta.json and manifest.json
-    updateMetaAndManifest(projectOutputDir, projectDirName, channel, dateCompact, slug, projectId, aspects);
+    if (isV2Episode(projectId)) {
+      try { writeCaptionsAndChapters(projectOutputDir, projectId); } catch (e) { console.warn(`[Pipeline] WARNING: captions/chapters failed: ${e.message}`); }
+    }
+    updateMetaAndManifest(projectOutputDir, projectDirName, channel, dateCompact, slug, projectId, aspects, thumbnailSource);
 
     // Build and update discovery hub portal and per-project walkthrough pages
     const { buildPortal } = await import('./scripts/build_portal.mjs');

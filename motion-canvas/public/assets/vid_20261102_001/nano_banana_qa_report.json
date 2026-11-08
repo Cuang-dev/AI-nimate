@@ -1,0 +1,332 @@
+{
+  "project_id": "vid_20261102_001",
+  "model": "models/gemini-3.1-flash-lite-image",
+  "batch_api": true,
+  "style": "flat_2d_indonesian_comic",
+  "qa_model": "models/gemini-3.1-flash-lite-preview",
+  "total_assets": 20,
+  "passed_count": 20,
+  "all_passed": true,
+  "assets": {
+    "ch01_p1": {
+      "filename": "ch01_p1.png",
+      "aspect_ratio": "16:9",
+      "dimensions": "1280x720",
+      "subject": "Flat 2D Indonesian comic panel. Inside a sleek modern mahjong social lounge in Jakarta, a friendly young Indonesian female cashier with a ponytail behind a minimalist wooden counter hands a lime-green RFID access card to a stylish young Indonesian male customer in a denim jacket. Warm interior lighting, glowing neon accents in background, cream paper background (#FAF6EE), bold black comic ink outlines (#0F172A), flat warm cel-shading, strictly no text or speech bubbles.",
+      "attempts": 1,
+      "pixel_qa": {
+        "pass": true,
+        "reason": "Pixel QA OK (std=61.1)"
+      },
+      "vlm_qa": {
+        "pass": true,
+        "reason": "ok"
+      },
+      "status": "PASS"
+    },
+    "ch01_p3": {
+      "filename": "ch01_p3.png",
+      "aspect_ratio": "16:9",
+      "dimensions": "1280x720",
+      "subject": "Flat 2D Indonesian comic panel. Overhead three-quarter view of a sleek square automatic mahjong table with vibrant emerald green felt surface. On the table drink holders and side sideboards are steaming bamboo dimsum baskets with siomay, delicious bowls of Indomie goreng with sunny-side-up fried eggs, and tall plastic cups of iced milk tea with black boba pearls and straws. Bold black comic outlines (#0F172A), mouth-watering flat cel-shaded illustration, strictly no text or logos.",
+      "attempts": 1,
+      "pixel_qa": {
+        "pass": true,
+        "reason": "Pixel QA OK (std=81.0)"
+      },
+      "vlm_qa": {
+        "pass": true,
+        "reason": "ok"
+      },
+      "status": "PASS"
+    },
+    "ch01_p4": {
+      "filename": "ch01_p4.png",
+      "aspect_ratio": "16:9",
+      "dimensions": "1280x720",
+      "subject": "Flat 2D Indonesian comic panel. Wide angle vibrant night scene inside a buzzing mahjong social lounge in Pantai Indah Kapuk (PIK). Multiple square green tables occupied by groups of four trendy Indonesian friends laughing and placing tiles. In the foreground, people waiting on comfy gray lounge sofas sipping drinks. Clean modern glass shophouse interior, bold black ink lines (#0F172A), warm amber and emerald ambient colors on cream paper (#FAF6EE), strictly no text or speech bubbles.",
+      "attempts": 1,
+      "pixel_qa": {
+        "pass": true,
+        "reason": "Pixel QA OK (std=57.4)"
+      },
+      "vlm_qa": {
+        "pass": true,
+        "reason": "ok"
+      },
+      "status": "PASS"
+    },
+    "ch05_p2": {
+      "filename": "ch05_p2.png",
+      "aspect_ratio": "16:9",
+      "dimensions": "1280x720",
+      "subject": "Flat 2D Indonesian comic panel. Close-up over-the-shoulder view of an Indonesian player holding a sleek green mahjong tile, their hand simultaneously reaching blindly toward a bowl of potato snacks on the side table without looking away from the game. Across the table, the other three players watch intently with competitive grins, showing total psychological engagement. Bold expressive comic art (#0F172A outlines), warm paper tone (#FAF6EE), strictly no text or speech bubbles.",
+      "attempts": 1,
+      "pixel_qa": {
+        "pass": true,
+        "reason": "Pixel QA OK (std=76.3)"
+      },
+      "vlm_qa": {
+        "pass": true,
+        "reason": "ok"
+      },
+      "status": "PASS"
+    },
+    "ch08_p1": {
+      "filename": "ch08_p1.png",
+      "aspect_ratio": "16:9",
+      "dimensions": "1280x720",
+      "subject": "Flat 2D Indonesian comic panel. Slow-motion comic catastrophe: an elbow knocks over a plastic cup of brown sugar boba milk tea, sending thick milky brown liquid and shiny black tapioca pearls splashing directly into the delicate open circular elevator gap of the automatic mahjong table. Players recoil in comic shock with wide eyes and open mouths. Bold comic ink outlines (#0F172A), expressive dynamic slapstick on cream paper (#FAF6EE), strictly no text or sound effects.",
+      "attempts": 1,
+      "pixel_qa": {
+        "pass": true,
+        "reason": "Pixel QA OK (std=85.0)"
+      },
+      "vlm_qa": {
+        "pass": true,
+        "reason": "ok"
+      },
+      "status": "PASS"
+    },
+    "ch08_p2": {
+      "filename": "ch08_p2.png",
+      "aspect_ratio": "16:9",
+      "dimensions": "1280x720",
+      "subject": "Flat 2D Indonesian comic panel. A distressed Indonesian lounge owner in an apron on hands and knees crawling on the carpet floor, shining a yellow flashlight beam under a heavy sofa looking for a missing tile. On the floor beside him sits an open tile sorting tray showing exactly one empty slot in an otherwise complete set of mahjong tiles. Comic frustration, dramatic lighting, bold black ink outlines (#0F172A) on cream paper (#FAF6EE), strictly no text or numbers.",
+      "attempts": 1,
+      "pixel_qa": {
+        "pass": true,
+        "reason": "Pixel QA OK (std=46.6)"
+      },
+      "vlm_qa": {
+        "pass": true,
+        "reason": "ok"
+      },
+      "status": "PASS"
+    },
+    "ch09_p1": {
+      "filename": "ch09_p1.png",
+      "aspect_ratio": "16:9",
+      "dimensions": "1280x720",
+      "subject": "Flat 2D Indonesian comic panel. Contrast scene depicting an illegal underground gambling den atmosphere: dimly lit table shrouded in cigarette smoke, scattered piles of Indonesian 100k red banknotes and round poker chips on dark felt, tense secretive body language of gamblers, red alert danger mood. Bold moody black comic shadows (#0F172A), stark crimson accents on cream paper background (#FAF6EE), strictly no text or numbers.",
+      "attempts": 1,
+      "pixel_qa": {
+        "pass": true,
+        "reason": "Pixel QA OK (std=43.5)"
+      },
+      "vlm_qa": {
+        "pass": true,
+        "reason": "ok"
+      },
+      "status": "PASS"
+    },
+    "ch09_p2": {
+      "filename": "ch09_p2.png",
+      "aspect_ratio": "16:9",
+      "dimensions": "1280x720",
+      "subject": "Flat 2D Indonesian comic panel. The exact opposite lawful environment: a brightly lit, clean, transparent modern lounge with large clear glass partitions visible from the street. Players happily tap digital scorecards on their smartphones with completely clean tables (zero cash, zero chips). On the ceiling, a sleek modern black 360-degree CCTV security dome camera is prominently visible. Emerald green and cream tones, bold black outlines (#0F172A), reassuring professional atmosphere, strictly no text or letters.",
+      "attempts": 1,
+      "pixel_qa": {
+        "pass": true,
+        "reason": "Pixel QA OK (std=75.2)"
+      },
+      "vlm_qa": {
+        "pass": true,
+        "reason": "ok"
+      },
+      "status": "PASS"
+    },
+    "ch03_sq1": {
+      "filename": "ch03_sq1.png",
+      "aspect_ratio": "1:1",
+      "dimensions": "512x512",
+      "subject": "Flat 2D Indonesian comic illustration (1:1 square). A neat stack of red Indonesian Rupiah banknote bundles sitting on top of architectural renovation blueprints. In the background, construction tools, gypsum soundproofing panels, and an air conditioner unit being mounted. Bold black comic ink contours (#0F172A), flat crimson red (#E11D48) and warm gold accents on cream paper (#FAF6EE), clean editorial composition, strictly no text or numbers.",
+      "attempts": 1,
+      "pixel_qa": {
+        "pass": true,
+        "reason": "Pixel QA OK (std=68.8)"
+      },
+      "vlm_qa": {
+        "pass": true,
+        "reason": "ok"
+      },
+      "status": "PASS"
+    },
+    "ch04_sq1": {
+      "filename": "ch04_sq1.png",
+      "aspect_ratio": "1:1",
+      "dimensions": "512x512",
+      "subject": "Flat 2D Indonesian comic illustration (1:1 square). Inside a tidy Indonesian residential house garage, five foldable automatic mahjong tables on wheels stand lined up with protective foam flight cases. Through the open roll-up garage door, a white commercial delivery blind van is parked outside in the sunlight. Bold black ink outlines (#0F172A), clean flat colors on warm cream paper (#FAF6EE), strictly no text or brand logos.",
+      "attempts": 1,
+      "pixel_qa": {
+        "pass": true,
+        "reason": "Pixel QA OK (std=68.4)"
+      },
+      "vlm_qa": {
+        "pass": true,
+        "reason": "ok"
+      },
+      "status": "PASS"
+    },
+    "ch06_sq1": {
+      "filename": "ch06_sq1.png",
+      "aspect_ratio": "1:1",
+      "dimensions": "512x512",
+      "subject": "Flat 2D Indonesian comic illustration (1:1 square). An iconic stylized thermal paper cash register receipt emerging from a modern sleek POS terminal, with symbolic food, drink, and gaming table icons printed along its length. Next to the receipt are gold coins and a green digital tablet. Bold black ink lines (#0F172A), warm amber and emerald green highlights on cream background (#FAF6EE), strictly no legible text, letters, or real numbers.",
+      "attempts": 1,
+      "pixel_qa": {
+        "pass": true,
+        "reason": "Pixel QA OK (std=73.6)"
+      },
+      "vlm_qa": {
+        "pass": true,
+        "reason": "ok"
+      },
+      "status": "PASS"
+    },
+    "ch06_sq2": {
+      "filename": "ch06_sq2.png",
+      "aspect_ratio": "1:1",
+      "dimensions": "512x512",
+      "subject": "Flat 2D Indonesian comic illustration (1:1 square). A mouth-watering top-down arrangement of high-margin cafe food: three round bamboo steamers overflowing with fresh steamed dimsum siomay and hakau, a savory plate of Indonesian fried noodles with chili sauce and sunny-side egg, and two condensation-dripping glasses of iced milk tea. Bold comic ink contours (#0F172A), warm appetizing cel-shading on cream paper (#FAF6EE), strictly no text or logos.",
+      "attempts": 1,
+      "pixel_qa": {
+        "pass": true,
+        "reason": "Pixel QA OK (std=73.2)"
+      },
+      "vlm_qa": {
+        "pass": true,
+        "reason": "ok"
+      },
+      "status": "PASS"
+    },
+    "ch10_sq1": {
+      "filename": "ch10_sq1.png",
+      "aspect_ratio": "1:1",
+      "dimensions": "512x512",
+      "subject": "Flat 2D Indonesian comic illustration (1:1 square). A classic brass weighing balance scale. On the left scale sits a heavy miniature 2-story glass commercial shophouse. On the right scale sits a lightweight white delivery blind van carrying a folded mahjong table. Symbolic representation of business trade-offs: high CapEx prestige vs low CapEx agility. Bold black ink lines (#0F172A), vibrant cel-shading on cream paper (#FAF6EE), strictly no text or letters.",
+      "attempts": 1,
+      "pixel_qa": {
+        "pass": true,
+        "reason": "Pixel QA OK (std=73.0)"
+      },
+      "vlm_qa": {
+        "pass": true,
+        "reason": "The image accurately depicts the scene without any text or letters."
+      },
+      "status": "PASS"
+    },
+    "ch01_p2": {
+      "filename": "ch01_p2.png",
+      "aspect_ratio": "16:9",
+      "dimensions": "1280x720",
+      "subject": "Flat 2D Indonesian comic panel. A young Indonesian male entrepreneur in casual rolled-up button shirt scratching his head in comic disbelief, staring down at an electronic desk calculator with comic question marks floating above his head. On the desk are architectural blueprints of a 2-story Jakarta shophouse and price catalogs. Bold black ink linework (#0F172A), flat vibrant cel-shaded colors on warm cream paper (#FAF6EE), expressive anime-comic facial expression, strictly no text or numbers.",
+      "attempts": 2,
+      "pixel_qa": {
+        "pass": true,
+        "reason": "Pixel QA OK (std=59.0)"
+      },
+      "vlm_qa": {
+        "pass": true,
+        "reason": "ok"
+      },
+      "status": "PASS"
+    },
+    "ch02_p1": {
+      "filename": "ch02_p1.png",
+      "aspect_ratio": "16:9",
+      "dimensions": "1280x720",
+      "subject": "Flat 2D Indonesian comic panel. Four Indonesian players sitting around an old wooden table looking exhausted and sweaty, their hands frantically scrambling and shuffling a messy pile of 144 white-and-green mahjong tiles in the center. Comic sweat drops on foreheads, dynamic motion lines showing the clumsy noisy clatter. Bold black ink linework (#0F172A), expressive cartoon frustration, flat cel-shading on cream paper (#FAF6EE), strictly no text or speech bubbles.",
+      "attempts": 2,
+      "pixel_qa": {
+        "pass": true,
+        "reason": "Pixel QA OK (std=82.9)"
+      },
+      "vlm_qa": {
+        "pass": true,
+        "reason": "ok"
+      },
+      "status": "PASS"
+    },
+    "ch05_p1": {
+      "filename": "ch05_p1.png",
+      "aspect_ratio": "16:9",
+      "dimensions": "1280x720",
+      "subject": "Flat 2D Indonesian comic panel. Four focused Indonesian adult friends (two men, two women) sitting closely around a square green mahjong table in an air-conditioned private lounge room, completely absorbed in evaluating their tile hands. In the background on the wall, an analog clock face shows five hours have elapsed unnoticed. Cozy focus, subtle dramatic lighting, bold black ink lines (#0F172A), warm cel-shaded colors on cream background (#FAF6EE), strictly no text or numbers.",
+      "attempts": 2,
+      "pixel_qa": {
+        "pass": true,
+        "reason": "Pixel QA OK (std=66.3)"
+      },
+      "vlm_qa": {
+        "pass": true,
+        "reason": "ok"
+      },
+      "status": "PASS"
+    },
+    "ch10_sq2": {
+      "filename": "ch10_sq2.png",
+      "aspect_ratio": "1:1",
+      "dimensions": "512x512",
+      "subject": "Flat 2D Indonesian comic illustration (1:1 square). A confident, smart young Indonesian entrepreneur smiling with arms crossed, standing proudly beside an automatic mahjong table. In the background, a clean bold upward-trending green financial line graphic rises steadily. Warm optimistic lighting, bold comic ink outlines (#0F172A), emerald green and golden amber accents on warm cream paper (#FAF6EE), strictly no text or numbers.",
+      "attempts": 2,
+      "pixel_qa": {
+        "pass": true,
+        "reason": "Pixel QA OK (std=84.2)"
+      },
+      "vlm_qa": {
+        "pass": true,
+        "reason": "The image correctly depicts the entrepreneur and the Mahjong table with the upward-trending graph without visible text."
+      },
+      "status": "PASS"
+    },
+    "ch02_p2": {
+      "filename": "ch02_p2.png",
+      "aspect_ratio": "16:9",
+      "dimensions": "1280x720",
+      "subject": "Flat 2D Indonesian comic panel. Detailed mechanical cutaway illustration of a modern automatic mahjong machine table. Shows the central circular dice elevator descending, internal magnetic drum rotating to attract ferrite tiles, mini conveyor tracks smoothly carrying neat rows of tiles, and twin elevator platforms lifting a fresh set of tiles to the surface. Bold crisp technical comic ink outlines (#0F172A), emerald green felt, slate gray and bronze internal mechanical gears on warm cream background (#FAF6EE), strictly no text or letters.",
+      "attempts": 3,
+      "pixel_qa": {
+        "pass": true,
+        "reason": "Pixel QA OK (std=72.6)"
+      },
+      "vlm_qa": {
+        "pass": true,
+        "reason": "ok"
+      },
+      "status": "PASS"
+    },
+    "ch07_sq1": {
+      "filename": "ch07_sq1.png",
+      "aspect_ratio": "1:1",
+      "dimensions": "512x512",
+      "subject": "Flat 2D Indonesian comic illustration (1:1 square). An empty, deserted mahjong lounge with quiet rows of vacant square green tables and neatly stacked stools. A lone Indonesian staff member in casual polo shirt leans boredly on the counter wiping with a cloth, gazing toward the quiet doorway. Melancholy quiet mood, daylight through windows, bold black ink lines (#0F172A), cool slate and cream tones (#FAF6EE), strictly zero text, zero caption boxes, zero words, zero speech bubbles.",
+      "attempts": 1,
+      "pixel_qa": {
+        "pass": true,
+        "reason": "Pixel QA OK (std=58.7)"
+      },
+      "vlm_qa": {
+        "pass": true,
+        "reason": "ok"
+      },
+      "status": "PASS"
+    },
+    "ch07_sq2": {
+      "filename": "ch07_sq2.png",
+      "aspect_ratio": "1:1",
+      "dimensions": "512x512",
+      "subject": "Flat 2D Indonesian comic illustration (1:1 square). A vibrant crowded peak evening scene inside the mahjong lounge. Every single table is filled with laughing, animated groups of Indonesian players. Near the entrance, staff warmly welcomes a group of waiting customers. Festive warm amber hanging lighting, bold dynamic comic lines (#0F172A), vibrant energy on cream paper (#FAF6EE), strictly zero text, zero caption boxes, zero banner signs, zero speech bubbles.",
+      "attempts": 2,
+      "pixel_qa": {
+        "pass": true,
+        "reason": "Pixel QA OK (std=60.6)"
+      },
+      "vlm_qa": {
+        "pass": true,
+        "reason": "ok"
+      },
+      "status": "PASS"
+    }
+  }
+}

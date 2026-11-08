@@ -1,0 +1,16 @@
+Packaging options for vid_20261107_001
+
+Package 1 (verdict)
+  Title:     POV: Lo Buka Bisnis Sewa Meja Mahjong. Ternyata Uangnya Bukan dari Makanan
+  Thumbnail: Package 1 - POV Lo Buka Bisnis Sewa Meja Mahjong. Ternyata Uangnya Bukan dari Makanan.jpg  [text: BUKAN DARI MAKANAN]
+
+Package 2 (proof) *recommended*
+  Title:     Hitungan Meja Mahjong Rp45 Ribu Sejam: Beneran Balik Modal?
+  Thumbnail: Package 2 - Hitungan Meja Mahjong Rp45 Ribu Sejam Beneran Balik Modal.jpg  [text: MODAL SETENGAH MILIAR]
+
+Package 3 (utility)
+  Title:     Mau Buka Tempat Mahjong? Satu Risiko Ini Nggak Ada di Kalkulator
+  Thumbnail: Package 3 - Mau Buka Tempat Mahjong Satu Risiko Ini Nggak Ada di Kalkulator.jpg  [text: CEK HUKUMNYA DULU]
+
+Titles and thumbnails can be mixed. Upload with:
+  .venv/bin/python motion-canvas/scripts/v2/upload_youtube.py vid_20261107_001 --title N --thumb N

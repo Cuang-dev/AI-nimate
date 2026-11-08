@@ -39,18 +39,24 @@ To prevent split attention between graphics, on-screen text, and subtitles, all 
   - **Inactive elements** (`focalId() !== id`): Must remain **100% stationary** (`scale(1.0)`, `rotation(0)`), dimmed to `opacity: 0.22`.
   - Inactive elements never oscillate or wobble.
 
-### Rule 4: Sample-Accurate Acoustic-to-Visual Sync & Fast Micro-Choreography (`timings.json` Word Trigger Rule)
-- **Sample-Accurate Word Trigger Rule (`±0.3s`)**: Every major visual reveal (bar growth, counter tick, conduit draw, wall drop, badge flip) MUST be triggered within `±0.3s` of the exact spoken word timestamp in `timings.json` (never 7–9 seconds premature!).
-- **Intervening Micro-Cue Cadence (2.0s–2.8s intervals)**: Intermediate micro-cues (axis draw, baseline entry, station pop-in, sub-badge overshoot) MUST fill the intervening `2.0s–2.8s` intervals so there is never a static stretch `> 3.0s` across any beat.
-- **Strict Hold-Time Guard (`>= 2.7s` Before Beat End)**: The final visual element and animation in every beat MUST finish at least **`>= 2.7s` before `beat.end`**.
+### Rule 4: Chapters vs. Beats & Dual Stage Modes (`full_comic_16x9` vs. `explainer_2x2`)
+- **Canonical Terminology (`Chapters` = Macro Sub-Chapters, `Beats` = Sentence/Clause Visual Triggers)**:
+  - **Chapter (`chapter_01`..`chapter_NN`)**: A macro narrative sub-chapter where one stage layout stays on screen; starting a new Chapter clears the canvas and updates the top chapter brow badge.
+  - **Beat (`beats: [...]` inside each Chapter)**: A sentence-level (or hook-clause-level) visual trigger (`yield* waitUntilSceneTime(...)`) synced to the exact spoken word in `timings.json`.
+  - Every spoken sentence in `spoken_text` MUST trigger at least one Beat (`Check 16: Beat-Level Visual Cadence`), and **Chapter 1 (`The Hook`, `0s–18s`) MUST trigger rapid clause-level Beats every `2.0s–3.5s`** (at least 5–7 visual cues in the Hook) to lock in early viewer retention.
+- **Two Stage Modes Available per Chapter (`full_comic_16x9` & `explainer_2x2`)**:
+  - **Option 1 (`stage_mode: "full_comic_16x9"` — Full-Screen `16:9` Flat 2D Indonesian Comic Art)**:
+    - When a Chapter is narrative, observational, or physical storytelling and does not need a complex chart, use full-screen `16:9` (`1280x720`) flat 2D Indonesian comic panels generated 4-per-batch via a `16:9` `2x2` grid (`"aspect_ratio": "16:9"` in `nano_banana_batch_grid.py`).
+    - Every sentence Beat swaps to a new `16:9` comic panel or animates camera focus + bold comic callout badges synced to `waitUntilSceneTime()`.
+  - **Option 2 (`stage_mode: "explainer_2x2"` — Square `1:1` Flat 2D Indonesian Comic Art + Quantitative Diagram)**:
+    - When a Chapter breaks down unit economics, financial waterfalls, receipts, or multi-axis charts, pair square `1:1` (`512x512`) flat 2D Indonesian comic panels (generated 4-per-batch via a `1:1` `2x2` grid) with a quantitative diagram archetype.
+- **Chapter Pacing Guideline (Scriptwriter Discretion, Never Hardcoded)**:
+  - *Guideline for what is "too many" vs. "too few" Chapters* (at the scriptwriter's editorial discretion, never a fixed cap):
+    - **Too many Chapters**: Wiping the entire canvas every 5–10 seconds (1–2 sentences) causes visual whiplash. Keep related sentences inside the same Chapter.
+    - **Recommended organic range**: **~12s–20s (3–5 sentences)** per Chapter for `9:16` Shorts (typically 4–6 Chapters for a 60–90s Short), and **~35s–65s (5–9 sentences)** per Chapter for `16:9` long-form essays (typically 7–14 Chapters for an 8–10 min video).
+- **Strict Hold-Time Guard (`>= 2.7s` Before Chapter End)**: The final Beat animation in every Chapter MUST finish at least **`>= 2.7s` before the Chapter ends** so the viewer can absorb the completed frame before the stage clears.
 - **Ban 10–12s Slow Tickers**: Number counter tweens must execute briskly in **1.0s to 1.8s** at the exact timestamp the narrator speaks the figure.
-- **Progressive Staging Sequence (No Canvas Clutter at `t = 0`)**:
-  - `t = 0.0s`: Baseline/frame enters (`opacity: 0 -> 1`, `scale: 0.95 -> 1.0`). Hubs/bars initialize hidden (`opacity: 0`).
-  - `t = 2.0s–2.8s`: Primary station/entity pops in (`scale: 0 -> 1.15 -> 1.0`) on entity mention.
-  - `t = spoken word (±0.3s)`: Core mechanism triggers (conduit flow, 1.0s–1.8s counter, or barrier drop).
-  - `t = subsequent word (±0.3s)`: Secondary entity, metric badge flip, or bracket step-up reveals.
-  - `t <= beat.end - 2.7s`: Final forensic stamp, caliper bracket, or verdict highlight completes.
-- **Post-Render Verification**: Always run `node scripts/qa_verify.mjs <video_id>` after every render to verify visual cue timestamps, hold times, and absence of static stretches `> 3.0s`.
+- **Post-Render Verification**: Always run `node scripts/qa_verify.mjs <video_id>` after every render to verify all 16 automated checks, including Check 16 (`Sentence/Beat-Level Visual Cadence`).
 
 ### Rule 5: Subtitle Integration & Lower-Third Clearance
 - **Acoustic Lead (`LEAD_OFFSET = 0.22`)**: Advance subtitle word karaoke highlighting by `+220ms` (`t = time + 0.22`) to align with acoustic consonant onset.
@@ -129,11 +135,15 @@ Production aesthetics are governed by Channel Style Profiles located in `styles/
    - Enforces Zero-Empty-Slot Flexbox Gap Rule on the subtitle pill bar (`gap={0}` on parent `<Rect>`, `[0, 1, 2, 3]` slots, conditional padding e.g. `[9, 14]` phone / `[6, 10]` wide on active slots and margin `[0, 11, 0, 0]` phone / `[0, 8, 0, 0]` wide only on `slotIdx < chunk.words.length - 1`, eliminating trailing right-side margin from unused slots).
    - Enforces Physical Screen Calibration & Minimum Typography / Asset Sizing (imports `getTypo` and `getAssets` from `src/shared/screenCalibration.ts`; never `wide ? 24 : 15`; absolute minimum font floor `>=20px` phone / `>=18px` wide; subtitle pill text `44px` phone / `38px` wide; canvas width utilization `>=82%` phone / `>=70%` wide).
    - Enforces Perpendicular Box-Edge Arrow Entry & Conduit Geometry (90° exit/entry; straight vertical left/right conduits in 9:16 stacked cyclic graphs connecting bottom of top card to top of bottom card with vertically staggered callout pills).
+   - **Enforces the Outer Card `<Rect>` Non-Flex Rule**: Never put `layout` on an outer card `<Rect>` container that holds stacked cross-fading `<Img>` panels or coordinate-positioned `<Line>`/`<Txt>` charts (because in `@motion-canvas/2d`, Yoga flex cascades through `<Node>` to all descendant `Layout` nodes, pushing second images out of `clip` frames and collapsing chart coordinates). Keep outer card `<Rect>` containers non-flex (position children via `x`/`y`) and apply `layout` only to leaf pills, badges, and table rows.
    - Configures `focalId` breathing pulse (0.55 rad/s, 0.45 rad/s) and stillness for inactive elements.
    - Ties major visual reveals and number counters to 1.0s–1.8s tweens triggered within `±0.3s` of narration word timestamps in `timings.json`, completing all motion `>= 2.7s` before beat end.
-5. **Asset Hub (`SubAgent_Assets`)**:
-   - Fetches authentic SVG/PNG logomarks or official seals from Wikimedia Commons API (`commons.wikimedia.org/w/api.php`) or SimpleIcons for all real-world entities (IDX, BCA, Interactive Brokers, IRS, UCITS, Kemenkeu/DJP, OECD).
-   - Strictly forbidden from generating synthetic geometric stand-ins with Python/PIL or hallucinating brand marks with AI image models.
-   - Generates/sources 100% text-free square (256x256) PNG graphic marks on transparent backgrounds.
+5. **Asset Hub (`nano-banana-asset-generator` / `SubAgent_Assets`)**:
+   - Uses **Nano Banana 2 Lite** (`models/gemini-3.1-flash-image-preview`) via `:batchGenerateContent` in [`motion-canvas/scripts/nano_banana_batch_grid.py`](file:///home/agent/orca/AI-nimate/motion-canvas/scripts/nano_banana_batch_grid.py) (`NANO_BANANA_API_KEY` in `.env`) to generate consistent **Flat 2D Indonesian Comic Illustrations** in **2x2 grids** grouped by aspect ratio:
+     - **`"aspect_ratio": "16:9"` (`Option 1: full_comic_16x9`)**: 4 widescreen `16:9` comic scenes per grid (`2752x1536`), auto-sliced into `1280x720` (`16:9`) PNG panels.
+     - **`"aspect_ratio": "1:1"` (`Option 2: explainer_2x2`)**: 4 square `1:1` comic scenes per grid (`2048x2048`), auto-sliced into `512x512` (`1:1`) PNG panels.
+   - Runs automated + VLM vision QA on every sliced panel and **re-queues any failed panel into a new 2x2 grid** along with other failures or the next batch until `all_passed: true`.
+   - Fetches authentic SVG/PNG logomarks or official seals from Wikimedia Commons API (`commons.wikimedia.org/w/api.php`) or SimpleIcons when referencing specific real-world corporate/statutory logos (IDX, BCA, Interactive Brokers, IRS, UCITS, Kemenkeu/DJP, OECD).
+   - Generates 100% text-free PNG illustrations/marks so all typography is rendered as crisp Motion Canvas `<Txt>` nodes.
 6. **Multimodal Visual QA Inspector (`SubAgent_QA`)**:
    - Executes `node scripts/qa_verify.mjs <video_id>` after every render to verify sample-accurate timing sync (`±0.3s`), hold times (`>= 2.7s`), absence of static stretches `> 3.0s`, authentic logo rules, `<Node ref={stage}>` wrapping, subtitle clearance, phone font floor (`>= 18px`), and perpendicular conduit geometry.

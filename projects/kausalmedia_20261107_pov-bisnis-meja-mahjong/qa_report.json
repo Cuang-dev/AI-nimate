@@ -1,0 +1,115 @@
+{
+  "id": "vid_20261107_001",
+  "generatedAt": "2026-11-08T09:40:52.129Z",
+  "status": "19/19 PASS",
+  "passed": 19,
+  "total": 19,
+  "checks": [
+    {
+      "name": "Timings Manifest",
+      "passed": true,
+      "detail": "459.18s, 10 beats"
+    },
+    {
+      "name": "Subtitle 16:9 Words (<= 10)",
+      "passed": true,
+      "detail": "199 chunks"
+    },
+    {
+      "name": "Subtitle 16:9 Chars (<= 52)",
+      "passed": true,
+      "detail": "199 chunks"
+    },
+    {
+      "name": "Subtitle 9:16 Words (<= 5)",
+      "passed": true,
+      "detail": "283 chunks"
+    },
+    {
+      "name": "Subtitle 9:16 Chars (<= 34)",
+      "passed": true,
+      "detail": "283 chunks"
+    },
+    {
+      "name": "Zero Cross-Beat Bleed",
+      "passed": true,
+      "detail": "Clean beat boundaries"
+    },
+    {
+      "name": "Subtitle = Script (100%)",
+      "passed": true,
+      "detail": "985 words in order"
+    },
+    {
+      "name": "Concat List (16x9)",
+      "passed": true,
+      "detail": "10/10 beats matched"
+    },
+    {
+      "name": "Master 16:9 Video",
+      "passed": true,
+      "detail": "1920x1080, 459.2s, AAC"
+    },
+    {
+      "name": "Master 9:16 Video",
+      "passed": true,
+      "detail": "Skipped (16:9 widescreen only)"
+    },
+    {
+      "name": "Visual Keyframes (Integrity)",
+      "passed": true,
+      "detail": "20/20 non-blank frames"
+    },
+    {
+      "name": "Sync Drift (16x9)",
+      "passed": true,
+      "detail": "v+0.003 a+0.000 tol 0.047"
+    },
+    {
+      "name": "Stage Stillness (< 9s)",
+      "passed": true,
+      "detail": "16.9% frozen, longest 6.2s"
+    },
+    {
+      "name": "Loudness (-14 LUFS, TP<=-0.9)",
+      "passed": true,
+      "detail": "-14.1 LUFS, TP -1 dBTP"
+    },
+    {
+      "name": "Asset QA (haiku, sha256)",
+      "passed": true,
+      "detail": "15/15 images"
+    },
+    {
+      "name": "Thumbnail (designed)",
+      "passed": true,
+      "detail": "source assets file"
+    },
+    {
+      "name": "Numbers vs numbers.json",
+      "passed": true,
+      "detail": "91 tokens, 242 figures"
+    },
+    {
+      "name": "Banned Jargon",
+      "passed": true,
+      "detail": "0 hits (15 terms)"
+    },
+    {
+      "name": "Storyboard Structure",
+      "passed": true,
+      "detail": "49 shots ok, min 1.82s"
+    }
+  ],
+  "measurements": [
+    "Subtitle words: 985/985 equal script display tokens (100.00%)",
+    "Sync 16x9: timings 459.180s, video 459.183s (+0.003), audio 459.180s (+0.000), tol 0.047s @60.00fps, frames 27551 vs 27551",
+    "Stillness: 21 frozen stretches >= 3s, total 77.5s (16.9%), longest 6.2s",
+    "Loudness: integrated -14.1 LUFS (target -14 +/-1), true peak -1 dBTP (max -0.9)",
+    "Asset QA: 15/15 images pass",
+    "Thumbnail: designed file present, meta source unrecorded, installed true",
+    "Numbers vs numbers.json: 91 tokens, 242 figures",
+    "Banned Jargon: 0 hits (15 terms)",
+    "Storyboard Structure: 49 shots ok, min 1.82s"
+  ]
+}

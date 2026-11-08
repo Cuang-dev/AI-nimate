@@ -87,7 +87,7 @@
           "monoFont": "'JetBrains Mono', monospace",
           "minPhoneFontPx": 20,
           "minWidescreenFontPx": 18,
-          "maxTxtNodesPerBeat": 18
+          "visualCueCadence": "every_sentence"
         },
         "chartAndLayoutRules": {
           "requireXYAxesWithArrows": true,
@@ -186,7 +186,7 @@
           "monoFont": "'JetBrains Mono', monospace",
           "minPhoneFontPx": 20,
           "minWidescreenFontPx": 18,
-          "maxTxtNodesPerBeat": 18
+          "visualCueCadence": "every_sentence"
         },
         "chartAndLayoutRules": {
           "requireXYAxesWithArrows": true,
@@ -913,7 +913,7 @@
         "ttsStylePrompt": "Immersive, conversational Indonesian business breakdown (Lo/Gue, kita), energetic storytelling, punchy dramatic pauses, crisp numbers and clear operational metrics.",
         "scriptPromptSummary": "10-beat immersive business documentary breaking down the unit economics, CAPEX, hidden F&B margins, and operational nightmares of running an automatic mahjong table lounge.",
         "iconGenerationPrompt": "256x256 transparent background flat Swiss vector icon, bold #0F172A outlines, high-contrast fills, zero baked text.",
-        "visualCueRules": "Widescreen 16:9 layout, single top brow badge 'POV: | <Chapter Name>', clean geometric Plus Jakarta Sans, high-contrast secondary labels, full X/Y axes on charts, strictly <= 18 Txt nodes per beat."
+        "visualCueRules": "Widescreen 16:9 layout, single top brow badge 'POV: | <Chapter Name>', clean geometric Plus Jakarta Sans, high-contrast secondary labels, full X/Y axes on charts, and mandatory sentence-level visual cues (every sentence triggers a visual change/reveal/illustration swap)."
       },
       "paths": {
         "productionDir": "motion-canvas/production/vid_20261102_001",
@@ -922,6 +922,131 @@
         "audioFile": "motion-canvas/public/audio/vid_20261102_001_narration.wav",
         "outputDir": "projects/kausalmedia_20261102_pov-buka-sewa-meja-mahjong"
       }
+    },
+    "kausalmedia_20261107_pov-bisnis-meja-mahjong": {
+      "id": "vid_20261107_001",
+      "dirName": "kausalmedia_20261107_pov-bisnis-meja-mahjong",
+      "channel": "kausalmedia",
+      "series": "POV:",
+      "date": "2026-11-07",
+      "slug": "pov-bisnis-meja-mahjong",
+      "title": "POV: Lo Buka Bisnis Sewa Meja Mahjong. Ternyata Uangnya Bukan dari Makanan",
+      "subtitle": "Simulasi modal Rp507,4 juta: yang menentukan untung adalah meja yang terisi",
+      "topicSummary": "Semua orang mengira lounge mahjong untung dari makanan. Kami hitung dengan harga pasar sungguhan: sekitar 79 persen untung kotor datang dari sewa meja, dan musuh aslinya adalah meja kosong. Hitungan bisnis adalah simulasi, bukan laporan keuangan tempat tertentu. Bukan nasihat hukum.",
+      "coreAngle": "Sewa meja, bukan makanan, menyumbang sekitar 79 persen untung kotor; risiko utamanya meja kosong.",
+      "voice": {
+        "provider": "gemini-tts",
+        "model": "gemini-3.8-flash-tts",
+        "voiceName": "Charon",
+        "language": "ID",
+        "sampleRateHz": 48000,
+        "leadOffsetSec": 0.22,
+        "ttsStylePrompt": "Bacakan seperti kreator YouTube bisnis Jakarta yang lagi ngobrol santai ke teman: hangat, tajam, ritmenya hidup, ada penekanan di angka penting dan jeda alami. Bukan penyiar berita. Pakai logat Jakarta yang wajar. Suara dan karakter tetap sama dari awal sampai akhir.",
+        "pronunciationMap": {
+          "PIK": "pik",
+          "AC": "a-se"
+        },
+        "singleTake": true,
+        "note": "Single take, one model, no fallback (voice consistency)."
+      },
+      "style": {
+        "theme": "swiss-editorial-light",
+        "aspects": [
+          "16:9"
+        ],
+        "resolution": {
+          "16:9": [
+            1920,
+            1080
+          ]
+        },
+        "fps": 60,
+        "topBrowFormat": "POV: | <Chapter Name>",
+        "headingFont": "'Plus Jakarta Sans', 'Inter', sans-serif",
+        "headingWeight": 800,
+        "bodyFont": "'Plus Jakarta Sans', sans-serif",
+        "monoFont": "'JetBrains Mono', 'Liberation Mono', monospace",
+        "palette": {
+          "bg": "#F8FAFC",
+          "surface": "#FFFFFF",
+          "ink": "#0F172A",
+          "secondaryInk": "#334155",
+          "gridLine": "#E2E8F0",
+          "crimson": "#E11D48",
+          "emerald": "#059669",
+          "amber": "#D97706",
+          "cobalt": "#2563EB"
+        },
+        "beatArchetypes": [
+          {
+            "beat": "01",
+            "chapterTitle": "Fenomena Meja Hijau Otomatis",
+            "archetype": "Immersive Urban Night Lounge Arrival & Automatic Green Table Craze"
+          },
+          {
+            "beat": "02",
+            "chapterTitle": "Anatomi Meja Otomatis Rp12 Juta",
+            "archetype": "Mechanical Cutaway Diagram of Central Elevator & Magnetic 144-Tile Shuffler"
+          },
+          {
+            "beat": "03",
+            "chapterTitle": "Jebakan Waktu: Kunci 5 Jam Non-Stop",
+            "archetype": "Duration Lock-in Comparative Table (Cafe vs Billiards vs Mahjong 5-Hour Retention)"
+          },
+          {
+            "beat": "04",
+            "chapterTitle": "Bongkar CAPEX Lounge 8 Meja (Rp350 Juta)",
+            "archetype": "Financial Waterfall Card Stack: Ruko Lease, 8 Foshan Tables, Acoustic Partitions & Permits"
+          },
+          {
+            "beat": "05",
+            "chapterTitle": "Rahasia Uang Asli: Bukan dari Sewa Meja!",
+            "archetype": "Revenue Conversion Flow: Table Rent Covers Fixed Overhead, F&B Generates 70% Net Margin"
+          },
+          {
+            "beat": "06",
+            "chapterTitle": "Bedah Struk 1 Meja VIP (Margin 70%)",
+            "archetype": "Interactive Itemized Receipt Teardown: Table Rent, Drinks, Fried Noodles, Dimsum (76% Gross Margin)"
+          },
+          {
+            "beat": "07",
+            "chapterTitle": "Kutukan Hari Kerja (Senin–Kamis Kosong)",
+            "archetype": "Weekly Calendar Heatmap: Mon-Thu <15% Occupancy Bleed vs Weekend 100% Bottleneck"
+          },
+          {
+            "beat": "08",
+            "chapterTitle": "Mimpi Buruk Mesin Macet & Batu Hilang",
+            "archetype": "Operational Hazard Warning: Spilled Boba Motor Jam & 1 Missing Calibrated Magnetic Tile Brick"
+          },
+          {
+            "beat": "09",
+            "chapterTitle": "Garis Tipis Hukum (Pasal 303 vs Rekreasi)",
+            "archetype": "4-Pillar Legal Compliance Shield: Digital Scorecards, No Cash, Glass Panes & 24/7 CCTV"
+          },
+          {
+            "beat": "10",
+            "chapterTitle": "Lounge Ruko vs Sewa Harian Panggilan",
+            "archetype": "Business Model Dual Comparison: High-Capex Ruko Lounge vs Mobile Door-to-Door Rental Service"
+          }
+        ]
+      },
+      "prompts": {
+        "ttsStylePrompt": "Immersive, conversational Indonesian business breakdown (Lo/Gue, kita), energetic storytelling, punchy dramatic pauses, crisp numbers and clear operational metrics.",
+        "scriptPromptSummary": "10-beat immersive business documentary breaking down the unit economics, CAPEX, hidden F&B margins, and operational nightmares of running an automatic mahjong table lounge.",
+        "iconGenerationPrompt": "256x256 transparent background flat Swiss vector icon, bold #0F172A outlines, high-contrast fills, zero baked text.",
+        "visualCueRules": "Widescreen 16:9 layout, single top brow badge 'POV: | <Chapter Name>', clean geometric Plus Jakarta Sans, high-contrast secondary labels, full X/Y axes on charts, and mandatory sentence-level visual cues (every sentence triggers a visual change/reveal/illustration swap)."
+      },
+      "paths": {
+        "productionDir": "motion-canvas/production/vid_20261107_001",
+        "scenesDir": "motion-canvas/src/scenes/vid_20261107_001",
+        "assetsDir": "motion-canvas/public/assets/vid_20261107_001",
+        "audioFile": "motion-canvas/public/audio/vid_20261107_001_narration.wav",
+        "outputDir": "projects/kausalmedia_20261107_pov-bisnis-meja-mahjong"
+      },
+      "aspects": [
+        "16:9"
+      ],
+      "pipeline": "v2"
     }
   }
 }

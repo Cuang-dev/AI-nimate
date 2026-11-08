@@ -1,0 +1,565 @@
+{
+  "video_id": "vid_20261107_001",
+  "channel": "kausalmedia",
+  "series": "POV:",
+  "slug": "pov-bisnis-meja-mahjong",
+  "title": "POV: Lo Buka Bisnis Sewa Meja Mahjong. Ternyata Uangnya Bukan dari Makanan",
+  "subtitle": "Simulasi modal Rp507,4 juta: yang menentukan untung adalah meja yang terisi",
+  "description": "Semua orang mengira lounge mahjong untung dari makanan. Kami hitung dengan harga pasar sungguhan: sekitar 79 persen untung kotor datang dari sewa meja, dan musuh aslinya adalah meja kosong. Hitungan bisnis adalah simulasi, bukan laporan keuangan tempat tertentu. Bukan nasihat hukum.",
+  "language": "ID",
+  "aspect_ratios": [
+    "16x9"
+  ],
+  "voice": {
+    "model": "gemini-3.8-flash-tts",
+    "voiceName": "Charon"
+  },
+  "tts_style_prompt": "Bacakan seperti kreator YouTube bisnis Jakarta yang lagi ngobrol santai ke teman: hangat, tajam, ritmenya hidup, ada penekanan di angka penting dan jeda alami. Bukan penyiar berita. Pakai logat Jakarta yang wajar. Suara dan karakter tetap sama dari awal sampai akhir.",
+  "thumbnail": {
+    "text": "BUKAN DARI MAKANAN",
+    "scene": "The recurring young owner, shocked and pointing at a large green mahjong table beside a pushed-away bowl of noodles, strong expression, large in frame, plain warm background on the left for text"
+  },
+  "chapters": [
+    {
+      "id": "ch01",
+      "title": "Teka-teki",
+      "music": "tense",
+      "sentences": [
+        {
+          "id": "s01_01",
+          "text": "Sewa satu meja mahjong di Jakarta Barat bisa cuma [Rp45 ribu|empat puluh lima ribu rupiah] sejam."
+        },
+        {
+          "id": "s01_02",
+          "text": "Dibagi empat orang, [sekitar Rp11 ribu|sekitar sebelas ribu rupiah] per kepala."
+        },
+        {
+          "id": "s01_03",
+          "text": "Lebih murah dari segelas kopi."
+        },
+        {
+          "id": "s01_04",
+          "text": "Tapi buat buka tempat kayak gini di ruko, modalnya bisa [sekitar Rp500 juta|sekitar lima ratus juta rupiah]."
+        },
+        {
+          "id": "s01_05",
+          "text": "Sewanya receh. Modalnya setengah miliar.",
+          "pause_after": 0.5
+        },
+        {
+          "id": "s01_06",
+          "text": "Terus, uangnya dari mana?",
+          "pause_after": 0.9
+        },
+        {
+          "id": "s01_07",
+          "text": "Hampir semua orang bakal jawab: dari makanan."
+        },
+        {
+          "id": "s01_08",
+          "text": "Main berjam-jam, pasti lapar, pasti jajan."
+        },
+        {
+          "id": "s01_09",
+          "text": "Masuk akal, kan?"
+        },
+        {
+          "id": "s01_10",
+          "text": "Tapi begitu angkanya kita hitung satu-satu, jawabannya beda."
+        },
+        {
+          "id": "s01_11",
+          "text": "Dan jawaban itu yang nentuin lo balik modal dalam [sekitar 16 bulan|sekitar enam belas bulan], atau [13 tahun lebih|tiga belas tahun lebih].",
+          "pause_after": 0.8
+        },
+        {
+          "id": "s01_12",
+          "text": "Satu hal dulu: hitungan bisnis di video ini simulasi kami sendiri, pakai harga yang beneran ada di pasaran."
+        },
+        {
+          "id": "s01_13",
+          "text": "Bukan laporan keuangan tempat tertentu."
+        }
+      ]
+    },
+    {
+      "id": "ch02",
+      "title": "Kenapa rame sekarang",
+      "music": "light",
+      "sentences": [
+        {
+          "id": "s02_01",
+          "text": "Pertama, ini beneran lagi rame, atau cuma rame di media sosial?"
+        },
+        {
+          "id": "s02_02",
+          "text": "Satu toko meja di Surabaya ngaku penjualannya naik [50 persen|lima puluh persen] sampai [60 persen|enam puluh persen]."
+        },
+        {
+          "id": "s02_03",
+          "text": "Dalam empat bulan, katanya laku [3.000 unit|tiga ribu unit] sampai [5.000 unit|lima ribu unit]."
+        },
+        {
+          "id": "s02_04",
+          "text": "Ingat, itu klaim penjualnya sendiri, bukan data pasar."
+        },
+        {
+          "id": "s02_05",
+          "text": "Tapi tandanya ada di mana-mana."
+        },
+        {
+          "id": "s02_06",
+          "text": "Di Jakarta, panduan tempat mahjong terbaru udah bisa daftar sebelas nama, dan akhir pekan disaranin booking dulu."
+        },
+        {
+          "id": "s02_07",
+          "text": "Di Tiongkok, satu merek ruang mahjong ngaku punya [14.000 toko|empat belas ribu toko]."
+        },
+        {
+          "id": "s02_08",
+          "text": "Di Amerika, pencarian klub mahjong di Yelp naik [lebih dari 4.400 persen|lebih dari empat ribu empat ratus persen]."
+        },
+        {
+          "id": "s02_09",
+          "text": "Permainan orang tua ini lagi pindah tangan ke anak muda.",
+          "pause_after": 0.6
+        }
+      ]
+    },
+    {
+      "id": "ch03",
+      "title": "Meja yang kerja sendiri",
+      "music": "light",
+      "sentences": [
+        {
+          "id": "s03_01",
+          "text": "Salah satu alasannya ada di mejanya."
+        },
+        {
+          "id": "s03_02",
+          "text": "Meja otomatis kelas toko ritel harganya [Rp15,9 juta|lima belas koma sembilan juta rupiah], beratnya [hampir 100 kilo|hampir seratus kilo]."
+        },
+        {
+          "id": "s03_03",
+          "text": "Isinya [dua set ubin|dua set ubin] beda warna."
+        },
+        {
+          "id": "s03_04",
+          "text": "Satu set lagi dipakai main, satu set lagi diaduk di dalam mesin."
+        },
+        {
+          "id": "s03_05",
+          "text": "Habis satu ronde, ubin disapu masuk ke ruang di bawah panel tengah."
+        },
+        {
+          "id": "s03_06",
+          "text": "Di situ, ruangnya berputar, dan lengan penyapu mencampur ubinnya."
+        },
+        {
+          "id": "s03_07",
+          "text": "Sabuk bawa ubin ke empat jalur, satu buat tiap pemain, sambil magnet ngebalik ubin biar menghadap yang benar."
+        },
+        {
+          "id": "s03_08",
+          "text": "Sensor ngitung jumlahnya, lalu dinding ubin nunggu di posisi siap."
+        },
+        {
+          "id": "s03_09",
+          "text": "Tombol dipencet, dinding naik ke permukaan, ronde baru langsung jalan."
+        },
+        {
+          "id": "s03_10",
+          "text": "Nggak ada lagi waktu terbuang buat ngocok dan nyusun."
+        },
+        {
+          "id": "s03_11",
+          "text": "Buat pemilik tempat, artinya sederhana: pemain betah, dan satu meja bisa dipakai sampai berjam-jam.",
+          "pause_after": 0.6
+        }
+      ]
+    },
+    {
+      "id": "ch04",
+      "title": "Setengah miliar buat apa",
+      "music": "tense",
+      "sentences": [
+        {
+          "id": "s04_01",
+          "text": "Sekarang kita buka bisnisnya: delapan meja, di ruko [PIK|pik]."
+        },
+        {
+          "id": "s04_02",
+          "text": "Modal awalnya kita hitung [Rp507,4 juta|lima ratus tujuh koma empat juta rupiah]."
+        },
+        {
+          "id": "s04_03",
+          "text": "Pos terbesar, jelas, delapan meja: [Rp127,2 juta|seratus dua puluh tujuh koma dua juta rupiah]."
+        },
+        {
+          "id": "s04_04",
+          "text": "Tapi nomor dua bukan barang, melainkan uang cadangan tiga bulan: [Rp120 juta|seratus dua puluh juta rupiah]."
+        },
+        {
+          "id": "s04_05",
+          "text": "Lalu peredam suara, [Rp90 juta|sembilan puluh juta rupiah], karena ubin mahjong itu berisik, dan tetangga ruko lo nggak bakal diam."
+        },
+        {
+          "id": "s04_06",
+          "text": "Interior [Rp60 juta|enam puluh juta rupiah], dapur [Rp40 juta|empat puluh juta rupiah], dan [AC|a-se] [Rp36 juta|tiga puluh enam juta rupiah]."
+        },
+        {
+          "id": "s04_07",
+          "text": "Kursi dan izin usaha nutup sisanya."
+        },
+        {
+          "id": "s04_08",
+          "text": "Itu belum termasuk kalau pemilik ruko minta bayar setahun di muka, padahal sewa setahun di [PIK|pik] bisa [Rp150 juta|seratus lima puluh juta rupiah] sampai [Rp250 juta|dua ratus lima puluh juta rupiah]."
+        },
+        {
+          "id": "s04_09",
+          "text": "Setelah buka, tiap bulan lo kena biaya tetap [Rp40 juta|empat puluh juta rupiah]."
+        },
+        {
+          "id": "s04_10",
+          "text": "Ada sewa ruko, gaji empat orang, internet, dan promosi."
+        },
+        {
+          "id": "s04_11",
+          "text": "Ada pelanggan atau nggak, angka ini jalan terus.",
+          "pause_after": 0.8
+        }
+      ]
+    },
+    {
+      "id": "ch05",
+      "title": "Satu bulan di kasir",
+      "music": "warm",
+      "sentences": [
+        {
+          "id": "s05_01",
+          "text": "Sekarang kita isi tempatnya."
+        },
+        {
+          "id": "s05_02",
+          "text": "Tarif meja kita pasang [Rp70 ribu|tujuh puluh ribu rupiah] sejam di hari kerja, dan [Rp100 ribu|seratus ribu rupiah] di akhir pekan."
+        },
+        {
+          "id": "s05_03",
+          "text": "Tempat nyata di Jakarta ada yang lebih murah, ada yang lebih mahal."
+        },
+        {
+          "id": "s05_04",
+          "text": "Satu sesi kita anggap [4 jam|empat jam]."
+        },
+        {
+          "id": "s05_05",
+          "text": "Hari kerja agak sepi: rata-rata tiap meja cuma setengah sesi sehari."
+        },
+        {
+          "id": "s05_06",
+          "text": "Akhir pekan, satu setengah sesi."
+        },
+        {
+          "id": "s05_07",
+          "text": "Total [44 sesi|empat puluh empat sesi] seminggu, atau [sekitar 191 sesi|sekitar seratus sembilan puluh satu sesi] sebulan."
+        },
+        {
+          "id": "s05_08",
+          "text": "Dari sewa meja, masuk [Rp65,9 juta|enam puluh lima koma sembilan juta rupiah]."
+        },
+        {
+          "id": "s05_09",
+          "text": "Lalu makanannya."
+        },
+        {
+          "id": "s05_10",
+          "text": "Tiap orang kita anggap jajan tiga puluh lima ribu, jadi [Rp140 ribu|seratus empat puluh ribu rupiah] per meja."
+        },
+        {
+          "id": "s05_11",
+          "text": "Sebulan, itu [Rp26,7 juta|dua puluh enam koma tujuh juta rupiah]."
+        },
+        {
+          "id": "s05_12",
+          "text": "Total pendapatan, [Rp92,6 juta|sembilan puluh dua koma enam juta rupiah].",
+          "pause_after": 0.7
+        }
+      ]
+    },
+    {
+      "id": "ch06",
+      "title": "Ternyata bukan makanannya",
+      "music": "tense",
+      "sentences": [
+        {
+          "id": "s06_01",
+          "text": "Nah, ini bagian yang bikin teori tadi goyang."
+        },
+        {
+          "id": "s06_02",
+          "text": "Pendapatan beda sama untung."
+        },
+        {
+          "id": "s06_03",
+          "text": "Mie, kopi, dan dimsum itu ada bahan bakunya: sebulan sekitar [Rp9,3 juta|sembilan koma tiga juta rupiah]."
+        },
+        {
+          "id": "s06_04",
+          "text": "Jadi untung kotor makanan [Rp17,4 juta|tujuh belas koma empat juta rupiah]."
+        },
+        {
+          "id": "s06_05",
+          "text": "Sekarang mejanya."
+        },
+        {
+          "id": "s06_06",
+          "text": "Meja yang udah kebeli hampir nggak makan biaya tiap jam."
+        },
+        {
+          "id": "s06_07",
+          "text": "Listriknya [sekitar Rp1.230|sekitar seribu dua ratus tiga puluh rupiah] sejam, ditambah bersih-bersih, sebulan cuma [Rp2,1 juta|dua koma satu juta rupiah]."
+        },
+        {
+          "id": "s06_08",
+          "text": "Untung kotornya [Rp63,8 juta|enam puluh tiga koma delapan juta rupiah].",
+          "pause_after": 0.9
+        },
+        {
+          "id": "s06_09",
+          "text": "Artinya, [79 persen|tujuh puluh sembilan persen] untung kotor datang dari meja, dan makanan cuma [21 persen|dua puluh satu persen]."
+        },
+        {
+          "id": "s06_10",
+          "text": "Hapus dapurnya sama sekali, dan tempat ini masih untung [Rp17,2 juta|tujuh belas koma dua juta rupiah] sebulan."
+        },
+        {
+          "id": "s06_11",
+          "text": "Makanan itu bonus yang enak, tapi bukan mesin uangnya."
+        },
+        {
+          "id": "s06_12",
+          "text": "Dan ini bukan cuma teori: merek besar di Tiongkok tadi jualan ruang saja, tanpa dapur."
+        },
+        {
+          "id": "s06_13",
+          "text": "Porsinya bisa geser kalau tarif lo murah atau jajannya lebih laris, jadi coba pakai angka lo sendiri.",
+          "pause_after": 0.7
+        }
+      ]
+    },
+    {
+      "id": "ch07",
+      "title": "Musuh aslinya kursi kosong",
+      "music": "tense",
+      "sentences": [
+        {
+          "id": "s07_01",
+          "text": "Kalau uangnya dari meja, musuh lo bukan dapur yang sepi."
+        },
+        {
+          "id": "s07_02",
+          "text": "Musuh lo adalah meja kosong."
+        },
+        {
+          "id": "s07_03",
+          "text": "Dengan biaya tetap segitu, lo butuh [sekitar 106 sesi|sekitar seratus enam sesi] sebulan cuma buat impas."
+        },
+        {
+          "id": "s07_04",
+          "text": "Itu baru sekitar [17 persen|tujuh belas persen] dari jam buka."
+        },
+        {
+          "id": "s07_05",
+          "text": "Di simulasi tadi, meja terisi [31 persen|tiga puluh satu persen], untung bersih [Rp31,9 juta|tiga puluh satu koma sembilan juta rupiah] sebulan."
+        },
+        {
+          "id": "s07_06",
+          "text": "Balik modalnya [sekitar 16 bulan|sekitar enam belas bulan]."
+        },
+        {
+          "id": "s07_07",
+          "text": "Kelihatannya aman.",
+          "pause_after": 0.5
+        },
+        {
+          "id": "s07_08",
+          "text": "Tapi kalau pelanggannya turun [40 persen|empat puluh persen] jadi [114 sesi|seratus empat belas sesi], untungnya sisa [Rp3,1 juta|tiga koma satu juta rupiah]."
+        },
+        {
+          "id": "s07_09",
+          "text": "Balik modalnya jadi [162 bulan|seratus enam puluh dua bulan].",
+          "pause_after": 0.9
+        },
+        {
+          "id": "s07_10",
+          "text": "Lebih dari tiga belas tahun."
+        },
+        {
+          "id": "s07_11",
+          "text": "Sebaliknya, kalau naik [50 persen|lima puluh persen] jadi [286 sesi|dua ratus delapan puluh enam sesi], untungnya [Rp67,8 juta|enam puluh tujuh koma delapan juta rupiah], balik modal [sekitar 7,5 bulan|sekitar tujuh setengah bulan]."
+        },
+        {
+          "id": "s07_12",
+          "text": "Sedikit bedanya di pelanggan, jauh bedanya di kantong lo."
+        },
+        {
+          "id": "s07_13",
+          "text": "Jadi kerjaan utama pemilik tempat ini bukan masak."
+        },
+        {
+          "id": "s07_14",
+          "text": "Kerjaannya ngisi meja di hari Selasa siang.",
+          "pause_after": 0.7
+        }
+      ]
+    },
+    {
+      "id": "ch08",
+      "title": "Jalan yang lebih murah",
+      "music": "light",
+      "sentences": [
+        {
+          "id": "s08_01",
+          "text": "Kalau setengah miliar kegedean, ada model kedua: sewain meja harian dari garasi."
+        },
+        {
+          "id": "s08_02",
+          "text": "Modalnya [Rp90 juta|sembilan puluh juta rupiah], dengan lima meja portabel, [Rp10 juta|sepuluh juta rupiah] per meja."
+        },
+        {
+          "id": "s08_03",
+          "text": "Satu penyedia di Jakarta nawarin [Rp500 ribu|lima ratus ribu rupiah] sehari, atau paket akhir pekan [Rp1,2 juta|satu koma dua juta rupiah]."
+        },
+        {
+          "id": "s08_04",
+          "text": "Kita pakai tarif [Rp300 ribu|tiga ratus ribu rupiah] di hari kerja dan [Rp400 ribu|empat ratus ribu rupiah] di akhir pekan."
+        },
+        {
+          "id": "s08_05",
+          "text": "Pendapatannya [Rp16,9 juta|enam belas koma sembilan juta rupiah] sebulan."
+        },
+        {
+          "id": "s08_06",
+          "text": "Untung bersihnya cuma [Rp4,9 juta|empat koma sembilan juta rupiah]."
+        },
+        {
+          "id": "s08_07",
+          "text": "Balik modal [sekitar 18 bulan|sekitar delapan belas bulan], mirip sama ruko."
+        },
+        {
+          "id": "s08_08",
+          "text": "Bedanya di risiko."
+        },
+        {
+          "id": "s08_09",
+          "text": "Salah langkah di ruko bisa bikin lo kehilangan setengah miliar."
+        },
+        {
+          "id": "s08_10",
+          "text": "Di garasi, kerugiannya jauh lebih kecil, tapi hasilnya lebih mirip sampingan daripada bisnis utama."
+        },
+        {
+          "id": "s08_11",
+          "text": "Meja lo juga dibawa ke rumah orang, dan yang rusak, lo yang nanggung.",
+          "pause_after": 0.7
+        }
+      ]
+    },
+    {
+      "id": "ch09",
+      "title": "Satu risiko yang nggak ada di kalkulator",
+      "music": "tense",
+      "sentences": [
+        {
+          "id": "s09_01",
+          "text": "Ada satu risiko lagi yang nggak bisa dihitung di kalkulator: hukum."
+        },
+        {
+          "id": "s09_02",
+          "text": "Banyak orang masih nyebut Pasal [303,|tiga ratus tiga,] padahal sejak Januari [2026,|dua ribu dua puluh enam,] KUHP baru berlaku."
+        },
+        {
+          "id": "s09_03",
+          "text": "Perjudian sekarang diatur di Pasal [426|empat ratus dua puluh enam] dan [427.|empat ratus dua puluh tujuh.]"
+        },
+        {
+          "id": "s09_04",
+          "text": "Penyelenggara tanpa izin bisa kena [9 tahun|sembilan tahun] penjara atau denda [Rp2 miliar|dua miliar rupiah]."
+        },
+        {
+          "id": "s09_05",
+          "text": "Pemainnya sendiri bisa kena [3 tahun|tiga tahun] atau [Rp50 juta|lima puluh juta rupiah]."
+        },
+        {
+          "id": "s09_06",
+          "text": "Mahjong-nya sendiri bukan masalah."
+        },
+        {
+          "id": "s09_07",
+          "text": "Masalahnya kalau ada taruhan di meja lo."
+        },
+        {
+          "id": "s09_08",
+          "text": "Kami nggak nemu aturan yang secara tegas ngatur mahjong berbayar, dan kami juga nggak nemu aturan yang mewajibkan hal seperti partisi kaca."
+        },
+        {
+          "id": "s09_09",
+          "text": "Jadi tempat-tempat yang serius biasanya nulis jelas: tanpa taruhan."
+        },
+        {
+          "id": "s09_10",
+          "text": "Ini bukan nasihat hukum."
+        },
+        {
+          "id": "s09_11",
+          "text": "Sebelum tanda tangan kontrak ruko, ngobrol dulu sama pengacara.",
+          "pause_after": 0.7
+        }
+      ]
+    },
+    {
+      "id": "ch10",
+      "title": "Jawabannya",
+      "music": "warm",
+      "sentences": [
+        {
+          "id": "s10_01",
+          "text": "Jadi, uangnya dari mana?"
+        },
+        {
+          "id": "s10_02",
+          "text": "Bukan dari makanan."
+        },
+        {
+          "id": "s10_03",
+          "text": "Dari meja yang terisi, jam demi jam."
+        },
+        {
+          "id": "s10_04",
+          "text": "Kalau lo mau coba, jangan mulai dari desain interior."
+        },
+        {
+          "id": "s10_05",
+          "text": "Mulai dari satu pertanyaan: siapa yang bakal main di hari Selasa siang?"
+        },
+        {
+          "id": "s10_06",
+          "text": "Kalau lo punya jawabannya, hitungannya bisa jalan."
+        },
+        {
+          "id": "s10_07",
+          "text": "Kalau belum, modal setengah miliar itu taruhan paling mahal di tempat lo sendiri.",
+          "pause_after": 0.6
+        },
+        {
+          "id": "s10_08",
+          "text": "Oh iya, data tarif di luar Jakarta masih susah dicari."
+        },
+        {
+          "id": "s10_09",
+          "text": "Kalau di kota lo ada tempat mahjong, tulis tarifnya di komentar."
+        }
+      ]
+    }
+  ]
+}

@@ -10,6 +10,8 @@ export interface TimedWord {
 
 export interface BeatTiming {
   beat_id: string;
+  chapter_id?: string;
+  stage_mode?: string;
   start: number;
   end: number;
   duration?: number;
@@ -28,6 +30,7 @@ export interface SubtitleChunk {
 export const TIMINGS = {
   totalDuration: rawTimings.duration_seconds,
   beats: rawTimings.beats as BeatTiming[],
+  chapters: (rawTimings.chapters || rawTimings.beats) as BeatTiming[],
   words: rawTimings.words as TimedWord[],
   subtitleChunks: ((rawTimings as any).subtitle_chunks || []) as SubtitleChunk[],
   scenes: rawTimings.scenes,
